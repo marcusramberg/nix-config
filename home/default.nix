@@ -1,0 +1,98 @@
+{ config, pkgs, lib, ... }:
+{
+  home.stateVersion = "22.05";
+
+
+  # https://github.com/malob/nixpkgs/blob/master/home/default.nix
+
+  # Direnv, load and unload environment variables depending on the current directory.
+  # https://direnv.net
+  # https://rycee.gitlab.io/home-manager/options.html#opt-programs.direnv.enable
+  programs.direnv = {
+    enable = true;
+    nix-direnv.enable = true;
+  };
+  programs.firefox = {
+    enable = true;
+    package = pkgs.firefox.override
+      {
+        # See nixpkgs' firefox/wrapper.nix to check which options you can use
+        cfg = {
+          # Tridactyl native connector
+          enableTridactylNative = true;
+        };
+      };
+  };
+
+  # Htop
+  # https://rycee.gitlab.io/home-manager/options.html#opt-programs.htop.enable
+  programs.htop = {
+    enable = true;
+    settings.show_program_path = true;
+  };
+
+  #  programs.doom-emacs = {
+  #    enable = true;
+  #    doomPrivateDir = ./doom.d; # Directory containing your config.el, init.el
+  #    # and packages.el files
+  #  };
+  programs.fish = import ./fish.nix { inherit pkgs; };
+  programs.fzf = {
+    enable = true;
+    tmux.enableShellIntegration = true;
+  };
+  programs.keychain.enable = true;
+  programs.navi.enable = true;
+  programs.zoxide.enable = true;
+
+  programs.tmux = import ./tmux.nix { inherit pkgs; };
+
+  home.packages = with pkgs; [
+    actionlint
+    asciinema
+    ansible
+    bat
+    cargo
+    cocogitto
+    coreutils
+    curl
+    exa
+    deadnix
+    git
+    git-crypt
+    git-lfs
+    fd
+    fortune
+    gnumake
+    go
+    golangci-lint
+    gopls
+    go-task
+    gotestfmt
+    grc
+    jq
+    nodePackages.typescript
+    nodePackages.node2nix
+    nodejs-16_x
+    neovim-unwrapped
+    pssh
+    (import ./python.nix { inherit pkgs; })
+    ripgrep
+    tealdeer
+    thefuck
+    unzip
+    wezterm
+    wget
+    yq-go
+
+    # useful nix related tools
+    /* cachix # adding/managing alternative binary caches hosted by cachix */
+    /* comma # run software from without installing it */
+    /* niv # easy dependency management for nix projects */
+  ] ++ lib.optionals stdenv.isDarwin [
+    cocoapods
+    m-cli # useful macOS CLI commands
+  ];
+
+}
+
