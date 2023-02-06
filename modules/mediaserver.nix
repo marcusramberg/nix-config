@@ -103,7 +103,7 @@
     radarr.enable = true;
     sonarr.enable = true;
     miniflux.enable = true;
-    miniflux.adminCredentialsFile = "../secrets/miniflux-admin-credentials";
+    miniflux.adminCredentialsFile = "/etc/nixos/secrets/miniflux-admin-credentials";
     miniflux.config = {
       LISTEN_ADDR = "localhost:8485";
       METRICS_COLLECTOR = "1";
