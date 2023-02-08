@@ -34,7 +34,7 @@
     virtualisation.oci-containers = {
       backend = "podman";
       containers.hass = {
-        image = "ghcr.io/home-assistant/home-assistant:2023.1.4";
+        image = "ghcr.io/home-assistant/home-assistant:2023.2.2";
         environment = { TZ = "Europe/Oslo"; };
         extraOptions = [ "--net=host" "--device=/dev/serial/by-id/usb-0658_0200-if00" "--privileged" ];
         volumes = [ "/var/lib/homeassistant:/config" ];

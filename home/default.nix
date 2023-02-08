@@ -47,6 +47,10 @@
 
   programs.tmux = import ./tmux.nix { inherit pkgs; };
 
+  programs.neovim.extraConfig = ''
+    :luafile ~/.config/nvim/init.lua 
+  '';
+
   home.packages = with pkgs; [
     actionlint
     asciinema

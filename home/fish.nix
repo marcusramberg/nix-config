@@ -37,7 +37,7 @@
   };
   shellInit = ''
     fish_add_path /.dotfiles/bin /usr/local/sbin 
-    fish_add_path -a /run/current_system/sw/bin ~/.local/bin /opt/homebrew/bin ~/go/bin/ ~/.nimble/bin
+    fish_add_path -a /run/current_system/sw/bin ~/.local/bin /opt/homebrew/bin ~/go/bin/ ~/.nimble/bin ~/.cargo/bin/
     set CLOUDSDK_PYTHON_SITEPACKAGES 1
   '';
   interactiveShellInit = ''

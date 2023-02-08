@@ -79,11 +79,6 @@
       enable = true;
       viAlias = true;
       defaultEditor = true;
-      configure = {
-        customRC = ''
-          :luafile /home/marcus/.config/nvim/init.lua 
-        '';
-      };
     };
   };
 
