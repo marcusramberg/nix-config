@@ -18,7 +18,7 @@
       system = "x86_64-linux";
       secrets = import ./secrets;
       nixpkgsConfig = {
-        config = { allowUnfree = true; };
+        config = { allowUnfree = true; allowBroken = true; };
       };
     in
     {
