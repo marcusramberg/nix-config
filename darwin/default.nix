@@ -2,6 +2,12 @@
 {
   # Nix configuration ------------------------------------------------------------------------------
 
+  imports =
+    [
+      # Include the results of the hardware scan.
+      ../modules/yabai.nix
+    ];
+
   nix.settings.substituters = [
     "https://cache.nixos.org/"
   ];

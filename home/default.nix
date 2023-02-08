@@ -13,7 +13,7 @@
     nix-direnv.enable = true;
   };
   programs.firefox = {
-    enable = true;
+    enable = pkgs.stdenv.isLinux;
     package = pkgs.firefox.override
       {
         # See nixpkgs' firefox/wrapper.nix to check which options you can use
