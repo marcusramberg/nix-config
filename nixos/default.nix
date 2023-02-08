@@ -5,11 +5,6 @@
 { config, pkgs, ... }:
 
 {
-  nixpkgs.config = {
-    # Allow proprietary packages
-    allowUnfree = true;
-
-  };
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment = {

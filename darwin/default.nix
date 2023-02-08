@@ -9,11 +9,10 @@
     "cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY="
   ];
   nix.settings.trusted-users = [
-    "@admin"
+    "@marcus"
   ];
   nix.configureBuildUsers = true;
 
-  nixpkgs.config.allowUnsupportedSystem = true;
 
   # Enable experimental nix command and flakes
   # nix.package = pkgs.nixUnstable;
