@@ -31,6 +31,7 @@
             ./nixos
             home-manager.nixosModules.home-manager
             {
+              nixpkgs = nixpkgsConfig;
               home-manager.useGlobalPkgs = true;
               home-manager.useUserPackages = true;
               home-manager.users.marcus = import ./home;
@@ -45,6 +46,7 @@
             ./nixos
             home-manager.nixosModules.home-manager
             {
+              nixpkgs = nixpkgsConfig;
               home-manager.useGlobalPkgs = true;
               home-manager.useUserPackages = true;
               home-manager.users.marcus = import ./home;

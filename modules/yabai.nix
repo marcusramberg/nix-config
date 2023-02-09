@@ -41,7 +41,7 @@
       echo "yabai configuration loaded.."
     '';
   };
-  services.spacebar.enable = true;
+  services.spacebar.enable = false;
   services.spacebar.package = pkgs.spacebar;
   services.spacebar.config = {
     clock_format = "%R";
