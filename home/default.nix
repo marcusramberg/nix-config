@@ -42,7 +42,6 @@
     tmux.enableShellIntegration = true;
   };
   programs.keychain.enable = true;
-  programs.atuin.enable = true;
   programs.navi.enable = true;
   programs.zoxide.enable = true;
 
