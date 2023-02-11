@@ -17,8 +17,14 @@
       inherit (inputs.nixpkgs.lib) attrValues optionalAttrs singleton;
       system = "x86_64-linux";
       secrets = import ./secrets;
-      nixpkgsConfig = {
-        config = { allowUnfree = true; allowBroken = true; allowUnsupportedSystem = true; };
+      homeManagerConfig = {
+
+        nixpkgs = {
+          config = { allowUnfree = true; allowBroken = true; allowUnsupportedSystem = true; };
+        };
+        home-manager.useGlobalPkgs = true;
+        home-manager.useUserPackages = true;
+        home-manager.users.marcus = import ./home;
       };
     in
     {
@@ -30,12 +36,7 @@
             ./hosts/mhub
             ./nixos
             home-manager.nixosModules.home-manager
-            {
-              nixpkgs = nixpkgsConfig;
-              home-manager.useGlobalPkgs = true;
-              home-manager.useUserPackages = true;
-              home-manager.users.marcus = import ./home;
-            }
+            homeManagerConfig
           ];
         };
         butterbee = nixpkgs.lib.nixosSystem {
@@ -45,12 +46,7 @@
             ./hosts/butterbee
             ./nixos
             home-manager.nixosModules.home-manager
-            {
-              nixpkgs = nixpkgsConfig;
-              home-manager.useGlobalPkgs = true;
-              home-manager.useUserPackages = true;
-              home-manager.users.marcus = import ./home;
-            }
+            homeManagerConfig
           ];
         };
       };
@@ -62,14 +58,7 @@
           ./darwin
           # `home-manager` module
           home-manager.darwinModules.home-manager
-          {
-            nixpkgs = nixpkgsConfig;
-            # inherit nix-doom-emacs;
-            # `home-manager` config
-            home-manager.useGlobalPkgs = true;
-            home-manager.useUserPackages = true;
-            home-manager.users.marcus = import ./home;
-          }
+          homeManagerConfig
         ];
       };
       darwinModules = {
@@ -92,7 +81,5 @@
             };
           };
       };
-
-
     };
 }
