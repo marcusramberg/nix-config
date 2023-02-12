@@ -6,12 +6,13 @@
     home-manager.url = "github:nix-community/home-manager";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
     neovim-nightly-overlay.url = "github:nix-community/neovim-nightly-overlay";
+    nixos-wsl.url = "github:nix-community/NixOS-WSL";
     darwin.url = "github:lnl7/nix-darwin/master";
     darwin.inputs.nixpkgs.follows = "nixpkgs";
 
   };
 
-  outputs = inputs @ { self, nixpkgs, home-manager, neovim-nightly-overlay, darwin }:
+  outputs = inputs @ { self, nixpkgs, home-manager, neovim-nightly-overlay, darwin, nixos-wsl }:
     let
       inherit (darwin.lib) darwinSystem;
       inherit (inputs.nixpkgs.lib) attrValues optionalAttrs singleton;
@@ -45,6 +46,17 @@
           modules = [
             ./hosts/butterbee
             ./nixos
+            home-manager.nixosModules.home-manager
+            homeManagerConfig
+          ];
+        };
+        mbox = nixpkgs.lib.nixosSystem {
+          inherit system;
+          specialArgs = { inherit inputs; inherit secrets; };
+          modules = [
+            ./hosts/mbox
+            ./nixos
+	    nixos-wsl.nixosModules.wsl
             home-manager.nixosModules.home-manager
             homeManagerConfig
           ];
