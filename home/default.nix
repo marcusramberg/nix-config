@@ -45,8 +45,8 @@
   programs.navi.enable = true;
   programs.zoxide.enable = true;
 
-  programs.tmux = import ./tmux.nix { inherit pkgs; };
 
+  programs.tmux = import ./tmux.nix { inherit pkgs; };
   programs.neovim.extraConfig = ''
     :luafile ~/.config/nvim/init.lua 
   '';
@@ -62,14 +62,17 @@
     curl
     exa
     deadnix
+    delta
     git
     git-crypt
+    git-extras
     git-lfs
     fd
     fortune
     gnumake
     go
     golangci-lint
+    (google-cloud-sdk.withExtraComponents [ pkgs.google-cloud-sdk.components.cloud-build-local pkgs.google-cloud-sdk.components.gke-gcloud-auth-plugin ])
     gopls
     go-task
     gotestfmt
@@ -79,10 +82,13 @@
     nodePackages.node2nix
     nodejs-16_x
     neovim-unwrapped
+    pre-commit
     pssh
     (import ./python.nix { inherit pkgs; })
     ripgrep
     tealdeer
+    terraform
+    /* tfenv */
     thefuck
     unzip
     wezterm
@@ -96,6 +102,10 @@
   ] ++ lib.optionals stdenv.isDarwin [
     cocoapods
     m-cli # useful macOS CLI commands
+  ] ++ lib.optionals stdenv.isLinux [
+    feh
+    xclip
+    kubectl
   ];
 
 }

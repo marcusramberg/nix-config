@@ -97,9 +97,13 @@
   };
   time.timeZone = "Europe/Oslo";
 
-  nixpkgs.config.permittedInsecurePackages = [
-    "xrdp-0.9.9"
-  ];
+  nixpkgs.config = {
+    allowUnfree = true;
+
+    permittedInsecurePackages = [
+      "xrdp-0.9.9"
+    ];
+  };
   security.pam.loginLimits = [{
     domain = "marcus";
     type = "soft";

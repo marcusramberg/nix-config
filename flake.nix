@@ -10,17 +10,22 @@
     darwin.url = "github:lnl7/nix-darwin/master";
     darwin.inputs.nixpkgs.follows = "nixpkgs";
 
+    tfenv.url = "github:tfutils/tfenv";
+    tfenv.flake = false;
+
   };
 
-  outputs = inputs @ { self, nixpkgs, home-manager, neovim-nightly-overlay, darwin, nixos-wsl }:
+  outputs = inputs @ { self, nixpkgs, home-manager, neovim-nightly-overlay, darwin, nixos-wsl, flake-utils, tfenv }:
     let
       inherit (darwin.lib) darwinSystem;
       inherit (inputs.nixpkgs.lib) attrValues optionalAttrs singleton;
       system = "x86_64-linux";
       secrets = import ./secrets;
       homeManagerConfig = {
-
         nixpkgs = {
+          overlays = [
+            (import ./overlays tfenv)
+          ];
           config = { allowUnfree = true; allowBroken = true; allowUnsupportedSystem = true; };
         };
         home-manager.useGlobalPkgs = true;
@@ -56,7 +61,7 @@
           modules = [
             ./hosts/mbox
             ./nixos
-	    nixos-wsl.nixosModules.wsl
+            nixos-wsl.nixosModules.wsl
             home-manager.nixosModules.home-manager
             homeManagerConfig
           ];
