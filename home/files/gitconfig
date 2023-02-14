@@ -1,0 +1,131 @@
+; vim: set ft=gitconfig:
+# Sample gitconfig
+#
+# You probably want to change the [user] section here since you are not me.
+# Also search in this file for FIXME- you'll want to well, fix them.
+
+[hub]
+	protocol = ssh
+[user]
+	name = Marcus Ramberg
+	email = marcus@means.no
+[includeIf "gitdir:~/Source/reMarkable/"]
+  path = ~/.gitconfig.remarkable
+[alias]
+  patch = --no-pager diff --no-color
+  rank-contributers = !$ZSH/bin/git-rank-contributers
+  count   = !git shortlog -sn
+  co = checkout
+  st = status
+  ci = commit
+  br = branch
+  df = diff
+	lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
+  retrack = "!retrack() { git config \"branch.$1.remote\" $(dirname \"$2\"); git config  \"branch.$1.merge\" \"refs/heads/$(basename \"$2\")\"; }; retrack"
+  ca = commit --amend --reuse-message=HEAD
+  edit = "!vim `git ls-files -m ` -p "
+	credit = blame
+[color]
+  diff = auto
+  status = auto
+  branch = auto
+	ui = true
+[color "branch"]
+  current = yellow reverse
+  local = yellow
+  remote = green
+[color "diff"]
+	meta = white dim
+	frag = magenta dim
+	old = red
+	new = green
+	commit = white dim
+	whitespace = red reverse
+[color "status"]
+  added = yellow
+  changed = green
+  untracked = cyan
+[core]
+  whitespace = trailing-space,space-before-tab
+	excludesfile = /Users/marcus/.gitignore_global
+  pager = delta 
+
+[interactive]
+  diffFilter = delta --color-only
+
+[delta]
+    features = line-numbers decorations
+[apply]
+  syntax-theme = Nord
+  whitespace = nowarn
+[advice]
+  pushNonFastForward = false
+  statusHints = false
+[mergetool]
+  keepBackup = false
+  prompt = false
+[difftool]
+  prompt = false
+[help]
+  autocorrect = 5
+[push]
+	default = current
+[rerere]
+  enabled = true
+[url "git@git.nordaaker.com:"]
+  insteadOf = n:
+[url "git@github.com:"]
+  insteadOf = gh:
+#[credential]
+#  helper =  crossplatform
+[github]
+  user = marcusramberg
+
+[init]
+  templatedir = ~/.git_template
+	defaultBranch = main
+[filter "media"]
+  required = true
+	clean = git media clean %f
+	smudge = git media smudge %f
+[ghi]
+	token = !security find-internet-password -a marcusramberg -s github.com -l 'ghi token' -w
+[filter "hawser"]
+	clean = git hawser clean %f
+	smudge = git hawser smudge %f
+	required = true
+[ghi]
+	token = !security find-internet-password -a marcusramberg -s github.com -l 'ghi token' -w
+[filter "lfs"]
+	required = true
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+[pull]
+	rebase = true
+[credential]
+	helper = cache --timeout=1209600
+[rebase]
+	autoStash = true
+[color "diff-highlight"]
+	oldNormal = red bold
+	oldHighlight = red bold 52
+	newNormal = green bold
+	newHighlight = green bold 22
+[log]
+	follow = true
+[merge]
+	conflictstyle = diff3
+[diff]
+	algorithm = patience
+  colorMoved = default
+[bulkworkspaces]
+	rm = /Users/marcus/Source/reMarkable/
+[url "ssh://git@github.com/reMarkable"]
+	insteadOf = https://github.com/reMarkable
+
+[ghq "https://github.com/reMarkable/"]
+vcs = git
+root = ~/Source/reMarkable/
+[url "git@github.com:reMarkable/cloud"]
+	insteadOf = https://github.com/reMarkable/cloud

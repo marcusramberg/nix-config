@@ -86,6 +86,7 @@
     pre-commit
     pssh
     (import ./python.nix { inherit pkgs; })
+    ranger
     ripgrep
     tealdeer
     terraform
@@ -104,10 +105,16 @@
     cocoapods
     m-cli # useful macOS CLI commands
   ] ++ lib.optionals stdenv.isLinux [
+
+    copyq
     feh
-    xclip
     kubectl
+    maim
+    picom
+    nitrogen
+    volumeicon
     xcape
+    xclip
   ];
 
 }
