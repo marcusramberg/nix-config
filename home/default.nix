@@ -107,6 +107,7 @@
     feh
     xclip
     kubectl
+    xcape
   ];
 
 }

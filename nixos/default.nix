@@ -12,7 +12,7 @@
       ((emacsPackagesFor emacs).emacsWithPackages (epkgs: [
         epkgs.vterm
       ]))
-      git
+      cached-nix-shell
       gitAndTools.gh
       gcc
       man-pages
@@ -26,7 +26,6 @@
       wget
       wireguard-tools
       xarchiver
-      xcape
     ];
     variables = {
       # TERM = "xterm-256color";
