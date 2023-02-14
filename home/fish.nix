@@ -3,7 +3,7 @@
   enable = true;
   #useBabelfish = true;
   functions = {
-    fish_greeting = "fortune art goedel wisdom tao literature songs-poems paradoxum; echo ''";
+    /* fish_greeting = "fortune art goedel wisdom tao literature songs-poems paradoxum; echo ''"; */
     rd = "fd $argv (git root)";
   };
   shellAbbrs = {

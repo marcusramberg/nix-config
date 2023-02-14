@@ -1,6 +1,7 @@
 { config, pkgs, lib, ... }:
 {
   home.stateVersion = "22.05";
+  home.file = import ./files.nix { inherit pkgs; };
 
 
   # https://github.com/malob/nixpkgs/blob/master/home/default.nix

@@ -6,7 +6,7 @@
 
     # Always be sshing
     openssh.enable = true;
-    openssh.forwardX11 = true;
+    openssh.X11Forwarding = true;
 
     xserver = {
       enable = true;
