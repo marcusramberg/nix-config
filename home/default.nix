@@ -37,7 +37,7 @@
   #    doomPrivateDir = ./doom.d; # Directory containing your config.el, init.el
   #    # and packages.el files
   #  };
-  programs.fish = import ./fish.nix { inherit pkgs; };
+  programs.fish = import ./fish.nix { inherit pkgs; inherit lib; };
   programs.fzf = {
     enable = true;
     tmux.enableShellIntegration = true;
