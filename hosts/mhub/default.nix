@@ -5,6 +5,7 @@
     [
       # Include the results of the hardware scan.
       ./hardware-configuration.nix
+      ../../modules/agenix.nix
       ../../modules/docker.nix
       ../../modules/mediaserver.nix
       ../../modules/minecraft.nix

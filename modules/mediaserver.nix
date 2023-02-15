@@ -1,5 +1,4 @@
 { pkgs, lib, config, secrets, ... }:
-
 {
   services = {
     vaultwarden.enable = true;
@@ -7,10 +6,10 @@
       domain = "https://passwords.means.no/";
       signupsAllowed = false;
 
-      adminToken = secrets.bitwarden_admin_token;
       rocketPort = 8222;
       rocketLog = "critical";
     };
+    vaultwarden.environmentFile = config.age.secrets.vaultwarden.path;
     caddy = {
       enable = true;
       globalConfig =
@@ -40,9 +39,6 @@
             }
             transmission.means.no {
               tls /etc/caddy/cloudflare.crt /etc/caddy/cloudflare.key
-              basicauth / {
-                marcus ${secrets.transmission_auth}
-              }
               reverse_proxy localhost:9091
             }
 
@@ -103,7 +99,7 @@
     radarr.enable = true;
     sonarr.enable = true;
     miniflux.enable = true;
-    miniflux.adminCredentialsFile = "/etc/nixos/secrets/miniflux-admin-credentials";
+    miniflux.adminCredentialsFile = config.age.secrets.miniflux.path;
     miniflux.config = {
       LISTEN_ADDR = "localhost:8485";
       METRICS_COLLECTOR = "1";
@@ -118,10 +114,10 @@
         incomplete-dir-enabled = true;
         rpc-whitelist = "127.0.0.1,192.168.*.*";
         rpc-username = "marcus";
-        rpc-password = secrets.transmission_rpc_password;
         rpc-host-whitelist = "transmission.means.no";
         umask = 0;
       };
+      credentialsFile = config.age.secrets.transmission.path;
     };
   };
   services.unifi = {
@@ -139,39 +135,7 @@
       host all all ::1/128 trust
       host all all 127.0.0.1/32 trust
     '';
-    initialScript = pkgs.writeText "backend-initScript" ''
-      CREATE ROLE peertube WITH LOGIN PASSWORD '${secrets.peertube_db_pass}' CREATEDB;
-      CREATE DATABASE peertube;
-      GRANT ALL PRIVILEGES ON DATABASE peertube TO peertube;
-      \c peertube
-      CREATE EXTENSION pg_trgm;
-      CREATE EXTENSION unaccent;
-    '';
   };
 
-  services.redis.servers."peertube".enable = true;
-  users.users.peertube = {
-    isNormalUser = true;
-    description = "Peertube";
-  };
-  # services.mastodon = {
-  #   enable = true;
-  #   localDomain = "social.means.no";
-  #   smtpServer = "mail.pbb.lc";
-  #   smtpFromAddress = "notifications@pbb.lc";
-  #   vapidPublicKey = "BJHy26DZSzPBB1zQTdX_bEKCvXeRL9uIjKOuFvQun_VPYUIwEJLIDe2t5cqU_wTOBBfAAZLQZoklO0t_7Dl4VcY=";
-  #   dbUser = "mastodon";
-  #   smtpLogin = "mastodon@pbb.lc";
-  #   secretKeyBaseFile = "/etc/nixos/secrets/mastodon/secretKeyBase";
-  #   otpSecretFile = "/etc/nixos/secrets/mastodon/otpSecret";
-  #   vapidPrivateKeyFile = "/etc/nixos/secrets/mastodon/vapidPrivateKey";
-  #   dbPassFile = "/etc/nixos/secrets/mastodon/dbPass";
-  #   smtpPasswordFile = "/etc/nixos/secrets/mastodon/smtpPassword";
-  # };
-
-  # services.nginx.virtualHosts."social.means.no" = {
-  #   enableACME = true;
-  #   forceSSL = true;
-  # };
 }
 

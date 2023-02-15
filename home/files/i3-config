@@ -33,7 +33,7 @@ bindsym $mod+Shift+q kill
 bindsym $mod+d exec "dmenu_run"
 
 # Shots
-bindsym $mod+Shift+p exec maim -s | xclip -selection clipboard -t image/png
+bindsym $mod+Shift+p exec maim -s | xclip -selection clipboard -t image/jpg
 
 # Clipboard manager
 exec copyq
@@ -304,7 +304,7 @@ exec nitrogen --restore
 # exec xautolock -time 360 -locker blurlock
 # exec_always ff-theme-util
 # exec_always fix_xcursor
-# exec setxkbmap -option 'caps:ctrl_modifier' && xcape -e 'Caps_Lock=Escape' &
+exec setxkbmap -option 'caps:ctrl_modifier' && xcape -e 'Caps_Lock=Escape' &
 #exec feh --bg-max ~/.dotfiles/wallpaper/ -z
 
 # Color palette used for the terminal ( ~/.Xresources file )
@@ -339,13 +339,10 @@ set $base0F #F7768E
 
 # Start i3bar to display a workspace bar (plus the system information i3status if available)
  bar {
-# status_command bumblebee-status -m mpd load memory battery time \
-# 		pasink pasource -p time.format="%H:%M" -p memory.usedonly="true" -t nord
-#   height 26
 	i3bar_command i3bar
-# 	#status_command i3status-rs
  	tray_output primary
- 	position top 
+ 	position bottom
+  mode hide
 #
 # ## please set your primary output first. Example: 'xrandr --output eDP1 --primary'
 # #	tray_output eDP1

@@ -1,0 +1,125 @@
+!
+!! special
+!*.foreground:   #a4dfff
+!*.background:   #151515
+!*.cursorColor:  #a4dfff
+! 
+!! black
+!*.color0:       #151515
+!*.color8:       #a4dfff
+! 
+!! red
+!*.color1:       #ff2636
+!*.color9:       #ff2636
+! 
+!! green
+!*.color2:       #00ffff
+!*.color10:      #00ffff
+! 
+!! yellow
+!*.color3:       #a4dfff
+!*.color11:      #a4dfff
+! 
+!! blue
+!*.color4:       #00bfff
+!*.color12:      #00bfff
+! 
+!! magenta
+!*.color5:       #05b2b2
+!*.color13:      #05b2b2
+! 
+!! cyan
+!*.color6:       #00ffff
+!*.color14:      #00ffff
+! 
+!! white
+!*.color7:       #a4dfff
+!*.color15:      #a4dfff
+
+URxvt.urgentOnBell: True
+Xft.lcdfilter: lcddefault
+
+Xft.dpi: 162
+Xft.autohint: 0
+Xft.hintstyle:  hintfull
+Xft.hinting: 1
+Xft.antialias: 1
+Xft.rgba: rgb
+
+
+! size matters
+*saveLines            : 32767
+
+! Set termName {{{1
+URxvt*termName        : screen-256color
+
+! Xft {{{1
+! anti-aliasing
+Xft*antialias         : true
+Xft.hinting           : true
+Xft.hintstyle         : hintslight
+! Xft*dpi               : 96
+
+! Xterm {{{1
+XTerm*renderFont      : true
+XTerm*faceName        : xft:Inconsolata for Powerline Plus Nerd File Types Mono Plus Font Awesome Plus Octicons Plus Pomicons:size=8
+
+! let’s be 8bit-clean {{{1
+XTerm*utf8            : 1
+XTerm*eightBitInput   : false
+XTerm*eightBitControl : false
+XTerm*eightBitOutput  : true
+
+! disable fullscreen on <Alt-Return> {{{1
+XTerm*fullscreen      : never
+XTerm*omitTranslation : fullscreen
+
+! URxvt über alles {{{1
+URxvt*loginShell      : true
+URxvt*scrollBar       : false
+URxvt*scrollBar_right : false
+URxvt*transparent     : true
+URxvt*shading         : 30
+URxvt*cursorBlink     : true
+
+! Font configuration {{{1
+! We need a positive letterspace, to display wide char.
+URxvt*letterSpace     : 1
+!URxvt.font            : xft:Inconsolata for Powerline Plus Nerd File Types Mono Plus Font Awesome Plus Octicons Plus Pomicons:size=8,\
+!                        xft:Unifont:size=8
+URxvt.font: xft:Anonymous Pro for Powerline:pixelsize=36
+
+! Hack to act more like XTerm.
+! Source: http://www.netswarm.net/misc/urxvt-xtermcompat.txt
+! Fix Shift/Control/Meta with function and insert keys.
+! S-F1 is normally sent as F11-F20, and S-F11+S-F12 being extra strange.
+
+! extensions (+ disable the selection popup)
+
+! url-select {{{1
+URxvt.url-select.launcher  : firefox
+URxvt.url-select.underline : true
+URxvt.url-select.button    : 2
+
+! Resize-Font {{{1
+URxvt.keysym.M-C-plus      : perl:resize-font:bigger
+URxvt.keysym.M-C-minus     : perl:resize-font:smaller
+URxvt.keysym.M-C-equal     : perl:resize-font:reset
+URxvt.keysym.M-C-question  : perl:resize-font:show
+
+! ! Color scheme {{{1
+!#include "/home/marcus/.Xresources.d/urxvt-colours-solarized-dark"
+!URxvt.rotate-colors.files : /home/marcus/.Xresources.d/urxvt-colours-solarized-light,/home/marcus/.Xresources.d/urxvt-colours-solarized-dark
+! rotate-color {{{1
+URxvt.keysym.M-C-u: perl:rotate-colors:next
+URxvt.keysym.M-C-p: perl:rotate-colors:prev
+! This 'force' color overiding, only for test
+URxvt.keysym.M-C-d : command:\033]4;12;#9090FF\007\033]4;1;#AA0000\007\033]4;15;#FFFFFF\007\033]4;14;#55FFFF\007\033]4;5;#AA00AA\007\033]4;3;#AA5500\007\033]4;7;#AAAAAA\007\033]4;10;#55FF55\007\033]4;13;#FF55FF\007\033]4;4;#0000AD\007\033]4;8;#555555\007\033]11;#000000\007\033]4;9;#FF5555\007\033]4;2;#00AA00\007\033]\007\033]4;0;#000000\007\033]4;11;#FFFF55\007\033]10;#00FF00\007\033]5;0;#00FF00\007\033]4;6;#00AAAA\007
+URxvt.keysym.M-C-l : command:\033]4;12;#72729F9FCFCF\007\033]4;1;#CCCC00000000\007\033]4;15;#EEEEEEEEECEC\007\033]4;14;#3434E2E2E2E2\007\033]4;5;#757550507B7B\007\033]4;3;#C4C4A0A00000\007\033]4;7;#D3D3D7D7CFCF\007\033]4;4;#34346565A4A4\007\033]4;10;#8A8AE2E23434\007\033]4;13;#ADAD7F7FA8A8\007\033]4;8;#555557575353\007\033]11;#FFFFFFFFFFFF\007\033]4;9;#EFEF29292929\007\033]4;2;#4E4E9A9A0606\007\033]4;0;#2E2E34343636\007\033]4;11;#FCFCE9E94F4F\007\033]10;#000000000000\007\033]4;6;#060698209A9A\007
+
+! Cursor {{{1
+!Xcursor.theme         : Vanilla-DMZ-AA
+Xcursor.size          : 22
+
+/* vim: set ft=xdefaults :*/
+

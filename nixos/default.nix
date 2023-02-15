@@ -2,7 +2,7 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ config, pkgs, ... }:
+{ config, pkgs, inputs, ... }:
 
 {
   # List packages installed in system profile. To search, run:
@@ -19,6 +19,7 @@
       mosh
       nerdfonts
       ntfs3g
+      inputs.agenix.packages."${pkgs.system}".default
       p7zip
       perl534Packages.EV
       perl534Packages.Mojolicious

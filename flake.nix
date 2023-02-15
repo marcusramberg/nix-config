@@ -9,13 +9,14 @@
     nixos-wsl.url = "github:nix-community/NixOS-WSL";
     darwin.url = "github:lnl7/nix-darwin/master";
     darwin.inputs.nixpkgs.follows = "nixpkgs";
+    agenix.url = "github:ryantm/agenix";
 
     tfenv.url = "github:tfutils/tfenv";
     tfenv.flake = false;
 
   };
 
-  outputs = inputs @ { self, nixpkgs, home-manager, neovim-nightly-overlay, darwin, nixos-wsl, flake-utils, tfenv }:
+  outputs = inputs @ { self, nixpkgs, home-manager, neovim-nightly-overlay, darwin, nixos-wsl, flake-utils, tfenv, agenix }:
     let
       inherit (darwin.lib) darwinSystem;
       inherit (inputs.nixpkgs.lib) attrValues optionalAttrs singleton;
@@ -46,8 +47,8 @@
           ];
         };
         butterbee = nixpkgs.lib.nixosSystem {
-          inherit system;
           specialArgs = { inherit inputs; inherit secrets; };
+          inherit system;
           modules = [
             ./hosts/butterbee
             ./nixos
