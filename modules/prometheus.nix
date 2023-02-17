@@ -171,7 +171,7 @@
 
         scrape_interval = "60s";
         metrics_path = "/api/prometheus";
-        bearer_token = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiI2ODgzNDU3Zjg3MmI0OTIwOWQwYjE4ODhhMGIxYWUxZCIsImlhdCI6MTY1OTgyMzU5NSwiZXhwIjoxOTc1MTgzNTk1fQ.uF2tqmVA24DpaxMYg99CBQ0VUCBxEZ54Ft4j0dQtKlo";
+        bearer_token_file = config.age.secrets.ha-bearer.path;
 
 
         static_configs = [

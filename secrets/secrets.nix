@@ -7,4 +7,6 @@ in
   "transmission.age".publicKeys = [ marcus ];
   "prompass.age".publicKeys = [ marcus ];
   "promtail.age".publicKeys = [ marcus ];
+  "ha-bearer.age".publicKeys = [ marcus ];
 }
+
