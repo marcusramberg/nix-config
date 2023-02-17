@@ -11,7 +11,7 @@ let
 in
 {
   imports = [ agenix.nixosModules.age ];
-  environment.systemPackages = [ agenix.defaultPackage.x86_64-linux ];
+  environment.systemPackages = [ agenix.packages.x86_64-linux.agenix ];
 
   age = {
     secrets =
@@ -20,7 +20,7 @@ in
         mapAttrs'
           (n: _: nameValuePair (removeSuffix ".age" n) {
             file = "${secretsDir}/${n}";
-            owner = mkDefault config.user.name;
+            owner = mkDefault "root";
           })
           (import secretsFile)
       else { };

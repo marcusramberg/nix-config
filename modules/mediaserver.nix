@@ -1,15 +1,18 @@
 { pkgs, lib, config, secrets, ... }:
 {
-  services = {
-    vaultwarden.enable = true;
-    vaultwarden.config = {
-      domain = "https://passwords.means.no/";
-      signupsAllowed = false;
+  age.secrets.vaultwarden.owner = "vaultwarden";
+  age.secrets.miniflux.owner = "miniflux";
+  age.secrets.transmission.owner = "transmission";
 
-      rocketPort = 8222;
-      rocketLog = "critical";
+  services = {
+    vaultwarden = {
+      enable = true;
+      config = {
+        rocketPort = 8222;
+        rocketLog = "critical";
+      };
+      environmentFile = config.age.secrets.vaultwarden.path;
     };
-    vaultwarden.environmentFile = config.age.secrets.vaultwarden.path;
     caddy = {
       enable = true;
       globalConfig =
@@ -71,12 +74,7 @@
              }
            }
 
-            alis.means.no {
-              tls /etc/caddy/cloudflare.crt /etc/caddy/cloudflare.key
-              redir https://raw.githubusercontent.com/marcusramberg/alis/master/download.sh permanent
-            }
-
-            www.tabdog.net {
+          www.tabdog.net {
               tls /etc/caddy/cloudflare.crt /etc/caddy/cloudflare.key
               redir https://tabdog.net/ permanent
             }
@@ -98,11 +96,14 @@
     nzbget.enable = true;
     radarr.enable = true;
     sonarr.enable = true;
-    miniflux.enable = true;
-    miniflux.adminCredentialsFile = config.age.secrets.miniflux.path;
-    miniflux.config = {
-      LISTEN_ADDR = "localhost:8485";
-      METRICS_COLLECTOR = "1";
+
+    miniflux = {
+      enable = true;
+      adminCredentialsFile = config.age.secrets.miniflux.path;
+      config = {
+        LISTEN_ADDR = "localhost:8485";
+        METRICS_COLLECTOR = "1";
+      };
     };
 
     transmission = {
@@ -120,11 +121,11 @@
       credentialsFile = config.age.secrets.transmission.path;
     };
   };
-  services.unifi = {
-    enable = true;
-    openFirewall = true;
-    unifiPackage = pkgs.unifi6;
-  };
+  /* services.unifi = { */
+  /*   enable = true; */
+  /*   openFirewall = true; */
+  /*   unifiPackage = pkgs.unifi6; */
+  /* }; */
 
   services.postgresql = {
     enable = true;

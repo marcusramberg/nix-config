@@ -13,11 +13,17 @@
   services.promtail = {
     enable = true;
   };
-  systemd.services.promtail.serviceConfig.ExecStart = "${pkgs.promtail}/bin/promtail -config.file=${config.age.secrets.promtail.path}";
+  systemd.services.promtail.serviceConfig.ExecStart = lib.mkForce "${pkgs.promtail}/bin/promtail -config.file=${config.age.secrets.promtail.path}";
 
+  age.secrets.promtail.owner = "promtail";
+  age.secrets.prompass.owner = "prometheus";
+  age.secrets.ha-bearer.owner = "prometheus";
 
   services.prometheus = {
     enable = true;
+
+    # Have to disable this to make things work sanely with agenix
+    checkConfig = false;
     pushgateway = {
       enable = true;
       web = {

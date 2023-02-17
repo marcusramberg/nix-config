@@ -94,7 +94,7 @@
     thefuck
     tflint
     unzip
-    wezterm
+    #    wezterm
     wget
     yq-go
 
