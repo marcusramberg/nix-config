@@ -92,6 +92,7 @@
     terraform
     /* tfenv */
     thefuck
+    tflint
     unzip
     wezterm
     wget

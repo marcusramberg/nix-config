@@ -22,5 +22,6 @@
     set -g display-time 1000
     set-window-option -g visual-bell on
     set-window-option -g bell-action other
+    bind-key ` last-window
   '';
 }

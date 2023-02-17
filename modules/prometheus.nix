@@ -12,25 +12,10 @@
 
   services.promtail = {
     enable = true;
-    configuration = {
-      server = {
-        http_listen_port = 0;
-        grpc_listen_port = 0;
-      };
-      positions.filename = "/tmp/positions.yaml";
-      client.url = secrets.loki_ingestion_url;
-      scrape_configs = [{
-        job_name = "system";
-        static_configs = [{
-          targets = [ "localhost" ];
-          labels = {
-            job = "varlogs";
-            __path__ = "/var/log/*.log";
-          };
-        }];
-      }];
-    };
   };
+  systemd.services.promtail.serviceConfig.ExecStart = "${pkgs.promtail}/bin/promtail -config.file=${config.age.secrets.promtail.path}";
+
+
   services.prometheus = {
     enable = true;
     pushgateway = {
@@ -47,8 +32,8 @@
     remoteWrite = [{
       url = "https://prometheus-prod-01-eu-west-0.grafana.net/api/prom/push";
       basic_auth = {
-        username = secrets.prometheus_user;
-        password = secrets.prometheus_pass;
+        username = "234776";
+        password_file = config.age.secrets.prompass.path;
       };
     }];
     rules = [

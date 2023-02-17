@@ -71,5 +71,14 @@
     { name = "forgit"; src = pkgs.fishPlugins.forgit.src; }
     { name = "bass"; src = pkgs.fishPlugins.bass.src; }
     { name = "fzf-fish"; src = pkgs.fishPlugins.fzf-fish.src; }
+    {
+      name = "gcloud-completions";
+      src = pkgs.fetchFromGitHub {
+        owner = "lgathy";
+        repo = "google-cloud-sdk-fish-completion";
+        rev = "bc24b0bf7da2addca377d89feece4487ca0b1e9c";
+        sha256 = "BIbzdxAj3mrf340l4hNkXwA13rIIFnC6BxM6YuJ7/w8=";
+      };
+    }
   ];
 }

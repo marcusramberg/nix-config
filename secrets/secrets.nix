@@ -5,4 +5,6 @@ in
   "vaultwarden.age".publicKeys = [ marcus ];
   "miniflux.age".publicKeys = [ marcus ];
   "transmission.age".publicKeys = [ marcus ];
+  "prompass.age".publicKeys = [ marcus ];
+  "promtail.age".publicKeys = [ marcus ];
 }
