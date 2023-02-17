@@ -56,7 +56,7 @@
       };
       containers.plex = {
         image = "plexinc/pms-docker:plexpass";
-        environment = { TZ = "Europe/Oslo"; PLEX_CLAIM = "claim-7cSW4B73bx-sjmJb8AeX"; PLEX_UID = "193"; PLEX_GID = "193"; };
+        environment = { TZ = "Europe/Oslo"; PLEX_UID = "193"; PLEX_GID = "193"; };
         extraOptions = [ "--net=host" "--device=/dev/dri/" ];
         volumes = [ "/var/lib/plex:/config" "/space:/space" ];
       };
