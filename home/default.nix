@@ -55,7 +55,7 @@
   home.packages = with pkgs; [
     actionlint
     asciinema
-    ansible
+    any-nix-shell
     bat
     cargo
     cocogitto
@@ -94,7 +94,6 @@
     thefuck
     tflint
     unzip
-    #    wezterm
     wget
     yq-go
 
