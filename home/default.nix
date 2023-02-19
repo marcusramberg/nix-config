@@ -1,4 +1,4 @@
-{ config, pkgs, lib, ... }:
+{ config, pkgs, lib, stable, ... }:
 {
   home.stateVersion = "22.05";
   home.file = import ./files.nix { inherit pkgs; };
@@ -91,6 +91,7 @@
     tealdeer
     terraform
     /* tfenv */
+    stable.wezterm
     thefuck
     tflint
     unzip

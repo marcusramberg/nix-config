@@ -3,6 +3,7 @@
 
   inputs = {
     nixpkgs.url = "nixpkgs/nixos-unstable";
+    stable.url = "nixpkgs/nixos-22.11";
     home-manager.url = "github:nix-community/home-manager";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
     neovim-nightly-overlay.url = "github:nix-community/neovim-nightly-overlay";
@@ -13,72 +14,65 @@
 
     tfenv.url = "github:tfutils/tfenv";
     tfenv.flake = false;
-
   };
 
-  outputs = inputs @ { self, nixpkgs, home-manager, neovim-nightly-overlay, darwin, nixos-wsl, flake-utils, tfenv, agenix }:
+  outputs = { self, ... } @inputs:
+    with inputs;
     let
       inherit (darwin.lib) darwinSystem;
-      inherit (inputs.nixpkgs.lib) attrValues optionalAttrs singleton;
-      system = "x86_64-linux";
-      secrets = import ./secrets;
+      inherit (inputs.nixpkgs.lib) attrValues;
+
+      mkNixHost = import lib/mkNixHost.nix;
+      overlays.default = final: prev: (import ./overlays inputs) final prev;
       homeManagerConfig = {
         nixpkgs = {
-          overlays = [
-            (import ./overlays tfenv)
-          ];
-          config = { allowUnfree = true; allowBroken = true; allowUnsupportedSystem = true; };
+          config = {
+            allowUnfree = true;
+            allowBroken = true;
+            allowUnsupportedSystem = true;
+          };
         };
-        home-manager.useGlobalPkgs = true;
-        home-manager.useUserPackages = true;
-        home-manager.users.marcus = import ./home;
+
+        home-manager = {
+          useGlobalPkgs = true;
+          useUserPackages = true;
+          users.marcus = import ./home;
+          # extraSpecialArgs = {
+          #   stable = stable.legacyPackages.${system};
+          # };
+        };
       };
     in
     {
       nixosConfigurations = {
-        mhub = nixpkgs.lib.nixosSystem {
-          inherit system;
-          specialArgs = { inherit inputs; inherit secrets; };
-          modules = [
-            ./hosts/mhub
-            ./nixos
-            home-manager.nixosModules.home-manager
-            homeManagerConfig
-          ];
+        mhub = mkNixHost "mhub" {
+          inherit overlays nixpkgs home-manager inputs;
+          system = "x86_64-linux";
+          user = "marcus";
         };
-        butterbee = nixpkgs.lib.nixosSystem {
-          specialArgs = { inherit inputs; inherit secrets; };
-          inherit system;
-          modules = [
-            ./hosts/butterbee
-            ./nixos
-            home-manager.nixosModules.home-manager
-            homeManagerConfig
-          ];
+        butterbee = mkNixHost "butterbee" {
+          inherit overlays nixpkgs home-manager inputs;
+          system = "aarch64-darwin";
+          user = "marcus";
         };
-        mbox = nixpkgs.lib.nixosSystem {
-          inherit system;
-          specialArgs = { inherit inputs; inherit secrets; };
-          modules = [
-            ./hosts/mbox
-            ./nixos
-            nixos-wsl.nixosModules.wsl
-            home-manager.nixosModules.home-manager
-            homeManagerConfig
-          ];
+        mbox = mkNixHost "mbox" {
+          inherit overlays nixpkgs home-manager inputs;
+          system = "aarch64-darwin";
+          user = "marcus";
         };
       };
 
-      darwinConfigurations.mbook = darwinSystem {
-        system = "aarch64-darwin";
-        modules = attrValues self.darwinModules ++ [
-          # Main `nix-darwin` config
-          ./darwin
-          # `home-manager` module
-          home-manager.darwinModules.home-manager
-          homeManagerConfig
-        ];
-      };
+      darwinConfigurations.mbook = darwinSystem
+        {
+          system = "aarch64-darwin";
+          modules = attrValues self.darwinModules ++ [
+            # Main `nix-darwin` config
+            ./darwin
+            # `home-manager` module
+            home-manager.darwinModules.home-manager
+            homeManagerConfig
+          ];
+        };
       darwinModules = {
         programs-nix-index =
           # Additional configuration for `nix-index` to enable `command-not-found` functionality with Fish.

@@ -24,6 +24,7 @@
       perl534Packages.EV
       perl534Packages.Mojolicious
       unrar
+      toybox
       wget
       wireguard-tools
       xarchiver
