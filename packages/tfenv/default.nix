@@ -1,10 +1,10 @@
-{ pkgs, stdenvNoCC, lib, tfenv, makeWrapper }:
+{ pkgs, stdenvNoCC, lib, inputs, makeWrapper }:
 
 stdenvNoCC.mkDerivation rec {
   pname = "tfenv";
   version = "latest";
 
-  src = tfenv;
+  src = inputs.tfenv;
 
   dontConfigure = true;
   dontBuild = true;
