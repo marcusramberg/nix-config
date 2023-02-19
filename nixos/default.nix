@@ -17,7 +17,7 @@
       gcc
       man-pages
       mosh
-      nerdfonts
+      (nerdfonts.override { fonts = [ "JetBrainsMono" ]; })
       ntfs3g
       inputs.agenix.packages."${pkgs.system}".default
       p7zip
