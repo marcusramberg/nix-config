@@ -40,15 +40,12 @@
   # `home-manager` currently has issues adding them to `~/Applications`
   # Issue: https://github.com/nix-community/home-manager/issues/1341
   environment.systemPackages = with pkgs; [
-    wezterm
     goku
     element-desktop
     terminal-notifier
   ];
 
   services.karabiner-elements.enable = true;
-
-  programs.nix-index.enable = true;
 
   # Fonts
   fonts.fontDir.enable = true;
