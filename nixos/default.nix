@@ -16,16 +16,18 @@
       gitAndTools.gh
       gcc
       file
+      lemonade
       man-pages
       mosh
+      netavark
       ntfs3g
       inputs.agenix.packages."${pkgs.system}".default
       p7zip
       perl534Packages.EV
       perl534Packages.Mojolicious
       unrar
-      wget
       wireguard-tools
+      wget
       xarchiver
     ];
     variables = {
