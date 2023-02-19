@@ -55,6 +55,7 @@
     type -q nvm; and nvm use -s
 
     source ~/.config/fish/tide_config.fish
+    any-nix-shell fish --info-right | source
   '';
   loginShellInit = ''
     if [ -f /Users/marcus/.ssh/id_rsa ]
