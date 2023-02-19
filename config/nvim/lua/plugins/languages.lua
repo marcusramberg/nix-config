@@ -64,6 +64,7 @@ return {
         "html",
         "javascript",
         "json",
+        "jsonc",
         "lua",
         "hcl",
         "markdown",

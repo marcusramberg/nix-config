@@ -8,4 +8,6 @@ Supports
 
 This configuration is heavily based around using flakes and home manager
 
-I mostly interact with it on nixos using `hey`, stolen from [hlissner](https://github.com/hlissner/dotfiles)
+I mostly interact with it on nixos using `hey`, stolen from [hlissner](https://github.com/hlissner/dotfiles). This config is also the inspiration for using agenix for secrets management. Other honorable mentions go to [Mitchell Hashimoto's nixos-config from which I've also stolen a lot :)](https://github.com/mitchellh/nixos-config).
+
+Obviously this is always a WIP.

@@ -6,7 +6,10 @@
     stable.url = "nixpkgs/nixos-22.11";
     home-manager.url = "github:nix-community/home-manager";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
-    neovim-nightly-overlay.url = "github:nix-community/neovim-nightly-overlay";
+    neovim-nightly-overlay = {
+      url = "github:nix-community/neovim-nightly-overlay";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     nixos-wsl.url = "github:nix-community/NixOS-WSL";
     darwin.url = "github:lnl7/nix-darwin/master";
     darwin.inputs.nixpkgs.follows = "nixpkgs";
@@ -16,13 +19,15 @@
     tfenv.flake = false;
   };
 
-  outputs = { self, ... } @inputs:
-    with inputs;
+  outputs = { self, nixpkgs, ... } @inputs:
     let
       mkNixHost = import lib/mkNixHost.nix;
       mkDarwinHost = import lib/mkDarwinHost.nix;
       localOverlays = final: prev: (import ./overlays inputs) final prev;
-      overlays = [ localOverlays neovim-nightly-overlay ];
+      overlays = [
+        localOverlays
+        inputs.neovim-nightly-overlay.overlay
+      ];
     in
     {
       nixosConfigurations = {
