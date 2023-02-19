@@ -41,10 +41,12 @@
   # Issue: https://github.com/nix-community/home-manager/issues/1341
   environment.systemPackages = with pkgs; [
     wezterm
-    karabiner-elements
     goku
+    element-desktop
     terminal-notifier
   ];
+
+  services.karabiner-elements.enable = true;
 
   programs.nix-index.enable = true;
 

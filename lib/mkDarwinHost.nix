@@ -1,14 +1,15 @@
-name: { nixpkgs, inputs, home-manager, system, user, overlays }:
+name: { nixpkgs, inputs, system, user, overlays }:
 let
   mkOptions = import ./mkOptions.nix;
 in
 inputs.darwin.lib.darwinSystem rec {
-  system = system;
+  inherit system;
+  specialArgs = { inherit inputs; };
   modules = [
     # Main `nix-darwin` config
     ../darwin
     # `home-manager` module
-    home-manager.darwinModules.home-manager
+    inputs.home-manager.darwinModules.home-manager
     (mkOptions system { inherit user; inherit overlays; inherit inputs; })
   ];
 }
