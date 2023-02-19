@@ -1,7 +1,9 @@
-name: { nixpkgs, inputs, home-manager, system, user, overlays }:
+name: { nixpkgs, inputs, system, user, overlays }:
 
-nixpkgs.lib.nixosSystem
-rec {
+let
+  mkOptions = import ./mkOptions.nix;
+in
+nixpkgs.lib.nixosSystem {
   specialArgs = { inherit inputs; };
   inherit system;
   modules = [
@@ -9,22 +11,6 @@ rec {
     ../nixos
     inputs.nixos-wsl.nixosModules.wsl
     inputs.home-manager.nixosModules.home-manager
-    {
-      nixpkgs = {
-        config = {
-          allowUnfree = true;
-          allowBroken = true;
-          allowUnsupportedSystem = true;
-        };
-      };
-      home-manager = {
-        useGlobalPkgs = true;
-        useUserPackages = true;
-        users.${user} = import ../home;
-        extraSpecialArgs = {
-          stable = inputs.stable.legacyPackages.${system};
-        };
-      };
-    }
+    (mkOptions system { inherit user; inherit overlays; inherit inputs; })
   ];
 }

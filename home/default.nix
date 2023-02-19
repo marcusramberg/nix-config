@@ -13,6 +13,8 @@
     enable = true;
     nix-direnv.enable = true;
   };
+
+  programs.nix-index.enable = true;
   programs.firefox = {
     enable = pkgs.stdenv.isLinux;
     package = pkgs.firefox.override
@@ -68,6 +70,7 @@
     git-crypt
     git-extras
     git-lfs
+    (nerdfonts.override { fonts = [ "JetBrainsMono" "Iosevka" ]; })
     fd
     fortune
     gnumake

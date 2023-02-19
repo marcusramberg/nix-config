@@ -15,16 +15,15 @@
       cached-nix-shell
       gitAndTools.gh
       gcc
+      file
       man-pages
       mosh
-      (nerdfonts.override { fonts = [ "JetBrainsMono" ]; })
       ntfs3g
       inputs.agenix.packages."${pkgs.system}".default
       p7zip
       perl534Packages.EV
       perl534Packages.Mojolicious
       unrar
-      toybox
       wget
       wireguard-tools
       xarchiver
