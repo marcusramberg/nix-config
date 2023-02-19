@@ -94,9 +94,7 @@
     ranger
     ripgrep
     tealdeer
-    terraform
-    /* tfenv */
-    stable.wezterm
+    tfenv
     thefuck
     tflint
     unzip
@@ -109,6 +107,7 @@
     /* niv # easy dependency management for nix projects */
   ] ++ lib.optionals stdenv.isDarwin [
     cocoapods
+    stable.wezterm
     m-cli # useful macOS CLI commands
   ] ++ lib.optionals stdenv.isLinux [
 
@@ -121,6 +120,7 @@
     volumeicon
     xcape
     xclip
+    wezterm-nightly
   ];
 
 }
