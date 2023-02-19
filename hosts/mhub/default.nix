@@ -8,13 +8,10 @@
       ../../modules/agenix.nix
       ../../modules/docker.nix
       ../../modules/mediaserver.nix
-      ../../modules/minecraft.nix
       ../../modules/prometheus.nix
       ../../modules/services.nix
-      #    ./host.nix
       #    ./flake.nix
       #    ./pgup.nix
-      #    ../k3s.nix
     ];
 
   boot.loader.grub.enable = true;
