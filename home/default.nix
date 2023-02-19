@@ -70,7 +70,6 @@
     git-crypt
     git-extras
     git-lfs
-    (nerdfonts.override { fonts = [ "JetBrainsMono" "Iosevka" ]; })
     fd
     fortune
     gnumake
@@ -110,7 +109,7 @@
     stable.wezterm
     m-cli # useful macOS CLI commands
   ] ++ lib.optionals stdenv.isLinux [
-
+    (nerdfonts.override { fonts = [ "JetBrainsMono" "Iosevka" ]; })
     copyq
     feh
     kubectl

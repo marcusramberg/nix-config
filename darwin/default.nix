@@ -4,7 +4,6 @@
 
   imports =
     [
-      # Include the results of the hardware scan.
       ../modules/yabai.nix
     ];
 
@@ -43,6 +42,7 @@
     goku
     element-desktop
     terminal-notifier
+    (nerdfonts.override { fonts = [ "JetBrainsMono" "Iosevka" ]; })
   ];
 
   services.karabiner-elements.enable = true;
