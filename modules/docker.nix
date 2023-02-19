@@ -1,6 +1,5 @@
 { config, pkgs, ... }:
 {
-  #secrets = import ../secrets;
   config = {
     services.influxdb.enable = true;
     services.mosquitto = {
@@ -63,12 +62,7 @@
       containers.zigbee2mqtt = {
         image = " ghcr.io/koenkk/zigbee2mqtt:latest-dev";
         extraOptions = [ "--privileged" "--network=host" ];
-        volumes = [ "/dev:/dev" "/run/udev:/run/udev" "/var/lib/zigbee2mqtt:/app/data" ]; # "/opt/zigbee-herdsman-converters:/app/node_modules/zigbee-herdsman-converters"];
-      };
-      containers.nextcloud = {
-        image = "nextcloud:fpm";
-        ports = [ "9000:9000" ];
-        volumes = [ "/var/lib/nextcloud:/var/www/html" "space:/var/www/html/data" ];
+        volumes = [ "/dev:/dev" "/run/udev:/run/udev" "/var/lib/zigbee2mqtt:/app/data" ];
       };
     };
   };

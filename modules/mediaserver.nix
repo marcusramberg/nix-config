@@ -113,6 +113,7 @@
         download-dir = "/space/incoming";
         incomplete-dir = "/var/lib/transmission/.incomplete";
         incomplete-dir-enabled = true;
+        rpc-authentication-required = true;
         rpc-whitelist = "127.0.0.1,192.168.*.*";
         rpc-username = "marcus";
         rpc-host-whitelist = "transmission.means.no";
