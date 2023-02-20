@@ -83,6 +83,7 @@
     jq
     lazygit
     luarocks
+    lua-language-server
     nodePackages.typescript
     nodePackages.node2nix
     nodejs-16_x
@@ -92,6 +93,7 @@
     (import ./python.nix { inherit pkgs; })
     ranger
     ripgrep
+    stylua
     tealdeer
     tfenv
     thefuck
