@@ -42,7 +42,6 @@
     goku
     element-desktop
     terminal-notifier
-    (nerdfonts.override { fonts = [ "JetBrainsMono" "Iosevka" ]; })
   ];
 
   services.karabiner-elements.enable = true;
@@ -51,7 +50,7 @@
   fonts.fontDir.enable = true;
   fonts.fonts = with pkgs; [
     recursive
-    (nerdfonts.override { fonts = [ "JetBrainsMono" ]; })
+    (nerdfonts.override { fonts = [ "JetBrainsMono" "Iosevka" ]; })
   ];
 
   system.defaults.dock = {
