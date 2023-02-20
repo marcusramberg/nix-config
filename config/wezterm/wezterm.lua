@@ -5,7 +5,7 @@ local keys = {
 	-- { key = "P", mods = "SUPER", action = wezterm.action.EmitEvent("start-pomodoro") },
 	{
 		key = "P",
-		mods = "SUPER|ALT|CTRL|SHIFT",
+		mods = "LEADER",
 		action = wezterm.action_callback(pomodoro.action_callback),
 	},
 	{ key = "G", mods = "SUPER", action = wezterm.action({ Search = { Regex = "[a-f0-9]{6,}" } }) },
@@ -35,6 +35,7 @@ for i = 1, 9 do
 	})
 end
 local config = {
+	leader = { key = "space", mods = "CTRL" },
 	adjust_window_size_when_changing_font_size = false,
 	audible_bell = "Disabled",
 	check_for_updates = false,
