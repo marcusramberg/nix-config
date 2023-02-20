@@ -16,6 +16,7 @@ system: { user, inputs, overlays }:
     users.${user} = import ../home;
     extraSpecialArgs = {
       stable = inputs.stable.legacyPackages.${system};
+      inherit inputs;
     };
   };
 }

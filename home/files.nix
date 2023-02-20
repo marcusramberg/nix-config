@@ -2,7 +2,6 @@
 {
   ".config/wezterm" = { source = ../config/wezterm; recursive = true; };
   ".config/nvim" = { source = ../config/nvim; recursive = true; };
-  ".doom.d" = { source = ../config/doom.d; recursive = true; };
 
   ".config/fish/tide_config.fish".source = ../config/fish/tide_config.fish;
   ".config/bat/config".source = ../config/bat/config;

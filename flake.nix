@@ -13,6 +13,7 @@
     nixos-wsl.url = "github:nix-community/NixOS-WSL";
     darwin.url = "github:lnl7/nix-darwin/master";
     darwin.inputs.nixpkgs.follows = "nixpkgs";
+    nix-doom-emacs.url = "github:nix-community/nix-doom-emacs";
     agenix.url = "github:ryantm/agenix";
 
     tfenv.url = "github:tfutils/tfenv";

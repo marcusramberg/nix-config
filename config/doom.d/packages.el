@@ -25,18 +25,18 @@
 
 ;; Perl setup
 (package! helm-perldoc)
-(package! perltidy
-  :recipe (:host github :repo "zakame/perltidy.el"))
+; (package! perltidy
+;   :recipe (:host github :repo "zakame/perltidy.el"))
 ;; REPL
-(package! reply
-  :recipe (:host github :repo "syohex/emacs-reply"))
+; (package! reply
+;   :recipe (:host github :repo "syohex/emacs-reply"))
 
 ;;Completion
 (package! company-ctags
   :recipe (:host github :repo "redguardtoo/company-ctags"))
 
 
-(package! slack)
+; (package! slack)
 
 (package! kubernetes)
 (package! kubernetes-evil)
@@ -58,6 +58,6 @@
 
 ;; (package! git-auto-commit-mode :recipe (:host github :repo "ryuslash/git-auto-commit-mode"))
 
-(package! copilot
-  :recipe (:host github :repo "zerolfx/copilot.el" :files ("*.el" "dist")))
-C
+; (package! copilot
+;   :recipe (:host github :repo "zerolfx/copilot.el" :files ("*.el" "dist")))
+

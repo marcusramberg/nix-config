@@ -303,27 +303,27 @@ See `org-capture-templates' for more information."
   ad-do-it
   (set-process-sentinel (get-process "reply") 'zakame/reply-sentinel))
 (ad-activate 'run-reply)
-(defun reply-other-window ()
-  "Run `reply' on other window."
-  (interactive)
-  (switch-to-buffer-other-window (get-buffer-create "*reply*"))
-  (run-reply "reply"))
+; (defun reply-other-window ()
+;   "Run `reply' on other window."
+;   (interactive)
+;   (switch-to-buffer-other-window (get-buffer-create "*reply*"))
+;   (run-reply "reply"))
 (after! helm-perldoc
   (helm-perldoc:setup))
 
-  (map! (:localleader  ; Use local leader
-         (:map (cperl-mode-map)
-          (:prefix ("r" . "repl")
-          "r" #'run-reply ; Add which-key description
-          "s" #'reply-send-region
-          "o" #'reply-other-window)
-          (:prefix ("t" . "tidy")
-          "r" #'perltidy-region
-          "b" #'perltidy-buffer
-          "s" #'perltidy-subroutine
-          "t" #'perltidy-dwim-safe)
-          "p" #'helm-perldoc
-        )))
+  ; (map! (:localleader  ; Use local leader
+  ;        (:map (cperl-mode-map)
+  ;         (:prefix ("r" . "repl")
+          ; "r" #'run-reply ; Add which-key description
+          ; "o" #'reply-other-window)
+; "s" #'reply-send-region
+          ; (:prefix ("t" . "tidy")
+          ; "r" #'perltidy-region
+          ; "b" #'perltidy-buffer
+          ; "s" #'perltidy-subroutine
+          ; "t" #'perltidy-dwim-safe)
+        ;   "p" #'helm-perldoc
+        ; )))
 
 (after! company-ctags
   (add-to-list 'company-backends 'company-ctags)
@@ -342,38 +342,38 @@ See `org-capture-templates' for more information."
 
 
 ;; Slack config
-(after! slack
-  (setq slack-buffer-emojify t) ;; if you want to enable emoji, default nil
-  (setq slack-prefer-current-team t)
-  (slack-register-team
-        :name "dnb-it"
-        :token "censored" ;;(auth-source-pick-first-password
-            ;;    :name "dnb-it.slack.com"
-            ;;    :user "marcus.ramberg@dnb.no")
-        :subscribed-channels '(the-hideout inf-cshasl-private inf-eventhub-private))
-  (evil-define-key 'normal slack-info-mode-map
-    ",u" 'slack-room-update-messages)
-  (evil-define-key 'normal slack-mode-map
-    ",c" 'slack-buffer-kill
-    ",ra" 'slack-message-add-reaction
-    ",rr" 'slack-message-remove-reaction
-    ",rs" 'slack-message-show-reaction-users
-    ",pl" 'slack-room-pins-list
-    ",pa" 'slack-message-pins-add
-    ",pr" 'slack-message-pins-remove
-    ",mm" 'slack-message-write-another-buffer
-    ",me" 'slack-message-edit
-    ",md" 'slack-message-delete
-    ",u" 'slack-room-update-messages
-    ",2" 'slack-message-embed-mention
-    ",3" 'slack-message-embed-channel
-    "\C-n" 'slack-buffer-goto-next-message
-    "\C-p" 'slack-buffer-goto-prev-message)
-   (evil-define-key 'normal slack-edit-message-mode-map
-    ",k" 'slack-message-cancel-edit
-    ",s" 'slack-message-send-from-buffer
-    ",2" 'slack-message-embed-mention
-    ",3" 'slack-message-embed-channel))
+; (after! slack
+;   (setq slack-buffer-emojify t) ;; if you want to enable emoji, default nil
+;   (setq slack-prefer-current-team t)
+;   (slack-register-team
+;         :name "dnb-it"
+;         :token "censored" ;;(auth-source-pick-first-password
+;             ;;    :name "dnb-it.slack.com"
+;             ;;    :user "marcus.ramberg@dnb.no")
+;         :subscribed-channels '(the-hideout inf-cshasl-private inf-eventhub-private))
+;   (evil-define-key 'normal slack-info-mode-map
+;     ",u" 'slack-room-update-messages)
+;   (evil-define-key 'normal slack-mode-map
+;     ",c" 'slack-buffer-kill
+;     ",ra" 'slack-message-add-reaction
+;     ",rr" 'slack-message-remove-reaction
+;     ",rs" 'slack-message-show-reaction-users
+;     ",pl" 'slack-room-pins-list
+;     ",pa" 'slack-message-pins-add
+;     ",pr" 'slack-message-pins-remove
+;     ",mm" 'slack-message-write-another-buffer
+;     ",me" 'slack-message-edit
+;     ",md" 'slack-message-delete
+;     ",u" 'slack-room-update-messages
+;     ",2" 'slack-message-embed-mention
+;     ",3" 'slack-message-embed-channel
+;     "\C-n" 'slack-buffer-goto-next-message
+;     "\C-p" 'slack-buffer-goto-prev-message)
+;    (evil-define-key 'normal slack-edit-message-mode-map
+;     ",k" 'slack-message-cancel-edit
+;     ",s" 'slack-message-send-from-buffer
+;     ",2" 'slack-message-embed-mention
+;     ",3" 'slack-message-embed-channel))
 
 ;; Autoload jq.
 (add-to-list 'auto-mode-alist '("\\.jq$" . jq-mode))
