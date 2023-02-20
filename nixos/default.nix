@@ -98,6 +98,7 @@
     stateVersion = "22.05";
   };
   time.timeZone = "Europe/Oslo";
+  i18n.defaultLocale = "en_DK.UTF-8";
 
   nixpkgs.config = {
     allowUnfree = true;

@@ -1,31 +1,23 @@
 local wezterm = require("wezterm")
 local pomodoro = require("pomodoro")
 
+local act = wezterm.action
 local keys = {
-	-- { key = "P", mods = "SUPER", action = wezterm.action.EmitEvent("start-pomodoro") },
+	{ key = "p", mods = "LEADER", action = wezterm.action_callback(pomodoro.action_callback) },
+	{ key = "g", mods = "LEADER", action = act.Search({ Regex = "[a-f0-9]{6,}" }) },
+	{ key = "g", mods = "LEADER", action = act.SplitVertical({ domain = "CurrentPaneDomain" }) },
+	{ key = "s", mods = "LEADER", action = act.SplitHorizontal({ domain = "CurrentPaneDomain" }) },
+	{ key = "Space", mods = "LEADER", action = act.ActivateCommandPalette },
 	{
-		key = "P",
+		key = "u",
 		mods = "LEADER",
-		action = wezterm.action_callback(pomodoro.action_callback),
+		action = act.CharSelect({ copy_on_select = true, copy_to = "ClipboardAndPrimarySelection" }),
 	},
-	{ key = "G", mods = "SUPER", action = wezterm.action({ Search = { Regex = "[a-f0-9]{6,}" } }) },
-	{
-		key = "V",
-		mods = "SUPER|ALT|CTRL|SHIFT",
-		action = wezterm.action({ SplitVertical = { domain = "CurrentPaneDomain" } }),
-	},
-	{
-		key = "S",
-		mods = "SUPER|ALT|CTRL|SHIFT",
-		action = wezterm.action({ SplitHorizontal = {
-			domain = "CurrentPaneDomain",
-		} }),
-	},
-	{ key = "H", mods = "CTRL|SHIFT", action = wezterm.action({ ActivatePaneDirection = "Prev" }) },
-	{ key = "J", mods = "CTRL|SHIFT", action = wezterm.action({ ActivatePaneDirection = "Up" }) },
-	{ key = "K", mods = "CTRL|SHIFT", action = wezterm.action({ ActivatePaneDirection = "Down" }) },
-	{ key = "L", mods = "CTRL|SHIFT", action = wezterm.action({ ActivatePaneDirection = "Next" }) },
-	{ key = "0", mods = "CTRL", action = wezterm.action({ ActivateTab = -1 }) },
+	{ key = "h", mods = "LEADER", action = act.ActivatePaneDirection("Prev") },
+	{ key = "j", mods = "LEADER", action = act.ActivatePaneDirection("Up") },
+	{ key = "k", mods = "LEADER", action = act.ActivatePaneDirection("Down") },
+	{ key = "l", mods = "LEADER", action = act.ActivatePaneDirection("Next") },
+	{ key = "0", mods = "LEADER", action = act.ActivateTab(-1) },
 }
 for i = 1, 9 do
 	table.insert(keys, {
@@ -35,7 +27,7 @@ for i = 1, 9 do
 	})
 end
 local config = {
-	leader = { key = "space", mods = "CTRL" },
+	leader = { key = "Space", mods = "CTRL" },
 	adjust_window_size_when_changing_font_size = false,
 	audible_bell = "Disabled",
 	check_for_updates = false,

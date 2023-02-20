@@ -14,16 +14,16 @@
     gp = "git pull";
     gb = "git branch";
     gd = "git diff";
-    gwa = "git  worktree add";
-    gwl = "git  worktree list";
-    gwr = "git  worktree remove";
+    gwa = "git worktree add";
+    gwl = "git worktree list";
+    gwr = "git worktree remove";
     gl = "git log";
     vi = "nvim";
     gfu = "git fetch --all --prune && git rebase origin/main";
     ".." = "cd ..";
     "..." = "cd ../..";
     "...." = "cd ../../..";
-    k = "kubectl ";
+    k = "kubectl";
     kx = "kubectx";
     kns = "kubens";
   };
@@ -42,7 +42,7 @@
   '';
   interactiveShellInit = ''
     fish_vi_key_bindings
-    set fish_theme  tokyo-night
+    set fish_theme tokyo-night
     set -gx EDITOR nvim
     source ~/.config/fish/tide_config.fish
     type -q thefuck; and thefuck --alias | source
@@ -52,8 +52,8 @@
     # Completion
     type -q kustomize; and eval (kustomize completion fish)
     type -q yq; and yq shell-completion fish | source
-    type -q nvm; and nvm use -s
 
+    type -q nvm; and nvm use -s
     source ~/.config/fish/tide_config.fish
     any-nix-shell fish --info-right | source
   '';
