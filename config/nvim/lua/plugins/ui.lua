@@ -1,5 +1,7 @@
 return {
   -- change trouble config
+  --
+  { "shaunsingh/nord.nvim" },
   {
     "folke/trouble.nvim",
     -- opts will be merged with the parent spec

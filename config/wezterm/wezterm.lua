@@ -5,8 +5,9 @@ local act = wezterm.action
 local keys = {
 	{ key = "p", mods = "LEADER", action = wezterm.action_callback(pomodoro.action_callback) },
 	{ key = "g", mods = "LEADER", action = act.Search({ Regex = "[a-f0-9]{6,}" }) },
-	{ key = "g", mods = "LEADER", action = act.SplitVertical({ domain = "CurrentPaneDomain" }) },
-	{ key = "s", mods = "LEADER", action = act.SplitHorizontal({ domain = "CurrentPaneDomain" }) },
+	{ key = "s", mods = "LEADER", action = act.SplitVertical({ domain = "CurrentPaneDomain" }) },
+	{ key = "v", mods = "LEADER", action = act.SplitHorizontal({ domain = "CurrentPaneDomain" }) },
+	{ key = "r", mods = "LEADER", action = act.RotatePanes("CounterClockwise") },
 	{ key = "Space", mods = "LEADER", action = act.ActivateCommandPalette },
 	{
 		key = "u",
@@ -31,7 +32,7 @@ local config = {
 	adjust_window_size_when_changing_font_size = false,
 	audible_bell = "Disabled",
 	check_for_updates = false,
-	color_scheme = "tokyonight-storm",
+	color_scheme = "nord",
 	tab_max_width = 20,
 	colors = {
 		tab_bar = {
@@ -68,7 +69,7 @@ local config = {
 		brightness = 0.7,
 	},
 	keys = keys,
-	pane_focus_follows_mouse = false,
+	pane_focus_follows_mouse = true,
 	mouse_bindings = {
 		{
 			event = { Down = { streak = 1, button = "Right" } },

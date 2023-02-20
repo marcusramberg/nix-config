@@ -42,7 +42,7 @@
   '';
   interactiveShellInit = ''
     fish_vi_key_bindings
-    set fish_theme tokyo-night
+    set fish_theme nord
     set -gx EDITOR nvim
     source ~/.config/fish/tide_config.fish
     type -q thefuck; and thefuck --alias | source

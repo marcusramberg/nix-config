@@ -8,6 +8,11 @@
     openssh.enable = true;
     openssh.settings.X11Forwarding = true;
 
+    picom = {
+      enable = true;
+      activeOpacity = 0.8;
+    };
+
     xserver = {
       enable = true;
       layout = "us";

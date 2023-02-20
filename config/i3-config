@@ -336,10 +336,11 @@ set $base0C #B4F9F8
 set $base0D #2AC3DE
 set $base0E #BB9AF7
 set $base0F #F7768E
+set $transparent #00000000
 
 # Start i3bar to display a workspace bar (plus the system information i3status if available)
  bar {
-	i3bar_command i3bar
+	i3bar_command i3bar -t
  	tray_output primary
  	position bottom
   mode hide
@@ -351,8 +352,9 @@ set $base0F #F7768E
 	bindsym button5 nop
 
 	strip_workspace_numbers yes
+  padding 0px 20px
     colors {
-        background $base00
+        background $transparent
         separator  $base01
         statusline $base04
 
