@@ -3,7 +3,9 @@ return {
   --
   {
     "shaunsingh/nord.nvim",
-    setup = function()
+    lazy = false,
+    priority = 999,
+    config = function()
       require("nord").set()
     end,
   },

@@ -71,6 +71,7 @@
     git-crypt
     git-extras
     git-lfs
+    git-recent
     fd
     fortune
     gnumake
