@@ -10,7 +10,7 @@
 
     picom = {
       enable = true;
-      activeOpacity = 0.8;
+      activeOpacity = 0.95;
     };
 
     xserver = {

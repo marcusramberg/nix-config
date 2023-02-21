@@ -1,7 +1,12 @@
 return {
   -- change trouble config
   --
-  { "shaunsingh/nord.nvim" },
+  {
+    "shaunsingh/nord.nvim",
+    setup = function()
+      require("nord").set()
+    end,
+  },
   {
     "folke/trouble.nvim",
     -- opts will be merged with the parent spec

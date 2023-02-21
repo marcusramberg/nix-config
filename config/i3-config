@@ -30,7 +30,7 @@ bindsym $mod+Shift+q kill
 
 # start program launcher
 #bindsym $mod+d exec "rofi -combi-modi window,drun,ssh -theme solarized -font 'hack 10' -show combi"
-bindsym $mod+d exec "dmenu_run"
+bindsym $mod+space exec "dmenu_run"
 
 # Shots
 bindsym $mod+Shift+p exec maim -s | xclip -selection clipboard -t image/jpg
@@ -242,7 +242,7 @@ bindsym $mod+Shift+c reload
 bindsym $mod+Shift+r restart
 
 # exit i3 (logs you out of your X session)
-#bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
+bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
 bindsym $mod+Shift+e exec --no-startup-id qdbus-qt5 org.kde.ksmserver /KSMServer org.kde.KSMServerInterface.logout -1 -1 -1
 
 # Set shut down, restart and locking features

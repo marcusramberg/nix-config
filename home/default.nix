@@ -113,6 +113,7 @@
     m-cli # useful macOS CLI commands
   ] ++ lib.optionals stdenv.isLinux [
     (nerdfonts.override { fonts = [ "JetBrainsMono" "Iosevka" ]; })
+    btop
     copyq
     feh
     kubectl

@@ -3,29 +3,28 @@ local pomodoro = require("pomodoro")
 
 local act = wezterm.action
 local keys = {
-	{ key = "p", mods = "LEADER", action = wezterm.action_callback(pomodoro.action_callback) },
-	{ key = "g", mods = "LEADER", action = act.Search({ Regex = "[a-f0-9]{6,}" }) },
-	{ key = "s", mods = "LEADER", action = act.SplitVertical({ domain = "CurrentPaneDomain" }) },
-	{ key = "v", mods = "LEADER", action = act.SplitHorizontal({ domain = "CurrentPaneDomain" }) },
-	{ key = "r", mods = "LEADER", action = act.RotatePanes("CounterClockwise") },
+	{ key = "0", mods = "LEADER", action = act.ActivateTab(-1) },
 	{ key = "Space", mods = "LEADER", action = act.ActivateCommandPalette },
-	{
-		key = "u",
-		mods = "LEADER",
-		action = act.CharSelect({ copy_on_select = true, copy_to = "ClipboardAndPrimarySelection" }),
-	},
+	{ key = "g", mods = "LEADER", action = act.Search({ Regex = "[a-f0-9]{6,}" }) },
 	{ key = "h", mods = "LEADER", action = act.ActivatePaneDirection("Prev") },
 	{ key = "j", mods = "LEADER", action = act.ActivatePaneDirection("Up") },
 	{ key = "k", mods = "LEADER", action = act.ActivatePaneDirection("Down") },
 	{ key = "l", mods = "LEADER", action = act.ActivatePaneDirection("Next") },
-	{ key = "0", mods = "LEADER", action = act.ActivateTab(-1) },
+	{ key = "p", mods = "LEADER", action = wezterm.action_callback(pomodoro.action_callback) },
+	{ key = "r", mods = "LEADER", action = act.RotatePanes("CounterClockwise") },
+	{ key = "s", mods = "LEADER", action = act.SplitVertical({ domain = "CurrentPaneDomain" }) },
+	{ key = "u", mods = "LEADER", action = act.CharSelect({}) },
+	{ key = "t", mods = "LEADER", action = act.SpawnTab("CurrentPaneDomain") },
+	{ key = "v", mods = "LEADER", action = act.SplitHorizontal({ domain = "CurrentPaneDomain" }) },
 }
-for i = 1, 9 do
-	table.insert(keys, {
-		key = tostring(i),
-		mods = "CTRL",
-		action = wezterm.action({ ActivateTab = i - 1 }),
-	})
+for _, mod in ipairs({ "CTRL", "LEADER" }) do
+	for i = 1, 9 do
+		table.insert(keys, {
+			key = tostring(i),
+			mods = mod,
+			action = wezterm.action({ ActivateTab = i - 1 }),
+		})
+	end
 end
 local config = {
 	leader = { key = "Space", mods = "CTRL" },
