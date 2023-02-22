@@ -19,7 +19,7 @@
   nix.configureBuildUsers = true;
 
   #FIXME: This should not be needed
-  users.users.marcus.home = "/Users/marcus";
+  #users.users.marcus.home = "/Users/marcus";
 
   # Enable experimental nix command and flakes
   # nix.package = pkgs.nixUnstable;
