@@ -4,7 +4,7 @@
 
   imports =
     [
-      ../modules/yabai.nix
+      # ../modules/yabai.nix
     ];
 
   nix.settings.substituters = [
@@ -18,6 +18,8 @@
   ];
   nix.configureBuildUsers = true;
 
+  #FIXME: This should not be needed
+  users.users.marcus.home = "/Users/marcus";
 
   # Enable experimental nix command and flakes
   # nix.package = pkgs.nixUnstable;
