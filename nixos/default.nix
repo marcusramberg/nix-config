@@ -5,6 +5,10 @@
 { config, pkgs, inputs, ... }:
 
 {
+  imports = [
+    ../modules/agenix.nix
+  ];
+
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment = {
@@ -48,8 +52,10 @@
       automatic = true;
       dates = "weekly";
       options = "--delete-older-than 30d";
-
     };
+    extraOptions = ''
+      !include ${config.age.secrets.nixAccessTokens.path}
+    '';
   };
 
 

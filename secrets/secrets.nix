@@ -8,5 +8,6 @@ in
   "prompass.age".publicKeys = [ marcus ];
   "promtail.age".publicKeys = [ marcus ];
   "ha-bearer.age".publicKeys = [ marcus ];
+  "nixAccessTokens.age".publicKeys = [ marcus ];
 }
 
