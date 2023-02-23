@@ -34,9 +34,8 @@
     settings.show_program_path = true;
   };
 
-  # FIXME: Doom breaks weird thing on mac atm.
-  enable = pkgs.stdenv.isLinux;
   programs.doom-emacs = {
+    enable = true;
     doomPrivateDir = ../config/doom.d; # Directory containing your config.el, init.el
     # and packages.el files
   };

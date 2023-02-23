@@ -18,8 +18,8 @@
   ];
   nix.configureBuildUsers = true;
 
-  #FIXME: This should not be needed
-  #users.users.marcus.home = "/Users/marcus";
+  #FIXME: nix-darwin sets this to /var/empty for Reasons[tm]
+  users.users.marcus.home = "/Users/marcus";
 
   # Enable experimental nix command and flakes
   # nix.package = pkgs.nixUnstable;

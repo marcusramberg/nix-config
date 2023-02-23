@@ -11,6 +11,7 @@ system: { user, inputs, overlays }:
   };
 
   home-manager = {
+    # verbose = true;
     useGlobalPkgs = true;
     useUserPackages = true;
     users.${user} = import ../home;
