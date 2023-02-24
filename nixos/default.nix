@@ -7,6 +7,7 @@
 {
   imports = [
     ../modules/agenix.nix
+    ../modules/nix.nix
   ];
 
   # List packages installed in system profile. To search, run:
@@ -40,24 +41,6 @@
   };
 
   boot.supportedFilesystems = [ "ntfs" ];
-
-
-  nix = {
-    settings = {
-      experimental-features = [ "nix-command" "flakes" ];
-      trusted-users = [ "marcus" ];
-      auto-optimise-store = true;
-    };
-    gc = {
-      automatic = true;
-      dates = "weekly";
-      options = "--delete-older-than 30d";
-    };
-    extraOptions = ''
-      !include ${config.age.secrets.nixAccessTokens.path}
-    '';
-  };
-
 
   networking.firewall.enable = false;
   services = {

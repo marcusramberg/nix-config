@@ -4,18 +4,10 @@
 
   imports =
     [
-      # ../modules/yabai.nix
+      ../modules/agenix.nix
+      ../modules/nix.nix
     ];
 
-  nix.settings.substituters = [
-    "https://cache.nixos.org/"
-  ];
-  nix.settings.trusted-public-keys = [
-    "cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY="
-  ];
-  nix.settings.trusted-users = [
-    "@marcus"
-  ];
   nix.configureBuildUsers = true;
 
   #FIXME: nix-darwin sets this to /var/empty for Reasons[tm]
