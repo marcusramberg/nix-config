@@ -5,6 +5,7 @@ return {
       require("neogit").setup({
         use_magit_keybindings = true,
         disable_builtin_notifications = true,
+        disable_commit_confirmation = true,
         kind = "split",
         integrations = {
           diffview = true,
