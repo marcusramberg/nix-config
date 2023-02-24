@@ -4,6 +4,8 @@ return {
     config = function()
       require("neogit").setup({
         use_magit_keybindings = true,
+        disable_builtin_notifications = true,
+        kind = "split",
         integrations = {
           diffview = true,
         },
