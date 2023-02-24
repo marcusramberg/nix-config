@@ -1,40 +1,10 @@
 local wezterm = require("wezterm")
-local pomodoro = require("pomodoro")
 
-local act = wezterm.action
-local keys = {
-	{ key = "0", mods = "LEADER", action = act.ActivateTab(-1) },
-	{ key = "Space", mods = "LEADER", action = act.ActivateCommandPalette },
-	{ key = "g", mods = "LEADER", action = act.Search({ Regex = "[a-f0-9]{6,}" }) },
-	{ key = "h", mods = "LEADER", action = act.ActivatePaneDirection("Prev") },
-	{ key = "j", mods = "LEADER", action = act.ActivatePaneDirection("Up") },
-	{ key = "k", mods = "LEADER", action = act.ActivatePaneDirection("Down") },
-	{ key = "l", mods = "LEADER", action = act.ActivatePaneDirection("Next") },
-	{ key = "P", mods = "LEADER", action = wezterm.action_callback(pomodoro.action_callback) },
-	{ key = "p", mods = "LEADER", action = act.PasteFrom("Clipboard") },
-	{ key = "r", mods = "LEADER", action = act.RotatePanes("CounterClockwise") },
-	{ key = "s", mods = "LEADER", action = act.SplitVertical({ domain = "CurrentPaneDomain" }) },
-	{ key = "u", mods = "LEADER", action = act.CharSelect({}) },
-	{ key = "t", mods = "LEADER", action = act.SpawnTab("CurrentPaneDomain") },
-	{ key = "v", mods = "LEADER", action = act.SplitHorizontal({ domain = "CurrentPaneDomain" }) },
-	{ key = "x", mods = "LEADER", action = act.ActivateCopyMode },
-}
-for _, mod in ipairs({ "CTRL", "LEADER" }) do
-	for i = 1, 9 do
-		table.insert(keys, {
-			key = tostring(i),
-			mods = mod,
-			action = wezterm.action({ ActivateTab = i - 1 }),
-		})
-	end
-end
 local config = {
-	leader = { key = "Space", mods = "CTRL" },
 	adjust_window_size_when_changing_font_size = false,
 	audible_bell = "Disabled",
 	check_for_updates = false,
 	color_scheme = "nord",
-	tab_max_width = 20,
 	colors = {
 		tab_bar = {
 			background = "#16161e",
@@ -56,33 +26,56 @@ local config = {
 		},
 	},
 	default_gui_startup_args = { "connect", "unix" },
+	font = wezterm.font("JetBrainsMono Nerd Font"),
 	font_rules = {
 		{
 			italic = true,
 			font = wezterm.font("Iosevka Nerd Font", { italic = true }),
-			-- font = wezterm.font("JetBrainsMono Nerd Font", {weight='ExtraLight', italic=true})
 		},
 	},
-	font = wezterm.font("JetBrainsMono Nerd Font"),
+	hyperlink_rules = {
+		-- Linkify things that look like URLs and the host has a TLD name.
+		{
+			regex = "\\b\\w+://[\\w.-]+\\.[a-z]{2,15}\\S*\\b",
+			format = "$0",
+		},
+		{
+			regex = [[\bfile://\S*\b]],
+			format = "$0",
+		},
+		{
+			regex = [[\b(LAKE|APP)-(\d+)\b]],
+			format = "https://getremarkable.atlassian.net/browse/$1-$2",
+		},
+		{
+			regex = [[["]?([\w\d]{1}[-\w\d]+)(/){1}([-\w\d\.]+)["]?]],
+			format = "https://www.github.com/$1/$3",
+		},
+		{
+			regex = [[\b\w+://(?:[\d]{1,3}\.){3}[\d]{1,3}\S*\b]],
+			format = "$0",
+		},
+	},
 	hide_tab_bar_if_only_one_tab = true,
 	inactive_pane_hsb = {
 		saturation = 0.7,
 		brightness = 0.7,
 	},
-	keys = keys,
-	pane_focus_follows_mouse = true,
+	leader = { key = "Space", mods = "CTRL" },
+	keys = require("keys"),
 	mouse_bindings = {
-		{
-			event = { Down = { streak = 1, button = "Right" } },
-			mods = "NONE",
-			action = wezterm.action({ CopyTo = "Clipboard" }),
-		},
 		{
 			event = { Up = { streak = 1, button = "Left" } },
 			mods = "CTRL",
 			action = "OpenLinkAtMouseCursor",
 		},
+		{
+			event = { Down = { streak = 1, button = "Right" } },
+			mods = "NONE",
+			action = wezterm.action({ CopyTo = "Clipboard" }),
+		},
 	},
+	pane_focus_follows_mouse = true,
 	ssh_domains = {
 		{
 			name = "mbook",
@@ -90,11 +83,17 @@ local config = {
 			username = "marcus",
 		},
 		{
-			name = "march",
-			remote_address = "march",
+			name = "mhub",
+			remote_address = "mhub",
+			username = "marcus",
+		},
+		{
+			name = "butterbee",
+			remote_address = "nixos",
 			username = "marcus",
 		},
 	},
+	tab_max_width = 20,
 	unix_domains = {
 		{
 			name = "unix",
