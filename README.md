@@ -2,8 +2,8 @@
 
 Supports 
 * my media center / home hub
-* mac laptop
 * vm running in Parallels,
+* mac laptop
 * Nix running in WSL 2 on my Gaming PC
 
 This configuration is heavily based around using flakes and home manager
