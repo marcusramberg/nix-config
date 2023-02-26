@@ -34,7 +34,6 @@ return {
     opts = function(_, opts)
       local cmp = require("cmp")
       ---@diagnostic disable-next-line: missing-parameter
-      -- cmp.config.sources(
       table.insert(opts.sources, 1, { name = "copilot", group_index = 2 })
       table.insert(opts.sources, { name = "emoji" })
 
