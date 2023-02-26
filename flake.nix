@@ -44,7 +44,7 @@
         };
         mbox = mkNixHost "mbox" {
           inherit overlays nixpkgs inputs;
-          system = "aarch64-linux";
+          system = "x86_64-linux";
           user = "marcus";
         };
       };
