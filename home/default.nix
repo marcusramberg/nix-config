@@ -26,6 +26,7 @@
         };
       };
   };
+  programs.chromium.enable = pkgs.stdenv.isLinux;
 
   # Htop
   # https://rycee.gitlab.io/home-manager/options.html#opt-programs.htop.enable

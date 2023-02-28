@@ -243,7 +243,7 @@ bindsym $mod+Shift+r restart
 
 # exit i3 (logs you out of your X session)
 bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
-bindsym $mod+Shift+e exec --no-startup-id qdbus-qt5 org.kde.ksmserver /KSMServer org.kde.KSMServerInterface.logout -1 -1 -1
+# bindsym $mod+Shift+e exec --no-startup-id qdbus-qt5 org.kde.ksmserver /KSMServer org.kde.KSMServerInterface.logout -1 -1 -1
 
 # Set shut down, restart and locking features
 bindsym $mod+0 mode "$mode_system"
@@ -304,7 +304,7 @@ exec nitrogen --set-auto --save /etc/nixos/wallpaper/tokyonight.jpg
 # exec xautolock -time 360 -locker blurlock
 # exec_always ff-theme-util
 # exec_always fix_xcursor
-exec setxkbmap -option 'caps:ctrl_modifier' && xcape -e 'Caps_Lock=Escape' &
+# exec setxkbmap -option 'caps:ctrl_modifier' && xcape -e 'Caps_Lock=Escape' &
 #exec feh --bg-max ~/.dotfiles/wallpaper/ -z
 
 # Color palette used for the terminal ( ~/.Xresources file )

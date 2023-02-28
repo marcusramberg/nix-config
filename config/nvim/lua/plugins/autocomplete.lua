@@ -26,7 +26,20 @@ return {
         "zbirenbaum/copilot-cmp",
         config = true,
         dependencies = {
-          { "zbirenbaum/copilot.lua", config = true },
+          {
+            "zbirenbaum/copilot.lua",
+            config = function()
+              require("copilot").setup({
+                -- suggestion = { enabled = false },
+                -- panel = { enabled = false },
+                languages = {
+                  yaml = true,
+                  markdown = true,
+                  gitcommit = true,
+                },
+              })
+            end,
+          },
         },
       },
     },
