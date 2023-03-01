@@ -1,8 +1,7 @@
-name: { inputs, system, user, overlays }:
-let
-  mkOptions = import ./mkOptions.nix;
-in
-inputs.darwin.lib.darwinSystem rec {
+name:
+{ inputs, system, user, overlays }:
+let mkOptions = import ./mkOptions.nix;
+in inputs.darwin.lib.darwinSystem rec {
   inherit system;
   specialArgs = { inherit inputs; };
   modules = [
@@ -10,6 +9,10 @@ inputs.darwin.lib.darwinSystem rec {
     ../darwin
     # `home-manager` module
     inputs.home-manager.darwinModules.home-manager
-    (mkOptions system { inherit user; inherit overlays; inherit inputs; })
+    (mkOptions system {
+      inherit user;
+      inherit overlays;
+      inherit inputs;
+    })
   ];
 }

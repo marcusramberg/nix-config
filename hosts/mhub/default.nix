@@ -1,18 +1,17 @@
 { config, lib, modulesPath, options, secrets, ... }:
 
 {
-  imports =
-    [
-      # Include the results of the hardware scan.
-      ./hardware-configuration.nix
-      ../../modules/agenix.nix
-      ../../modules/docker.nix
-      ../../modules/mediaserver.nix
-      ../../modules/prometheus.nix
-      ../../modules/services.nix
-      #    ./flake.nix
-      #    ./pgup.nix
-    ];
+  imports = [
+    # Include the results of the hardware scan.
+    ./hardware-configuration.nix
+    ../../modules/agenix.nix
+    ../../modules/docker.nix
+    ../../modules/mediaserver.nix
+    ../../modules/prometheus.nix
+    ../../modules/services.nix
+    #    ./flake.nix
+    #    ./pgup.nix
+  ];
 
   boot.loader.grub.enable = true;
   boot.loader.grub.version = 2;

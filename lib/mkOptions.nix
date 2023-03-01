@@ -1,5 +1,5 @@
-system: { user, inputs, overlays }:
-{
+system:
+{ user, inputs, overlays }: {
   nixpkgs = {
     # inherit overlays;
     inherit overlays;

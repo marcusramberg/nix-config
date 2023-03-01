@@ -1,6 +1,7 @@
 { pkgs, ... }:
 
-pkgs.python3.withPackages (p: with p; [
+pkgs.python3.withPackages (p:
+with p; [
   aiohttp # async HTTP
   beautifulsoup4 # web scraping
   #folium # maps

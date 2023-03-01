@@ -1,5 +1,4 @@
-{ pkgs, lib, config, secrets, ... }:
-{
+{ pkgs, lib, config, secrets, ... }: {
 
   networking = {
     firewall.allowedTCPPorts = [
@@ -10,10 +9,9 @@
     useDHCP = true;
   };
 
-  services.promtail = {
-    enable = true;
-  };
-  systemd.services.promtail.serviceConfig.ExecStart = lib.mkForce "${pkgs.promtail}/bin/promtail -config.file=${config.age.secrets.promtail.path}";
+  services.promtail = { enable = true; };
+  systemd.services.promtail.serviceConfig.ExecStart = lib.mkForce
+    "${pkgs.promtail}/bin/promtail -config.file=${config.age.secrets.promtail.path}";
 
   age.secrets.promtail.owner = "promtail";
   age.secrets.prompass.owner = "prometheus";
@@ -26,9 +24,7 @@
     checkConfig = false;
     pushgateway = {
       enable = true;
-      web = {
-        listen-address = ":31337";
-      };
+      web = { listen-address = ":31337"; };
     };
     exporters = {
       node.enable = true;
@@ -126,48 +122,28 @@
         scrape_interval = "10s";
         static_configs = [
           {
-            targets = [
-              "mhub:9100"
-            ];
-            labels = {
-              alias = "mhub";
-            };
+            targets = [ "mhub:9100" ];
+            labels = { alias = "mhub"; };
           }
           {
-            targets = [
-              "mbox:9100"
-            ];
-            labels = {
-              alias = "mbox";
-            };
+            targets = [ "mbox:9100" ];
+            labels = { alias = "mbox"; };
           }
           {
-            targets = [
-              "mhub:31337"
-            ];
-            labels = {
-              alias = "pushgateway";
-            };
+            targets = [ "mhub:31337" ];
+            labels = { alias = "pushgateway"; };
           }
           {
-            targets = [
-              "mspace:9100"
-            ];
-            labels = {
-              alias = "mspace";
-            };
+            targets = [ "mspace:9100" ];
+            labels = { alias = "mspace"; };
           }
           {
             targets = [ "localhost:8485" ];
-            labels = {
-              alias = "miniflux";
-            };
+            labels = { alias = "miniflux"; };
           }
           {
             targets = [ "mdoze.lan:9182" ];
-            labels = {
-              alias = "mdoze";
-            };
+            labels = { alias = "mdoze"; };
           }
         ];
 
@@ -179,17 +155,10 @@
         metrics_path = "/api/prometheus";
         bearer_token_file = config.age.secrets.ha-bearer.path;
 
-
-        static_configs = [
-          {
-            targets = [
-              "mhub:8123"
-            ];
-            labels = {
-              alias = "hass";
-            };
-          }
-        ];
+        static_configs = [{
+          targets = [ "mhub:8123" ];
+          labels = { alias = "hass"; };
+        }];
       }
     ];
   };

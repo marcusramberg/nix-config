@@ -1,9 +1,8 @@
-name: { nixpkgs, inputs, system, user, overlays }:
+name:
+{ nixpkgs, inputs, system, user, overlays }:
 
-let
-  mkOptions = import ./mkOptions.nix;
-in
-nixpkgs.lib.nixosSystem {
+let mkOptions = import ./mkOptions.nix;
+in nixpkgs.lib.nixosSystem {
   specialArgs = { inherit inputs; };
   inherit system;
   modules = [
@@ -11,6 +10,10 @@ nixpkgs.lib.nixosSystem {
     ../nixos
     inputs.nixos-wsl.nixosModules.wsl
     inputs.home-manager.nixosModules.home-manager
-    (mkOptions system { inherit user; inherit overlays; inherit inputs; })
+    (mkOptions system {
+      inherit user;
+      inherit overlays;
+      inherit inputs;
+    })
   ];
 }

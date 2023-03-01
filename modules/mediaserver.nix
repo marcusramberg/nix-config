@@ -1,5 +1,4 @@
-{ pkgs, lib, config, secrets, ... }:
-{
+{ pkgs, lib, config, secrets, ... }: {
   age.secrets.vaultwarden.owner = "vaultwarden";
   age.secrets.miniflux.owner = "miniflux";
   age.secrets.transmission.owner = "transmission";
@@ -15,82 +14,80 @@
     };
     caddy = {
       enable = true;
-      globalConfig =
-        ''
-          http_port 18080
-          https_port 18443
-        '';
-      extraConfig =
-        ''
-            home.means.no {
-              tls /etc/caddy/cloudflare.crt /etc/caddy/cloudflare.key
-              reverse_proxy mhub.lan:8123
-            }
+      globalConfig = ''
+        http_port 18080
+        https_port 18443
+      '';
+      extraConfig = ''
+          home.means.no {
+            tls /etc/caddy/cloudflare.crt /etc/caddy/cloudflare.key
+            reverse_proxy mhub.lan:8123
+          }
 
-            fab.means.no {
-              tls /etc/caddy/cloudflare.crt /etc/caddy/cloudflare.key
-              reverse_proxy fab.lan
-            }
+          fab.means.no {
+            tls /etc/caddy/cloudflare.crt /etc/caddy/cloudflare.key
+            reverse_proxy fab.lan
+          }
 
-            files.means.no {
-              tls /etc/caddy/cloudflare.crt /etc/caddy/cloudflare.key
-              reverse_proxy mspace.lan
-            }
-            movies.means.no {
-              tls /etc/caddy/cloudflare.crt /etc/caddy/cloudflare.key
-              reverse_proxy localhost:7878
-            }
-            transmission.means.no {
-              tls /etc/caddy/cloudflare.crt /etc/caddy/cloudflare.key
-              reverse_proxy localhost:9091
-            }
+          files.means.no {
+            tls /etc/caddy/cloudflare.crt /etc/caddy/cloudflare.key
+            reverse_proxy mspace.lan
+          }
+          movies.means.no {
+            tls /etc/caddy/cloudflare.crt /etc/caddy/cloudflare.key
+            reverse_proxy localhost:7878
+          }
+          transmission.means.no {
+            tls /etc/caddy/cloudflare.crt /etc/caddy/cloudflare.key
+            reverse_proxy localhost:9091
+          }
 
-            nzb.means.no {
-              tls /etc/caddy/cloudflare.crt /etc/caddy/cloudflare.key
-              reverse_proxy localhost:6789
-            }
+          nzb.means.no {
+            tls /etc/caddy/cloudflare.crt /etc/caddy/cloudflare.key
+            reverse_proxy localhost:6789
+          }
 
-           passwords.means.no {
-              tls /etc/caddy/cloudflare.crt /etc/caddy/cloudflare.key
-              reverse_proxy localhost:8222
-            }
+         passwords.means.no {
+            tls /etc/caddy/cloudflare.crt /etc/caddy/cloudflare.key
+            reverse_proxy localhost:8222
+          }
 
-           rss.means.no {
-              tls /etc/caddy/cloudflare.crt /etc/caddy/cloudflare.key
-              reverse_proxy localhost:8485
-            }
- 
-            tv.means.no {
-              tls /etc/caddy/cloudflare.crt /etc/caddy/cloudflare.key
-             reverse_proxy localhost:8989
-            }
+         rss.means.no {
+            tls /etc/caddy/cloudflare.crt /etc/caddy/cloudflare.key
+            reverse_proxy localhost:8485
+          }
 
-          unifi.means.no {
-             tls /etc/caddy/cloudflare.crt /etc/caddy/cloudflare.key
-             reverse_proxy https://localhost:8443 {
-               transport http {
-                 tls_insecure_skip_verify
-                 }
-             }
+          tv.means.no {
+            tls /etc/caddy/cloudflare.crt /etc/caddy/cloudflare.key
+           reverse_proxy localhost:8989
+          }
+
+        unifi.means.no {
+           tls /etc/caddy/cloudflare.crt /etc/caddy/cloudflare.key
+           reverse_proxy https://localhost:8443 {
+             transport http {
+               tls_insecure_skip_verify
+               }
            }
+         }
 
-          www.tabdog.net {
-              tls /etc/caddy/cloudflare.crt /etc/caddy/cloudflare.key
-              redir https://tabdog.net/ permanent
-            }
+        www.tabdog.net {
+            tls /etc/caddy/cloudflare.crt /etc/caddy/cloudflare.key
+            redir https://tabdog.net/ permanent
+          }
 
-            tabdog.net {
-              tls /etc/caddy/cloudflare.crt /etc/caddy/cloudflare.key
-              root * /var/tabdog.net
-              file_server /* browse
-            }
+          tabdog.net {
+            tls /etc/caddy/cloudflare.crt /etc/caddy/cloudflare.key
+            root * /var/tabdog.net
+            file_server /* browse
+          }
 
-            www.means.no {
-              tls /etc/caddy/cloudflare.crt /etc/caddy/cloudflare.key
-              root * /html
-              file_server /* browse
-            }
-        '';
+          www.means.no {
+            tls /etc/caddy/cloudflare.crt /etc/caddy/cloudflare.key
+            root * /html
+            file_server /* browse
+          }
+      '';
     };
 
     nzbget.enable = true;
@@ -121,11 +118,11 @@
       credentialsFile = config.age.secrets.transmission.path;
     };
   };
-  /* services.unifi = { */
-  /*   enable = true; */
-  /*   openFirewall = true; */
-  /*   unifiPackage = pkgs.unifi6; */
-  /* }; */
+  # services.unifi = {
+  # enable = true;
+  # openFirewall = true;
+  # unifiPackage = pkgs.unifi6;
+  # };
 
   services.postgresql = {
     enable = true;

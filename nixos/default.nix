@@ -5,18 +5,13 @@
 { config, pkgs, inputs, ... }:
 
 {
-  imports = [
-    ../modules/agenix.nix
-    ../modules/nix.nix
-  ];
+  imports = [ ../modules/agenix.nix ../modules/nix.nix ];
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment = {
     systemPackages = with pkgs; [
-      ((emacsPackagesFor emacs).emacsWithPackages (epkgs: [
-        epkgs.vterm
-      ]))
+      ((emacsPackagesFor emacs).emacsWithPackages (epkgs: [ epkgs.vterm ]))
       cached-nix-shell
       gitAndTools.gh
       gcc
@@ -59,7 +54,10 @@
 
   programs = {
     dconf.enable = true;
-    gnupg.agent = { enable = true; enableSSHSupport = true; };
+    gnupg.agent = {
+      enable = true;
+      enableSSHSupport = true;
+    };
     mtr.enable = true;
     neovim = {
       enable = true;
@@ -92,9 +90,7 @@
   nixpkgs.config = {
     allowUnfree = true;
 
-    permittedInsecurePackages = [
-      "xrdp-0.9.9"
-    ];
+    permittedInsecurePackages = [ "xrdp-0.9.9" ];
   };
   security.pam.loginLimits = [{
     domain = "marcus";

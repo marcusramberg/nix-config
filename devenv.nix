@@ -1,12 +1,11 @@
 { ... }: {
-  languages.lua = {
-    enable = true;
-  };
-  languages.nix = {
-    enable = true;
-  };
+  languages.lua = { enable = true; };
+  languages.nix = { enable = true; };
   pre-commit.hooks = {
     nixpkgs-fmt.enable = true;
+    # luacheck.enable = true;
+    stylua.enable = true;
+    nixfmt.enable = true;
     # deadnix.enable = true;
   };
 }

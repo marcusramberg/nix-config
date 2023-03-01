@@ -1,12 +1,7 @@
-{ pkgs, lib, ... }:
-{
+{ pkgs, lib, ... }: {
   # Nix configuration ------------------------------------------------------------------------------
 
-  imports =
-    [
-      ../modules/agenix.nix
-      ../modules/nix.nix
-    ];
+  imports = [ ../modules/agenix.nix ../modules/nix.nix ];
 
   nix.configureBuildUsers = true;
 
@@ -84,7 +79,6 @@
     ActuationStrength = 0;
     Clicking = true;
   };
-
 
   # Add ability to used TouchID for sudo authentication
   security.pam.enableSudoTouchIdAuth = true;

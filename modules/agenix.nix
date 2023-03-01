@@ -15,19 +15,19 @@ in
 
   age = {
     secrets =
-      if pathExists secretsFile
-      then
+      if pathExists secretsFile then
         mapAttrs'
-          (n: _: nameValuePair (removeSuffix ".age" n) {
-            file = "${secretsDir}/${n}";
-            owner = mkDefault "root";
-          })
+          (n: _:
+            nameValuePair (removeSuffix ".age" n) {
+              file = "${secretsDir}/${n}";
+              owner = mkDefault "root";
+            })
           (import secretsFile)
-      else { };
-    identityPaths =
-      options.age.identityPaths.default ++ (filter pathExists [
-        "/home/marcus/.ssh/id_ed25519"
-        "/home/marcus/.ssh/id_rsa"
-      ]);
+      else
+        { };
+    identityPaths = options.age.identityPaths.default ++ (filter pathExists [
+      "/home/marcus/.ssh/id_ed25519"
+      "/home/marcus/.ssh/id_rsa"
+    ]);
   };
 }

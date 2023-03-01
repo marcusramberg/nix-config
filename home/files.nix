@@ -1,7 +1,12 @@
-{ ... }:
-{
-  ".config/wezterm" = { source = ../config/wezterm; recursive = true; };
-  ".config/nvim" = { source = ../config/nvim; recursive = true; };
+{ ... }: {
+  ".config/wezterm" = {
+    source = ../config/wezterm;
+    recursive = true;
+  };
+  ".config/nvim" = {
+    source = ../config/nvim;
+    recursive = true;
+  };
 
   ".config/bat/config".source = ../config/bat/config;
   ".config/btop/btop.config".source = ../config/btop.conf;

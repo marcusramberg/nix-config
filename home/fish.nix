@@ -1,9 +1,9 @@
-{ pkgs, lib, ... }:
-{
+{ pkgs, lib, ... }: {
   enable = true;
   #useBabelfish = true;
   functions = {
-    fish_greeting = "fortune art goedel wisdom tao literature songs-poems paradoxum; echo ''";
+    fish_greeting =
+      "fortune art goedel wisdom tao literature songs-poems paradoxum; echo ''";
     rd = "fd $argv (git root)";
   };
   shellAbbrs = {
@@ -36,7 +36,9 @@
     imgcat = "wezterm imgcat";
   };
   shellInit = ''
-    fish_add_path /.dotfiles/bin /usr/local/sbin ${lib.optionalString pkgs.stdenv.isLinux "/etc/nixos/bin"}
+    fish_add_path /.dotfiles/bin /usr/local/sbin ${
+      lib.optionalString pkgs.stdenv.isLinux "/etc/nixos/bin"
+    }
     fish_add_path -a /run/current_system/sw/bin ~/.local/bin /opt/homebrew/bin ~/go/bin/ ~/.nimble/bin ~/.cargo/bin/
     set CLOUDSDK_PYTHON_SITEPACKAGES 1
   '';
@@ -67,11 +69,26 @@
     gpgconf --launch gpg-agent
   '';
   plugins = [
-    { name = "tide"; src = pkgs.fishPlugins.tide.src; }
-    { name = "grc"; src = pkgs.fishPlugins.grc.src; }
-    { name = "forgit"; src = pkgs.fishPlugins.forgit.src; }
-    { name = "bass"; src = pkgs.fishPlugins.bass.src; }
-    { name = "fzf-fish"; src = pkgs.fishPlugins.fzf-fish.src; }
+    {
+      name = "tide";
+      src = pkgs.fishPlugins.tide.src;
+    }
+    {
+      name = "grc";
+      src = pkgs.fishPlugins.grc.src;
+    }
+    {
+      name = "forgit";
+      src = pkgs.fishPlugins.forgit.src;
+    }
+    {
+      name = "bass";
+      src = pkgs.fishPlugins.bass.src;
+    }
+    {
+      name = "fzf-fish";
+      src = pkgs.fishPlugins.fzf-fish.src;
+    }
     {
       name = "gcloud-completions";
       src = pkgs.fetchFromGitHub {

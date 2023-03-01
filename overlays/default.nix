@@ -14,4 +14,3 @@ self: super: {
   wezterm-nightly = super.callPackage ../packages/wezterm-nightly { };
 }
 
-

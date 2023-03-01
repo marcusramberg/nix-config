@@ -20,7 +20,12 @@
     description = "Fix the /dev/shm symlink to be a mount";
     unitConfig = {
       DefaultDependencies = "no";
-      Before = [ "sysinit.target" "systemd-tmpfiles-setup-dev.service" "systemd-tmpfiles-setup.service" "systemd-sysctl.service" ];
+      Before = [
+        "sysinit.target"
+        "systemd-tmpfiles-setup-dev.service"
+        "systemd-tmpfiles-setup.service"
+        "systemd-sysctl.service"
+      ];
       ConditionPathExists = "/dev/shm";
       ConditionPathIsSymbolicLink = "/dev/shm";
       ConditionPathIsMountPoint = "/run/shm";
