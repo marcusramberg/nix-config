@@ -8,10 +8,11 @@ _: {
   pre-commit.hooks = {
     deadnix.enable = false;
     luacheck.enable = true;
+    markdownlint.enable = true;
     nixfmt.enable = true;
     statix.enable = true;
     stylua.enable = true;
-    markdownlint.enable = true;
+    yamllint.enable = true;
   };
   enterShell = ''
     echo "       __"
