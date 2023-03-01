@@ -1,4 +1,3 @@
-name:
 { inputs, system, user, overlays }:
 let mkOptions = import ./mkOptions.nix;
 in inputs.darwin.lib.darwinSystem rec {

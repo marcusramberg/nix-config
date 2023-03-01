@@ -1,4 +1,4 @@
-{ pkgs, config, modulesPath, ... }:
+{ pkgs, ... }:
 
 {
   networking.hostName = "mbox";

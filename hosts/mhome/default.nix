@@ -1,4 +1,4 @@
-{ config, lib, modulesPath, options }:
+_:
 
 {
   networking.hostName = "mhome"; # Define your hostname.

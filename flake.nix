@@ -46,7 +46,7 @@
         };
       };
 
-      darwinConfigurations.mbook = mkDarwinHost "mbook" {
+      darwinConfigurations.mbook = mkDarwinHost {
         inherit overlays inputs;
         system = "aarch64-darwin";
         user = "marcus";

@@ -6,7 +6,7 @@ _: {
   difftastic.enable = true;
 
   pre-commit.hooks = {
-    deadnix.enable = false;
+    deadnix.enable = true;
     luacheck.enable = true;
     markdownlint.enable = true;
     nixfmt.enable = true;
