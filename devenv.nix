@@ -11,6 +11,7 @@ _: {
     nixfmt.enable = true;
     statix.enable = true;
     stylua.enable = true;
+    markdownlint.enable = true;
   };
   enterShell = ''
     echo "       __"
