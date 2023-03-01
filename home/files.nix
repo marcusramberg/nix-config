@@ -1,4 +1,4 @@
-{ ... }: {
+_: {
   ".config/wezterm" = {
     source = ../config/wezterm;
     recursive = true;

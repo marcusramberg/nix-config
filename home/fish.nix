@@ -5,6 +5,7 @@
     fish_greeting =
       "fortune art goedel wisdom tao literature songs-poems paradoxum; echo ''";
     rd = "fd $argv (git root)";
+    run = "nix run nixpkgs#$argv[1] -- $argv[2..-1]";
   };
   shellAbbrs = {
     l = "ls";
@@ -71,23 +72,23 @@
   plugins = [
     {
       name = "tide";
-      src = pkgs.fishPlugins.tide.src;
+      inherit (pkgs.fishPlugins.tide) src;
     }
     {
       name = "grc";
-      src = pkgs.fishPlugins.grc.src;
+      inherit (pkgs.fishPlugins.grc) src;
     }
     {
       name = "forgit";
-      src = pkgs.fishPlugins.forgit.src;
+      inherit (pkgs.fishPlugins.forgit) src;
     }
     {
       name = "bass";
-      src = pkgs.fishPlugins.bass.src;
+      inherit (pkgs.fishPlugins.bass) src;
     }
     {
       name = "fzf-fish";
-      src = pkgs.fishPlugins.fzf-fish.src;
+      inherit (pkgs.fishPlugins.fzf-fish) src;
     }
     {
       name = "gcloud-completions";

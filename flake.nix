@@ -25,7 +25,7 @@
     let
       mkNixHost = import lib/mkNixHost.nix;
       mkDarwinHost = import lib/mkDarwinHost.nix;
-      localOverlays = final: prev: (import ./overlays inputs) final prev;
+      localOverlays = import ./overlays inputs;
       overlays = [ localOverlays inputs.neovim-nightly-overlay.overlay ];
     in {
       nixosConfigurations = {
