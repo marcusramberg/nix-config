@@ -7,7 +7,7 @@ _: {
 
   pre-commit.hooks = {
     deadnix.enable = false;
-    luacheck.enable = false;
+    luacheck.enable = true;
     nixfmt.enable = true;
     statix.enable = true;
     stylua.enable = true;
