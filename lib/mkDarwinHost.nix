@@ -1,4 +1,4 @@
-name: { nixpkgs, inputs, system, user, overlays }:
+name: { inputs, system, user, overlays }:
 let
   mkOptions = import ./mkOptions.nix;
 in

@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ ... }:
 {
   ".config/wezterm" = { source = ../config/wezterm; recursive = true; };
   ".config/nvim" = { source = ../config/nvim; recursive = true; };

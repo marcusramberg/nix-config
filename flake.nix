@@ -11,6 +11,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     nixos-wsl.url = "github:nix-community/NixOS-WSL";
+    devenv.url = "github:cachix/devenv/latest";
     darwin.url = "github:lnl7/nix-darwin/master";
     darwin.inputs.nixpkgs.follows = "nixpkgs";
     nix-doom-emacs.url = "github:nix-community/nix-doom-emacs";
@@ -20,7 +21,7 @@
     tfenv.flake = false;
   };
 
-  outputs = { self, nixpkgs, ... } @inputs:
+  outputs = { nixpkgs, ... } @inputs:
     let
       mkNixHost = import lib/mkNixHost.nix;
       mkDarwinHost = import lib/mkDarwinHost.nix;
@@ -50,7 +51,7 @@
       };
 
       darwinConfigurations.mbook = mkDarwinHost "mbook" {
-        inherit overlays inputs nixpkgs;
+        inherit overlays inputs;
         system = "aarch64-darwin";
         user = "marcus";
       };

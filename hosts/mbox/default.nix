@@ -1,8 +1,5 @@
 { pkgs, config, modulesPath, ... }:
 
-let
-  nixos-wsl = import ./nixos-wsl;
-in
 {
   networking.hostName = "mbox";
   wsl = {
@@ -19,7 +16,7 @@ in
     # docker-desktop.enable = true;
 
   };
-    systemd.services.nixs-wsl-systemd-fix = {
+  systemd.services.nixs-wsl-systemd-fix = {
     description = "Fix the /dev/shm symlink to be a mount";
     unitConfig = {
       DefaultDependencies = "no";
@@ -44,5 +41,5 @@ in
   #   experimental-features = nix-command flakes
   # '';
 
-#  system.stateVersion = "22.11";
+  #  system.stateVersion = "22.11";
 }

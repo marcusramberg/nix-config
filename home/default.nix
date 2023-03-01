@@ -1,4 +1,4 @@
-{ config, pkgs, lib, stable, inputs, ... }:
+{ pkgs, lib, stable, inputs, ... }:
 
 {
   imports = [ inputs.nix-doom-emacs.hmModule ];
@@ -83,6 +83,7 @@
     go-task
     gotestfmt
     grc
+    inputs.devenv.packages.${system}.devenv
     jq
     lazygit
     luarocks

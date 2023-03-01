@@ -1,6 +1,6 @@
 # modules/agenix.nix -- encrypt secrets in nix store
 
-{ options, config, inputs, lib, pkgs, ... }:
+{ options, inputs, lib, pkgs, ... }:
 
 with builtins;
 with lib;

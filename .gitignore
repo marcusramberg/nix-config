@@ -1,2 +1,4 @@
 host.nix
 result
+.devenv*
+devenv.local.nix
