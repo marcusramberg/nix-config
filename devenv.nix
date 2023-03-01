@@ -1,11 +1,13 @@
 { ... }: {
   languages.lua = { enable = true; };
   languages.nix = { enable = true; };
+  # Structural diff
+  difftastic.enable = true;
+
   pre-commit.hooks = {
-    nixpkgs-fmt.enable = true;
-    # luacheck.enable = true;
+    luacheck.enable = false;
     stylua.enable = true;
     nixfmt.enable = true;
-    # deadnix.enable = true;
+    deadnix.enable = false;
   };
 }

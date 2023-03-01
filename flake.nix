@@ -27,8 +27,7 @@
       mkDarwinHost = import lib/mkDarwinHost.nix;
       localOverlays = final: prev: (import ./overlays inputs) final prev;
       overlays = [ localOverlays inputs.neovim-nightly-overlay.overlay ];
-    in
-    {
+    in {
       nixosConfigurations = {
         mhub = mkNixHost "mhub" {
           inherit overlays nixpkgs inputs;

@@ -1,32 +1,12 @@
-{ stdenv
-, rustPlatform
-, lib
-, fetchFromGitHub
-, ncurses
-, perl
-, pkg-config
-, python3
-, fontconfig
-, installShellFiles
-, openssl
-, libGL
-, libX11
-, libxcb
-, libxkbcommon
-, xcbutil
-, xcbutilimage
-, xcbutilkeysyms
-, xcbutilwm
-, wayland
-, zlib
-  # , CoreGraphics
-  # , Cocoa
-  # , Foundation
-  # , libiconv
-  # , UserNotifications
-, nixosTests
-, runCommand
-}:
+{ stdenv, rustPlatform, lib, fetchFromGitHub, ncurses, perl, pkg-config, python3
+, fontconfig, installShellFiles, openssl, libGL, libX11, libxcb, libxkbcommon
+, xcbutil, xcbutilimage, xcbutilkeysyms, xcbutilwm, wayland, zlib
+# , CoreGraphics
+# , Cocoa
+# , Foundation
+# , libiconv
+# , UserNotifications
+, nixosTests, runCommand }:
 
 rustPlatform.buildRustPackage rec {
   pname = "wezterm-nightly";
