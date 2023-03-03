@@ -1,7 +1,7 @@
-{ config, lib, pkgs, inputs, ... }:
+{ lib, pkgs, ... }:
 
 let
-  cfg = config.modules.editors.emacs;
+  cfg = lib.config.modules.editors.emacs;
   inherit (lib) types mkIf mkOption;
 in {
   options.modules.editors.emacs = {
@@ -26,7 +26,6 @@ in {
   };
 
   config = mkIf cfg.enable {
-    nixpkgs.overlays = [ inputs.emacs-overlay.overlay ];
 
     user.packages = with pkgs; [
       ## Emacs itself
