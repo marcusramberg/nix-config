@@ -7,7 +7,7 @@ _: {
     source = ../config/nvim;
     recursive = true;
   };
-  ".config/doom" = {
+  ".doom.d" = {
     source = ../config/doom.d;
     recursive = true;
   };

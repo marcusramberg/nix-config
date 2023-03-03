@@ -5,7 +5,7 @@
 { config, pkgs, inputs, ... }:
 
 {
-  imports = [ ../modules/agenix.nix ../modules/nix.nix ];
+  imports = [ ../modules/agenix.nix ../modules/nix.nix ../modules/emacs.nix ];
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
