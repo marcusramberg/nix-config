@@ -4,6 +4,7 @@
   imports = [ ../modules/agenix.nix ../modules/nix.nix ];
 
   nix.configureBuildUsers = true;
+  age.identityPaths = [ "/Users/marcus/.ssh/id_ed25519" ];
 
   #FIXME: nix-darwin sets this to /var/empty for Reasons[tm]
   users.users.marcus.home = "/Users/marcus";

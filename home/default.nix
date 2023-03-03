@@ -1,7 +1,7 @@
 { pkgs, lib, stable, inputs, ... }:
 
 {
-  imports = [ inputs.nix-doom-emacs.hmModule ];
+  # imports = [ inputs.nix-doom-emacs.hmModule ];
   home.stateVersion = "22.05";
   home.file = import ./files.nix { inherit pkgs; };
 
@@ -33,12 +33,12 @@
     settings.show_program_path = true;
   };
 
-  programs.doom-emacs = {
-    enable = true;
-    doomPrivateDir =
-      ../config/doom.d; # Directory containing your config.el, init.el
-    # and packages.el files
-  };
+  # programs.doom-emacs = {
+  #   enable = true;
+  #   doomPrivateDir =
+  #     ../config/doom.d; # Directory containing your config.el, init.el
+  #   # and packages.el files
+  # };
 
   programs.fish = import ./fish.nix {
     inherit pkgs;

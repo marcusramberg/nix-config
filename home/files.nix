@@ -7,6 +7,10 @@ _: {
     source = ../config/nvim;
     recursive = true;
   };
+  ".config/doom" = {
+    source = ../config/doom.d;
+    recursive = true;
+  };
 
   ".config/bat/config".source = ../config/bat/config;
   ".config/btop/btop.config".source = ../config/btop.conf;

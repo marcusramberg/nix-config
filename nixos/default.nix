@@ -35,6 +35,8 @@
     };
   };
 
+  age.identityPaths = [ "/home/marcus/.ssh/id_ed25519" ];
+
   boot.supportedFilesystems = [ "ntfs" ];
 
   networking.firewall.enable = false;

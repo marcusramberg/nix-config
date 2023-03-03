@@ -14,8 +14,8 @@
     devenv.url = "github:cachix/devenv/latest";
     darwin.url = "github:lnl7/nix-darwin/master";
     darwin.inputs.nixpkgs.follows = "nixpkgs";
-    nix-doom-emacs.url = "github:nix-community/nix-doom-emacs";
     agenix.url = "github:ryantm/agenix";
+    emacs-overlay.url = "github:nix-community/emacs-overlay";
 
     tfenv.url = "github:tfutils/tfenv";
     tfenv.flake = false;
@@ -26,7 +26,11 @@
       mkNixHost = import lib/mkNixHost.nix;
       mkDarwinHost = import lib/mkDarwinHost.nix;
       localOverlays = import ./overlays inputs;
-      overlays = [ localOverlays inputs.neovim-nightly-overlay.overlay ];
+      overlays = [
+        localOverlays
+        inputs.neovim-nightly-overlay.overlay
+        inputs.emacs-overlay.overlay
+      ];
     in {
       nixosConfigurations = {
         mhub = mkNixHost "mhub" {
