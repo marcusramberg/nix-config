@@ -1,7 +1,5 @@
-{ pkgs, lib, stable, inputs, ... }:
+{ pkgs, lib, inputs, ... }: {
 
-{
-  # imports = [ inputs.nix-doom-emacs.hmModule ];
   home.stateVersion = "22.05";
   home.file = import ./files.nix { inherit pkgs; };
 
@@ -127,7 +125,7 @@
       # niv # easy dependency management for nix projects
     ] ++ lib.optionals stdenv.isDarwin [
       cocoapods
-      stable.wezterm
+      wezterm
       m-cli # useful macOS CLI commands
     ] ++ lib.optionals stdenv.isLinux [
       (nerdfonts.override { fonts = [ "JetBrainsMono" "Iosevka" ]; })

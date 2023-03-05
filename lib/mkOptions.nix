@@ -1,5 +1,7 @@
 system:
-{ user, inputs, overlays }: {
+{ user, inputs, overlays }:
+let stable = inputs.stable.legacyPackages.${system};
+in {
   nixpkgs = {
     # inherit overlays;
     inherit overlays;
@@ -16,8 +18,8 @@ system:
     useUserPackages = true;
     users.${user} = import ../home;
     extraSpecialArgs = {
-      stable = inputs.stable.legacyPackages.${system};
       inherit inputs;
+      inherit stable;
     };
   };
 }
