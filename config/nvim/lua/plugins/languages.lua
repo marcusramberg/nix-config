@@ -59,6 +59,7 @@ return {
 		opts = {
 			ensure_installed = {
 				"bash",
+				"gitcommit",
 				"go",
 				"gotmpl",
 				"help",

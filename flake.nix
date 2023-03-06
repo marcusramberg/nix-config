@@ -16,6 +16,7 @@
     darwin.inputs.nixpkgs.follows = "nixpkgs";
     agenix.url = "github:ryantm/agenix";
     emacs-overlay.url = "github:nix-community/emacs-overlay";
+    nur.url = "github:nix-community/NUR";
 
     tfenv.url = "github:tfutils/tfenv";
     tfenv.flake = false;
