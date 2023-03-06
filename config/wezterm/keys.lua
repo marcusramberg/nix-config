@@ -19,7 +19,10 @@ local keys = {
 	{ key = "u", mods = "LEADER", action = act.CharSelect({}) },
 	{ key = "t", mods = "LEADER", action = act.SpawnTab("CurrentPaneDomain") },
 	{ key = "v", mods = "LEADER", action = act.SplitHorizontal({ domain = "CurrentPaneDomain" }) },
-	{ key = "x", mods = "LEADER", action = act.ActivateCopyMode },
+	{ key = "v", mods = "LEADER", action = act.ActivateCopyMode },
+	{ key = "y", mods = "LEADER", action = act.CopyTo("Clipboard") },
+	{ key = "w", mods = "LEADER", action = act.CloseCurrentTab },
+	{ key = "x", mods = "LEADER", action = act.CloseCurrentPane },
 }
 for _, mod in ipairs({ "CTRL", "LEADER" }) do
 	for i = 1, 9 do
