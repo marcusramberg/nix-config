@@ -15,6 +15,7 @@ return {
 				"shfmt",
 				"stylua",
 				"terraform-ls",
+				"typescript-language-server",
 			},
 		},
 	},
