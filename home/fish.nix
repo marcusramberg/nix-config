@@ -35,6 +35,8 @@
     emacs = "emacs -nw";
     r = "cd (git root)";
     imgcat = "wezterm imgcat";
+    gcp =
+      "gcloud config set project (gcloud projects list --format='get(project_id)'|fzf)";
   };
   shellInit = ''
     fish_add_path /.dotfiles/bin /usr/local/sbin ${
