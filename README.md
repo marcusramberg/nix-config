@@ -20,14 +20,14 @@ Obviously this is always a WIP.
 
 ## Folder structure
 
-* config/ - Configuration files to be installed in home
-* darwin/ - Nix-darwin specific configuration
-* nixos/ - NixOS specific configuration
-* secrets/ - Secrets to be decrypted with agenix
-* home/ - Shared Home manager configuration
-* modules/ - Shared Nix modules
-* lib/ - Shared Nix library functions
-* hosts/ - Host specific configuration
-* overlays/ - Nix custom package overlay
-* packages/ - Nix custom packages
-* wallpaper/ - Wallpaper for my desktop
+* `config`/ - Configuration files to be installed in home
+* `darwin`/ - Nix-darwin specific configuration
+* `nixos`/ - NixOS specific configuration
+* `secrets`/ - Secrets to be decrypted with agenix
+* `home`/ - Shared Home manager configuration
+* `modules`/ - Shared Nix modules
+* `lib`/ - Shared Nix library functions
+* `hosts`/ - Host specific configuration
+* `overlays`/ - Nix custom package overlay
+* `packages`/ - Nix custom packages
+* `wallpaper/` - Wallpaper for my desktop

@@ -10,5 +10,6 @@ in {
   "promtail.age".publicKeys = [ marcus ];
   "ha-bearer.age".publicKeys = [ marcus ];
   "nixAccessTokens.age".publicKeys = [ marcus ];
+  "cloudflareToken.age".publicKeys = [ marcus ];
 }
 
