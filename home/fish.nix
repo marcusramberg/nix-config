@@ -36,8 +36,13 @@
     r = "cd (git root)";
     imgcat = "wezterm imgcat";
     gcp =
-      "gcloud config set project (gcloud projects list --format='get(project_id)'|fzf)";
+      "gcloud config set project (gcloud projects list --format='get(project_id)' --sort-by=project_id --filter='project_id != ^sys-'|fzf)";
+    # } ++
+    # lib.optionals pkgs.stdenv.isLinux {
+    pbcopy = "xclip -selection clipboard";
+    pbpaste = "xclip -selection clipboard -o";
   };
+
   shellInit = ''
     fish_add_path /.dotfiles/bin /usr/local/sbin ${
       lib.optionalString pkgs.stdenv.isLinux "/etc/nixos/bin"
