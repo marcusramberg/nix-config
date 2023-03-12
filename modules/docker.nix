@@ -33,7 +33,8 @@
       oci-containers = {
         backend = "podman";
         containers.hass = {
-          image = "ghcr.io/home-assistant/home-assistant:2023.2.5";
+          # renovate: datasource=docker depName=homeassistant/home-assistant versioning=docker
+          image = "ghcr.io/home-assistant/home-assistant:2023.3.3";
           environment = { TZ = "Europe/Oslo"; };
           extraOptions = [
             "--net=host"
