@@ -2,8 +2,8 @@
   description = "nix.means.no";
 
   inputs = {
-    nixpkgs.url = "github:nixpkgs/nixos-unstable";
-    stable.url = "github:nixpkgs/nixos-22.11";
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+    stable.url = "github:nixos/nixpkgs/nixos-22.11";
     home-manager.url = "github:nix-community/home-manager";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
     neovim-nightly-overlay = {
