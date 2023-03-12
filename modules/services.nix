@@ -25,8 +25,8 @@
         plasma5.enable = true;
         xfce = {
           enable = true;
-          noDesktop = false;
-          enableXfwm = true;
+          noDesktop = true;
+          enableXfwm = false;
         };
       };
       windowManager.i3.enable = true;
