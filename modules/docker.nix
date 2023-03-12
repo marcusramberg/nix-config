@@ -44,7 +44,8 @@
           volumes = [ "/var/lib/homeassistant:/config" ];
         };
         containers.zwave-js-ui = {
-          image = "ghcr.io/zwave-js/zwave-js-ui:latest";
+          # renovate: datasource=docker depName=zwave-js/zwave-js-ui versioning=docker
+          image = "ghcr.io/zwave-js/zwave-js-ui:8.10.1";
           volumes = [
             "/var/lib/zwave-js-ui:/usr/src/app/store"
             "/dev:/dev"
