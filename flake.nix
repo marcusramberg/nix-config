@@ -2,7 +2,7 @@
   description = "nix.means.no";
 
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+    nixpkgs.url = "github:marcusramberg/nixpkgs/marcus/nimdow";
     stable.url = "github:nixos/nixpkgs/nixos-22.11";
     home-manager.url = "github:nix-community/home-manager";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
@@ -17,6 +17,7 @@
     agenix.url = "github:ryantm/agenix";
     emacs-overlay.url = "github:nix-community/emacs-overlay";
     nur.url = "github:nix-community/NUR";
+    webauthn-oidc.url = "github:arianvp/webauthn-oidc";
 
     tfenv.url = "github:tfutils/tfenv";
     tfenv.flake = false;
