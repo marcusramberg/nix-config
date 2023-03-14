@@ -1,0 +1,286 @@
+# App Rules
+# Example:
+# [[appRule]]
+# class = "st"
+# instance = "st"
+# title = "st"
+# monitor = 1
+# tags = [ 1, 4, 7 ]
+# state = "floating" # normal, floating, and fullscreen are all valid.
+
+[[appRule]]
+ class = "org.wezfurlong.wezterm"
+ # monitor = 1
+ # tags = [ 1 ]
+ state = "normal" # normal, floating, and fullscreen are all valid.
+
+[[appRule]]
+ class = "vivaldi"
+ monitor = 1
+ tags = [ 2 ]
+ state = "normal" # normal, floating, and fullscreen are all valid.
+
+[[appRule]]
+ class = "firefoxdeveloperedition"
+ monitor = 1
+ tags = [ 2 ]
+ state = "normal" # normal, floating, and fullscreen are all valid.
+
+[[appRule]]
+ title = "orgmacs"
+ monitor = 1
+ tags = [ 3 ]
+ state = "normal" # normal, floating, and fullscreen are all valid.
+
+[[appRule]]
+ title = "telega"
+ monitor = 1
+ tags = [ 3 ]
+ state = "normal" # normal, floating, and fullscreen are all valid.
+
+[[appRule]]
+ class = "TelegramDesktop"
+ monitor = 1
+ tags = [ 4 ]
+ state = "normal" # normal, floating, and fullscreen are all valid.
+
+# Start external programs
+[[startProcess]]
+command = "pkill nimdow"
+keys = [ "e" ]
+modifiers = [ "super", "shift" ]
+
+[[startProcess]]
+command = "~/Source/nixpkgs/result/bin/vivaldi --force-dark-mode"
+keys = [ "b" ]
+modifiers = [ "super" ]
+
+[[startProcess]]
+command = "rofi -show run"
+keys = [ "space" ]
+modifiers = [ "super" ]
+
+[[startProcess]]
+command = "rofi -show run"
+keys = [ "d" ]
+modifiers = [ "super" ]
+
+[[startProcess]]
+command = "rofi-rbw"
+keys = [ "p" ]
+modifiers = [ "super" "shift"]
+
+[[startProcess]]
+command = "wezterm start bash -c \"xprop; sleep 100\""
+keys = [ "x" ]
+modifiers = [ "super" "shift"]
+
+
+[[startProcess]]
+command = "pavucontrol"
+clickRegion = 1
+
+[[startProcess]]
+command = "wezterm start"
+keys = [ "Return" ]
+modifiers = [ "super" ]
+
+[[startProcess]]
+command = "wezterm"
+keys = [ "Return" ]
+modifiers = [ "super" "shift" ]
+
+# Example: Start process when region is clicked, see github wiki for what constitutes a region
+[[startProcess]]
+command = "notify-send \"Id: %1, rx: %2, cx: %4, w: %6\""
+clickRegion = 1
+
+[autostart]
+exec = [
+  "picom --config /etc/xdg/picom.conf",
+  "~/.config/nimdow/status",
+  "xsetroot -cursor_name left_ptr",
+  "spice-vdagent",
+  "feh --bg-fill /etc/nixos/wallpaper/terrafox.jpeg",
+  "wezterm",
+  "telegram-desktop"
+  # "vivaldi",
+  # "/usr/local/bin/bin/org"
+]
+
+[settings]
+  # Window settings
+  borderWidth = 2
+  borderColorUnfocused = "#4C566A"
+  borderColorFocused = "#8FBCBB"
+  borderColorUrgent = "#D08770"
+  # Bar settings
+  barHeight = 32
+  windowTitlePosition = "center"
+  barBackgroundColor = "#434C5E"
+  barForegroundColor = "#ECEFF4"
+  barSelectionColor = "#88c0d0"
+  barUrgentColor = "#BF616A"
+  barFonts = [
+    "Iosevka Nerd Font Mono:size=11:antialias=true",
+    "NotoColorEmoji:size=11:antialias=true"
+  ]
+  # Layout settings
+  outerGap = 8 
+  gapSize = 16 
+  resizeStep = 100
+  defaultMasterWidthPercentage = 60
+  # Scratchpad settings
+  scratchpadWidth = 600
+  scratchpadHeight = 500
+  # General settings
+  loggingEnabled = true 
+  reverseTagScrolling = false
+
+# Window manager controls
+[controls]
+  [controls.reloadConfig]
+  keys = [ "r" ]
+  modifiers = [ "super", "shift" ]
+
+  [controls.focusPrevious]
+  keys = [ "k" ]
+  modifiers = [ "super" ]
+
+  [controls.focusNext]
+  keys = [ "j" ]
+  modifiers = [ "super" ]
+
+  [controls.moveWindowPrevious]
+  keys = [ "k" ]
+  modifiers = [ "super", "shift" ]
+
+  [controls.moveWindowNext]
+  keys = [ "j" ]
+  modifiers = [ "super", "shift" ]
+
+  [controls.toggleFullscreen]
+  keys = [ "f" ]
+  modifiers = [ "super" ]
+
+  [controls.destroySelectedWindow]
+  keys = [ "d" ]
+ modifiers = [ "super", "shift" ]
+
+  [controls.goToPreviousTag]
+  keys = [ "w" ]
+  modifiers = [ "super" ]
+
+  [controls.moveWindowToPreviousTag]
+  keys = [ "w" ]
+  modifiers = [ "super", "shift" ]
+
+  [controls.focusPreviousMonitor]
+  keys = [ "comma" ]
+  modifiers = [ "super" ]
+
+  [controls.focusNextMonitor]
+  keys = [ "period" ]
+  modifiers = [ "super" ]
+
+  [controls.moveWindowToPreviousMonitor]
+  keys = [ "comma" ]
+  modifiers = [ "super", "shift" ]
+
+  [controls.moveWindowToNextMonitor]
+  keys = [ "period" ]
+  modifiers = [ "super", "shift" ]
+
+  [controls.increaseMasterCount]
+  keys = [ "z" ]
+  modifiers = [ "super" ]
+
+  [controls.decreaseMasterCount]
+  keys = [ "x" ]
+  modifiers = [ "super" ]
+
+  [controls.toggleFloating]
+  keys = [ "space" ]
+  modifiers = [ "shift" "super" ]
+
+  [controls.jumpToUrgentWindow]
+  keys = [ "u" ]
+  modifiers = [ "super" ]
+
+  [controls.goToTag]
+  keys = [ "1", "2", "3", "4", "5", "6", "7", "8", "9" ]
+  modifiers = [ "super" ]
+
+  [controls.goToLeftTag]
+  keys = [ "Left" ]
+  modifiers = [ "super" ]
+
+  [controls.goToRightTag]
+  keys = [ "Right" ]
+  modifiers = [ "super" ]
+
+  [controls.moveWindowToTag]
+  keys = [ "1", "2", "3", "4", "5", "6", "7", "8", "9" ]
+  modifiers = [ "super", "shift" ]
+
+  [controls.moveWindowToLeftTag]
+  keys = [ "Left" ]
+  modifiers = [ "super", "shift" ]
+
+  [controls.moveWindowToRightTag]
+  keys = [ "Right" ]
+  modifiers = [ "super", "shift" ]
+
+  [controls.toggleTagView]
+  keys = [ "1", "2", "3", "4", "5", "6", "7", "8", "9" ]
+  modifiers = [ "super", "control" ]
+
+  [controls.toggleWindowTag]
+  keys = [ "1", "2", "3", "4", "5", "6", "7", "8", "9" ]
+  modifiers = [ "super", "shift", "control" ]
+
+	[controls.increaseMasterWidth]
+	keys = [ "l" ]
+	modifiers = [ "super" ]
+
+	[controls.decreaseMasterWidth]
+	keys = [ "h" ]
+	modifiers = [ "super" ]
+
+  [controls.moveWindowToScratchpad]
+  keys = [ "s" ]
+  modifiers = [ "super", "shift" ]
+
+  [controls.rotateClients]
+  keys = [ "r" ]
+  modifiers = [ "super" ]
+
+  [controls.popScratchpad]
+  keys = [ "s" ]
+  modifiers = [ "super" ]
+
+# Example monitor settings:
+[monitors]
+  [monitors.default.tags]
+  1.displayString = "1 "
+  2.displayString = "2 "
+  3.displayString = "3 "
+  4.displayString = "4 "
+  5.displayString = "5 "
+  6.displayString = "6 "
+  7.displayString = "7 "
+  8.displayString = "8 "
+  9.displayString = "9 "
+  1.defaultMasterWidthPercentage = 65
+  2.defaultMasterWidthPercentage = 75
+
+  # [monitors.1.tags]
+  # 2.displayString = "two"
+  # Set the number of master windows per-monitor.
+  # all.numMasterWindows = 3
+  # Set the number of master windows per-tag.
+  # 2.numMasterWindows = 1
+
+  # [monitors.2.tags]
+  # 2.displayString = "too"
+

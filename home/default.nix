@@ -137,6 +137,8 @@
       maim
       picom
       nitrogen
+      rofi
+      starship
       volumeicon
       xcape
       xclip

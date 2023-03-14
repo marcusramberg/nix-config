@@ -78,6 +78,7 @@ return {
 				"regex",
 				"tsx",
 				"terraform",
+				"toml",
 				"typescript",
 				"vim",
 				"yaml",

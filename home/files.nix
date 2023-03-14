@@ -11,6 +11,14 @@ _: {
     source = ../config/doom.d;
     recursive = true;
   };
+  ".config/nimdow" = {
+    source = ../config/nimdow;
+    recursive = true;
+  };
+  ".config/rofi" = {
+    source = ../config/rofi;
+    recursive = true;
+  };
 
   ".config/bat/config".source = ../config/bat/config;
   ".config/btop/btop.config".source = ../config/btop.conf;
@@ -20,5 +28,6 @@ _: {
   ".gitconfig".source = ../config/gitconfig;
   ".i3/config".source = ../config/i3-config;
   ".ripgreprc".source = ../config/ripgreprc;
+  ".config/starship.toml".source = ../config/starship.toml;
 }
 

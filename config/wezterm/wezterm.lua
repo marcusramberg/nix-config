@@ -48,7 +48,7 @@ local config = {
 			format = "https://getremarkable.atlassian.net/browse/$1-$2",
 		},
 		{
-			regex = [[["]?([\w\d]{1}[-\w\d]+)(/){1}([-\w\d\.]+)["]?]],
+			regex = [[[^/]?([\w\d]{1}[-\w\d]+)(/){1}([-\w\d\.]+)[^/]?]],
 			format = "https://www.github.com/$1/$3",
 		},
 		{
