@@ -10,7 +10,7 @@
         "modules/docker.nix"
       ],
       "matchStrings": [
-        "# renovate: datasource=(?<datasource>.*) depname=(?<depname>.*)\\n\\s*image\\s*=\\s*\"(?<currentvalue>.+)\""
+        "# renovate: datasource=(?<datasource>.*) depname=(?<depName>.*)\\n\\s*image\\s*=\\s*\"(?<currentValue>.+)\""
       ]
     }
   ],
