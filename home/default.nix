@@ -139,6 +139,7 @@
       nitrogen
       rofi
       starship
+      vivaldi
       volumeicon
       xcape
       xclip

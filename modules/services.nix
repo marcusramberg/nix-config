@@ -31,7 +31,7 @@
       };
       windowManager.i3.enable = true;
       windowManager.i3.package = pkgs.i3-gaps;
-      #      windowManager.nimdow.enable = true;
+      windowManager.nimdow.enable = true;
     };
     xrdp.enable = true;
     tailscale.enable = true;
