@@ -7,10 +7,10 @@
   "regexManagers": [
     {
       "fileMatch": [
-        "\\.nix$"
+        "modules/docker.nix"
       ],
       "matchStrings": [
-        "# renovate: datasource=(?<datasource>[a-z-]+?) depName=(?<depName>[^\\s]+?)(?: (lookupName|packageName)=(?<packageName>[^\\s]+?))?(?: versioning=(?<versioning>[^\\s]+?))?(?: registryUrl=(?<registryUrl>[^\\s]+?))?\\s(?:ENV|ARG) .+?_VERSION[ =]\"?(?<currentValue>.+?)\"?\\s"
+        "# renovate: datasource=(?<datasource>.*) depname=(?<depname>.*)\\n\\s*image\\s*=\\s*\"(?<currentvalue>.+)\""
       ]
     }
   ],
