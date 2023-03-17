@@ -49,7 +49,13 @@ return {
 				rnix = {},
 				terraformls = {},
 				tflint = {},
-				yamlls = {},
+				yamlls = {
+					settings = {
+						yaml = {
+							keyOrdering = false,
+						},
+					},
+				},
 			},
 		},
 	},
