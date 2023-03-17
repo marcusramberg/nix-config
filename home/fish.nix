@@ -54,7 +54,6 @@
     fish_vi_key_bindings
     set fish_theme nord
     set -gx EDITOR nvim
-    # source ~/.config/fish/tide_config.fish
     type -q thefuck; and thefuck --alias | source
     test -x ~/.plenv/bin/plenv; and . (~/.plenv/bin/plenv init -|psub)
     if [ -f '/Users/marcus/google-cloud-sdk/path.fish.inc' ]; . '/Users/marcus/google-cloud-sdk/path.fish.inc'; end
@@ -65,7 +64,7 @@
 
     type -q nvm; and nvm use -s
     any-nix-shell fish --info-right | source
-    starship init fish | source
+    # starship init fish | source
   '';
   loginShellInit = ''
     if [ -f /Users/marcus/.ssh/id_rsa ]
@@ -77,10 +76,6 @@
     gpgconf --launch gpg-agent
   '';
   plugins = [
-    # {
-    #   name = "tide";
-    #   inherit (pkgs.fishPlugins.tide) src;
-    # }
     {
       name = "grc";
       inherit (pkgs.fishPlugins.grc) src;

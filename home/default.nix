@@ -23,6 +23,7 @@
     };
   };
   programs.chromium.enable = pkgs.stdenv.isLinux;
+  programs.starship = import ./starship.nix { };
 
   # Htop
   # https://rycee.gitlab.io/home-manager/options.html#opt-programs.htop.enable
@@ -138,7 +139,6 @@
       picom
       nitrogen
       rofi
-      starship
       vivaldi
       volumeicon
       xcape
