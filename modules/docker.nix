@@ -64,11 +64,11 @@
           volumes = [ "/var/lib/ubooquity:/config" "/space/Comics:/comics" ];
         };
         containers.plex = {
-          image = "plexinc/pms-docker:plexpass";
+          image = "lscr.io/linuxserver/plex:latest";
           environment = {
             TZ = "Europe/Oslo";
-            PLEX_UID = "193";
-            PLEX_GID = "193";
+            PUID = "193";
+            PGID = "193";
           };
           extraOptions = [ "--net=host" "--device=/dev/dri/" ];
           volumes = [ "/var/lib/plex:/config" "/space:/space" ];
