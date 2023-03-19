@@ -6,55 +6,51 @@
   # Direnv, load and unload environment variables depending on the current directory.
   # https://direnv.net
   # https://rycee.gitlab.io/home-manager/options.html#opt-programs.direnv.enable
-  programs.direnv = {
-    enable = true;
-    nix-direnv.enable = true;
-  };
-
-  programs.nix-index.enable = true;
-  programs.firefox = {
-    enable = pkgs.stdenv.isLinux;
-    package = pkgs.firefox.override {
-      # See nixpkgs' firefox/wrapper.nix to check which options you can use
-      cfg = {
-        # Tridactyl native connector
-        enableTridactylNative = true;
+  programs = {
+    direnv = {
+      enable = true;
+      nix-direnv.enable = true;
+    };
+    exa = {
+      enable = true;
+      enableAliases = true;
+      icons = true;
+      git = true;
+    };
+    firefox = {
+      enable = pkgs.stdenv.isLinux;
+      package = pkgs.firefox.override {
+        # See nixpkgs' firefox/wrapper.nix to check which options you can use
+        cfg = {
+          # Tridactyl native connector
+          enableTridactylNative = true;
+        };
       };
     };
+    chromium.enable = pkgs.stdenv.isLinux;
+    fzf = {
+      enable = true;
+      tmux.enableShellIntegration = true;
+    };
+    fish = import ./fish.nix {
+      inherit pkgs;
+      inherit lib;
+    };
+    htop = {
+      enable = true;
+      settings.show_program_path = true;
+    };
+    keychain.enable = true;
+    navi.enable = true;
+    nix-index.enable = true;
+    neovim.extraConfig = ''
+      :luafile ~/.config/nvim/init.lua 
+    '';
+    starship = import ./starship.nix { };
+    tmux = import ./tmux.nix { inherit pkgs; };
+    # Smarter z
+    zoxide.enable = true;
   };
-  programs.chromium.enable = pkgs.stdenv.isLinux;
-  programs.starship = import ./starship.nix { };
-
-  # Htop
-  # https://rycee.gitlab.io/home-manager/options.html#opt-programs.htop.enable
-  programs.htop = {
-    enable = true;
-    settings.show_program_path = true;
-  };
-
-  # programs.doom-emacs = {
-  #   enable = true;
-  #   doomPrivateDir =
-  #     ../config/doom.d; # Directory containing your config.el, init.el
-  #   # and packages.el files
-  # };
-
-  programs.fish = import ./fish.nix {
-    inherit pkgs;
-    inherit lib;
-  };
-  programs.fzf = {
-    enable = true;
-    tmux.enableShellIntegration = true;
-  };
-  programs.keychain.enable = true;
-  programs.navi.enable = true;
-  programs.zoxide.enable = true;
-
-  programs.tmux = import ./tmux.nix { inherit pkgs; };
-  programs.neovim.extraConfig = ''
-    :luafile ~/.config/nvim/init.lua 
-  '';
 
   services.gpg-agent = {
     enable = pkgs.stdenv.isLinux;
@@ -75,7 +71,6 @@
       cocogitto
       coreutils
       curl
-      exa
       deadnix
       delta
       git

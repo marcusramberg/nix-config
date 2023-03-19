@@ -30,7 +30,6 @@
   };
   shellAliases = {
     cat = "bat";
-    ls = "exa";
     ag = "rg";
     emacs = "emacs -nw";
     r = "cd (git root)";
