@@ -33,7 +33,7 @@
       oci-containers = {
         backend = "podman";
         containers.hass = {
-          # renovate: datasource=docker depName=homeassistant/home-assistant versioning=docker
+          # renovate: datasource=docker depName=homeassistant/home-assistant
           image = "ghcr.io/home-assistant/home-assistant:2023.3.3";
           environment = { TZ = "Europe/Oslo"; };
           extraOptions = [
@@ -44,7 +44,7 @@
           volumes = [ "/var/lib/homeassistant:/config" ];
         };
         containers.zwave-js-ui = {
-          # renovate: datasource=docker depName=zwave-js/zwave-js-ui versioning=docker
+          # renovate: datasource=docker depName=zwave-js/zwave-js-ui
           image = "ghcr.io/zwave-js/zwave-js-ui:8.10.1";
           volumes = [
             "/var/lib/zwave-js-ui:/usr/src/app/store"
@@ -74,7 +74,8 @@
           volumes = [ "/var/lib/plex:/config" "/space:/space" ];
         };
         containers.zigbee2mqtt = {
-          image = " ghcr.io/koenkk/zigbee2mqtt:latest-dev";
+          # renovate: datasource=docker depName=koenkk/zigbee2mqtt
+          image = " ghcr.io/koenkk/zigbee2mqtt:1.30.2";
           extraOptions = [ "--privileged" "--network=host" ];
           volumes = [
             "/dev:/dev"
