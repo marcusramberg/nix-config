@@ -15,19 +15,19 @@ rustPlatform.buildRustPackage rec {
   src = fetchFromGitHub {
     owner = "wez";
     repo = "wezterm";
-    rev = "23211fc8a5df8ee3c491450f0fab54655c431ca9";
+    rev = "402949d787544290138e9b19c820c32070daf948";
     fetchSubmodules = true;
-    sha256 = "JvwXCz4DT5g+gKqgs/Hltj4ThVDDrT9JbzgUODMeyoc=";
+    sha256 = "sha256-K+DhztkwXK9F9OLuBd5p+xQ/oqETDiwtVUg47GDcvMU=";
   };
 
   postPatch = ''
-    echo ${version} > .tag
+      echo ${version} > .tag
 
     # tests are failing with: Unable to exchange encryption keys
     rm -r wezterm-ssh/tests
   '';
 
-  cargoSha256 = "sha256-PMlmg6eh8kU6jOPmQs4MKQ++J+DG6AXqjUlwdYn3WqI=";
+  cargoSha256 = "sha256-WnPdGn/0VVdb1a4LPHPODUh4TvnFTsP2n4XzwoNKvwU=";
 
   nativeBuildInputs = [
     installShellFiles
@@ -66,9 +66,9 @@ rustPlatform.buildRustPackage rec {
 
     install -Dm644 assets/shell-integration/wezterm.sh -t $out/etc/profile.d
     installShellCompletion --cmd wezterm \
-      --bash assets/shell-completion/bash \
-      --fish assets/shell-completion/fish \
-      --zsh assets/shell-completion/zsh
+    --bash assets/shell-completion/bash \
+    --fish assets/shell-completion/fish \
+    --zsh assets/shell-completion/zsh
 
     install -Dm644 assets/wezterm-nautilus.py -t $out/share/nautilus-python/extensions
   '';
@@ -105,3 +105,4 @@ rustPlatform.buildRustPackage rec {
     platforms = platforms.unix;
   };
 }
+
