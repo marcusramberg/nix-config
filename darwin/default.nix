@@ -34,7 +34,7 @@
     terminal-notifier
   ];
 
-  services.karabiner-elements.enable = true;
+  # services.karabiner-elements.enable = true;
 
   # Fonts
   fonts.fontDir.enable = true;
