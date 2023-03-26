@@ -9,6 +9,7 @@ return {
 			require("nord").set()
 		end,
 	},
+	{ "folke/tokyonight.nvim", enabled = false },
 	{
 		"folke/trouble.nvim",
 		-- opts will be merged with the parent spec

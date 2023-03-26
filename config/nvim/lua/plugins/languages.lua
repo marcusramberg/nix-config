@@ -5,8 +5,14 @@ return {
 		"williamboman/mason.nvim",
 		opts = {
 			ensure_installed = {
+				"cmake-language-server",
 				"flake8",
 				"gopls",
+				"html-lsp",
+				"jq-lsp",
+				"json-lsp",
+				"jsonnet-language-server",
+				"lua-language-server",
 				"perlnavigator",
 				"pyright",
 				"rnix-lsp",
@@ -16,6 +22,7 @@ return {
 				"stylua",
 				"terraform-ls",
 				"typescript-language-server",
+				"yaml-language-server",
 			},
 		},
 	},
@@ -28,6 +35,7 @@ return {
 			servers = {
 				-- pyright will be automatically installed with mason and loaded with lspconfig
 				html = {},
+				nimls = {},
 				gopls = {
 					analyses = {
 						unusedparams = true,
@@ -57,6 +65,12 @@ return {
 					},
 				},
 			},
+		},
+	},
+	{
+		"williamboman/mason-lspconfig.nvim",
+		opts = {
+			automatic_installation = { exclude = { "nimls" } },
 		},
 	},
 
@@ -103,12 +117,11 @@ return {
 			require("nvim-treesitter.configs").setup(opts)
 		end,
 	},
+	{ "ray-x/guihuia.lua" },
 	{
 		"ray-x/go.nvim",
 		requires = { -- optional packages
 			"ray-x/guihua.lua",
-			"neovim/nvim-lspconfig",
-			"nvim-treesitter/nvim-treesitter",
 		},
 		config = function()
 			require("go").setup()
