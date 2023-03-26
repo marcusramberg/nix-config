@@ -66,6 +66,7 @@
       viAlias = true;
       defaultEditor = true;
     };
+    fish.enable = true;
   };
 
   users.users.marcus = {
