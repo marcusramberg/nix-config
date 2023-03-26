@@ -19,6 +19,6 @@
   virtualisation.podman.dockerCompat = true;
   networking.extraHosts = ''
     10.211.55.2 mbook
-    0.0.0.0 vg.no
+    0.0.0.0 vg.no www.vg.no
   '';
 }
