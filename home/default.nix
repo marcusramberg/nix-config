@@ -97,6 +97,8 @@
       lazygit
       luarocks
       lua-language-server
+      nim
+      nimlsp
       nodePackages.typescript
       nodePackages.node2nix
       nodejs-16_x
