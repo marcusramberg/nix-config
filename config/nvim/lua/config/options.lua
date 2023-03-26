@@ -7,3 +7,4 @@ opt.guifont = "JetBrains Mono Nerd Font:h11"
 -- Avoid syntax highlighting very long lines
 opt.synmaxcol = 300
 opt.iskeyword:append("-")
+opt.foldenable = false
