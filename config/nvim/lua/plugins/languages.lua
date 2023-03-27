@@ -70,7 +70,7 @@ return {
 	{
 		"williamboman/mason-lspconfig.nvim",
 		opts = {
-			automatic_installation = { exclude = { "nimls" } },
+			automatic_installation = { exclude = { "nimlsp" } },
 		},
 	},
 
@@ -117,7 +117,7 @@ return {
 			require("nvim-treesitter.configs").setup(opts)
 		end,
 	},
-	{ "ray-x/guihuia.lua" },
+	{ "ray-x/guihua.lua" },
 	{
 		"ray-x/go.nvim",
 		requires = { -- optional packages

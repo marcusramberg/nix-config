@@ -1,6 +1,7 @@
 { pkgs, ... }:
 
 {
+  qt5.platformTheme = "gtk";
   services = {
     dbus.packages = [ pkgs.dconf ];
 

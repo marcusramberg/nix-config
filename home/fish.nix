@@ -75,22 +75,22 @@
     gpgconf --launch gpg-agent
   '';
   plugins = [
-    {
-      name = "grc";
-      inherit (pkgs.fishPlugins.grc) src;
-    }
-    {
-      name = "forgit";
-      inherit (pkgs.fishPlugins.forgit) src;
-    }
-    {
-      name = "bass";
-      inherit (pkgs.fishPlugins.bass) src;
-    }
-    {
-      name = "fzf-fish";
-      inherit (pkgs.fishPlugins.fzf-fish) src;
-    }
+    # {
+    #   name = "grc";
+    #   inherit (pkgs.fishPlugins.grc) src;
+    # }
+    # {
+    #   name = "forgit";
+    #   inherit (pkgs.fishPlugins.forgit) src;
+    # }
+    # {
+    #   name = "bass";
+    #   inherit (pkgs.fishPlugins.bass) src;
+    # }
+    # {
+    #   name = "fzf-fish";
+    #   inherit (pkgs.fishPlugins.fzf-fish) src;
+    # }
     {
       name = "gcloud-completions";
       src = pkgs.fetchFromGitHub {

@@ -20,6 +20,7 @@
       man-pages
       mosh
       netavark
+      nordic
       ntfs3g
       inputs.agenix.packages."${pkgs.system}".default
       p7zip
