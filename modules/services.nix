@@ -1,7 +1,7 @@
 { pkgs, ... }:
 
 {
-  qt5.platformTheme = "gtk";
+  qt.platformTheme = "gtk";
   services = {
     dbus.packages = [ pkgs.dconf ];
 
@@ -20,7 +20,7 @@
       libinput.enable = true;
       xkbOptions = "eurosign:e";
       displayManager.sddm.enable = true;
-      displayManager.defaultSession = "xfce";
+      displayManager.defaultSession = "xfce+nimdow";
       desktopManager = {
         plasma5.enable = true;
         xfce = {
@@ -29,6 +29,7 @@
           enableXfwm = false;
         };
       };
+      windowManager.awesome.enable = true;
       windowManager.i3.enable = true;
       windowManager.i3.package = pkgs.i3-gaps;
       windowManager.nimdow.enable = true;

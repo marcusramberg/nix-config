@@ -38,8 +38,12 @@
       "gcloud config set project (gcloud projects list --format='get(project_id)' --sort-by=project_id --filter='project_id != ^sys-'|fzf)";
     # } ++
     # lib.optionals pkgs.stdenv.isLinux {
-    pbcopy = "xclip -selection clipboard";
-    pbpaste = "xclip -selection clipboard -o";
+    pbcopy =
+      if pkgs.stdenv.isLinux then "xclip -selection clipboard" else "pbcopy";
+    pbpaste = if pkgs.stdenv.isLinux then
+      "xclip -selection clipboard -o"
+    else
+      "pbpaste";
   };
 
   shellInit = ''
@@ -74,8 +78,8 @@
     set -x GPG_TTY (tty)
     gpgconf --launch gpg-agent
   '';
+  # {
   plugins = [
-    # {
     #   name = "grc";
     #   inherit (pkgs.fishPlugins.grc) src;
     # }

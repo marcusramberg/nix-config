@@ -117,6 +117,7 @@
       unzip
       wget
       yq-go
+      wezterm
 
       # useful nix related tools
       # cachix # adding/managing alternative binary caches hosted by cachix
@@ -124,7 +125,6 @@
       # niv # easy dependency management for nix projects
     ] ++ lib.optionals stdenv.isDarwin [
       cocoapods
-      wezterm
       m-cli # useful macOS CLI commands
     ] ++ lib.optionals stdenv.isLinux [
       (nerdfonts.override { fonts = [ "JetBrainsMono" "Iosevka" ]; })
@@ -140,7 +140,6 @@
       volumeicon
       xcape
       xclip
-      wezterm-nightly
     ];
 
 }

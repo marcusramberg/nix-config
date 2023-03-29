@@ -5,7 +5,7 @@ _: {
     # prompt
     format =
       "$directory$git_branch$git_metrics$nix_shell$cluster$package$character";
-    add_newline = false;
+    add_newline = true;
     line_break.disabled = true;
     directory.style = "cyan";
     character = {

@@ -30,4 +30,5 @@ return {
 			vim.keymap.del({ "x", "o" }, "X")
 		end,
 	},
+	{ "metakirby5/codi.vim" },
 }

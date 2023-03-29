@@ -103,4 +103,9 @@
     value = "200000";
   }];
 
+  security.pki.certificateFiles =
+    if builtins.pathExists "/home/marcus/.local/share/mkcert/rootCA.pem" then
+      [ /home/marcus/.local/share/mkcert/rootCA.pem ]
+    else
+      [ ];
 }
