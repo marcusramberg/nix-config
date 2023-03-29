@@ -1,12 +1,12 @@
 _: {
   enable = true;
   settings = {
-    scan_timeout = 10;
+    scan_timeout = 50;
     # prompt
-    format =
-      "$directory$git_branch$git_metrics$nix_shell$cluster$package$character";
-    add_newline = true;
-    line_break.disabled = true;
+    # format =
+    #   "$directory$git_branch$git_metrics$nix_shell$cluster$package$character";
+    add_newline = false;
+    line_break.disabled = false;
     directory.style = "cyan";
     character = {
       success_symbol = "[❯](green)";
@@ -26,9 +26,23 @@ _: {
       added_style = "bold yellow";
       deleted_style = "bold red";
     };
-    kubernetes = { disabled = false; };
+    kubernetes = {
+      disabled = false;
+      style = "bold blue";
+      format = "[$context/$namespace](bold blue) ";
+    };
+
+    gcloud = {
+      disabled = true;
+      style = "bold purple";
+      format = "[ $symbol$active ] ($style) ";
+
+    };
+
+    memory_usage.disabled = false;
     # package management
     package.format = "[$version](bold green) ";
     nix_shell.symbol = " ";
+
   };
 }
