@@ -20,6 +20,7 @@ _: {
     recursive = true;
   };
 
+  ".amethyst.yml".source = ../config/amethyst.yml;
   ".config/bat/config".source = ../config/bat/config;
   ".config/btop/btop.config".source = ../config/btop.conf;
   ".config/gh/config.yml".source = ../config/gh/config.yml;

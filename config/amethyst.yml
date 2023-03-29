@@ -1,0 +1,109 @@
+---
+layouts:
+  - tall
+  - column
+  - fullscreen
+
+enables-layout-hud: false
+enables-layout-hud-on-space-change: false
+mod1:
+  - option
+  - command
+  - control
+  - shift
+mod2:
+  - shift
+  - control
+
+mouse-follows-focus: false
+focus-follows-mouse: false
+
+window-margins: true
+window-margin-size: 12
+
+floating:
+  - com.bitwarden.desktop
+float-small-windows: false
+
+# Keys
+cycle-layout:
+  mod: mod1
+  key: m
+toggle-tiling:
+  mod: mod2
+  key: n
+toggle-float:
+  mod: mod1
+  key: t
+focus-main:
+  mod: mod1
+  key: return
+focus-ccw:
+  mod: mod1
+  key: h # left
+focus-cw:
+  mod: mod1
+  key: l # right
+shrink-main:
+  mod: mod1
+  key: k # up
+expand-main:
+  mod: mod1
+  key: j # down
+increase-main:
+  mod: mod1
+  key: z
+decrease-main:
+  mod: mod1
+  key: x
+focus-screen-ccw:
+  mod: mod1
+  key: "," # left
+focus-screen-cw:
+  mod: mod1
+  key: . # right
+swap-screen-ccw:
+  mod: mod2
+  key: "," # left
+swap-screen-cw:
+  mod: mod2
+  key: . # right
+swap-cw:
+  mod: mod2
+  key: j
+swap-ccw:
+  mod: mod2
+  key: k
+throw-space-1:
+  mod: mod1
+  key: 1
+throw-space-2:
+  mod: mod1
+  key: 2
+throw-space-3:
+  mod: mod1
+  key: 3
+throw-space-4:
+  mod: mod1
+  key: 4
+throw-space-5:
+  mod: mod1
+  key: 5
+throw-space-6:
+  mod: mod1
+  key: 6
+throw-space-7:
+  mod: mod1
+  key: 7
+throw-space-8:
+  mod: mod1
+  key: 8
+throw-space-9:
+  mod: mod1
+  key: 9
+relaunch-amethyst:
+  mod: mod2
+  key: r
+reevvaluate-windows:
+  mod: mod1
+  key: r
