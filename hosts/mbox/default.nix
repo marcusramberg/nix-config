@@ -1,44 +1,13 @@
-{ pkgs, ... }:
+_:
 
 {
+  imports = [
+    # Include the results of the hardware scan.
+    ./hardware-configuration.nix
+    ../../modules/services.nix
+  ];
   networking.hostName = "mbox";
-  wsl = {
-    enable = true;
-    wslConf.automount.root = "/mnt";
-    # nativeSystemd = true;
-    defaultUser = "marcus";
-    startMenuLaunchers = true;
-
-    # Enable native Docker support
-    # docker-native.enable = true;
-
-    # Enable integration with Docker Desktop (needs to be installed)
-    # docker-desktop.enable = true;
-
-  };
-  systemd.services.nixs-wsl-systemd-fix = {
-    description = "Fix the /dev/shm symlink to be a mount";
-    unitConfig = {
-      DefaultDependencies = "no";
-      Before = [
-        "sysinit.target"
-        "systemd-tmpfiles-setup-dev.service"
-        "systemd-tmpfiles-setup.service"
-        "systemd-sysctl.service"
-      ];
-      ConditionPathExists = "/dev/shm";
-      ConditionPathIsSymbolicLink = "/dev/shm";
-      ConditionPathIsMountPoint = "/run/shm";
-    };
-    serviceConfig = {
-      Type = "oneshot";
-      ExecStart = [
-        "${pkgs.coreutils-full}/bin/rm /dev/shm"
-        "/run/wrappers/bin/mount --bind -o X-mount.mkdir /run/shm /dev/shm"
-      ];
-    };
-    wantedBy = [ "sysinit.target" ];
-  };
+  virtualisation.vmware.guest.enable = true;
 
   # Enable nix flakes
   # nix.package = pkgs.nixFlakes;
@@ -47,4 +16,24 @@
   # '';
 
   #  system.stateVersion = "22.11";
+  services.flatpak.enable = true;
+  virtualisation.podman.enable = true;
+  virtualisation.podman.dockerCompat = true;
+  networking.extraHosts = ''
+    10.211.55.2 mbook
+    0.0.0.0 vg.no www.vg.no
+  '';
+  boot.loader.grub.enable = true;
+  boot.loader.grub.device = "/dev/sda";
+  boot.loader.grub.useOSProber = true;
+
+  # Setup keyfile
+  boot.initrd.secrets = { "/crypto_keyfile.bin" = null; };
+
+  # Enable grub cryptodisk
+  boot.loader.grub.enableCryptodisk = true;
+
+  boot.initrd.luks.devices."luks-802cab2c-7149-467d-bda3-043e42e60dcb".keyFile =
+    "/crypto_keyfile.bin";
+  # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.  
 }

@@ -5,7 +5,6 @@ local config = {
 	audible_bell = "Disabled",
 	check_for_updates = false,
 	color_scheme = "nord",
-	front_end = "WebGpu",
 	colors = {
 		tab_bar = {
 			background = "#16161e",
