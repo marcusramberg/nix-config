@@ -135,6 +135,7 @@
       maim
       picom
       nitrogen
+      obsidian
       rofi
       vivaldi
       volumeicon

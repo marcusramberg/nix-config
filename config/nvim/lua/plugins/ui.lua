@@ -47,8 +47,6 @@ return {
 					theme = "dropdown",
 					base_dirs = {
 						"~/Source",
-						{ path = "~/.dotfiles" },
-						{ path = "~/org" },
 					},
 				},
 			},

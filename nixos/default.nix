@@ -2,9 +2,7 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ config, pkgs, inputs, ... }:
-
-{
+{ config, pkgs, inputs, ... }: {
   imports = [ ../modules/agenix.nix ../modules/nix.nix ../modules/emacs.nix ];
 
   # List packages installed in system profile. To search, run:
@@ -16,13 +14,13 @@
       gitAndTools.gh
       gcc
       file
+      inputs.agenix.packages."${pkgs.system}".default
       lemonade
       man-pages
       mosh
       netavark
       nordic
       ntfs3g
-      inputs.agenix.packages."${pkgs.system}".default
       p7zip
       perl534Packages.EV
       perl534Packages.Mojolicious
