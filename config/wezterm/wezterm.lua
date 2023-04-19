@@ -108,7 +108,7 @@ local config = {
 -- Reduce fontsize to fix dpi issue on mArch
 if wezterm.hostname() == "butterbee" then
 	config.font_size = 12.0
-elseif wezterm.hostname() == "mbook" then
+elseif wezterm.hostname() == "mbook" or wezterm.hostname() == "mtop" then
 	config.font_size = 16.0
 end
 
