@@ -30,7 +30,7 @@
       localOverlays = import ./overlays inputs;
       overlays = [
         localOverlays
-        inputs.neovim-nightly-overlay.overlay
+        # inputs.neovim-nightly-overlay.overlay
         inputs.emacs-overlay.overlay
       ];
     in {
