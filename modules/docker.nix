@@ -34,7 +34,7 @@
         backend = "podman";
         containers.hass = {
           # renovate: datasource=docker depName=homeassistant/home-assistant
-          image = "ghcr.io/home-assistant/home-assistant:2023.3.3";
+          image = "ghcr.io/home-assistant/home-assistant:2023.4.5";
           environment = { TZ = "Europe/Oslo"; };
           extraOptions = [
             "--net=host"

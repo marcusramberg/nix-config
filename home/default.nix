@@ -103,7 +103,7 @@
       nodePackages.node2nix
       nodejs-16_x
       ncdu
-      neovim-nightly
+      neovim
       pre-commit
       pssh
       (import ./python.nix { inherit pkgs; })
