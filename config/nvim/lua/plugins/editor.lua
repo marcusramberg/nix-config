@@ -31,4 +31,15 @@ return {
 		end,
 	},
 	{ "metakirby5/codi.vim" },
+	{
+		"epwalsh/obsidian.nvim",
+		config = function()
+			require("obsidian").setup({
+				dir = "~/Notes",
+				completion = {
+					nvim_cmp = true, -- if using nvim-cmp, otherwise set to false
+				},
+			})
+		end,
+	},
 }
