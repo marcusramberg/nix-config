@@ -97,8 +97,6 @@
       lazygit
       luarocks
       lua-language-server
-      nim
-      nimlsp
       nodePackages.typescript
       nodePackages.node2nix
       nodejs-16_x
@@ -134,6 +132,8 @@
       kubectl
       maim
       picom
+      nim
+      nimlsp
       nitrogen
       obsidian
       rofi
