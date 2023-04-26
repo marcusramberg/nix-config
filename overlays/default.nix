@@ -11,5 +11,8 @@ in _: super: {
   # forgit = super.callPackage ../packages/forgit { inputs = inputs; };
   tfenv = super.callPackage ../packages/tfenv { inherit inputs; };
   wezterm-nightly = super.callPackage ../packages/wezterm-nightly { };
+  nimdow = super.nimdow.overrideAttrs (oldAttrs: rec {
+    patches = oldAttrs.patches or [ ] ++ [ ./patches/nimdow-randr.patch ];
+  });
 }
 

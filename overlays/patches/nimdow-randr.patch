@@ -1,0 +1,190 @@
+From 672844d52dc9dcfa778fb81da75c39ee9579ef0d Mon Sep 17 00:00:00 2001
+From: Avahe Kellenberger <avahe@protonmail.ch>
+Date: Sun, 29 May 2022 17:25:18 -0400
+Subject: [PATCH 1/3] Starting work on updating monitors when randr changes are
+ made.
+
+---
+ src/nimdowpkg/windowmanager.nim | 15 +++++++++++++++
+ 1 file changed, 15 insertions(+)
+
+diff --git a/src/nimdowpkg/windowmanager.nim b/src/nimdowpkg/windowmanager.nim
+index c8d5d2e..2fcac10 100644
+--- a/src/nimdowpkg/windowmanager.nim
++++ b/src/nimdowpkg/windowmanager.nim
+@@ -61,6 +61,7 @@ type
+     display*: PDisplay
+     rootWindow*: Window
+     rootWindowWidth: int
++    rootWindowHeight: int
+     systray: Systray
+     eventManager: XEventManager
+     config: Config
+@@ -85,6 +86,7 @@ proc focus*(this: WindowManager, client: Client, warpToClient: bool)
+ proc unfocus*(this: WindowManager, client: Client)
+ proc destroySelectedWindow*(this: WindowManager)
+ proc onConfigureRequest(this: WindowManager, e: XConfigureRequestEvent)
++proc onConfigureNotify(this: WindowManager, e: XConfigureEvent)
+ proc onClientMessage(this: WindowManager, e: XClientMessageEvent)
+ proc onMapRequest(this: WindowManager, e: XMapRequestEvent)
+ proc onUnmapNotify(this: WindowManager, e: XUnmapEvent)
+@@ -121,6 +123,7 @@ proc newWindowManager*(
+   result.display = openDisplay()
+   result.rootWindow = result.configureRootWindow()
+   result.rootWindowWidth = DisplayWidth(result.display, DefaultScreen(result.display))
++  result.rootWindowHeight = DisplayHeight(result.display, DefaultScreen(result.display))
+   result.eventManager = eventManager
+   discard XSetErrorHandler(errorHandler)
+ 
+@@ -330,6 +333,7 @@ template onEvent(theType: int, e, body: untyped): untyped =
+ 
+ proc initListeners(this: WindowManager) =
+   onEvent(ConfigureRequest, e): this.onConfigureRequest(e.xconfigurerequest)
++  onEvent(ConfigureNotify, e): this.onConfigureNotify(e.xconfigure)
+   onEvent(ClientMessage, e): this.onClientMessage(e.xclient)
+   onEvent(MapRequest, e): this.onMapRequest(e.xmaprequest)
+   onEvent(UnmapNotify, e): this.onUnmapNotify(e.xunmap)
+@@ -951,6 +955,17 @@ proc onConfigureRequest(this: WindowManager, e: XConfigureRequestEvent) =
+ 
+   discard XSync(this.display, false)
+ 
++proc onConfigureNotify(this: WindowManager, e: XConfigureEvent) =
++  if e.window == this.rootWindow:
++    log "rootWindow onConfigureNotify"
++    let hasRootWindowSizeChanged = e.width != this.rootWindowWidth or e.height != this.rootWindowHeight
++    this.rootWindowWidth = e.width
++    this.rootWindowHeight = e.height
++
++    let monitorAreas = this.display.getMonitorAreas(this.rootWindow)
++    # TODO: Compare existing monitors' areas to new ones.
++    # If any have changed, we need to update the positions, sizes, bars, and doLayout.
++
+ proc addIconToSystray(this: WindowManager, window: Window) =
+   var
+     windowAttr: XWindowAttributes
+
+From 82b705b79cc8668f906248ffaacc3aaea6339067 Mon Sep 17 00:00:00 2001
+From: Avahe Kellenberger <avahe@protonmail.ch>
+Date: Fri, 8 Jul 2022 22:30:00 -0400
+Subject: [PATCH 2/3] Listening for root window event changes.
+
+---
+ src/nimdowpkg/windowmanager.nim | 6 +++++-
+ 1 file changed, 5 insertions(+), 1 deletion(-)
+
+diff --git a/src/nimdowpkg/windowmanager.nim b/src/nimdowpkg/windowmanager.nim
+index 2fcac10..7df018c 100644
+--- a/src/nimdowpkg/windowmanager.nim
++++ b/src/nimdowpkg/windowmanager.nim
+@@ -360,7 +360,11 @@ proc configureRootWindow(this: WindowManager): Window =
+   var windowAttribs: XSetWindowAttributes
+   # Listen for events defined by eventMask.
+   # See https://tronche.com/gui/x/xlib/events/processing-overview.html#SubstructureRedirectMask
+-  windowAttribs.event_mask = SubstructureRedirectMask or PropertyChangeMask or PointerMotionMask
++  windowAttribs.event_mask =
++    StructureNotifyMask or
++    SubstructureRedirectMask or
++    PropertyChangeMask or
++    PointerMotionMask
+ 
+   # Listen for events on the root window
+   discard XChangeWindowAttributes(
+
+From 6e8eb47e15136cfc80d82d4678446413a3f60ba3 Mon Sep 17 00:00:00 2001
+From: Marcus Ramberg <marcus@means.no>
+Date: Fri, 8 Jul 2022 19:59:16 +0200
+Subject: [PATCH 3/3] Implement monitor resizing from xrandr
+
+---
+ src/nimdowpkg/monitor.nim       | 31 +++++++++++++++++++------------
+ src/nimdowpkg/windowmanager.nim | 15 ++++++++++-----
+ 2 files changed, 29 insertions(+), 17 deletions(-)
+
+diff --git a/src/nimdowpkg/monitor.nim b/src/nimdowpkg/monitor.nim
+index be2603b..e93e16c 100644
+--- a/src/nimdowpkg/monitor.nim
++++ b/src/nimdowpkg/monitor.nim
+@@ -42,6 +42,7 @@ type
+     taggedClients*: TaggedClients
+ 
+ proc doLayout*(this: Monitor, warpToClient, focusCurrClient: bool = true)
++proc updateMonitor*(this: Monitor)
+ proc restack*(this: Monitor)
+ proc setSelectedClient*(this: Monitor, client: Client)
+ proc updateCurrentDesktopProperty(this: Monitor)
+@@ -65,11 +66,7 @@ proc newMonitor*(
+     result.monitorSettings = currentConfig.monitorSettings[id]
+   else:
+     result.monitorSettings = currentConfig.defaultMonitorSettings
+-
+-  let barArea: Area = (area.x, area.y, area.width, result.monitorSettings.barSettings.height)
+   result.windowSettings = currentConfig.windowSettings
+-  result.layoutOffset = (barArea.height, 0.uint, 0.uint, 0.uint)
+-
+   result.taggedClients = newTaggedClients(tagCount)
+   for i in 1..tagCount:
+     let tagSetting = result.monitorSettings.tagSettings[i]
+@@ -92,18 +89,28 @@ proc newMonitor*(
+ 
+   result.taggedClients.selectedTags = initOrderedSet[TagID](tagCount)
+   result.taggedClients.selectedTags.incl(1)
++  result.isStatusBarEnabled = true
++  result.updateMonitor()
++
++proc updateMonitor*(this: Monitor) =
++  let barArea: Area = (this.area.x, this.area.y, this.area.width, this.monitorSettings.barSettings.height)
++  this.layoutOffset = (barArea.height, 0.uint, 0.uint, 0.uint)
++
+ 
+-  result.updateCurrentDesktopProperty()
+-  result.statusBar =
+-    display.newStatusBar(
+-      rootWindow,
++  this.updateCurrentDesktopProperty()
++  this.statusBar =
++    this.display.newStatusBar(
++      this.rootWindow,
+       barArea,
+-      result.monitorSettings.barSettings,
+-      result.taggedClients,
+-      result.monitorSettings.tagSettings
++      this.monitorSettings.barSettings,
++      this.taggedClients,
++      this.monitorSettings.tagSettings
+     )
+   
+-  result.isStatusBarEnabled = true
++  for i, tag in this.taggedClients.tags:
++    tag.layout.monitorArea = this.area
++  this.doLayout()
++
+ 
+ ########################################################
+ #### Helper procs, iterators, templates, and macros ####
+diff --git a/src/nimdowpkg/windowmanager.nim b/src/nimdowpkg/windowmanager.nim
+index 7df018c..c66f81b 100644
+--- a/src/nimdowpkg/windowmanager.nim
++++ b/src/nimdowpkg/windowmanager.nim
+@@ -963,12 +963,17 @@ proc onConfigureNotify(this: WindowManager, e: XConfigureEvent) =
+   if e.window == this.rootWindow:
+     log "rootWindow onConfigureNotify"
+     let hasRootWindowSizeChanged = e.width != this.rootWindowWidth or e.height != this.rootWindowHeight
+-    this.rootWindowWidth = e.width
+-    this.rootWindowHeight = e.height
+ 
+-    let monitorAreas = this.display.getMonitorAreas(this.rootWindow)
+-    # TODO: Compare existing monitors' areas to new ones.
+-    # If any have changed, we need to update the positions, sizes, bars, and doLayout.
++    if hasRootWindowSizeChanged:
++      this.rootWindowWidth = e.width
++      this.rootWindowHeight = e.height
++      let monitorAreas = this.display.getMonitorAreas(this.rootWindow)
++
++      for i, area in monitorAreas:
++        let id: MonitorID = i + 1
++        let monitor = this.monitors[id]
++        monitor.area = area
++        monitor.updateMonitor()
+ 
+ proc addIconToSystray(this: WindowManager, window: Window) =
+   var
