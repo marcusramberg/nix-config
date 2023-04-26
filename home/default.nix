@@ -137,6 +137,7 @@
       nitrogen
       obsidian
       rofi
+      telegram-desktop
       vivaldi
       volumeicon
       xcape

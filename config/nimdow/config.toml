@@ -46,7 +46,7 @@
 
 # Start external programs
 [[startProcess]]
-command = "pkill nimdow"
+command = "sudo pkill X"
 keys = [ "e" ]
 modifiers = [ "super", "shift" ]
 
@@ -66,7 +66,7 @@ keys = [ "d" ]
 modifiers = [ "super" ]
 
 [[startProcess]]
-command = "rofi-rbw"
+command = "maim --select | xclip -selection clipboard -target image/png"
 keys = [ "p" ]
 modifiers = [ "super" "shift"]
 
@@ -110,7 +110,7 @@ exec = [
 
 [settings]
   # Window settings
-  borderWidth = 2
+  borderWidth = 1
   borderColorUnfocused = "#4C566A"
   borderColorFocused = "#8FBCBB"
   borderColorUrgent = "#D08770"
@@ -122,7 +122,8 @@ exec = [
   barSelectionColor = "#88c0d0"
   barUrgentColor = "#BF616A"
   barFonts = [
-    "Iosevka Nerd Font Mono:size=11:antialias=true",
+  #    "Iosevka Nerd Font Mono:size=11:antialias=true",
+    "Unifont Bold:size=11:antialias=true",
     "NotoColorEmoji:size=11:antialias=true"
   ]
   # Layout settings
