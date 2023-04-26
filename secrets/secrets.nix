@@ -11,6 +11,5 @@ in {
   "ha-bearer.age".publicKeys = [ marcus ];
   "nixAccessTokens.age".publicKeys = [ marcus ];
   "cloudflareToken.age".publicKeys = [ marcus ];
-  "pleroma.age".publicKeys = [ marcus ];
 }
 
