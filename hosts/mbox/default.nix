@@ -5,6 +5,7 @@ _:
     # Include the results of the hardware scan.
     ./hardware-configuration.nix
     ../../modules/desktop.nix
+    ../../modules/pipewire.nix
   ];
   networking.hostName = "mbox";
   virtualisation.vmware.guest.enable = true;

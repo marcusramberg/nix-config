@@ -70,7 +70,7 @@ return {
 	{
 		"williamboman/mason-lspconfig.nvim",
 		opts = {
-			automatic_installation = { exclude = { "nimlsp" } },
+			automatic_installation = { exclude = { "nimls" } },
 		},
 	},
 
@@ -120,9 +120,6 @@ return {
 	{ "ray-x/guihua.lua" },
 	{
 		"ray-x/go.nvim",
-		requires = { -- optional packages
-			"ray-x/guihua.lua",
-		},
 		config = function()
 			require("go").setup()
 		end,
