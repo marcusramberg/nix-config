@@ -8,3 +8,4 @@ opt.guifont = "JetBrains Mono Nerd Font:h11"
 opt.synmaxcol = 300
 opt.iskeyword:append("-")
 opt.foldenable = false
+opt.relativenumber = false
