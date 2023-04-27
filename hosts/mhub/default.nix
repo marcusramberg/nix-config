@@ -8,7 +8,7 @@
     ../../modules/docker.nix
     ../../modules/mediaserver.nix
     ../../modules/prometheus.nix
-    ../../modules/services.nix
+    ../../modules/desktop.nix
     #    ./flake.nix
     #    ./pgup.nix
   ];

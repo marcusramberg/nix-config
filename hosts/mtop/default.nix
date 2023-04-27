@@ -4,7 +4,7 @@ _:
   imports = [
     # Include the results of the hardware scan.
     ./hardware-configuration.nix
-    ../../modules/services.nix
+    ../../modules/desktop.nix
   ];
   networking.hostName = "mtop";
   networking.networkmanager.enable = true;
