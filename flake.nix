@@ -55,6 +55,11 @@
           system = "x86_64-linux";
           user = "marcus";
         };
+        mlab = mkNixHost "mlab" {
+          inherit overlays nixpkgs inputs;
+          system = "x86_64-linux";
+          user = "marcus";
+        };
       };
 
       darwinConfigurations.mbook = mkDarwinHost {
