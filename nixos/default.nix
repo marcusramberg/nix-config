@@ -42,10 +42,9 @@
   services = {
     #printing.enable = true;
     fwupd.enable = true;
+    tailscale.enable = true;
+    keybase.enable = true;
   };
-  # Enable sound.
-  # sound.enable = true;
-  # hardware.pulseaudio.enable = true;
 
   # Enable touchpad support.
 

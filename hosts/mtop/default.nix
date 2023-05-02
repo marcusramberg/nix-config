@@ -4,6 +4,7 @@ _:
   imports = [
     # Include the results of the hardware scan.
     ./hardware-configuration.nix
+    ../../modules/keyboardmap.nix
     ../../modules/desktop.nix
   ];
   networking.hostName = "mtop";
