@@ -1,6 +1,19 @@
 { pkgs, ... }:
 
 {
+  environment.systemPackages = with pkgs; [
+    copyq
+    element-desktop
+    feh
+    nitrogen
+    obsidian
+    picom
+    rofi
+    telegram-desktop
+    vivaldi
+    volumeicon
+    xclip
+  ];
   fonts.fonts = with pkgs; [
     noto-fonts-emoji
     liberation_ttf
@@ -30,6 +43,7 @@
       layout = "us";
       libinput.enable = true;
       xkbOptions = "eurosign:e";
+      xkbVariant = "mac";
       displayManager.lightdm.enable = true;
       displayManager.lightdm.greeters.gtk.enable = true;
       displayManager.lightdm.greeters.gtk.theme.name = "Nordic";
@@ -43,14 +57,22 @@
           enableXfwm = false;
         };
       };
-      windowManager.awesome.enable = true;
-      windowManager.i3.enable = true;
-      windowManager.i3.package = pkgs.i3-gaps;
+      # windowManager.awesome.enable = true;
+      # windowManager.i3.enable = true;
+      # windowManager.i3.package = pkgs.i3-gaps;
       windowManager.nimdow.enable = true;
     };
     # xrdp.enable = true;
     #fail2ban.enable = true;
   };
   networking.firewall.allowedTCPPorts = [ 3389 ];
+  xdg.mime.defaultApplications = {
+    "text/html" = "vivaldi-stable.desktop";
+    "x-scheme-handler/http" = "vivaldi-stable.desktop";
+    "x-scheme-handler/https" = "vivaldi-stable.desktop";
+    "x-scheme-handler/about" = "vivaldi-stable.desktop";
+    "x-scheme-handler/unknown" = "vivaldi-stable.desktop";
+  };
+  environment.sessionVariables.DEFAULT_BROWSER = "${pkgs.vivaldi}/bin/vivaldi";
 
 }

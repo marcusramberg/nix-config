@@ -75,8 +75,7 @@ S%%%S SSSSSS%%%S SSSSSS%%%SSSSSSS   S%%%S      SS SS   S%%%SS%%%S       SSSSS
 SSSSSsSS;:'SSSSS SSSSSSSSSSSSSSSS   SSSSS       SsS    SSSSSSSSSS       SSSSS
 ]]
 
-			local dash = opts
-			dash.section.header.val = vim.split(logo, "\n")
+			opts.section.header.val = vim.split(logo, "\n")
 			return opts
 		end,
 	},

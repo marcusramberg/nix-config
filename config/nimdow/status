@@ -1,4 +1,4 @@
-#!/usr/bin/bash
+#!/usr/bin/env bash
 #ARROW_A=$'\x1b[0m\x1b[38;2;167;122;196m\x1b[0m\x1b[48;2;167;122;196m'
 ARROW_A=$'\x1b[0m\x1b[38;2;67;76;94m\x1b[0m\x1b[48;2;67;76;94m'
 ARROW_B=$'\x1b[38;2;167;122;196m\x1b[0m\x1b[48;2;167;122;196m'
@@ -8,13 +8,10 @@ ARROW_D=$'\x1b[38;2;67;76;94m\x1b[0m\x1b[0m'
 red=$'\e[31m'
 reset=$'\e[0m'
 
+while true; do
+	#    xsetroot -name "[ $(pomodoro status)] [ $(date +%H:%M)]"
+	status="${ARROW_A} ${ARROW_B} ${red}  ${reset}$(hostname) ${ARROW_C}${ARROW_B}  $(date '+%H:%M') ${ARROW_C}"
+	xsetroot -name "$status"
 
-while true
-do
-#    xsetroot -name "[ $(pomodoro status)] [ $(date +%H:%M)]"
-    status="${ARROW_A} ${ARROW_B} ${red}  ${reset}$(pomodoro status) ${ARROW_C}${ARROW_B}  $(date '+%H:%M') ${ARROW_C}"
-    xsetroot -name "$status"
-
-    sleep 1s;
+	sleep 1s
 done
-

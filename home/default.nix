@@ -124,24 +124,7 @@
     ] ++ lib.optionals stdenv.isDarwin [
       cocoapods
       m-cli # useful macOS CLI commands
-    ] ++ lib.optionals stdenv.isLinux [
-      btop
-      copyq
-      feh
-      kubectl
-      maim
-      picom
-      nim
-      nimlsp
-      nitrogen
-      obsidian
-      rofi
-      telegram-desktop
-      vivaldi
-      volumeicon
-      xcape
-      xclip
-    ];
+    ] ++ lib.optionals stdenv.isLinux [ btop kubectl maim nim nimlsp ];
 
 }
 

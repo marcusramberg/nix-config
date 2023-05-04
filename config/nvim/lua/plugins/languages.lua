@@ -26,7 +26,25 @@ return {
 			},
 		},
 	},
+	{
+		"jose-elias-alvarez/null-ls.nvim",
+		opts = function(_, opts)
+			local nls = require("null-ls")
+			opts.sources = {
+				nls.builtins.formatting.nimpretty,
+				nls.builtins.formatting.stylua,
+				nls.builtins.formatting.shfmt,
+				nls.builtins.formatting.prettier,
+				nls.builtins.formatting.black,
+				nls.builtins.formatting.isort,
+				nls.builtins.formatting.rustfmt,
+				nls.builtins.diagnostics.shellcheck,
+				nls.builtins.diagnostics.markdownlint,
+			}
 
+			return opts
+		end,
+	},
 	{
 		"neovim/nvim-lspconfig",
 		---@class PluginLspOpts
@@ -35,11 +53,10 @@ return {
 			servers = {
 				-- pyright will be automatically installed with mason and loaded with lspconfig
 				html = {},
-				nimls = {},
+				nim_langserver = {},
 				gopls = {
-					analyses = {
-						unusedparams = true,
-					},
+					unusedparams = true,
+					analyses = {},
 					staticcheck = true,
 					linksInHover = false,
 					codelenses = {
@@ -70,7 +87,7 @@ return {
 	{
 		"williamboman/mason-lspconfig.nvim",
 		opts = {
-			automatic_installation = { exclude = { "nimls" } },
+			automatic_installation = { exclude = { "nimls", "nimlsp" } },
 		},
 	},
 
