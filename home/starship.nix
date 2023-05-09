@@ -39,9 +39,10 @@ _: {
 
     };
 
-    memory_usage.disabled = false;
+    memory_usage.disabled = true;
     # package management
-    package.format = "[$version](bold green) ";
+    #package.format = "[$version](bold green) ";
+    package.format = "";
     nix_shell.symbol = " ";
 
   };

@@ -63,6 +63,7 @@
 
   home.packages = with pkgs;
     [
+      awscli2
       actionlint
       asciinema
       any-nix-shell
