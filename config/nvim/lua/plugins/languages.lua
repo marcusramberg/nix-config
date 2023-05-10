@@ -1,3 +1,4 @@
+local util = require("nvim_lsp/util")
 return {
 
 	-- add any tools you want to have installed below
@@ -52,6 +53,9 @@ return {
 			---@type lspconfig.options
 			servers = {
 				-- pyright will be automatically installed with mason and loaded with lspconfig
+				clangd = {
+					default_config = util.utf8_config({}),
+				},
 				html = {},
 				nim_langserver = {},
 				gopls = {
