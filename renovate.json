@@ -6,9 +6,7 @@
   ],
   "regexManagers": [
     {
-      "fileMatch": [
-        "modules/docker.nix"
-      ],
+      "fileMatch": ["(^|/)docker\\.nix$"],
       "matchStrings": [
         "# renovate: datasource=(?<datasource>.*) depname=(?<depName>.*)\\n\\s*.*image\\s*=\\s*\"(?<currentValue>.+)\""
       ]
