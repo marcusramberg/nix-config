@@ -7,6 +7,14 @@ vim.api.nvim_create_autocmd({ "FileType" }, {
 		vim.opt.commentstring = "# %s"
 	end,
 })
+
+vim.api.nvim_create_autocmd({ "BufEnter" }, {
+	pattern = vim.fn.expand("~") .. "/Source/{nimdow,nixpkgs}/*",
+	callback = function()
+		vim.b.autoformat = false
+	end,
+})
+
 vim.cmd([[autocmd BufNewFile,BufRead * if search('{{.\+}}', 'nw') | setlocal filetype=gotmpl | endif]])
 -- vim.api.nvim_create_autocmd({ "BufNewFile", "BufRead" }, {
 --  callback = function()
