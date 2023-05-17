@@ -1,5 +1,4 @@
 { pkgs, lib, inputs, ... }: {
-
   home.stateVersion = "22.05";
   home.file = import ./files.nix { inherit pkgs; };
 
@@ -98,6 +97,7 @@
       lazygit
       luarocks
       lua-language-server
+      neofetch
       nodePackages.typescript
       nodePackages.node2nix
       nodejs-16_x
