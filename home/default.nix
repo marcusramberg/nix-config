@@ -104,6 +104,7 @@
       ncdu
       neovim
       pre-commit
+      promexplorer
       pssh
       (import ./python.nix { inherit pkgs; })
       ranger
