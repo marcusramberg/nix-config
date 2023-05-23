@@ -67,11 +67,11 @@
   };
   networking.firewall.allowedTCPPorts = [ 3389 ];
   xdg.mime.defaultApplications = {
-    "text/html" = "vivaldi-stable.desktop";
-    "x-scheme-handler/http" = "vivaldi-stable.desktop";
-    "x-scheme-handler/https" = "vivaldi-stable.desktop";
-    "x-scheme-handler/about" = "vivaldi-stable.desktop";
-    "x-scheme-handler/unknown" = "vivaldi-stable.desktop";
+    "text/html" = "vivaldi.desktop";
+    "x-scheme-handler/http" = "vivaldi.desktop";
+    "x-scheme-handler/https" = "vivaldi.desktop";
+    "x-scheme-handler/about" = "vivaldi.desktop";
+    "x-scheme-handler/unknown" = "vivaldi.desktop";
   };
   environment.sessionVariables.DEFAULT_BROWSER = "${pkgs.vivaldi}/bin/vivaldi";
 

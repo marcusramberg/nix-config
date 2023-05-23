@@ -91,7 +91,8 @@
   nixpkgs.config = {
     allowUnfree = true;
 
-    permittedInsecurePackages = [ "xrdp-0.9.9" "electron-21.4.0" ];
+    permittedInsecurePackages =
+      [ "nodejs-16.20.0" "xrdp-0.9.9" "electron-21.4.0" ];
   };
   security.pam.loginLimits = [{
     domain = "marcus";
