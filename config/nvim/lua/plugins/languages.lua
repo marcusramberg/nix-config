@@ -100,7 +100,6 @@ return {
 				"gitcommit",
 				"go",
 				"gotmpl",
-				"help",
 				"html",
 				"javascript",
 				"json",

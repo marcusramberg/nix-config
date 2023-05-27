@@ -40,7 +40,7 @@
       settings.show_program_path = true;
     };
     keychain.enable = true;
-    navi.enable = true;
+    # navi.enable = true;
     nix-index.enable = true;
     neovim.extraConfig = ''
       :luafile ~/.config/nvim/init.lua 

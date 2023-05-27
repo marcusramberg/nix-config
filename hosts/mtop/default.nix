@@ -6,6 +6,8 @@ _:
     ./hardware-configuration.nix
     ../../modules/keyboardmap.nix
     ../../modules/desktop.nix
+    ../../modules/laptop.nix
+    ../../modules/pipewire.nix
   ];
   networking.hostName = "mtop";
   networking.networkmanager.enable = true;
@@ -20,5 +22,6 @@ _:
   boot.loader.efi.efiSysMountPoint = "/boot/efi";
 
   services.input-remapper.enable = true;
+  services.xserver.dpi = 144;
 
 }

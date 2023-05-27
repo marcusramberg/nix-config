@@ -66,7 +66,7 @@ keys = [ "d" ]
 modifiers = [ "super" ]
 
 [[startProcess]]
-command = "maim --select | xclip -selection clipboard -target image/png"
+command = "maim -s | tee ~/Pictures/$(date +%s).png | xclip -selection clipboard -t image/png"
 keys = [ "p" ]
 modifiers = [ "super" "shift"]
 
