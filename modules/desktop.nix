@@ -14,6 +14,7 @@
     volumeicon
     xclip
   ];
+  programs.hyprland.enable = true;
   fonts.fonts = with pkgs; [
     noto-fonts-emoji
     liberation_ttf

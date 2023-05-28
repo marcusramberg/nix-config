@@ -5,6 +5,7 @@ _:
     # Include the results of the hardware scan.
     ./hardware-configuration.nix
     ../../modules/desktop.nix
+    ../../modules/keyboardmap.nix
     ../../modules/pipewire.nix
   ];
   networking.hostName = "mbox";
@@ -24,17 +25,17 @@ _:
     10.211.55.2 mbook
     0.0.0.0 vg.no www.vg.no
   '';
-  boot.loader.grub.enable = true;
-  boot.loader.grub.device = "/dev/sda";
-  boot.loader.grub.useOSProber = true;
+
+  # Bootloader.
+  boot.loader.systemd-boot.enable = true;
+  boot.loader.efi.canTouchEfiVariables = true;
+  boot.loader.efi.efiSysMountPoint = "/boot/efi";
 
   # Setup keyfile
-  boot.initrd.secrets = { "/crypto_keyfile.bin" = null; };
+  boot.initrd.secrets = {
+    "/crypto_keyfile.bin" = null;
+  };
+  # Enable networking
+  networking.networkmanager.enable = true;
 
-  # Enable grub cryptodisk
-  boot.loader.grub.enableCryptodisk = true;
-
-  boot.initrd.luks.devices."luks-802cab2c-7149-467d-bda3-043e42e60dcb".keyFile =
-    "/crypto_keyfile.bin";
-  # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.  
 }
