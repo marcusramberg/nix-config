@@ -11,17 +11,17 @@
             TAP: KEY_ESC
             HOLD: KEY_LEFTCTRL
 
-          # Swap LALT with LCTRL
-          - KEY: KEY_LEFTALT
-            TAP: KEY_LEFTCTRL
-            HOLD: KEY_LEFTCTRL
-            HOLD_START: BEFORE_CONSUME
-
-          # Swap LCTRL with LALT
-          - KEY: KEY_LEFTCTRL
-            TAP: KEY_LEFTALT
-            HOLD: KEY_LEFTALT
-            HOLD_START: BEFORE_CONSUME
+          # # Swap LALT with LCTRL
+          # - KEY: KEY_LEFTALT
+          #   TAP: KEY_LEFTCTRL
+          #   HOLD: KEY_LEFTCTRL
+          #   HOLD_START: BEFORE_CONSUME
+          #
+          # # Swap LCTRL with LALT
+          # - KEY: KEY_LEFTCTRL
+          #   TAP: KEY_LEFTALT
+          #   HOLD: KEY_LEFTALT
+          #   HOLD_START: BEFORE_CONSUME
       '';
     in {
       enable = true;

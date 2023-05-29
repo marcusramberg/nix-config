@@ -11,6 +11,8 @@
     rofi
     telegram-desktop
     vivaldi
+    waybar
+    wofi
     volumeicon
     xclip
   ];
