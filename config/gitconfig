@@ -82,7 +82,7 @@
   user = marcusramberg
 
 [init]
-  templatedir = ~/.git_template
+  # templatedir = ~/.git_template
 	defaultBranch = main
 [filter "media"]
   required = true
