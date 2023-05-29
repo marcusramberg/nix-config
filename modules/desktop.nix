@@ -3,6 +3,7 @@
 {
   environment.systemPackages = with pkgs; [
     copyq
+    discord
     element-desktop
     feh
     nitrogen
@@ -11,9 +12,9 @@
     rofi
     telegram-desktop
     vivaldi
+    volumeicon
     waybar
     wofi
-    volumeicon
     xclip
   ];
   programs.hyprland.enable = true;
