@@ -40,6 +40,8 @@
     picom = {
       enable = true;
       activeOpacity = 0.95;
+      vSync = true;
+      backend = "glx";
     };
 
     xserver = {

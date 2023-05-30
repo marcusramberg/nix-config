@@ -97,7 +97,7 @@ clickRegion = 1
 
 [autostart]
 exec = [
-  "picom --config /etc/xdg/picom.conf",
+  # "picom --config /etc/xdg/picom.conf",
   "~/.config/nimdow/status",
   "xsetroot -cursor_name left_ptr",
   "spice-vdagent",
