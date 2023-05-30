@@ -2,6 +2,7 @@ _: {
   enable = true;
   settings = {
     scan_timeout = 50;
+    command_timeout = 5000;
     # prompt
     # format =
     #   "$directory$git_branch$git_metrics$nix_shell$cluster$package$character";
