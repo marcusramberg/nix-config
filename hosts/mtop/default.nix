@@ -1,4 +1,4 @@
-_:
+{ pkgs, ... }:
 
 {
   imports = [
@@ -23,5 +23,14 @@ _:
 
   services.input-remapper.enable = true;
   services.xserver.dpi = 144;
+  boot.extraModprobeConfig = ''
+    options snd_hda_intel index=0 model=intel-mac-auto id=PCM
+    options snd_hda_intel index=1 model=intel-mac-auto id=HDMI
+    options snd_hda_intel model=mbp101
+  '';
+  hardware.bluetooth.enable = false;
+  hardware.facetimehd.enable = true;
+  hardware.opengl.extraPackages = [ pkgs.vaapiIntel ];
+  powerManagement.enable = true;
 
 }
