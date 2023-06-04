@@ -15,10 +15,10 @@ class = "org.wezfurlong.wezterm"
 state = "normal" # normal, floating, and fullscreen are all valid.
 
 [[appRule]]
-class = "vivaldi"
+class = "Vivaldi-stable"
 monitor = 1
 tags = [2]
-state = "normal"  # normal, floating, and fullscreen are all valid.
+state = "normal"         # normal, floating, and fullscreen are all valid.
 
 [[appRule]]
 class = "firefoxdeveloperedition"
@@ -72,8 +72,6 @@ modifiers = ["super", "shift"]
 
 [[startProcess]]
 modifiers = ["super", "shift"]
-
-
 command = "wezterm start bash -c \"xprop; sleep 100\""
 keys = ["x"]
 [[startProcess]]

@@ -7,7 +7,7 @@ red=$'\e[31m'
 reset=$'\e[0m'
 
 while true; do
-	status="${ARROW_A} ${ARROW_B} ${red}  ${reset}$(date '+%M/%D') ${ARROW_C}${ARROW_B}  $(date '+%H:%M') ${ARROW_C}"
+	status="${ARROW_A} ${ARROW_B} ${red}  ${reset}$(date '+%m/%d') ${ARROW_C}${ARROW_B}  $(date '+%H:%M') ${ARROW_C}"
 	#    xsetroot -name "[ $(pomodoro status)] [ $(date +%H:%M)]"
 	xsetroot -name "$status"
 
