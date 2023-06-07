@@ -57,6 +57,11 @@
             reverse_proxy localhost:8485
           }
 
+         posta.no {
+            tls /etc/caddy/cloudflare.crt /etc/caddy/cloudflare.key
+            reverse_proxy localhost:1234
+          }
+
           tv.means.no {
             tls /etc/caddy/cloudflare.crt /etc/caddy/cloudflare.key
            reverse_proxy localhost:8989
@@ -117,22 +122,22 @@
       };
       credentialsFile = config.age.secrets.transmission.path;
     };
-  };
-  # services.unifi = {
-  # enable = true;
-  # openFirewall = true;
-  # unifiPackage = pkgs.unifi6;
-  # };
+    # services.unifi = {
+    # enable = true;
+    # openFirewall = true;
+    # unifiPackage = pkgs.unifi6;
+    # };
 
-  services.postgresql = {
-    enable = true;
-    package = pkgs.postgresql_13;
-    enableTCPIP = true;
-    authentication = pkgs.lib.mkOverride 10 ''
-      local all all trust
-      host all all ::1/128 trust
-      host all all 127.0.0.1/32 trust
-    '';
+    postgresql = {
+      enable = true;
+      package = pkgs.postgresql_13;
+      enableTCPIP = true;
+      authentication = pkgs.lib.mkOverride 10 ''
+        local all all trust
+        host all all ::1/128 trust
+        host all all 127.0.0.1/32 trust
+      '';
+    };
   };
 
 }

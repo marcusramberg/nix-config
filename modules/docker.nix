@@ -34,7 +34,7 @@
         backend = "podman";
         containers.hass = {
           # renovate: datasource=docker depName=homeassistant/home-assistant
-          image = "ghcr.io/home-assistant/home-assistant:2023.4.5";
+          image = "ghcr.io/home-assistant/home-assistant:2023.5.3";
           environment = { TZ = "Europe/Oslo"; };
           extraOptions = [
             "--net=host"
@@ -45,7 +45,7 @@
         };
         containers.zwave-js-ui = {
           # renovate: datasource=docker depName=zwave-js/zwave-js-ui
-          image = "ghcr.io/zwave-js/zwave-js-ui:8.10.1";
+          image = "ghcr.io/zwave-js/zwave-js-ui:8.15.0";
           volumes = [
             "/var/lib/zwave-js-ui:/usr/src/app/store"
             "/dev:/dev"

@@ -5,16 +5,16 @@
     # Include the results of the hardware scan.
     ./hardware-configuration.nix
     ../../modules/agenix.nix
+    ../../modules/desktop.nix
     ../../modules/docker.nix
+    ../../modules/lemmy.nix
     ../../modules/mediaserver.nix
     ../../modules/prometheus.nix
-    ../../modules/desktop.nix
     #    ./flake.nix
     #    ./pgup.nix
   ];
 
   boot.loader.grub.enable = true;
-  boot.loader.grub.version = 2;
   boot.loader.grub.efiSupport = false;
   boot.loader.grub.device = "/dev/sda";
   boot.kernelParams = [ "pcie_aspm=off" ];
