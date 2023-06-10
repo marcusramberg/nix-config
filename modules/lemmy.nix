@@ -7,8 +7,11 @@ _: {
 
       hostname = "posta.no";
       captcha.enabled = true;
+      database = {
+        host = "localhost";
+        user = "lemmy";
+      };
       federation.enabled = true;
-      database = { host = "localhost"; };
     };
     database = { createLocally = true; };
   };

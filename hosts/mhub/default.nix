@@ -7,7 +7,6 @@
     ../../modules/agenix.nix
     ../../modules/desktop.nix
     ../../modules/docker.nix
-    ../../modules/lemmy.nix
     ../../modules/mediaserver.nix
     ../../modules/prometheus.nix
     #    ./flake.nix

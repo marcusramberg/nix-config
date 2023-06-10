@@ -57,10 +57,51 @@
             reverse_proxy localhost:8485
           }
 
+         (caddy-common) {
+           encode gzip
+             header {
+               -Server
+                 Strict-Transport-Security "max-age=31536000; include-subdomains;"
+                 X-XSS-Protection "1; mode=block"
+                 X-Frame-Options "DENY"
+                 X-Content-Type-Options nosniff
+                 Referrer-Policy  no-referrer-when-downgrade
+                 X-Robots-Tag "none"
+             }
+         }
          posta.no {
             tls /etc/caddy/cloudflare.crt /etc/caddy/cloudflare.key
-            reverse_proxy localhost:1234
+            import caddy-common
+            reverse_proxy   http://localhost:1234
+
+          @lemmy {
+            path    /api/*
+            path    /pictrs/*
+            path    /feeds/*
+            path    /nodeinfo/*
+            path    /.well-known/*
           }
+
+          @lemmy-hdr {
+            header Accept application/*
+          }
+
+          handle @lemmy {
+            reverse_proxy   http://localhost:8536
+          }
+
+          handle @lemmy-hdr {
+            reverse_proxy   http://localhost:8536
+          }
+
+          @lemmy-post {
+            method POST
+          }
+        handle @lemmy-post {
+          reverse_proxy   http://localhost:8536
+        }
+        }
+
 
           tv.means.no {
             tls /etc/caddy/cloudflare.crt /etc/caddy/cloudflare.key
