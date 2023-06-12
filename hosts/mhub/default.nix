@@ -8,6 +8,7 @@
     ../../modules/desktop.nix
     ../../modules/docker.nix
     ../../modules/lemmy.nix
+    ../../modules/matrix.nix
     ../../modules/mediaserver.nix
     ../../modules/prometheus.nix
     #    ./flake.nix
@@ -45,5 +46,4 @@
       "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQC8/0kSssHk6Bzd5Vw43fHwBk57BOPSa3GrvEe+v+CTogJMGWzXwyXNcK/ogSt3R/xzR97afrUKdZB6enHLNhiHVNZ0ymEDaNXGJKKJwIcLPiiNZ0soJRoLr06hw/7B9FDAZIreRED7mmCNW3T0ikqjuk0zomc/r2OsnalV4Xhh9+pDxBv/FQAro1dCUe+EP5IKD7I8wUvZillFqdW8VNPL7XML3WfNhxPJ070U+EMnsW1hMS/eaeYzi/jgpAyEE/ViKSyCa4l+RDLezjfnnDAW8TNRlaL+wPPMp4chBmIIx97rAV+WqYg/acryppwe//CW9wHDK7vK3USYpQgZ0PKtjOY1qK7s44nkgwzKZHy2cXDDzrIlILRYESz7JELfbBk8yVT8B2ziFiIeUav4To9DvyYG4QqiSbOUGvt5tnqpoWcu2bnzV6rniOVmQXq/la7ORYy1Aw9nqRSlyYMo632EQh7rJEGwPOf1RWwORaWdbE3pF0B6B8eHJ3QOOt0+6aM= arne@aBook.local"
     ];
   };
-
 }

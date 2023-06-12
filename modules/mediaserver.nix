@@ -18,6 +18,10 @@
         http_port 18080
         https_port 18443
       '';
+      virtualhosts."means.no" = {
+        extraConfig = "" redirect "http://means.no" "https://means.no" "";
+
+      };
       extraConfig = ''
           home.means.no {
             tls /etc/caddy/cloudflare.crt /etc/caddy/cloudflare.key
@@ -131,7 +135,10 @@
           www.means.no {
             tls /etc/caddy/cloudflare.crt /etc/caddy/cloudflare.key
             root * /html
-            file_server /* browse
+            file_server /* {
+              browse
+              index index.md
+            }
           }
       '';
     };
