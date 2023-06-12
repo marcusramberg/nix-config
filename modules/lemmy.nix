@@ -20,9 +20,9 @@
         # ports = [ "8536:8536" ];
         extraOptions = [ "--network=host" ];
         environment = {
-          RUST_LOG =
-            "warn,lemmy_server=warn,lemmy_api=info,lemmy_api_common=info,lemmy_api_crud=info,lemmy_apub=info,lemmy_db_schema=info,lemmy_db_views=info,lemmy_db_views_actor=info,lemmy_db_views_moderator=info,lemmy_routes=info,lemmy_utils=info,lemmy_websocket=info";
-          RUST_BACKTRACE = "full";
+          RUST_LOG = "warn";
+          #   "warn,lemmy_server=warn,lemmy_api=info,lemmy_api_common=info,lemmy_api_crud=info,lemmy_apub=info,lemmy_db_schema=info,lemmy_db_views=info,lemmy_db_views_actor=info,lemmy_db_views_moderator=info,lemmy_routes=info,lemmy_utils=info,lemmy_websocket=info";
+          # RUST_BACKTRACE = "full";
         };
         volumes = [ "/var/lib/lemmy/lemmy.hjson:/config/config.hjson" ];
       };
