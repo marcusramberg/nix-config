@@ -10,7 +10,7 @@
       url = "github:nix-community/neovim-nightly-overlay";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    nixos-wsl.url = "github:nix-community/NixOS-WSL";
+    # nixos-wsl.url = "github:nix-community/NixOS-WSL";
     devenv.url = "github:cachix/devenv/latest";
     darwin.url = "github:lnl7/nix-darwin/master";
     darwin.inputs.nixpkgs.follows = "nixpkgs";

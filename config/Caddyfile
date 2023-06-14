@@ -1,0 +1,162 @@
+{
+	http_port 18080
+	https_port 18443
+
+	acme_ca https://acme-v02.api.letsencrypt.org/directory
+	log {
+		level ERROR
+	}
+}
+
+# includes
+
+(caddy-common) {
+	encode gzip
+	tls /etc/caddy/cloudflare.crt /etc/caddy/cloudflare.key
+	header {
+		-Server
+		Strict-Transport-Security "max-age=31536000; include-subdomains;"
+		X-XSS-Protection "1; mode=block"
+		X-Frame-Options "DENY"
+		X-Content-Type-Options nosniff
+		Referrer-Policy no-referrer-when-downgrade
+		X-Robots-Tag "none"
+	}
+}
+
+(matrix-well-known-header) {
+	# Headers
+	header Access-Control-Allow-Origin "*"
+	header Access-Control-Allow-Methods "GET, POST, PUT, DELETE, OPTIONS"
+	header Access-Control-Allow-Headers "Origin, X-Requested-With, Content-Type, Accept, Authorization"
+	header Content-Type "application/json"
+}
+
+(matrix) {
+	import caddy-common
+	handle /.well-known/matrix/server {
+		import matrix-well-known-header
+		respond `{"m.server":"means.no/"}`
+	}
+	handle /.well-known/matrix/client {
+		import matrix-well-known-header
+		respond `{"m.homeserver":{"base_url":"https://means.no/"}}`
+	}
+}
+
+# sites
+
+means.no {
+	redir "https://marcus.means.no"
+	import matrix
+}
+
+home.means.no {
+	import caddy-common
+	reverse_proxy mhub.lan:8123
+}
+
+fab.means.no {
+	import caddy-common
+	reverse_proxy fab.lan
+}
+
+files.means.no {
+	import caddy-common
+	reverse_proxy mspace.lan
+}
+
+movies.means.no {
+	import caddy-common
+	reverse_proxy localhost:7878
+}
+
+transmission.means.no {
+	import caddy-common
+	reverse_proxy localhost:9091
+}
+
+nzb.means.no {
+	import caddy-common
+	reverse_proxy localhost:6789
+}
+
+passwords.means.no {
+	import caddy-common
+	reverse_proxy localhost:8222
+}
+
+rss.means.no {
+	import caddy-common
+	reverse_proxy localhost:8485
+}
+
+dev.posta.no {
+	import caddy-common
+	reverse_proxy http://localhost:5173
+}
+
+posta.no {
+	import caddy-common
+	reverse_proxy http://localhost:1234
+
+	@lemmy {
+		path /api/*
+		path /pictrs/*
+		path /feeds/*
+		path /nodeinfo/*
+		path /.well-known/*
+	}
+
+	@lemmy-hdr {
+		header Accept application/*
+	}
+
+	handle @lemmy {
+		reverse_proxy http://localhost:8536
+	}
+
+	handle @lemmy-hdr {
+		reverse_proxy http://localhost:8536
+	}
+
+	@lemmy-post {
+		method POST
+	}
+	handle @lemmy-post {
+		reverse_proxy http://localhost:8536
+	}
+}
+tv.means.no {
+	import caddy-common
+	reverse_proxy localhost:8989
+}
+
+unifi.means.no {
+	import caddy-common
+	reverse_proxy https://localhost:8443 {
+		transport http {
+			tls_insecure_skip_verify
+		}
+	}
+}
+
+www.tabdog.net {
+	import caddy-common
+	redir https://tabdog.net/ permanent
+}
+
+tabdog.net {
+	import caddy-common
+	root * /var/tabdog.net
+	file_server /*
+}
+
+www.means.no {
+	import caddy-common
+	root * /html
+	file_server /* {
+		browse
+		index index.md
+	}
+}

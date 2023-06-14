@@ -12,136 +12,6 @@
       };
       environmentFile = config.age.secrets.vaultwarden.path;
     };
-    caddy = {
-      enable = true;
-      globalConfig = ''
-        http_port 18080
-        https_port 18443
-      '';
-      virtualhosts."means.no" = {
-        extraConfig = "" redirect "http://means.no" "https://means.no" "";
-
-      };
-      extraConfig = ''
-          home.means.no {
-            tls /etc/caddy/cloudflare.crt /etc/caddy/cloudflare.key
-            reverse_proxy mhub.lan:8123
-          }
-
-          fab.means.no {
-            tls /etc/caddy/cloudflare.crt /etc/caddy/cloudflare.key
-            reverse_proxy fab.lan
-          }
-
-          files.means.no {
-            tls /etc/caddy/cloudflare.crt /etc/caddy/cloudflare.key
-            reverse_proxy mspace.lan
-          }
-          movies.means.no {
-            tls /etc/caddy/cloudflare.crt /etc/caddy/cloudflare.key
-            reverse_proxy localhost:7878
-          }
-          transmission.means.no {
-            tls /etc/caddy/cloudflare.crt /etc/caddy/cloudflare.key
-            reverse_proxy localhost:9091
-          }
-
-          nzb.means.no {
-            tls /etc/caddy/cloudflare.crt /etc/caddy/cloudflare.key
-            reverse_proxy localhost:6789
-          }
-
-         passwords.means.no {
-            tls /etc/caddy/cloudflare.crt /etc/caddy/cloudflare.key
-            reverse_proxy localhost:8222
-          }
-
-         rss.means.no {
-            tls /etc/caddy/cloudflare.crt /etc/caddy/cloudflare.key
-            reverse_proxy localhost:8485
-          }
-
-         (caddy-common) {
-           encode gzip
-             header {
-               -Server
-                 Strict-Transport-Security "max-age=31536000; include-subdomains;"
-                 X-XSS-Protection "1; mode=block"
-                 X-Frame-Options "DENY"
-                 X-Content-Type-Options nosniff
-                 Referrer-Policy  no-referrer-when-downgrade
-                 X-Robots-Tag "none"
-             }
-         }
-         posta.no {
-            tls /etc/caddy/cloudflare.crt /etc/caddy/cloudflare.key
-            import caddy-common
-            reverse_proxy   http://localhost:1234
-
-          @lemmy {
-            path    /api/*
-            path    /pictrs/*
-            path    /feeds/*
-            path    /nodeinfo/*
-            path    /.well-known/*
-          }
-
-          @lemmy-hdr {
-            header Accept application/*
-          }
-
-          handle @lemmy {
-            reverse_proxy   http://localhost:8536
-          }
-
-          handle @lemmy-hdr {
-            reverse_proxy   http://localhost:8536
-          }
-
-          @lemmy-post {
-            method POST
-          }
-        handle @lemmy-post {
-          reverse_proxy   http://localhost:8536
-        }
-        }
-
-
-          tv.means.no {
-            tls /etc/caddy/cloudflare.crt /etc/caddy/cloudflare.key
-           reverse_proxy localhost:8989
-          }
-
-        unifi.means.no {
-           tls /etc/caddy/cloudflare.crt /etc/caddy/cloudflare.key
-           reverse_proxy https://localhost:8443 {
-             transport http {
-               tls_insecure_skip_verify
-               }
-           }
-         }
-
-        www.tabdog.net {
-            tls /etc/caddy/cloudflare.crt /etc/caddy/cloudflare.key
-            redir https://tabdog.net/ permanent
-          }
-
-          tabdog.net {
-            tls /etc/caddy/cloudflare.crt /etc/caddy/cloudflare.key
-            root * /var/tabdog.net
-            file_server /* browse
-          }
-
-          www.means.no {
-            tls /etc/caddy/cloudflare.crt /etc/caddy/cloudflare.key
-            root * /html
-            file_server /* {
-              browse
-              index index.md
-            }
-          }
-      '';
-    };
 
     nzbget.enable = true;
     radarr.enable = true;
@@ -170,10 +40,10 @@
       };
       credentialsFile = config.age.secrets.transmission.path;
     };
-    # services.unifi = {
-    # enable = true;
-    # openFirewall = true;
-    # unifiPackage = pkgs.unifi6;
+
+    # unifi = {
+    #   enable = true;
+    #   openFirewall = true;
     # };
 
     postgresql = {

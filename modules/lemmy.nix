@@ -16,8 +16,8 @@
     podman.enable = true;
     oci-containers = {
       containers.lemmy-server = {
-        image = "dessalines/lemmy:0.17.3";
         # ports = [ "8536:8536" ];
+        image = "dessalines/lemmy:0.17.3";
         extraOptions = [ "--network=host" ];
         environment = {
           RUST_LOG = "warn";

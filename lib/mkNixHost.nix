@@ -8,7 +8,6 @@ in nixpkgs.lib.nixosSystem {
   modules = [
     ../hosts/${name}
     ../nixos
-    inputs.nixos-wsl.nixosModules.wsl
     inputs.home-manager.nixosModules.home-manager
     (mkOptions system {
       inherit user;

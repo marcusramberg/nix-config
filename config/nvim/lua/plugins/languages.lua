@@ -145,4 +145,5 @@ return {
 		build = ':lua require("go.install").update_all_sync()', -- if you need to install/update all binaries
 	},
 	{ "alaviss/nim.nvim" },
+	{ "joshglendenning/vim-caddyfile" },
 }
