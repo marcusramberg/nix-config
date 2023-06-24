@@ -81,6 +81,7 @@
     Clicking = true;
   };
 
+  nixpkgs.config.permittedInsecurePackages = [ "nodejs-16.20.0" ];
   # Add ability to used TouchID for sudo authentication
   security.pam.enableSudoTouchIdAuth = true;
   time.timeZone = "Europe/Oslo";
