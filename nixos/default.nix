@@ -93,7 +93,7 @@
 
     permittedInsecurePackages = [
       "openssl-1.1.1u"
-      "nodejs-16.20.0"
+      "nodejs-16.20.1"
       # "xrdp-0.9.9" 
       # "electron-21.4.0" 
       "nodejs-14.21.3"
