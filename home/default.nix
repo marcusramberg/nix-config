@@ -78,6 +78,7 @@
       git-extras
       git-lfs
       git-recent
+      gitAndTools.gh
       fd
       fortune
       gnumake

@@ -11,7 +11,7 @@
     systemPackages = with pkgs; [
       ((emacsPackagesFor emacs).emacsWithPackages (epkgs: [ epkgs.vterm ]))
       cached-nix-shell
-      gitAndTools.gh
+      gitFull
       gcc
       file
       inputs.agenix.packages."${pkgs.system}".default
