@@ -1,6 +1,6 @@
 return {
 	{
-		"TimUntersberger/neogit",
+		"Neogitorg/neogit",
 		config = function()
 			require("neogit").setup({
 				use_magit_keybindings = true,

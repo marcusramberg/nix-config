@@ -84,17 +84,19 @@
       gnumake
       go
       golangci-lint
-      #     (google-cloud-sdk.withExtraComponents
-      #       (with pkgs.google-cloud-sdk.components; [
-      #         cloud-build-local
-      #         gke-gcloud-auth-plugin
-      #       ]))
+      (google-cloud-sdk.withExtraComponents
+        (with pkgs.google-cloud-sdk.components; [
+          cloud-build-local
+          gke-gcloud-auth-plugin
+        ]))
       gopls
       go-task
       gotestfmt
       grc
       inputs.devenv.packages.${system}.devenv
       jq
+      kubectl
+      kubectx
       lazygit
       luarocks
       lua-language-server

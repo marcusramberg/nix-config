@@ -59,7 +59,7 @@
     set -gx EDITOR nvim
     type -q thefuck; and thefuck --alias | source
     test -x ~/.plenv/bin/plenv; and . (~/.plenv/bin/plenv init -|psub)
-    if [ -f '/Users/marcus/google-cloud-sdk/path.fish.inc' ]; . '/Users/marcus/google-cloud-sdk/path.fish.inc'; end
+    # if [ -f '/Users/marcus/google-cloud-sdk/path.fish.inc' ]; . '/Users/marcus/google-cloud-sdk/path.fish.inc'; end
 
     # Completion
     type -q kustomize; and eval (kustomize completion fish)

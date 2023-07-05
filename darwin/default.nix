@@ -1,7 +1,7 @@
 { pkgs, lib, ... }: {
   # Nix configuration ------------------------------------------------------------------------------
 
-  imports = [ ../modules/agenix.nix ../modules/nix.nix ];
+  imports = [ ../modules/agenix.nix ../modules/nix.nix ./casks.nix ];
 
   nix.configureBuildUsers = true;
   age.identityPaths = [ "/Users/marcus/.ssh/id_ed25519" ];
@@ -29,6 +29,8 @@
   # `home-manager` currently has issues adding them to `~/Applications`
   # Issue: https://github.com/nix-community/home-manager/issues/1341
   environment.systemPackages = with pkgs; [
+    colima
+    gnupg
     goku
     gitFull
     element-desktop
