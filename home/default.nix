@@ -82,6 +82,7 @@
       fd
       fortune
       gnumake
+      gnugrep
       go
       golangci-lint
       (google-cloud-sdk.withExtraComponents

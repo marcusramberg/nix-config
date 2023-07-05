@@ -6,7 +6,7 @@ local function augroup(name)
 end
 
 vim.api.nvim_create_autocmd({ "FileType" }, {
-	pattern = { "nix", "terraform" },
+	pattern = { "nix", "terraform", "gotmpl" },
 	callback = function()
 		vim.opt.commentstring = "# %s"
 	end,
