@@ -7,7 +7,6 @@ return {
 			ensure_installed = {
 				"cmake-language-server",
 				"flake8",
-				"gopls",
 				"html-lsp",
 				"jq-lsp",
 				"json-lsp",
@@ -15,15 +14,11 @@ return {
 				"lua-language-server",
 				"perlnavigator",
 				"nil",
-				"pyright",
-				"ruff-lsp",
 				"shellcheck",
 				"shfmt",
 				"stylua",
 				"svelte-language-server",
 				"taplo",
-				"terraform-ls",
-				"typescript-language-server",
 				"yaml-language-server",
 			},
 		},
@@ -39,7 +34,6 @@ return {
 				nls.builtins.formatting.prettier,
 				nls.builtins.formatting.black,
 				nls.builtins.formatting.isort,
-				nls.builtins.formatting.rustfmt,
 				nls.builtins.diagnostics.shellcheck,
 				nls.builtins.diagnostics.markdownlint,
 			}
@@ -53,77 +47,57 @@ return {
 		opts = {
 			---@type lspconfig.options
 			servers = {
-				-- pyright will be automatically installed with mason and loaded with lspconfig
 				html = {},
 				nim_langserver = {},
-				gopls = {
-					unusedparams = true,
-          staticcheck = true,
-					analyses = {},
-					linksInHover = false,
-					codelenses = {
-						generate = true,
-						gc_details = true,
-						regenerate_cgo = true,
-						tidy = true,
-						upgrade_depdendency = true,
-						vendor = true,
+				jsonls = {
+					settings = {
+						schemas = {
+							description = "TypeScript compiler configuration file",
+							fileMatch = { "tsconfig.json", "tsconfig.*.json" },
+							url = "http://json.schemastore.org/tsconfig",
+						},
+						{
+							description = "Lerna config",
+							fileMatch = { "lerna.json" },
+							url = "http://json.schemastore.org/lerna",
+						},
+						{
+							description = "Babel configuration",
+							fileMatch = { ".babelrc.json", ".babelrc", "babel.config.json" },
+							url = "http://json.schemastore.org/lerna",
+						},
+						{
+							description = "ESLint config",
+							fileMatch = { ".eslintrc.json", ".eslintrc" },
+							url = "http://json.schemastore.org/eslintrc",
+						},
+						{
+							description = "Bucklescript config",
+							fileMatch = { "bsconfig.json" },
+							url = "https://bucklescript.github.io/bucklescript/docson/build-schema.json",
+						},
+						{
+							description = "Prettier config",
+							fileMatch = { ".prettierrc", ".prettierrc.json", "prettier.config.json" },
+							url = "http://json.schemastore.org/prettierrc",
+						},
+						{
+							description = "Vercel Now config",
+							fileMatch = { "now.json" },
+							url = "http://json.schemastore.org/now",
+						},
+						{
+							description = "Stylelint config",
+							fileMatch = { ".stylelintrc", ".stylelintrc.json", "stylelint.config.json" },
+							url = "http://json.schemastore.org/stylelintrc",
+						},
+						{
+							description = "Manifest v3",
+							fileMatch = { "manifest.json" },
+							url = "https://json.schemastore.org/chrome-manifest",
+						},
 					},
-					usePlaceholders = true,
 				},
-        jsonls = {
-          settings = {
-            schemas = {
-              description = 'TypeScript compiler configuration file',
-              fileMatch = {'tsconfig.json', 'tsconfig.*.json'},
-              url = 'http://json.schemastore.org/tsconfig'
-            },
-            {
-              description = 'Lerna config',
-              fileMatch = {'lerna.json'},
-              url = 'http://json.schemastore.org/lerna'
-            },
-            {
-              description = 'Babel configuration',
-              fileMatch = {'.babelrc.json', '.babelrc', 'babel.config.json'},
-              url = 'http://json.schemastore.org/lerna'
-            },
-            {
-              description = 'ESLint config',
-              fileMatch = {'.eslintrc.json', '.eslintrc'},
-              url = 'http://json.schemastore.org/eslintrc'
-            },
-            {
-              description = 'Bucklescript config',
-              fileMatch = {'bsconfig.json'},
-              url = 'https://bucklescript.github.io/bucklescript/docson/build-schema.json'
-            },
-            {
-              description = 'Prettier config',
-              fileMatch = {'.prettierrc', '.prettierrc.json', 'prettier.config.json'},
-              url = 'http://json.schemastore.org/prettierrc'
-            },
-            {
-              description = 'Vercel Now config',
-              fileMatch = {'now.json'},
-              url = 'http://json.schemastore.org/now'
-            },
-            {
-              description = 'Stylelint config',
-              fileMatch = {'.stylelintrc', '.stylelintrc.json', 'stylelint.config.json'},
-              url = 'http://json.schemastore.org/stylelintrc'
-            },
-            {
-              description = 'Manifest v3',
-              fileMatch = {'manifest.json'},
-              url = 'https://json.schemastore.org/chrome-manifest'
-            }
-          }
-        },
-				nil_ls = {},
-				perlnavigator = {},
-				pyright = {},
-				terraformls = {},
 				tflint = {},
 				yamlls = {
 					settings = {
@@ -149,24 +123,18 @@ return {
 			ensure_installed = {
 				"bash",
 				"gitcommit",
-				"go",
 				"gotmpl",
 				"html",
 				"javascript",
 				"json",
 				"jsonc",
 				"lua",
-				"hcl",
 				"markdown",
 				"markdown_inline",
 				"nix",
-				"python",
 				"query",
 				"regex",
 				"svelte",
-				"tsx",
-				"terraform",
-				"toml",
 				"typescript",
 				"vim",
 				"yaml",
@@ -186,15 +154,15 @@ return {
 		end,
 	},
 	{ "ray-x/guihua.lua" },
-	{
-		"ray-x/go.nvim",
-		config = function()
-			require("go").setup()
-		end,
-		event = { "CmdlineEnter" },
-		ft = { "go", "gomod" },
-		build = ':lua require("go.install").update_all_sync()', -- if you need to install/update all binaries
-	},
+	-- {
+	--   "ray-x/go.nvim",
+	--   config = function()
+	--     require("go").setup()
+	--   end,
+	--   event = { "CmdlineEnter" },
+	--   ft = { "go", "gomod" },
+	--   build = ':lua require("go.install").update_all_sync()', -- if you need to install/update all binaries
+	-- },
 	{ "alaviss/nim.nvim" },
 	{ "joshglendenning/vim-caddyfile" },
 }
