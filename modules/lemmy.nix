@@ -17,7 +17,7 @@
     oci-containers = {
       containers.lemmy-server = {
         # ports = [ "8536:8536" ];
-        image = "dessalines/lemmy:0.18.0";
+        image = "dessalines/lemmy:0.18.1";
         extraOptions = [ "--network=host" ];
         environment = {
           RUST_LOG = "warn";
@@ -34,7 +34,7 @@
       };
 
       containers.lemmy-ui = {
-        image = "dessalines/lemmy-ui:0.18.0";
+        image = "dessalines/lemmy-ui:0.18.1";
         extraOptions = [ "--network=host" ];
         # ports = [ "1236:1236" ];
         environment = {
