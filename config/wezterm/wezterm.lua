@@ -9,8 +9,8 @@ local config = {
 		tab_bar = {
 			background = "#16161e",
 			active_tab = {
-				bg_color = "#292e42",
-				fg_color = "#c0caf5",
+				bg_color = "#5E81AC",
+				fg_color = "#ECEFF4",
 				intensity = "Bold",
 				underline = "None",
 			},
