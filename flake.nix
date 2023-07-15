@@ -63,7 +63,7 @@
         };
         mOctopi = mkPiImage "moctopi" {
           inherit overlays nixpkgs inputs;
-          system = "aarc64-linux"; 
+          system = "aarc64-linux";
         };
       };
 
