@@ -19,6 +19,10 @@
     device = "/dev/disk/by-uuid/86952286-ffab-4b03-8a78-0c21099588bd";
     fsType = "ext4";
   };
+  fileSystems."/home/marcus" = {
+    device = "/dev/disk/by-uuid/4d79d071-7bee-4cf0-85fa-01f313cb9eab";
+    fsType = "ext4";
+  };
 
   fileSystems."/boot/efi" = {
     device = "/dev/disk/by-uuid/67E3-17ED";

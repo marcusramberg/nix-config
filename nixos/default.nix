@@ -12,6 +12,7 @@
       ((emacsPackagesFor emacs).emacsWithPackages (epkgs: [ epkgs.vterm ]))
       cached-nix-shell
       gitFull
+      gitAndTools.gh
       gcc
       file
       inputs.agenix.packages."${pkgs.system}".default
