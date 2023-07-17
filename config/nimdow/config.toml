@@ -110,14 +110,14 @@ borderColorUnfocused = "#4C566A"
 borderColorFocused = "#8FBCBB"
 borderColorUrgent = "#D08770"
 # Bar settings
-barHeight = 25
+barHeight = 35
 windowTitlePosition = "center"
 barBackgroundColor = "#434C5E"
 barForegroundColor = "#ECEFF4"
 barSelectionColor = "#88c0d0"
 barUrgentColor = "#BF616A"
 barFonts = [
-  "Iosevka Nerd Font Mono:size=12:antialias=true",
+  "Hack Nerd Font Mono:size=12:antialias=true",
   "NotoColorEmoji:size=11:antialias=true",
 ]
 # Layout settings
