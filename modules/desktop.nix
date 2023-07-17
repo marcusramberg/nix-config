@@ -23,7 +23,7 @@
     mplus-outline-fonts.githubRelease
     dina-font
     proggyfonts
-    (nerdfonts.override { fonts = [ "JetBrainsMono" "Iosevka" ]; })
+    (nerdfonts.override { fonts = [ "JetBrainsMono" "Iosevka" "Hack" ]; })
 
   ];
 
