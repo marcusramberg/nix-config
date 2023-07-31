@@ -1,4 +1,4 @@
-{ options, ... }:
+{ options, config, ... }:
 
 {
   imports = [
@@ -51,4 +51,25 @@
     configFile = ../../config/Caddyfile;
     adapter = "caddyfile";
   };
+  services.borgbackup.jobs = {
+    varBackup = {
+      paths = "/var";
+      exclude = [
+        "/var/cache"
+        "/var/lib/containers"
+        "/var/log"
+        "/var/lib/plex/Library/Application Support/Plex Media Server/Plug-in Support/Databases/"
+        "/var/lib/prometheus2/data/"
+      ];
+      repo = "/space/mhub/var";
+      doInit = true;
+      encryption = {
+        mode = "repokey";
+        passCommand = "cat ${config.age.secrets.borgbackup.path}";
+      };
+      compression = "auto,lzma";
+      startAt = "weekly";
+    };
+  };
+
 }

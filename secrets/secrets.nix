@@ -12,5 +12,6 @@ in {
   "nixAccessTokens.age".publicKeys = [ marcus ];
   "cloudflareToken.age".publicKeys = [ marcus ];
   "picserver.age".publicKeys = [ marcus ];
+  "borgbackup.age".publicKeys = [ marcus ];
 }
 

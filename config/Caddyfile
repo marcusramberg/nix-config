@@ -61,11 +61,6 @@ fab.means.no {
 	reverse_proxy fab.lan
 }
 
-files.means.no {
-	import caddy-common
-	reverse_proxy mspace.lan
-}
-
 movies.means.no {
 	import caddy-common
 	reverse_proxy localhost:7878
@@ -132,14 +127,6 @@ tv.means.no {
 	reverse_proxy localhost:8989
 }
 
-unifi.means.no {
-	import caddy-common
-	reverse_proxy https://localhost:8443 {
-		transport http {
-			tls_insecure_skip_verify
-		}
-	}
-}
 
 www.tabdog.net {
 	import caddy-common
