@@ -124,6 +124,7 @@ return {
 				"bash",
 				"gitcommit",
 				"gotmpl",
+				"hjson",
 				"html",
 				"javascript",
 				"json",

@@ -13,5 +13,6 @@ in {
   "cloudflareToken.age".publicKeys = [ marcus ];
   "picserver.age".publicKeys = [ marcus ];
   "borgbackup.age".publicKeys = [ marcus ];
+  "lemmy.age".publicKeys = [ marcus ];
 }
 

@@ -34,7 +34,7 @@
         backend = "podman";
         containers.hass = {
           # renovate: datasource=docker depName=homeassistant/home-assistant
-          image = "ghcr.io/home-assistant/home-assistant:2023.7.2";
+          image = "ghcr.io/home-assistant/home-assistant:2023.8.1";
           environment = { TZ = "Europe/Oslo"; };
           extraOptions = [
             "--net=host"
@@ -73,16 +73,16 @@
           extraOptions = [ "--net=host" "--device=/dev/dri/" ];
           volumes = [ "/var/lib/plex:/config" "/space:/space" ];
         };
-        containers.zigbee2mqtt = {
-          # renovate: datasource=docker depName=koenkk/zigbee2mqtt
-          image = " ghcr.io/koenkk/zigbee2mqtt:1.32.1";
-          extraOptions = [ "--privileged" "--network=host" ];
-          volumes = [
-            "/dev:/dev"
-            "/run/udev:/run/udev"
-            "/var/lib/zigbee2mqtt:/app/data"
-          ];
-        };
+        # containers.zigbee2mqtt = {
+        #   # renovate: datasource=docker depName=koenkk/zigbee2mqtt
+        #   image = " ghcr.io/koenkk/zigbee2mqtt:1.32.1";
+        #   extraOptions = [ "--privileged" "--network=host" ];
+        #   volumes = [
+        #     "/dev:/dev"
+        #     "/run/udev:/run/udev"
+        #     "/var/lib/zigbee2mqtt:/app/data"
+        #   ];
+        # };
       };
     };
   };

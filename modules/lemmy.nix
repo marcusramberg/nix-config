@@ -1,4 +1,6 @@
-{ config, ... }: {
+{ config, pkgs, ... }:
+let templateFile = import ../lib/templateFile.nix { inherit pkgs; };
+in {
   config.services.postfix = {
     enable = true;
     relayHost = "smtp.sendgrid.com";
@@ -12,6 +14,9 @@
       relayhost = [smtp.sendgrid.net]:587
     '';
   };
+  config.environment.etc."lemmy/lemmy.hjson".source =
+    templateFile "lemmy_hjson" ../config/lemmy.hjson
+    (builtins.fromJSON (builtins.readFile config.age.secrets.lemmy.path));
   config.virtualisation = {
     podman.enable = true;
     oci-containers = {
@@ -24,7 +29,10 @@
           #   "warn,lemmy_server=warn,lemmy_api=info,lemmy_api_common=info,lemmy_api_crud=info,lemmy_apub=info,lemmy_db_schema=info,lemmy_db_views=info,lemmy_db_views_actor=info,lemmy_db_views_moderator=info,lemmy_routes=info,lemmy_utils=info,lemmy_websocket=info";
           # RUST_BACKTRACE = "full";
         };
-        volumes = [ "/var/lib/lemmy/lemmy.hjson:/config/config.hjson" ];
+        volumes = [
+          "/etc/lemmy/lemmy.hjson:/config/config.hjson"
+          "/run/postgresql:/run/postgresql"
+        ];
       };
       containers.pictrs = {
         image = "asonix/pictrs:0.3.1";

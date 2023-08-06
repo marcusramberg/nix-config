@@ -11,7 +11,7 @@ in pkgs: super: {
   # forgit = super.callPackage ../packages/forgit { inputs = inputs; };
   tfenv = super.callPackage ../packages/tfenv { inherit inputs; };
   wezterm-nightly = super.callPackage ../packages/wezterm-nightly { };
-  nimdow = super.nimdow.overrideAttrs (oldAttrs: rec {
+  nimdow = super.nimdow.overrideAttrs (oldAttrs: {
     patches = oldAttrs.patches or [ ] ++ [ ./patches/nimdow-randr.patch ];
   });
   nzbget = super.nzbget.overrideAttrs (oa: {
@@ -29,5 +29,6 @@ in pkgs: super: {
     buildInputs = [ pkgs.libcap ] ++ oa.buildInputs;
     nativeBuildInputs = [ pkgs.autoreconfHook ] ++ oa.nativeBuildInputs;
   });
+
 }
 

@@ -1,4 +1,4 @@
-{ options, config, ... }:
+{ options, config, pkgs, systemd, ... }:
 
 {
   imports = [
@@ -48,9 +48,15 @@
   };
   services.caddy = {
     enable = true;
+    package = pkgs.caddy-cloudflare;
     configFile = ../../config/Caddyfile;
     adapter = "caddyfile";
   };
+  systemd.services.caddy.serviceConfig.AmbientCapabilities =
+    "cap_net_bind_service";
+
+  age.secrets.cloudflareToken.owner = "caddy";
+
   services.borgbackup.jobs = {
     varBackup = {
       paths = "/var";

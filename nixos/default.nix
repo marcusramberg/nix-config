@@ -11,12 +11,12 @@
     systemPackages = with pkgs; [
       ((emacsPackagesFor emacs).emacsWithPackages (epkgs: [ epkgs.vterm ]))
       cached-nix-shell
+      caddy
       gitFull
       gitAndTools.gh
       gcc
       file
       inputs.agenix.packages."${pkgs.system}".default
-      lemonade
       man-pages
       mosh
       netavark

@@ -28,9 +28,9 @@
       mkNixHost = import lib/mkNixHost.nix;
       mkPiImage = import lib/mkNixHost.nix;
       mkDarwinHost = import lib/mkDarwinHost.nix;
-      localOverlays = import ./overlays inputs;
       overlays = [
-        localOverlays
+        (import ./overlays inputs)
+        (import ./overlays/caddy.nix inputs)
         # inputs.neovim-nightly-overlay.overlay
         inputs.emacs-overlay.overlay
       ];

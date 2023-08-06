@@ -1,18 +1,58 @@
 {
-	http_port 18080
+	http_port 80
 	https_port 18443
+	email marcus@means.no
 
 	acme_ca https://acme-v02.api.letsencrypt.org/directory
 	log {
 		level ERROR
 	}
+	servers :443 {
+		listener_wrappers {
+			http_redirect
+			tls
+		}
+	}
+
+	servers :80 {
+		protocols h1 h2c
+	}
+	servers :18443 {
+		listener_wrappers {
+			http_redirect
+			tls
+		}
+	}
+
+	servers :18080 {
+		protocols h1 h2c
+	}
 }
 
-# includes
+# Tailnet
 
 (caddy-common) {
 	encode gzip
-	tls /etc/caddy/cloudflare.crt /etc/caddy/cloudflare.key
+	# tls /etc/caddy/cloudflare.crt /etc/caddy/cloudflare.key
+	tls {
+		import /run/agenix/cloudflareToken
+	}
+	header {
+		-Server
+		Strict-Transport-Security "max-age=31536000; include-subdomains;"
+		X-XSS-Protection "1; mode=block"
+		X-Frame-Options "DENY"
+		X-Content-Type-Options nosniff
+		Referrer-Policy no-referrer-when-downgrade
+		X-Robots-Tag "none"
+	}
+}
+
+(caddy-tailscale) {
+	encode gzip
+	tls {
+		import /run/agenix/cloudflareToken
+	}
 	header {
 		-Server
 		Strict-Transport-Security "max-age=31536000; include-subdomains;"
@@ -44,54 +84,69 @@
 	}
 }
 
+localhost:80 {
+	redir https://{host}{uri} permanent
+}
 # sites
 
-means.no {
-	redir "https://marcus.means.no"
-	import matrix
+mhub.means.no:443 {
+	import caddy-tailscale
+	reverse_proxy mhub.lan:8123
 }
 
-home.means.no {
+home.means.no:443 {
 	import caddy-common
 	reverse_proxy mhub.lan:8123
 }
 
-fab.means.no {
+fab.means.no:443 {
 	import caddy-common
 	reverse_proxy fab.lan
 }
 
-movies.means.no {
+movies.means.no:443 {
 	import caddy-common
 	reverse_proxy localhost:7878
 }
 
-transmission.means.no {
-	import caddy-common
+transmission.means.no:443 {
+	import caddy-tailscale
 	reverse_proxy localhost:9091
 }
 
-nzb.means.no {
+nzb.means.no:443 {
 	import caddy-common
 	reverse_proxy localhost:6789
 }
 
-passwords.means.no {
+passwords.means.no:443 {
 	import caddy-common
 	reverse_proxy localhost:8222
 }
 
-rss.means.no {
+rss.means.no:443 {
 	import caddy-common
 	reverse_proxy localhost:8485
 }
 
-dev.posta.no {
+tv.means.no:443 {
+	import caddy-common
+	reverse_proxy localhost:8989
+}
+
+# Public
+
+means.no:18443 {
+	redir "https://marcus.means.no"
+	import matrix
+}
+
+dev.posta.no:18443 {
 	import caddy-common
 	reverse_proxy http://localhost:5173
 }
 
-posta.no {
+posta.no:18443 {
 	import caddy-common
 	reverse_proxy http://localhost:1234
 
@@ -122,24 +177,19 @@ posta.no {
 		reverse_proxy http://localhost:8536
 	}
 }
-tv.means.no {
-	import caddy-common
-	reverse_proxy localhost:8989
-}
 
-
-www.tabdog.net {
+www.tabdog.net:18443 {
 	import caddy-common
 	redir https://tabdog.net/ permanent
 }
 
-tabdog.net {
+tabdog.net:18443 {
 	import caddy-common
 	root * /var/tabdog.net
 	file_server /*
 }
 
-www.means.no {
+www.means.no:18443 {
 	import caddy-common
 	root * /html
 	file_server /* {
