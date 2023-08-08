@@ -1,6 +1,7 @@
-{ config, pkgs, ... }:
-let templateFile = import ../lib/templateFile.nix { inherit pkgs; };
-in {
+{ config, ... }:
+# let templateFile = import ../lib/templateFile.nix { inherit pkgs; };
+# in {
+{
   config.services.postfix = {
     enable = true;
     relayHost = "smtp.sendgrid.com";
@@ -14,10 +15,10 @@ in {
       relayhost = [smtp.sendgrid.net]:587
     '';
   };
-  config.environment.etc."lemmy/lemmy.hjson".source =
-    templateFile "lemmy_hjson" ../config/lemmy.hjson {
-      file = config.age.secrets.lemmy.path;
-    };
+  # config.environment.etc."lemmy/lemmy.hjson".source =
+  #   templateFile "lemmy_hjson" ../config/lemmy.hjson {
+  #     file = config.age.secrets.lemmy.path;
+  #   };
   config.virtualisation = {
     podman.enable = true;
     oci-containers = {
@@ -31,7 +32,7 @@ in {
           # RUST_BACKTRACE = "full";
         };
         volumes = [
-          "/etc/lemmy/lemmy.hjson:/config/config.hjson"
+          "/var/lib/lemmy/lemmy.hjson:/config/config.hjson"
           "/run/postgresql:/run/postgresql"
         ];
       };

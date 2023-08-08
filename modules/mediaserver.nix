@@ -57,6 +57,8 @@
       '';
     };
   };
+  users.users.radarr.extraGroups = [ "transmission" "nzbget" ];
+  users.users.sonarr.extraGroups = [ "transmission" "nzbget" ];
 
 }
 
