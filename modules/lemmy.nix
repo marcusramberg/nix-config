@@ -15,8 +15,9 @@ in {
     '';
   };
   config.environment.etc."lemmy/lemmy.hjson".source =
-    templateFile "lemmy_hjson" ../config/lemmy.hjson
-    (builtins.fromJSON (builtins.readFile config.age.secrets.lemmy.path));
+    templateFile "lemmy_hjson" ../config/lemmy.hjson {
+      file = config.age.secrets.lemmy.path;
+    };
   config.virtualisation = {
     podman.enable = true;
     oci-containers = {

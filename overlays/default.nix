@@ -16,11 +16,11 @@ in pkgs: super: {
   });
   nzbget = super.nzbget.overrideAttrs (oa: {
     pname = "nzbget-ng";
-    version = "21.4-rc1";
+    version = "21.4-rc2";
     src = pkgs.fetchurl {
       url =
-        "https://github.com/nzbget-ng/nzbget/archive/refs/tags/v21.4-rc1.tar.gz";
-      hash = "sha256-3zOJen/OzxUtWPtwX2HzLfn2+SpFuvnkH/KbojFGgWg=";
+        "https://github.com/nzbget-ng/nzbget/archive/refs/tags/v21.4-rc2.tar.gz";
+      hash = "sha256-l2gWl6BW/a4vmbEoXpA1NQkcLi33B0xnC1XKtj216e0=";
     };
     patches = [ ];
     prePatch = ''

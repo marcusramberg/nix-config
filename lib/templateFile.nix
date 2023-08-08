@@ -14,7 +14,9 @@ pkgs.stdenv.mkDerivation {
   # fail, if no src attribute is set
   phases = [ "buildPhase" "installPhase" ];
 
-  buildPhase = ''
+  buildPhase = if data.file != null then ''
+    ${pkgs.mustache-go}/bin/mustache ${data.file} ${template} > rendered_file
+  '' else ''
     ${pkgs.mustache-go}/bin/mustache $jsonDataPath ${template} > rendered_file
   '';
 

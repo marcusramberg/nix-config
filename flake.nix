@@ -26,7 +26,7 @@
   outputs = { nixpkgs, ... }@inputs:
     let
       mkNixHost = import lib/mkNixHost.nix;
-      mkPiImage = import lib/mkNixHost.nix;
+      # mkPiImage = import lib/mkNixHost.nix;
       mkDarwinHost = import lib/mkDarwinHost.nix;
       overlays = [
         (import ./overlays inputs)
@@ -61,10 +61,11 @@
           system = "x86_64-linux";
           user = "marcus";
         };
-        mOctopi = mkPiImage "moctopi" {
-          inherit overlays nixpkgs inputs;
-          system = "aarc64-linux";
-        };
+        # mOctopi = mkPiImage "moctopi" {
+        #   inherit overlays nixpkgs inputs;
+        #   system = "aarch64-linux";
+        #   user = "marcus";
+        # };
       };
 
       darwinConfigurations.mbook = mkDarwinHost {
