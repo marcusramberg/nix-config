@@ -1,5 +1,29 @@
 local wezterm = require("wezterm")
 
+local function tab_title(tab_info)
+	local title = tab_info.tab_title
+	-- if the tab title is explicitly set, take that
+	if title and #title > 0 then
+		return title
+	end
+	-- Otherwise, use the title from the active pane
+	-- in that tab
+	return tab_info.active_pane.title
+end
+
+wezterm.on("format-tab-title", function(tab, _tabs, _panes, _config, _hover, max_width)
+	local title = tab_title(tab)
+	if #title > max_width then
+		title = "…" .. string.sub(title, #title - max_width + 2)
+	end
+	if tab.is_active then
+		return {
+			{ Text = " " .. title .. " " },
+		}
+	end
+	return title
+end)
+
 local config = {
 	adjust_window_size_when_changing_font_size = false,
 	audible_bell = "Disabled",

@@ -22,6 +22,10 @@ return {
 	-- { "echasnovski/mini.pairs", enabled = false },
 	{ "metakirby5/codi.vim" },
 	{
+		"willothy/wezterm.nvim",
+		config = true,
+	},
+	{
 		"epwalsh/obsidian.nvim",
 		config = function()
 			require("obsidian").setup({

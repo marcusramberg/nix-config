@@ -3,7 +3,7 @@
 -- Add any additional options here
 
 local opt = vim.opt
-opt.guifont = "JetBrains Mono Nerd Font:h11"
+opt.guifont = "JetBrainsMono Nerd Font:h12"
 -- Avoid syntax highlighting very long lines
 opt.synmaxcol = 300
 opt.iskeyword:append("-")

@@ -23,7 +23,9 @@ vim.api.nvim_create_autocmd({ "BufNewFile", "BufRead" }, {
 	pattern = "*",
 	callback = function()
 		if vim.fn.search([[{{.\+}}]], "nw") ~= 0 then
-			vim.bo.ft = "gotmpl"
+			if vim.bo.ft == "yaml" then
+				vim.bo.ft = "gotmpl"
+			end
 		end
 	end,
 })
