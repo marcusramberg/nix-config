@@ -23,8 +23,8 @@
       nordic
       ntfs3g
       p7zip
-      perl534Packages.EV
-      perl534Packages.Mojolicious
+      perl536Packages.Mojolicious
+      perl536Packages.EV
       unrar
       wireguard-tools
       wget
@@ -94,7 +94,7 @@
 
     permittedInsecurePackages = [
       "openssl-1.1.1u"
-      "nodejs-16.20.1"
+      "nodejs-16.20.2"
       # "xrdp-0.9.9" 
       # "electron-21.4.0" 
       "nodejs-14.21.3"

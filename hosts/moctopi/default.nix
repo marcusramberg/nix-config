@@ -1,6 +1,4 @@
-{ ... }:
-
-{
+_: {
   imports = [
     # Include the results of the hardware scan.
     ./hardware-configuration.nix
@@ -23,4 +21,3 @@
     0.0.0.0 vg.no www.vg.no
   '';
 }
->>>>>>> Stashed changes
