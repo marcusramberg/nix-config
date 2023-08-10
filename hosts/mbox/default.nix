@@ -21,6 +21,8 @@ _:
   services.flatpak.enable = true;
   virtualisation.podman.enable = true;
   virtualisation.podman.dockerCompat = true;
+  services.xserver.dpi = 144;
+  
   networking.extraHosts = ''
     10.211.55.2 mbook
     0.0.0.0 vg.no www.vg.no
