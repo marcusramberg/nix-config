@@ -14,5 +14,6 @@ in {
   "picserver.age".publicKeys = [ marcus ];
   "borgbackup.age".publicKeys = [ marcus ];
   "lemmy.age".publicKeys = [ marcus ];
+  "mosquittoPass.age".publicKeys = [ marcus ];
 }
 
