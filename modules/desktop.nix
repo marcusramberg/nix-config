@@ -17,7 +17,7 @@
     xclip
   ];
   programs.hyprland.enable = true;
-  fonts.fonts = with pkgs; [
+  fonts.packages = with pkgs; [
     noto-fonts-emoji
     liberation_ttf
     mplus-outline-fonts.githubRelease
