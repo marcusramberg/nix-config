@@ -67,7 +67,6 @@
 
     type -q nvm; and nvm use -s
     any-nix-shell fish --info-right | source
-    # starship init fish | source
   '';
   loginShellInit = ''
     if [ -f /Users/marcus/.ssh/id_rsa ]
@@ -84,9 +83,6 @@
     #   inherit (pkgs.fishPlugins.grc) src;
     # }
     # {
-    #   name = "forgit";
-    #   inherit (pkgs.fishPlugins.forgit) src;
-    # }
     # {
     #   name = "bass";
     #   inherit (pkgs.fishPlugins.bass) src;

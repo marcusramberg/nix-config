@@ -64,7 +64,7 @@
     mru-spaces = false;
     minimize-to-application = true;
     mineffect = "scale";
-    autohide = false;
+    autohide = true;
   };
   system.defaults.finder = {
     AppleShowAllExtensions = true;
@@ -75,7 +75,7 @@
     ShowStatusBar = true;
     _FXShowPosixPathInTitle = true;
   };
-  system.defaults.NSGlobalDomain._HIHideMenuBar = true;
+  system.defaults.NSGlobalDomain._HIHideMenuBar = false;
 
   system.defaults.dock.wvous-br-corner = 13;
 
@@ -94,7 +94,7 @@
     Clicking = true;
   };
 
-  nixpkgs.config.permittedInsecurePackages = [ "nodejs-16.20.1" ];
+  nixpkgs.config.permittedInsecurePackages = [ "nodejs-16.20.2" ];
   # Add ability to used TouchID for sudo authentication
   security.pam.enableSudoTouchIdAuth = true;
   time.timeZone = "Europe/Oslo";

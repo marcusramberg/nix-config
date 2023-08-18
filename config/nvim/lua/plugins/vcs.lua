@@ -6,7 +6,7 @@ return {
 				use_magit_keybindings = true,
 				disable_builtin_notifications = true,
 				disable_commit_confirmation = true,
-				kind = "split",
+				kind = "vsplit",
 				integrations = {
 					diffview = true,
 				},

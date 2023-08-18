@@ -28,7 +28,7 @@ _: {
       deleted_style = "bold red";
     };
     kubernetes = {
-      disabled = false;
+      disabled = true;
       style = "bold blue";
       format = "[$context/$namespace](bold blue) ";
     };
