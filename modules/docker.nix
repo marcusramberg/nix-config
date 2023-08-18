@@ -1,24 +1,22 @@
-{ config, age, ... }: {
-  config = {
-    services.influxdb.enable = true;
-    services.mosquitto = {
-      enable = true;
-      # listeners = [{
-      #   acl = [ "pattern readwrite #" ];
-      #   omitPasswordAuth = true;
-      #   settings.allow_anonymous = true;
-      # }];
-      listeners = [{
-        omitPasswordAuth = true;
-        users = {
-          hass = {
-            acl = [ "readwrite homeassistant/#" ];
-            passwordFile = age.secrets.mosquittoPass.path;
-          };
+{ config, ... }: {
+  services.influxdb.enable = true;
+  services.mosquitto = {
+    enable = true;
+    # listeners = [{
+    #   acl = [ "pattern readwrite #" ];
+    #   omitPasswordAuth = true;
+    #   settings.allow_anonymous = true;
+    # }];
+    listeners = [{
+      omitPasswordAuth = true;
+      users = {
+        hass = {
+          acl = [ "readwrite homeassistant/#" ];
+          passwordFile = config.age.secrets.mosquittoPass.path;
         };
-        # extraConf = "log_type debug";
-      }];
-    };
+      };
+      # extraConf = "log_type debug";
+    }];
   };
   users.groups.plex.gid = 193;
   users.users.plex = {
@@ -73,16 +71,13 @@
         extraOptions = [ "--net=host" "--device=/dev/dri/" ];
         volumes = [ "/var/lib/plex:/config" "/space:/space" ];
       };
-      # containers.zigbee2mqtt = {
-      #   # renovate: datasource=docker depName=koenkk/zigbee2mqtt
-      #   image = " ghcr.io/koenkk/zigbee2mqtt:1.32.1";
-      #   extraOptions = [ "--privileged" "--network=host" ];
-      #   volumes = [
-      #     "/dev:/dev"
-      #     "/run/udev:/run/udev"
-      #     "/var/lib/zigbee2mqtt:/app/data"
-      #   ];
-      # };
+      # docker run --name appdaemon  --detach --restart=always --network=host -p 5050:5050 -v <conf_folder>:/conf -e HA_URL="http://homeassistant.local:8123"  -e TOKEN="my_long_liven_token"  acockburn/appdaemon
+      containers.appdaemon = {
+        image = "acockburn/appdaemon:latest";
+        environmentFiles = [ config.age.secrets.appdaemonToken.path ];
+        extraOptions = [ "--net=host" ];
+        volumes = [ "/var/lib/appdaemon:/conf" ];
+      };
     };
   };
 }

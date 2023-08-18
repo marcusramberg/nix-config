@@ -15,5 +15,6 @@ in {
   "borgbackup.age".publicKeys = [ marcus ];
   "lemmy.age".publicKeys = [ marcus ];
   "mosquittoPass.age".publicKeys = [ marcus ];
+  "appdaemonToken.age".publicKeys = [ marcus ];
 }
 
