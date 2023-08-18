@@ -78,6 +78,10 @@
         extraOptions = [ "--net=host" ];
         volumes = [ "/var/lib/appdaemon:/conf" ];
       };
+      containers.aircast = {
+        image = "docker.io/1activegeek/airconnect:latest";
+        extraOptions = [ "--net=host" ];
+      };
     };
   };
 }
