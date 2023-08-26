@@ -4,7 +4,11 @@ layouts:
   - column
   - fullscreen
 
+  # true to display the name of the layout when a new layout is selected
+  # (default true).
 enables-layout-hud: false
+# true to display the name of the layout when moving to a new space
+# (default true).
 enables-layout-hud-on-space-change: false
 mod1:
   - option
@@ -23,7 +27,11 @@ window-margin-size: 12
 
 floating:
   - com.bitwarden.desktop
-float-small-windows: false
+float-small-windows: true
+
+# true to insert new windows into the first position and false to insert new
+# windows into the last position (default false).
+new-windows-to-main: true
 
 # Keys
 cycle-layout:
