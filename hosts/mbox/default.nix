@@ -10,6 +10,7 @@ _:
   ];
   networking.hostName = "mbox";
   virtualisation.vmware.guest.enable = true;
+  boot.kernel.sysctl."net.ipv4.ip_forward" = 1;
 
   # Enable nix flakes
   # nix.package = pkgs.nixFlakes;
@@ -22,7 +23,7 @@ _:
   virtualisation.podman.enable = true;
   virtualisation.podman.dockerCompat = true;
   services.xserver.dpi = 144;
-  
+
   networking.extraHosts = ''
     10.211.55.2 mbook
     0.0.0.0 vg.no www.vg.no

@@ -19,9 +19,9 @@
   boot.loader.grub.efiSupport = false;
   boot.loader.grub.device = "/dev/sda";
   boot.kernelParams = [ "pcie_aspm=off" ];
+  boot.kernel.sysctl."net.core.rmem_max" = 4194304;
   boot.kernel.sysctl."net.ipv4.igmp_max_memberships" = 1024;
   boot.kernel.sysctl."net.ipv4.igmp_max_msf" = 10;
-  boot.kernel.sysctl."net.core.rmem_max" = 4194304;
   fileSystems."/space" = {
     device = "192.168.86.211:/volume1/space";
     fsType = "nfs4";
