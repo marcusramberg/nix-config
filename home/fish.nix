@@ -92,6 +92,10 @@
     #   inherit (pkgs.fishPlugins.fzf-fish) src;
     # }
     {
+      name = "pure";
+      inherit (pkgs.fishPlugins.pure) src;
+    }
+    {
       name = "gcloud-completions";
       src = pkgs.fetchFromGitHub {
         owner = "lgathy";

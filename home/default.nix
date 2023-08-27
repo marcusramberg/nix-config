@@ -45,7 +45,7 @@
     neovim.extraConfig = ''
       :luafile ~/.config/nvim/init.lua 
     '';
-    starship = import ./starship.nix { };
+    # starship = import ./starship.nix { };
     tmux = import ./tmux.nix { inherit pkgs; };
     # Smarter z
     zoxide.enable = true;
