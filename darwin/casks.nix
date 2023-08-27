@@ -1,7 +1,6 @@
 _: {
   homebrew = {
     enable = true;
-    brews = [ "postgresql" ];
     casks = [
       "aerial"
       "alfred"
