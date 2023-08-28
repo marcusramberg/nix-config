@@ -5,6 +5,7 @@
     copyq
     element-desktop
     feh
+    neovide
     nitrogen
     obsidian
     picom
@@ -12,8 +13,6 @@
     telegram-desktop
     vivaldi
     volumeicon
-    waybar
-    wofi
     xclip
   ];
   programs.hyprland.enable = true;
