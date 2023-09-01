@@ -10,6 +10,7 @@
     ../../modules/pipewire.nix
   ];
   networking.hostName = "mtop";
+  networking.enableIPv6 = false;
   networking.networkmanager.enable = true;
   programs.nm-applet.enable = true;
 
