@@ -386,6 +386,23 @@
         "type": "github"
       }
     },
+    "mobile-nixos": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1693549749,
+        "narHash": "sha256-kmjDyDUmahoZ1Fe/HwzKARhvTj9FuvGBXBHIxvDaBXY=",
+        "owner": "marcusramberg",
+        "repo": "mobile-nixos",
+        "rev": "ca725b273817978a9d336cfa76c6d809ab1e7324",
+        "type": "github"
+      },
+      "original": {
+        "owner": "marcusramberg",
+        "ref": "enchilada",
+        "repo": "mobile-nixos",
+        "type": "github"
+      }
+    },
     "neovim-flake": {
       "inputs": {
         "flake-utils": "flake-utils_3",
@@ -668,6 +685,7 @@
         "devenv": "devenv",
         "emacs-overlay": "emacs-overlay",
         "home-manager": "home-manager_2",
+        "mobile-nixos": "mobile-nixos",
         "neovim-nightly-overlay": "neovim-nightly-overlay",
         "nixpkgs": "nixpkgs_5",
         "nur": "nur",

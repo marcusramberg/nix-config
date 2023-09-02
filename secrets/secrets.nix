@@ -16,5 +16,6 @@ in {
   "lemmy.age".publicKeys = [ marcus ];
   "mosquittoPass.age".publicKeys = [ marcus ];
   "appdaemonToken.age".publicKeys = [ marcus ];
+  "phone-pin.age".publicKeys = [ marcus ];
 }
 

@@ -1,4 +1,4 @@
-{ options, config, pkgs, systemd, ... }:
+{ config, pkgs, ... }:
 
 {
   imports = [

@@ -21,10 +21,13 @@
 
     tfenv.url = "github:tfutils/tfenv";
     tfenv.flake = false;
+    mobile-nixos.url = "github:marcusramberg/mobile-nixos/enchilada";
+    mobile-nixos.flake = false;
   };
 
   outputs = { nixpkgs, ... }@inputs:
     let
+      defaultUserName = "marcus";
       mkNixHost = import lib/mkNixHost.nix;
       # mkPiImage = import lib/mkNixHost.nix;
       mkDarwinHost = import lib/mkDarwinHost.nix;
@@ -39,27 +42,43 @@
         mhub = mkNixHost "mhub" {
           inherit overlays nixpkgs inputs;
           system = "x86_64-linux";
-          user = "marcus";
+          user = defaultUserName;
         };
         butterbee = mkNixHost "butterbee" {
           inherit overlays nixpkgs inputs;
           system = "aarch64-linux";
-          user = "marcus";
+          user = defaultUserName;
         };
         mbox = mkNixHost "mbox" {
           inherit overlays nixpkgs inputs;
           system = "x86_64-linux";
-          user = "marcus";
+          user = defaultUserName;
         };
         mtop = mkNixHost "mtop" {
           inherit overlays nixpkgs inputs;
           system = "x86_64-linux";
-          user = "marcus";
+          user = defaultUserName;
         };
         mlab = mkNixHost "mlab" {
           inherit overlays nixpkgs inputs;
           system = "x86_64-linux";
-          user = "marcus";
+          user = defaultUserName;
+        };
+        mbrick = nixpkgs.lib.nixosSystem {
+          inherit (inputs) mobile-nixos;
+          system = "aarch64-linux";
+          modules = [
+            (import ./hosts/mbrick defaultUserName)
+            inputs.home-manager.nixosModules.home-manager
+            {
+              home-manager.useGlobalPkgs = true;
+              home-manager.useUserPackages = true;
+              home-manager.users.${defaultUserName} = import ./home;
+            }
+            (import "${inputs.mobile-nixos}/lib/configuration.nix" {
+              device = "oneplus-fajita";
+            })
+          ];
         };
         # mOctopi = mkPiImage "moctopi" {
         #   inherit overlays nixpkgs inputs;
