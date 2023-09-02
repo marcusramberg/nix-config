@@ -29,6 +29,7 @@
     let
       defaultUserName = "marcus";
       mkNixHost = import lib/mkNixHost.nix;
+      mkMobileNixHost = import lib/mkMobileNixHost.nix;
       # mkPiImage = import lib/mkNixHost.nix;
       mkDarwinHost = import lib/mkDarwinHost.nix;
       overlays = [
@@ -64,21 +65,10 @@
           system = "x86_64-linux";
           user = defaultUserName;
         };
-        mbrick = nixpkgs.lib.nixosSystem {
-          inherit (inputs) mobile-nixos;
+        mbrick = mkMobileNixHost "mbrick" {
+          inherit overlays nixpkgs inputs;
           system = "aarch64-linux";
-          modules = [
-            (import ./hosts/mbrick defaultUserName)
-            inputs.home-manager.nixosModules.home-manager
-            {
-              home-manager.useGlobalPkgs = true;
-              home-manager.useUserPackages = true;
-              home-manager.users.${defaultUserName} = import ./home;
-            }
-            (import "${inputs.mobile-nixos}/lib/configuration.nix" {
-              device = "oneplus-fajita";
-            })
-          ];
+          user = defaultUserName;
         };
         # mOctopi = mkPiImage "moctopi" {
         #   inherit overlays nixpkgs inputs;

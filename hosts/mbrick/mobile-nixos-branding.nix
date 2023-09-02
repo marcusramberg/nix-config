@@ -3,7 +3,7 @@
 #
 # This is **not** an example for end-user-centric configuration.
 #
-{ config, pkgs, ... }:
+{ config, pkgs, user, inputs, ... }:
 
 let
   # This script will run *only once*, even if changed.
@@ -45,13 +45,13 @@ let
   # to be used as they are. They need to be pre-rendered.
   wallpapers = pkgs.runCommand "wallpapers" { } ''
     mkdir -p $out/
-    cp ${../../artwork/wallpapers}/*.png $out/
+    cp ${inputs.mobile-nixos}/aartwork/wallpapers}/*.png $out/
   '';
 
   wallpaper = "${wallpapers}/mobile-nixos-19.09.png";
 
   # Used to run an ugly activation script.
-  defaultUserName = "marcus";
+  defaultUserName = user;
 in {
   environment.systemPackages = [ plamoInitialDefaults ];
 

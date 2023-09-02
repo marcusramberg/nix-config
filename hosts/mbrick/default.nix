@@ -1,21 +1,24 @@
 # System configuration for the demo.
 #
-{ config, lib, ... }:
+{ config, lib, user, ... }:
 
 let
   # One-stop shop to customize the default username before building.
   defaultUserName = "marcus";
 in {
-  imports = [ ./mobile-nixos-branding.nix ./plasma-mobile.nix ];
+  imports = [
+    ./mobile-nixos-branding.nix
+    ./plasma-mobile.nix
+    ../../modules/agenix.nix
+  ];
 
   config = lib.mkMerge [
-    # INSECURE STUFF FIRST
-    # Users and hardcoded passwords.
     {
+      nixpkgs.config.permittedInsecurePackages = [ "nodejs-16.20.2" ];
       # Forcibly set a password on users...
       # Note that a numeric password is currently required to unlock a session
       # with the plasma mobile shell :/
-      users.users.${defaultUserName} = {
+      users.users.${user} = {
         isNormalUser = true;
         # Numeric pin makes it **possible** to input on the lockscreen.
         passwordFile = config.age.secrets.phone-pin.path;

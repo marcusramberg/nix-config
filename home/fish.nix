@@ -55,6 +55,7 @@
   '';
   interactiveShellInit = ''
     fish_vi_key_bindings
+    bind \e\e 'fuck'
     set fish_theme nord
     set -gx EDITOR nvim
     type -q thefuck; and thefuck --alias | source
@@ -93,7 +94,12 @@
     # }
     {
       name = "pure";
-      inherit (pkgs.fishPlugins.pure) src;
+      src = pkgs.fetchFromGitHub {
+        owner = "pure-fish";
+        repo = "pure";
+        rev = "v4.7.0";
+        sha256 = "sha256-2ZNb6aB7rIubTfRVRb42xmCdImQmtGGubo0TBwSPHEo=";
+      };
     }
     {
       name = "gcloud-completions";
