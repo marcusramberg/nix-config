@@ -45,7 +45,7 @@ let
   # to be used as they are. They need to be pre-rendered.
   wallpapers = pkgs.runCommand "wallpapers" { } ''
     mkdir -p $out/
-    cp ${inputs.mobile-nixos}/aartwork/wallpapers}/*.png $out/
+    cp ${inputs.mobile-nixos}/artwork/wallpapers/*.png $out/
   '';
 
   wallpaper = "${wallpapers}/mobile-nixos-19.09.png";

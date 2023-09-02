@@ -1,6 +1,6 @@
 # System configuration for the demo.
 #
-{ config, lib, user, ... }:
+{ config, inputs, lib, user, pkgs, ... }:
 
 let
   # One-stop shop to customize the default username before building.
@@ -14,6 +14,21 @@ in {
 
   config = lib.mkMerge [
     {
+  environment = {
+    systemPackages = with pkgs; [
+      cached-nix-shell
+      gitFull
+      gitAndTools.gh
+      inputs.agenix.packages."${pkgs.system}".default
+    ];
+  };
+      age.identityPaths = [ "/home/marcus/.ssh/id_ed25519" ];
+      programs.fish.enable = true;
+      programs.neovim = {
+        enable = true;
+        viAlias = true;
+        defaultEditor = true;
+      };
       nixpkgs.config.permittedInsecurePackages = [ "nodejs-16.20.2" ];
       # Forcibly set a password on users...
       # Note that a numeric password is currently required to unlock a session
@@ -21,6 +36,7 @@ in {
       users.users.${user} = {
         isNormalUser = true;
         # Numeric pin makes it **possible** to input on the lockscreen.
+        shell = pkgs.fish;
         passwordFile = config.age.secrets.phone-pin.path;
         home = "/home/${defaultUserName}";
         extraGroups =
@@ -36,6 +52,8 @@ in {
     {
       # Ensures any rndis config from stage-1 is not clobbered by NetworkManager
       networking.networkmanager.unmanaged = [ "rndis0" "usb0" ];
+      networking.hostName = "mbrick";
+      services.tailscale.enable = true;
 
       # Setup USB gadget networking in initrd...
       mobile.boot.stage-1.networking.enable = lib.mkDefault true;
