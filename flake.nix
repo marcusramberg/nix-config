@@ -65,10 +65,14 @@
           system = "x86_64-linux";
           user = defaultUserName;
         };
-        mbrick = mkMobileNixHost "mbrick" {
+        mbrick = mkNixHost "mbrick" {
           inherit overlays nixpkgs inputs;
           system = "aarch64-linux";
           user = defaultUserName;
+          extraModules = [
+            (import "${inputs.mobile-nixos}/lib/configuration.nix" {
+              device = "oneplus-fajita"; })
+          ];
         };
         # mOctopi = mkPiImage "moctopi" {
         #   inherit overlays nixpkgs inputs;

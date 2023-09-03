@@ -13,7 +13,6 @@
 
   hardware.enableAllFirmware = true;
   hardware.pulseaudio.enable = false;
-  services.pipewire.audio.enable = true;
 
   services.flatpak.enable = true;
   virtualisation.podman.enable = true;

@@ -1,11 +1,12 @@
 name:
-{ nixpkgs, inputs, system, user, overlays }:
+{ nixpkgs, inputs, system, user, overlays, extraModules ? null }:
 
 let mkOptions = import ./mkOptions.nix;
-in nixpkgs.lib.nixosSystem {
-  specialArgs = { inherit inputs; };
+inherit (nixpkgs) lib;
+in lib.nixosSystem {
+  specialArgs = { inherit inputs; inherit user; };
   inherit system;
-  modules = [
+  modules = lib.lists.flatten( [
     ../hosts/${name}
     ../nixos
     inputs.home-manager.nixosModules.home-manager
@@ -14,5 +15,5 @@ in nixpkgs.lib.nixosSystem {
       inherit overlays;
       inherit inputs;
     })
-  ];
+  ] ++ lib.optional (extraModules != null) extraModules);
 }
