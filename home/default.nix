@@ -10,7 +10,7 @@
       enable = true;
       nix-direnv.enable = true;
     };
-    exa = {
+    eza = {
       enable = true;
       enableAliases = true;
       icons = true;
@@ -101,6 +101,7 @@
       lazygit
       luarocks
       lua-language-server
+      nil
       neofetch
       nodePackages.typescript
       nodePackages.node2nix
