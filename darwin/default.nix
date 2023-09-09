@@ -38,14 +38,19 @@
   # Apps
   # `home-manager` currently has issues adding them to `~/Applications`
   # Issue: https://github.com/nix-community/home-manager/issues/1341
-  environment.systemPackages = with pkgs; [
-    colima
-    gnupg
-    goku
-    gitFull
-    element-desktop
-    terminal-notifier
-  ];
+  environment = {
+    systemPackages = with pkgs; [
+      colima
+      gnupg
+      goku
+      gitFull
+      element-desktop
+      terminal-notifier
+    ];
+    postBuild = ''
+      ln -sv ${pkgs.path} $out/nixpkgs
+    '';
+  };
 
   # services.karabiner-elements.enable = true;
 
@@ -95,6 +100,7 @@
   };
 
   nixpkgs.config.permittedInsecurePackages = [ "nodejs-16.20.2" ];
+  nix.nixPath = [ "nixpkgs=/run/current-system/nixpkgs" ];
   # Add ability to used TouchID for sudo authentication
   security.pam.enableSudoTouchIdAuth = true;
   time.timeZone = "Europe/Oslo";
