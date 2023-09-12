@@ -8,7 +8,7 @@
     #   settings.allow_anonymous = true;
     # }];
     listeners = [{
-      omitPasswordAuth = true;
+      omitPasswordAuth = false;
       users = {
         hass = {
           acl = [ "readwrite homeassistant/#" ];
