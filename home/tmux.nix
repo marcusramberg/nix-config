@@ -10,14 +10,13 @@
   terminal = "tmux-256color";
   tmuxinator.enable = true;
   extraConfig = ''
-    set -ga terminal-overrides ",*256col*:Tc"
+    set -ag terminal-overrides ",xterm-256color:RGB"
     set -g set-titles on
     set -g set-titles-string "#I > #T"
     set -g status-style bg=white,fg=black
     set -g mode-style bg=white,fg=black
     set -g message-style bg=white,fg=black
     set -g message-command-style bg=white,fg=black
-    # set -g status off
     set -g display-time 1000
     set-window-option -g visual-bell on
     set-window-option -g bell-action other
