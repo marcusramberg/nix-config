@@ -100,7 +100,7 @@
   };
 
   nixpkgs.config.permittedInsecurePackages = [ "nodejs-16.20.2" ];
-  nix.nixPath = [ "nixpkgs=/run/current-system/nixpkgs" ];
+  nix.nixPath = [ "nixpkgs=/run/current-system/sw/nixpkgs" ];
   # Add ability to used TouchID for sudo authentication
   security.pam.enableSudoTouchIdAuth = true;
   time.timeZone = "Europe/Oslo";
