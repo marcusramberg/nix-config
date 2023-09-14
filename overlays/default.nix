@@ -11,9 +11,6 @@ in pkgs: super: {
   # forgit = super.callPackage ../packages/forgit { inputs = inputs; };
   tfenv = super.callPackage ../packages/tfenv { inherit inputs; };
   wezterm-nightly = super.callPackage ../packages/wezterm-nightly { };
-  nimdow = super.nimdow.overrideAttrs (oldAttrs: {
-    patches = oldAttrs.patches or [ ] ++ [ ./patches/nimdow-randr.patch ];
-  });
   nzbget = super.nzbget.overrideAttrs (oa: {
     pname = "nzbget-ng";
     version = "21.4-rc2";
