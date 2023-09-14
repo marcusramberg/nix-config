@@ -2,34 +2,32 @@
   description = "nix.means.no";
 
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
-    stable.url = "github:nixos/nixpkgs/nixos-22.11";
-    home-manager.url = "github:nix-community/home-manager";
-    home-manager.inputs.nixpkgs.follows = "nixpkgs";
-    neovim-nightly-overlay = {
-      url = "github:nix-community/neovim-nightly-overlay";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-    # nixos-wsl.url = "github:nix-community/NixOS-WSL";
-    devenv.url = "github:cachix/devenv/latest";
-    darwin.url = "github:lnl7/nix-darwin/master";
-    darwin.inputs.nixpkgs.follows = "nixpkgs";
     agenix.url = "github:ryantm/agenix";
+    darwin.inputs.nixpkgs.follows = "nixpkgs";
+    darwin.url = "github:lnl7/nix-darwin/master";
+    devenv.url = "github:cachix/devenv/latest";
     emacs-overlay.url = "github:nix-community/emacs-overlay";
-    nur.url = "github:nix-community/NUR";
-    webauthn-oidc.url = "github:arianvp/webauthn-oidc";
-
-    tfenv.url = "github:tfutils/tfenv";
-    tfenv.flake = false;
-    mobile-nixos.url = "github:marcusramberg/mobile-nixos/enchilada";
+    hei.url = "github:marcusramberg/hei";
+    home-manager.inputs.nixpkgs.follows = "nixpkgs";
+    home-manager.url = "github:nix-community/home-manager";
     mobile-nixos.flake = false;
+    mobile-nixos.url = "github:marcusramberg/mobile-nixos/enchilada";
+    neovim-nightly-overlay = {
+      inputs.nixpkgs.follows = "nixpkgs";
+      url = "github:nix-community/neovim-nightly-overlay";
+    };
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+    nur.url = "github:nix-community/NUR";
+    stable.url = "github:nixos/nixpkgs/nixos-22.11";
+    tfenv.flake = false;
+    tfenv.url = "github:tfutils/tfenv";
+    webauthn-oidc.url = "github:arianvp/webauthn-oidc";
   };
 
   outputs = { nixpkgs, ... }@inputs:
     let
       defaultUserName = "marcus";
       mkNixHost = import lib/mkNixHost.nix;
-      mkMobileNixHost = import lib/mkMobileNixHost.nix;
       # mkPiImage = import lib/mkNixHost.nix;
       mkDarwinHost = import lib/mkDarwinHost.nix;
       overlays = [
@@ -71,7 +69,8 @@
           user = defaultUserName;
           extraModules = [
             (import "${inputs.mobile-nixos}/lib/configuration.nix" {
-              device = "oneplus-fajita"; })
+              device = "oneplus-fajita";
+            })
           ];
         };
         # mOctopi = mkPiImage "moctopi" {

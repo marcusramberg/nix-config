@@ -95,6 +95,7 @@
       gotestfmt
       grc
       inputs.devenv.packages.${system}.devenv
+      inputs.hei.packages.${system}.hei
       jq
       kubectl
       kubectx
