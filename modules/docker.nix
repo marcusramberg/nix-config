@@ -67,6 +67,7 @@
           TZ = "Europe/Oslo";
           PUID = "193";
           PGID = "193";
+          VERSION = "latest";
         };
         extraOptions = [ "--net=host" "--device=/dev/dri/" ];
         volumes = [ "/var/lib/plex:/config" "/space:/space" ];
