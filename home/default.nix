@@ -102,6 +102,7 @@
       luarocks
       lua-language-server
       nil
+      mosh
       neofetch
       nodePackages.typescript
       nodePackages.node2nix
