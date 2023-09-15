@@ -2,8 +2,8 @@
 let mkOptions = import ./mkOptions.nix;
 in inputs.darwin.lib.darwinSystem rec {
   inherit system;
-  specialArgs = { 
-    inherit inputs; 
+  specialArgs = {
+    inherit inputs;
     inherit user;
   };
   modules = [
