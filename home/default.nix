@@ -87,7 +87,7 @@
       git = true;
     };
     chromium.enable = pkgs.stdenv.isLinux;
-    difftastic = {
+    git.difftastic = {
       background = "dark";
       display = "inline";
       enable = true;
