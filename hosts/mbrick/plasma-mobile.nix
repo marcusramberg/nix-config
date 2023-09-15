@@ -23,8 +23,8 @@
           session-cleanup-script=${pkgs.procps}/bin/pkill -P1 -fx ${pkgs.lightdm}/sbin/lightdm
         '';
       };
+      autoLogin.enable = true;
     };
-    autoLogin = { enable = true; };
 
     libinput.enable = true;
   };
