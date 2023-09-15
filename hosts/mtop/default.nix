@@ -6,6 +6,7 @@
     ./hardware-configuration.nix
     ../../modules/keyboardmap.nix
     ../../modules/desktop.nix
+    ../../modules/docker.nix
     ../../modules/laptop.nix
     ../../modules/pipewire.nix
   ];
@@ -45,10 +46,6 @@
     '';
     mbpfan.enable = true;
     xserver.dpi = 220;
-  };
-  virtualisationpodman = {
-    enable = true;
-    dockerCompat = true;
   };
 
 }
