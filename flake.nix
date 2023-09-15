@@ -8,6 +8,8 @@
     devenv.url = "github:cachix/devenv/latest";
     emacs-overlay.url = "github:nix-community/emacs-overlay";
     hei.url = "github:marcusramberg/hei";
+    flake-utils.url = "github:numtide/flake-utils";
+
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
     home-manager.url = "github:nix-community/home-manager";
     mobile-nixos.flake = false;
@@ -24,7 +26,7 @@
     webauthn-oidc.url = "github:arianvp/webauthn-oidc";
   };
 
-  outputs = { nixpkgs, ... }@inputs:
+  outputs = { nixpkgs, flake-utils, hei, ... }@inputs:
     let
       defaultUserName = "marcus";
       mkNixHost = import lib/mkNixHost.nix;
@@ -85,5 +87,11 @@
         system = "aarch64-darwin";
         user = "marcus";
       };
-    };
+    } // flake-utils.lib.eachDefaultSystem (system: {
+      apps.default = {
+        type = "app";
+        program = "${hei.packages.${system}.hei}/bin/hei";
+
+      };
+    });
 }

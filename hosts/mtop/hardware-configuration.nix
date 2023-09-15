@@ -9,24 +9,28 @@
     (modulesPath + "/installer/scan/not-detected.nix")
   ];
 
-  boot.initrd.availableKernelModules =
-    [ "xhci_pci" "ahci" "usbhid" "usb_storage" "sd_mod" ];
-  boot.initrd.kernelModules = [ ];
-  boot.kernelModules = [ "kvm-intel" ];
-  boot.extraModulePackages = [ ];
-
-  fileSystems."/" = {
-    device = "/dev/disk/by-uuid/86952286-ffab-4b03-8a78-0c21099588bd";
-    fsType = "ext4";
-  };
-  fileSystems."/home/marcus" = {
-    device = "/dev/disk/by-uuid/4d79d071-7bee-4cf0-85fa-01f313cb9eab";
-    fsType = "ext4";
+  boot = {
+    initrd.availableKernelModules =
+      [ "xhci_pci" "ahci" "usbhid" "usb_storage" "sd_mod" ];
+    initrd.kernelModules = [ ];
+    kernelModules = [ "kvm-intel" ];
+    extraModulePackages = [ ];
   };
 
-  fileSystems."/boot/efi" = {
-    device = "/dev/disk/by-uuid/67E3-17ED";
-    fsType = "vfat";
+  fileSystems = {
+    "/" = {
+      device = "/dev/disk/by-uuid/86952286-ffab-4b03-8a78-0c21099588bd";
+      fsType = "ext4";
+    };
+    "/home/marcus" = {
+      device = "/dev/disk/by-uuid/4d79d071-7bee-4cf0-85fa-01f313cb9eab";
+      fsType = "ext4";
+    };
+
+    "/boot/efi" = {
+      device = "/dev/disk/by-uuid/67E3-17ED";
+      fsType = "vfat";
+    };
   };
 
   swapDevices = [ ];

@@ -9,32 +9,46 @@
     ../../modules/laptop.nix
     ../../modules/pipewire.nix
   ];
-  networking.hostName = "mtop";
-  networking.enableIPv6 = false;
-  networking.networkmanager.enable = true;
+  boot = {
+    loader = {
+      systemd-boot.enable = true;
+      efi.canTouchEfiVariables = true;
+      efi.efiSysMountPoint = "/boot/efi";
+    };
+    extraModprobeConfig = ''
+      options snd_hda_intel index=0 model=intel-mac-auto id=PCM
+      options snd_hda_intel index=1 model=intel-mac-auto id=HDMI
+      options snd_hda_intel model=mbp101
+    '';
+  };
+
+  hardware = {
+    bluetooth.enable = false;
+    facetimehd.enable = true;
+    opengl.extraPackages = [ pkgs.vaapiIntel ];
+  };
+  networking = {
+    hostName = "mtop";
+    enableIPv6 = false;
+    networkmanager.enable = true;
+  };
+
+  powerManagement.enable = true;
+
   programs.nm-applet.enable = true;
 
-  services.flatpak.enable = true;
-  services.logind.extraConfig = ''
-    HandlePowerKey=ignore
-  '';
-  services.mbpfan.enable = true;
-  virtualisation.podman.enable = true;
-  virtualisation.podman.dockerCompat = true;
-  boot.loader.systemd-boot.enable = true;
-  boot.loader.efi.canTouchEfiVariables = true;
-  boot.loader.efi.efiSysMountPoint = "/boot/efi";
-
-  services.input-remapper.enable = true;
-  services.xserver.dpi = 220;
-  boot.extraModprobeConfig = ''
-    options snd_hda_intel index=0 model=intel-mac-auto id=PCM
-    options snd_hda_intel index=1 model=intel-mac-auto id=HDMI
-    options snd_hda_intel model=mbp101
-  '';
-  hardware.bluetooth.enable = false;
-  hardware.facetimehd.enable = true;
-  hardware.opengl.extraPackages = [ pkgs.vaapiIntel ];
-  powerManagement.enable = true;
+  services = {
+    flatpak.enable = true;
+    input-remapper.enable = true;
+    logind.extraConfig = ''
+      HandlePowerKey=ignore
+    '';
+    mbpfan.enable = true;
+    xserver.dpi = 220;
+  };
+  virtualisationpodman = {
+    enable = true;
+    dockerCompat = true;
+  };
 
 }

@@ -80,8 +80,6 @@
     shell = pkgs.fish;
   };
 
-  security.sudo.wheelNeedsPassword = false;
-
   system = {
     # This value determines the NixOS release with which your system is to be
     # compatible, in order to avoid breaking some software such as database
@@ -102,16 +100,19 @@
   };
   nix.nixPath = [ "nixpkgs=/run/current-system/nixpkgs" ];
 
-  security.pam.loginLimits = [{
-    domain = "marcus";
-    type = "soft";
-    item = "nofile";
-    value = "200000";
-  }];
+  security = {
+    pam.loginLimits = [{
+      domain = "marcus";
+      type = "soft";
+      item = "nofile";
+      value = "200000";
+    }];
+    pki.certificateFiles =
+      if builtins.pathExists "/home/marcus/.local/share/mkcert/rootCA.pem" then
+        [ /home/marcus/.local/share/mkcert/rootCA.pem ]
+      else
+        [ ];
+    sudo.wheelNeedsPassword = false;
+  };
 
-  security.pki.certificateFiles =
-    if builtins.pathExists "/home/marcus/.local/share/mkcert/rootCA.pem" then
-      [ /home/marcus/.local/share/mkcert/rootCA.pem ]
-    else
-      [ ];
 }

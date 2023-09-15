@@ -48,11 +48,15 @@
       libinput.enable = true;
       xkbOptions = "eurosign:e";
       xkbVariant = "mac";
-      displayManager.lightdm.enable = true;
-      displayManager.lightdm.greeters.gtk.enable = true;
-      displayManager.lightdm.greeters.gtk.theme.name = "Nordic";
+      displayManager = {
+        defaultSession = "xfce+nimdow";
+        lightdm = {
+          greeters.gtk.enable = true;
+          greeters.gtk.theme.name = "Nordic";
+          enable = true;
+        };
+      };
 
-      displayManager.defaultSession = "xfce+nimdow";
       desktopManager = {
         plasma5.enable = true;
         xfce = {
@@ -78,5 +82,4 @@
     "x-scheme-handler/unknown" = "vivaldi-stable.desktop";
   };
   environment.sessionVariables.DEFAULT_BROWSER = "${pkgs.vivaldi}/bin/vivaldi";
-
 }

@@ -1,6 +1,4 @@
-_:
-
-{
+_: {
   imports = [
     # Include the results of the hardware scan.
     ./hardware-configuration.nix
@@ -8,18 +6,25 @@ _:
     ../../modules/desktop.nix
     ../../modules/pipewire.nix
   ];
-  networking.hostName = "mlab";
-  networking.networkmanager.enable = true;
+  boot.loader = {
+    systemd-boot.enable = true;
+    efi.canTouchEfiVariables = true;
+    efi.efiSysMountPoint = "/boot/efi";
+  };
+  networking = {
+    hostName = "mlab";
+    networkmanager.enable = true;
+  };
+
   programs.nm-applet.enable = true;
 
-  services.flatpak.enable = true;
-  services.mbpfan.enable = true;
-  virtualisation.podman.enable = true;
-  virtualisation.podman.dockerCompat = true;
-  boot.loader.systemd-boot.enable = true;
-  boot.loader.efi.canTouchEfiVariables = true;
-  boot.loader.efi.efiSysMountPoint = "/boot/efi";
-
-  services.input-remapper.enable = true;
-
+  services = {
+    flatpak.enable = true;
+    mbpfan.enable = true;
+    input-remapper.enable = true;
+  };
+  virtualisation = {
+    podman.enable = true;
+    podman.dockerCompat = true;
+  };
 }

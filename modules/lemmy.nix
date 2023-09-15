@@ -21,8 +21,8 @@
   #   };
   config.virtualisation = {
     podman.enable = true;
-    oci-containers = {
-      containers.lemmy-server = {
+    oci-containers.containers = {
+      lemmy-server = {
         # ports = [ "8536:8536" ];
         image = "dessalines/lemmy:0.18.1";
         extraOptions = [ "--network=host" ];
@@ -36,14 +36,13 @@
           "/run/postgresql:/run/postgresql"
         ];
       };
-      containers.pictrs = {
+      pictrs = {
         image = "asonix/pictrs:0.3.1";
         environmentFiles = [ config.age.secrets.picserver.path ];
         ports = [ "4585:8080" ];
         volumes = [ "/space/pictrs:/mnt" ];
       };
-
-      containers.lemmy-ui = {
+      lemmy-ui = {
         image = "dessalines/lemmy-ui:0.18.1";
         extraOptions = [ "--network=host" ];
         # ports = [ "1236:1236" ];

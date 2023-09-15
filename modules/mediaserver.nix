@@ -1,7 +1,10 @@
-{ pkgs, lib, config, secrets, ... }: {
-  age.secrets.vaultwarden.owner = "vaultwarden";
-  age.secrets.miniflux.owner = "miniflux";
-  age.secrets.transmission.owner = "transmission";
+{ pkgs, config, ... }: {
+
+  age.secrets = {
+    vaultwarden.owner = "vaultwarden";
+    miniflux.owner = "miniflux";
+    transmission.owner = "transmission";
+  };
 
   services = {
     vaultwarden = {
@@ -57,8 +60,8 @@
       '';
     };
   };
-  users.users.radarr.extraGroups = [ "transmission" "nzbget" ];
-  users.users.sonarr.extraGroups = [ "transmission" "nzbget" ];
-
+  users.users = {
+    radarr.extraGroups = [ "transmission" "nzbget" ];
+    sonarr.extraGroups = [ "transmission" "nzbget" ];
+  };
 }
-

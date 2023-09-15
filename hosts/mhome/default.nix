@@ -1,8 +1,10 @@
 _:
 
 {
+  boot = {
+    kernelParams = [ "pcie_aspm=off" ];
+    loader.systemd-boot.enable = true;
+  };
+  loader.grub.device = "/dev/sda";
   networking.hostName = "mhome"; # Define your hostname.
-  boot.loader.grub.device = "/dev/sda";
-  boot.kernelParams = [ "pcie_aspm=off" ];
-  boot.loader.systemd-boot.enable = true;
 }

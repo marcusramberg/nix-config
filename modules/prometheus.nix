@@ -1,4 +1,4 @@
-{ pkgs, lib, config, secrets, ... }: {
+{ pkgs, lib, config, ... }: {
 
   networking = {
     firewall.allowedTCPPorts = [
@@ -13,9 +13,11 @@
   systemd.services.promtail.serviceConfig.ExecStart = lib.mkForce
     "${pkgs.promtail}/bin/promtail -config.file=${config.age.secrets.promtail.path}";
 
-  age.secrets.promtail.owner = "promtail";
-  age.secrets.prompass.owner = "prometheus";
-  age.secrets.ha-bearer.owner = "prometheus";
+  age.secrets = {
+    promtail.owner = "promtail";
+    prompass.owner = "prometheus";
+    ha-bearer.owner = "prometheus";
+  };
 
   services.prometheus = {
     enable = true;

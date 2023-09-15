@@ -6,11 +6,13 @@
 {
   imports = [ ];
 
-  boot.initrd.availableKernelModules =
-    [ "ata_piix" "mptspi" "uhci_hcd" "ehci_pci" "sd_mod" "sr_mod" ];
-  boot.initrd.kernelModules = [ ];
-  boot.kernelModules = [ ];
-  boot.extraModulePackages = [ ];
+  boot = {
+    initrd.availableKernelModules =
+      [ "ata_piix" "mptspi" "uhci_hcd" "ehci_pci" "sd_mod" "sr_mod" ];
+    initrd.kernelModules = [ ];
+    kernelModules = [ ];
+    extraModulePackages = [ ];
+  };
 
   fileSystems."/" = {
     device = "/dev/disk/by-uuid/9bba7bca-823c-4137-b413-82d59223a972";

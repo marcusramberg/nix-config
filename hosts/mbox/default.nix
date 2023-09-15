@@ -8,44 +8,45 @@ _:
     ../../modules/keyboardmap.nix
     ../../modules/pipewire.nix
   ];
-  networking.hostName = "mbox";
-  virtualisation.vmware.guest.enable = true;
-  boot.kernel.sysctl."net.ipv4.ip_forward" = 1;
 
-  # Enable nix flakes
-  # nix.package = pkgs.nixFlakes;
-  # nix.extraOptions = ''
-  #   experimental-features = nix-command flakes
-  # '';
-
-  #  system.stateVersion = "22.11";
-  services.flatpak.enable = true;
-  virtualisation.podman.enable = true;
-  virtualisation.podman.dockerCompat = true;
-  services.xserver.dpi = 144;
-
-  networking.extraHosts = ''
-    10.211.55.2 mbook
-    0.0.0.0 vg.no www.vg.no
-  '';
+  networking = {
+    extraHosts = ''
+      10.211.55.2 mbook
+      0.0.0.0 vg.no www.vg.no
+    '';
+    hostName = "mbox";
+    networkmanager.enable = true;
+  };
 
   # Bootloader.
-  boot.loader.systemd-boot.enable = true;
-  boot.loader.efi.canTouchEfiVariables = true;
-  boot.loader.efi.efiSysMountPoint = "/boot/efi";
+  boot = {
+    initrd.secrets = { "/crypto_keyfile.bin" = null; };
+    loader = {
+      systemd-boot.enable = true;
+      efi.canTouchEfiVariables = true;
+      efi.efiSysMountPoint = "/boot/efi";
+    };
+    kernel.sysctl."net.ipv4.ip_forward" = 1;
+  };
 
-  # Setup keyfile
-  boot.initrd.secrets = { "/crypto_keyfile.bin" = null; };
-  # Enable networking
-  networking.networkmanager.enable = true;
-  services.postgresql = {
-    enable = true;
-    enableTCPIP = true;
-    authentication = ''
-      local all all trust
-      host all all ::1/128 trust
-      host all all 127.0.0.1/32 trust
-    '';
+  services = {
+    flatpak.enable = true;
+    xserver.dpi = 144;
+    postgresql = {
+      enable = true;
+      enableTCPIP = true;
+      authentication = ''
+        local all all trust
+        host all all ::1/128 trust
+        host all all 127.0.0.1/32 trust
+      '';
+    };
+  };
+
+  virtualisation = {
+    podman.enable = true;
+    podman.dockerCompat = true;
+    vmware.guest.enable = true;
   };
 
 }
