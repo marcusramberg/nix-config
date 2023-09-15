@@ -20,12 +20,18 @@ _:
 
   # Bootloader.
   boot = {
-    initrd.secrets = { "/crypto_keyfile.bin" = null; };
-    loader = {
-      systemd-boot.enable = true;
-      efi.canTouchEfiVariables = true;
-      efi.efiSysMountPoint = "/boot/efi";
-    };
+  # Bootloader.
+  loader.systemd-boot.enable = true;
+  loader.efi.canTouchEfiVariables = true;
+
+  # Setup keyfile
+  initrd.secrets = {
+    "/crypto_keyfile.bin" = null;
+  };
+
+  # Enable swap on luks
+  initrd.luks.devices."luks-0050060b-f9cb-4697-8934-aef2f5ad0e2a".device = "/dev/disk/by-uuid/0050060b-f9cb-4697-8934-aef2f5ad0e2a";
+  initrd.luks.devices."luks-0050060b-f9cb-4697-8934-aef2f5ad0e2a".keyFile = "/crypto_keyfile.bin";
     kernel.sysctl."net.ipv4.ip_forward" = 1;
   };
 
@@ -45,8 +51,5 @@ _:
 
   virtualisation = {
     podman.enable = true;
-    podman.dockerCompat = true;
-    vmware.guest.enable = true;
-  };
-
+    podman.dockerCompat = true; };
 }
