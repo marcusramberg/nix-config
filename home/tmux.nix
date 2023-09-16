@@ -11,6 +11,7 @@
   tmuxinator.enable = true;
   extraConfig = ''
     set -ag terminal-overrides ",xterm-256color:RGB"
+    set -g escape-time 0
     set -g set-titles on
     set -g set-titles-string "#I > #T"
     set -g status-style bg=white,fg=black

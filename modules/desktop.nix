@@ -37,7 +37,7 @@
 
     picom = {
       enable = true;
-      activeOpacity = 0.95;
+      activeOpacity = 1;
       vSync = true;
       backend = "glx";
     };

@@ -1,12 +1,20 @@
-_:
+{ lib, pkgs, ... }:
 
-{
+let gpuIDs = [ "10de:1f08" "10de:10f9" "10de:1ada" "10de:1adb" ];
+in {
   imports = [
     # Include the results of the hardware scan.
     ./hardware-configuration.nix
     ../../modules/desktop.nix
     ../../modules/keyboardmap.nix
     ../../modules/pipewire.nix
+    ../../modules/amd.nix
+  ];
+
+  # Add for virtualisation
+  environment.systemPackages = with pkgs; [
+    virt-manager
+    libguestfs # needed to virt-sparsify qcow2 files
   ];
 
   networking = {
@@ -35,10 +43,21 @@ _:
         "/crypto_keyfile.bin";
     };
     kernel.sysctl."net.ipv4.ip_forward" = 1;
+
+    kernelParams =
+      [ "intel_iommu=on" ("vfio-pci.ids=" + lib.concatStringsSep "," gpuIDs) ];
+
+    # These modules are required for PCI passthrough, and must come before early modesetting stuff
+    kernelModules = [ "vfio" "vfio_iommu_type1" "vfio_pci" "vfio_virqfd" ];
+    blacklistedKernelModules = [ "nvidia" "nouveau" ];
+    boot.extraModprobeConfig = "options kvm_intel nested=1";
   };
+
+  programs.steam.enable = true;
 
   services = {
     flatpak.enable = true;
+    tailscale.useRoutingFeatures = "server";
     xserver.dpi = 144;
     postgresql = {
       enable = true;
@@ -54,5 +73,15 @@ _:
   virtualisation = {
     podman.enable = true;
     podman.dockerCompat = true;
+    spiceUSBRedirection.enable = true;
+    libvirtd = {
+      enable = true;
+      onBoot = "ignore";
+      onShutdown = "shutdown";
+      qemu = {
+        ovmf.enable = true;
+        runAsRoot = true;
+      };
+    };
   };
 }
