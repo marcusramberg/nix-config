@@ -1,4 +1,4 @@
-{ config, ... }: {
+_: {
   config = {
     programs.light.enable = true;
     services.actkbd = {
