@@ -39,7 +39,7 @@
       containers = {
         hass = {
           # renovate: datasource=docker depName=homeassistant/home-assistant
-          image = "ghcr.io/home-assistant/home-assistant:2023.8.1";
+          image = "ghcr.io/home-assistant/home-assistant:2023.9.2";
           environment = { TZ = "Europe/Oslo"; };
           extraOptions = [
             "--net=host"
@@ -50,7 +50,7 @@
         };
         zwave-js-ui = {
           # renovate: datasource=docker depName=zwave-js/zwave-js-ui
-          image = "ghcr.io/zwave-js/zwave-js-ui:8.15.0";
+          image = "ghcr.io/zwave-js/zwave-js-ui:8.25.1";
           volumes = [
             "/var/lib/zwave-js-ui:/usr/src/app/store"
             "/dev:/dev"
