@@ -25,4 +25,5 @@ return {
 		"willothy/wezterm.nvim",
 		config = true,
 	},
+	{ "ibhagwan/smartyank.nvim", config = true },
 }
