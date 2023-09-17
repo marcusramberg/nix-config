@@ -1,6 +1,5 @@
 name:
-{ nixpkgs, inputs, system, user, overlays, extraModules ? null }:
-
+{ nixpkgs, inputs, system, user ? "marcus", overlays, extraModules ? null }:
 let
   mkOptions = import ./mkOptions.nix;
   inherit (nixpkgs) lib;

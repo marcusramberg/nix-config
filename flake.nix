@@ -28,7 +28,6 @@
 
   outputs = { nixpkgs, flake-utils, hei, ... }@inputs:
     let
-      defaultUserName = "marcus";
       mkNixHost = import lib/mkNixHost.nix;
       # mkPiImage = import lib/mkNixHost.nix;
       mkDarwinHost = import lib/mkDarwinHost.nix;
@@ -43,37 +42,30 @@
         mhub = mkNixHost "mhub" {
           inherit overlays nixpkgs inputs;
           system = "x86_64-linux";
-          user = defaultUserName;
         };
         butterbee = mkNixHost "butterbee" {
           inherit overlays nixpkgs inputs;
           system = "aarch64-linux";
-          user = defaultUserName;
         };
         mbox = mkNixHost "mbox" {
           inherit overlays nixpkgs inputs;
           system = "x86_64-linux";
-          user = defaultUserName;
         };
         mtop = mkNixHost "mtop" {
           inherit overlays nixpkgs inputs;
           system = "x86_64-linux";
-          user = defaultUserName;
         };
         mvirt = mkNixHost "mvirt" {
           inherit overlays nixpkgs inputs;
           system = "x86_64-linux";
-          user = defaultUserName;
         };
         mlab = mkNixHost "mlab" {
           inherit overlays nixpkgs inputs;
           system = "x86_64-linux";
-          user = defaultUserName;
         };
         mbrick = mkNixHost "mbrick" {
           inherit overlays nixpkgs inputs;
           system = "aarch64-linux";
-          user = defaultUserName;
           extraModules = [
             (import "${inputs.mobile-nixos}/lib/configuration.nix" {
               device = "oneplus-fajita";
@@ -90,7 +82,6 @@
       darwinConfigurations.mbook = mkDarwinHost {
         inherit overlays inputs;
         system = "aarch64-darwin";
-        user = "marcus";
       };
     } // flake-utils.lib.eachDefaultSystem (system: {
       apps.default = {
