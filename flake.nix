@@ -60,6 +60,11 @@
           system = "x86_64-linux";
           user = defaultUserName;
         };
+        mvirt = mkNixHost "mvirt" {
+          inherit overlays nixpkgs inputs;
+          system = "x86_64-linux";
+          user = defaultUserName;
+        };
         mlab = mkNixHost "mlab" {
           inherit overlays nixpkgs inputs;
           system = "x86_64-linux";
