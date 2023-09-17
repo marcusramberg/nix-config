@@ -1,6 +1,6 @@
 { lib, pkgs, ... }:
 
-let gpuIDs = [ "10de:1f08" "10de:10f9" "10de:1ada" "10de:1adb" ];
+let gpuIDs = [ "8086:1901" "10de:1f08" "10de:10f9" "10de:1ada" "10de:1adb" ];
 in {
   imports = [
     # Include the results of the hardware scan.
@@ -15,6 +15,7 @@ in {
   environment.systemPackages = with pkgs; [
     virt-manager
     libguestfs # needed to virt-sparsify qcow2 files
+    deckmaster
   ];
 
   networking = {
@@ -50,7 +51,7 @@ in {
     # These modules are required for PCI passthrough, and must come before early modesetting stuff
     kernelModules = [ "vfio" "vfio_iommu_type1" "vfio_pci" "vfio_virqfd" ];
     blacklistedKernelModules = [ "nvidia" "nouveau" ];
-    boot.extraModprobeConfig = "options kvm_intel nested=1";
+    extraModprobeConfig = "options kvm_intel nested=1";
   };
 
   programs.steam.enable = true;

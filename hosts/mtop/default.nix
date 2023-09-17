@@ -6,7 +6,6 @@
     ./hardware-configuration.nix
     ../../modules/keyboardmap.nix
     ../../modules/desktop.nix
-    ../../modules/docker.nix
     ../../modules/laptop.nix
     ../../modules/pipewire.nix
   ];
