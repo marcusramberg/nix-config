@@ -45,11 +45,15 @@ in {
     };
     kernel.sysctl."net.ipv4.ip_forward" = 1;
 
-    kernelParams =
-      [ "intel_iommu=on" ("vfio-pci.ids=" + lib.concatStringsSep "," gpuIDs) ];
+    kernelParams = [
+      "intel_iommu=on"
+      "fbcon=map:1"
+      ("vfio-pci.ids=" + lib.concatStringsSep "," gpuIDs)
+    ];
 
     # These modules are required for PCI passthrough, and must come before early modesetting stuff
-    kernelModules = [ "vfio" "vfio_iommu_type1" "vfio_pci" "vfio_virqfd" ];
+    kernelModules =
+      [ "vfio" "vfio_iommu_type1" "vfio_pci" "vfio_virqfd" "fbcon" ];
     blacklistedKernelModules = [ "nvidia" "nouveau" ];
     extraModprobeConfig = "options kvm_intel nested=1";
   };
