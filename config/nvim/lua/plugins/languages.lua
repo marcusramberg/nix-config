@@ -5,21 +5,21 @@ return {
 		"williamboman/mason.nvim",
 		opts = {
 			ensure_installed = {
-				"cmake-language-server",
-				"flake8",
-				"html-lsp",
-				"jq-lsp",
-				"json-lsp",
-				"jsonnet-language-server",
-				"lua-language-server",
-				"perlnavigator",
-				"nil",
-				"shellcheck",
-				"shfmt",
-				"stylua",
-				"svelte-language-server",
-				"taplo",
-				"yaml-language-server",
+				-- "cmake-language-server",
+				-- "flake8",
+				-- "html-lsp",
+				-- "jq-lsp",
+				-- "json-lsp",
+				-- "jsonnet-language-server",
+				-- "lua-language-server",
+				-- "perlnavigator",
+				-- "nil",
+				-- "shellcheck",
+				-- "shfmt",
+				-- "stylua",
+				-- "svelte-language-server",
+				-- "taplo",
+				-- "yaml-language-server",
 			},
 		},
 	},
@@ -111,6 +111,7 @@ return {
 	},
 	{
 		"williamboman/mason-lspconfig.nvim",
+		enabled = false,
 		opts = {
 			automatic_installation = { exclude = { "nimls", "nimlsp" } },
 		},
@@ -166,4 +167,11 @@ return {
 	-- },
 	{ "alaviss/nim.nvim" },
 	{ "joshglendenning/vim-caddyfile" },
+
+	{
+		"dundalek/lazy-lsp.nvim",
+		config = function(_, _)
+			require("lazy-lsp").setup({})
+		end,
+	},
 }
