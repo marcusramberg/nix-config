@@ -1,20 +1,22 @@
-{ pkgs, ... }:
+{ pkgs, lib, ... }:
 
 {
-  environment.systemPackages = with pkgs; [
-    copyq
-    element-desktop
-    feh
-    neovide
-    nitrogen
-    obsidian
-    picom
-    rofi
-    telegram-desktop
-    vivaldi
-    volumeicon
-    xclip
-  ];
+  environment.systemPackages = with pkgs;
+    [
+      copyq
+      element-desktop
+      feh
+      neovide
+      nitrogen
+      obsidian
+      picom
+      rofi
+      telegram-desktop
+      vivaldi
+      volumeicon
+      xclip
+    ] ++ lib.optionals (pkgs.system == "x86_64-linux")
+    [ pkgs.vivaldi-ffmpeg-codecs ];
   programs.hyprland.enable = true;
   fonts.packages = with pkgs; [
     noto-fonts-emoji
