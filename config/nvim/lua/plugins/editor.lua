@@ -25,5 +25,10 @@ return {
 		"willothy/wezterm.nvim",
 		config = true,
 	},
-	{ "ibhagwan/smartyank.nvim", config = true },
+	{
+		"ibhagwan/smartyank.nvim",
+		config = function()
+			require("smartyank").setup({ osc52 = { silent = true } })
+		end,
+	},
 }
