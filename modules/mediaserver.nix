@@ -44,6 +44,8 @@
       credentialsFile = config.age.secrets.transmission.path;
     };
 
+    jellyfin.enable = true;
+
     # unifi = {
     #   enable = true;
     #   openFirewall = true;
