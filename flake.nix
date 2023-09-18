@@ -20,7 +20,7 @@
     };
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     nur.url = "github:nix-community/NUR";
-    stable.url = "github:nixos/nixpkgs/nixos-22.11";
+    stable.url = "github:nixos/nixpkgs/nixos-23.05";
     tfenv.flake = false;
     tfenv.url = "github:tfutils/tfenv";
     webauthn-oidc.url = "github:arianvp/webauthn-oidc";
