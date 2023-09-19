@@ -1,6 +1,8 @@
 { lib, pkgs, ... }:
 
-let gpuIDs = [ "8086:1901" "10de:1f08" "10de:10f9" "10de:1ada" "10de:1adb" ];
+let
+  gpuIDs =
+    [ "8086:1901" "10de:1f08" "10de:10f9" "10de:1ada" "10de:1adb" "144d:a808" ];
 in {
   imports = [
     # Include the results of the hardware scan.
