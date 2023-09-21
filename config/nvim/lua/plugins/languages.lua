@@ -171,7 +171,9 @@ return {
 	{
 		"dundalek/lazy-lsp.nvim",
 		config = function(_, _)
-			require("lazy-lsp").setup({})
+			require("lazy-lsp").setup({
+				excluded_servers = { "sqls", "terraform_lsp" },
+			})
 		end,
 	},
 }
