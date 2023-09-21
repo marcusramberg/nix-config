@@ -5,6 +5,7 @@
     file = import ./files.nix { inherit pkgs; };
     packages = with pkgs;
       [
+        argocd
         awscli2
         actionlint
         asciinema
