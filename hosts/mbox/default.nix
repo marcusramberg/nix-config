@@ -60,15 +60,26 @@ in {
     ];
 
     # These modules are required for PCI passthrough, and must come before early modesetting stuff
-    kernelModules =
-      [ "vfio" "vfio_iommu_type1" "vfio_pci" "vfio_virqfd" "fbcon" ];
+    kernelModules = [
+      "vfio"
+      "vfio_iommu_type1"
+      "vfio_pci"
+      "vfio_virqfd"
+      "fbcon"
+      "hid-apple"
+    ];
     blacklistedKernelModules = [ "nvidia" "nouveau" ];
-    extraModprobeConfig = "options kvm_intel nested=1";
+    extraModprobeConfig = ''
+      options hid_apple iso_layout=1
+      options kvm_intel nested=1
+    '';
   };
+  hardware.bluetooth.enable = true;
 
   programs.steam.enable = true;
 
   services = {
+    blueman.enable = true;
     flatpak.enable = true;
     tailscale.useRoutingFeatures = "server";
     xserver.dpi = 144;
