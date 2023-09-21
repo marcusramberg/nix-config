@@ -52,7 +52,6 @@ in {
       luks.devices."luks-0050060b-f9cb-4697-8934-aef2f5ad0e2a".keyFile =
         "/crypto_keyfile.bin";
     };
-    kernel.sysctl."net.ipv4.ip_forward" = 1;
 
     kernelParams = [
       "intel_iommu=on"
@@ -99,3 +98,4 @@ in {
     };
   };
 }
+
