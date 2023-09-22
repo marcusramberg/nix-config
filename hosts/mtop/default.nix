@@ -5,7 +5,6 @@
     # Include the results of the hardware scan.
     ./hardware-configuration.nix
     ../../modules/keyboardmap.nix
-    ../../modules/desktop.nix
     ../../modules/laptop.nix
     ../../modules/pipewire.nix
   ];
@@ -34,6 +33,8 @@
   };
 
   powerManagement.enable = true;
+
+  profiles.nimdow.enable = true;
 
   programs.nm-applet.enable = true;
 

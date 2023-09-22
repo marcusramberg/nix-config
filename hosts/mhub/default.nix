@@ -5,7 +5,6 @@
     # Include the results of the hardware scan.
     ./hardware-configuration.nix
     ../../modules/agenix.nix
-    ../../modules/desktop.nix
     ../../modules/docker.nix
     ../../modules/lemmy.nix
     ../../modules/matrix.nix

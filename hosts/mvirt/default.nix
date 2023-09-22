@@ -5,7 +5,6 @@ _:
     # Include the results of the hardware scan.
     ./hardware-configuration.nix
     ../../modules/nvidia.nix
-    ../../modules/desktop.nix
     ../../modules/pipewire.nix
   ];
   boot = {
@@ -24,6 +23,8 @@ _:
     enableIPv6 = false;
     networkmanager.enable = true;
   };
+
+  profiles.nimdow.enable = true;
 
   services = {
     flatpak.enable = true;

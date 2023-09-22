@@ -2,7 +2,6 @@ _: {
   imports = [
     # Include the results of the hardware scan.
     ./hardware-configuration.nix
-    ../../modules/desktop.nix
     ../../modules/pipewire.nix
   ];
   networking.hostName = "butterbee"; # Define your hostname.
@@ -11,6 +10,9 @@ _: {
 
   hardware.enableAllFirmware = true;
   hardware.pulseaudio.enable = false;
+
+  profiles.nimdow.enable = true;
+
   services.pipewire.audio.enable = true;
 
   services.flatpak.enable = true;

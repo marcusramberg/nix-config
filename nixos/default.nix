@@ -5,9 +5,10 @@
 { pkgs, inputs, ... }: {
   imports = [
     ../modules/agenix.nix
-    ../modules/nix.nix
-    ../modules/emacs.nix
     ../modules/ddcutil.nix
+    ../modules/desktop.nix
+    ../modules/emacs.nix
+    ../modules/nix.nix
   ];
 
   # List packages installed in system profile. To search, run:
