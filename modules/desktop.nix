@@ -9,6 +9,7 @@
       neovide
       nitrogen
       obsidian
+      pavucontrol
       picom
       rofi
       telegram-desktop
