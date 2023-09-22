@@ -14,7 +14,6 @@ in {
   imports = [
     # Include the results of the hardware scan.
     ./hardware-configuration.nix
-    ../../modules/desktop.nix
     ../../modules/keyboardmap.nix
     ../../modules/pipewire.nix
     ../../modules/amd.nix
@@ -76,11 +75,20 @@ in {
   };
   hardware.bluetooth.enable = true;
 
+  profiles = { nimdow.enable = true; };
+
   programs = {
     steam.enable = true;
-    custom.ddcutil.enable = true;
+    custom.ddcutil = {
+      enable = true;
+      user = "marcus";
+    };
   };
 
+  programs.streamdeck-ui = {
+    enable = true;
+    autoStart = true;
+  };
   services = {
     blueman.enable = true;
     flatpak.enable = true;

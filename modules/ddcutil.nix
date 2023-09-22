@@ -10,12 +10,12 @@ in {
       type = types.bool;
       example = true;
     };
-    users = mkOption {
-      default = [ ];
-      type = types.listOf types.str;
-      example = [ "myusername" ];
+    user = mkOption {
+      default = "";
+      description = "User to run ddcutil as";
+      type = types.str;
+      example = "myusername";
     };
-
   };
 
   config = mkIf cfg.enable {
@@ -27,8 +27,6 @@ in {
     environment.systemPackages = [ pkgs.ddcutil ];
     users.groups = { "i2c" = { }; };
     users.users =
-      lib.foldl' (user: _: { ${user}.extraGroups = [ "i2c" ]; }) config.users
-      cfg.users;
-
+      lib.mkIf (cfg.user != "") { ${cfg.user}.extraGroups = [ "i2c" ]; };
   };
 }
