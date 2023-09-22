@@ -2,8 +2,13 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ config, pkgs, inputs, ... }: {
-  imports = [ ../modules/agenix.nix ../modules/nix.nix ../modules/emacs.nix ];
+{ pkgs, inputs, ... }: {
+  imports = [
+    ../modules/agenix.nix
+    ../modules/nix.nix
+    ../modules/emacs.nix
+    ../modules/ddcutil.nix
+  ];
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget

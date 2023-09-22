@@ -76,7 +76,10 @@ in {
   };
   hardware.bluetooth.enable = true;
 
-  programs.steam.enable = true;
+  programs = {
+    steam.enable = true;
+    custom.ddcutil.enable = true;
+  };
 
   services = {
     blueman.enable = true;
