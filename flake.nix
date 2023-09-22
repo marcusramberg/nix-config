@@ -14,6 +14,7 @@
     home-manager.url = "github:nix-community/home-manager";
     mobile-nixos.flake = false;
     mobile-nixos.url = "github:marcusramberg/mobile-nixos/enchilada";
+    nix-std.url = "github:chessai/nix-std";
     neovim-nightly-overlay = {
       inputs.nixpkgs.follows = "nixpkgs";
       url = "github:nix-community/neovim-nightly-overlay";
@@ -26,7 +27,7 @@
     webauthn-oidc.url = "github:arianvp/webauthn-oidc";
   };
 
-  outputs = { nixpkgs, flake-utils, hei, ... }@inputs:
+  outputs = { nixpkgs, flake-utils, hei, nix-std, ... }@inputs:
     let
       mkNixHost = import lib/mkNixHost.nix;
       # mkPiImage = import lib/mkNixHost.nix;
@@ -37,34 +38,35 @@
         # inputs.neovim-nightly-overlay.overlay
         inputs.emacs-overlay.overlay
       ];
+      std = nix-std.lib;
     in {
       nixosConfigurations = {
         mhub = mkNixHost "mhub" {
-          inherit overlays nixpkgs inputs;
+          inherit overlays nixpkgs inputs std;
           system = "x86_64-linux";
         };
         butterbee = mkNixHost "butterbee" {
-          inherit overlays nixpkgs inputs;
+          inherit overlays nixpkgs inputs std;
           system = "aarch64-linux";
         };
         mbox = mkNixHost "mbox" {
-          inherit overlays nixpkgs inputs;
+          inherit overlays nixpkgs inputs std;
           system = "x86_64-linux";
         };
         mtop = mkNixHost "mtop" {
-          inherit overlays nixpkgs inputs;
+          inherit overlays nixpkgs inputs std;
           system = "x86_64-linux";
         };
         mvirt = mkNixHost "mvirt" {
-          inherit overlays nixpkgs inputs;
+          inherit overlays nixpkgs inputs std;
           system = "x86_64-linux";
         };
         mlab = mkNixHost "mlab" {
-          inherit overlays nixpkgs inputs;
+          inherit overlays nixpkgs inputs std;
           system = "x86_64-linux";
         };
         mbrick = mkNixHost "mbrick" {
-          inherit overlays nixpkgs inputs;
+          inherit overlays nixpkgs inputs std;
           system = "aarch64-linux";
           extraModules = [
             (import "${inputs.mobile-nixos}/lib/configuration.nix" {
@@ -80,7 +82,7 @@
       };
 
       darwinConfigurations.mbook = mkDarwinHost {
-        inherit overlays inputs;
+        inherit overlays inputs std;
         system = "aarch64-darwin";
       };
     } // flake-utils.lib.eachDefaultSystem (system: {

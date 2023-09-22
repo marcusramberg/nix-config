@@ -1,4 +1,4 @@
-{ inputs, system, user ? "marcus", overlays }:
+{ inputs, system, user ? "marcus", overlays, std }:
 let mkOptions = import ./mkOptions.nix;
 in inputs.darwin.lib.darwinSystem rec {
   inherit system;
@@ -15,6 +15,7 @@ in inputs.darwin.lib.darwinSystem rec {
       inherit user;
       inherit overlays;
       inherit inputs;
+      inherit std;
     })
   ];
 }

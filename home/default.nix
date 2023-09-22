@@ -1,8 +1,11 @@
-{ pkgs, lib, inputs, ... }: {
+{ pkgs, lib, inputs, std, ... }: {
 
   home = {
     stateVersion = "22.05";
-    file = import ./files.nix { inherit pkgs; };
+    file = import ./files.nix {
+      inherit pkgs;
+      inherit std;
+    };
     packages = with pkgs;
       [
         argocd

@@ -1,5 +1,5 @@
 system:
-{ user, inputs, overlays }:
+{ user, inputs, overlays, std, ... }:
 let stable = inputs.stable.legacyPackages.${system};
 in {
   nixpkgs = {
@@ -20,6 +20,7 @@ in {
     extraSpecialArgs = {
       inherit inputs;
       inherit stable;
+      inherit std;
     };
   };
 }

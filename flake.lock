@@ -512,6 +512,21 @@
         "type": "github"
       }
     },
+    "nix-std": {
+      "locked": {
+        "lastModified": 1685917625,
+        "narHash": "sha256-2manVKofCZrCToVDnDYNvtYUFBYOM5JhdDoNGVY4fq4=",
+        "owner": "chessai",
+        "repo": "nix-std",
+        "rev": "e20af8822b5739434b875643bfc61fe0195ea2fb",
+        "type": "github"
+      },
+      "original": {
+        "owner": "chessai",
+        "repo": "nix-std",
+        "type": "github"
+      }
+    },
     "nixpkgs": {
       "locked": {
         "lastModified": 1677676435,
@@ -742,6 +757,7 @@
         "home-manager": "home-manager_2",
         "mobile-nixos": "mobile-nixos",
         "neovim-nightly-overlay": "neovim-nightly-overlay",
+        "nix-std": "nix-std",
         "nixpkgs": "nixpkgs_6",
         "nur": "nur",
         "stable": "stable",

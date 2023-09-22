@@ -1,4 +1,4 @@
-_: {
+{ std, ... }: {
   ".config/wezterm" = {
     source = ../config/wezterm;
     recursive = true;
@@ -11,10 +11,8 @@ _: {
     source = ../config/doom.d;
     recursive = true;
   };
-  ".config/nimdow" = {
-    source = ../config/nimdow;
-    recursive = true;
-  };
+  ".config/nimdow/status".source = ../config/nimdow;
+  ".config/nimdow/config.toml".text = std.serde.toTOML (import ./nimdow.nix);
   ".config/rofi" = {
     source = ../config/rofi;
     recursive = true;
