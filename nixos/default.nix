@@ -10,6 +10,7 @@
     ../modules/desktop.nix
     ../modules/emacs.nix
     ../modules/keyboardmap.nix
+    ../modules/passthrough.nix
     ../modules/lemmy.nix
     ../modules/mediaserver.nix
     ../modules/hass.nix

@@ -1,37 +1,9 @@
-{ lib, pkgs, ... }:
-
-let
-  gpuIDs = [
-    "8086:1901"
-    "10de:1f08"
-    "10de:10f9"
-    "10de:1ada"
-    "10de:1adb" # nvidia
-    "144d:a808" # nvme
-    "10ec:8168" # network adapter
-  ];
-in {
+{ pkgs, ... }: {
   imports = [
     # Include the results of the hardware scan.
     ./hardware-configuration.nix
     ../../modules/pipewire.nix
   ];
-
-  # Add for virtualisation
-  environment.systemPackages = with pkgs; [
-    virt-manager
-    libguestfs # needed to virt-sparsify qcow2 files
-    deckmaster
-  ];
-
-  networking = {
-    extraHosts = ''
-      10.211.55.2 mbook
-      0.0.0.0 vg.no www.vg.no
-    '';
-    hostName = "mbox";
-    networkmanager.enable = true;
-  };
 
   # Bootloader.
   boot = {
@@ -50,27 +22,26 @@ in {
         "/crypto_keyfile.bin";
     };
 
-    kernelParams = [
-      "intel_iommu=on"
-      "fbcon=map:1"
-      ("vfio-pci.ids=" + lib.concatStringsSep "," gpuIDs)
-    ];
+    kernelParams = [ "fbcon=map:1" ];
 
     # These modules are required for PCI passthrough, and must come before early modesetting stuff
-    kernelModules = [
-      "vfio"
-      "vfio_iommu_type1"
-      "vfio_pci"
-      "vfio_virqfd"
-      "fbcon"
-      "hid-apple"
-    ];
-    blacklistedKernelModules = [ "nvidia" "nouveau" ];
+    kernelModules = [ "fbcon" "hid-apple" ];
     extraModprobeConfig = ''
       options hid_apple iso_layout=1
       options kvm_intel nested=1
     '';
   };
+  environment.systemPackages = [ pkgs.deckmaster ];
+
+  networking = {
+    extraHosts = ''
+      10.211.55.2 mbook
+      0.0.0.0 vg.no www.vg.no
+    '';
+    hostName = "mbox";
+    networkmanager.enable = true;
+  };
+
   hardware = {
     amdgpu.enable = true;
     bluetooth.enable = true;
@@ -80,6 +51,18 @@ in {
   profiles = {
     nimdow.enable = true;
     dockerHost.enable = true;
+    passthrough = {
+      enable = true;
+      hardware-ids = [
+        "8086:1901"
+        "10de:1f08"
+        "10de:10f9"
+        "10de:1ada"
+        "10de:1adb" # nvidia
+        "144d:a808" # nvme
+        "10ec:8168" # network adapter
+      ];
+    };
   };
 
   programs = {
@@ -94,20 +77,13 @@ in {
     enable = true;
     autoStart = true;
   };
+
   services = {
     blueman.enable = true;
     flatpak.enable = true;
     tailscale.useRoutingFeatures = "server";
     xserver.dpi = 144;
-    postgresql = {
-      enable = true;
-      enableTCPIP = true;
-      authentication = ''
-        local all all trust
-        host all all ::1/128 trust
-        host all all 127.0.0.1/32 trust
-      '';
-    };
+    # Deckmaster
     udev.extraRules = ''
       SUBSYSTEM=="usb", ATTRS{idVendor}=="0fd9", ATTRS{idProduct}=="0060", MODE:="666", GROUP="plugdev", SYMLINK+="streamdeck"
       SUBSYSTEM=="usb", ATTRS{idVendor}=="0fd9", ATTRS{idProduct}=="006d", MODE:="666", GROUP="plugdev", SYMLINK+="streamdeck"
@@ -115,19 +91,6 @@ in {
       SUBSYSTEM=="usb", ATTRS{idVendor}=="0fd9", ATTRS{idProduct}=="0063", MODE:="666", GROUP="plugdev", SYMLINK+="streamdeck-mini"
       SUBSYSTEM=="usb", ATTRS{idVendor}=="0fd9", ATTRS{idProduct}=="006c", MODE:="666", GROUP="plugdev", SYMLINK+="streamdeck-xl"
     '';
-  };
-
-  virtualisation = {
-    spiceUSBRedirection.enable = true;
-    libvirtd = {
-      enable = true;
-      onBoot = "ignore";
-      onShutdown = "shutdown";
-      qemu = {
-        ovmf.enable = true;
-        runAsRoot = true;
-      };
-    };
   };
 }
 
