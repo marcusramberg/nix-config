@@ -14,9 +14,7 @@ in {
   imports = [
     # Include the results of the hardware scan.
     ./hardware-configuration.nix
-    ../../modules/keyboardmap.nix
     ../../modules/pipewire.nix
-    ../../modules/amd.nix
   ];
 
   # Add for virtualisation
@@ -73,7 +71,11 @@ in {
       options kvm_intel nested=1
     '';
   };
-  hardware.bluetooth.enable = true;
+  hardware = {
+    amdgpu.enable = true;
+    bluetooth.enable = true;
+    keyboard.dual-caps.enable = true;
+  };
 
   profiles = {
     nimdow.enable = true;

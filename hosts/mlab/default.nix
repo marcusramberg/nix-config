@@ -2,7 +2,6 @@ _: {
   imports = [
     # Include the results of the hardware scan.
     ./hardware-configuration.nix
-    ../../modules/keyboardmap.nix
     ../../modules/pipewire.nix
   ];
   boot.loader = {
@@ -10,6 +9,7 @@ _: {
     efi.canTouchEfiVariables = true;
     efi.efiSysMountPoint = "/boot/efi";
   };
+  hardware.keyboard.dual-caps.enable = true;
   options.profiles.dockerHost.enable = true;
   networking = {
     hostName = "mlab";

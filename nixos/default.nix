@@ -4,10 +4,12 @@
 
 { pkgs, inputs, ... }: {
   imports = [
+    ../modules/amd.nix
     ../modules/agenix.nix
     ../modules/ddcutil.nix
     ../modules/desktop.nix
     ../modules/emacs.nix
+    ../modules/keyboardmap.nix
     ../modules/lemmy.nix
     ../modules/mediaserver.nix
     ../modules/hass.nix

@@ -4,7 +4,6 @@
   imports = [
     # Include the results of the hardware scan.
     ./hardware-configuration.nix
-    ../../modules/keyboardmap.nix
     ../../modules/laptop.nix
     ../../modules/pipewire.nix
   ];
@@ -23,6 +22,7 @@
 
   hardware = {
     bluetooth.enable = false;
+    keyboard.dual-caps.enable = true;
     facetimehd.enable = true;
     opengl.extraPackages = [ pkgs.vaapiIntel ];
   };

@@ -1,5 +1,17 @@
-{ pkgs, ... }: {
-  services = {
+{ config, lib, pkgs, ... }:
+let
+  inherit (lib) mkOption mkIf types;
+  cfg = config.hardware.keyboard.dual-caps;
+in {
+  options.hardware.keyboard.dual-caps = {
+    enable = mkOption {
+      type = types.bool;
+      default = false;
+      description = "Enable dual esc/ctrl caps lock";
+    };
+  };
+
+  config.services = mkIf cfg.enable {
     interception-tools = let
       # Map caps lock to:
       # - ESC when tapped
