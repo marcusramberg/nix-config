@@ -1,15 +1,8 @@
 { config, lib, ... }:
-let
-  inherit (lib) mkOption mkIf types;
-  cfg = config.hardware.amdgpu;
+with lib;
+let cfg = config.hardware.amdgpu;
 in {
-  options.hardware.amdgpu = {
-    enable = mkOption {
-      type = types.bool;
-      default = false;
-      description = "Set machine up for AMD GPU";
-    };
-  };
+  options.hardware.amdgpu.enable = mkEnableOption "amdgpu";
 
   config = mkIf cfg.enable {
     # Enable OpenGL

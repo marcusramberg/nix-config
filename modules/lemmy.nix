@@ -1,15 +1,8 @@
 { config, lib, ... }:
-let
-  inherit (lib) mkOption mkIf types;
-  cfg = config.profiles.mediaserver;
+with lib;
+let cfg = config.profiles.lemmy-server;
 in {
-  options.profiles.lemmy-server = {
-    enable = mkOption {
-      type = types.bool;
-      default = false;
-      description = "Enable lemmy server";
-    };
-  };
+  options.profiles.lemmy-server.enable = mkEnableOption "Enable lemmy server";
 
   config = mkIf cfg.enable {
 

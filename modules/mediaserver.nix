@@ -1,15 +1,9 @@
 { pkgs, lib, config, ... }:
-let
-  inherit (lib) mkOption mkIf types;
-  cfg = config.profiles.mediaserver;
+with lib;
+let cfg = config.profiles.mediaserver;
 in {
-  options.profiles.mediaserver = {
-    enable = mkOption {
-      type = types.bool;
-      default = false;
-      description = "Enable mediaserver";
-    };
-  };
+  options.profiles.mediaserver.enable =
+    mkEnableOption "Enable media server profile";
 
   config = mkIf cfg.enable {
 

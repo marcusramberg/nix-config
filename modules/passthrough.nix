@@ -1,14 +1,9 @@
 { config, pkgs, lib, ... }:
-let
-  inherit (lib) mkOption mkIf types;
-  cfg = config.profiles.passthrough;
+with lib;
+let cfg = config.profiles.passthrough;
 in {
   options.profiles.passthrough = {
-    enable = mkOption {
-      type = types.bool;
-      default = false;
-      description = "GPU Passthrough support";
-    };
+    enable = mkEnableOption "GPU Passthrough support";
     hardware-ids = mkOption {
       type = types.listOf types.str;
       default = [ ];

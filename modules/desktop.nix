@@ -1,16 +1,8 @@
 { config, pkgs, lib, ... }:
-
-let
-  inherit (lib) mkOption mkIf types;
-  cfg = config.profiles.nimdow;
+with lib;
+let cfg = config.profiles.nimdow;
 in {
-  options.profiles.nimdow = {
-    enable = mkOption {
-      type = types.bool;
-      default = false;
-      description = "Nimdow desktop user environment";
-    };
-  };
+  options.profiles.nimdow.enable = mkEnableOption "nimdow";
 
   config = mkIf cfg.enable {
     environment.systemPackages = with pkgs;

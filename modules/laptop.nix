@@ -1,5 +1,9 @@
-_: {
-  config = {
+{ config, lib, ... }:
+with lib;
+let cfg = config.profile.laptop;
+in {
+  options.profile.laptop.enable = mkEnableOption "Enable laptop profile";
+  config = mkIf cfg.enable {
     programs.light.enable = true;
     services.actkbd = {
       enable = true;

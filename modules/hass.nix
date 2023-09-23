@@ -1,15 +1,8 @@
 { lib, config, ... }:
-let
-  inherit (lib) mkOption mkIf types;
-  cfg = config.profiles.hass;
+with lib;
+let cfg = config.profiles.hass;
 in {
-  options.profiles.hass = {
-    enable = mkOption {
-      type = types.bool;
-      default = false;
-      description = "Enable home assistant server";
-    };
-  };
+  options.profiles.hass.enable = mkEnableOption "Enable home assistant server";
 
   config = mkIf cfg.enable {
 

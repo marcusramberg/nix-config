@@ -1,15 +1,9 @@
 { config, pkgs, lib, ... }:
-
-let
-  inherit (lib) mkOption mkIf types;
-  cfg = config.programs.custom.ddcutil;
+with lib;
+let cfg = config.programs.custom.ddcutil;
 in {
   options.programs.custom.ddcutil = {
-    enable = mkOption {
-      default = false;
-      type = types.bool;
-      example = true;
-    };
+    enable = mkEnableOption "ddcutil";
     user = mkOption {
       default = "";
       description = "User to run ddcutil as";
