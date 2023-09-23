@@ -1,4 +1,5 @@
-{
+{ pkgs, osConfig, ... }: {
+
   appRule = [
     {
       class = "org.wezfurlong.wezterm";
@@ -37,9 +38,9 @@
       "wezterm"
       "telegram-desktop"
       "vivaldi"
-      "streamdeck -n"
       "volumeicon"
-    ];
+    ] ++ pkgs.lib.optional (osConfig.networking.hostName == "mbox")
+      "streamdeck -n";
   };
   controls = {
     decreaseMasterCount = {
@@ -190,8 +191,8 @@
       "Hack Nerd Font Mono:size=12:antialias=true"
       "NotoColorEmoji:size=11:antialias=true"
     ];
-    barForegroundColor = "#ECEFF4";
     barHeight = 35;
+    barForegroundColor = "#ECEFF4";
     barSelectionColor = "#88c0d0";
     barUrgentColor = "#BF616A";
     borderColorFocused = "#8FBCBB";
