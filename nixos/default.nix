@@ -103,10 +103,7 @@
   time.timeZone = "Europe/Oslo";
   i18n.defaultLocale = "en_DK.UTF-8";
 
-  nixpkgs.config = {
-    allowUnfree = true;
-    permittedInsecurePackages = [ "openssl-1.1.1u" "nodejs-16.20.2" ];
-  };
+  nixpkgs.config = { allowUnfree = true; };
 
   nix.nixPath = [ "nixpkgs=/run/current-system/nixpkgs" ];
 

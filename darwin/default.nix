@@ -8,26 +8,13 @@
   #FIXME: nix-darwin sets this to /var/empty for Reasons[tm]
   users.users.marcus.home = "/Users/marcus";
 
-  # Enable experimental nix command and flakes
-  # nix.package = pkgs.nixUnstable;
-
-  # Create /etc/bashrc that loads the nix-darwin environment.
+  # Need some shells
   programs.zsh.enable = true;
   programs.fish.enable = true;
 
   # Auto upgrade nix package and the daemon service.
   services.nix-daemon.enable = true;
 
-  # services.postgresql = {
-  #   enable = true;
-  #   package = pkgs.postgresql_14;
-  #   ensureDatabases = [ "tabdog" ];
-  #   ensureUsers = [{
-  #     name = "tabdog";
-  #     ensurePermissions = { "DATABASE tabdog" = "ALL PRIVILEGES"; };
-  #   }];
-  # };
-  #
   # Apps
   # `home-manager` currently has issues adding them to `~/Applications`
   # Issue: https://github.com/nix-community/home-manager/issues/1341
@@ -95,7 +82,6 @@
     };
   };
 
-  nixpkgs.config.permittedInsecurePackages = [ "nodejs-16.20.2" ];
   nix = {
     extraOptions = ''
       auto-optimise-store = true
