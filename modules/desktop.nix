@@ -8,7 +8,7 @@ in {
     enable = mkOption {
       type = types.bool;
       default = false;
-      description = "The name of the profile";
+      description = "Nimdow desktop user environment";
     };
   };
 
@@ -24,10 +24,12 @@ in {
         obsidian
         pavucontrol
         picom
+        nordic
         rofi
         telegram-desktop
         vivaldi
         volumeicon
+        xarchiver
         xclip
       ] ++ lib.optionals (pkgs.system == "x86_64-linux")
       [ pkgs.vivaldi-ffmpeg-codecs ];

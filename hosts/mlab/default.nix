@@ -10,6 +10,7 @@ _: {
     efi.canTouchEfiVariables = true;
     efi.efiSysMountPoint = "/boot/efi";
   };
+  options.profiles.dockerHost.enable = true;
   networking = {
     hostName = "mlab";
     networkmanager.enable = true;
@@ -22,9 +23,5 @@ _: {
     flatpak.enable = true;
     mbpfan.enable = true;
     input-remapper.enable = true;
-  };
-  virtualisation = {
-    podman.enable = true;
-    podman.dockerCompat = true;
   };
 }

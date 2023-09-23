@@ -75,7 +75,10 @@ in {
   };
   hardware.bluetooth.enable = true;
 
-  profiles = { nimdow.enable = true; };
+  profiles = {
+    nimdow.enable = true;
+    dockerHost.enable = true;
+  };
 
   programs = {
     steam.enable = true;
@@ -113,8 +116,6 @@ in {
   };
 
   virtualisation = {
-    podman.enable = true;
-    podman.dockerCompat = true;
     spiceUSBRedirection.enable = true;
     libvirtd = {
       enable = true;

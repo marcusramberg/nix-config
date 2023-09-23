@@ -4,14 +4,9 @@
   imports = [
     # Include the results of the hardware scan.
     ./hardware-configuration.nix
-    ../../modules/agenix.nix
-    ../../modules/docker.nix
     ../../modules/lemmy.nix
     ../../modules/matrix.nix
-    ../../modules/mediaserver.nix
     ../../modules/prometheus.nix
-    #    ./flake.nix
-    #    ./pgup.nix
   ];
   age.secrets.cloudflareToken.owner = "caddy";
 
@@ -38,6 +33,11 @@
   networking = {
     hostName = "mhub"; # Define your hostname.
     enableIPv6 = false;
+  };
+
+  profiles = {
+    mediaserver.enable = true;
+    hass.enable = true;
   };
 
   services = {

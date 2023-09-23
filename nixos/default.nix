@@ -8,6 +8,9 @@
     ../modules/ddcutil.nix
     ../modules/desktop.nix
     ../modules/emacs.nix
+    ../modules/mediaserver.nix
+    ../modules/hass.nix
+    ../modules/docker.nix
     ../modules/nix.nix
   ];
 
@@ -19,14 +22,11 @@
       cached-nix-shell
       caddy
       gitFull
-      gitAndTools.gh
       gcc
       file
       inputs.agenix.packages."${pkgs.system}".default
-      man-pages
       mosh
       netavark
-      nordic
       ntfs3g
       p7zip
       pciutils
@@ -36,7 +36,6 @@
       unrar
       wireguard-tools
       wget
-      xarchiver
     ];
     variables = {
       # TERM = "xterm-256color";
@@ -48,21 +47,14 @@
   boot.supportedFilesystems = [ "ntfs" ];
 
   networking.firewall.enable = false;
+
   services = {
-    #printing.enable = true;
     fwupd.enable = true;
     tailscale.enable = true;
     keybase.enable = true;
   };
 
-  # Enable touchpad support.
-
-  # Enable the KDE Desktop Environment.
-  # services.xserver.displayManager.sddm.enable = true;
-  # services.xserver.desktopManager.plasma5.enable = true;
-
   programs = {
-    dconf.enable = true;
     gnupg.agent = {
       enable = true;
       enableSSHSupport = true;
@@ -100,7 +92,7 @@
     # compatible, in order to avoid breaking some software such as database
     # servers. You should change this only after NixOS release notes say you
     # should.
-    stateVersion = "22.05";
+    stateVersion = "23.05";
     extraSystemBuilderCmds = ''
       ln -sv ${pkgs.path} $out/nixpkgs
     '';
@@ -111,8 +103,8 @@
   nixpkgs.config = {
     allowUnfree = true;
     permittedInsecurePackages = [ "openssl-1.1.1u" "nodejs-16.20.2" ];
-
   };
+
   nix.nixPath = [ "nixpkgs=/run/current-system/nixpkgs" ];
 
   security = {
