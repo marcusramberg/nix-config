@@ -29,8 +29,10 @@
       nordic
       ntfs3g
       p7zip
+      pciutils
       perlPackages.Mojolicious
       perlPackages.EV
+      usbutils
       unrar
       wireguard-tools
       wget
