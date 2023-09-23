@@ -1,11 +1,7 @@
-{ config, pkgs, ... }:
-
-{
+{ config, pkgs, ... }: {
   imports = [
     # Include the results of the hardware scan.
     ./hardware-configuration.nix
-    ../../modules/lemmy.nix
-    ../../modules/matrix.nix
     ../../modules/prometheus.nix
   ];
   age.secrets.cloudflareToken.owner = "caddy";
@@ -38,6 +34,7 @@
   profiles = {
     mediaserver.enable = true;
     hass.enable = true;
+    lemmy-server.enable = true;
   };
 
   services = {

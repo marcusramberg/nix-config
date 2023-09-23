@@ -8,6 +8,7 @@
     ../modules/ddcutil.nix
     ../modules/desktop.nix
     ../modules/emacs.nix
+    ../modules/lemmy.nix
     ../modules/mediaserver.nix
     ../modules/hass.nix
     ../modules/docker.nix
