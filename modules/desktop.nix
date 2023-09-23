@@ -48,8 +48,6 @@ in {
     services = {
       dbus.packages = [ pkgs.dconf ];
 
-      # Always be sshing
-      openssh.enable = true;
       openssh.settings.X11Forwarding = true;
 
       picom = {

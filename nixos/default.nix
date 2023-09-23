@@ -121,5 +121,7 @@
         [ ];
     sudo.wheelNeedsPassword = false;
   };
+  # Always be sshing
+  services.openssh.enable = true;
 
 }
