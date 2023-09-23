@@ -3,7 +3,7 @@ let
   inherit (lib) mkIf;
   inherit (pkgs) stdenv;
 in {
-  programs = mkIf osConfig.services.xserver.enable {
+  programs = mkIf (builtins.hasAttr "xserver" osConfig.services) {
     chromium.enable = true;
     firefox = {
       enable = true;
