@@ -7,7 +7,7 @@ _: {
     ./packages.nix
     ./python.nix
     ./programs.nix
-    # ./tmux.nix
+    ./tmux.nix
   ];
 
   home = { stateVersion = "23.05"; };

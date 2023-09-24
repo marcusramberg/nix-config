@@ -11,6 +11,7 @@
     ../modules/emacs.nix
     ../modules/keyboardmap.nix
     ../modules/passthrough.nix
+    ../modules/k3s.nix
     ../modules/lemmy.nix
     ../modules/mediaserver.nix
     ../modules/hass.nix
@@ -25,6 +26,7 @@
       ((emacsPackagesFor emacs).emacsWithPackages (epkgs: [ epkgs.vterm ]))
       cached-nix-shell
       caddy
+      comma
       gitFull
       gcc
       file

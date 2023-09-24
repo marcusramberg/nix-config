@@ -5,7 +5,7 @@
     clock24 = true;
     enable = true;
     keyMode = "vi";
-    plugins = with pkgs.tmuxPlugins; [ nord tmux-thumbs ];
+    plugins = with pkgs.tmuxPlugins; [ nord tmux-thumbs tmux-fzf ];
     prefix = "`";
     secureSocket = false; # survives user logout
     terminal = "tmux-256color";

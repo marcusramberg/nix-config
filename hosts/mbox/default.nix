@@ -51,6 +51,7 @@
   profiles = {
     nimdow.enable = true;
     dockerHost.enable = true;
+    k3s.enable = true;
     passthrough = {
       enable = true;
       hardware-ids = [

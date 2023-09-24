@@ -1,9 +1,14 @@
-_:
+{ lib, config, ... }:
+with lib;
+let cfg = config.profiles.k3s;
+in {
+  options.profiles.k3s = { enable = mkEnableOption "Kubernetes node"; };
 
-{
-  services.k3s = {
-    enable = true;
-    token = "rxjf4Z2m3tdj5";
-    extraFlags = "--server https://192.168.86.200:6443";
+  config = mkIf cfg.enable {
+    services.k3s = {
+      enable = true;
+      tokenFile = config.age.secrets.k3s-token.path;
+      extraFlags = "--write-kubeconfig-mode=644";
+    };
   };
 }
