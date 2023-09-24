@@ -10,7 +10,7 @@ _: {
     efi.efiSysMountPoint = "/boot/efi";
   };
   hardware.keyboard.dual-caps.enable = true;
-  options.profiles.dockerHost.enable = true;
+  profiles.dockerHost.enable = true;
   networking = {
     hostName = "mlab";
     networkmanager.enable = true;

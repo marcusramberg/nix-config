@@ -2,7 +2,6 @@
   imports = [
     # Include the results of the hardware scan.
     ./hardware-configuration.nix
-    ../../modules/prometheus.nix
   ];
   age.secrets.cloudflareToken.owner = "caddy";
 
@@ -35,6 +34,7 @@
     mediaserver.enable = true;
     hass.enable = true;
     lemmy-server.enable = true;
+    prometheus-server.enable = true;
   };
 
   services = {

@@ -4,7 +4,6 @@
   imports = [
     # Include the results of the hardware scan.
     ./hardware-configuration.nix
-    ../../modules/laptop.nix
     ../../modules/pipewire.nix
   ];
   boot = {
@@ -34,7 +33,10 @@
 
   powerManagement.enable = true;
 
-  profiles.nimdow.enable = true;
+  profiles = {
+    laptop.enable = true;
+    nimdow.enable = true;
+  };
 
   programs.nm-applet.enable = true;
 

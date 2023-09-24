@@ -1,8 +1,8 @@
 { config, lib, ... }:
 with lib;
-let cfg = config.hardware.amdgpu;
+let cfg = config.hardware.gpu.amd;
 in {
-  options.hardware.amdgpu.enable = mkEnableOption "amdgpu";
+  options.hardware.gpu.amd.enable = mkEnableOption "Enable config for amd gpu";
 
   config = mkIf cfg.enable {
     # Enable OpenGL

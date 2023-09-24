@@ -43,7 +43,7 @@
   };
 
   hardware = {
-    amdgpu.enable = true;
+    gpu.amd.enable = true;
     bluetooth.enable = true;
     keyboard.dual-caps.enable = true;
   };

@@ -4,7 +4,6 @@ _:
   imports = [
     # Include the results of the hardware scan.
     ./hardware-configuration.nix
-    ../../modules/nvidia.nix
     ../../modules/pipewire.nix
   ];
   boot = {
@@ -17,6 +16,7 @@ _:
   hardware = {
     bluetooth.enable = false;
     facetimehd.enable = true;
+    gpu.nvidia.enable = true;
   };
   networking = {
     hostName = "mvirt";

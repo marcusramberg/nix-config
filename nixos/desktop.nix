@@ -8,7 +8,6 @@ in {
     environment.systemPackages = with pkgs;
       [
         copyq
-        discord
         element-desktop
         feh
         neovide
@@ -23,8 +22,10 @@ in {
         volumeicon
         xarchiver
         xclip
-      ] ++ lib.optionals (pkgs.system == "x86_64-linux")
-      [ pkgs.vivaldi-ffmpeg-codecs ];
+      ] ++ lib.optionals (pkgs.system == "x86_64-linux") [
+        pkgs.vivaldi-ffmpeg-codecs
+        pkgs.discord
+      ];
 
     fonts.packages = with pkgs; [
       noto-fonts-emoji

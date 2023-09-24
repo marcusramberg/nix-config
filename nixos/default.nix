@@ -4,19 +4,22 @@
 
 { pkgs, inputs, ... }: {
   imports = [
-    ../modules/amd.nix
     ../modules/agenix.nix
-    ../modules/ddcutil.nix
-    ../modules/desktop.nix
-    ../modules/emacs.nix
-    ../modules/keyboardmap.nix
-    ../modules/passthrough.nix
-    ../modules/k3s.nix
-    ../modules/lemmy.nix
-    ../modules/mediaserver.nix
-    ../modules/hass.nix
-    ../modules/docker.nix
     ../modules/nix.nix
+    ../modules/emacs.nix
+    ./amd.nix
+    ./nvidia.nix
+    ./ddcutil.nix
+    ./desktop.nix
+    ./docker.nix
+    ./keyboardmap.nix
+    ./passthrough.nix
+    ./prometheus.nix
+    ./laptop.nix
+    ./k3s.nix
+    ./lemmy.nix
+    ./mediaserver.nix
+    ./hass.nix
   ];
 
   # List packages installed in system profile. To search, run:
