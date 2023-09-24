@@ -86,6 +86,7 @@
       "docker"
       "dialout"
       "feedbackd"
+      "podman"
       "video"
       "libvirtd"
     ];

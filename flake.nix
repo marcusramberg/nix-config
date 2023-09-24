@@ -3,17 +3,27 @@
 
   inputs = {
     agenix.url = "github:ryantm/agenix";
-    darwin.inputs.nixpkgs.follows = "nixpkgs";
-    darwin.url = "github:lnl7/nix-darwin/master";
+    darwin = {
+      url = "github:lnl7/nix-darwin/master";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     devenv.url = "github:cachix/devenv/latest";
     emacs-overlay.url = "github:nix-community/emacs-overlay";
     hei.url = "github:marcusramberg/hei";
     flake-utils.url = "github:numtide/flake-utils";
 
-    home-manager.inputs.nixpkgs.follows = "nixpkgs";
-    home-manager.url = "github:nix-community/home-manager";
-    mobile-nixos.flake = false;
-    mobile-nixos.url = "github:marcusramberg/mobile-nixos/enchilada";
+    home-manager = {
+      inputs.nixpkgs.follows = "nixpkgs";
+      url = "github:nix-community/home-manager";
+    };
+    microvm = {
+      url = "github:astro/microvm.nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    mobile-nixos = {
+      flake = false;
+      url = "github:marcusramberg/mobile-nixos/enchilada";
+    };
     nix-std.url = "github:chessai/nix-std";
     neovim-nightly-overlay = {
       inputs.nixpkgs.follows = "nixpkgs";
