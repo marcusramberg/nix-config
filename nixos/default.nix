@@ -17,6 +17,7 @@
     ./prometheus.nix
     ./laptop.nix
     ./k3s.nix
+    ./fonts.nix
     ./lemmy.nix
     ./mediaserver.nix
     ./hass.nix
@@ -29,7 +30,6 @@
       ((emacsPackagesFor emacs).emacsWithPackages (epkgs: [ epkgs.vterm ]))
       cached-nix-shell
       caddy
-      comma
       gitFull
       gcc
       file

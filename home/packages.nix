@@ -12,6 +12,7 @@ in {
       cargo
       cocogitto
       coreutils
+      comma
       curl
       deadnix
       delta
