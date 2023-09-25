@@ -10,6 +10,7 @@ in pkgs: super: {
 
   # forgit = super.callPackage ../packages/forgit { inputs = inputs; };
   tfenv = super.callPackage ../packages/tfenv { inherit inputs; };
+  gh-poi = super.callPackage ../packages/gh-poi { };
   wezterm-nightly = super.callPackage ../packages/wezterm-nightly { };
   nzbget = super.nzbget.overrideAttrs (oa: {
     pname = "nzbget-ng";

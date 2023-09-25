@@ -27,14 +27,7 @@ in {
         pkgs.discord
       ];
 
-    fonts.packages = with pkgs; [
-      noto-fonts-emoji
-      liberation_ttf
-      mplus-outline-fonts.githubRelease
-      dina-font
-      proggyfonts
-      (nerdfonts.override { fonts = [ "JetBrainsMono" "Iosevka" "Hack" ]; })
-    ];
+    profiles.myfonts.enable = true;
 
     qt.platformTheme = "gtk";
 

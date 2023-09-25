@@ -1,7 +1,13 @@
 { pkgs, lib, ... }: {
   # Nix configuration ------------------------------------------------------------------------------
 
-  imports = [ ../modules/agenix.nix ../modules/nix.nix ./casks.nix ];
+  imports = [
+    ../modules/agenix.nix
+    ../modules/nix.nix
+    ../modules/fonts.nix
+
+    ./casks.nix
+  ];
 
   age.identityPaths = [ "/Users/marcus/.ssh/id_ed25519" ];
 
@@ -35,11 +41,7 @@
   # services.karabiner-elements.enable = true;
 
   # Fonts
-  fonts.fontDir.enable = true;
-  fonts.fonts = with pkgs; [
-    recursive
-    (nerdfonts.override { fonts = [ "JetBrainsMono" "Iosevka" ]; })
-  ];
+  profiles.myfonts.enable = true;
 
   system = {
 

@@ -7,6 +7,7 @@
     ../modules/agenix.nix
     ../modules/nix.nix
     ../modules/emacs.nix
+    ../modules/fonts.nix
     ./amd.nix
     ./nvidia.nix
     ./ddcutil.nix
