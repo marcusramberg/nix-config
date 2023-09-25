@@ -18,7 +18,6 @@
     ./prometheus.nix
     ./laptop.nix
     ./k3s.nix
-    ./fonts.nix
     ./lemmy.nix
     ./mediaserver.nix
     ./hass.nix
