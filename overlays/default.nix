@@ -7,6 +7,7 @@ in pkgs: super: {
 
   # wezterm-bin = super.callPackage ../packages/wezterm-bin { };
   # wezterm-nightly = super.callPackage ../packages/wezterm-nightly { };
+  gh-tidy = super.callPackage ../packages/gh-tidy { };
 
   # forgit = super.callPackage ../packages/forgit { inputs = inputs; };
   tfenv = super.callPackage ../packages/tfenv { inherit inputs; };

@@ -31,7 +31,7 @@
     '';
     gh = {
       enable = true;
-      extensions = [ pkgs.gh-dash pkgs.gh-poi ];
+      extensions = [ pkgs.gh-dash pkgs.gh-poi pkgs.gh-tidy ];
       settings = {
         git_protocol = "ssh";
         # What editor gh should run when creating issues, pull requests, etc. If
