@@ -5,10 +5,9 @@
       fish_greeting =
         "fortune art goedel wisdom tao literature songs-poems paradoxum; echo ''";
       rd = "fd $argv (git root)";
-      run = "nix run nixpkgs#$argv[1] -- $argv[2..-1]";
+      run = ",";
     };
     shellAbbrs = {
-      l = "ls";
       gc = "git commit";
       gs = "git status";
       gsu = "git status -uno";
@@ -19,14 +18,16 @@
       gwl = "git worktree list";
       gwr = "git worktree remove";
       gl = "git log";
-      vi = "nvim";
       gfu = "git fetch --all --prune && git rebase origin/main";
-      ".." = "cd ..";
-      "..." = "cd ../..";
-      "...." = "cd ../../..";
+      hey = "hei";
       k = "kubectl";
       kx = "kubectx";
       kns = "kubens";
+      l = "ls";
+      vi = "nvim";
+      ".." = "cd ..";
+      "..." = "cd ../..";
+      "...." = "cd ../../..";
     };
     shellAliases = {
       cat = "bat";
@@ -53,7 +54,7 @@
     '';
     interactiveShellInit = ''
       fish_vi_key_bindings
-      bind \e\e 'fuck'
+      bind \eh 'fuck'
       set fish_theme nord
       set -gx EDITOR nvim
       type -q thefuck; and thefuck --alias | source

@@ -26,9 +26,11 @@
     keychain.enable = true;
     # navi.enable = true;
     nix-index.enable = true;
-    neovim.extraConfig = ''
-      :luafile ~/.config/nvim/init.lua 
-    '';
+    neovim = {
+      extraConfig = ":luafile ~/.config/nvim/init.lua";
+      viAlias = true;
+      vimAlias = true;
+    };
     gh = {
       enable = true;
       extensions = [ pkgs.gh-dash pkgs.gh-poi pkgs.gh-tidy ];
