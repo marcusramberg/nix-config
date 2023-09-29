@@ -2,11 +2,11 @@ return {
 	-- change trouble config
 	--
 	{
-		"shaunsingh/nord.nvim",
+		"EdenEast/nightfox.nvim",
 		lazy = false,
 		priority = 999,
 		config = function()
-			require("nord").set()
+			vim.cmd("colorscheme nordfox")
 		end,
 	},
 	{ "folke/tokyonight.nvim", enabled = false },
