@@ -16,12 +16,7 @@ wezterm.on("format-tab-title", function(tab, _tabs, _panes, _config, _hover, max
 	if #title > max_width then
 		title = "…" .. string.sub(title, #title - max_width + 2)
 	end
-	if tab.is_active then
-		return {
-			{ Text = " " .. title .. " " },
-		}
-	end
-	return title
+	return { { Text = " " .. title .. " " } }
 end)
 
 local config = {
@@ -94,7 +89,7 @@ local config = {
 			username = "marcus",
 		},
 	},
-	tab_max_width = 20,
+	tab_max_width = 30,
 	unix_domains = {
 		{
 			name = "unix",
