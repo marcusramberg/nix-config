@@ -4,23 +4,7 @@ return {
 	{
 		"williamboman/mason.nvim",
 		opts = {
-			ensure_installed = {
-				-- "cmake-language-server",
-				-- "flake8",
-				-- "html-lsp",
-				-- "jq-lsp",
-				-- "json-lsp",
-				-- "jsonnet-language-server",
-				-- "lua-language-server",
-				-- "perlnavigator",
-				-- "nil",
-				-- "shellcheck",
-				-- "shfmt",
-				-- "stylua",
-				-- "svelte-language-server",
-				-- "taplo",
-				-- "yaml-language-server",
-			},
+			ensure_installed = {},
 		},
 	},
 	{
@@ -156,15 +140,6 @@ return {
 		end,
 	},
 	{ "ray-x/guihua.lua" },
-	-- {
-	--   "ray-x/go.nvim",
-	--   config = function()
-	--     require("go").setup()
-	--   end,
-	--   event = { "CmdlineEnter" },
-	--   ft = { "go", "gomod" },
-	--   build = ':lua require("go.install").update_all_sync()', -- if you need to install/update all binaries
-	-- },
 	{ "alaviss/nim.nvim" },
 	{ "joshglendenning/vim-caddyfile" },
 
@@ -173,6 +148,17 @@ return {
 		config = function(_, _)
 			require("lazy-lsp").setup({
 				excluded_servers = { "sqls", "terraform_lsp" },
+				preferred_servers = {
+					nix = { "nil_ls", "rnix" },
+					javascript = { "eslint", "tsserver" },
+					javascriptreact = { "eslint", "tsserver" },
+					typescript = { "eslint", "tsserver" },
+					typescriptreact = { "eslint", "tsserver" },
+					markdown = { "marksman", "ltex" },
+				},
+				default_config = {
+					flags = { debounce_text_changes = 150 },
+				},
 			})
 		end,
 	},
