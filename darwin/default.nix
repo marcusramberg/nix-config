@@ -44,47 +44,6 @@
   # Fonts
   profiles.myfonts.enable = true;
 
-  system = {
-
-    defaults = {
-      dock = {
-        show-recents = false;
-        showhidden = true;
-        static-only = true;
-        orientation = "right";
-        mru-spaces = false;
-        minimize-to-application = true;
-        mineffect = "scale";
-        autohide = true;
-      };
-      dock.wvous-br-corner = 13;
-      finder = {
-        AppleShowAllExtensions = true;
-        FXEnableExtensionChangeWarning = false;
-        FXPreferredViewStyle = "clmv";
-        QuitMenuItem = true;
-        ShowPathbar = true;
-        ShowStatusBar = true;
-        _FXShowPosixPathInTitle = true;
-      };
-      NSGlobalDomain._HIHideMenuBar = false;
-      screencapture = {
-        type = "jpg";
-        disable-shadow = true;
-      };
-      # Trackpad
-      trackpad = {
-        ActuationStrength = 0;
-        Clicking = true;
-      };
-    };
-    # Keyboard
-    keyboard = {
-      enableKeyMapping = true;
-      remapCapsLockToEscape = true;
-    };
-  };
-
   nix = {
     extraOptions = ''
       auto-optimise-store = true

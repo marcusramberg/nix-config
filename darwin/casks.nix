@@ -1,6 +1,7 @@
 _: {
   homebrew = {
     enable = true;
+    onActivation = { cleanup = "uninstall"; };
     casks = [
       "alfred"
       "alt-tab"
@@ -11,9 +12,9 @@ _: {
       "balenaetcher"
       "barrier"
       "basictex"
-      "bitwarden"
       "burp-suite"
       "calibre"
+      "cloudflare-warp"
       "cyberduck"
       #      "dash"
       "diffusionbee"
@@ -38,8 +39,9 @@ _: {
       #      "obs-ndi"
       "obs-websocket"
       "obsidian"
+      "parallels"
       "pgadmin4"
-      "plex-media-player"
+      "plex"
       "plexamp"
       "pocket-casts"
       "prusaslicer"
@@ -66,5 +68,10 @@ _: {
       "yt-music"
       "yubico-yubikey-manager"
     ];
+    masApps = {
+      "Bitwarden" = 1352778147;
+      "ReadKit" = 1615798039;
+      "UTM Virtual Machines" = 1538878817;
+    };
   };
 }

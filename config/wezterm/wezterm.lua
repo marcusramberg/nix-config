@@ -45,7 +45,7 @@ local config = {
 		},
 	},
 	default_gui_startup_args = { "connect", "unix" },
-	font = wezterm.font("JetBrainsMono Nerd Font"),
+	font = wezterm.font("JetBrainsMono NF"),
 	font_rules = {
 		{
 			italic = true,
