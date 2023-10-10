@@ -5,13 +5,13 @@
     ../modules/agenix.nix
     ../modules/nix.nix
     ../modules/fonts.nix
-
     ./casks.nix
   ];
 
   age.identityPaths = [ "/Users/marcus/.ssh/id_ed25519" ];
 
   #FIXME: nix-darwin sets this to /var/empty for Reasons[tm]
+  # https://github.com/nix-community/home-manager/issues/4026
   users.users.marcus.home = "/Users/marcus";
 
   # Need some shells
@@ -40,6 +40,9 @@
   };
 
   # services.karabiner-elements.enable = true;
+
+  # Enable local linux vm builder
+  nix.linux-builder.enable = true;
 
   # Fonts
   profiles.myfonts.enable = true;
