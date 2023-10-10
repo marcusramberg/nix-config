@@ -20,6 +20,7 @@
 
   # Auto upgrade nix package and the daemon service.
   services.nix-daemon.enable = true;
+  services.tailscale.enable = true;
 
   # Apps
   # `home-manager` currently has issues adding them to `~/Applications`

@@ -91,7 +91,7 @@
         # };
       };
 
-      darwinConfigurations.mbook = mkDarwinHost {
+      darwinConfigurations.mwork = mkDarwinHost {
         inherit overlays inputs std;
         system = "aarch64-darwin";
       };
