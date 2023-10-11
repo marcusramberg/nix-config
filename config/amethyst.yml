@@ -23,10 +23,13 @@ mouse-follows-focus: false
 focus-follows-mouse: false
 
 window-margins: true
-window-margin-size: 12
+window-margin-size: 2
+smart-window-margins: true
 
 floating:
   - com.bitwarden.desktop
+  - com.apple.systempreferences
+
 float-small-windows: true
 
 # true to insert new windows into the first position and false to insert new
