@@ -8,6 +8,10 @@
       source = ../config/nvim;
       recursive = true;
     };
+    ".config/tmuxinator" = {
+      source = ../config/tmuxinator;
+      recursive = true;
+    };
     ".doom.d" = {
       source = ../config/doom.d;
       recursive = true;
