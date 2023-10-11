@@ -5,6 +5,7 @@
     ../modules/agenix.nix
     ../modules/nix.nix
     ../modules/fonts.nix
+    ./builder.nix
     ./casks.nix
   ];
 
@@ -40,9 +41,6 @@
   };
 
   # services.karabiner-elements.enable = true;
-
-  # Enable local linux vm builder
-  nix.linux-builder.enable = true;
 
   # Fonts
   profiles.myfonts.enable = true;
