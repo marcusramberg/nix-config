@@ -71,7 +71,8 @@ return {
 	{ "tiagovla/scope.nvim", config = true },
 	{
 		"goolord/alpha-nvim",
-		opts = function(_, opts)
+		opts = function()
+			local dashboard = require("alpha.themes.dashboard")
 			local logo = [[
 SSSSS                                       .sSSS s.
 SSSSS      .sSSSSs.   SSSSSSSSSs..sSSS SSSSSSSSSS SSSs.SSSSS.sSSSsSS SSsSSSSS
@@ -84,8 +85,8 @@ S%%%S SSSSSS%%%S SSSSSS%%%SSSSSSS   S%%%S      SS SS   S%%%SS%%%S       SSSSS
 SSSSSsSS;:'SSSSS SSSSSSSSSSSSSSSS   SSSSS       SsS    SSSSSSSSSS       SSSSS
 ]]
 
-			opts.section.header.val = vim.split(logo, "\n")
-			return opts
+			dashboard.section.header.val = vim.split(logo, "\n")
+			return dashboard
 		end,
 	},
 }
