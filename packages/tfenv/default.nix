@@ -10,6 +10,7 @@ stdenvNoCC.mkDerivation {
   dontBuild = true;
 
   nativeBuildInputs = [ makeWrapper ];
+  buildInputs = [ pkgs.gnugrep ];
 
   installPhase = ''
     mkdir -p $out
@@ -20,6 +21,7 @@ stdenvNoCC.mkDerivation {
   # Using '--run export ...' instead of the builtin --set-default, since
   # expanding $HOME fails with --set-default.
   fixupPhase = ''
+    ln -s ${pkgs.gnugrep}/bin/grep $out/bin/ggrep
     wrapProgram $out/bin/tfenv \
     --prefix PATH : "${lib.makeBinPath [ pkgs.unzip ]}" \
     --run 'export TFENV_CONFIG_DIR="''${TFENV_CONFIG_DIR:-$HOME/.local/tfenv}"' \
