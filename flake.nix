@@ -25,10 +25,6 @@
       url = "github:marcusramberg/mobile-nixos/enchilada";
     };
     nix-std.url = "github:chessai/nix-std";
-    neovim-nightly-overlay = {
-      inputs.nixpkgs.follows = "nixpkgs";
-      url = "github:nix-community/neovim-nightly-overlay";
-    };
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     nur.url = "github:nix-community/NUR";
     stable.url = "github:nixos/nixpkgs/nixos-23.05";
