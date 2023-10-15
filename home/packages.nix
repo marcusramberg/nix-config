@@ -10,12 +10,15 @@ in {
       any-nix-shell
       bat
       cargo
+      cloudflared
       cocogitto
       coreutils
       comma
       curl
       deadnix
       delta
+      dive
+      docker
       git
       git-crypt
       git-extras
