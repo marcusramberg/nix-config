@@ -30,7 +30,7 @@
     systemPackages = with pkgs; [
       colima
       gnupg
-      goku
+      gnugrep
       gitFull
       element-desktop
       terminal-notifier
