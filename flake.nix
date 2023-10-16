@@ -3,13 +3,16 @@
 
   inputs = {
     agenix.url = "github:ryantm/agenix";
+    agenix.inputs.nixpkgs.follows = "nixpkgs";
     darwin = {
       url = "github:lnl7/nix-darwin/master";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     devenv.url = "github:cachix/devenv/latest";
     emacs-overlay.url = "github:nix-community/emacs-overlay";
+    emacs-overlay.inputs.nixpkgs.follows = "nixpkgs";
     hei.url = "github:marcusramberg/hei";
+    hei.inputs.nixpkgs.follows = "nixpkgs";
     flake-utils.url = "github:numtide/flake-utils";
 
     home-manager = {
@@ -31,9 +34,12 @@
     tfenv.flake = false;
     tfenv.url = "github:tfutils/tfenv";
     webauthn-oidc.url = "github:arianvp/webauthn-oidc";
+    webauthn-oidc.inputs.nixpkgs.follows = "nixpkgs";
+    zig.url = "github:mitchellh/zig-overlay";
+
   };
 
-  outputs = { nixpkgs, flake-utils, hei, nix-std, ... }@inputs:
+  outputs = { nixpkgs, flake-utils, hei, nix-std, zig, ... }@inputs:
     let
       mkNixHost = import lib/mkNixHost.nix;
       # mkPiImage = import lib/mkNixHost.nix;
@@ -43,6 +49,7 @@
         (import ./overlays/caddy.nix inputs)
         # inputs.neovim-nightly-overlay.overlay
         inputs.emacs-overlay.overlay
+        inputs.zig.overlays.default
       ];
       std = nix-std.lib;
     in {

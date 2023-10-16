@@ -79,5 +79,5 @@ in {
     ] ++ lib.optionals stdenv.isDarwin [
       cocoapods
       m-cli # useful macOS CLI commands
-    ] ++ lib.optionals stdenv.isLinux [ btop kubectl maim nim nimlsp ];
+    ] ++ lib.optionals stdenv.isLinux [ btop kubectl maim nim2 ];
 }

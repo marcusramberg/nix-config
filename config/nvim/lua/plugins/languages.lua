@@ -101,6 +101,7 @@ return {
 		},
 	},
 
+	{ "aMOPel/nvim-treesitter-nim" },
 	-- add more treesitter parsers
 	{
 		"nvim-treesitter/nvim-treesitter",
@@ -118,6 +119,7 @@ return {
 				"markdown",
 				"markdown_inline",
 				"nix",
+				"nim",
 				"query",
 				"regex",
 				"svelte",
