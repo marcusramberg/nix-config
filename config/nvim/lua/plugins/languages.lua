@@ -119,7 +119,8 @@ return {
 				"markdown",
 				"markdown_inline",
 				"nix",
-				"nim",
+				-- Commented out as we have to do it by hand for now
+				-- "nim",
 				"query",
 				"regex",
 				"svelte",
