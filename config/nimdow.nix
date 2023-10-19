@@ -39,6 +39,7 @@
       "telegram-desktop"
       "vivaldi"
       "volumeicon"
+      "zeal"
     ] ++ pkgs.lib.optional (osConfig.networking.hostName == "mbox")
       "streamdeck -n";
   };
