@@ -87,10 +87,10 @@
       #   name = "bass";
       #   inherit (pkgs.fishPlugins.bass) src;
       # }
-      # {
-      #   name = "fzf-fish";
-      #   inherit (pkgs.fishPlugins.fzf-fish) src;
-      # }
+      {
+        name = "fzf-fish";
+        inherit (pkgs.fishPlugins.fzf-fish) src;
+      }
       {
         name = "pure";
         src = pkgs.fetchFromGitHub {
