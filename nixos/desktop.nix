@@ -2,7 +2,7 @@
 with lib;
 let cfg = config.profiles.nimdow;
 in {
-  options.profiles.nimdow.enable = mkEnableOption "nimdow";
+  options.profiles.desktop.enable = mkEnableOption "desktop";
 
   config = mkIf cfg.enable {
     environment.systemPackages = with pkgs;
@@ -37,13 +37,6 @@ in {
 
       openssh.settings.X11Forwarding = true;
 
-      picom = {
-        enable = true;
-        activeOpacity = 1;
-        vSync = true;
-        backend = "glx";
-      };
-
       xserver = {
         enable = true;
         layout = "us";
@@ -51,23 +44,15 @@ in {
         xkbOptions = "eurosign:e";
         xkbVariant = "mac";
         displayManager = {
-          defaultSession = "xfce+nimdow";
-          lightdm = {
-            greeters.gtk.enable = true;
-            greeters.gtk.theme.name = "Nordic";
+          sddm = {
+            # greeters.gtk.enable = true;
+            # greeters.gtk.theme.name = "Nordic";
             enable = true;
+            wayland.enable = true;
           };
         };
 
-        desktopManager = {
-          plasma5.enable = true;
-          xfce = {
-            enable = true;
-            noDesktop = true;
-            enableXfwm = false;
-          };
-        };
-        windowManager.nimdow.enable = true;
+        desktopManager.plasma5.enable = true;
       };
       xrdp.enable = true;
     };

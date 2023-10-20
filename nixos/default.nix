@@ -9,18 +9,20 @@
     ../modules/emacs.nix
     ../modules/fonts.nix
     ./amd.nix
-    ./nvidia.nix
     ./ddcutil.nix
     ./desktop.nix
     ./docker.nix
-    ./keyboardmap.nix
-    ./passthrough.nix
-    ./prometheus.nix
-    ./laptop.nix
+    ./hass.nix
+    ./hyprland.nix
     ./k3s.nix
+    ./keyboardmap.nix
+    ./laptop.nix
     ./lemmy.nix
     ./mediaserver.nix
-    ./hass.nix
+    ./nimdow.nix
+    ./nvidia.nix
+    ./passthrough.nix
+    ./prometheus.nix
   ];
 
   # List packages installed in system profile. To search, run:

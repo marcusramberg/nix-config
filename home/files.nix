@@ -8,6 +8,10 @@
       source = ../config/nvim;
       recursive = true;
     };
+    ".config/hypr" = {
+      source = ../config/hypr;
+      recursive = true;
+    };
     ".config/tmuxinator" = {
       source = ../config/tmuxinator;
       recursive = true;

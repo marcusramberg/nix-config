@@ -50,6 +50,7 @@
 
   profiles = {
     nimdow.enable = true;
+    hyprland.enable = true;
     dockerHost.enable = true;
     k3s.enable = true;
     passthrough = {
