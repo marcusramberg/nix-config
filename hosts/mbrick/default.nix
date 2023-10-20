@@ -12,7 +12,7 @@
     # Forcibly set a password on users...
     # Note that a numeric password is currently required to unlock a session
     # with the plasma mobile shell :/
-    users.users.${user}.passwordFile = config.age.secrets.phone-pin.path;
+    users.users.${user}.hashedPasswordFile = config.age.secrets.phone-pin.path;
 
     # Automatically login as defaultUserName.
     services.xserver.displayManager.autoLogin = { inherit user; };
