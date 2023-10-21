@@ -102,7 +102,11 @@
       apps.default = {
         type = "app";
         program = "${hei.packages.${system}.hei}/bin/hei";
-
+      };
+      packages = {
+        mbrick-disk-image =
+          inputs.self.nixosConfigurations.mbrick.config.mobile.outputs.default;
+        # mbrick-boot-partition = inputs.self.nixosConfigurations.mbrick.config.mobile.outputs.u-boot-partion.default;
       };
     });
 }
