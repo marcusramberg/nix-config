@@ -31,7 +31,8 @@
     [{ device = "/dev/disk/by-uuid/952f1921-0aa0-4180-9ea6-2aa9cf9fd87e"; }];
 
   # Enables DHCP on each ethernet and wireless interface. In case of scripted networking
-  # (the default) this is the recommended approach. When using systemd-networkd it's
+  # (the default) this is the recommended approach. When using system
+  # d-networkd it's
   # still possible to use this option, but it's recommended to use it in conjunction
   # with explicit per-interface declarations with `networking.interfaces.<interface>.useDHCP`.
   networking.useDHCP = lib.mkDefault true;
