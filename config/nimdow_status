@@ -1,13 +1,13 @@
 #!/usr/bin/env bash
 ARROW_A=$'\x1b[0m\x1b[38;2;67;76;94m|\x1b[0m\x1b[48;2;67;76;94m'
 ARROW_B=$'\x1b[38;2;167;122;196m|\x1b[0m\x1b[48;2;167;122;196m'
-ARROW_C=$'\x1b[38;2;67;76;94m|\x1b[0m\x1b[48;2;67;76;94m'
+ARROW_C=$'\x1b[38;2;67;76;94m\x1b[0m\x1b[48;2;67;76;94m'
 
 red=$'\e[31m'
 reset=$'\e[0m'
 
 while true; do
-	status="${ARROW_A} ${ARROW_B} ${red}  ${reset}$(date '+%m/%d') ${ARROW_C}${ARROW_B}  $(date '+%H:%M') ${ARROW_C}"
+	status="${ARROW_A} ${ARROW_B} ${red}  ${reset}$(date '+%m/%d') ${ARROW_C}${ARROW_B}  $(date '+%H:%M') ${ARROW_C}${ARROW_A}"
 	#    xsetroot -name "[ $(pomodoro status)] [ $(date +%H:%M)]"
 	xsetroot -name "$status"
 
