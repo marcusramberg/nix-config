@@ -13,7 +13,7 @@ in {
     };
 
     # Load amd driver for Xorg and Wayland
-    services.xserver.videoDrivers = [ "amdgpu" ];
+    # services.xserver.videoDrivers = [ "amdgpu" ];
 
     boot.initrd.kernelModules = [ "amdgpu" ];
   };
