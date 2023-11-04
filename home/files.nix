@@ -33,7 +33,7 @@
 
     ".amethyst.yml".source = ../config/amethyst.yml;
     ".config/bat/config".source = ../config/bat/config;
-    ".config/btop/btop.config".source = ../config/btop.conf;
+    ".config/btop/btop.conf".source = ../config/btop.conf;
     ".config/karabiner/karabiner.json".source = ../config/karabiner.json;
     ".gitconfig".source = ../config/gitconfig;
     ".i3/config".source = ../config/i3-config;

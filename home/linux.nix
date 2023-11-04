@@ -16,6 +16,13 @@ in {
       };
     };
   };
+  gtk = mkIf (builtins.hasAttr "xserver" osConfig.services) {
+    enable = true;
+    theme = {
+      name = "Nordic-darker";
+      package = pkgs.nordic;
+    };
+  };
   services.gpg-agent = mkIf stdenv.isLinux {
     enable = pkgs.stdenv.isLinux;
     pinentryFlavor = "tty";
