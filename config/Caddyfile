@@ -134,6 +134,26 @@ tv.means.no:443 {
 	reverse_proxy localhost:8989
 }
 
+webdav.means.no:443 {
+	import caddy-common
+	reverse_proxy {
+		to https://mspace:5006
+		transport http {
+			tls tls_insecure_skip_verify
+		}
+	}
+}
+
+mspace.means.no:443 {
+	import caddy-common
+	reverse_proxy {
+		to https://mspace:5001
+		transport http {
+			tls tls_insecure_skip_verify
+		}
+	}
+}
+
 # Public
 
 means.no:18443 {
