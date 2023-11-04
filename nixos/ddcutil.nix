@@ -16,7 +16,7 @@ in {
     boot.kernelModules = [ "i2c-dev" "i2c-piix4" ];
 
     services.udev.extraRules = builtins.readFile
-      "${pkgs.ddcutil}/share/ddcutil/data/45-ddcutil-i2c.rules";
+      "${pkgs.ddcutil}/share/ddcutil/data/60-ddcutil-i2c.rules";
 
     environment.systemPackages = [ pkgs.ddcutil ];
     users.groups = { "i2c" = { }; };
