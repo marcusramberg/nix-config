@@ -6,12 +6,12 @@
   imports = [
     ../modules/agenix.nix
     ../modules/nix.nix
-    ../modules/emacs.nix
     ../modules/fonts.nix
     ./amd.nix
     ./ddcutil.nix
     ./desktop.nix
     ./docker.nix
+    ./emacs.nix
     ./hass.nix
     ./hyprland.nix
     ./k3s.nix

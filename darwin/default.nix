@@ -7,6 +7,7 @@
     ../modules/fonts.nix
     ./builder.nix
     ./casks.nix
+    ./emacs.nix
   ];
 
   age.identityPaths = [ "/Users/marcus/.ssh/id_ed25519" ];
@@ -29,6 +30,7 @@
   environment = {
     systemPackages = with pkgs; [
       colima
+      emacs
       gnupg
       gnugrep
       gitFull
