@@ -74,7 +74,6 @@ in {
 
       # useful nix related tools
       # cachix # adding/managing alternative binary caches hosted by cachix
-      # comma # run software from without installing it
       # niv # easy dependency management for nix projects
     ] ++ lib.optionals stdenv.isDarwin [
       cocoapods
