@@ -14,7 +14,7 @@ in {
       cocogitto
       coreutils
       comma
-      curl
+      curlHTTP3
       deadnix
       delta
       dive
