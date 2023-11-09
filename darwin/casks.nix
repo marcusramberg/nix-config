@@ -31,6 +31,7 @@ _: {
       "karabiner-elements"
       "lens"
       "macfuse"
+      "microsoft-remote-desktop"
       "morpheus"
       "netnewswire"
       "nordpass"

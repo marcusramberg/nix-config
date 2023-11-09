@@ -1,4 +1,6 @@
-{ pkgs, lib, ... }: {
+{ pkgs, lib, ... }:
+let inherit (pkgs.stdenv) isDarwin;
+in {
   programs.fish = {
     enable = true;
     functions = {
@@ -49,7 +51,9 @@
       fish_add_path /.dotfiles/bin /usr/local/sbin ${
         lib.optionalString pkgs.stdenv.isLinux "/etc/nixos/bin"
       }
-      fish_add_path -a /run/current_system/sw/bin ~/.local/bin /opt/homebrew/bin ~/go/bin/ ~/.nimble/bin ~/.cargo/bin/
+      fish_add_path -p /run/current_system/sw/bin ~/.local/bin ${
+        lib.optionalString isDarwin "/opt/homebrew/bin"
+      } ~/go/bin/ ~/.nimble/bin ~/.cargo/bin/
       set CLOUDSDK_PYTHON_SITEPACKAGES 1
     '';
     interactiveShellInit = ''
