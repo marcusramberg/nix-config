@@ -20,7 +20,7 @@
   };
 
   fileSystems."/space" = {
-    device = "192.168.86.211:/volume1/space";
+    device = "mspace:/volume1/space";
     fsType = "nfs4";
     options = [ "nfsvers=4.1" "soft" ];
   };

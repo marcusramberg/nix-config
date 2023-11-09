@@ -2,8 +2,11 @@
 let
   inherit (lib) mkIf;
   inherit (pkgs) stdenv;
+  isNixOS = osConfig.system.nixosVersion != null;
+  isDesktop = isNixOS && osConfig.services.xserver.enable;
+
 in {
-  programs = mkIf (builtins.hasAttr "xserver" osConfig.services) {
+  programs = mkIf isDesktop {
     chromium.enable = true;
     firefox = {
       enable = true;
@@ -16,7 +19,8 @@ in {
       };
     };
   };
-  gtk = mkIf (builtins.hasAttr "xserver" osConfig.services) {
+
+  gtk = mkIf isDesktop {
     enable = true;
     theme = {
       name = "Nordic-darker";
