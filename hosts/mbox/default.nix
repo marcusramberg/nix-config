@@ -42,6 +42,12 @@
     networkmanager.enable = true;
   };
 
+  fileSystems."/home/marcus/org" = {
+    device = "mspace:/volume1/homes/marcus/Drive/orgmode";
+    fsType = "nfs4";
+    options = [ "nfsvers=4.1" "soft" ];
+  };
+
   hardware = {
     gpu.amd.enable = true;
     bluetooth.enable = true;
