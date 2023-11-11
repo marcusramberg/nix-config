@@ -13,7 +13,6 @@ in {
       cloudflared
       cocogitto
       coreutils
-      comma
       curlHTTP3
       deadnix
       delta

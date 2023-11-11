@@ -1,4 +1,4 @@
-_: {
+{ inputs, ... }: {
 
   imports = [
     ./files.nix
@@ -8,6 +8,8 @@ _: {
     ./python.nix
     ./programs.nix
     ./tmux.nix
+    inputs.nix-index-database.hmModules.nix-index
+
   ];
 
   home = { stateVersion = "23.05"; };

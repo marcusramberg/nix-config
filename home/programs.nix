@@ -26,6 +26,7 @@
     keychain.enable = true;
     # navi.enable = true;
     nix-index.enable = true;
+    nix-index-database.comma.enable = true;
     neovim = {
       extraConfig = ":luafile ~/.config/nvim/init.lua";
       viAlias = true;
