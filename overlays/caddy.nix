@@ -31,7 +31,7 @@ in {
 
     inherit (prev.caddy) src;
 
-    vendorSha256 = "sha256-n8RKWOb15BN5ZTpZEM1m3+wg8GGtHiN/FQXbxBp4Tp8=";
+    vendorHash = "sha256-n8RKWOb15BN5ZTpZEM1m3+wg8GGtHiN/FQXbxBp4Tp8=";
 
     overrideModAttrs = _: {
       preBuild = ''

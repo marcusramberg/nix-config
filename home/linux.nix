@@ -2,7 +2,7 @@
 let
   inherit (lib) mkIf;
   inherit (pkgs) stdenv;
-  isNixOS = lib.hasAttr "nixosVersion" osConfig.system;
+  isNixOS = lib.hasAttr "nixos" osConfig.system;
   isDesktop = isNixOS && osConfig.services.xserver.enable;
 
 in {
