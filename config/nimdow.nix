@@ -222,7 +222,7 @@
       modifiers = [ "super" ];
     }
     {
-      command = "rofi -show run";
+      command = "rofi -show drun";
       keys = [ "space" ];
       modifiers = [ "super" ];
     }

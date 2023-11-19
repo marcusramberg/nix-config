@@ -10,6 +10,7 @@ in {
         copyq
         element-desktop
         feh
+        kotatogram-desktop
         neovide
         nitrogen
         obsidian
@@ -53,8 +54,14 @@ in {
         };
 
         desktopManager.plasma5.enable = true;
+        windowManager = { i3 = { enable = true; }; };
       };
-      xrdp.enable = true;
+      xrdp = {
+        enable = true;
+        defaultWindowManager = "startplasma-x11";
+
+      };
+
     };
     networking.firewall.allowedTCPPorts = [ 3389 ];
     xdg.mime.defaultApplications = {
@@ -66,5 +73,24 @@ in {
     };
     environment.sessionVariables.DEFAULT_BROWSER =
       "${pkgs.vivaldi}/bin/vivaldi";
+    security.polkit = {
+      enable = true;
+      extraConfig = ''
+        polkit.addRule(function(action, subject) {
+          if (
+            subject.isInGroup("users")
+              && (
+                action.id == "org.freedesktop.login1.reboot" ||
+                action.id == "org.freedesktop.login1.reboot-multiple-sessions" ||
+                action.id == "org.freedesktop.login1.power-off" ||
+                action.id == "org.freedesktop.login1.power-off-multiple-sessions"
+              )
+            )
+          {
+            return polkit.Result.YES;
+          }
+        })
+      '';
+    };
   };
 }

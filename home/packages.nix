@@ -56,6 +56,7 @@ in {
       ncdu
       nnn
       neovim
+      ollama
       pre-commit
       promexplorer
       pssh
