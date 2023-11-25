@@ -80,6 +80,10 @@
           inherit overlays nixpkgs inputs std;
           system = "x86_64-linux";
         };
+        mgate = mkNixHost "mgate" {
+          inherit overlays nixpkgs inputs std;
+          system = "x86_64-linux";
+        };
         mbrick = mkNixHost "mbrick" {
           inherit overlays nixpkgs inputs std;
           system = "aarch64-linux";

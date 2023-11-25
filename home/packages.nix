@@ -4,7 +4,6 @@ in {
   home.packages = with pkgs;
     [
       argocd
-      awscli2
       actionlint
       asciinema
       any-nix-shell
