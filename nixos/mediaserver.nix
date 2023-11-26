@@ -55,10 +55,11 @@ in {
 
       jellyfin.enable = true;
 
-      # unifi = {
-      #   enable = true;
-      #   openFirewall = true;
-      # };
+      unifi = {
+        enable = true;
+        unifiPackage = pkgs.unifi;
+        openFirewall = true;
+      };
 
       postgresql = {
         enable = true;

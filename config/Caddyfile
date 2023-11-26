@@ -154,6 +154,16 @@ mspace.means.no:443 {
 	}
 }
 
+unifi.means.no:443 {
+	import caddy-common
+	reverse_proxy {
+		to https://localhost:8443
+		transport http {
+			tls tls_insecure_skip_verify
+		}
+	}
+}
+
 # Public
 
 means.no:18443 {
