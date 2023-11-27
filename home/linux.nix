@@ -10,13 +10,7 @@ in {
     chromium.enable = true;
     firefox = {
       enable = true;
-      package = pkgs.firefox.override {
-        # See nixpkgs' firefox/wrapper.nix to check which options you can use
-        cfg = {
-          # Tridactyl native connector
-          enableTridactylNative = true;
-        };
-      };
+      nativeMessagingHosts.packages = [ pkgs.tridactyl-native ];
     };
   };
 
