@@ -6,6 +6,7 @@
       icons = true;
       git = true;
     };
+    bottom.enable = true;
     git.difftastic = {
       background = "dark";
       display = "inline";
