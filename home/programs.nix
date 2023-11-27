@@ -19,6 +19,7 @@
       enable = true;
       tmux.enableShellIntegration = true;
     };
+    home-manager.enable = true;
     htop = {
       enable = true;
       settings.show_program_path = true;
@@ -40,7 +41,7 @@
         # What editor gh should run when creating issues, pull requests, etc. If
         # blank, will refer to environment.
         editor =
-          ""; # When to interactively prompt. This is a global config that cannot be
+          ""; # When to interactively prompt. This is a global config that cannt be
 
         # overridden by hostname. Supported values: enabled, disabled
         prompt = "enabled";

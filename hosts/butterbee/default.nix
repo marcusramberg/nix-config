@@ -14,6 +14,7 @@
   hardware.pulseaudio.enable = false;
 
   profiles.nimdow.enable = true;
+  profiles.dockerHost.enable = true;
 
   services = {
     flatpak.enable = true;
@@ -22,8 +23,9 @@
       displayManager.sddm.enableHidpi = true;
     };
   };
-  virtualisation.podman.enable = true;
-  virtualisation.podman.dockerCompat = true;
+
+  # virtualisation.podman.enable = true;
+  # virtualisation.podman.dockerCompat = true;
 
   networking.extraHosts = ''
     10.211.55.2 mbook
