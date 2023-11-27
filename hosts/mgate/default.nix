@@ -4,6 +4,11 @@
     ./hardware-configuration.nix
   ];
 
+  # Install static leases from agenix
+  age.secrets.leases = {
+    path = "/etc/systemd/network/lan.network.d/lan.network.conf";
+    mode = "644";
+  };
   boot = {
     loader = {
       systemd-boot.enable = true;

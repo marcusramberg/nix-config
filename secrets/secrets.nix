@@ -18,5 +18,6 @@ in {
   "appdaemonToken.age".publicKeys = [ marcus ];
   "phone-pin.age".publicKeys = [ marcus ];
   "k3s-token.age".publicKeys = [ marcus ];
+  "leases.age".publicKeys = [ marcus ];
 }
 
