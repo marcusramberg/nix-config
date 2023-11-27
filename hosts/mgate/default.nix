@@ -31,7 +31,7 @@
     nftables = { enable = true; };
     nat = {
       enable = true;
-      internalInterfaces = [ "lan" "iot" "mgmt" ];
+      internalInterfaces = [ "lan" "iot" ];
       externalInterface = "wan";
       forwardPorts = [{
         sourcePort = 443;
