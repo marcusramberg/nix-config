@@ -6,13 +6,6 @@ let
   isDesktop = isNixOS && osConfig.services.xserver.enable;
 
 in {
-  programs = mkIf isDesktop {
-    chromium.enable = true;
-    firefox = {
-      enable = true;
-      nativeMessagingHosts.packages = [ pkgs.tridactyl-native ];
-    };
-  };
 
   gtk = mkIf isDesktop {
     enable = true;

@@ -30,6 +30,13 @@ in {
       ];
 
     profiles.myfonts.enable = true;
+    programs = {
+      chromium.enable = true;
+      firefox = {
+        enable = true;
+        nativeMessagingHosts.packages = [ pkgs.tridactyl-native ];
+      };
+    };
 
     qt.platformTheme = "gtk";
 
