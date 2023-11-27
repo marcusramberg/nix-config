@@ -16,7 +16,7 @@ in {
       deadnix
       delta
       dive
-      docker
+      # docker
       git
       git-crypt
       git-extras
