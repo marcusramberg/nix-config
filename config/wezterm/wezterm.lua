@@ -45,6 +45,7 @@ local config = {
 		},
 	},
 	default_gui_startup_args = { "connect", "unix" },
+	freetype_load_flags = "NO_HINTING",
 	font = wezterm.font("JetBrainsMono NF"),
 	font_rules = {
 		{
