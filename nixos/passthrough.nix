@@ -21,10 +21,11 @@ in {
       kernelModules = [ "vfio" "vfio_iommu_type1" "vfio_pci" "vfio_virqfd" ];
     };
 
-    environment.systemPackages = with pkgs; [
-      virt-manager
-      libguestfs # needed to virt-sparsify qcow2 files
-    ];
+    programs.virt-manager.enable = true;
+    environment.systemPackages = with pkgs;
+      [
+        libguestfs # needed to virt-sparsify qcow2 files
+      ];
 
     virtualisation = {
       spiceUSBRedirection.enable = true;
