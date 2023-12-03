@@ -13,6 +13,7 @@
     ./docker.nix
     ./emacs.nix
     ./hass.nix
+    ./gaming.nix
     ./hyprland.nix
     ./k3s.nix
     ./keyboardmap.nix

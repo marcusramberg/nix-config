@@ -31,7 +31,7 @@
       options kvm_intel nested=1
     '';
   };
-  environment.systemPackages = [ pkgs.deckmaster ];
+  environment.systemPackages = [ pkgs.zigpkgs.master ];
 
   networking = {
     extraHosts = ''
@@ -58,6 +58,7 @@
     nimdow.enable = true;
     hyprland.enable = true;
     dockerHost.enable = true;
+    gaming.enable = true;
     k3s.enable = true;
     passthrough = {
       enable = true;
@@ -74,7 +75,6 @@
   };
 
   programs = {
-    steam.enable = true;
     custom.ddcutil = {
       enable = true;
       user = "marcus";
