@@ -27,6 +27,7 @@ in {
       fortune
       gnumake
       gnugrep
+      gist
       go
       golangci-lint
       (google-cloud-sdk.withExtraComponents
