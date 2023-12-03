@@ -6,14 +6,14 @@ in {
   config = mkIf cfg.enable {
     fonts = {
       fontDir.enable = true;
-      fonts = with pkgs; [
-        noto-fonts-emoji
-        liberation_ttf
-        mplus-outline-fonts.githubRelease
-        dina-font
-        proggyfonts
-        (nerdfonts.override { fonts = [ "JetBrainsMono" "Iosevka" "Hack" ]; })
-      ];
+      fonts = with pkgs;
+        [
+          liberation_ttf
+          mplus-outline-fonts.githubRelease
+          dina-font
+          proggyfonts
+          (nerdfonts.override { fonts = [ "JetBrainsMono" "Iosevka" "Hack" ]; })
+        ] ++ lib.optional stdenv.isLinux [ noto-fonts-emoji ];
     };
   };
 }
