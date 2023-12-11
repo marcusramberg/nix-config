@@ -13,7 +13,7 @@ in {
           dina-font
           proggyfonts
           (nerdfonts.override { fonts = [ "JetBrainsMono" "Iosevka" "Hack" ]; })
-        ] ++ lib.optional stdenv.isLinux [ noto-fonts-emoji ];
+        ] ++ lib.optional stdenv.isLinux noto-fonts-emoji;
     };
   };
 }
