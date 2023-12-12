@@ -33,7 +33,7 @@ bindsym $mod+Shift+q kill
 bindsym $mod+space exec "dmenu_run"
 
 # Shots
-bindsym $mod+Shift+p exec maim -s | xclip -selection clipboard -t image/jpg
+bindsym $mod+Shift+p exec maim -s | xclip -selection clipboard -t image/png
 
 # Clipboard manager
 exec copyq
