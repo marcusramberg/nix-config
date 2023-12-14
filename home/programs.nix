@@ -58,6 +58,7 @@
         };
         http_unix_socket = "";
         browser = "";
+        version = 1;
       };
     };
     # Smarter z
