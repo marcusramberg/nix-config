@@ -91,12 +91,12 @@ localhost:80 {
 
 mhub.means.no:443 {
 	import caddy-tailscale
-	reverse_proxy mhub.lan:8123
+	reverse_proxy mhub:8123
 }
 
 home.means.no:443 {
 	import caddy-common
-	reverse_proxy mhub.lan:8123
+	reverse_proxy mhub:8123
 }
 
 fab.means.no:443 {

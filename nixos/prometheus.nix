@@ -9,14 +9,6 @@ in {
   };
 
   config = mkIf cfg.enable {
-    networking = {
-      firewall.allowedTCPPorts = [
-        3000 # grafana
-        9090 # prometheus
-        31337 # pushgw
-      ];
-      useDHCP = true;
-    };
 
     services.promtail = { enable = true; };
     systemd.services.promtail.serviceConfig.ExecStart = lib.mkForce
@@ -144,6 +136,10 @@ in {
             }
             {
               targets = [ "mspace:9100" ];
+              labels = { alias = "mspace"; };
+            }
+            {
+              targets = [ "mgate:9100" ];
               labels = { alias = "mspace"; };
             }
             {
