@@ -36,6 +36,7 @@ return {
 			servers = {
 				html = {},
 				nim_langserver = {},
+				denols = {},
 				jsonls = {
 					settings = {
 						schemas = {
@@ -158,7 +159,7 @@ return {
 					nix = { "nil_ls", "rnix" },
 					javascript = { "eslint", "tsserver" },
 					javascriptreact = { "eslint", "tsserver" },
-					typescript = { "eslint", "tsserver" },
+					typescript = { "eslint", "tsserver", "denols" },
 					typescriptreact = { "eslint", "tsserver" },
 					markdown = { "marksman", "ltex" },
 				},

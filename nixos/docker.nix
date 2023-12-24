@@ -6,7 +6,7 @@ in {
   options.profiles.dockerHost.enable = mkEnableOption "dockerHost";
 
   config.virtualisation = mkIf cfg.enable {
-    podman.enable = true;
+    # podman.enable = true;
     podman.dockerCompat = true;
     oci-containers.backend = "podman";
   };

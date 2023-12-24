@@ -20,6 +20,7 @@
       enable = true;
       tmux.enableShellIntegration = true;
     };
+    helix = { enable = true; };
     home-manager.enable = true;
     htop = {
       enable = true;

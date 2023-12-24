@@ -100,5 +100,6 @@
       SUBSYSTEM=="usb", ATTRS{idVendor}=="0fd9", ATTRS{idProduct}=="006c", MODE:="666", GROUP="plugdev", SYMLINK+="streamdeck-xl"
     '';
   };
+  virtualisation.docker.enable = true;
 }
 

@@ -13,6 +13,7 @@ in lib.nixosSystem {
   modules = lib.lists.flatten ([
     ../hosts/${name}
     ../nixos
+    inputs.nur.nixosModules.nur
     inputs.home-manager.nixosModules.home-manager
     (mkOptions system {
       inherit user;

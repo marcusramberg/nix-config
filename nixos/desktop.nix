@@ -23,6 +23,7 @@ in {
         volumeicon
         xarchiver
         xclip
+        xorg.xhost
         zeal-qt6
       ] ++ lib.optionals (pkgs.system == "x86_64-linux") [
         pkgs.vivaldi-ffmpeg-codecs
