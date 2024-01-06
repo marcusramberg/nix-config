@@ -134,5 +134,11 @@
   # Always be sshing
   services.openssh.enable = true;
   nixpkgs.config.permittedInsecurePackages = [ "electron-25.9.0" ];
+  system.activationScripts.diff = {
+    supportsDryActivation = true;
+    text = ''
+      ${pkgs.nvd}/bin/nvd --nix-bin-dir=${pkgs.nix}/bin diff /run/current-system "$systemConfig"
+    '';
+  };
 
 }
