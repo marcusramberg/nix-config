@@ -38,6 +38,7 @@ globals = {
 	"vim.go",
 	"vim.env",
 	"table.unpack",
+	"hs",
 }
 
 exclude_files = {

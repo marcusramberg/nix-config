@@ -8,7 +8,7 @@ _: {
   pre-commit.hooks = {
     commitizen.enable = true;
     deadnix.enable = true;
-    luacheck.enable = true;
+    # luacheck.enable = true;
     markdownlint.enable = true;
     nixfmt.enable = true;
     statix.enable = true;

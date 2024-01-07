@@ -16,7 +16,6 @@ return {
 			local nls = require("null-ls")
 			opts.sources = {
 				nls.builtins.formatting.nimpretty,
-				nls.builtins.formatting.stylua,
 				nls.builtins.formatting.shfmt,
 				nls.builtins.formatting.prettier,
 				nls.builtins.formatting.black,
@@ -32,7 +31,6 @@ return {
 		"neovim/nvim-lspconfig",
 		---@class PluginLspOpts
 		opts = {
-			---@type lspconfig.options
 			servers = {
 				html = {},
 				nim_langserver = {},
