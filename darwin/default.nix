@@ -30,11 +30,9 @@
   environment = {
     systemPackages = with pkgs; [
       colima
-      emacs
       gnupg
       gnugrep
       gitFull
-      element-desktop
       terminal-notifier
     ];
     postBuild = ''
@@ -61,4 +59,10 @@
   security.pam.enableSudoTouchIdAuth = true;
   time.timeZone = "Europe/Oslo";
 
+  system.activationScripts.diff = {
+    supportsDryActivation = true;
+    text = ''
+      ${pkgs.nvd}/bin/nvd --nix-bin-dir=${pkgs.nix}/bin diff /run/current-system "$systemConfig"
+    '';
+  };
 }

@@ -65,6 +65,7 @@ _: {
       "visual-studio-code"
       "vivaldi"
       "vlc"
+      "wezterm-nightly"
       "xcodes"
       "yt-music"
       "yubico-yubikey-manager"
@@ -74,5 +75,6 @@ _: {
       "ReadKit" = 1615798039;
       "UTM Virtual Machines" = 1538878817;
     };
+    taps = [ "homebrew/cask-versions" ];
   };
 }
