@@ -90,6 +90,7 @@
     blueman.enable = true;
     flatpak.enable = true;
     tailscale.useRoutingFeatures = "server";
+    ollama.enable = true;
     xserver.dpi = 144;
     # Deckmaster
     udev.extraRules = ''
