@@ -21,6 +21,7 @@ _: {
       "discord"
       "dolphin"
       "element"
+      "floorp"
       "freecad"
       "gitify"
       "google-chrome"
