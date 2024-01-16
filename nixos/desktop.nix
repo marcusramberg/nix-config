@@ -10,6 +10,7 @@ in {
         copyq
         element-desktop
         feh
+        flameshot
         kotatogram-desktop
         neovide
         nitrogen
@@ -19,6 +20,7 @@ in {
         nordic
         rofi
         telegram-desktop
+        floorp
         vivaldi
         volumeicon
         xarchiver
@@ -75,15 +77,15 @@ in {
 
     };
     networking.firewall.allowedTCPPorts = [ 3389 ];
-    xdg.mime.defaultApplications = {
-      "text/html" = "vivaldi-stable.desktop";
-      "x-scheme-handler/http" = "vivaldi-stable.desktop";
-      "x-scheme-handler/https" = "vivaldi-stable.desktop";
-      "x-scheme-handler/about" = "vivaldi-stable.desktop";
-      "x-scheme-handler/unknown" = "vivaldi-stable.desktop";
-    };
-    environment.sessionVariables.DEFAULT_BROWSER =
-      "${pkgs.vivaldi}/bin/vivaldi";
+    # xdg.mime.defaultApplications = {
+    #   "text/html" = "vivaldi-stable.desktop";
+    #   "x-scheme-handler/http" = "vivaldi-stable.desktop";
+    #   "x-scheme-handler/https" = "vivaldi-stable.desktop";
+    #   "x-scheme-handler/about" = "vivaldi-stable.desktop";
+    #   "x-scheme-handler/unknown" = "vivaldi-stable.desktop";
+    # };
+    # environment.sessionVariables.DEFAULT_BROWSER =
+    #   "${pkgs.vivaldi}/bin/vivaldi";
     security.polkit = {
       enable = true;
       extraConfig = ''
