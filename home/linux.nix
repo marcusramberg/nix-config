@@ -57,7 +57,7 @@ in {
           }
           {
             block = "time";
-            format = " $icon $timestamp.datetime(f:'%a %F %R') ";
+            format = " $icon $timestamp.datetime(f:'%R') ";
           }
         ];
       };
