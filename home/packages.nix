@@ -70,7 +70,6 @@ in {
       unzip
       wget
       yq-go
-      wezterm
 
       # useful nix related tools
       # cachix # adding/managing alternative binary caches hosted by cachix
@@ -78,5 +77,5 @@ in {
     ] ++ lib.optionals stdenv.isDarwin [
       cocoapods
       m-cli # useful macOS CLI commands
-    ] ++ lib.optionals stdenv.isLinux [ btop kubectl maim nim2 vscode ];
+    ] ++ lib.optionals stdenv.isLinux [ btop kubectl maim nim2 vscode wezterm ];
 }

@@ -29,6 +29,12 @@ vim.api.nvim_create_autocmd({ "BufNewFile", "BufRead" }, {
 		end
 	end,
 })
+vim.api.nvim_create_autocmd({ "BufNewFile", "BufRead" }, {
+	pattern = "*.qml",
+	callback = function()
+		vim.bo.ft = "qml"
+	end,
+})
 
 -- wrap and check for spell in text filetypes
 vim.api.nvim_create_autocmd("FileType", {

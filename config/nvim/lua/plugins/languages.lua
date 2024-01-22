@@ -8,15 +8,11 @@ return {
 		},
 	},
 	{
-		"dundalek/lazy-lsp.nvim",
-	},
-	{
 		"nvimtools/none-ls.nvim",
 		opts = function(_, opts)
 			local nls = require("null-ls")
 			opts.sources = {
 				nls.builtins.formatting.nimpretty,
-				nls.builtins.formatting.stylua,
 				nls.builtins.formatting.shfmt,
 				nls.builtins.formatting.prettier,
 				nls.builtins.formatting.black,
@@ -29,75 +25,6 @@ return {
 		end,
 	},
 	{
-		"neovim/nvim-lspconfig",
-		---@class PluginLspOpts
-		opts = {
-			---@type lspconfig.options
-			servers = {
-				html = {},
-				nim_langserver = {},
-				denols = {},
-				jsonls = {
-					settings = {
-						schemas = {
-							description = "TypeScript compiler configuration file",
-							fileMatch = { "tsconfig.json", "tsconfig.*.json" },
-							url = "http://json.schemastore.org/tsconfig",
-						},
-						{
-							description = "Lerna config",
-							fileMatch = { "lerna.json" },
-							url = "http://json.schemastore.org/lerna",
-						},
-						{
-							description = "Babel configuration",
-							fileMatch = { ".babelrc.json", ".babelrc", "babel.config.json" },
-							url = "http://json.schemastore.org/lerna",
-						},
-						{
-							description = "ESLint config",
-							fileMatch = { ".eslintrc.json", ".eslintrc" },
-							url = "http://json.schemastore.org/eslintrc",
-						},
-						{
-							description = "Bucklescript config",
-							fileMatch = { "bsconfig.json" },
-							url = "https://bucklescript.github.io/bucklescript/docson/build-schema.json",
-						},
-						{
-							description = "Prettier config",
-							fileMatch = { ".prettierrc", ".prettierrc.json", "prettier.config.json" },
-							url = "http://json.schemastore.org/prettierrc",
-						},
-						{
-							description = "Vercel Now config",
-							fileMatch = { "now.json" },
-							url = "http://json.schemastore.org/now",
-						},
-						{
-							description = "Stylelint config",
-							fileMatch = { ".stylelintrc", ".stylelintrc.json", "stylelint.config.json" },
-							url = "http://json.schemastore.org/stylelintrc",
-						},
-						{
-							description = "Manifest v3",
-							fileMatch = { "manifest.json" },
-							url = "https://json.schemastore.org/chrome-manifest",
-						},
-					},
-				},
-				tflint = {},
-				yamlls = {
-					settings = {
-						yaml = {
-							keyOrdering = false,
-						},
-					},
-				},
-			},
-		},
-	},
-	{
 		"williamboman/mason-lspconfig.nvim",
 		enabled = false,
 		opts = {
@@ -106,7 +33,6 @@ return {
 	},
 
 	{ "aMOPel/nvim-treesitter-nim" },
-	-- add more treesitter parsers
 	{
 		"nvim-treesitter/nvim-treesitter",
 		opts = {
@@ -123,8 +49,8 @@ return {
 				"markdown",
 				"markdown_inline",
 				"nix",
-				-- Commented out as we have to do it by hand for now
-				-- "nim",
+				"nim",
+				"qmljs",
 				"query",
 				"regex",
 				"svelte",
@@ -149,12 +75,16 @@ return {
 	{ "ray-x/guihua.lua" },
 	{ "alaviss/nim.nvim" },
 	{ "joshglendenning/vim-caddyfile" },
-
 	{
 		"dundalek/lazy-lsp.nvim",
 		config = function(_, _)
 			require("lazy-lsp").setup({
-				excluded_servers = { "sqls", "terraform_lsp" },
+				excluded_servers = {
+					"ccls", -- using clangd instead
+					"sourcekit", -- Might have to figure out how to get this for swift only
+					"sqls",
+					"terraform_lsp",
+				},
 				preferred_servers = {
 					nix = { "nil_ls", "rnix" },
 					javascript = { "eslint", "tsserver" },
@@ -165,6 +95,30 @@ return {
 				},
 				default_config = {
 					flags = { debounce_text_changes = 150 },
+				},
+				configs = {
+					clangd = {
+						cmd = {
+							"clangd",
+							"--offset-encoding=utf-16",
+						},
+					},
+					nil_ls = {
+						settings = {
+							nix = {
+								flake = {
+									autoArchive = true,
+								},
+							},
+						},
+					},
+					yamlls = {
+						settings = {
+							yaml = {
+								keyOrdering = false,
+							},
+						},
+					},
 				},
 			})
 		end,

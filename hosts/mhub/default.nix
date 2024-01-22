@@ -38,11 +38,9 @@
   };
 
   services = {
-    caddy = {
+    avahi = {
       enable = true;
-      package = pkgs.caddy-cloudflare;
-      configFile = ../../config/Caddyfile;
-      adapter = "caddyfile";
+      nssmdns4 = true;
     };
     borgbackup.jobs = {
       varBackup = {
@@ -64,6 +62,13 @@
         startAt = "weekly";
       };
     };
+    caddy = {
+      enable = true;
+      package = pkgs.caddy-cloudflare;
+      configFile = ../../config/Caddyfile;
+      adapter = "caddyfile";
+    };
+    printing.enable = true;
   };
 
   systemd.services.caddy.serviceConfig.AmbientCapabilities =

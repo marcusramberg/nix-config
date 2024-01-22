@@ -1,13 +1,16 @@
-{ std, pkgs, osConfig, ... }: {
+{ std, lib, config, pkgs, osConfig, ... }:
+let
+  isNixOS = lib.hasAttr "nixos" osConfig.system;
+  flakePath =
+    if isNixOS then "/etc/nixos" else "/Users/marcus/.config/nix-darwin";
+in {
   home.file = {
     ".config/wezterm" = {
       source = ../config/wezterm;
       recursive = true;
     };
-    ".config/nvim" = {
-      source = ../config/nvim;
-      recursive = true;
-    };
+    ".config/nvim".source =
+      config.lib.file.mkOutOfStoreSymlink "${flakePath}/config/nvim";
     ".config/hypr" = {
       source = ../config/hypr;
       recursive = true;
@@ -31,13 +34,16 @@
       recursive = true;
     };
 
-    ".amethyst.yml".source = ../config/amethyst.yml;
     ".config/bat/config".source = ../config/bat/config;
     ".config/btop/btop.conf".source = ../config/btop.conf;
-    ".config/karabiner/karabiner.json".source = ../config/karabiner.json;
     ".gitconfig".source = ../config/gitconfig;
     ".i3/config".source = ../config/i3-config;
     ".ripgreprc".source = ../config/ripgreprc;
+    # TODO: These should only be installed on macOS
+    ".config/karabiner/karabiner.json".source = ../config/karabiner.json;
+    ".hammerspoon".source =
+      config.lib.file.mkOutOfStoreSymlink "${flakePath}/config/hammerspoon";
+    ".amethyst.yml".source = ../config/amethyst.yml;
   };
 }
 

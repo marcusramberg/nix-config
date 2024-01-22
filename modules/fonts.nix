@@ -8,9 +8,11 @@ in {
       fontDir.enable = true;
       fonts = with pkgs;
         [
+          dina-font
+          eb-garamond
           liberation_ttf
           mplus-outline-fonts.githubRelease
-          dina-font
+          noto-fonts
           proggyfonts
           (nerdfonts.override { fonts = [ "JetBrainsMono" "Iosevka" "Hack" ]; })
         ] ++ lib.optional stdenv.isLinux noto-fonts-emoji;

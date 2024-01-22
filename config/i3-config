@@ -17,7 +17,7 @@ hide_edge_borders none
 
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
-font xft:JetBrainsMono Nerd Font Mono 8
+font xft:JetBrainsMono Nerd Font Mono 10
 
 # Use Mouse+$mod to drag floating windows
 floating_modifier $mod
@@ -33,7 +33,7 @@ bindsym $mod+Shift+q kill
 bindsym $mod+space exec "dmenu_run"
 
 # Shots
-bindsym $mod+Shift+p exec maim -s | xclip -selection clipboard -t image/png
+bindsym $mod+Shift+p exec flameshot gui
 
 # Clipboard manager
 exec copyq
@@ -340,31 +340,9 @@ set $transparent #00000000
 
 # Start i3bar to display a workspace bar (plus the system information i3status if available)
  bar {
-	i3bar_command i3bar -t
- 	tray_output primary
- 	position bottom
-  mode hide
-#
-# ## please set your primary output first. Example: 'xrandr --output eDP1 --primary'
-# #	tray_output eDP1
-
-	bindsym button4 nop
-	bindsym button5 nop
-
-	strip_workspace_numbers yes
-  padding 0px 20px
-    colors {
-        background $transparent
-        separator  $base01
-        statusline $base04
-
-        # State             Border  BG      Text
-        focused_workspace   $base05 $base07 $base00
-        active_workspace    $base05 $base03 $base00
-        inactive_workspace  $base03 $base01 $base05
-        urgent_workspace    $base08 $base08 $base00
-        binding_mode        $base00 $base0A $base00
-    }
+   font xft:JetBrainsMono Nerd Font Mono 12
+    position bottom
+    status_command i3status-rs config-status.toml
 }
 
 # hide/unhide i3status bar
