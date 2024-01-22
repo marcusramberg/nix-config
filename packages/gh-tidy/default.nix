@@ -4,8 +4,8 @@ stdenvNoCC.mkDerivation {
   pname = "gh-tidy";
   src = fetchgit {
     url = "https://github.com/HaywardMorihara/gh-tidy.git";
-    rev = "7397d40e293a001fddf47f985c634dd941f1f55";
-    sha256 = "sha256-Bi/0+1HP2zLoYvShuUIc7DaCQawU3MmDg/xHDA5nveA=";
+    rev = "e43a55839ae62cec2715769b7b72b40b5d869119";
+    hash = "sha256-BJtZZjs3xBjt6LC8VZSdVCmU1mcOnlDlMEW6Ck58S30=";
   };
   dontConfigure = true;
   dontBuild = true;

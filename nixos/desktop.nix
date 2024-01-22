@@ -11,7 +11,7 @@ in {
         element-desktop
         feh
         flameshot
-        kotatogram-desktop
+        # kotatogram-desktop
         neovide
         nitrogen
         obsidian
