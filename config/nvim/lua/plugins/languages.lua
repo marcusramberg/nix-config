@@ -9,8 +9,10 @@ return {
 	},
 	{
 		"nvimtools/none-ls.nvim",
+		dependencies = { "davidmh/cspell.nvim" },
 		opts = function(_, opts)
 			local nls = require("null-ls")
+			local cspell = require("cspell")
 			opts.sources = {
 				nls.builtins.formatting.nimpretty,
 				nls.builtins.formatting.shfmt,
@@ -19,6 +21,8 @@ return {
 				nls.builtins.formatting.isort,
 				nls.builtins.diagnostics.shellcheck,
 				nls.builtins.diagnostics.markdownlint,
+				cspell.diagnostics,
+				cspell.code_actions,
 			}
 
 			return opts
@@ -91,7 +95,7 @@ return {
 					javascriptreact = { "eslint", "tsserver" },
 					typescript = { "eslint", "tsserver", "denols" },
 					typescriptreact = { "eslint", "tsserver" },
-					markdown = { "marksman", "ltex" },
+					markdown = { "marksman" },
 				},
 				default_config = {
 					flags = { debounce_text_changes = 150 },

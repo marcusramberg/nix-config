@@ -12,6 +12,7 @@ in {
       cloudflared
       cocogitto
       coreutils
+      nodePackages.cspell
       curlHTTP3
       deadnix
       delta
