@@ -2,19 +2,21 @@
 
 ## Supports
 
-* my media center / home hub
-* VM running in Parallels,
+* My media center / home hub
+* VM running in Parallels
 * Mac laptop
-* Nix running in WSL 2 on my Gaming PC
+* NixOS on my desktop 
+* nixos based router
+* various experiments
 
 This configuration is heavily based around using flakes and home manager
 
-I mostly interact with it on nixos using `hey`, stolen from
-[hlissner](https://github.com/hlissner/dotfiles). This
+I mostly interact with it on nixos using [hei](https://github.com/marcusramberg/hei), my rewrite of
+[hlissner](https://github.com/hlissner/dotfiles)'s hey script. This
 config is also the inspiration for using agenix for secrets management.
 Other honorable mentions go to [Mitchell
 Hashimoto's nixos-config](https://github.com/mitchellh/nixos-config).
-from which I've also stolen a lot :)]
+from which I've also stolen a lot :)
 
 Obviously this is always a WIP.
 
