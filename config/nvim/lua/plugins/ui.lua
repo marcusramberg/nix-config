@@ -70,23 +70,24 @@ return {
 	-- Scope buffers to tabs
 	{ "tiagovla/scope.nvim", config = true },
 	{
-		"goolord/alpha-nvim",
-		opts = function()
-			local dashboard = require("alpha.themes.dashboard")
+		"nvimdev/dashboard-nvim",
+		event = "VimEnter",
+		opts = function(_, opts)
 			local logo = [[
-SSSSS                                       .sSSS s.
-SSSSS      .sSSSSs.   SSSSSSSSSs..sSSS SSSSSSSSSS SSSs.SSSSS.sSSSsSS SSsSSSSS
-S  SS      S  SS SSSSS    S  SS  S  SS SSSSSS  SS SSSSSS  SSS  SS   S   SSSSS             Z
-S SSS      S SSSSSSSs.SSSSSS SSS'S SSS SSSSSS SSS SSSSSS SSSS SSS  SSS  SSSSS         Z
-S..SS      S..SSsSSSSS   S..SS   `..SSsSSSS'S..SS SSSSSS..SSS..SS       SSSSS      z
-S;;;S      S;;;S SSSSS S;;;S        S;;;S     S;S SSS  S;;;SS;;;S       SSSSS    z
-S:::S      S:::S SSSSS  S:::S       S:::S    S::S SSSS S:::SS:::S       SSSSS
-S%%%S SSSSSS%%%S SSSSSS%%%SSSSSSS   S%%%S      SS SS   S%%%SS%%%S       SSSSS
-SSSSSsSS;:'SSSSS SSSSSSSSSSSSSSSS   SSSSS       SsS    SSSSSSSSSS       SSSSS
+        SSSSS                                       .sSSS s.                                       
+        SSSSS      .sSSSSs.   SSSSSSSSSs..sSSS SSSSSSSSSS SSSs.SSSSS.sSSSsSS SSsSSSSS              
+        S  SS      S  SS SSSSS    S  SS  S  SS SSSSSS  SS SSSSSS  SSS  SS   S   SSSSS             Z
+        S SSS      S SSSSSSSs.SSSSSS SSS'S SSS SSSSSS SSS SSSSSS SSSS SSS  SSS  SSSSS         Z    
+        S..SS      S..SSsSSSSS   S..SS   `..SSsSSSS'S..SS SSSSSS..SSS..SS       SSSSS      z       
+        S;;;S      S;;;S SSSSS S;;;S        S;;;S     S;S SSS  S;;;SS;;;S       SSSSS    z         
+        S:::S      S:::S SSSSS  S:::S       S:::S    S::S SSSS S:::SS:::S       SSSSS              
+        S%%%S SSSSSS%%%S SSSSSS%%%SSSSSSS   S%%%S      SS SS   S%%%SS%%%S       SSSSS              
+        SSSSSsSS;:'SSSSS SSSSSSSSSSSSSSSS   SSSSS       SsS    SSSSSSSSSS       SSSSS              
 ]]
+			logo = string.rep("\n", 8) .. logo .. "\n\n"
 
-			dashboard.section.header.val = vim.split(logo, "\n")
-			return dashboard
+			opts.config.header = vim.split(logo, "\n")
+			return opts
 		end,
 	},
 }
