@@ -52,6 +52,7 @@ in {
             }];
             mappings = {
               "alsa_output.pci-0000_00_1f.3.iec958-stereo" = "";
+              "alsa_output.pci-0000_00_01.0.analog-stereo" = "";
               "bluez_sink.70_26_05_DA_27_A4.a2dp_sink" = "";
             };
           }

@@ -291,21 +291,8 @@ bindsym $mod+9 exec blurlock
 
 # Autostart applications
 exec /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
-exec nitrogen --set-auto --save /etc/nixos/wallpaper/nordfox.jpg
-#exec manjaro-hello
-# exec nm-applet
-# exec xfce4-power-manager
-# exec pamac-tray
-# exec clipit
-# exec blueman-applet
-# exec_always sbxkb
-# exec start_conky_maia
-# exec start_conky_green
-# exec xautolock -time 360 -locker blurlock
-# exec_always ff-theme-util
-# exec_always fix_xcursor
-# exec setxkbmap -option 'caps:ctrl_modifier' && xcape -e 'Caps_Lock=Escape' &
-#exec feh --bg-max ~/.dotfiles/wallpaper/ -z
+#exec nitrogen --set-auto --save /etc/nixos/wallpaper/nordfox.jpg
+exec feh --bg-max /etc/nixos/wallpaper/
 
 # Color palette used for the terminal ( ~/.Xresources file )
 # Colors are gathered based on the documentation:

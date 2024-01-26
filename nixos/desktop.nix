@@ -37,10 +37,9 @@ in {
       chromium.enable = true;
       firefox = {
         enable = true;
-        nativeMessagingHosts.packages = with pkgs; [
-          fx-cast-bridge
-          tridactyl-native
-        ];
+        nativeMessagingHosts.packages = with pkgs;
+          [ tridactyl-native ]
+          ++ lib.optionals (pkgs.system == "x86_64-linux") [ fx-cast-bridge ];
       };
     };
 
