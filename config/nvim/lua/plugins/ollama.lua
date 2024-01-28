@@ -7,7 +7,7 @@ return {
 	-- All the user commands added by the plugin
 	cmd = { "Ollama", "OllamaModel", "OllamaServe", "OllamaServeStop" },
 
-	-- Sample keybind for prompting. Note that the <c-u> is important for selections to work properly.
+	-- Sample key binding for prompting. Note that the <c-u> is important for selections to work properly.
 	keys = {
 		{
 			"<leader>oo",
@@ -20,5 +20,6 @@ return {
 	---@type Ollama.Config
 	opts = {
 		-- your configuration overrides
+		url = "http://mbox:11434",
 	},
 }
