@@ -51,6 +51,7 @@ in {
       nil
       mosh
       neofetch
+      neovide
       nodePackages.typescript
       nodePackages.node2nix
       nodejs
