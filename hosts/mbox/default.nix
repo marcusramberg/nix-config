@@ -91,7 +91,10 @@
     blueman.enable = true;
     flatpak.enable = true;
     tailscale.useRoutingFeatures = "server";
-    ollama.enable = true;
+    ollama = {
+      listenAddress = "100.119.66.34";
+      enable = true;
+    };
 
     xserver.dpi = 144;
     # Deckmaster
