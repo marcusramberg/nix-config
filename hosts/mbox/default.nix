@@ -68,7 +68,7 @@
         "10de:10f9"
         "10de:1ada"
         "10de:1adb" # nvidia
-        "144d:a808" # nvme
+        "144d:a808" # NVME
         "10ec:8168" # network adapter
       ];
     };
@@ -92,7 +92,7 @@
     flatpak.enable = true;
     tailscale.useRoutingFeatures = "server";
     ollama = {
-      listenAddress = "100.119.66.34";
+      listenAddress = "0.0.0.0";
       enable = true;
     };
 
@@ -106,6 +106,9 @@
       SUBSYSTEM=="usb", ATTRS{idVendor}=="0fd9", ATTRS{idProduct}=="006c", MODE:="666", GROUP="plugdev", SYMLINK+="streamdeck-xl"
     '';
   };
-  virtualisation.docker.enable = true;
+  virtualisation = {
+    docker.enable = true;
+    incus.enable = true;
+  };
 }
 

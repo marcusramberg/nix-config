@@ -89,6 +89,7 @@
       "docker"
       "dialout"
       "feedbackd"
+      "incus-admin"
       "podman"
       "video"
       "libvirtd"
