@@ -21,7 +21,7 @@ return {
 				nls.builtins.formatting.isort,
 				nls.builtins.diagnostics.shellcheck,
 				nls.builtins.diagnostics.markdownlint,
-				cspell.diagnostics,
+				-- cspell.diagnostics,
 				cspell.code_actions,
 			}
 
