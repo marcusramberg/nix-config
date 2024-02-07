@@ -43,7 +43,7 @@ in {
       };
     };
 
-    qt.platformTheme = "gtk";
+    qt.platformTheme = "gtk2";
 
     services = {
       dbus.packages = [ pkgs.dconf ];
