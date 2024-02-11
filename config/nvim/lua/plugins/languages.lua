@@ -80,9 +80,10 @@ return {
 	{ "alaviss/nim.nvim" },
 	{ "joshglendenning/vim-caddyfile" },
 	{
-		"dundalek/lazy-lsp.nvim",
+		"marcusramberg/lazy-lsp.nvim",
 		config = function(_, _)
 			require("lazy-lsp").setup({
+				prefer_local = true,
 				excluded_servers = {
 					"ccls", -- using clangd instead
 					"sourcekit", -- Might have to figure out how to get this for swift only

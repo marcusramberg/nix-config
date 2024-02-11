@@ -52,10 +52,7 @@ in {
 
       xserver = {
         enable = true;
-        layout = "us";
         libinput.enable = true;
-        xkbOptions = "eurosign:e";
-        xkbVariant = "mac";
         displayManager = {
           sddm = {
             # greeters.gtk.enable = true;
@@ -67,6 +64,11 @@ in {
 
         desktopManager.plasma5.enable = true;
         windowManager = { i3 = { enable = true; }; };
+        xkb = {
+          layout = "us";
+          options = "eurosign:e";
+          variant = "mac";
+        };
       };
       xrdp = {
         enable = true;

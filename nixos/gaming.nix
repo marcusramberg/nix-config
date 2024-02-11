@@ -1,6 +1,6 @@
-{ config, lib, ... }:
+{ config, lib, pkgs, ... }:
 with lib;
-let cfg = config.hardware.gpu.nvidia;
+let cfg = config.profiles.gaming;
 in {
   options.profiles.gaming.enable = mkEnableOption "Gaming profile";
 
