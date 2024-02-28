@@ -45,7 +45,6 @@
     let
       mkNixHost = import lib/mkNixHost.nix;
       mkDarwinHost = import lib/mkDarwinHost.nix;
-      mkHome = import lib/mkHome.nix;
       overlays = [
         (import ./overlays inputs)
         (import ./overlays/caddy.nix inputs)
@@ -104,32 +103,45 @@
         inherit overlays inputs std;
         system = "aarch64-darwin";
       };
-    } // flake-utils.lib.eachDefaultSystem (system: 
-      let pkgs = import inputs.nixpkgs { inherit system overlays; }; 
+    } // flake-utils.lib.eachDefaultSystem (system:
+      let
+        pkgs = import inputs.nixpkgs {
+          inherit system overlays;
+          config = {
+            allowUnfree = true;
+            allowBroken = true;
+            allowUnsupportedSystem = true;
+          };
+        };
       in {
-      apps.default = {
-        type = "app";
-        program = "${hei.packages.${system}.hei}/bin/hei";
-      };
-      packages = {
-        mbrick-disk-image =
-          inputs.self.nixosConfigurations.mbrick.config.mobile.outputs.default;
-        # mbrick-boot-partition = inputs.self.nixosConfigurations.mbrick.config.mobile.outputs.u-boot-partion.default;
-        homeConfigurations.marcus = inputs.home-manager.lib.homeManagerConfiguration {
-      inherit pkgs;
-      extraSpecialArgs = {
-        inherit inputs std;
-	osConfig = {system = {}; networking = { hostName = ""; }; };
-      };
+        apps.default = {
+          type = "app";
+          program = "${hei.packages.${system}.hei}/bin/hei";
+        };
+        packages = {
+          mbrick-disk-image =
+            inputs.self.nixosConfigurations.mbrick.config.mobile.outputs.default;
+          # mbrick-boot-partition = inputs.self.nixosConfigurations.mbrick.config.mobile.outputs.u-boot-partion.default;
+          homeConfigurations.marcus =
+            inputs.home-manager.lib.homeManagerConfiguration {
+              inherit pkgs;
+              extraSpecialArgs = {
+                inherit inputs std;
+                osConfig = {
+                  system = { };
+                  networking = { hostName = ""; };
+                };
+              };
 
-      modules = [ 
+              modules = [
 
-      ./home/default.nix ];
-      };
-      };
-      devShell = pkgs.mkShell {
-        buildInputs = with pkgs; [ home-manager git ];
-        NIX_CONFIG = "experimental-features = nix-command flakes";
-      };
-    });
+                ./home/default.nix
+              ];
+            };
+        };
+        devShell = pkgs.mkShell {
+          buildInputs = with pkgs; [ home-manager git ];
+          NIX_CONFIG = "experimental-features = nix-command flakes";
+        };
+      });
 }

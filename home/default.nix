@@ -12,12 +12,9 @@
 
   ];
 
-  nixpkgs.config = {
-    allowUnsupportedSystem = true;
-    alllowUnfree = true;
+  home = {
+    username = "marcus";
+    homeDirectory = "/home/marcus";
+    stateVersion = "23.05";
   };
-  home = { 
-  username = "marcus"; 
-  homeDirectory = "/home/marcus";
-  stateVersion = "23.05"; };
 }

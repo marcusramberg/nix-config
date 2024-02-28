@@ -1,8 +1,12 @@
 { std, lib, config, pkgs, osConfig, ... }:
 let
   isNixOS = lib.hasAttr "nixos" osConfig.system;
-  flakePath =
-    if isNixOS then "/etc/nixos" else "/Users/marcus/.config/nix-darwin";
+  flakePath = if isNixOS then
+    "/etc/nixos"
+  else if pkgs.stdenv.isDarwin then
+    "/Users/marcus/.config/nix-darwin"
+  else
+    "/home/marcus/.config/nix-config";
 in {
   home.file = {
     ".config/wezterm" = {
@@ -39,11 +43,11 @@ in {
     ".gitconfig".source = ../config/gitconfig;
     ".i3/config".source = ../config/i3-config;
     ".ripgreprc".source = ../config/ripgreprc;
-    # TODO: These should only be installed on macOS
+    ".amethyst.yml".source = ../config/amethyst.yml;
+  } // lib.optionalAttrs pkgs.stdenv.isDarwin {
     ".config/karabiner/karabiner.json".source = ../config/karabiner.json;
     ".hammerspoon".source =
       config.lib.file.mkOutOfStoreSymlink "${flakePath}/config/hammerspoon";
-    ".amethyst.yml".source = ../config/amethyst.yml;
   };
 }
 
