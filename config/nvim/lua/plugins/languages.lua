@@ -19,7 +19,6 @@ return {
 				nls.builtins.formatting.prettier,
 				nls.builtins.formatting.black,
 				nls.builtins.formatting.isort,
-				nls.builtins.diagnostics.shellcheck,
 				nls.builtins.diagnostics.markdownlint,
 				-- cspell.diagnostics,
 				cspell.code_actions,
