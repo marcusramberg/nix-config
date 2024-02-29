@@ -61,6 +61,7 @@ in {
       bind \eh 'fuck'
       set fish_theme nord
       set -gx EDITOR nvim
+      set -gx GOPRIVATE github.com/reMarkable
       type -q thefuck; and thefuck --alias | source
       test -x ~/.plenv/bin/plenv; and . (~/.plenv/bin/plenv init -|psub)
       # if [ -f '/Users/marcus/google-cloud-sdk/path.fish.inc' ]; . '/Users/marcus/google-cloud-sdk/path.fish.inc'; end
