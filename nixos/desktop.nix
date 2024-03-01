@@ -5,6 +5,17 @@ in {
   options.profiles.desktop.enable = mkEnableOption "desktop";
 
   config = mkIf cfg.enable {
+
+    # Enable plymouth
+    boot = {
+      initrd.systemd.enable =
+        true; # This is needed to show the plymouth login screen to unlock luks
+      plymouth = {
+        enable = true;
+        theme = "breeze";
+      };
+    };
+
     environment.systemPackages = with pkgs;
       [
         copyq
