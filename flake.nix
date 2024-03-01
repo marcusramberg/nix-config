@@ -43,17 +43,16 @@
 
   outputs = { nixpkgs, flake-utils, hei, nix-std, zig, ... }@inputs:
     let
-      mkNixHost = import lib/mkNixHost.nix;
-      mkDarwinHost = import lib/mkDarwinHost.nix;
+      lib = import ./lib;
       overlays = [
         (import ./overlays inputs)
         (import ./overlays/caddy.nix inputs)
-        # inputs.neovim-nightly-overlay.overlay
         inputs.emacs-overlay.overlay
         inputs.zig.overlays.default
       ];
       std = nix-std.lib;
-    in {
+    in with lib;
+    {
       nixosConfigurations = {
         mhub = mkNixHost "mhub" {
           inherit overlays nixpkgs inputs std;
