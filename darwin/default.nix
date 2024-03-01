@@ -14,7 +14,7 @@
 
   #FIXME: nix-darwin sets this to /var/empty for Reasons[tm]
   # https://github.com/nix-community/home-manager/issues/4026
-  users.users.marcus.home = "/Users/marcus";
+  users.users.marcus.home = lib.mkForce "/Users/marcus";
 
   # Need some shells
   programs.zsh.enable = true;
