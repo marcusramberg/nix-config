@@ -7,7 +7,6 @@
 
   # Bootloader.
   boot = {
-    # Bootloader.
     loader = {
       systemd-boot.enable = true;
       efi.canTouchEfiVariables = true;
@@ -20,6 +19,13 @@
         "/dev/disk/by-uuid/0050060b-f9cb-4697-8934-aef2f5ad0e2a";
       luks.devices."luks-0050060b-f9cb-4697-8934-aef2f5ad0e2a".keyFile =
         "/crypto_keyfile.bin";
+      systemd = {
+        network.enable = true;
+        network.networks."10-wlan" = {
+          matchConfig.Name = "enp9s0";
+          networkConfig.DHCP = "yes";
+        };
+      };
     };
 
     kernelParams = [ "fbcon=map:1" ];
@@ -45,7 +51,7 @@
   fileSystems."/home/marcus/org" = {
     device = "mspace:/volume1/homes/marcus/Drive/orgmode";
     fsType = "nfs4";
-    options = [ "nfsvers=4.1" "soft" ];
+    options = [ "nfsvers=4.1" "soft" "x-systemd.automount" ];
   };
 
   hardware = {
@@ -87,10 +93,14 @@
   };
 
   services = {
-    below.enable = true;
+    below = {
+      enable = true;
+      retention.size = 10000000;
+    };
     blueman.enable = true;
     flatpak.enable = true;
     tailscale.useRoutingFeatures = "server";
+    postgresql = { enable = true; };
     ollama = {
       listenAddress = "0.0.0.0";
       enable = true;
