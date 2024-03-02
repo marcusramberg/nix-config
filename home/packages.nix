@@ -1,5 +1,7 @@
-{ pkgs, inputs, ... }:
-let inherit (pkgs) stdenv;
+{ pkgs, lib, osConfig, inputs, ... }:
+let
+  inherit (pkgs) stdenv;
+  isNixOS = lib.hasAttr "nixos" osConfig.system;
 in {
   home.packages = with pkgs;
     [
@@ -72,6 +74,8 @@ in {
       unzip
       wget
       yq-go
+      btop
+      kubectl
 
       # useful nix related tools
       # cachix # adding/managing alternative binary caches hosted by cachix
@@ -79,5 +83,6 @@ in {
     ] ++ lib.optionals stdenv.isDarwin [
       cocoapods
       m-cli # useful macOS CLI commands
-    ] ++ lib.optionals stdenv.isLinux [ btop kubectl maim nim2 vscode ];
+    ] ++ lib.optionals stdenv.isLinux [ nim2 maim vscode ]
+    ++ lib.optionals isNixOS [ wezterm ];
 }
