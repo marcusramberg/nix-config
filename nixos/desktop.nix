@@ -37,6 +37,7 @@ in {
         xarchiver
         xclip
         xorg.xhost
+        xscreensaver
         zeal-qt6
       ] ++ lib.optionals (pkgs.system == "x86_64-linux") [
         pkgs.vivaldi-ffmpeg-codecs
@@ -69,11 +70,11 @@ in {
             # greeters.gtk.enable = true;
             # greeters.gtk.theme.name = "Nordic";
             enable = true;
-            wayland.enable = true;
+            wayland.enable = false;
           };
         };
 
-        desktopManager.plasma5.enable = true;
+        desktopManager.plasma6.enable = true;
         windowManager = { i3 = { enable = true; }; };
         xkb = {
           layout = "us";
