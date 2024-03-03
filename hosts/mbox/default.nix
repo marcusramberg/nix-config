@@ -37,7 +37,7 @@
       options kvm_intel nested=1
     '';
   };
-  environment.systemPackages = [ pkgs.zigpkgs.master ];
+  environment.systemPackages = with pkgs; [ zigpkgs.master prusa-slicer ];
 
   networking = {
     extraHosts = ''
