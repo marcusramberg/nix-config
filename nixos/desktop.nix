@@ -1,6 +1,6 @@
 { config, pkgs, lib, ... }:
 with lib;
-let cfg = config.profiles.nimdow;
+let cfg = config.profiles.desktop;
 in {
   options.profiles.desktop.enable = mkEnableOption "desktop";
 
@@ -37,7 +37,6 @@ in {
         xarchiver
         xclip
         xorg.xhost
-        xscreensaver
         zeal-qt6
       ] ++ lib.optionals (pkgs.system == "x86_64-linux") [
         pkgs.vivaldi-ffmpeg-codecs
@@ -87,6 +86,7 @@ in {
         defaultWindowManager = "startplasma-x11";
 
       };
+      xscreensaver.enable = true;
 
     };
     networking.firewall.allowedTCPPorts = [ 3389 ];
