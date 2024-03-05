@@ -2,14 +2,6 @@ return {
 	-- change trouble config
 	--
 	{
-		"EdenEast/nightfox.nvim",
-		lazy = false,
-		priority = 999,
-		-- config = function()
-		--   vim.cmd("colorscheme nordfox")
-		-- end,
-	},
-	{
 		"gbprod/nord.nvim",
 		lazy = false,
 		priority = 1000,

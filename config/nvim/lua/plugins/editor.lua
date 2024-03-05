@@ -8,8 +8,6 @@ return {
 	"mg979/vim-visual-multi",
 	-- Better scrolling
 	"karb94/neoscroll.nvim",
-	-- Better f
-	"rhysd/clever-f.vim",
 	-- Improved url opener
 	"gabebw/vim-github-link-opener",
 	-- Smart sort that supports yaml dicts
@@ -18,8 +16,6 @@ return {
 	"andymass/vim-matchup",
 	-- Simplify the macro syntax
 	{ "chrisgrieser/nvim-recorder", config = true },
-	-- Disable mini.pairs for now, it's drivin' me nuts
-	-- { "echasnovski/mini.pairs", enabled = false },
 	{ "metakirby5/codi.vim" },
 	{
 		"willothy/wezterm.nvim",
@@ -31,16 +27,4 @@ return {
 			require("smartyank").setup({ osc52 = { silent = true } })
 		end,
 	},
-	-- {
-	-- "jackMort/ChatGPT.nvim",
-	-- event = "VeryLazy",
-	-- config = function()
-	-- 	require("chatgpt").setup()
-	-- end,
-	-- dependencies = {
-	-- 	"MunifTanjim/nui.nvim",
-	-- 	"nvim-lua/plenary.nvim",
-	-- 	"nvim-telescope/telescope.nvim",
-	-- },
-	-- },
 }
