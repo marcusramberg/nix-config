@@ -118,7 +118,10 @@
   };
   virtualisation = {
     docker.enable = true;
-    incus.enable = true;
+    incus = {
+      enable = true;
+      ui.enable = true;
+    };
   };
 }
 
