@@ -19,7 +19,8 @@
           "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
           "nixhelm.cachix.org-1:esqauAsR4opRF0UsGrA6H3gD21OrzMnBBYvJXeddjtY="
         ];
-        experimental-features = [ "nix-command" "flakes" ];
+        experimental-features =
+          [ "nix-command" "flakes" "configurable-impure-env" ];
         trusted-users = [ "marcus" ];
         auto-optimise-store = true;
       };
