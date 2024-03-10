@@ -14,12 +14,13 @@ return {
 			local nls = require("null-ls")
 			local cspell = require("cspell")
 			opts.sources = {
+				nls.builtins.diagnostics.actionlint,
+				nls.builtins.diagnostics.markdownlint,
 				nls.builtins.formatting.nimpretty,
 				nls.builtins.formatting.shfmt,
 				nls.builtins.formatting.prettier,
 				nls.builtins.formatting.black,
 				nls.builtins.formatting.isort,
-				nls.builtins.diagnostics.markdownlint,
 				-- cspell.diagnostics,
 				cspell.code_actions,
 			}
