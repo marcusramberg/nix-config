@@ -49,7 +49,7 @@
     openssh.openFirewall = false;
     avahi = {
       enable = true;
-      nssmdns = true;
+      nssmdns4 = true;
       allowInterfaces = [ "lan" "iot" ];
     };
     prometheus.exporters.node = {
@@ -60,6 +60,11 @@
   system.stateVersion = "23.05";
   systemd.network = {
     enable = true;
+    wait-online = {
+      anyInterface = true;
+      ignoredInterfaces = [ "tailscale0" ];
+    };
+
     links = {
       "10-wan" = {
         enable = true;
@@ -118,7 +123,7 @@
         extraConfig = ''
           [Bridge]
           PVID=1
-          VLAN = 1
+          VLAN=1
           EgressUntagged = 1
           [Bridge]
           VLAN = 66
