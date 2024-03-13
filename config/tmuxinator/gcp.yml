@@ -1,6 +1,4 @@
 ---
-# /Users/marcus/.config/tmuxinator/gcp.yml
-
 name: gcp
 root: ~/
 

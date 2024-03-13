@@ -1,0 +1,17 @@
+---
+name: vernemq
+root: ~/
+
+windows:
+  - dev: >
+      while true; gcloud beta compute ssh rm-vernemq-bastion
+      --tunnel-through-iap   --project=rm-vernemq-dev
+      --zone europe-west1-b -- -L8888:127.0.0.1:8888; sleep 5; end
+  - stage: >
+      while true; gcloud beta compute ssh rm-vernemq-bastion
+      --tunnel-through-iap   --project=rm-vernemq-stage
+      --zone europe-west1-b -- -L8887:127.0.0.1:8888; sleep 5; end
+  - prod: >
+      while true; gcloud beta compute ssh rm-vernemq-bastion
+      --tunnel-through-iap   --project=rm-vernemq-prod
+      --zone europe-west1-b -- -L8889:127.0.0.1:8888; sleep 5; end
