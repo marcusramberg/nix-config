@@ -105,8 +105,8 @@
       listenAddress = "0.0.0.0";
       enable = true;
     };
+    osquery.enable = true;
 
-    xserver.dpi = 144;
     # Deckmaster
     udev.extraRules = ''
       SUBSYSTEM=="usb", ATTRS{idVendor}=="0fd9", ATTRS{idProduct}=="0060", MODE:="666", GROUP="plugdev", SYMLINK+="streamdeck"
@@ -115,6 +115,12 @@
       SUBSYSTEM=="usb", ATTRS{idVendor}=="0fd9", ATTRS{idProduct}=="0063", MODE:="666", GROUP="plugdev", SYMLINK+="streamdeck-mini"
       SUBSYSTEM=="usb", ATTRS{idVendor}=="0fd9", ATTRS{idProduct}=="006c", MODE:="666", GROUP="plugdev", SYMLINK+="streamdeck-xl"
     '';
+    xserver.dpi = 144;
+  };
+  systemd.services.NetworkManager-wait-online = {
+    serviceConfig = {
+      ExecStart = [ "" "${pkgs.networkmanager}/bin/nm-online -q" ];
+    };
   };
   virtualisation = {
     docker.enable = true;

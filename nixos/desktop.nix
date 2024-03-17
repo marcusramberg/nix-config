@@ -45,6 +45,7 @@ in {
 
     profiles.myfonts.enable = true;
     programs = {
+      gnupg.agent = { pinentryPackage = lib.mkForce pkgs.pinentry-curses; };
       chromium.enable = true;
       firefox = {
         enable = true;
@@ -61,6 +62,7 @@ in {
 
       openssh.settings.X11Forwarding = true;
 
+      desktopManager.plasma6.enable = true;
       xserver = {
         enable = true;
         libinput.enable = true;
@@ -73,7 +75,6 @@ in {
           };
         };
 
-        desktopManager.plasma6.enable = true;
         windowManager = { i3 = { enable = true; }; };
         xkb = {
           layout = "us";

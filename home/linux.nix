@@ -66,7 +66,6 @@ in {
   };
   services.gpg-agent = mkIf stdenv.isLinux {
     enable = pkgs.stdenv.isLinux;
-    pinentryFlavor = "tty";
 
     # cache the keys forever so we don't get asked for a password
     defaultCacheTtl = 31536000;

@@ -6,6 +6,12 @@
       state = "normal";
     }
     {
+      class = "floorp";
+      monitor = 1;
+      state = "normal";
+      tags = [ 2 ];
+    }
+    {
       class = "Vivaldi-stable";
       monitor = 1;
       state = "normal";
@@ -37,7 +43,7 @@
       "feh --bg-fill -z /etc/nixos/wallpaper/"
       "wezterm"
       "telegram-desktop"
-      "vivaldi"
+      "floorp"
       "volumeicon"
       "zeal"
     ] ++ pkgs.lib.optional (osConfig.networking.hostName == "mbox")
@@ -53,7 +59,7 @@
       modifiers = [ "super" ];
     };
     destroySelectedWindow = {
-      keys = [ "d" ];
+      keys = [ "q" ];
       modifiers = [ "super" "shift" ];
     };
     focusNext = {

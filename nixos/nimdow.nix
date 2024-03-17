@@ -29,6 +29,10 @@ in {
           enableXfwm = false;
         };
         windowManager.nimdow.enable = true;
+        # windowManager.nimdow.package = pkgs.nimdow.overrideAttrs (old: {
+        #   src.rev = "v1.4.8";
+        #   src.hash = lib.fakeHash;
+        # });
       };
     };
   };
