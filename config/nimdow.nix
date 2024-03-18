@@ -218,7 +218,7 @@
   };
   startProcess = [
     {
-      command = "sudo pkill X";
+      command = "xfce4-session-logout";
       keys = [ "e" ];
       modifiers = [ "super" "shift" ];
     }
