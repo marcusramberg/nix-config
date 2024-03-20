@@ -31,6 +31,7 @@ in {
       gnumake
       gnugrep
       gist
+      glow
       go_1_22
       golangci-lint
       (google-cloud-sdk.withExtraComponents
@@ -73,6 +74,7 @@ in {
       thefuck
       tflint
       unzip
+      vscode
       wget
       yq-go
       btop
@@ -84,6 +86,6 @@ in {
     ] ++ lib.optionals stdenv.isDarwin [
       cocoapods
       m-cli # useful macOS CLI commands
-    ] ++ lib.optionals stdenv.isLinux [ nim2 maim vscode ]
+    ] ++ lib.optionals stdenv.isLinux [ nim2 maim ]
     ++ lib.optionals isNixOS [ wezterm ];
 }

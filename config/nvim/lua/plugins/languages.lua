@@ -91,7 +91,7 @@ return {
 					"terraform_lsp",
 				},
 				preferred_servers = {
-					nix = { "nil_ls", "rnix" },
+					nix = { "nil_ls" },
 					javascript = { "eslint", "tsserver" },
 					javascriptreact = { "eslint", "tsserver" },
 					typescript = { "eslint", "tsserver", "denols" },
