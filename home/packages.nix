@@ -42,6 +42,7 @@ in {
       go-task
       gotestfmt
       grc
+      inputs.dagger.packages.${system}.dagger
       inputs.devenv.packages.${system}.devenv
       inputs.hei.packages.${system}.default
       jq

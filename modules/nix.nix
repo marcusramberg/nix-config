@@ -5,7 +5,7 @@
       mode = "0440";
     };
     nix = {
-      package = pkgs.nixVersions.unstable;
+      # package = pkgs.nixVersions.unstable;
       settings = {
         substituters = [
           "https://cache.nixos.org/"

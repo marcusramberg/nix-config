@@ -9,6 +9,7 @@ opt.synmaxcol = 300
 opt.iskeyword:append("-")
 opt.foldenable = false
 opt.relativenumber = false
+vim.lsp.set_log_level("off")
 
 if vim.g.neovide then
 	vim.g.neovide_confirm_quit = true
