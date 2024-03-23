@@ -1,5 +1,6 @@
 return {
 
+	{ "wakatime/vim-wakatime", lazy = false },
 	-- open with line (from syntax output and such)
 	"wsdjeg/vim-fetch",
 	-- return where you came from
