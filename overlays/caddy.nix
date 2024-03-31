@@ -22,7 +22,7 @@ let
   '';
 
 in {
-  caddy-cloudflare = prev.buildGo120Module {
+  caddy-cloudflare = prev.buildGo122Module {
     pname = "caddy-cloudflare";
     inherit (prev.caddy) version;
     runVend = true;
@@ -31,7 +31,7 @@ in {
 
     inherit (prev.caddy) src;
 
-    vendorHash = "sha256-fpnTooI+payfiPboEYWtSpCE1YdD8wjwTVHEyRlwTNU=";
+    vendorHash = "sha256-zeuvCk7kZa/W/roC12faCQDav4RB8RT1dR2Suh2yjD8=";
 
     overrideModAttrs = _: {
       preBuild = ''

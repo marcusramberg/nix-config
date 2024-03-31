@@ -1,0 +1,64 @@
+{
+	http_port 80
+	https_port 18443
+	email marcus@means.no
+
+	acme_ca https://acme-v02.api.letsencrypt.org/directory
+	log {
+		level ERROR
+	}
+	servers :443 {
+		listener_wrappers {
+			http_redirect
+			tls
+		}
+	}
+	servers :80 {
+		protocols h1 h2c
+	}
+}
+
+# Tailnet
+
+(caddy-common) {
+	encode gzip
+	# tls /etc/caddy/cloudflare.crt /etc/caddy/cloudflare.key
+	tls {
+		import /run/agenix/cloudflareToken
+	}
+	header {
+		-Server
+		Strict-Transport-Security "max-age=31536000; include-subdomains;"
+		X-XSS-Protection "1; mode=block"
+		X-Frame-Options "DENY"
+		X-Content-Type-Options nosniff
+		Referrer-Policy no-referrer-when-downgrade
+		X-Robots-Tag "none"
+	}
+}
+
+(caddy-tailscale) {
+	encode gzip
+	tls {
+		import /run/agenix/cloudflareToken
+	}
+	header {
+		-Server
+		Strict-Transport-Security "max-age=31536000; include-subdomains;"
+		X-XSS-Protection "1; mode=block"
+		X-Frame-Options "DENY"
+		X-Content-Type-Options nosniff
+		Referrer-Policy no-referrer-when-downgrade
+		X-Robots-Tag "none"
+	}
+}
+
+localhost:80 {
+	redir https://{host}{uri} permanent
+}
+# sites
+
+mbox.means.no:443 {
+	import caddy-tailscale
+	reverse_proxy mbox:5000
+}

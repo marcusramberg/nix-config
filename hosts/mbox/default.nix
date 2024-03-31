@@ -5,6 +5,7 @@
     ../../modules/pipewire.nix
   ];
 
+  age.secrets.cloudflareToken.owner = "caddy";
   # Bootloader.
   boot = {
     loader = {
@@ -98,14 +99,25 @@
       retention.size = 10000000;
     };
     blueman.enable = true;
+    caddy = {
+      enable = true;
+      package = pkgs.caddy-cloudflare;
+      configFile = ../../config/Caddyfile.mbox;
+      adapter = "caddyfile";
+    };
     flatpak.enable = true;
-    tailscale.useRoutingFeatures = "server";
+    nix-serve = {
+      enable = true;
+      secretKeyFile = "/var/cache-priv-key.pem";
+    };
+
     postgresql = { enable = true; };
     ollama = {
       listenAddress = "0.0.0.0";
       enable = true;
     };
     osquery.enable = true;
+    tailscale.useRoutingFeatures = "server";
 
     # Deckmaster
     udev.extraRules = ''
@@ -117,6 +129,8 @@
     '';
     xserver.dpi = 144;
   };
+  systemd.services.caddy.serviceConfig.AmbientCapabilities =
+    "cap_net_bind_service";
   systemd.services.NetworkManager-wait-online = {
     serviceConfig = {
       ExecStart = [ "" "${pkgs.networkmanager}/bin/nm-online -q" ];
@@ -126,7 +140,7 @@
     docker.enable = true;
     incus = {
       enable = true;
-      ui.enable = true;
+      ui.enable = false;
     };
   };
 }
