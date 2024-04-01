@@ -62,6 +62,7 @@
   };
 
   profiles = {
+    autoupgrade.enable = true;
     nimdow.enable = true;
     hyprland.enable = true;
     dockerHost.enable = true;
@@ -144,4 +145,3 @@
     };
   };
 }
-

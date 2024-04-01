@@ -17,6 +17,7 @@ return {
 				nls.builtins.diagnostics.actionlint,
 				nls.builtins.diagnostics.markdownlint,
 				nls.builtins.formatting.nimpretty,
+				nls.builtins.formatting.nixfmt,
 				nls.builtins.formatting.shfmt,
 				nls.builtins.formatting.prettier,
 				nls.builtins.formatting.black,
