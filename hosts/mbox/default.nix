@@ -141,7 +141,7 @@
     docker.enable = true;
     incus = {
       enable = true;
-      ui.enable = false;
+      ui.enable = true;
     };
   };
 }

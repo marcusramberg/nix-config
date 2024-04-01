@@ -54,6 +54,7 @@ in {
       lua-language-server
       nil
       mosh
+      nixfmt
       neofetch
       neovide
       nodePackages.typescript
