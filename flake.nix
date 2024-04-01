@@ -13,8 +13,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     devenv.url = "github:cachix/devenv";
-    emacs-overlay.url = "github:nix-community/emacs-overlay";
-    emacs-overlay.inputs.nixpkgs.follows = "nixpkgs";
     hei.url = "github:marcusramberg/hei";
     hei.inputs.nixpkgs.follows = "nixpkgs";
     flake-utils.url = "github:numtide/flake-utils";
@@ -23,24 +21,25 @@
       inputs.nixpkgs.follows = "nixpkgs";
       url = "github:nix-community/home-manager";
     };
-    microvm = {
-      url = "github:astro/microvm.nix";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-    mobile-nixos = {
-      flake = false;
-      url = "github:marcusramberg/mobile-nixos/enchilada";
-    };
+    # microvm = {
+    #   url = "github:astro/microvm.nix";
+    #   inputs.nixpkgs.follows = "nixpkgs";
+    # };
+    # mobile-nixos = {
+    #   flake = false;
+    #   url = "github:marcusramberg/mobile-nixos/enchilada";
+    # };
     nix-index-database.url = "github:Mic92/nix-index-database";
     nix-index-database.inputs.nixpkgs.follows = "nixpkgs";
     nix-std.url = "github:chessai/nix-std";
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+    # Do we actually use nur?
     nur.url = "github:nix-community/NUR";
-    stable.url = "github:nixos/nixpkgs/nixos-23.11";
+    # stable.url = "github:nixos/nixpkgs/nixos-23.11";
     tfenv.flake = false;
     tfenv.url = "github:tfutils/tfenv";
-    webauthn-oidc.url = "github:arianvp/webauthn-oidc";
-    webauthn-oidc.inputs.nixpkgs.follows = "nixpkgs";
+    # webauthn-oidc.url = "github:arianvp/webauthn-oidc";
+    # webauthn-oidc.inputs.nixpkgs.follows = "nixpkgs";
     zig.url = "github:mitchellh/zig-overlay";
 
   };
@@ -51,7 +50,7 @@
       overlays = [
         (import ./overlays inputs)
         (import ./overlays/caddy.nix inputs)
-        inputs.emacs-overlay.overlay
+        # inputs.emacs-overlay.overlay
         inputs.zig.overlays.default
       ];
       std = nix-std.lib;
