@@ -41,7 +41,8 @@ local switchToSpace = function(sp)
 	end
 	local invert_layout = table_invert(layout)
 	lastSpace = invert_layout[hs.spaces.activeSpaceOnScreen(main)]
-	hs.spaces.gotoSpace(layout[sp])
+	-- hs.spaces.gotoSpace(layout[sp])
+	hs.eventtap.keyStroke({ "cmd", "alt", "ctrl" }, tostring(sp))
 end
 
 hs.hotkey.bind(ctrl, "1", function()
