@@ -24,6 +24,8 @@
   services.nix-daemon.enable = true;
   services.tailscale.enable = true;
 
+  nix.settings.auto-optimise-store = false;
+
   # Apps
   # `home-manager` currently has issues adding them to `~/Applications`
   # Issue: https://github.com/nix-community/home-manager/issues/1341
@@ -46,12 +48,9 @@
   profiles.myfonts.enable = true;
 
   nix = {
-    extraOptions = ''
-      auto-optimise-store = true
-      experimental-features = nix-command flakes
-    '' + lib.optionalString (pkgs.system == "aarch64-darwin") ''
-      extra-platforms = x86_64-darwin aarch64-darwin
-    '';
+    # extraOptions = "" + lib.optionalString (pkgs.system == "aarch64-darwin") ''
+    #   extra-platforms = x86_64-darwin aarch64-darwin
+    # '';
     configureBuildUsers = true;
     nixPath = [ "nixpkgs=/run/current-system/sw/nixpkgs" ];
   };

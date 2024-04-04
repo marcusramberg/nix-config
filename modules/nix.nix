@@ -1,4 +1,4 @@
-{ config, pkgs, ... }: {
+{ config, lib, ... }: {
   config = {
     age.secrets.nixAccessTokens = {
       group = "wheel";
@@ -23,7 +23,7 @@
         ];
         experimental-features = [ "nix-command" "flakes" ];
         trusted-users = [ "marcus" ];
-        auto-optimise-store = true;
+        auto-optimise-store = lib.mkDefault true;
       };
       gc = {
         automatic = true;
@@ -34,8 +34,6 @@
 
       extraOptions = ''
         !include ${config.age.secrets.nixAccessTokens.path}
-      '' + pkgs.lib.optionalString (pkgs.system == "aarch64-darwin") ''
-        extra-platforms = x86_64-darwin aarch64-darwin
       '';
     };
   };
