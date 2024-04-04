@@ -110,6 +110,15 @@ return {
 							"--offset-encoding=utf-16",
 						},
 					},
+					lua_ls = {
+						settings = {
+							Lua = {
+								diagnostics = {
+									globals = { "hs" },
+								},
+							},
+						},
+					},
 					nil_ls = {
 						settings = {
 							nix = {
