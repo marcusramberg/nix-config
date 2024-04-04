@@ -93,6 +93,7 @@ return {
 				},
 				preferred_servers = {
 					nix = { "nil_ls" },
+					python = { "ruff_lsp", "pyright" },
 					javascript = { "eslint", "tsserver" },
 					javascriptreact = { "eslint", "tsserver" },
 					typescript = { "eslint", "tsserver", "denols" },
