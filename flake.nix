@@ -29,6 +29,8 @@
     #   flake = false;
     #   url = "github:marcusramberg/mobile-nixos/enchilada";
     # };
+    yaml2nix.url = "github:euank/yaml2nix";
+    yaml2nix.inputs.nixpkgs.follows = "nixpkgs";
     nix-index-database.url = "github:Mic92/nix-index-database";
     nix-index-database.inputs.nixpkgs.follows = "nixpkgs";
     nix-std.url = "github:chessai/nix-std";

@@ -46,6 +46,7 @@ in {
       inputs.dagger.packages.${system}.dagger
       inputs.devenv.packages.${system}.devenv
       inputs.hei.packages.${system}.default
+      inputs.yaml2nix.packages.${system}.default
       jq
       kubectl
       kubectx
@@ -54,7 +55,7 @@ in {
       lua-language-server
       nil
       mosh
-      nixfmt
+      nixfmt-rfc-style
       neofetch
       neovide
       nodePackages.typescript

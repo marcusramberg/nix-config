@@ -6,12 +6,12 @@
 - VM running in Parallels
 - Mac laptop
 - NixOS on my desktop
-- nixos based router
-- various experiments
+- NixOS based router
+- Various experiments
 
 This configuration is heavily based around using flakes and home manager
 
-I mostly interact with it on nixos using
+I mostly interact with it on NixOS using
 [hei](https://github.com/marcusramberg/hei), my rewrite of
 [hlissner](https://github.com/hlissner/dotfiles)'s hey script. This
 config is also the inspiration for using agenix for secrets management.
