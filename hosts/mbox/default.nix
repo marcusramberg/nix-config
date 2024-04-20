@@ -72,10 +72,10 @@
       enable = true;
       hardware-ids = [
         "8086:1901"
-        "10de:1f08"
-        "10de:10f9"
-        "10de:1ada"
-        "10de:1adb" # nvidia
+        # "10de:1f08"
+        # "10de:10f9"
+        # "10de:1ada"
+        # "10de:1adb" # nvidia
         "144d:a808" # NVME
         "10ec:8168" # network adapter
       ];
@@ -116,6 +116,7 @@
     ollama = {
       listenAddress = "0.0.0.0";
       enable = true;
+      # acceleration = "rocm";
     };
     osquery.enable = true;
     tailscale.useRoutingFeatures = "server";
