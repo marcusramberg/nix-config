@@ -15,7 +15,7 @@
     users.users.${user}.hashedPasswordFile = config.age.secrets.phone-pin.path;
 
     # Automatically login as defaultUserName.
-    services.xserver.displayManager.autoLogin = { inherit user; };
+    services.displayManager.autoLogin = { inherit user; };
 
     # Networking, modem and misc.
     # Ensures any rndis config from stage-1 is not clobbered by NetworkManager

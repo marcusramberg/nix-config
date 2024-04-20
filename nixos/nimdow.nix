@@ -20,9 +20,8 @@ in {
         backend = "glx";
       };
 
+      displayManager.defaultSession = "xfce+nimdow";
       xserver = {
-        displayManager.defaultSession = "xfce+nimdow";
-
         desktopManager.xfce = {
           enable = true;
           noDesktop = true;

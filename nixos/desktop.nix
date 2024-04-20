@@ -18,6 +18,7 @@ in {
 
     environment.systemPackages = with pkgs;
       [
+        bitwarden
         copyq
         element-desktop
         feh
@@ -66,21 +67,21 @@ in {
       xserver = {
         enable = true;
         libinput.enable = true;
-        displayManager = {
-          sddm = {
-            # greeters.gtk.enable = true;
-            # greeters.gtk.theme.name = "Nordic";
-            enable = true;
-            wayland.enable = false;
-          };
-        };
-
         windowManager = { i3 = { enable = true; }; };
         xkb = {
           layout = "us";
           options = "eurosign:e";
           variant = "mac";
         };
+      };
+      displayManager = {
+        sddm = {
+          # greeters.gtk.enable = true;
+          # greeters.gtk.theme.name = "Nordic";
+          enable = true;
+          wayland.enable = false;
+        };
+
       };
       xrdp = {
         enable = true;
