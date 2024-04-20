@@ -3,6 +3,8 @@ local wezterm = require("wezterm")
 local pomodoro = require("pomodoro")
 local act = wezterm.action
 local keys = {
+	{ key = "Return", mods = "ALT", action = wezterm.action.DisableDefaultAssignment },
+	{ key = "Return", mods = "ALT|SHIFT", action = wezterm.action.ToggleFullScreen },
 	{ key = "0", mods = "LEADER", action = act.ActivateTab(-1) },
 	{ key = "Space", mods = "LEADER", action = act.ActivateCommandPalette },
 	{ key = "Return", mods = "LEADER", action = act.SpawnWindow },
