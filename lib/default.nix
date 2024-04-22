@@ -46,14 +46,14 @@ rec {
   mkHMConfig = { inputs, pkgs, std, user ? "marcus" }:
     inputs.home-manager.lib.homeManagerConfiguration {
       inherit pkgs;
-      inherit user;
       extraSpecialArgs = {
-        inherit inputs std;
+        inherit inputs std user;
         osConfig = {
           system = { };
           networking = { hostName = ""; };
         };
       };
+      modules = [ ../home/default.nix ];
     };
 
   mkOptions = { user, inputs, overlays, std, ... }: {
@@ -71,10 +71,7 @@ rec {
       useGlobalPkgs = true;
       useUserPackages = true;
       users.${user} = import ../home;
-      extraSpecialArgs = {
-        inherit inputs;
-        inherit std;
-      };
+      extraSpecialArgs = { inherit inputs std user; };
     };
   };
 }

@@ -14,7 +14,7 @@
 
   home = {
     username = user;
-    homeDirectory = lib.mkDefault "/home/${user}";
     stateVersion = "23.05";
+    homeDirectory = lib.mkDefault "/home/${user}";
   };
 }
