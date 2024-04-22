@@ -1,4 +1,4 @@
-{ inputs, lib, ... }: {
+{ inputs, lib, user, ... }: {
 
   imports = [
     ./files.nix
@@ -13,8 +13,8 @@
   ];
 
   home = {
-    username = "marcus";
-    homeDirectory = lib.mkDefault "/home/marcus";
+    username = user;
+    homeDirectory = lib.mkDefault "/home/${user}";
     stateVersion = "23.05";
   };
 }

@@ -43,6 +43,18 @@ rec {
         })
       ] ++ lib.optional (extraModules != null) extraModules);
     };
+  mkHMConfig = { inputs, pkgs, std, user ? "marcus" }:
+    inputs.home-manager.lib.homeManagerConfiguration {
+      inherit pkgs;
+      inherit user;
+      extraSpecialArgs = {
+        inherit inputs std;
+        osConfig = {
+          system = { };
+          networking = { hostName = ""; };
+        };
+      };
+    };
 
   mkOptions = { user, inputs, overlays, std, ... }: {
     nixpkgs = {

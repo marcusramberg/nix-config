@@ -1,12 +1,12 @@
-{ std, lib, config, pkgs, osConfig, ... }:
+{ std, lib, user, config, pkgs, osConfig, ... }:
 let
   isNixOS = lib.hasAttr "nixos" osConfig.system;
   flakePath = if isNixOS then
     "/etc/nixos"
   else if pkgs.stdenv.isDarwin then
-    "/Users/marcus/.config/nix-darwin"
+    "/Users/${user}/.config/nix-darwin"
   else
-    "/home/marcus/.config/nix-config";
+    "/home/${user}/.config/nix-config";
 in {
   home.file = {
     ".config/wezterm" = {
@@ -50,4 +50,3 @@ in {
       config.lib.file.mkOutOfStoreSymlink "${flakePath}/config/hammerspoon";
   };
 }
-

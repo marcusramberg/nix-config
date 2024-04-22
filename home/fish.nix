@@ -1,4 +1,4 @@
-{ pkgs, lib, ... }:
+{ pkgs, lib, user, ... }:
 let inherit (pkgs.stdenv) isDarwin;
 in {
   programs.fish = {
@@ -64,7 +64,6 @@ in {
       set -gx GOPRIVATE github.com/reMarkable
       type -q thefuck; and thefuck --alias | source
       test -x ~/.plenv/bin/plenv; and . (~/.plenv/bin/plenv init -|psub)
-      # if [ -f '/Users/marcus/google-cloud-sdk/path.fish.inc' ]; . '/Users/marcus/google-cloud-sdk/path.fish.inc'; end
 
       # Completion
       type -q kustomize; and eval (kustomize completion fish)
@@ -74,7 +73,7 @@ in {
       any-nix-shell fish --info-right | source
     '';
     loginShellInit = ''
-      if [ -f /Users/marcus/.ssh/id_rsa ]
+      if [ -f /Users/${user}/.ssh/id_rsa ]
         ssh-add -q --apple-use-keychain  ~/.ssh/id_rsa
         ssh-add -q --apple-use-keychain  ~/.ssh/id_dsa
         ssh-add -q --apple-use-keychain  ~/.ssh/google_compute_engine

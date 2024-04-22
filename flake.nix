@@ -122,21 +122,11 @@
             inputs.self.nixosConfigurations.mbrick.config.mobile.outputs.default;
           # mbrick-boot-partition = inputs.self.nixosConfigurations.mbrick.config.mobile.outputs.u-boot-partion.default;
           homeConfigurations.marcus =
-            inputs.home-manager.lib.homeManagerConfiguration {
-              inherit pkgs;
-              extraSpecialArgs = {
-                inherit inputs std;
-                osConfig = {
-                  system = { };
-                  networking = { hostName = ""; };
-                };
-              };
-
-              modules = [
-
-                ./home/default.nix
-              ];
-            };
+            lib.mkHMConfig { inherit inputs pkgs std; };
+          homeConfigurations.deck = lib.mkHMConfig {
+            inherit inputs pkgs std;
+            user = "deck";
+          };
         };
         devShell = pkgs.mkShell {
           buildInputs = with pkgs; [ home-manager git ];
