@@ -81,7 +81,7 @@ return {
 	{ "alaviss/nim.nvim" },
 	{ "joshglendenning/vim-caddyfile" },
 	{
-		"marcusramberg/lazy-lsp.nvim",
+		"dundalek/lazy-lsp.nvim",
 		config = function(_, _)
 			require("lazy-lsp").setup({
 				prefer_local = true,
