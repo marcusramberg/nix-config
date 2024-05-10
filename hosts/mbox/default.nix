@@ -1,4 +1,4 @@
-{ pkgs, ... }: {
+{ pkgs, lib, ... }: {
   imports = [
     # Include the results of the hardware scan.
     ./hardware-configuration.nix
@@ -8,6 +8,7 @@
   age.secrets.cloudflareToken.owner = "caddy";
   # Bootloader.
   boot = {
+    binfmt.emulatedSystems = [ "aarch64-linux" ];
     loader = {
       systemd-boot.enable = true;
       efi.canTouchEfiVariables = true;
@@ -72,10 +73,10 @@
       enable = true;
       hardware-ids = [
         "8086:1901"
-        # "10de:1f08"
-        # "10de:10f9"
-        # "10de:1ada"
-        # "10de:1adb" # nvidia
+        "10de:1f08"
+        "10de:10f9"
+        "10de:1ada"
+        "10de:1adb" # nvidia
         "144d:a808" # NVME
         "10ec:8168" # network adapter
       ];
@@ -107,6 +108,7 @@
       adapter = "caddyfile";
     };
     flatpak.enable = true;
+    # grafana-kiosk.enable = true;
     nix-serve = {
       enable = true;
       secretKeyFile = "/var/cache-priv-key.pem";
@@ -118,8 +120,9 @@
       enable = true;
       # acceleration = "rocm";
     };
-    osquery.enable = true;
+    # osquery.enable = true;
     tailscale.useRoutingFeatures = "server";
+    displayManager.defaultSession = lib.mkForce "xfce+i3";
 
     # Deckmaster
     udev.extraRules = ''
