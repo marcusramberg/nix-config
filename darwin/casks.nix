@@ -9,7 +9,6 @@ _: {
     casks = [
       "alfred"
       "alt-tab"
-      "amethyst"
       "android-platform-tools"
       "androidtool"
       "arc"

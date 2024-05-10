@@ -8,7 +8,6 @@
     dagger.inputs.nixpkgs.follows = "nixpkgs";
     darwin.url = "github:lnl7/nix-darwin/master";
     darwin.inputs.nixpkgs.follows = "nixpkgs";
-    devenv.inputs.nixpkgs.follows = "nixpkgs";
     devenv.url = "github:cachix/devenv";
     hei.url = "github:marcusramberg/hei";
     hei.inputs.nixpkgs.follows = "nixpkgs";
@@ -32,11 +31,8 @@
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     # Do we actually use nur?
     nur.url = "github:nix-community/NUR";
-    # stable.url = "github:nixos/nixpkgs/nixos-23.11";
     tfenv.flake = false;
     tfenv.url = "github:tfutils/tfenv";
-    # webauthn-oidc.url = "github:arianvp/webauthn-oidc";
-    # webauthn-oidc.inputs.nixpkgs.follows = "nixpkgs";
     zig.url = "github:mitchellh/zig-overlay";
 
   };
