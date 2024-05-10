@@ -20,21 +20,6 @@
       enable = true;
       tmux.enableShellIntegration = true;
     };
-    helix = { enable = true; };
-    home-manager.enable = true;
-    htop = {
-      enable = true;
-      settings.show_program_path = true;
-    };
-    keychain.enable = true;
-    # navi.enable = true;
-    nix-index.enable = true;
-    nix-index-database.comma.enable = true;
-    neovim = {
-      extraConfig = ":luafile ~/.config/nvim/init.lua";
-      viAlias = true;
-      vimAlias = true;
-    };
     gh = {
       enable = true;
       extensions = [ pkgs.gh-dash pkgs.gh-poi pkgs.gh-tidy ];
@@ -62,8 +47,32 @@
         version = 1;
       };
     };
+    helix = { enable = true; };
+    home-manager.enable = true;
+    htop = {
+      enable = true;
+      settings.show_program_path = true;
+    };
+    keychain.enable = true;
+    # navi.enable = true;
+    nix-index.enable = true;
+    nix-index-database.comma.enable = true;
+    neovim = {
+      extraConfig = ":luafile ~/.config/nvim/init.lua";
+      viAlias = true;
+      vimAlias = true;
+    };
+    rbw = {
+      enable = true;
+      settings = {
+        base_url = "https://passwords.means.no/";
+        email = "marcus@means.no";
+        identity_url = "";
+        pinentry =
+          if pkgs.stdenv.isDarwin then pkgs.pinentry_mac else pkgs.pinentry;
+      };
+    };
     # Smarter z
     zoxide.enable = true;
   };
 }
-
