@@ -15,6 +15,7 @@
     ./emacs.nix
     ./hass.nix
     ./gaming.nix
+    # ./grafana-kiosk.nix
     ./hyprland.nix
     ./k3s.nix
     ./keyboardmap.nix
@@ -52,6 +53,7 @@
     ];
     variables = {
       # TERM = "xterm-256color";
+      NIXPKGS_ALLOW_UNFREE = "1";
     };
   };
 

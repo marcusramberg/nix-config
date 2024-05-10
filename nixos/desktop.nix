@@ -64,24 +64,19 @@ in {
       openssh.settings.X11Forwarding = true;
 
       desktopManager.plasma6.enable = true;
+      libinput.enable = true;
       xserver = {
         enable = true;
-        libinput.enable = true;
+        displayManager.lightdm = {
+          enable = true;
+          greeters.slick.enable = true;
+        };
         windowManager = { i3 = { enable = true; }; };
         xkb = {
           layout = "us";
           options = "eurosign:e";
           variant = "mac";
         };
-      };
-      displayManager = {
-        sddm = {
-          # greeters.gtk.enable = true;
-          # greeters.gtk.theme.name = "Nordic";
-          enable = true;
-          wayland.enable = false;
-        };
-
       };
       xrdp = {
         enable = true;
