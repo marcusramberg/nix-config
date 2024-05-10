@@ -57,7 +57,8 @@ in {
       mosh
       nixfmt-rfc-style
       neofetch
-      neovide
+      nixpkgs-review
+      nom
       nodePackages.typescript
       nodePackages.node2nix
       nodejs
