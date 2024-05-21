@@ -97,12 +97,7 @@ in {
       }
       {
         name = "pure";
-        src = pkgs.fetchFromGitHub {
-          owner = "pure-fish";
-          repo = "pure";
-          rev = "v4.7.0";
-          sha256 = "sha256-2ZNb6aB7rIubTfRVRb42xmCdImQmtGGubo0TBwSPHEo=";
-        };
+        inherit (pkgs.fishPlugins.pure) src;
       }
       {
         name = "gcloud-completions";
