@@ -81,9 +81,10 @@ return {
 	{ "alaviss/nim.nvim" },
 	{ "joshglendenning/vim-caddyfile" },
 	{
-		"dundalek/lazy-lsp.nvim",
+		"marcusramberg/lazy-lsp.nvim",
 		config = function(_, _)
 			require("lazy-lsp").setup({
+				branch = "marcus/check_document_config",
 				prefer_local = true,
 				excluded_servers = {
 					"ccls", -- using clangd instead

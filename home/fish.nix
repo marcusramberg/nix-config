@@ -62,6 +62,7 @@ in {
       set fish_theme nord
       set -gx EDITOR nvim
       set -gx GOPRIVATE github.com/reMarkable
+      set --universal pure_enable_nixdevshell true
       type -q thefuck; and thefuck --alias | source
       test -x ~/.plenv/bin/plenv; and . (~/.plenv/bin/plenv init -|psub)
 
