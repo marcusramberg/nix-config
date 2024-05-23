@@ -48,13 +48,9 @@ in {
     };
 
     shellInit = ''
-      fish_add_path /.dotfiles/bin /usr/local/sbin ${
-        lib.optionalString pkgs.stdenv.isLinux "/etc/nixos/bin"
-      }
-      fish_add_path -p /run/current_system/sw/bin ~/.local/bin ${
+      fish_add_path -p /run/current-system/sw/bin ~/.local/bin ${
         lib.optionalString isDarwin "/opt/homebrew/bin"
       } ~/go/bin/ ~/.nimble/bin ~/.cargo/bin/
-      set CLOUDSDK_PYTHON_SITEPACKAGES 1
     '';
     interactiveShellInit = ''
       fish_vi_key_bindings
@@ -70,28 +66,17 @@ in {
       type -q kustomize; and eval (kustomize completion fish)
       type -q yq; and yq shell-completion fish | source
 
-      type -q nvm; and nvm use -s
       any-nix-shell fish --info-right | source
     '';
     loginShellInit = ''
+      gpgconf --launch gpg-agent
       if [ -f /Users/${user}/.ssh/id_rsa ]
         ssh-add -q --apple-use-keychain  ~/.ssh/id_rsa
-        ssh-add -q --apple-use-keychain  ~/.ssh/id_dsa
         ssh-add -q --apple-use-keychain  ~/.ssh/google_compute_engine
       end
       set -x GPG_TTY (tty)
-      gpgconf --launch gpg-agent
     '';
-    # {
     plugins = [
-      #   name = "grc";
-      #   inherit (pkgs.fishPlugins.grc) src;
-      # }
-      # {
-      # {
-      #   name = "bass";
-      #   inherit (pkgs.fishPlugins.bass) src;
-      # }
       {
         name = "fzf-fish";
         inherit (pkgs.fishPlugins.fzf-fish) src;
