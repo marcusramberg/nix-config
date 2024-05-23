@@ -47,6 +47,7 @@
         version = 1;
       };
     };
+    git = { enable = true; };
     helix = { enable = true; };
     home-manager.enable = true;
     htop = {

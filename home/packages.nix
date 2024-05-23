@@ -70,6 +70,7 @@ in {
       promexplorer
       pssh
       ranger
+      revup
       ripgrep
       stylua
       tealdeer
