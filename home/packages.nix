@@ -58,7 +58,7 @@ in {
       nixfmt-rfc-style
       neofetch
       nixpkgs-review
-      nom
+      nix-output-monitor
       nodePackages.typescript
       nodePackages.node2nix
       nodejs

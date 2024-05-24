@@ -33,7 +33,9 @@ bindsym $mod+Shift+q kill
 bindsym $mod+space exec "dmenu_run"
 
 # Shots
-bindsym $mod+Shift+p exec flameshot gui
+
+bindsym $mod+Shift+p exec maim --select | xclip -selection clipboard -target image/png
+# 
 
 # Clipboard manager
 exec copyq

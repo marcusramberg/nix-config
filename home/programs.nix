@@ -68,7 +68,6 @@
       settings = {
         base_url = "https://passwords.means.no/";
         email = "marcus@means.no";
-        identity_url = "";
         pinentry =
           if pkgs.stdenv.isDarwin then pkgs.pinentry_mac else pkgs.pinentry;
       };
