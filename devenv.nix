@@ -1,7 +1,12 @@
-_: {
+{ pkgs, ... }:
+{
 
-  languages.lua = { enable = true; };
-  languages.nix = { enable = true; };
+  languages.lua = {
+    enable = true;
+  };
+  languages.nix = {
+    enable = true;
+  };
   # Structural diff
   difftastic.enable = true;
 
@@ -10,7 +15,10 @@ _: {
     deadnix.enable = true;
     # luacheck.enable = true;
     markdownlint.enable = true;
-    nixfmt.enable = true;
+    nixfmt = {
+      enable = true;
+      package = pkgs.nixfmt-rfc-style;
+    };
     statix.enable = true;
     stylua.enable = true;
     yamllint.enable = true;
