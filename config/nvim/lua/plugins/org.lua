@@ -1,26 +1,21 @@
 return {
 	{
 		"nvim-orgmode/orgmode",
-		dependencies = {
-			{ "nvim-treesitter/nvim-treesitter", lazy = true },
-		},
 		event = "VeryLazy",
+		ft = { "org" },
 		config = function()
-			-- Setup treesitter
-			require("nvim-treesitter.configs").setup({
-				highlight = {
-					enable = true,
-					additional_vim_regex_highlighting = { "org" },
-				},
-				ensure_installed = { "org" },
-			})
-
 			-- Setup orgmode
 			require("orgmode").setup({
-				org_agenda_files = "~/org/**/*",
-				org_default_notes_file = "~/org/inbox.org",
-				org_startup_folded = "content",
+				org_agenda_files = "~/orgfiles/**/*",
+				org_default_notes_file = "~/orgfiles/refile.org",
 			})
+
+			-- NOTE: If you are using nvim-treesitter with `ensure_installed = "all"` option
+			-- add `org` to ignore_install
+			-- require('nvim-treesitter.configs').setup({
+			--   ensure_installed = 'all',
+			--   ignore_install = { 'org' },
+			-- })
 		end,
 	},
 }
