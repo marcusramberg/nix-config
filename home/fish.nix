@@ -1,11 +1,17 @@
-{ pkgs, lib, user, ... }:
-let inherit (pkgs.stdenv) isDarwin;
-in {
+{
+  pkgs,
+  lib,
+  user,
+  ...
+}:
+let
+  inherit (pkgs.stdenv) isDarwin;
+in
+{
   programs.fish = {
     enable = true;
     functions = {
-      fish_greeting =
-        "fortune art goedel wisdom tao literature songs-poems paradoxum; echo ''";
+      fish_greeting = "fortune art goedel wisdom tao literature songs-poems paradoxum; echo ''";
       rd = "fd $argv (git root)";
       run = ",";
     };
@@ -37,20 +43,13 @@ in {
       emacs = "emacs -nw";
       r = "cd (git root)";
       imgcat = "wezterm imgcat";
-      gcp =
-        "gcloud config set project (gcloud projects list --format='get(project_id)' --sort-by=project_id --filter='project_id != ^sys-'|fzf)";
-      pbcopy =
-        if pkgs.stdenv.isLinux then "xclip -selection clipboard" else "pbcopy";
-      pbpaste = if pkgs.stdenv.isLinux then
-        "xclip -selection clipboard -o"
-      else
-        "pbpaste";
+      gcp = "gcloud config set project (gcloud projects list --format='get(project_id)' --sort-by=project_id --filter='project_id != ^sys-'|fzf)";
+      pbcopy = if pkgs.stdenv.isLinux then "xclip -selection clipboard" else "pbcopy";
+      pbpaste = if pkgs.stdenv.isLinux then "xclip -selection clipboard -o" else "pbpaste";
     };
 
     shellInit = ''
-      fish_add_path -p /run/current-system/sw/bin ~/.local/bin ${
-        lib.optionalString isDarwin "/opt/homebrew/bin"
-      } ~/go/bin/ ~/.nimble/bin ~/.cargo/bin/
+      fish_add_path -p ~/.local/bin ${lib.optionalString isDarwin "/run/current-system/sw/bin /opt/homebrew/bin"} ~/go/bin/ ~/.nimble/bin ~/.cargo/bin/
     '';
     interactiveShellInit = ''
       fish_vi_key_bindings
