@@ -55,6 +55,9 @@ wezterm.on("format-tab-title", function(tab, tabs, panes, _config, hover, max_wi
 end)
 
 config.adjust_window_size_when_changing_font_size = false
+config.window_padding = {
+	bottom = 1,
+}
 config.audible_bell = "Disabled"
 config.check_for_updates = false
 config.color_scheme = "nord"
