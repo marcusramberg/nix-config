@@ -5,10 +5,8 @@ _: _final: prev:
 let
 
   plugins = [ "github.com/caddy-dns/cloudflare" ];
-  goImports =
-    prev.lib.flip prev.lib.concatMapStrings plugins (pkg: "   _ \"${pkg}\"\n");
-  goGets = prev.lib.flip prev.lib.concatMapStrings plugins
-    (pkg: "go get ${pkg}\n      ");
+  goImports = prev.lib.flip prev.lib.concatMapStrings plugins (pkg: "   _ \"${pkg}\"\n");
+  goGets = prev.lib.flip prev.lib.concatMapStrings plugins (pkg: "go get ${pkg}\n      ");
   main = ''
     package main
     import (
@@ -20,8 +18,8 @@ let
     	caddycmd.Main()
     }
   '';
-
-in {
+in
+{
   caddy-cloudflare = prev.buildGo122Module {
     pname = "caddy-cloudflare";
     inherit (prev.caddy) version;
@@ -52,11 +50,14 @@ in {
     '';
 
     meta = with prev.lib; {
+      mainProgram = "caddy";
       homepage = "https://caddyserver.com";
-      description =
-        "Fast, cross-platform HTTP/2 web server with automatic HTTPS";
+      description = "Fast, cross-platform HTTP/2 web server with automatic HTTPS";
       license = licenses.asl20;
-      maintainers = with maintainers; [ Br1ght0ne techknowlogick ];
+      maintainers = with maintainers; [
+        Br1ght0ne
+        techknowlogick
+      ];
     };
   };
 }
