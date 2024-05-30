@@ -32,7 +32,7 @@ in {
     virtualisation.oci-containers.containers = {
       hass = {
         # renovate: datasource=docker depName=homeassistant/home-assistant
-        image = "ghcr.io/home-assistant/home-assistant:2024.3.3";
+        image = "ghcr.io/home-assistant/home-assistant:2024.4.4";
         environment = { TZ = "Europe/Oslo"; };
         extraOptions = [ "--net=host" "--privileged" ];
         volumes = [
@@ -43,7 +43,7 @@ in {
       };
       zwave-js-ui = {
         # renovate: datasource=docker depName=zwave-js/zwave-js-ui
-        image = "ghcr.io/zwave-js/zwave-js-ui:9.9.1";
+        image = "ghcr.io/zwave-js/zwave-js-ui:9.12.0";
         volumes = [
           "/var/lib/zwave-js-ui:/usr/src/app/store"
           "/dev:/dev"
@@ -64,4 +64,3 @@ in {
     };
   };
 }
-
