@@ -60,11 +60,24 @@
           whitespace = "trailing-space,space-before-tab";
           excludesfile = "~/.gitignore_global";
         };
+        color = {
+          branch = {
+            current = "yellow reverse";
+            local = "yellow";
+            remote = "green";
+          };
+          status = {
+            added = "yellow";
+            changed = "green";
+            untracked = "cyan";
+          };
+        };
         url = {
           "git@github.com:".insteadOf = "gh:";
           "git@github.com:reMarkable/cloud".insteadOf = "https://github.com/reMarkable/cloud";
         };
         pull.rebase = true;
+        push.autoSetupRemote = true;
         rebase.autoStash = true;
         log.follow = true;
       };
