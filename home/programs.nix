@@ -1,4 +1,5 @@
-{ pkgs, ... }: {
+{ pkgs, ... }:
+{
   programs = {
     eza = {
       enable = true;
@@ -7,11 +8,6 @@
       git = true;
     };
     bottom.enable = true;
-    git.difftastic = {
-      background = "dark";
-      display = "inline";
-      enable = true;
-    };
     direnv = {
       enable = true;
       nix-direnv.enable = true;
@@ -20,35 +16,9 @@
       enable = true;
       tmux.enableShellIntegration = true;
     };
-    gh = {
+    helix = {
       enable = true;
-      extensions = [ pkgs.gh-dash pkgs.gh-poi pkgs.gh-tidy ];
-      settings = {
-        git_protocol = "ssh";
-        # What editor gh should run when creating issues, pull requests, etc. If
-        # blank, will refer to environment.
-        editor =
-          ""; # When to interactively prompt. This is a global config that cannt be
-
-        # overridden by hostname. Supported values: enabled, disabled
-        prompt = "enabled";
-        # A pager program to send command output to, e.g. "
-        pager = ""; # Aliases allow you to create nicknames for gh commands
-
-        aliases = {
-          co = "pr checkout";
-          rev = "pr review";
-          mkpr = "pr create --fill";
-          # The path to a unix socket through which send HTTP connections. If
-          # blank, HTTP traffic will be handled by net/http.DefaultTransport.
-        };
-        http_unix_socket = "";
-        browser = "";
-        version = 1;
-      };
     };
-    git = { enable = true; };
-    helix = { enable = true; };
     home-manager.enable = true;
     htop = {
       enable = true;
@@ -68,8 +38,7 @@
       settings = {
         base_url = "https://passwords.means.no/";
         email = "marcus@means.no";
-        pinentry =
-          if pkgs.stdenv.isDarwin then pkgs.pinentry_mac else pkgs.pinentry;
+        pinentry = if pkgs.stdenv.isDarwin then pkgs.pinentry_mac else pkgs.pinentry;
       };
     };
     # Smarter z
