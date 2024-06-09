@@ -1,22 +1,28 @@
-{ config, pkgs, lib, ... }:
-with lib;
-let cfg = config.profiles.desktop;
-in {
-  options.profiles.desktop.enable = mkEnableOption "desktop";
+{
+  config,
+  pkgs,
+  lib,
+  ...
+}:
+let
+  cfg = config.profiles.desktop;
+in
+{
+  options.profiles.desktop.enable = lib.mkEnableOption "desktop";
 
-  config = mkIf cfg.enable {
+  config = lib.mkIf cfg.enable {
 
     # Enable plymouth
     boot = {
-      initrd.systemd.enable =
-        true; # This is needed to show the plymouth login screen to unlock luks
+      initrd.systemd.enable = true; # This is needed to show the plymouth login screen to unlock luks
       plymouth = {
         enable = true;
         theme = "breeze";
       };
     };
 
-    environment.systemPackages = with pkgs;
+    environment.systemPackages =
+      with pkgs;
       [
         bitwarden
         copyq
@@ -39,20 +45,23 @@ in {
         xclip
         xorg.xhost
         zeal-qt6
-      ] ++ lib.optionals (pkgs.system == "x86_64-linux") [
-        pkgs.vivaldi-ffmpeg-codecs
-        pkgs.discord
+      ]
+      ++ lib.optionals (system == "x86_64-linux") [
+        vivaldi-ffmpeg-codecs
+        discord
       ];
 
     profiles.myfonts.enable = true;
     programs = {
-      gnupg.agent = { pinentryPackage = lib.mkForce pkgs.pinentry-curses; };
+      gnupg.agent = {
+        pinentryPackage = lib.mkForce pkgs.pinentry-curses;
+      };
       chromium.enable = true;
       firefox = {
         enable = true;
-        nativeMessagingHosts.packages = with pkgs;
-          [ tridactyl-native ]
-          ++ lib.optionals (pkgs.system == "x86_64-linux") [ fx-cast-bridge ];
+        nativeMessagingHosts.packages =
+          with pkgs;
+          [ tridactyl-native ] ++ lib.optionals (pkgs.system == "x86_64-linux") [ fx-cast-bridge ];
       };
     };
 
@@ -71,7 +80,16 @@ in {
           enable = true;
           greeters.slick.enable = true;
         };
-        windowManager = { i3 = { enable = true; }; };
+        windowManager = {
+          i3 = {
+            enable = true;
+          };
+        };
+        desktopManager.xfce = {
+          enable = true;
+          noDesktop = true;
+          enableXfwm = false;
+        };
         xkb = {
           layout = "us";
           options = "eurosign:e";
@@ -87,15 +105,6 @@ in {
 
     };
     networking.firewall.allowedTCPPorts = [ 3389 ];
-    # xdg.mime.defaultApplications = {
-    #   "text/html" = "vivaldi-stable.desktop";
-    #   "x-scheme-handler/http" = "vivaldi-stable.desktop";
-    #   "x-scheme-handler/https" = "vivaldi-stable.desktop";
-    #   "x-scheme-handler/about" = "vivaldi-stable.desktop";
-    #   "x-scheme-handler/unknown" = "vivaldi-stable.desktop";
-    # };
-    # environment.sessionVariables.DEFAULT_BROWSER =
-    #   "${pkgs.vivaldi}/bin/vivaldi";
     security.polkit = {
       enable = true;
       extraConfig = ''

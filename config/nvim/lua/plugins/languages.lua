@@ -93,7 +93,7 @@ return {
 					"terraform_lsp",
 				},
 				preferred_servers = {
-					nix = { "nil_ls" },
+					nix = { "nixd" },
 					python = { "ruff_lsp", "pyright" },
 					javascript = { "eslint", "tsserver" },
 					javascriptreact = { "eslint", "tsserver" },

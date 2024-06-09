@@ -12,7 +12,8 @@
     hei.url = "github:marcusramberg/hei";
     hei.inputs.nixpkgs.follows = "nixpkgs";
     flake-utils.url = "github:numtide/flake-utils";
-
+    jovian.url = "github:Jovian-Experiments/Jovian-NixOS";
+    jovian.inputs.nixpkgs.follows = "nixpkgs";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
     home-manager.url = "github:nix-community/home-manager";
     # microvm = {
@@ -23,8 +24,6 @@
     #   flake = false;
     #   url = "github:marcusramberg/mobile-nixos/enchilada";
     # };
-    yaml2nix.url = "github:euank/yaml2nix";
-    yaml2nix.inputs.nixpkgs.follows = "nixpkgs";
     nix-index-database.url = "github:Mic92/nix-index-database";
     nix-index-database.inputs.nixpkgs.follows = "nixpkgs";
     nix-std.url = "github:chessai/nix-std";
@@ -34,57 +33,113 @@
     tfenv.flake = false;
     tfenv.url = "github:tfutils/tfenv";
     zig.url = "github:mitchellh/zig-overlay";
+    yaml2nix.url = "github:euank/yaml2nix";
+    yaml2nix.inputs.nixpkgs.follows = "nixpkgs";
 
   };
 
-  outputs = { nixpkgs, flake-utils, hei, nix-std, zig, ... }@inputs:
+  outputs =
+    {
+      nixpkgs,
+      flake-utils,
+      hei,
+      nix-std,
+      ...
+    }@inputs:
     let
       lib = import ./lib;
       overlays = [
         (import ./overlays inputs)
         (import ./overlays/caddy.nix inputs)
-        # inputs.emacs-overlay.overlay
         inputs.zig.overlays.default
       ];
       std = nix-std.lib;
-    in with lib;
+    in
     {
       nixosConfigurations = {
-        mhub = mkNixHost "mhub" {
-          inherit overlays nixpkgs inputs std;
+        mhub = lib.mkNixHost "mhub" {
+          inherit
+            overlays
+            nixpkgs
+            inputs
+            std
+            ;
           system = "x86_64-linux";
         };
-        butterbee = mkNixHost "butterbee" {
-          inherit overlays nixpkgs inputs std;
+        butterbee = lib.mkNixHost "butterbee" {
+          inherit
+            overlays
+            nixpkgs
+            inputs
+            std
+            ;
           system = "aarch64-linux";
         };
-        mbox = mkNixHost "mbox" {
-          inherit overlays nixpkgs inputs std;
+        mbox = lib.mkNixHost "mbox" {
+          inherit
+            overlays
+            nixpkgs
+            inputs
+            std
+            ;
           system = "x86_64-linux";
         };
-        mtop = mkNixHost "mtop" {
-          inherit overlays nixpkgs inputs std;
+        mtop = lib.mkNixHost "mtop" {
+          inherit
+            overlays
+            nixpkgs
+            inputs
+            std
+            ;
           system = "x86_64-linux";
         };
-        mvirt = mkNixHost "mvirt" {
-          inherit overlays nixpkgs inputs std;
+        mvirt = lib.mkNixHost "mvirt" {
+          inherit
+            overlays
+            nixpkgs
+            inputs
+            std
+            ;
           system = "x86_64-linux";
         };
-        mlab = mkNixHost "mlab" {
-          inherit overlays nixpkgs inputs std;
+        mlab = lib.mkNixHost "mlab" {
+          inherit
+            overlays
+            nixpkgs
+            inputs
+            std
+            ;
           system = "x86_64-linux";
         };
-        mgate = mkNixHost "mgate" {
-          inherit overlays nixpkgs inputs std;
+        mdeck = lib.mkNixHost "mdeck" {
+          inherit
+            overlays
+            nixpkgs
+            inputs
+            std
+            ;
+          system = "x86_64-linux";
+          extraModules = [ inputs.jovian.nixosModules.default ];
+        };
+        mgate = lib.mkNixHost "mgate" {
+          inherit
+            overlays
+            nixpkgs
+            inputs
+            std
+            ;
           system = "x86_64-linux";
         };
-        mbrick = mkNixHost "mbrick" {
-          inherit overlays nixpkgs inputs std;
+        mbrick = lib.mkNixHost "mbrick" {
+          inherit
+            overlays
+            nixpkgs
+            inputs
+            std
+            ;
           system = "aarch64-linux";
           extraModules = [
-            (import "${inputs.mobile-nixos}/lib/configuration.nix" {
-              device = "oneplus-fajita";
-            })
+            (import "${inputs.mobile-nixos}/lib/configuration.nix" { device = "oneplus-fajita"; })
           ];
         };
         # mOctopi = mkPiImage "moctopi" {
@@ -94,11 +149,13 @@
         # };
       };
 
-      darwinConfigurations.mwork = mkDarwinHost {
+      darwinConfigurations.mwork = lib.mkDarwinHost {
         inherit overlays inputs std;
         system = "aarch64-darwin";
       };
-    } // flake-utils.lib.eachDefaultSystem (system:
+    }
+    // flake-utils.lib.eachDefaultSystem (
+      system:
       let
         pkgs = import inputs.nixpkgs {
           inherit system overlays;
@@ -108,25 +165,29 @@
             allowUnsupportedSystem = true;
           };
         };
-      in {
+      in
+      {
         apps.default = {
           type = "app";
           program = "${hei.packages.${system}.hei}/bin/hei";
         };
         packages = {
-          mbrick-disk-image =
-            inputs.self.nixosConfigurations.mbrick.config.mobile.outputs.default;
+          mbrick-disk-image = inputs.self.nixosConfigurations.mbrick.config.mobile.outputs.default;
           # mbrick-boot-partition = inputs.self.nixosConfigurations.mbrick.config.mobile.outputs.u-boot-partion.default;
-          homeConfigurations.marcus =
-            lib.mkHMConfig { inherit inputs pkgs std; };
+          homeConfigurations.marcus = lib.mkHMConfig { inherit inputs pkgs std; };
           homeConfigurations.deck = lib.mkHMConfig {
             inherit inputs pkgs std;
             user = "deck";
           };
         };
         devShell = pkgs.mkShell {
-          buildInputs = with pkgs; [ home-manager git ];
+          buildInputs = with pkgs; [
+            home-manager
+            git
+            neovim
+          ];
           NIX_CONFIG = "experimental-features = nix-command flakes";
         };
-      });
+      }
+    );
 }

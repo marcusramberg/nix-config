@@ -1,4 +1,5 @@
-{ pkgs, lib, ... }: {
+{ pkgs, lib, ... }:
+{
   imports = [
     # Include the results of the hardware scan.
     ./hardware-configuration.nix
@@ -15,12 +16,12 @@
     };
     # Setup keyfile
     initrd = {
-      secrets = { "/crypto_keyfile.bin" = null; };
+      secrets = {
+        "/crypto_keyfile.bin" = null;
+      };
       # Enable swap on luks
-      luks.devices."luks-0050060b-f9cb-4697-8934-aef2f5ad0e2a".device =
-        "/dev/disk/by-uuid/0050060b-f9cb-4697-8934-aef2f5ad0e2a";
-      luks.devices."luks-0050060b-f9cb-4697-8934-aef2f5ad0e2a".keyFile =
-        "/crypto_keyfile.bin";
+      luks.devices."luks-0050060b-f9cb-4697-8934-aef2f5ad0e2a".device = "/dev/disk/by-uuid/0050060b-f9cb-4697-8934-aef2f5ad0e2a";
+      luks.devices."luks-0050060b-f9cb-4697-8934-aef2f5ad0e2a".keyFile = "/crypto_keyfile.bin";
       systemd = {
         network.enable = true;
         network.networks."10-wlan" = {
@@ -33,13 +34,19 @@
     kernelParams = [ "fbcon=map:1" ];
 
     # These modules are required for PCI passthrough, and must come before early modesetting stuff
-    kernelModules = [ "fbcon" "hid-apple" ];
+    kernelModules = [
+      "fbcon"
+      "hid-apple"
+    ];
     extraModprobeConfig = ''
       options hid_apple iso_layout=1
       options kvm_intel nested=1
     '';
   };
-  environment.systemPackages = with pkgs; [ zigpkgs.master prusa-slicer ];
+  environment.systemPackages = with pkgs; [
+    zigpkgs.master
+    prusa-slicer
+  ];
 
   networking = {
     extraHosts = ''
@@ -53,7 +60,11 @@
   fileSystems."/home/marcus/org" = {
     device = "mspace:/volume1/homes/marcus/Drive/orgmode";
     fsType = "nfs4";
-    options = [ "nfsvers=4.1" "soft" "x-systemd.automount" ];
+    options = [
+      "nfsvers=4.1"
+      "soft"
+      "x-systemd.automount"
+    ];
   };
 
   hardware = {
@@ -114,9 +125,8 @@
       secretKeyFile = "/var/cache-priv-key.pem";
     };
 
-    postgresql = { enable = true; };
     ollama = {
-      listenAddress = "0.0.0.0";
+      host = "0.0.0.0";
       enable = true;
       # acceleration = "rocm";
     };
@@ -124,25 +134,27 @@
     tailscale.useRoutingFeatures = "server";
     displayManager.defaultSession = lib.mkForce "xfce+i3";
 
-    # Deckmaster
-    udev.extraRules = ''
-      SUBSYSTEM=="usb", ATTRS{idVendor}=="0fd9", ATTRS{idProduct}=="0060", MODE:="666", GROUP="plugdev", SYMLINK+="streamdeck"
-      SUBSYSTEM=="usb", ATTRS{idVendor}=="0fd9", ATTRS{idProduct}=="006d", MODE:="666", GROUP="plugdev", SYMLINK+="streamdeck"
-      SUBSYSTEM=="usb", ATTRS{idVendor}=="0fd9", ATTRS{idProduct}=="0080", MODE:="666", GROUP="plugdev", SYMLINK+="streamdeck"
-      SUBSYSTEM=="usb", ATTRS{idVendor}=="0fd9", ATTRS{idProduct}=="0063", MODE:="666", GROUP="plugdev", SYMLINK+="streamdeck-mini"
-      SUBSYSTEM=="usb", ATTRS{idVendor}=="0fd9", ATTRS{idProduct}=="006c", MODE:="666", GROUP="plugdev", SYMLINK+="streamdeck-xl"
-    '';
+    # # Deckmaster
+    # udev.extraRules = ''
+    #   SUBSYSTEM=="usb", ATTRS{idVendor}=="0fd9", ATTRS{idProduct}=="0060", MODE:="666", GROUP="plugdev", SYMLINK+="streamdeck"
+    #   SUBSYSTEM=="usb", ATTRS{idVendor}=="0fd9", ATTRS{idProduct}=="006d", MODE:="666", GROUP="plugdev", SYMLINK+="streamdeck"
+    #   SUBSYSTEM=="usb", ATTRS{idVendor}=="0fd9", ATTRS{idProduct}=="0080", MODE:="666", GROUP="plugdev", SYMLINK+="streamdeck"
+    #   SUBSYSTEM=="usb", ATTRS{idVendor}=="0fd9", ATTRS{idProduct}=="0063", MODE:="666", GROUP="plugdev", SYMLINK+="streamdeck-mini"
+    #   SUBSYSTEM=="usb", ATTRS{idVendor}=="0fd9", ATTRS{idProduct}=="006c", MODE:="666", GROUP="plugdev", SYMLINK+="streamdeck-xl"
+    # '';
     xserver.dpi = 144;
   };
-  systemd.services.caddy.serviceConfig.AmbientCapabilities =
-    "cap_net_bind_service";
+  systemd.services.caddy.serviceConfig.AmbientCapabilities = "cap_net_bind_service";
   systemd.services.NetworkManager-wait-online = {
     serviceConfig = {
-      ExecStart = [ "" "${pkgs.networkmanager}/bin/nm-online -q" ];
+      ExecStart = [
+        ""
+        "${pkgs.networkmanager}/bin/nm-online -q"
+      ];
     };
   };
   virtualisation = {
-    docker.enable = true;
+    # docker.enable = true;
     incus = {
       enable = true;
       ui.enable = true;

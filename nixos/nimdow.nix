@@ -1,10 +1,16 @@
-{ config, pkgs, lib, ... }:
-with lib;
-let cfg = config.profiles.nimdow;
-in {
-  options.profiles.nimdow.enable = mkEnableOption "nimdow";
+{
+  config,
+  pkgs,
+  lib,
+  ...
+}:
+let
+  cfg = config.profiles.nimdow;
+in
+{
+  options.profiles.nimdow.enable = lib.mkEnableOption "nimdow";
 
-  config = mkIf cfg.enable {
+  config = lib.mkIf cfg.enable {
 
     profiles.desktop.enable = true;
 
@@ -21,18 +27,7 @@ in {
       };
 
       displayManager.defaultSession = lib.mkDefault "xfce+nimdow";
-      xserver = {
-        desktopManager.xfce = {
-          enable = true;
-          noDesktop = true;
-          enableXfwm = false;
-        };
-        windowManager.nimdow.enable = true;
-        # windowManager.nimdow.package = pkgs.nimdow.overrideAttrs (old: {
-        #   src.rev = "v1.4.8";
-        #   src.hash = lib.fakeHash;
-        # });
-      };
+      xserver.windowManager.nimdow.enable = true;
     };
   };
 }
