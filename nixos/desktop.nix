@@ -72,7 +72,6 @@ in
 
       openssh.settings.X11Forwarding = true;
 
-      desktopManager.plasma6.enable = true;
       libinput.enable = true;
       xserver = {
         enable = true;
@@ -85,10 +84,13 @@ in
             enable = true;
           };
         };
-        desktopManager.xfce = {
-          enable = true;
-          noDesktop = true;
-          enableXfwm = false;
+        desktopManager = {
+          plasma5.enable = true;
+          xfce = {
+            enable = true;
+            noDesktop = true;
+            enableXfwm = false;
+          };
         };
         xkb = {
           layout = "us";

@@ -9,38 +9,34 @@
 }:
 
 {
-  imports = [
-    (modulesPath + "/hardware/network/broadcom-43xx.nix")
-    (modulesPath + "/installer/scan/not-detected.nix")
-  ];
+  imports = [ (modulesPath + "/installer/scan/not-detected.nix") ];
 
   boot = {
     initrd.availableKernelModules = [
+      "nvme"
       "xhci_pci"
-      "ahci"
       "usbhid"
-      "usb_storage"
+      "uas"
       "sd_mod"
+      "sdhci_pci"
     ];
     initrd.kernelModules = [ ];
-    kernelModules = [ "kvm-intel" ];
+    kernelModules = [ "kvm-amd" ];
     extraModulePackages = [ ];
   };
 
-  fileSystems = {
-    "/" = {
-      device = "/dev/disk/by-uuid/86952286-ffab-4b03-8a78-0c21099588bd";
-      fsType = "ext4";
-    };
-    "/home/marcus" = {
-      device = "/dev/disk/by-uuid/4d79d071-7bee-4cf0-85fa-01f313cb9eab";
-      fsType = "ext4";
-    };
+  fileSystems."/" = {
+    device = "/dev/disk/by-uuid/d02b1cbf-1ade-4cdd-a0ad-8a00f6b42f35";
+    fsType = "ext4";
+  };
 
-    "/boot/efi" = {
-      device = "/dev/disk/by-uuid/67E3-17ED";
-      fsType = "vfat";
-    };
+  fileSystems."/boot" = {
+    device = "/dev/disk/by-uuid/0EE6-21B5";
+    fsType = "vfat";
+    options = [
+      "fmask=0022"
+      "dmask=0022"
+    ];
   };
 
   swapDevices = [ ];
@@ -50,10 +46,8 @@
   # still possible to use this option, but it's recommended to use it in conjunction
   # with explicit per-interface declarations with `networking.interfaces.<interface>.useDHCP`.
   networking.useDHCP = lib.mkDefault true;
-  # networking.interfaces.wlp4s0.useDHCP = lib.mkDefault true;
+  # networking.interfaces.eth0.useDHCP = lib.mkDefault true;
 
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
-  hardware.cpu.intel.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
-  # high-resolution display
-  # hardware.video.hidpi.enable = lib.mkDefault true;
+  hardware.cpu.amd.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
 }

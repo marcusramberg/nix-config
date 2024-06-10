@@ -4,22 +4,22 @@
   imports = [
     # Include the results of the hardware scan.
     ./hardware-configuration.nix
-    ./hardware-configuration.nix
   ];
   # Enable hardware and Steam support.
-  boot.loader.systemd-boot.enable = true;
-  boot.loader.efi.canTouchEfiVariables = true;
+  boot.loader = {
+    systemd-boot.enable = true;
+    efi.canTouchEfiVariables = true;
+  };
   jovian = {
     devices.steamdeck = {
       enable = true;
       autoUpdate = true;
-      enableXorgRotation = false;
     };
     steam = {
       enable = true;
       user = "marcus";
       autoStart = true;
-      desktopSession = "xfce+i3";
+      desktopSession = "gnome-xorg";
     };
   };
 
@@ -27,7 +27,7 @@
     galileo-mura
     steamdeck-firmware
     jupiter-dock-updater-bin
-    mangohud
+    # mangohud
   ];
 
   # Automount SD card.
@@ -42,17 +42,35 @@
       "comment=x-gvfs-show"
     ];
   };
+
+  hardware.keyboard.dual-caps.enable = true;
+
   profiles.desktop.enable = true;
+
+  programs.steam = {
+    enable = true;
+    # extest.enable = true;
+  };
+
+  environment.gnome.excludePackages = with pkgs; [ gnome-tour ];
 
   # Symlink old Steam Deck SD card path to new one.
   systemd.tmpfiles.rules = [ "L+ /run/media/mmcblk0p1 - - - - /run/media/deck/mmcblk0p1" ];
 
-  networking.hostName = "deck";
+  networking.hostName = "mdeck";
+  networking.networkmanager.enable = true;
 
   services = {
-    xserver.displayManager.lightdm.enable = lib.mkForce false;
-    # flatpak.enable = true;
+    flatpak.enable = true;
+    gnome.core-utilities.enable = false;
     input-remapper.enable = true;
+    xserver = {
+      enable = true;
+      displayManager.lightdm.enable = lib.mkForce false;
+      displayManager.startx.enable = true;
+      desktopManager.gnome.enable = true;
+      excludePackages = with pkgs; [ xterm ];
+    };
   };
 
 }

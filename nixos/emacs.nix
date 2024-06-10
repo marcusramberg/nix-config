@@ -13,33 +13,46 @@
 #                       └─ native.nix *
 #
 
-{ config, pkgs, ... }:
-
 {
-  services.emacs.enable = false;
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 
-  system.userActivationScripts = {
-    # Installation script every time nixos-rebuild is run. So not during initial install.
-    doomEmacs = {
-      text = ''
-        source ${config.system.build.setEnvironment}
-        EMACS="$HOME/.emacs.d"
+let
+  cfg = config.profiles.doom;
+in
+{
+  options.profiles.doom.enable = lib.mkEnableOption "doom";
 
-        if [ ! -d "$EMACS" ]; then
-          ${pkgs.git}/bin/git clone https://github.com/hlissner/doom-emacs.git $EMACS
-          yes | $EMACS/bin/doom install
-          $EMACS/bin/doom sync
-        else
-          $EMACS/bin/doom sync
-        fi
-      ''; # It will always sync when rebuild is done. So changes will always be applied.
+  config = lib.mkIf cfg.enable {
+    services.emacs.enable = false;
+
+    system.userActivationScripts = {
+      # Installation script every time nixos-rebuild is run. So not during initial install.
+      doomEmacs = {
+        text = ''
+          source ${config.system.build.setEnvironment}
+          EMACS="$HOME/.emacs.d"
+
+          if [ ! -d "$EMACS" ]; then
+            ${pkgs.git}/bin/git clone https://github.com/hlissner/doom-emacs.git $EMACS
+            yes | $EMACS/bin/doom install
+            $EMACS/bin/doom sync
+          else
+            $EMACS/bin/doom sync
+          fi
+        ''; # It will always sync when rebuild is done. So changes will always be applied.
+      };
     };
-  };
 
-  environment.systemPackages = with pkgs; [
-    ripgrep
-    coreutils
-    fd
-    #git
-  ]; # Dependencies
+    environment.systemPackages = with pkgs; [
+      ((emacsPackagesFor emacs).emacsWithPackages (epkgs: [ epkgs.vterm ]))
+      ripgrep
+      coreutils
+      fd
+      #git
+    ]; # Dependencies
+  };
 }

@@ -2,7 +2,8 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ pkgs, inputs, ... }: {
+{ pkgs, inputs, ... }:
+{
   imports = [
     ../modules/agenix.nix
     ../modules/autoupgrade.nix
@@ -32,7 +33,6 @@
   # $ nix search wget
   environment = {
     systemPackages = with pkgs; [
-      ((emacsPackagesFor emacs).emacsWithPackages (epkgs: [ epkgs.vterm ]))
       cached-nix-shell
       caddy
       gitFull
@@ -117,17 +117,21 @@
   time.timeZone = "Europe/Oslo";
   i18n.defaultLocale = "en_DK.UTF-8";
 
-  nixpkgs.config = { allowUnfree = true; };
+  nixpkgs.config = {
+    allowUnfree = true;
+  };
 
   nix.nixPath = [ "nixpkgs=/run/current-system/nixpkgs" ];
 
   security = {
-    pam.loginLimits = [{
-      domain = "marcus";
-      type = "soft";
-      item = "nofile";
-      value = "200000";
-    }];
+    pam.loginLimits = [
+      {
+        domain = "marcus";
+        type = "soft";
+        item = "nofile";
+        value = "200000";
+      }
+    ];
     pki.certificateFiles =
       if builtins.pathExists "/home/marcus/.local/share/mkcert/rootCA.pem" then
         [ /home/marcus/.local/share/mkcert/rootCA.pem ]
