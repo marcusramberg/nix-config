@@ -69,7 +69,7 @@ _: {
       "visual-studio-code"
       "vivaldi"
       "vlc"
-      "wezterm-nightly"
+      "wezterm@nightly"
       "xcodes"
       "yt-music"
       "yubico-yubikey-manager"
