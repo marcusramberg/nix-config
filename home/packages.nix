@@ -1,9 +1,17 @@
-{ pkgs, lib, osConfig, inputs, ... }:
+{
+  pkgs,
+  lib,
+  osConfig,
+  inputs,
+  ...
+}:
 let
   inherit (pkgs) stdenv;
   isNixOS = lib.hasAttr "nixos" osConfig.system;
-in {
-  home.packages = with pkgs;
+in
+{
+  home.packages =
+    with pkgs;
     [
       argocd
       actionlint
@@ -34,11 +42,13 @@ in {
       glow
       go_1_22
       golangci-lint
-      (google-cloud-sdk.withExtraComponents
-        (with pkgs.google-cloud-sdk.components; [
+      (google-cloud-sdk.withExtraComponents (
+        with pkgs.google-cloud-sdk.components;
+        [
           cloud-build-local
           gke-gcloud-auth-plugin
-        ]))
+        ]
+      ))
       gopls
       go-task
       gotestfmt
@@ -62,7 +72,7 @@ in {
       nodePackages.typescript
       nodePackages.node2nix
       nodejs
-      ncdu
+      # ncdu
       nnn
       neovim
       ollama
@@ -87,9 +97,14 @@ in {
       # useful nix related tools
       # cachix # adding/managing alternative binary caches hosted by cachix
       # niv # easy dependency management for nix projects
-    ] ++ lib.optionals stdenv.isDarwin [
+    ]
+    ++ lib.optionals stdenv.isDarwin [
       cocoapods
       m-cli # useful macOS CLI commands
-    ] ++ lib.optionals stdenv.isLinux [ nim2 maim ]
+    ]
+    ++ lib.optionals stdenv.isLinux [
+      nim2
+      maim
+    ]
     ++ lib.optionals isNixOS [ wezterm ];
 }

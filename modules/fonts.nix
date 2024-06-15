@@ -14,7 +14,7 @@ in
   };
   config = mkIf cfg.enable {
     fonts = {
-      fontDir.enable = true;
+      fontDir.enable = lib.mkIf pkgs.stdenv.isLinux true;
       packages =
         with pkgs;
         [

@@ -32,7 +32,6 @@
     nur.url = "github:nix-community/NUR";
     tfenv.flake = false;
     tfenv.url = "github:tfutils/tfenv";
-    zig.url = "github:mitchellh/zig-overlay";
     yaml2nix.url = "github:euank/yaml2nix";
     yaml2nix.inputs.nixpkgs.follows = "nixpkgs";
 
@@ -51,7 +50,6 @@
       overlays = [
         (import ./overlays inputs)
         (import ./overlays/caddy.nix inputs)
-        inputs.zig.overlays.default
       ];
       std = nix-std.lib;
     in
