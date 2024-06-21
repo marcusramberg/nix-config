@@ -29,7 +29,9 @@ in
         element-desktop
         feh
         flameshot
-        # kotatogram-desktop
+        gnomeExtensions.appindicator
+        gnomeExtensions.paperwm
+        gnomeExtensions.just-perfection
         neovide
         nitrogen
         obsidian
@@ -72,6 +74,7 @@ in
 
       openssh.settings.X11Forwarding = true;
 
+      gnome.core-utilities.enable = false;
       libinput.enable = true;
       xserver = {
         enable = true;
@@ -85,6 +88,7 @@ in
           };
         };
         desktopManager = {
+          gnome.enable = true;
           plasma5.enable = true;
           xfce = {
             enable = true;

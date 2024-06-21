@@ -1,11 +1,17 @@
-{ lib, pkgs, osConfig, ... }:
+{
+  lib,
+  pkgs,
+  osConfig,
+  ...
+}:
 let
   inherit (lib) mkIf;
   inherit (pkgs) stdenv;
   isNixOS = lib.hasAttr "nixos" osConfig.system;
   isDesktop = isNixOS && osConfig.services.xserver.enable;
 
-in {
+in
+{
   gtk = mkIf isDesktop {
     enable = true;
     theme = {
@@ -46,10 +52,12 @@ in {
           {
             block = "sound";
             format = " $icon $output_name {$volume.eng(w:2) |}";
-            click = [{
-              button = "left";
-              cmd = "pavucontrol --tab=3";
-            }];
+            click = [
+              {
+                button = "left";
+                cmd = "pavucontrol --tab=3";
+              }
+            ];
             mappings = {
               "alsa_output.pci-0000_00_1f.3.iec958-stereo" = "";
               "alsa_output.pci-0000_00_01.0.analog-stereo" = "";
@@ -62,6 +70,17 @@ in {
           }
         ];
       };
+    };
+  };
+  dconf = mkIf isDesktop {
+    enable = true;
+    settings."org/gnome/shell" = {
+      disable-user-extensions = false;
+      enabled-extensions = with pkgs.gnomeExtensions; [
+        appindicator.extensionUuid
+        paperwm.extensionUuid
+        just-perfection.extensionUuid
+      ];
     };
   };
   services.gpg-agent = mkIf stdenv.isLinux {

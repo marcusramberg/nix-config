@@ -49,7 +49,6 @@
 
   programs.steam = {
     enable = true;
-    # extest.enable = true;
   };
 
   environment.gnome.excludePackages = with pkgs; [ gnome-tour ];
@@ -62,13 +61,11 @@
 
   services = {
     flatpak.enable = true;
-    gnome.core-utilities.enable = false;
     input-remapper.enable = true;
     xserver = {
       enable = true;
       displayManager.lightdm.enable = lib.mkForce false;
       displayManager.startx.enable = true;
-      desktopManager.gnome.enable = true;
       excludePackages = with pkgs; [ xterm ];
     };
   };
