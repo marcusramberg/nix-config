@@ -27,7 +27,7 @@
     galileo-mura
     steamdeck-firmware
     jupiter-dock-updater-bin
-    # mangohud
+    heroic
   ];
 
   # Automount SD card.

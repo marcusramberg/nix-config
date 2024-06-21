@@ -73,6 +73,8 @@
     keyboard.dual-caps.enable = true;
   };
 
+  hardware.opengl.driSupport32Bit = true;
+
   profiles = {
     autoupgrade.enable = true;
     doom.enable = true;
