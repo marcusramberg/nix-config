@@ -1,17 +1,11 @@
 { config, lib, ... }:
-with lib;
-let cfg = config.hardware.gpu.nvidia;
-in {
-  options.hardware.gpu.nvidia.enable = mkEnableOption "Enable Nvidia gpu";
+let
+  cfg = config.hardware.gpu.nvidia;
+in
+{
+  options.hardware.gpu.nvidia.enable = lib.mkEnableOption "Enable Nvidia gpu";
 
-  config = mkIf cfg.enable {
-
-    # Enable OpenGL
-    hardware.opengl = {
-      enable = true;
-      driSupport = true;
-      driSupport32Bit = true;
-    };
+  config = lib.mkIf cfg.enable {
 
     # Load nvidia driver for Xorg and Wayland
     services.xserver.videoDrivers = [ "nvidia" ];

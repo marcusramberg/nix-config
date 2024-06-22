@@ -1,15 +1,14 @@
 { config, lib, ... }:
-with lib;
-let cfg = config.hardware.gpu.amd;
-in {
-  options.hardware.gpu.amd.enable = mkEnableOption "Enable config for amd gpu";
+let
+  cfg = config.hardware.gpu.amd;
+in
+{
+  options.hardware.gpu.amd.enable = lib.mkEnableOption "Enable config for amd gpu";
 
-  config = mkIf cfg.enable {
+  config = lib.mkIf cfg.enable {
     # Enable OpenGL
-    hardware.opengl = {
+    hardware.graphics = {
       enable = true;
-      driSupport = true;
-      driSupport32Bit = true;
     };
 
     # Load amd driver for Xorg and Wayland

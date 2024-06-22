@@ -43,10 +43,7 @@
       options kvm_intel nested=1
     '';
   };
-  environment.systemPackages = with pkgs; [
-    zigpkgs.master
-    prusa-slicer
-  ];
+  environment.systemPackages = with pkgs; [ prusa-slicer ];
 
   networking = {
     extraHosts = ''
@@ -72,8 +69,6 @@
     bluetooth.enable = true;
     keyboard.dual-caps.enable = true;
   };
-
-  hardware.opengl.driSupport32Bit = true;
 
   profiles = {
     autoupgrade.enable = true;
