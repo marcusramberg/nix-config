@@ -43,5 +43,9 @@
     };
     # Smarter z
     zoxide.enable = true;
+    yazi = {
+      enable = true;
+      enableFishIntegration = true;
+    };
   };
 }
