@@ -71,12 +71,15 @@ in
       set --universal pure_enable_nixdevshell false
       type -q thefuck; and thefuck --alias | source
       test -x ~/.plenv/bin/plenv; and . (~/.plenv/bin/plenv init -|psub)
+      if command -q nix-your-shell
+        nix-your-shell fish | source
+      end
 
       # Completion
       type -q kustomize; and eval (kustomize completion fish)
       type -q yq; and yq shell-completion fish | source
 
-      any-nix-shell fish --info-right | source
+      # any-nix-shell fish --info-right | source
     '';
     loginShellInit = ''
       gpgconf --launch gpg-agent

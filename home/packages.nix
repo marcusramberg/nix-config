@@ -16,7 +16,6 @@ in
       argocd
       actionlint
       asciinema
-      any-nix-shell
       bat
       cargo
       cloudflared
@@ -69,10 +68,11 @@ in
       neofetch
       nixpkgs-review
       nix-output-monitor
+      nix-your-shell
       nodePackages.typescript
       nodePackages.node2nix
       nodejs
-      # ncdu
+      ncdu
       nnn
       neovim
       ollama
