@@ -133,7 +133,7 @@ config.unix_domains = {
 config.use_dead_keys = false
 config.use_fancy_tab_bar = false
 config.window_background_opacity = 0.98
-config.window_decorations = "RESIZE"
+-- config.window_decorations = "RESIZE"
 
 config.hyperlink_rules = wezterm.default_hyperlink_rules()
 -- make username/project paths clickable. this implies paths like the following are for github.
