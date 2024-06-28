@@ -19,7 +19,7 @@ in
       package = pkgs.nordic;
     };
   };
-  programs.i3status-rust = mkIf isDesktop {
+  programs.i3status-rust = mkIf stdenv.isLinux {
     enable = true;
     bars = {
       status = {
