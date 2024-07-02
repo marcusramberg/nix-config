@@ -46,7 +46,7 @@ in
         xarchiver
         xclip
         xorg.xhost
-        zeal-qt6
+        # zeal-qt6
       ]
       ++ lib.optionals (system == "x86_64-linux") [
         vivaldi-ffmpeg-codecs
