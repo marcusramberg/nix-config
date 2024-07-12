@@ -26,7 +26,7 @@ in
         # Gnome hotkeys
         "org/gnome/desktop/wm/keybindings" = {
           # Alt+F4 is very cumbersome
-          close = [ "<Super>w" ];
+          close = [ "<Super>q" ];
           # Make it easy to maximize like you can fill left/right
           maximize = [ "<Super>Up" ];
           # Make it easy to resize undecorated windows
@@ -146,7 +146,7 @@ in
           monospace-font-name = "${fontName} 10";
           color-scheme = colorScheme;
           cursor-theme = "Yaru";
-          gtk-theme = "Yaru-${accentColor}-dark";
+          # gtk-theme = "Yaru-${accentColor}-dark";
           icon-theme = "Yaru-${accentColor}";
           enable-hot-corners = false;
           show-battery-percentage = true;
@@ -306,7 +306,7 @@ in
           force = true;
         };
       };
-      home.packages = with pkgs; [
+      packages = with pkgs; [
         gnome.gnome-tweaks
         gnomeExtensions.blur-my-shell
         gnomeExtensions.custom-accent-colors
@@ -352,6 +352,5 @@ in
         force = true;
       };
     };
-    programs.gnome-shell.enable = true;
   };
 }

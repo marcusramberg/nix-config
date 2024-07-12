@@ -27,6 +27,8 @@
     galileo-mura
     steamdeck-firmware
     jupiter-dock-updater-bin
+    pantheon.sideload
+    plex-media-player
     heroic
   ];
 
