@@ -43,7 +43,19 @@
       options kvm_intel nested=1
     '';
   };
-  environment.systemPackages = with pkgs; [ prusa-slicer ];
+  environment.systemPackages = with pkgs; [
+    prusa-slicer
+    cage
+  ];
+
+  fileSystems."/space" = {
+    device = "mspace:/volume1/space";
+    fsType = "nfs4";
+    options = [
+      "nfsvers=4.1"
+      "soft"
+    ];
+  };
 
   networking = {
     extraHosts = ''
@@ -118,6 +130,14 @@
     };
     flatpak.enable = true;
     # grafana-kiosk.enable = true;
+    # immich = {
+    #   enable = true;
+    #   host = "0.0.0.0";
+    #   port = 8080;
+    #   mediaLocation = "/space/immich";
+    #   openFirewall = true;
+    #   secretsFile = config.age.secrets.immich.path;
+    # };
     nix-serve = {
       enable = true;
       secretKeyFile = "/var/cache-priv-key.pem";
@@ -157,5 +177,6 @@
       enable = true;
       ui.enable = true;
     };
+    waydroid.enable = true;
   };
 }

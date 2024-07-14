@@ -1,7 +1,9 @@
 { config, lib, ... }:
 with lib;
-let cfg = config.profiles.laptop;
-in {
+let
+  cfg = config.profiles.laptop;
+in
+{
   options.profiles.laptop.enable = mkEnableOption "Enable laptop profile";
   config = mkIf cfg.enable {
     programs.light.enable = true;
@@ -22,4 +24,3 @@ in {
     };
   };
 }
-

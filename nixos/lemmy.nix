@@ -1,7 +1,9 @@
 { config, lib, ... }:
 with lib;
-let cfg = config.profiles.lemmy-server;
-in {
+let
+  cfg = config.profiles.lemmy-server;
+in
+{
   options.profiles.lemmy-server.enable = mkEnableOption "Enable lemmy server";
 
   config = mkIf cfg.enable {
@@ -60,4 +62,3 @@ in {
     };
   };
 }
-

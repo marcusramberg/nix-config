@@ -1,4 +1,5 @@
-{ pkgs, osConfig, ... }: {
+{ pkgs, osConfig, ... }:
+{
 
   appRule = [
     {
@@ -46,8 +47,7 @@
       "floorp"
       "volumeicon"
       "zeal"
-    ] ++ pkgs.lib.optional (osConfig.networking.hostName == "mbox")
-      "streamdeck -n";
+    ] ++ pkgs.lib.optional (osConfig.networking.hostName == "mbox") "streamdeck -n";
   };
   controls = {
     decreaseMasterCount = {
@@ -60,7 +60,10 @@
     };
     destroySelectedWindow = {
       keys = [ "q" ];
-      modifiers = [ "super" "shift" ];
+      modifiers = [
+        "super"
+        "shift"
+      ];
     };
     focusNext = {
       keys = [ "j" ];
@@ -91,7 +94,17 @@
       modifiers = [ "super" ];
     };
     goToTag = {
-      keys = [ "1" "2" "3" "4" "5" "6" "7" "8" "9" ];
+      keys = [
+        "1"
+        "2"
+        "3"
+        "4"
+        "5"
+        "6"
+        "7"
+        "8"
+        "9"
+      ];
       modifiers = [ "super" ];
     };
     increaseMasterCount = {
@@ -108,39 +121,76 @@
     };
     moveWindowNext = {
       keys = [ "j" ];
-      modifiers = [ "super" "shift" ];
+      modifiers = [
+        "super"
+        "shift"
+      ];
     };
     moveWindowPrevious = {
       keys = [ "k" ];
-      modifiers = [ "super" "shift" ];
+      modifiers = [
+        "super"
+        "shift"
+      ];
     };
     moveWindowToLeftTag = {
       keys = [ "Left" ];
-      modifiers = [ "super" "shift" ];
+      modifiers = [
+        "super"
+        "shift"
+      ];
     };
     moveWindowToNextMonitor = {
       keys = [ "period" ];
-      modifiers = [ "super" "shift" ];
+      modifiers = [
+        "super"
+        "shift"
+      ];
     };
     moveWindowToPreviousMonitor = {
       keys = [ "comma" ];
-      modifiers = [ "super" "shift" ];
+      modifiers = [
+        "super"
+        "shift"
+      ];
     };
     moveWindowToPreviousTag = {
       keys = [ "w" ];
-      modifiers = [ "super" "shift" ];
+      modifiers = [
+        "super"
+        "shift"
+      ];
     };
     moveWindowToRightTag = {
       keys = [ "Right" ];
-      modifiers = [ "super" "shift" ];
+      modifiers = [
+        "super"
+        "shift"
+      ];
     };
     moveWindowToScratchpad = {
       keys = [ "s" ];
-      modifiers = [ "super" "shift" ];
+      modifiers = [
+        "super"
+        "shift"
+      ];
     };
     moveWindowToTag = {
-      keys = [ "1" "2" "3" "4" "5" "6" "7" "8" "9" ];
-      modifiers = [ "super" "shift" ];
+      keys = [
+        "1"
+        "2"
+        "3"
+        "4"
+        "5"
+        "6"
+        "7"
+        "8"
+        "9"
+      ];
+      modifiers = [
+        "super"
+        "shift"
+      ];
     };
     popScratchpad = {
       keys = [ "s" ];
@@ -148,7 +198,10 @@
     };
     reloadConfig = {
       keys = [ "r" ];
-      modifiers = [ "super" "shift" ];
+      modifiers = [
+        "super"
+        "shift"
+      ];
     };
     rotateClients = {
       keys = [ "r" ];
@@ -156,19 +209,49 @@
     };
     toggleFloating = {
       keys = [ "space" ];
-      modifiers = [ "shift" "super" ];
+      modifiers = [
+        "shift"
+        "super"
+      ];
     };
     toggleFullscreen = {
       keys = [ "f" ];
       modifiers = [ "super" ];
     };
     toggleTagView = {
-      keys = [ "1" "2" "3" "4" "5" "6" "7" "8" "9" ];
-      modifiers = [ "super" "control" ];
+      keys = [
+        "1"
+        "2"
+        "3"
+        "4"
+        "5"
+        "6"
+        "7"
+        "8"
+        "9"
+      ];
+      modifiers = [
+        "super"
+        "control"
+      ];
     };
     toggleWindowTag = {
-      keys = [ "1" "2" "3" "4" "5" "6" "7" "8" "9" ];
-      modifiers = [ "super" "shift" "control" ];
+      keys = [
+        "1"
+        "2"
+        "3"
+        "4"
+        "5"
+        "6"
+        "7"
+        "8"
+        "9"
+      ];
+      modifiers = [
+        "super"
+        "shift"
+        "control"
+      ];
     };
   };
   monitors = {
@@ -182,13 +265,27 @@
           defaultMasterWidthPercentage = 75;
           displayString = "2 ";
         };
-        "3" = { displayString = "3 "; };
-        "4" = { displayString = "4 "; };
-        "5" = { displayString = "5 "; };
-        "6" = { displayString = "6 "; };
-        "7" = { displayString = "7 "; };
-        "8" = { displayString = "8 "; };
-        "9" = { displayString = "9 "; };
+        "3" = {
+          displayString = "3 ";
+        };
+        "4" = {
+          displayString = "4 ";
+        };
+        "5" = {
+          displayString = "5 ";
+        };
+        "6" = {
+          displayString = "6 ";
+        };
+        "7" = {
+          displayString = "7 ";
+        };
+        "8" = {
+          displayString = "8 ";
+        };
+        "9" = {
+          displayString = "9 ";
+        };
       };
     };
   };
@@ -220,7 +317,10 @@
     {
       command = "xfce4-session-logout";
       keys = [ "e" ];
-      modifiers = [ "super" "shift" ];
+      modifiers = [
+        "super"
+        "shift"
+      ];
     }
     {
       command = "~/Source/nixpkgs/result/bin/vivaldi --force-dark-mode";
@@ -238,15 +338,20 @@
       modifiers = [ "super" ];
     }
     {
-      command =
-        "maim -s | tee ~/Pictures/$(date +%s).png | xclip -selection clipboard -t image/png";
+      command = "maim -s | tee ~/Pictures/$(date +%s).png | xclip -selection clipboard -t image/png";
       keys = [ "p" ];
-      modifiers = [ "super" "shift" ];
+      modifiers = [
+        "super"
+        "shift"
+      ];
     }
     {
       command = ''wezterm start bash -c "xprop; sleep 100"'';
       keys = [ "x" ];
-      modifiers = [ "super" "shift" ];
+      modifiers = [
+        "super"
+        "shift"
+      ];
     }
     {
       clickRegion = 1;
@@ -260,7 +365,10 @@
     {
       command = "wezterm";
       keys = [ "Return" ];
-      modifiers = [ "super" "shift" ];
+      modifiers = [
+        "super"
+        "shift"
+      ];
     }
     {
       clickRegion = 1;
@@ -268,4 +376,3 @@
     }
   ];
 }
-

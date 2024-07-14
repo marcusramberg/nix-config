@@ -1,7 +1,9 @@
 { config, lib, ... }:
 with lib;
-let cfg = config.profiles.dockerHost;
-in {
+let
+  cfg = config.profiles.dockerHost;
+in
+{
 
   options.profiles.dockerHost.enable = mkEnableOption "dockerHost";
 

@@ -57,7 +57,6 @@ in
       inputs.hei.packages.${system}.default
       inputs.yaml2nix.packages.${system}.default
       jq
-      kubectl
       kubectx
       lazygit
       luarocks
@@ -92,7 +91,6 @@ in
       wget
       yq-go
       btop
-      kubectl
 
       # useful nix related tools
       # cachix # adding/managing alternative binary caches hosted by cachix
@@ -106,5 +104,6 @@ in
       nim2
       maim
     ]
+    ++ lib.optional (!osConfig.profiles.k3s.enable) kubectl
     ++ lib.optionals isNixOS [ wezterm ];
 }

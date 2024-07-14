@@ -3,7 +3,13 @@
 #
 # This is **not** an example for end-user-centric configuration.
 #
-{ config, pkgs, user, inputs, ... }:
+{
+  config,
+  pkgs,
+  user,
+  inputs,
+  ...
+}:
 
 let
   # This script will run *only once*, even if changed.
@@ -11,16 +17,15 @@ let
   # This will not work through userSetupScript, it seems that plasma mobile on
   # first initialization forcibly resets some of the configurations.
   # Running last (ZZZ) ensures it can do whatever initialization it needs to do.
-  plamoInitialDefaults = pkgs.writeTextDir
-    "share/plasma/shells/org.kde.plasma.phoneshell/contents/updates/ZZZ-Mobile-NixOS-initial-defaults.js" ''
-      var allDesktops = desktops();
-      for (i=0; i<allDesktops.length; i++) {
-        d = allDesktops[i];
-        d.wallpaperPlugin = "org.kde.image";
-        d.currentConfigGroup = Array("Wallpaper", "org.kde.image", "General");
-        d.writeConfig("Image", "file://${wallpaper}")
-      }
-    '';
+  plamoInitialDefaults = pkgs.writeTextDir "share/plasma/shells/org.kde.plasma.phoneshell/contents/updates/ZZZ-Mobile-NixOS-initial-defaults.js" ''
+    var allDesktops = desktops();
+    for (i=0; i<allDesktops.length; i++) {
+      d = allDesktops[i];
+      d.wallpaperPlugin = "org.kde.image";
+      d.currentConfigGroup = Array("Wallpaper", "org.kde.image", "General");
+      d.writeConfig("Image", "file://${wallpaper}")
+    }
+  '';
 
   # Those configs are found in the file named as `--file`, with
   # `--group` being [like][these].
@@ -52,13 +57,16 @@ let
 
   # Used to run an ugly activation script.
   defaultUserName = user;
-in {
+in
+{
   environment.systemPackages = [ plamoInitialDefaults ];
 
   # Force some initial configuration
   system.activationScripts.userInitialConfiguration =
-    let homeDir = config.users.users.${defaultUserName}.home;
-    in ''
+    let
+      homeDir = config.users.users.${defaultUserName}.home;
+    in
+    ''
       echo ":: Mobile NixOS initial configuration..."
       if [ ! -e ${homeDir}/.config ]; then
         echo "Assuming first boot!"

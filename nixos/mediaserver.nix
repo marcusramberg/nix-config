@@ -1,9 +1,15 @@
-{ pkgs, lib, config, ... }:
+{
+  pkgs,
+  lib,
+  config,
+  ...
+}:
 with lib;
-let cfg = config.profiles.mediaserver;
-in {
-  options.profiles.mediaserver.enable =
-    mkEnableOption "Enable media server profile";
+let
+  cfg = config.profiles.mediaserver;
+in
+{
+  options.profiles.mediaserver.enable = mkEnableOption "Enable media server profile";
 
   config = mkIf cfg.enable {
 
@@ -78,8 +84,14 @@ in {
 
     users = {
       users = {
-        radarr.extraGroups = [ "transmission" "nzbget" ];
-        sonarr.extraGroups = [ "transmission" "nzbget" ];
+        radarr.extraGroups = [
+          "transmission"
+          "nzbget"
+        ];
+        sonarr.extraGroups = [
+          "transmission"
+          "nzbget"
+        ];
         plex = {
           isNormalUser = false;
           description = "Plex";
@@ -99,8 +111,14 @@ in {
           PGID = "193";
           VERSION = "latest";
         };
-        extraOptions = [ "--net=host" "--device=/dev/dri/" ];
-        volumes = [ "/var/lib/plex:/config" "/space:/space" ];
+        extraOptions = [
+          "--net=host"
+          "--device=/dev/dri/"
+        ];
+        volumes = [
+          "/var/lib/plex:/config"
+          "/space:/space"
+        ];
       };
       minecraft = {
         image = "karlrees/docker_bedrockserver";

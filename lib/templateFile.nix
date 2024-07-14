@@ -12,13 +12,20 @@ pkgs.stdenv.mkDerivation {
 
   # Disable phases which are not needed. In particular the unpackPhase will
   # fail, if no src attribute is set
-  phases = [ "buildPhase" "installPhase" ];
+  phases = [
+    "buildPhase"
+    "installPhase"
+  ];
 
-  buildPhase = if data.file != null then ''
-    ${pkgs.mustache-go}/bin/mustache ${data.file} ${template} > rendered_file
-  '' else ''
-    ${pkgs.mustache-go}/bin/mustache $jsonDataPath ${template} > rendered_file
-  '';
+  buildPhase =
+    if data.file != null then
+      ''
+        ${pkgs.mustache-go}/bin/mustache ${data.file} ${template} > rendered_file
+      ''
+    else
+      ''
+        ${pkgs.mustache-go}/bin/mustache $jsonDataPath ${template} > rendered_file
+      '';
 
   installPhase = ''
     cp rendered_file $out

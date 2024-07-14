@@ -18,7 +18,9 @@
 
   services = {
     flatpak.enable = true;
-    xserver = { displayManager.sddm.enableHidpi = true; };
+    xserver = {
+      displayManager.sddm.enableHidpi = true;
+    };
   };
 
   # virtualisation.podman.enable = true;

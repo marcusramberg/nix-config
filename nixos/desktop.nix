@@ -78,8 +78,8 @@ in
       libinput.enable = true;
       xserver = {
         enable = true;
+        # displayManager.gdm.enable = true;
         displayManager.lightdm = {
-          enable = true;
           greeters.slick.enable = true;
         };
         windowManager = {

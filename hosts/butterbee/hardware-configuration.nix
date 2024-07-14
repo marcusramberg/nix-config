@@ -8,7 +8,11 @@
 
   boot = {
     initrd = {
-      kernelModules = [ "xhci_pci" "usbhid" "sr_mod" ];
+      kernelModules = [
+        "xhci_pci"
+        "usbhid"
+        "sr_mod"
+      ];
       availableKernelModules = [ ];
     };
     kernelModules = [ ];
@@ -27,8 +31,7 @@
     };
   };
 
-  swapDevices =
-    [{ device = "/dev/disk/by-uuid/952f1921-0aa0-4180-9ea6-2aa9cf9fd87e"; }];
+  swapDevices = [ { device = "/dev/disk/by-uuid/952f1921-0aa0-4180-9ea6-2aa9cf9fd87e"; } ];
 
   # Enables DHCP on each ethernet and wireless interface. In case of scripted networking
   # (the default) this is the recommended approach. When using system
@@ -40,6 +43,5 @@
 
   nixpkgs.hostPlatform = lib.mkDefault "aarch64-linux";
   hardware.parallels.enable = true;
-  nixpkgs.config.allowUnfreePredicate = pkg:
-    builtins.elem (lib.getName pkg) [ "prl-tools" ];
+  nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) [ "prl-tools" ];
 }

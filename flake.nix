@@ -128,18 +128,18 @@
             ;
           system = "x86_64-linux";
         };
-        mbrick = lib.mkNixHost "mbrick" {
-          inherit
-            overlays
-            nixpkgs
-            inputs
-            std
-            ;
-          system = "aarch64-linux";
-          extraModules = [
-            (import "${inputs.mobile-nixos}/lib/configuration.nix" { device = "oneplus-fajita"; })
-          ];
-        };
+        # mbrick = lib.mkNixHost "mbrick" {
+        #   inherit
+        #     overlays
+        #     nixpkgs
+        #     inputs
+        #     std
+        #     ;
+        #   system = "aarch64-linux";
+        #   extraModules = [
+        #     (import "${inputs.mobile-nixos}/lib/configuration.nix" { device = "oneplus-fajita"; })
+        #   ];
+        # };
         # mOctopi = mkPiImage "moctopi" {
         #   inherit overlays nixpkgs inputs;
         #   system = "aarch64-linux";
@@ -170,7 +170,7 @@
           program = "${hei.packages.${system}.hei}/bin/hei";
         };
         packages = {
-          mbrick-disk-image = inputs.self.nixosConfigurations.mbrick.config.mobile.outputs.default;
+          # mbrick-disk-image = inputs.self.nixosConfigurations.mbrick.config.mobile.outputs.default;
           # mbrick-boot-partition = inputs.self.nixosConfigurations.mbrick.config.mobile.outputs.u-boot-partion.default;
           homeConfigurations.marcus = lib.mkHMConfig { inherit inputs pkgs std; };
           homeConfigurations.deck = lib.mkHMConfig {

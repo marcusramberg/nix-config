@@ -1,4 +1,5 @@
-{ pkgs, ... }: {
+{ pkgs, ... }:
+{
   programs.tmux = {
     aggressiveResize = true;
     baseIndex = 1;
@@ -7,7 +8,12 @@
     # Instant esc
     escapeTime = 0;
     keyMode = "vi";
-    plugins = with pkgs.tmuxPlugins; [ nord tmux-thumbs tmux-fzf tilish ];
+    plugins = with pkgs.tmuxPlugins; [
+      nord
+      tmux-thumbs
+      tmux-fzf
+      tilish
+    ];
     prefix = "`";
     secureSocket = false; # survives user logout
     terminal = "tmux-256color";

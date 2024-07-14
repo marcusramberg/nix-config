@@ -1,4 +1,9 @@
-{ pkgs, stdenvNoCC, lib, fetchgit }:
+{
+  pkgs,
+  stdenvNoCC,
+  lib,
+  fetchgit,
+}:
 stdenvNoCC.mkDerivation {
   name = "gh-tidy";
   pname = "gh-tidy";

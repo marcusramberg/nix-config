@@ -1,8 +1,17 @@
-{ config, inputs, lib, ... }:
+{
+  config,
+  inputs,
+  lib,
+  ...
+}:
 with lib;
-let cfg = config.profiles.autoupgrade;
-in {
-  options.profiles.autoupgrade = { enable = mkEnableOption "autoupgrade"; };
+let
+  cfg = config.profiles.autoupgrade;
+in
+{
+  options.profiles.autoupgrade = {
+    enable = mkEnableOption "autoupgrade";
+  };
   config = mkIf cfg.enable {
     system.autoUpgrade = {
       enable = true;

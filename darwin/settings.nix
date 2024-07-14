@@ -24,10 +24,8 @@ _: {
       };
       NSGlobalDomain = {
         _HIHideMenuBar = false;
-        "com.apple.swipescrolldirection" =
-          true; # enable natural scrolling(default to true)
-        "com.apple.sound.beep.feedback" =
-          0; # disable beep sound when pressing volume up/down key
+        "com.apple.swipescrolldirection" = true; # enable natural scrolling(default to true)
+        "com.apple.sound.beep.feedback" = 0; # disable beep sound when pressing volume up/down key
         AppleInterfaceStyle = "Dark"; # dark mode
       };
       screencapture = {
@@ -58,7 +56,9 @@ _: {
           location = "~/Pictures";
           type = "png";
         };
-        "com.apple.AdLib" = { allowApplePersonalizedAdvertising = false; };
+        "com.apple.AdLib" = {
+          allowApplePersonalizedAdvertising = false;
+        };
         "com.apple.print.PrintingPrefs" = {
           # Automatically quit printer app once the print jobs complete
           "Quit When Finished" = true;

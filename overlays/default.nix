@@ -3,7 +3,8 @@ let
   # Pass flake inputs to overlay so we can use the sources pinned in flake.lock
   # instead of having to keep sha256 hashes in each package for src
   inherit inputs;
-in pkgs: super: {
+in
+pkgs: super: {
 
   gh-tidy = super.callPackage ../packages/gh-tidy { };
 
@@ -14,8 +15,7 @@ in pkgs: super: {
     pname = "nzbget-ng";
     version = "21.4-rc2";
     src = pkgs.fetchurl {
-      url =
-        "https://github.com/nzbget-ng/nzbget/archive/refs/tags/v21.4-rc2.tar.gz";
+      url = "https://github.com/nzbget-ng/nzbget/archive/refs/tags/v21.4-rc2.tar.gz";
       hash = "sha256-l2gWl6BW/a4vmbEoXpA1NQkcLi33B0xnC1XKtj216e0=";
     };
     patches = [ ];
@@ -27,4 +27,3 @@ in pkgs: super: {
   });
 
 }
-

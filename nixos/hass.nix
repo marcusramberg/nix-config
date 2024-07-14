@@ -1,7 +1,9 @@
 { lib, config, ... }:
 with lib;
-let cfg = config.profiles.hass;
-in {
+let
+  cfg = config.profiles.hass;
+in
+{
   options.profiles.hass.enable = mkEnableOption "Enable home assistant server";
 
   config = mkIf cfg.enable {
@@ -17,24 +19,31 @@ in {
         #   omitPasswordAuth = true;
         #   settings.allow_anonymous = true;
         # }];
-        listeners = [{
-          omitPasswordAuth = false;
-          users = {
-            hass = {
-              acl = [ "readwrite homeassistant/#" ];
-              passwordFile = config.age.secrets.mosquittoPass.path;
+        listeners = [
+          {
+            omitPasswordAuth = false;
+            users = {
+              hass = {
+                acl = [ "readwrite homeassistant/#" ];
+                passwordFile = config.age.secrets.mosquittoPass.path;
+              };
             };
-          };
-          # extraConf = "log_type debug";
-        }];
+            # extraConf = "log_type debug";
+          }
+        ];
       };
     };
     virtualisation.oci-containers.containers = {
       hass = {
         # renovate: datasource=docker depName=homeassistant/home-assistant
         image = "ghcr.io/home-assistant/home-assistant:2024.4.4";
-        environment = { TZ = "Europe/Oslo"; };
-        extraOptions = [ "--net=host" "--privileged" ];
+        environment = {
+          TZ = "Europe/Oslo";
+        };
+        extraOptions = [
+          "--net=host"
+          "--privileged"
+        ];
         volumes = [
           "/var/lib/homeassistant:/config"
           "/dev:/dev"
@@ -49,7 +58,10 @@ in {
           "/dev:/dev"
           "/run/udev:/run/udev"
         ];
-        extraOptions = [ "--net=host" "--privileged" ];
+        extraOptions = [
+          "--net=host"
+          "--privileged"
+        ];
       };
       aircast = {
         image = "docker.io/1activegeek/airconnect:latest";

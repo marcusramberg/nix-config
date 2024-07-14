@@ -1,4 +1,5 @@
-{ lib, ... }: {
+{ lib, ... }:
+{
   imports = [
     # Include the results of the hardware scan.
     ./hardware-configuration.nix
@@ -30,19 +31,31 @@
     firewall = {
       enable = lib.mkForce true;
       allowedTCPPorts = [ 443 ];
-      trustedInterfaces = [ "tailscale0" "lan" "iot" "mgmt" ];
+      trustedInterfaces = [
+        "tailscale0"
+        "lan"
+        "iot"
+        "mgmt"
+      ];
 
     };
-    nftables = { enable = true; };
+    nftables = {
+      enable = true;
+    };
     nat = {
       enable = true;
-      internalInterfaces = [ "lan" "iot" ];
+      internalInterfaces = [
+        "lan"
+        "iot"
+      ];
       externalInterface = "wan";
-      forwardPorts = [{
-        sourcePort = 443;
-        proto = "tcp";
-        destination = "192.168.86.20:18443";
-      }];
+      forwardPorts = [
+        {
+          sourcePort = 443;
+          proto = "tcp";
+          destination = "192.168.86.20:18443";
+        }
+      ];
     };
   };
   services = {
@@ -50,7 +63,10 @@
     avahi = {
       enable = true;
       nssmdns4 = true;
-      allowInterfaces = [ "lan" "iot" ];
+      allowInterfaces = [
+        "lan"
+        "iot"
+      ];
     };
     prometheus.exporters.node = {
       enable = true;
@@ -77,12 +93,16 @@
       "11-unused-1" = {
         enable = true;
         matchConfig.Path = "pci-0000:09:00.0";
-        linkConfig = { Name = "unused-1"; };
+        linkConfig = {
+          Name = "unused-1";
+        };
       };
       "12-unused-2" = {
         enable = true;
         matchConfig.Path = "pci-0000:0a:00.0";
-        linkConfig = { Name = "unused-2"; };
+        linkConfig = {
+          Name = "unused-2";
+        };
       };
       "20-wlan" = {
         enable = true;
@@ -97,29 +117,62 @@
       "wan" = {
         name = "wan";
         enable = true;
-        matchConfig = { Name = "wan"; };
-        networkConfig = { DHCP = "ipv4"; };
-        dhcpConfig = { RouteMetric = "10"; };
+        matchConfig = {
+          Name = "wan";
+        };
+        networkConfig = {
+          DHCP = "ipv4";
+        };
+        dhcpConfig = {
+          RouteMetric = "10";
+        };
       };
       "switch" = {
         enable = true;
-        matchConfig = { Name = "switch"; };
+        matchConfig = {
+          Name = "switch";
+        };
         networkConfig = {
-          VLAN = [ "lan" "isolated" "iot" "mgmt" ];
+          VLAN = [
+            "lan"
+            "isolated"
+            "iot"
+            "mgmt"
+          ];
           LinkLocalAddressing = "no";
         };
         linkConfig.RequiredForOnline = "no";
         bridgeVLANs = [
-          { bridgeVLANConfig = { VLAN = "1"; }; }
-          { bridgeVLANConfig = { VLAN = "66"; }; }
-          { bridgeVLANConfig = { VLAN = "99"; }; }
-          { bridgeVLANConfig = { VLAN = "255"; }; }
+          {
+            bridgeVLANConfig = {
+              VLAN = "1";
+            };
+          }
+          {
+            bridgeVLANConfig = {
+              VLAN = "66";
+            };
+          }
+          {
+            bridgeVLANConfig = {
+              VLAN = "99";
+            };
+          }
+          {
+            bridgeVLANConfig = {
+              VLAN = "255";
+            };
+          }
         ];
       };
       "switchdevs" = {
         enable = true;
-        matchConfig = { Name = "en*"; };
-        networkConfig = { Bridge = "switch"; };
+        matchConfig = {
+          Name = "en*";
+        };
+        networkConfig = {
+          Bridge = "switch";
+        };
         extraConfig = ''
           [Bridge]
           PVID=1
@@ -136,7 +189,9 @@
       "lan" = {
         name = "lan";
         enable = true;
-        matchConfig = { Name = "lan"; };
+        matchConfig = {
+          Name = "lan";
+        };
         networkConfig = {
           ConfigureWithoutCarrier = "yes";
           MulticastDNS = "yes";
@@ -151,7 +206,9 @@
       "isolated" = {
         name = "isolated";
         enable = true;
-        matchConfig = { Name = "isolated"; };
+        matchConfig = {
+          Name = "isolated";
+        };
         networkConfig = {
           ConfigureWithoutCarrier = "yes";
           MulticastDNS = "no";
@@ -161,7 +218,9 @@
       "iot" = {
         name = "iot";
         enable = true;
-        matchConfig = { Name = "iot"; };
+        matchConfig = {
+          Name = "iot";
+        };
         networkConfig = {
           ConfigureWithoutCarrier = "yes";
           MulticastDNS = "no";
@@ -171,7 +230,9 @@
       "mgmt" = {
         name = "mgmt";
         enable = true;
-        matchConfig = { Name = "mgmt"; };
+        matchConfig = {
+          Name = "mgmt";
+        };
         networkConfig = {
           ConfigureWithoutCarrier = "yes";
           MulticastDNS = "no";
@@ -186,7 +247,9 @@
           Name = "lan";
           Kind = "vlan";
         };
-        vlanConfig = { Id = 1; };
+        vlanConfig = {
+          Id = 1;
+        };
       };
       "isolated" = {
         enable = true;
@@ -194,7 +257,9 @@
           Name = "isolated";
           Kind = "vlan";
         };
-        vlanConfig = { Id = 66; };
+        vlanConfig = {
+          Id = 66;
+        };
       };
       "iot" = {
         enable = true;
@@ -202,7 +267,9 @@
           Name = "iot";
           Kind = "vlan";
         };
-        vlanConfig = { Id = 99; };
+        vlanConfig = {
+          Id = 99;
+        };
       };
       "mgmt" = {
         enable = true;
@@ -210,7 +277,9 @@
           Name = "mgmt";
           Kind = "vlan";
         };
-        vlanConfig = { Id = 255; };
+        vlanConfig = {
+          Id = 255;
+        };
       };
       "switch" = {
         enable = true;

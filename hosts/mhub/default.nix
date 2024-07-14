@@ -1,4 +1,5 @@
-{ config, pkgs, ... }: {
+{ config, pkgs, ... }:
+{
   imports = [
     # Include the results of the hardware scan.
     ./hardware-configuration.nix
@@ -22,7 +23,10 @@
   fileSystems."/space" = {
     device = "mspace:/volume1/space";
     fsType = "nfs4";
-    options = [ "nfsvers=4.1" "soft" ];
+    options = [
+      "nfsvers=4.1"
+      "soft"
+    ];
   };
 
   networking = {
@@ -71,8 +75,7 @@
     printing.enable = true;
   };
 
-  systemd.services.caddy.serviceConfig.AmbientCapabilities =
-    "cap_net_bind_service";
+  systemd.services.caddy.serviceConfig.AmbientCapabilities = "cap_net_bind_service";
 
   users.users = {
     arne = {

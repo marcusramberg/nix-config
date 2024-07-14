@@ -14,7 +14,7 @@ in
 
     profiles.desktop.enable = true;
 
-    qt.platformTheme = "gtk2";
+    # qt.platformTheme = "gtk2";
 
     services = {
       dbus.packages = [ pkgs.dconf ];

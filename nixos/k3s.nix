@@ -1,8 +1,12 @@
 { lib, config, ... }:
 with lib;
-let cfg = config.profiles.k3s;
-in {
-  options.profiles.k3s = { enable = mkEnableOption "Kubernetes node"; };
+let
+  cfg = config.profiles.k3s;
+in
+{
+  options.profiles.k3s = {
+    enable = mkEnableOption "Kubernetes node";
+  };
 
   config = mkIf cfg.enable {
     services.k3s = {

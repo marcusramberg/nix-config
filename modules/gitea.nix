@@ -1,7 +1,9 @@
 { lib, config, ... }:
 with lib;
-let cfg = config.profiles.gitea;
-in {
+let
+  cfg = config.profiles.gitea;
+in
+{
 
   options.profiles.gitea = {
     enable = mkEnableOption "Gitea server";
@@ -16,6 +18,10 @@ in {
   config = mkIf cfg.server.enable { };
   services.gitea = {
     enable = true;
-    settings = { service = { ROOT_URL = cfg.host; }; };
+    settings = {
+      service = {
+        ROOT_URL = cfg.host;
+      };
+    };
   };
 }

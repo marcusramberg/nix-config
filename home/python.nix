@@ -1,7 +1,7 @@
 { pkgs, ... }:
 let
-  pythonPackages = p:
-    with p; [
+  pythonPackages =
+    p: with p; [
       aiohttp # async HTTP
       beautifulsoup4 # web scraping
       #folium # maps
@@ -18,4 +18,7 @@ let
       setuptools # setup.py
       # z3 # Z3 theorem prover
     ];
-in { home.packages = [ (pkgs.python3.withPackages pythonPackages) ]; }
+in
+{
+  home.packages = [ (pkgs.python3.withPackages pythonPackages) ];
+}
