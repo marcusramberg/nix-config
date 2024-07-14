@@ -140,4 +140,7 @@ return {
 			})
 		end,
 	},
+	{
+		"symphorien/vim-nixhash",
+	},
 }
