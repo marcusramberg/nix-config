@@ -307,7 +307,7 @@ in
         };
       };
       packages = with pkgs; [
-        gnome.gnome-tweaks
+        gnome-tweaks
         gnomeExtensions.blur-my-shell
         gnomeExtensions.custom-accent-colors
         gnomeExtensions.just-perfection
