@@ -46,6 +46,7 @@ in
         # Use 6 fixed workspaces instead of dynamic mode
         "org/gnome/mutter" = {
           dynamic-workspaces = false;
+          overlay_key = "Super_R";
         };
         "org/gnome/desktop/wm/preferences" = {
           num-workspaces = 6;
@@ -125,41 +126,38 @@ in
         "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1" = {
           name = "Flameshot";
           command = "${flameshot-gui}/bin/flameshot-gui";
-          binding = "<Control>Print";
+          binding = "<Super><Shift>P";
         };
 
         # Start a new wezterm window (rather than just switch to the already open one)
         "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom2" = {
           name = "Wezterm";
           command = "wezterm";
-          binding = "<Shift><Alt>2";
+          binding = "<Shift><Alt>1";
         };
 
         # Start a new Chrome window (rather than just switch to the already open one)
         "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom3" = {
           name = "New Floorp";
           command = "flatpak run one.ablaze.floorp";
-          binding = "<Shift><Alt>1";
+          binding = "<Shift><Alt>2";
         };
 
         "org/gnome/desktop/interface" = {
           monospace-font-name = "${fontName} 10";
           color-scheme = colorScheme;
-          cursor-theme = "Yaru";
-          # gtk-theme = "Yaru-${accentColor}-dark";
-          icon-theme = "Yaru-${accentColor}";
-          enable-hot-corners = false;
+          cursor-theme = "Nordic-cursors";
+          gtk-theme = "Nordic-darker";
+          icon-theme = "Nordic-bluish";
+          enable-hot-corners = true;
           show-battery-percentage = true;
         };
 
         "org/gnome/shell" = {
           favorite-apps = [
-            "google-chrome.desktop"
-            "WezTerm.desktop"
-            "code.desktop"
+            "org.wezfurlong.wezterm.desktop"
+            "org.floorp.Floorp.desktop"
             "Telegram-Destop.desktop"
-            "typora.desktop"
-            "pinta.desktop"
             "com.github.xournalpp.xournalpp.desktop"
             "org.gnome.Settings.desktop"
             "org.gnome.Nautilus.desktop"
@@ -266,7 +264,7 @@ in
           theme-shell = true;
         };
         "org/gnome/shell/extensions/user-theme" = {
-          name = "Custom-Accent-Colors";
+          name = "Nordic-darker";
         };
       }
 
