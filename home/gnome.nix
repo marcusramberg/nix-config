@@ -46,7 +46,7 @@ in
         # Use 6 fixed workspaces instead of dynamic mode
         "org/gnome/mutter" = {
           dynamic-workspaces = false;
-          overlay_key = "Super_R";
+          overlay-key = "Super_R";
         };
         "org/gnome/desktop/wm/preferences" = {
           num-workspaces = 6;
