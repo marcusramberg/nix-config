@@ -7,7 +7,7 @@
 let
   inherit (lib) mkIf;
   isNixOS = lib.hasAttr "nixos" osConfig.system;
-  isDesktop = true || (isNixOS && osConfig.services.xserver.enable);
+  isDesktop = !pkgs.stdenv.isDarwin || (isNixOS && osConfig.services.xserver.enable);
   flameshot-gui = pkgs.writeShellScriptBin "flameshot-gui" "${pkgs.flameshot}/bin/flameshot gui";
   cfg = {
     doubleScale = false;

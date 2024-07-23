@@ -30,6 +30,7 @@
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     # Do we actually use nur?
     nur.url = "github:nix-community/NUR";
+    test.url = "github:marcusramberg/nixpkgs/tmux_redux";
     tfenv.flake = false;
     tfenv.url = "github:tfutils/tfenv";
     yaml2nix.url = "github:euank/yaml2nix";

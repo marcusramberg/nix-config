@@ -744,6 +744,7 @@
         "nix-std": "nix-std",
         "nixpkgs": "nixpkgs_3",
         "nur": "nur",
+        "test": "test",
         "tfenv": "tfenv",
         "yaml2nix": "yaml2nix"
       }
@@ -862,6 +863,22 @@
       "original": {
         "owner": "nix-systems",
         "repo": "default",
+        "type": "github"
+      }
+    },
+    "test": {
+      "locked": {
+        "lastModified": 1720220422,
+        "narHash": "sha256-yoI10LINTv56qJ2PHPmKAhyCJXj6tT9o01k0T8cldhk=",
+        "owner": "marcusramberg",
+        "repo": "nixpkgs",
+        "rev": "5be43b48c4f6444f3a380e1306916a211e1989f9",
+        "type": "github"
+      },
+      "original": {
+        "owner": "marcusramberg",
+        "ref": "tmux_redux",
+        "repo": "nixpkgs",
         "type": "github"
       }
     },

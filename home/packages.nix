@@ -8,6 +8,7 @@
 let
   inherit (pkgs) stdenv;
   isNixOS = lib.hasAttr "nixos" osConfig.system;
+  hasK3s = lib.hasAttr "k3s" osConfig.profiles && osConfig.profiles.k3s.enable;
 in
 {
   home.packages =
@@ -104,6 +105,6 @@ in
       nim2
       maim
     ]
-    ++ lib.optional (!osConfig.profiles.k3s.enable) kubectl
+    ++ lib.optional (!hasK3s) kubectl
     ++ lib.optionals isNixOS [ wezterm ];
 }
