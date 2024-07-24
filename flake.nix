@@ -74,6 +74,16 @@
             ;
           system = "aarch64-linux";
         };
+        mcloud = lib.mkNixHost "mcloud" {
+          inherit
+            overlays
+            nixpkgs
+            inputs
+            std
+            ;
+          system = "aarch64-linux";
+        };
+
         mbox = lib.mkNixHost "mbox" {
           inherit
             overlays

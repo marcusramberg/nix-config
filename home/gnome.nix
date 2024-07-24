@@ -1,8 +1,13 @@
-{ lib, pkgs, ... }:
+{
+  lib,
+  osConfig,
+  pkgs,
+  ...
+}:
 let
   inherit (lib) mkIf;
-  # isNixOS = lib.hasAttr "nixos" osConfig.system;
-  isDesktop = pkgs.stdenv.isLinux; # || (isNixOS && osConfig.services.xserver.enable);
+  isNixOS = lib.hasAttr "nixos" osConfig.system;
+  isDesktop = pkgs.stdenv.isLinux && (isNixOS && osConfig.services.xserver.enable);
   flameshot-gui = pkgs.writeShellScriptBin "flameshot-gui" "${pkgs.flameshot}/bin/flameshot gui";
   cfg = {
     doubleScale = false;
