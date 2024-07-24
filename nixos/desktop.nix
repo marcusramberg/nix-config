@@ -43,12 +43,13 @@ in
         rofi
         telegram-desktop
         floorp
+        tauon
         vivaldi
         volumeicon
         xarchiver
         xclip
         xorg.xhost
-        # zeal-qt6
+        ytmdesktop
       ]
       ++ lib.optionals (system == "x86_64-linux") [
         vivaldi-ffmpeg-codecs
@@ -69,7 +70,7 @@ in
       };
     };
 
-    qt.platformTheme = "gtk2";
+    qt.style = "kvantum";
 
     services = {
       dbus.packages = [ pkgs.dconf ];
