@@ -150,6 +150,7 @@
     };
     # osquery.enable = true;
     tailscale.useRoutingFeatures = "server";
+
     displayManager.defaultSession = lib.mkForce "xfce+i3";
 
     # # Deckmaster

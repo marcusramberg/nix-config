@@ -1,4 +1,4 @@
-{ pkgs, inputs, ... }:
+{ pkgs, ... }:
 {
   programs.tmux = {
     aggressiveResize = true;
@@ -12,10 +12,8 @@
       nord
       tmux-thumbs
       tmux-fzf
-      inputs.test.legacyPackages.aarch64-darwin.pkgs.tmuxPlugins.fingers
-      inputs.test.legacyPackages.aarch64-darwin.pkgs.tmuxPlugins.fuzzback
       tmux-thumbs
-      # tmux-fzf
+      tmux-fzf
       tilish
     ];
     prefix = "`";

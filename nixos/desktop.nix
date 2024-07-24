@@ -76,12 +76,13 @@ in
 
       gnome.core-utilities.enable = false;
       libinput.enable = true;
+      displayManager.sddm.enable = true;
       xserver = {
         enable = true;
         # displayManager.gdm.enable = true;
-        displayManager.lightdm = {
-          greeters.slick.enable = true;
-        };
+        # displayManager.lightdm = {
+        #   greeters.slick.enable = true;
+        # };
         windowManager = {
           i3 = {
             enable = true;
