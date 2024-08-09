@@ -14,13 +14,11 @@ in
   home.packages =
     with pkgs;
     [
-      argocd
       actionlint
       asciinema
       bat
       cargo
       cloudflared
-      cocogitto
       coreutils
       nodePackages.cspell
       curlHTTP3
@@ -39,7 +37,6 @@ in
       gnumake
       gnugrep
       gist
-      glow
       go_1_22
       golangci-lint
       (google-cloud-sdk.withExtraComponents (
@@ -53,7 +50,7 @@ in
       go-task
       gotestfmt
       grc
-      inputs.dagger.packages.${system}.dagger
+      # inputs.dagger.packages.${system}.dagger
       inputs.devenv.packages.${system}.devenv
       inputs.hei.packages.${system}.default
       inputs.yaml2nix.packages.${system}.default
