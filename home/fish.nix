@@ -56,6 +56,7 @@ in
       gcp = "gcloud config set project (gcloud projects list --format='get(project_id)' --sort-by=project_id --filter='project_id != ^sys-'|fzf)";
       pbcopy = if pkgs.stdenv.isLinux then "xclip -selection clipboard" else "pbcopy";
       pbpaste = if pkgs.stdenv.isLinux then "xclip -selection clipboard -o" else "pbpaste";
+      git-hash = "git log -1 --format=%H| tee /dev/tty |pbcopy";
     };
 
     shellInit = ''
@@ -63,6 +64,10 @@ in
     '';
     interactiveShellInit = ''
       fish_vi_key_bindings
+      set fish_cursor_default     block      blink
+      set fish_cursor_insert      line       blink
+      set fish_cursor_replace_one underscore blink
+      set fish_cursor_visual      block
       bind \eh 'fuck'
       set fish_theme nord
       set -gx EDITOR nvim
@@ -107,15 +112,6 @@ in
           sha256 = "BIbzdxAj3mrf340l4hNkXwA13rIIFnC6BxM6YuJ7/w8=";
         };
       }
-      # {
-      #   name = "aws-fish";
-      #   src = pkgs.fetchFromGitHub {
-      #     owner = "oh-my-fish";
-      #     repo = "plugin-aws";
-      #     rev = "a4cfb06627b20c9ffdc65620eb29abcedcc16340";
-      #     sha256 = "sha256-bTyp5j4VcFSntJ7mJBzERgOGGgu7ub15hy/FQcffgRE=";
-      #   };
-      # }
     ];
   };
 }
