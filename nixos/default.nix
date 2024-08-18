@@ -141,7 +141,10 @@
   };
   # Always be sshing
   services.openssh.enable = true;
-  nixpkgs.config.permittedInsecurePackages = [ "electron-25.9.0" ];
+  nixpkgs.config.permittedInsecurePackages = [
+    "electron-25.9.0"
+    "jitsi-meet-1.0.8043"
+  ];
   system.activationScripts.diff = {
     supportsDryActivation = true;
     text = ''

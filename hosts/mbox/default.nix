@@ -112,7 +112,7 @@
   };
 
   programs.streamdeck-ui = {
-    enable = true;
+    enable = false;
     autoStart = true;
   };
 

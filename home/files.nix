@@ -55,7 +55,7 @@ in
 
       ".config/bat/config".source = ../config/bat/config;
       ".config/btop/btop.conf".source = ../config/btop.conf;
-      ".i3/config".source = ../config/i3-config;
+      ".i3/config".source = ../config/i3-config${lib.optionalString isNixOS "-ghost"};
       ".ripgreprc".source = ../config/ripgreprc;
       ".amethyst.yml".source = ../config/amethyst.yml;
     }

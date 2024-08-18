@@ -45,7 +45,7 @@ in
           }
           {
             block = "memory";
-            format = " $icon$mem_used.eng(p:Mi) ";
+            format = " $icon$mem_used.eng(p:Mi) s";
             format_alt = " $icon_swap $swap_used.eng(p:Mi) ";
           }
 
