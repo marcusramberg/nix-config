@@ -33,6 +33,7 @@
   environment = {
     systemPackages = with pkgs; [
       colima
+      docker
       gnupg
       gnugrep
       gitFull
