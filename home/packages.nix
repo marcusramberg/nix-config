@@ -8,7 +8,10 @@
 let
   inherit (pkgs) stdenv;
   isNixOS = lib.hasAttr "nixos" osConfig.system;
-  hasK3s = lib.hasAttr "k3s" osConfig.profiles && osConfig.profiles.k3s.enable;
+  hasK3s =
+    lib.hasAttr "profiles" osConfig
+    && lib.hasAttr "k3s" osConfig.profiles
+    && osConfig.profiles.k3s.enable;
 in
 {
   home.packages =

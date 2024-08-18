@@ -29,6 +29,10 @@ in
         source = ../config/hypr;
         recursive = true;
       };
+      ".config/waybar" = {
+        source = ../config/waybar;
+        recursive = true;
+      };
       ".config/tmuxinator" = {
         source = ../config/tmuxinator;
         recursive = true;
