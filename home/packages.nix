@@ -37,9 +37,9 @@ in
       gitAndTools.gh
       fd
       fortune
+      gist
       gnumake
       gnugrep
-      gist
       go_1_22
       golangci-lint
       (google-cloud-sdk.withExtraComponents (

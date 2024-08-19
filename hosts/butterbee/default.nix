@@ -13,18 +13,21 @@
   hardware.enableAllFirmware = true;
   hardware.pulseaudio.enable = false;
 
-  profiles.nimdow.enable = true;
-  profiles.dockerHost.enable = true;
+  profiles = {
+    desktop.enable = true;
+    dockerHost.enable = true;
+    hyprland.enable = true;
+  };
 
   services = {
     flatpak.enable = true;
-    xserver = {
-      displayManager.sddm.enableHidpi = true;
-    };
+    displayManager.sddm.enableHidpi = true;
+    cloudflare-warp.enable = true;
+    xserver.dpi = 140;
   };
 
-  # virtualisation.podman.enable = true;
-  # virtualisation.podman.dockerCompat = true;
+  virtualisation.podman.enable = true;
+  virtualisation.podman.dockerCompat = true;
 
   networking.extraHosts = ''
     10.211.55.2 mbook

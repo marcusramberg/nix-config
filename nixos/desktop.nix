@@ -1,5 +1,6 @@
 {
   config,
+  inputs,
   pkgs,
   lib,
   ...
@@ -24,11 +25,12 @@ in
     environment.systemPackages =
       with pkgs;
       [
-        bitwarden
+        #bitwarden
         copyq
         element-desktop
         feh
         flameshot
+        inputs.ghostty.packages.${pkgs.system}.default
         gnomeExtensions.appindicator
         gnomeExtensions.paperwm
         gnomeExtensions.just-perfection
@@ -71,6 +73,7 @@ in
 
     services = {
       dbus.packages = [ pkgs.dconf ];
+      displayManager.defaultSession = lib.mkForce "xfce+i3";
 
       openssh.settings.X11Forwarding = true;
 

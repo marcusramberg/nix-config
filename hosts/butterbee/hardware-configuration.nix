@@ -19,23 +19,24 @@
     extraModulePackages = [ ];
   };
 
-  fileSystems = {
-    "/" = {
-      device = "/dev/disk/by-uuid/7c3cc35b-011b-432c-a47d-ba074ce5f7b8";
-      fsType = "ext4";
-    };
-
-    "/boot" = {
-      device = "/dev/disk/by-uuid/4EEA-A133";
-      fsType = "vfat";
-    };
+  fileSystems."/" = {
+    device = "/dev/disk/by-uuid/469386bd-ead4-4c48-abfc-18ee831da35f";
+    fsType = "ext4";
   };
 
-  swapDevices = [ { device = "/dev/disk/by-uuid/952f1921-0aa0-4180-9ea6-2aa9cf9fd87e"; } ];
+  fileSystems."/boot" = {
+    device = "/dev/disk/by-uuid/C29B-AE7D";
+    fsType = "vfat";
+    options = [
+      "fmask=0022"
+      "dmask=0022"
+    ];
+  };
+
+  swapDevices = [ ];
 
   # Enables DHCP on each ethernet and wireless interface. In case of scripted networking
-  # (the default) this is the recommended approach. When using system
-  # d-networkd it's
+  # (the default) this is the recommended approach. When using systemd-networkd it's
   # still possible to use this option, but it's recommended to use it in conjunction
   # with explicit per-interface declarations with `networking.interfaces.<interface>.useDHCP`.
   networking.useDHCP = lib.mkDefault true;
