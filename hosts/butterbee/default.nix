@@ -1,4 +1,4 @@
-{ ... }:
+{ pkgs, ... }:
 
 {
   imports = [
@@ -25,6 +25,8 @@
     cloudflare-warp.enable = true;
     xserver.dpi = 140;
   };
+  systemd.packages = [ pkgs.cloudflare-warp ];
+  systemd.user.services.warp-taskbar.wantedBy = [ "graphical.target" ];
 
   virtualisation.podman.enable = true;
   virtualisation.podman.dockerCompat = true;
