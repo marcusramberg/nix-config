@@ -6,7 +6,7 @@ local function augroup(name)
 end
 
 vim.api.nvim_create_autocmd({ "FileType" }, {
-	pattern = { "nix", "terraform", "gotmpl" },
+	pattern = { "nix", "terraform", "helm" },
 	callback = function()
 		vim.opt.commentstring = "# %s"
 	end,
@@ -23,8 +23,8 @@ vim.api.nvim_create_autocmd({ "BufNewFile", "BufRead" }, {
 	pattern = "*",
 	callback = function()
 		if vim.fn.search([[{{.\+}}]], "nw") ~= 0 then
-			if vim.bo.ft == "yaml" then
-				vim.bo.ft = "gotmpl"
+			if vim.bo.ft == "yaml" or vim.bo.ft == "tpl" then
+				vim.bo.ft = "helm"
 			end
 		end
 	end,

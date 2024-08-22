@@ -8,28 +8,6 @@ return {
 		},
 	},
 	{
-		"nvimtools/none-ls.nvim",
-		dependencies = { "davidmh/cspell.nvim" },
-		opts = function(_, opts)
-			local nls = require("null-ls")
-			local cspell = require("cspell")
-			opts.sources = {
-				nls.builtins.diagnostics.actionlint,
-				nls.builtins.diagnostics.markdownlint,
-				nls.builtins.formatting.nimpretty,
-				nls.builtins.formatting.nixfmt,
-				nls.builtins.formatting.shfmt,
-				nls.builtins.formatting.prettier,
-				nls.builtins.formatting.black,
-				nls.builtins.formatting.isort,
-				-- cspell.diagnostics,
-				cspell.code_actions,
-			}
-
-			return opts
-		end,
-	},
-	{
 		"williamboman/mason-lspconfig.nvim",
 		enabled = false,
 		opts = {
@@ -44,7 +22,6 @@ return {
 			ensure_installed = {
 				"bash",
 				"gitcommit",
-				"gotmpl",
 				"hjson",
 				"html",
 				"javascript",
@@ -64,27 +41,14 @@ return {
 				"yaml",
 			},
 		},
-		config = function(_, opts)
-			local parser_config = require("nvim-treesitter.parsers").get_parser_configs()
-			parser_config.gotmpl = {
-				install_info = {
-					url = "https://github.com/qvalentin/tree-sitter-go-template",
-					files = { "src/parser.c" },
-				},
-				filetype = "gotmpl",
-				used_by = { "gohtmltmpl", "gotexttmpl", "gotmpl", "yaml" },
-			}
-			require("nvim-treesitter.configs").setup(opts)
-		end,
 	},
 	{ "ray-x/guihua.lua" },
 	{ "alaviss/nim.nvim" },
 	{ "joshglendenning/vim-caddyfile" },
 	{
-		"marcusramberg/lazy-lsp.nvim",
+		"dundalek/lazy-lsp.nvim",
 		config = function(_, _)
 			require("lazy-lsp").setup({
-				branch = "marcus/check_document_config",
 				prefer_local = true,
 				excluded_servers = {
 					"ccls", -- using clangd instead
@@ -94,6 +58,7 @@ return {
 				},
 				preferred_servers = {
 					nix = { "nixd" },
+					helm = { "helm_ls" },
 					python = { "ruff_lsp", "pyright" },
 					javascript = { "eslint", "tsserver" },
 					javascriptreact = { "eslint", "tsserver" },
@@ -111,11 +76,16 @@ return {
 							"--offset-encoding=utf-16",
 						},
 					},
+					helm_ls = {
+						yamlls = {
+							diagnosticsLimit = 0,
+						},
+					},
 					lua_ls = {
 						settings = {
 							Lua = {
 								diagnostics = {
-									globals = { "hs" },
+									globals = { "hs", "vim" },
 								},
 							},
 						},
