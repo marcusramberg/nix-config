@@ -57,6 +57,7 @@
   security.pam.enableSudoTouchIdAuth = true;
   time.timeZone = "Europe/Oslo";
 
+  system.stateVersion = 4;
   system.activationScripts.diff = {
     supportsDryActivation = true;
     text = ''
