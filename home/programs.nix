@@ -41,6 +41,10 @@
         pinentry = if pkgs.stdenv.isDarwin then pkgs.pinentry_mac else pkgs.pinentry;
       };
     };
+    ssh = {
+      enable = true;
+      controlMaster = "auto";
+    };
     # Smarter z
     zoxide.enable = true;
     yazi = {
