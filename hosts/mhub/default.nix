@@ -69,7 +69,7 @@
     caddy = {
       enable = true;
       package = pkgs.caddy-cloudflare;
-      configFile = ../../config/Caddyfile;
+      configFile = ../../config/Caddyfile.mhub;
       adapter = "caddyfile";
     };
     printing.enable = true;

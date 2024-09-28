@@ -1,0 +1,91 @@
+{
+	http_port 80
+	https_port 443
+	email marcus@means.no
+
+	acme_ca https://acme-v02.api.letsencrypt.org/directory
+	log {
+		level ERROR
+	}
+	servers :443 {
+		listener_wrappers {
+			http_redirect
+			tls
+		}
+	}
+
+	servers :80 {
+		protocols h1 h2c
+	}
+}
+
+(caddy-common) {
+	encode gzip
+	# tls /etc/caddy/cloudflare.crt /etc/caddy/cloudflare.key
+	tls {
+		import /run/agenix/cloudflareToken
+	}
+	header {
+		-Server
+		Strict-Transport-Security "max-age=31536000; include-subdomains;"
+		X-XSS-Protection "1; mode=block"
+		X-Frame-Options "DENY"
+		X-Content-Type-Options nosniff
+		Referrer-Policy no-referrer-when-downgrade
+		X-Robots-Tag "none"
+	}
+}
+
+(matrix-well-known-header) {
+	# Headers
+	header Access-Control-Allow-Origin "*"
+	header Access-Control-Allow-Methods "GET, POST, PUT, DELETE, OPTIONS"
+	header Access-Control-Allow-Headers "Origin, X-Requested-With, Content-Type, Accept, Authorization"
+	header Content-Type "application/json"
+}
+
+(matrix) {
+	import caddy-common
+	handle /.well-known/matrix/server {
+		import matrix-well-known-header
+		respond `{"m.server":"means.no/"}`
+	}
+	handle /.well-known/matrix/client {
+		import matrix-well-known-header
+		respond `{"m.homeserver":{"base_url":"https://means.no/"}}`
+	}
+}
+
+# Public
+
+localhost:80 {
+	redir https://{host}{uri} permanent
+}
+
+means.no:443 {
+	reverse_proxy http://localhost:8080
+	import matrix
+}
+
+www.tabdog.net:443 {
+	import caddy-common
+	redir https://tabdog.net/ permanent
+}
+
+tabdog.net:443 {
+	import caddy-common
+	root * /var/tabdog.net
+	file_server /*
+}
+
+www.means.no:443 {
+	import caddy-common
+	root * /html
+	file_server /* {
+		browse
+		index index.md
+	}
+}
+photos.means.no:443 {
+	reverse_proxy http://mbox:8080
+}
