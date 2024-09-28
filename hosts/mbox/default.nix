@@ -1,4 +1,9 @@
-{ pkgs, lib, ... }:
+{
+  pkgs,
+  lib,
+  config,
+  ...
+}:
 {
   imports = [
     # Include the results of the hardware scan.
@@ -48,15 +53,33 @@
     cage
   ];
 
-  fileSystems."/space" = {
-    device = "mspace:/volume1/space";
-    fsType = "nfs4";
-    options = [
-      "nfsvers=4.1"
-      "soft"
-    ];
+  fileSystems = {
+    "/space" = {
+      device = "mspace:/volume1/space";
+      fsType = "nfs4";
+      options = [
+        "nfsvers=4.1"
+        "soft"
+      ];
+    };
+    # "/photo" = {
+    #   device = "mspace:/volume1/photo";
+    #   fsType = "nfs4";
+    #   options = [
+    #     "nfsvers=4.1"
+    #     "soft"
+    #   ];
+    # };
+    "/home/marcus/org" = {
+      device = "mspace:/volume1/homes/marcus/Drive/orgmode";
+      fsType = "nfs4";
+      options = [
+        "nfsvers=4.1"
+        "soft"
+        "x-systemd.automount"
+      ];
+    };
   };
-
   networking = {
     extraHosts = ''
       10.211.55.2 mbook
@@ -64,16 +87,6 @@
     '';
     hostName = "mbox";
     networkmanager.enable = true;
-  };
-
-  fileSystems."/home/marcus/org" = {
-    device = "mspace:/volume1/homes/marcus/Drive/orgmode";
-    fsType = "nfs4";
-    options = [
-      "nfsvers=4.1"
-      "soft"
-      "x-systemd.automount"
-    ];
   };
 
   hardware = {
@@ -130,14 +143,14 @@
     };
     flatpak.enable = true;
     # grafana-kiosk.enable = true;
-    # immich = {
-    #   enable = true;
-    #   host = "0.0.0.0";
-    #   port = 8080;
-    #   mediaLocation = "/space/immich";
-    #   openFirewall = true;
-    #   secretsFile = config.age.secrets.immich.path;
-    # };
+    immich = {
+      enable = true;
+      host = "0.0.0.0";
+      port = 8080;
+      mediaLocation = "/space/immich";
+      openFirewall = true;
+      secretsFile = config.age.secrets.immich.path;
+    };
     nix-serve = {
       enable = true;
       secretKeyFile = "/var/cache-priv-key.pem";

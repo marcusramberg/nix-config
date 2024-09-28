@@ -95,8 +95,7 @@ in
       btop
 
       # useful nix related tools
-      # cachix # adding/managing alternative binary caches hosted by cachix
-      # niv # easy dependency management for nix projects
+      cachix # adding/managing alternative binary caches hosted by cachix
     ]
     ++ lib.optionals stdenv.isDarwin [
       cocoapods
