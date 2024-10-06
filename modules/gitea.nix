@@ -18,10 +18,6 @@ in
   config = mkIf cfg.server.enable { };
   services.gitea = {
     enable = true;
-    settings = {
-      service = {
-        ROOT_URL = cfg.host;
-      };
-    };
+    settings.service.ROOT_URL = cfg.host;
   };
 }

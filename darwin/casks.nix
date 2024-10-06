@@ -11,6 +11,7 @@ _: {
       "alt-tab"
       "android-platform-tools"
       "androidtool"
+      "aerospace"
       "arc"
       "balenaetcher"
       "barrier"
@@ -79,6 +80,9 @@ _: {
       "ReadKit" = 1615798039;
       "UTM Virtual Machines" = 1538878817;
     };
-    taps = [ "homebrew/cask-versions" ];
+    taps = [
+      "homebrew/cask-versions"
+      "nikitabobko/tap/"
+    ];
   };
 }

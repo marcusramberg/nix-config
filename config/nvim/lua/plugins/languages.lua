@@ -1,6 +1,48 @@
 return {
 
-	-- add any tools you want to have installed below
+	{
+		"neovim/nvim-lspconfig",
+		opts = {
+			servers = {
+				clangd = {
+					cmd = {
+						"clangd",
+						"--offset-encoding=utf-16",
+					},
+				},
+				helm_ls = {
+					yamlls = {
+						diagnosticsLimit = 0,
+					},
+				},
+				lua_ls = {
+					settings = {
+						Lua = {
+							diagnostics = {
+								globals = { "hs", "vim" },
+							},
+						},
+					},
+				},
+				nil_ls = {
+					settings = {
+						nix = {
+							flake = {
+								autoArchive = true,
+							},
+						},
+					},
+				},
+				yamlls = {
+					settings = {
+						yaml = {
+							keyOrdering = false,
+						},
+					},
+				},
+			},
+		},
+	},
 
 	{ "aMOPel/nvim-treesitter-nim" },
 	{

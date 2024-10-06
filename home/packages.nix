@@ -89,7 +89,6 @@ in
       tflint
       unzip
       unixtools.watch
-      vscode
       wget
       yq-go
       btop
@@ -104,6 +103,7 @@ in
     ++ lib.optionals stdenv.isLinux [
       nim2
       maim
+      vscode
     ]
     ++ lib.optional (!hasK3s) kubectl
     ++ lib.optionals isNixOS [ wezterm ];
