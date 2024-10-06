@@ -74,6 +74,7 @@
       enable = true;
       enableSSHSupport = true;
     };
+    nix-ld.enable = true;
     mtr.enable = true;
     neovim = {
       enable = true;

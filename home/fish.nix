@@ -2,10 +2,12 @@
   pkgs,
   lib,
   user,
+  osConfig,
   ...
 }:
 let
   inherit (pkgs.stdenv) isDarwin;
+  isNixOS = lib.hasAttr "nixos" osConfig.system;
 in
 {
   programs.bash = {
@@ -62,29 +64,33 @@ in
     shellInit = ''
       fish_add_path -p ~/.local/bin ${lib.optionalString isDarwin "/run/current-system/sw/bin /opt/homebrew/bin"} ~/go/bin/ ~/.nimble/bin ~/.cargo/bin/
     '';
-    interactiveShellInit = ''
-      fish_vi_key_bindings
-      set fish_cursor_default     block      blink
-      set fish_cursor_insert      line       blink
-      set fish_cursor_replace_one underscore blink
-      set fish_cursor_visual      block
-      bind \eh 'fuck'
-      set fish_theme nord
-      set -gx EDITOR nvim
-      set -gx GOPRIVATE github.com/reMarkable
-      # FIXME: Disable this for now as it breaks vi mode.
-      set --universal pure_enable_nixdevshell false
-      type -q thefuck; and thefuck --alias | source
-      test -x ~/.plenv/bin/plenv; and . (~/.plenv/bin/plenv init -|psub)
-      if command -q nix-your-shell
-        nix-your-shell fish | source
-      end
+    interactiveShellInit =
+      ''
+        fish_vi_key_bindings
+        set fish_cursor_default     block      blink
+        set fish_cursor_insert      line       blink
+        set fish_cursor_replace_one underscore blink
+        set fish_cursor_visual      block
+        bind \eh 'fuck'
+        set fish_theme nord
+        set -gx EDITOR nvim
+        set -gx GOPRIVATE github.com/reMarkable
+        # FIXME: Disable this for now as it breaks vi mode.
+        set --universal pure_enable_nixdevshell false
+        type -q thefuck; and thefuck --alias | source
+        test -x ~/.plenv/bin/plenv; and . (~/.plenv/bin/plenv init -|psub)
+        if command -q nix-your-shell
+          nix-your-shell fish | source
+        end
 
-      # Completion
-      type -q kustomize; and eval (kustomize completion fish)
-      type -q yq; and yq shell-completion fish | source
+        # Completion
+        type -q kustomize; and eval (kustomize completion fish)
+        type -q yq; and yq shell-completion fish | source
 
-    '';
+      ''
+      + lib.optionalString isNixOS ''
+        set -gx NIX_LD (nix eval --impure --raw --expr 'let pkgs = import <nixpkgs> {}; NIX_LD = pkgs.lib.fileContents "${pkgs.stdenv.cc}/nix-support/dynamic-linker"; in NIX_LD ')
+      '';
     loginShellInit = ''
       gpgconf --launch gpg-agent
       if [ -f /Users/${user}/.ssh/id_rsa ]
