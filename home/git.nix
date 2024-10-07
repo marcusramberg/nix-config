@@ -47,7 +47,7 @@
         br = "branch";
         df = "diff";
         lg = "log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit";
-        retrack = "!retrack() { git config \"branch.$1.remote\" $(dirname \"$2\"); git config  \"branch.$1.merge\" \"refs/heads/$(basename \"$2\")\"; }; retrack";
+        retrack = ''!retrack() { git config "branch.$1.remote" $(dirname "$2"); git config  "branch.$1.merge" "refs/heads/$(basename "$2")"; }; retrack'';
         ca = "commit --amend --reuse-message=HEAD";
         edit = "!vim `git ls-files -m ` -p ";
         credit = "blame";
