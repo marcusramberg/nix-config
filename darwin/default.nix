@@ -34,6 +34,7 @@
       gnupg
       gnugrep
       gitFull
+      iconv
       terminal-notifier
     ];
     extraSetup = ''

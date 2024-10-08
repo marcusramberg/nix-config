@@ -82,6 +82,7 @@ in
       ranger
       revup
       ripgrep
+      sccache
       stylua
       tealdeer
       tfenv

@@ -82,7 +82,7 @@ _: {
     };
     taps = [
       "homebrew/cask-versions"
-      "nikitabobko/tap/"
+      "nikitabobko/tap"
     ];
   };
 }
