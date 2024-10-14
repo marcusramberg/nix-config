@@ -66,7 +66,7 @@
     input-remapper.enable = true;
     xserver = {
       enable = true;
-      displayManager.lightdm.enable = lib.mkForce false;
+      displayManager.sddm.enable = lib.mkForce false;
       displayManager.startx.enable = true;
       excludePackages = with pkgs; [ xterm ];
     };

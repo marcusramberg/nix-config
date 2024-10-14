@@ -129,10 +129,10 @@ in
           binding = "<Super><Shift>P";
         };
 
-        # Start a new wezterm window (rather than just switch to the already open one)
+        # Start a new ghostty window (rather than just switch to the already open one)
         "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom2" = {
-          name = "Wezterm";
-          command = "wezterm";
+          name = "Ghostty";
+          command = "ghosttty";
           binding = "<Shift><Alt>1";
         };
 
@@ -155,7 +155,7 @@ in
 
         "org/gnome/shell" = {
           favorite-apps = [
-            "org.wezfurlong.wezterm.desktop"
+            "org.ghostty.Ghostty.desktop"
             "org.floorp.Floorp.desktop"
             "Telegram-Destop.desktop"
             "com.github.xournalpp.xournalpp.desktop"
