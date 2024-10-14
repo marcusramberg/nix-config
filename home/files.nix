@@ -62,5 +62,6 @@ in
     // lib.optionalAttrs pkgs.stdenv.isDarwin {
       ".config/karabiner/karabiner.json".source = ../config/karabiner.json;
       ".hammerspoon".source = config.lib.file.mkOutOfStoreSymlink "${flakePath}/config/hammerspoon";
+      ".aerospace.toml".source = ../config/aerospace.toml;
     };
 }
