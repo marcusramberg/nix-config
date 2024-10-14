@@ -62,6 +62,9 @@
           whitespace = "trailing-space,space-before-tab";
           excludesfile = "~/.gitignore_global";
         };
+        submodule = {
+          recurse = true;
+        };
         color = {
           branch = {
             current = "yellow reverse";
