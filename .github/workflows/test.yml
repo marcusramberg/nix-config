@@ -20,7 +20,8 @@ jobs:
       - uses: cachix/install-nix-action@v30
       - uses: cachix/cachix-action@v15
         with:
-          name: devenv
+          extraPullNames: devenv
+          name: marcusramberg
           authToken: ${{ secrets.CACHIX_AUTH_TOKEN }}
       - name: Install devenv.sh
         run: nix profile install github:cachix/devenv/v1.0
