@@ -1,7 +1,7 @@
 _: {
 
   cachix.pull = [
-    "nixos-community"
+    "nix-community"
     "marcusramberg"
   ];
   languages.lua = {
