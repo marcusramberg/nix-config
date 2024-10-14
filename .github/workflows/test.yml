@@ -13,11 +13,15 @@ jobs:
         os: [ubuntu-latest, macos-latest]
     runs-on: ${{ matrix.os }}
     steps:
+      - name: Setup push cache
+        run: echo '{ cachix.push = "marcusramberg"; }' > devenv.local.nix
+        shell: sh
       - uses: actions/checkout@v4
       - uses: cachix/install-nix-action@v27
       - uses: cachix/cachix-action@v14
         with:
           name: devenv
+          authToken: ${{ secrets.CACHIX_AUTH_TOKEN }}
       - name: Install devenv.sh
         run: nix profile install github:cachix/devenv/v1.0
         shell: sh
