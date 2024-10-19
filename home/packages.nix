@@ -90,6 +90,7 @@ in
       tflint
       unzip
       unixtools.watch
+      uv
       wget
       yq-go
       btop
