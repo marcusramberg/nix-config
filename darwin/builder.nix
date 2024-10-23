@@ -1,6 +1,6 @@
 _: {
   # Enable local linux vm builder
-  nix.linux-builder.enable = true;
+  nix.linux-builder.enable = false;
   # Use mbox to build x86_64-linux
   nix.buildMachines = [
     {

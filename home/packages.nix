@@ -63,7 +63,6 @@ in
       luarocks
       lua-language-server
       nil
-      mosh
       nixfmt-rfc-style
       neofetch
       nixpkgs-review
