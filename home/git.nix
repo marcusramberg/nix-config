@@ -62,10 +62,8 @@
           whitespace = "trailing-space,space-before-tab";
           excludesfile = "~/.gitignore_global";
         };
-        submodule = {
-          recurse = true;
-        };
         color = {
+          init.defaultBranch = "main";
           branch = {
             current = "yellow reverse";
             local = "yellow";
@@ -76,6 +74,7 @@
             changed = "green";
             untracked = "cyan";
           };
+          submodule.recurse = true;
         };
         url = {
           "git@github.com:".insteadOf = "gh:";
