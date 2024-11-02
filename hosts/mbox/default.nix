@@ -161,6 +161,9 @@
       enable = true;
       # acceleration = "rocm";
     };
+    rustdesk-server = {
+      enable = true;
+    };
     # osquery.enable = true;
     tailscale.useRoutingFeatures = "server";
 
