@@ -48,6 +48,9 @@
       options kvm_intel nested=1
     '';
   };
+  environment.etc = {
+    "xrdp/sesman.ini".source = "${config.services.xrdp.confDir}/sesman.ini";
+  };
   environment.systemPackages = with pkgs; [
     prusa-slicer
     cage
@@ -141,6 +144,10 @@
       configFile = ../../config/Caddyfile.mbox;
       adapter = "caddyfile";
     };
+    nomad = {
+      enable = true;
+      enableDocker = false;
+    };
     flatpak.enable = true;
     # grafana-kiosk.enable = true;
     immich = {
@@ -161,9 +168,6 @@
       enable = true;
       # acceleration = "rocm";
     };
-    rustdesk-server = {
-      enable = true;
-    };
     # osquery.enable = true;
     tailscale.useRoutingFeatures = "server";
 
@@ -177,7 +181,12 @@
     #   SUBSYSTEM=="usb", ATTRS{idVendor}=="0fd9", ATTRS{idProduct}=="0063", MODE:="666", GROUP="plugdev", SYMLINK+="streamdeck-mini"
     #   SUBSYSTEM=="usb", ATTRS{idVendor}=="0fd9", ATTRS{idProduct}=="006c", MODE:="666", GROUP="plugdev", SYMLINK+="streamdeck-xl"
     # '';
-    xserver.dpi = 144;
+    #
+    xrdp = {
+      enable = true;
+      audio.enable = true;
+      defaultWindowManager = lib.mkForce "${pkgs.i3}/bin/i3";
+    };
   };
   systemd.services.caddy.serviceConfig.AmbientCapabilities = "cap_net_bind_service";
   systemd.services.NetworkManager-wait-online = {
