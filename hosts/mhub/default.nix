@@ -37,7 +37,7 @@
   profiles = {
     mediaserver.enable = true;
     hass.enable = true;
-    lemmy-server.enable = true;
+    lemmy-server.enable = false;
     prometheus-server.enable = true;
   };
 
