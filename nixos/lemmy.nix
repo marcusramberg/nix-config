@@ -43,7 +43,7 @@ in
           ];
         };
         pictrs = {
-          image = "asonix/pictrs:0.3.1";
+          image = "asonix/pictrs:0.5.16";
           environmentFiles = [ config.age.secrets.picserver.path ];
           ports = [ "4585:8080" ];
           volumes = [ "/space/pictrs:/mnt" ];
