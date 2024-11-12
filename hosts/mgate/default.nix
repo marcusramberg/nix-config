@@ -198,6 +198,7 @@
           DHCPServer = true;
         };
         dhcpServerConfig = {
+          DNS = "1.1.1.1";
           PoolOffset = 20;
           PoolSize = 200;
         };
