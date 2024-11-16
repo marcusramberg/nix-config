@@ -1,6 +1,6 @@
 {
   config,
-  inputs,
+  # inputs,
   pkgs,
   lib,
   ...
@@ -30,7 +30,7 @@ in
         element-desktop
         feh
         flameshot
-        inputs.ghostty.packages.${pkgs.system}.default
+        # inputs.ghostty.packages.${pkgs.system}.default
         gnomeExtensions.appindicator
         gnomeExtensions.paperwm
         gnomeExtensions.just-perfection
@@ -46,6 +46,7 @@ in
         tauon
         vivaldi
         volumeicon
+        webcord-vencord
         xarchiver
         xclip
         xorg.xhost
@@ -53,7 +54,6 @@ in
       ]
       ++ lib.optionals (system == "x86_64-linux") [
         vivaldi-ffmpeg-codecs
-        discord
       ];
 
     profiles.myfonts.enable = true;

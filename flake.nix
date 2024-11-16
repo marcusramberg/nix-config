@@ -4,6 +4,9 @@
   inputs = {
     agenix.url = "github:ryantm/agenix";
     agenix.inputs.nixpkgs.follows = "nixpkgs";
+    apple-silicon-support = {
+      url = "github:marcusramberg/nixos-apple-silicon/kernel_bump";
+    };
     dagger.url = "github:dagger/nix";
     dagger.inputs.nixpkgs.follows = "nixpkgs";
     darwin.url = "github:lnl7/nix-darwin/master";
@@ -32,7 +35,7 @@
     nix-index-database.url = "github:Mic92/nix-index-database";
     nix-index-database.inputs.nixpkgs.follows = "nixpkgs";
     nix-std.url = "github:chessai/nix-std";
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable-small";
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     nixpkgs-staging.url = "github:marcusramberg/nixpkgs/test_no_rewrite";
     # Do we actually use nur?
     nur.url = "github:nix-community/NUR";
@@ -79,6 +82,18 @@
             std
             ;
           system = "aarch64-linux";
+        };
+        mstudio = lib.mkNixHost "mstudio" {
+          inherit
+            overlays
+            nixpkgs
+            inputs
+            std
+            ;
+          system = "aarch64-linux";
+          extraModules = [
+            inputs.apple-silicon-support.nixosModules.apple-silicon-support
+          ];
         };
         mcloud = lib.mkNixHost "mcloud" {
           inherit
