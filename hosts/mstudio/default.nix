@@ -66,6 +66,18 @@
     pipewire = {
       enable = true;
       pulse.enable = true;
+      extraConfig = {
+        pulse = [
+          {
+            cmd = "set-default-sink";
+            args = "54";
+          }
+          {
+            cmd = "load-module";
+            args = "module-switch-on-connect";
+          }
+        ];
+      };
     };
   };
 
