@@ -20,7 +20,7 @@
       systemd-boot.configurationLimit = 10;
       efi.canTouchEfiVariables = false;
     };
-    extraModprobeConfig = ''
+    extramodprobeconfig = ''
       options hid_apple iso_layout=1
       options macsmc_hwmon melt_my_mac=1
     '';
@@ -44,6 +44,7 @@
       useExperimentalGPUDriver = true;
       experimentalGPUInstallMode = "replace";
       withRust = true;
+      enableFanControl = true;
     };
   };
 

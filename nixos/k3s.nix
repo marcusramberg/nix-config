@@ -6,13 +6,22 @@ in
 {
   options.profiles.k3s = {
     enable = mkEnableOption "Kubernetes node";
+    tailscale = {
+      enable = mkEnableOption "Enable tailscale";
+      ip = mkOption {
+        type = types.str;
+        description = "tailscale ip";
+      };
+    };
   };
 
   config = mkIf cfg.enable {
     services.k3s = {
       enable = true;
       tokenFile = config.age.secrets.k3s-token.path;
-      extraFlags = "--write-kubeconfig-mode=644";
+      extraFlags =
+        "--write-kubeconfig-mode=644 --node-external-ip"
+        + (lib.optionalString cfg.tailscale.enable "--node-external-ip=${cfg.tailscale.ip} --flannel-backend=wireguard-native --flannel-external-ip ${cfg.tailscale.ip}");
     };
   };
 }

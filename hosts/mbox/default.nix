@@ -105,7 +105,13 @@
     hyprland.enable = true;
     dockerHost.enable = true;
     gaming.enable = true;
-    k3s.enable = true;
+    k3s = {
+      enable = true;
+      tailscale = {
+        enable = true;
+        ip = "100.119.66.34";
+      };
+    };
     passthrough = {
       enable = true;
       hardware-ids = [
@@ -144,6 +150,7 @@
       configFile = ../../config/Caddyfile.mbox;
       adapter = "caddyfile";
     };
+    k3s.clusterInit = true;
     nomad = {
       enable = true;
       enableDocker = false;
@@ -168,7 +175,6 @@
       enable = true;
       # acceleration = "rocm";
     };
-    # osquery.enable = true;
     tailscale.useRoutingFeatures = "server";
 
     displayManager.defaultSession = lib.mkForce "xfce+i3";
