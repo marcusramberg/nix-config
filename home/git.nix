@@ -76,6 +76,9 @@
           };
           submodule.recurse = true;
         };
+        commit.gpgsign = true;
+        gpg.format = "ssh";
+        user.signingkey = "~/.ssh/id_rsa.pub";
         url = {
           "git@github.com:".insteadOf = "gh:";
           "git@github.com:reMarkable/cloud".insteadOf = "https://github.com/reMarkable/cloud";
