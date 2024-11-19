@@ -8,6 +8,7 @@ opt.guifont = "JetBrainsMono Nerd Font:h12"
 opt.synmaxcol = 300
 opt.iskeyword:append("-")
 opt.foldenable = false
+vim.g.root_spec = { { ".git" }, "cwd" }
 opt.relativenumber = false
 vim.lsp.set_log_level("off")
 
