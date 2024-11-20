@@ -143,26 +143,10 @@
         };
         linkConfig.RequiredForOnline = "no";
         bridgeVLANs = [
-          {
-            bridgeVLANConfig = {
-              VLAN = "1";
-            };
-          }
-          {
-            bridgeVLANConfig = {
-              VLAN = "66";
-            };
-          }
-          {
-            bridgeVLANConfig = {
-              VLAN = "99";
-            };
-          }
-          {
-            bridgeVLANConfig = {
-              VLAN = "255";
-            };
-          }
+          { VLAN = "1"; }
+          { VLAN = "66"; }
+          { VLAN = "99"; }
+          { VLAN = "255"; }
         ];
       };
       "switchdevs" = {
