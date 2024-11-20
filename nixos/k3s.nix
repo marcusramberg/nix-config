@@ -20,8 +20,14 @@ in
       enable = true;
       tokenFile = config.age.secrets.k3s-token.path;
       extraFlags =
-        "--write-kubeconfig-mode=644 --node-external-ip"
-        + (lib.optionalString cfg.tailscale.enable "--node-external-ip=${cfg.tailscale.ip} --flannel-backend=wireguard-native --flannel-external-ip ${cfg.tailscale.ip}");
+        [
+          "--write-kubeconfig-mode=644"
+        ]
+        ++ lib.optionals cfg.tailscale.enable [
+          "--node-external-ip=${cfg.tailscale.ip}"
+          "--flannel-backend=wireguard-native"
+          "--flannel-external-ip ${cfg.tailscale.ip}"
+        ];
     };
   };
 }
