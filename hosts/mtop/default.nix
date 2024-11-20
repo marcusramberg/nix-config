@@ -35,13 +35,12 @@
 
   profiles = {
     laptop.enable = true;
-    nimdow.enable = true;
+    desktop.enable = true;
   };
 
   programs.nm-applet.enable = true;
 
   services = {
-    flatpak.enable = true;
     input-remapper.enable = true;
     logind.extraConfig = ''
       HandlePowerKey=ignore

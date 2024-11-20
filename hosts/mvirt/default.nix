@@ -24,10 +24,9 @@ _:
     networkmanager.enable = true;
   };
 
-  profiles.nimdow.enable = true;
+  profiles.desktop.enable = true;
 
   services = {
-    flatpak.enable = true;
     input-remapper.enable = true;
     logind.extraConfig = ''
       HandlePowerKey=ignore

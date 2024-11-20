@@ -155,7 +155,6 @@
       enable = true;
       enableDocker = false;
     };
-    flatpak.enable = true;
     # grafana-kiosk.enable = true;
     immich = {
       enable = true;

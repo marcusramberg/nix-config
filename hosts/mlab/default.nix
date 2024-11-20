@@ -20,7 +20,6 @@ _: {
   programs.nm-applet.enable = true;
 
   services = {
-    flatpak.enable = true;
     mbpfan.enable = true;
     input-remapper.enable = true;
   };

@@ -20,9 +20,8 @@
       systemd-boot.configurationLimit = 10;
       efi.canTouchEfiVariables = false;
     };
-    extramodprobeconfig = ''
+    extraModprobeConfig = ''
       options hid_apple iso_layout=1
-      options macsmc_hwmon melt_my_mac=1
     '';
     postBootCommands = ''
       echo 1100 > /sys/class/hwmon/hwmon0/fan1_target
@@ -60,26 +59,41 @@
     dockerHost.enable = true;
     desktop.enable = true;
     hyprland.enable = true;
+    k3s = {
+      enable = true;
+      tailscale = {
+        enable = true;
+        ip = "100.91.252.114";
+      };
+    };
   };
 
   services = {
+    blueman.enable = true;
+    displayManager.sddm.enableHidpi = true;
+    k3s = {
+      serverAddr = "https://mbox:6443";
+    };
     libinput.enable = true;
+    ollama.enable = true;
     pipewire = {
       enable = true;
       pulse.enable = true;
+
       extraConfig = {
-        pulse = [
-          {
-            cmd = "set-default-sink";
-            args = "54";
-          }
-          {
-            cmd = "load-module";
-            args = "module-switch-on-connect";
-          }
-        ];
+        pipewire-pulse = {
+          "context.exec" = [
+            {
+              path = "pactl";
+              args = "load-module module-switch-on-connect";
+            }
+          ];
+        };
       };
+
+      wireplumber.enable = true;
     };
+    xserver.dpi = 140;
   };
 
   users.users.marcus = {

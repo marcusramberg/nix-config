@@ -34,12 +34,12 @@ in
         gnomeExtensions.appindicator
         gnomeExtensions.paperwm
         gnomeExtensions.just-perfection
-        neovide
         nitrogen
         obsidian
         pavucontrol
         picom
         nordic
+        pantheon.sideload
         rofi
         telegram-desktop
         floorp
@@ -75,6 +75,8 @@ in
     services = {
       dbus.packages = [ pkgs.dconf ];
       displayManager.defaultSession = lib.mkForce "xfce+i3";
+
+      flatpak.enable = true;
 
       openssh.settings.X11Forwarding = true;
 

@@ -20,7 +20,6 @@
   };
 
   services = {
-    flatpak.enable = true;
     displayManager.sddm.enableHidpi = true;
     cloudflare-warp.enable = true;
     xserver.dpi = 140;

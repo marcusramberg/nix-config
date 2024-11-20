@@ -27,7 +27,6 @@
     galileo-mura
     steamdeck-firmware
     jupiter-dock-updater-bin
-    pantheon.sideload
     plex-media-player
     heroic
   ];
@@ -62,7 +61,6 @@
   networking.networkmanager.enable = true;
 
   services = {
-    flatpak.enable = true;
     input-remapper.enable = true;
     xserver = {
       enable = true;

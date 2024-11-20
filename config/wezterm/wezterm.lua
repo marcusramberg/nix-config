@@ -54,10 +54,6 @@ wezterm.on("format-tab-title", function(tab, tabs, panes, _config, hover, max_wi
 	}
 end)
 
-local is_nix = os.getenv("IN_NIX_SHELL")
-if is_nix == "true" then
-	config.front_end = "WebGpu"
-end
 config.adjust_window_size_when_changing_font_size = false
 config.window_padding = {
 	bottom = 1,
@@ -154,6 +150,8 @@ if wezterm.hostname() == "butterbee" then
 	config.font_size = 14.0
 elseif wezterm.hostname() == "mbook" or wezterm.hostname() == "mtop" then
 	config.font_size = 16.0
+elseif wezterm.hostname() == "mstudio" then
+	config.front_end = "WebGpu"
 end
 
 return config

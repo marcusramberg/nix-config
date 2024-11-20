@@ -15,7 +15,6 @@ _: {
 
   services.pipewire.audio.enable = true;
 
-  services.flatpak.enable = true;
   virtualisation.podman.enable = true;
   virtualisation.podman.dockerCompat = true;
   networking.extraHosts = ''
