@@ -37,8 +37,12 @@
   profiles = {
     mediaserver.enable = true;
     hass.enable = true;
-    lemmy-server.enable = false;
     prometheus-server.enable = true;
+    k3s.enable = true;
+    tailscale = {
+      enable = true;
+      ip = "100.68.77.116";
+    };
   };
 
   services = {
@@ -71,6 +75,9 @@
       package = pkgs.caddy-cloudflare;
       configFile = ../../config/Caddyfile.mhub;
       adapter = "caddyfile";
+    };
+    k3s = {
+      serverAddr = "https://100.119.66.34:6443";
     };
     printing.enable = true;
   };

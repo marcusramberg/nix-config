@@ -72,7 +72,7 @@
     blueman.enable = true;
     displayManager.sddm.enableHidpi = true;
     k3s = {
-      serverAddr = "https://mbox:6443";
+      serverAddr = "https://100.119.66.34:6443";
     };
     libinput.enable = true;
     ollama.enable = true;
