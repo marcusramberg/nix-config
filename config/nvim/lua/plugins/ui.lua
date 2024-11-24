@@ -1,16 +1,16 @@
 return {
 	-- change trouble config
 	--
-	{
-		"gbprod/nord.nvim",
-		lazy = false,
-		priority = 1000,
-		config = function()
-			require("nord").setup({})
-			vim.cmd.colorscheme("nord")
-		end,
-	},
-	{ "folke/tokyonight.nvim", enabled = false },
+	-- {
+	--   "gbprod/nord.nvim",
+	--   lazy = false,
+	--   priority = 1000,
+	--   config = function()
+	--     require("nord").setup({})
+	--     vim.cmd.colorscheme("nord")
+	--   end,
+	-- },
+	-- { "folke/tokyonight.nvim", enabled = false },
 	{
 		"folke/trouble.nvim",
 		-- opts will be merged with the parent spec
@@ -37,6 +37,18 @@ return {
 		},
 		-- change some options
 		opts = {
+			file_ignore_patterns = { ".git/", "node_modules", "poetry.lock" },
+			vimgrep_arguments = {
+				"rg",
+				"--color=never",
+				"--no-heading",
+				"--hidden",
+				"--with-filename",
+				"--line-number",
+				"--column",
+				"--smart-case",
+				"--trim",
+			},
 			pickers = {
 				buffers = { theme = "ivy" },
 				find_files = { theme = "ivy" },
@@ -59,13 +71,42 @@ return {
 			telescope.load_extension("project")
 		end,
 	},
+	-- see hidden files in neotree
+	{
+		"nvim-neo-tree/neo-tree.nvim",
+		opts = {
+			filesystem = {
+				filtered_items = {
+					visible = true,
+					show_hidden_count = true,
+					hide_dotfiles = false,
+					hide_gitignored = true,
+					hide_by_name = {
+						-- '.git',
+						-- '.DS_Store',
+						-- 'thumbs.db',
+					},
+					never_show = {},
+				},
+			},
+		},
+	},
 	-- Scope buffers to tabs
 	{ "tiagovla/scope.nvim", config = true },
 	{
-		"nvimdev/dashboard-nvim",
+		"folke/snacks.nvim",
 		event = "VimEnter",
-		opts = function(_, opts)
-			local logo = [[
+		opts = {
+			dashboard = {
+				sections = {
+					{ section = "header" },
+					{ icon = " ", title = "Keymaps", section = "keys", indent = 2, padding = 1 },
+					{ icon = " ", title = "Recent Files", section = "recent_files", indent = 2, padding = 1 },
+					{ icon = " ", title = "Projects", section = "projects", indent = 2, padding = 1 },
+					{ section = "startup" },
+				},
+				preset = {
+					header = [[
         SSSSS                                       .sSSS s.                                       
         SSSSS      .sSSSSs.   SSSSSSSSSs..sSSS SSSSSSSSSS SSSs.SSSSS.sSSSsSS SSsSSSSS              
         S  SS      S  SS SSSSS    S  SS  S  SS SSSSSS  SS SSSSSS  SSS  SS   S   SSSSS             Z
@@ -75,11 +116,21 @@ return {
         S:::S      S:::S SSSSS  S:::S       S:::S    S::S SSSS S:::SS:::S       SSSSS              
         S%%%S SSSSSS%%%S SSSSSS%%%SSSSSSS   S%%%S      SS SS   S%%%SS%%%S       SSSSS              
         SSSSSsSS;:'SSSSS SSSSSSSSSSSSSSSS   SSSSS       SsS    SSSSSSSSSS       SSSSS              
-]]
-			logo = string.rep("\n", 8) .. logo .. "\n\n"
-
-			opts.config.header = vim.split(logo, "\n")
-			return opts
-		end,
+]],
+        -- stylua: ignore
+        ---@type snacks.dashboard.Item[]
+        keys = {
+          { icon = " ", key = "f", desc = "Find File", action = ":lua Snacks.dashboard.pick('files')" },
+          { icon = " ", key = "n", desc = "New File", action = ":ene | startinsert" },
+          { icon = " ", key = "g", desc = "Find Text", action = ":lua Snacks.dashboard.pick('live_grep')" },
+          { icon = " ", key = "r", desc = "Recent Files", action = ":lua Snacks.dashboard.pick('oldfiles')" },
+          { icon = " ", key = "c", desc = "Config", action = ":lua Snacks.dashboard.pick('files', {cwd = vim.fn.stdpath('config')})" },
+          { icon = " ", key = "s", desc = "Restore Session", section = "session" },
+          { icon = "󰒲 ", key = "l", desc = "Lazy", action = ":Lazy" },
+          { icon = " ", key = "q", desc = "Quit", action = ":qa" },
+        },
+				},
+			},
+		},
 	},
 }

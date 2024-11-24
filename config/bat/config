@@ -1,5 +1,5 @@
 # Nord is love, Nord is life
---theme="Nord"
+--theme="TwoDark"
 
 #  Use ".gitignore"-style highlighting for ".ignore" files
 --map-syntax ".ignore:Git Ignore"

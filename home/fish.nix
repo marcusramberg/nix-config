@@ -72,7 +72,7 @@ in
         set fish_cursor_replace_one underscore blink
         set fish_cursor_visual      block
         bind \eh 'fuck'
-        set fish_theme nord
+        set fish_theme tokyonight
         set -gx EDITOR nvim
         set -gx GOPRIVATE github.com/reMarkable
         # FIXME: Disable this for now as it breaks vi mode.

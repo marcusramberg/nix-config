@@ -9,11 +9,10 @@
     escapeTime = 0;
     keyMode = "vi";
     plugins = with pkgs.tmuxPlugins; [
-      nord
+      tokyo-night-tmux
       tmux-thumbs
       tmux-fzf
       tmux-thumbs
-      tmux-fzf
       tilish
     ];
     prefix = "`";
