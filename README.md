@@ -1,4 +1,4 @@
-# nix.means.no
+# marcsuramberg's nix flake
 
 ```ascii
        __
