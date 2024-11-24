@@ -1,20 +1,30 @@
 # nix.means.no
 
+```ascii
+       __
+,—————|__|——.——、 ,————————.—————.———.—.—————.—————、 ,—————.—————、
+|     |  |_   _|__|        |  —__|  _  |     |__ ——|__|     |  _  |
+|__|__|__|__.__|__|__|__|__|_____|___._|__|__|_____|__|__|__|_____|
+```
+
 ## Supports
 
 - My media center / home hub
 - VM running in Parallels
+- Mac Studio running NixOS
 - Mac laptop
 - NixOS on my desktop
 - NixOS based router
 - Various experiments
+- Steam deck
+- +++
 
-This configuration is heavily based around using flakes and home manager
+This configuration is based o nusing flakes, nix-darwin and home manager.
 
 I mostly interact with it on NixOS using
 [hei](https://github.com/marcusramberg/hei), my rewrite of
-[hlissner](https://github.com/hlissner/dotfiles)'s hey script. This
-config is also the inspiration for using agenix for secrets management.
+[hlissner](https://github.com/hlissner/dotfiles)'s hey script. His
+config is also the inspiration for using Agenix for secrets management.
 Other honorable mentions go to [Mitchell
 Hashimoto's nixos-config](https://github.com/mitchellh/nixos-config).
 from which I've also stolen a lot :)
