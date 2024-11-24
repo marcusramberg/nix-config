@@ -37,6 +37,7 @@ return {
 		},
 		-- change some options
 		opts = {
+			defaults = require("telescope.themes").get_ivy(),
 			file_ignore_patterns = { ".git/", "node_modules", "poetry.lock" },
 			vimgrep_arguments = {
 				"rg",
@@ -48,12 +49,6 @@ return {
 				"--column",
 				"--smart-case",
 				"--trim",
-			},
-			pickers = {
-				buffers = { theme = "ivy" },
-				find_files = { theme = "ivy" },
-				live_grep = { theme = "ivy" },
-				spell_suggest = { theme = "ivy" },
 			},
 			extensions = {
 				project = {

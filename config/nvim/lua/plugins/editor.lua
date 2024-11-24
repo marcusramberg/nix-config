@@ -24,11 +24,4 @@ return {
 			require("smartyank").setup({ osc52 = { silent = true } })
 		end,
 	},
-	{
-		"CopilotC-Nvim/CopilotChat.nvim",
-		opts = {
-			model = "claude-3.5-sonnet",
-		},
-	},
-	{},
 }
