@@ -27,7 +27,10 @@
 
   networking = {
     hostName = "mgate";
-    networkmanager.enable = true;
+    networkmanager = {
+      enable = true;
+      unmanaged = [ "wlan" ];
+    };
     firewall = {
       enable = lib.mkForce true;
       allowedTCPPorts = [ 443 ];
