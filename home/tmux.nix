@@ -9,7 +9,7 @@
     escapeTime = 0;
     keyMode = "vi";
     plugins = with pkgs.tmuxPlugins; [
-      tokyo-night-tmux
+      catppuccin
       tmux-thumbs
       tmux-fzf
       tmux-thumbs

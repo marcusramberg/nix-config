@@ -1,24 +1,24 @@
 {
   lib,
   pkgs,
-  osConfig,
+  # osConfig,
   ...
 }:
 let
   inherit (lib) mkIf;
   inherit (pkgs) stdenv;
-  isNixOS = lib.hasAttr "nixos" osConfig.system;
-  isDesktop = isNixOS && osConfig.services.xserver.enable;
+  # isNixOS = lib.hasAttr "nixos" osConfig.system;
+  # isDesktop = isNixOS && osConfig.services.xserver.enable;
 
 in
 {
-  gtk = mkIf isDesktop {
-    enable = true;
-    theme = {
-      name = "Nordic-darker";
-      package = pkgs.nordic;
-    };
-  };
+  # gtk = mkIf isDesktop {
+  #   enable = true;
+  #   theme = {
+  #     name = "Nordic-darker";
+  #     package = pkgs.nordic;
+  #   };
+  # };
   programs.i3status-rust = mkIf stdenv.isLinux {
     enable = true;
     bars = {

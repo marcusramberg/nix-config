@@ -60,7 +60,7 @@ config.window_padding = {
 }
 config.audible_bell = "Disabled"
 config.check_for_updates = false
-config.color_scheme = "nord"
+config.color_scheme = "Catppuccin Mocha"
 config.colors = {
 	tab_bar = {
 		background = "#16161e",

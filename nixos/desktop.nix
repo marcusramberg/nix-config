@@ -26,6 +26,18 @@ in
       with pkgs;
       [
         #bitwarden
+        catppuccin-gtk
+        catppuccin-kde
+        catppuccin-qt5ct
+        catppuccin-cursors
+        catppuccin-kvantum
+        (catppuccin-sddm.override {
+          flavor = "mocha";
+          font = "Noto Sans";
+          fontSize = "9";
+          # background = "${./wallpaper.png}";
+          # loginBackground = true;
+        })
         copyq
         element-desktop
         feh
@@ -38,7 +50,6 @@ in
         obsidian
         pavucontrol
         picom
-        nordic
         pantheon.sideload
         rofi
         telegram-desktop
@@ -47,6 +58,7 @@ in
         vivaldi
         volumeicon
         webcord-vencord
+        zafiro-icons
         xarchiver
         xclip
         xorg.xhost
@@ -82,7 +94,11 @@ in
 
       gnome.core-utilities.enable = false;
       libinput.enable = true;
-      displayManager.sddm.enable = true;
+      displayManager.sddm = {
+        enable = true;
+        theme = "catppuccin-mocha";
+      };
+      desktopManager.plasma6.enable = true;
       xserver = {
         enable = true;
         # displayManager.gdm.enable = true;
@@ -96,7 +112,6 @@ in
         };
         desktopManager = {
           gnome.enable = true;
-          plasma5.enable = true;
           xfce = {
             enable = true;
             noDesktop = true;
@@ -114,7 +129,6 @@ in
         defaultWindowManager = "startplasma-x11";
 
       };
-      xscreensaver.enable = true;
 
     };
     networking.firewall.allowedTCPPorts = [ 3389 ];

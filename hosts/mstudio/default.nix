@@ -34,6 +34,7 @@
     asahi-nvram
     asahi-btsync
     asahi-wifisync
+    box64
   ];
 
   hardware = {
@@ -60,12 +61,16 @@
     desktop.enable = true;
     hyprland.enable = true;
     k3s = {
-      enable = true;
+      enable = false;
       tailscale = {
         enable = true;
         ip = "100.91.252.114";
       };
     };
+  };
+  programs = {
+    streamcontroller.enable = true;
+    virt-manager.enable = true;
   };
 
   services = {
@@ -109,5 +114,10 @@
   #
   # For more information, see `man configuration.nix` or https://nixos.org/manual/nixos/stable/options#opt-system.stateVersion .
   system.stateVersion = "24.11"; # Did you read the comment?
+  virtualisation = {
+    incus.enable = true;
+    incus.ui.enable = true;
+    libvirtd.enable = true;
+  };
 
 }
