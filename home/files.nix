@@ -37,6 +37,7 @@ in
         source = ../config/tmuxinator;
         recursive = true;
       };
+      "/.config/fish/themes/Catppuccin Mocha.theme".source = ./catppuccin-mocha-fish-theme;
       ".doom.d" = {
         source = ../config/doom.d;
         recursive = true;
