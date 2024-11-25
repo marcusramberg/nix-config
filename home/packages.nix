@@ -19,7 +19,6 @@ in
     [
       actionlint
       asciinema
-      bat
       cargo
       cloudflared
       coreutils

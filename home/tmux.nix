@@ -12,7 +12,6 @@
       catppuccin
       tmux-thumbs
       tmux-fzf
-      tmux-thumbs
       tilish
     ];
     prefix = "`";
