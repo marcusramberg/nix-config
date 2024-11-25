@@ -26,6 +26,18 @@
         };
       };
     };
+    programs.btop = {
+      enable = true;
+
+      catppuccin = {
+        enable = true;
+        flavor = "mocha";
+      };
+
+      settings = {
+        theme_background = true; # make btop solid so we can overwrite the theme
+      };
+    };
     bottom.enable = true;
     direnv = {
       enable = true;
