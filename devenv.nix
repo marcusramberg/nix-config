@@ -1,4 +1,5 @@
-_: {
+{ pkgs, ... }:
+{
 
   cachix.pull = [
     "nix-community"
@@ -10,6 +11,9 @@ _: {
   languages.nix = {
     enable = true;
   };
+  packages = with pkgs; [
+    lolcat
+  ];
   # Structural diff
   difftastic.enable = true;
 
@@ -24,10 +28,7 @@ _: {
     yamllint.enable = true;
   };
   enterShell = ''
-    echo "       __"
-    echo ".-----|__.--.--.  .--------.-----.---.-.-----.-----.  .-----.-----."
-    echo "|     |  |_   _|__|        |  -__|  _  |     |__ --|__|     |  _  |"
-    echo "|__|__|__|__.__|__|__|__|__|_____|___._|__|__|_____|__|__|__|_____|"
+    head -n 7 README.md|tail -n4|lolcat
   '';
   enterTest = ''
     nix flake check
