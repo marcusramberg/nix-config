@@ -24,13 +24,9 @@ in
           mplus-outline-fonts.githubRelease
           noto-fonts
           proggyfonts
-          (nerdfonts.override {
-            fonts = [
-              "JetBrainsMono"
-              "Iosevka"
-              "Hack"
-            ];
-          })
+          nerd-fonts.jetbrains-mono
+          nerd-fonts.iosevka
+          nerd-fonts.hack
         ]
         ++ lib.optional stdenv.isLinux noto-fonts-emoji;
     };
