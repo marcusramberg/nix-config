@@ -17,7 +17,8 @@ jobs:
         run: echo '{ cachix.push = "marcusramberg"; }' > devenv.local.nix
         shell: sh
       - uses: actions/checkout@v4
-      - uses: cachix/install-nix-action@v30
+      - uses: DeterminateSystems/nix-installer-action@main
+      - uses: DeterminateSystems/magic-nix-cache-action@main
       - uses: cachix/cachix-action@v15
         with:
           extraPullNames: devenv
