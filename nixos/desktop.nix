@@ -125,7 +125,7 @@ in
         };
       };
       xrdp = {
-        enable = true;
+        enable = false;
         defaultWindowManager = "startplasma-x11";
 
       };
