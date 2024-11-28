@@ -11,6 +11,13 @@ in
 {
   options.profiles.k3s = {
     enable = mkEnableOption "Kubernetes node";
+    staticIP = {
+      enable = mkEnableOption "Enable static IP";
+      ip = mkOption {
+        type = types.str;
+        description = "tailscale ip";
+      };
+    };
     tailscale = {
       enable = mkEnableOption "Enable tailscale";
       ip = mkOption {
@@ -36,6 +43,9 @@ in
           "--node-external-ip=${cfg.tailscale.ip}"
           "--flannel-backend=wireguard-native"
           "--flannel-external-ip ${cfg.tailscale.ip}"
+        ]
+        ++ lib.optionals cfg.staticIP.enable [
+          "--tls-san=${cfg.staticIP.ip}"
         ];
     };
   };

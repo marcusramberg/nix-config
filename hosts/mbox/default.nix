@@ -108,9 +108,9 @@
     gaming.enable = true;
     k3s = {
       enable = true;
-      tailscale = {
+      staticIP = {
         enable = true;
-        ip = "100.119.66.34";
+        ip = "192.168.86.22";
       };
     };
     passthrough = {

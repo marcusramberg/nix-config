@@ -39,9 +39,9 @@
     hass.enable = true;
     prometheus-server.enable = true;
     k3s.enable = true;
-    tailscale = {
+    staticIP = {
       enable = true;
-      ip = "100.68.77.116";
+      ip = "192.168.86.20";
     };
   };
 
@@ -77,7 +77,7 @@
       adapter = "caddyfile";
     };
     k3s = {
-      serverAddr = "https://100.119.66.34:6443";
+      serverAddr = "https://192.168.86.22:6443";
     };
     printing.enable = true;
   };

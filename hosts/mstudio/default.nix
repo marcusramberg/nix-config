@@ -73,10 +73,10 @@
     desktop.enable = true;
     hyprland.enable = true;
     k3s = {
-      enable = false;
-      tailscale = {
+      enable = true;
+      staticIP = {
         enable = true;
-        ip = "100.91.252.114";
+        ip = "192.168.86.21";
       };
     };
   };
@@ -89,7 +89,7 @@
     blueman.enable = true;
     displayManager.sddm.enableHidpi = true;
     k3s = {
-      serverAddr = "https://100.119.66.34:6443";
+      serverAddr = "https://192.168.86.22:6443";
     };
     libinput.enable = true;
     ollama.enable = true;
