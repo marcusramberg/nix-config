@@ -37,6 +37,18 @@
     box64
   ];
 
+  fileSystems = {
+    "/space" = {
+      device = "mspace:/volume1/space";
+      fsType = "nfs4";
+      options = [
+        "nfsvers=4.1"
+        "soft"
+        "x-systemd.automount"
+      ];
+    };
+  };
+
   hardware = {
     keyboard.dual-caps.enable = true;
     asahi = {

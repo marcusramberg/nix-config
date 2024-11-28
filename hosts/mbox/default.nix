@@ -63,6 +63,7 @@
       options = [
         "nfsvers=4.1"
         "soft"
+        "x-systemd.automount"
       ];
     };
     # "/photo" = {
