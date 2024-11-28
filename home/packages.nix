@@ -70,7 +70,7 @@ in
       nodePackages.typescript
       nodePackages.node2nix
       nodejs
-      # ncdu
+      ncdu
       nnn
       neovim
       ollama
