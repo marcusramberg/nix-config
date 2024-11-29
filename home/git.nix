@@ -74,8 +74,8 @@
             changed = "green";
             untracked = "cyan";
           };
-          submodule.recurse = true;
         };
+        submodule.recurse = true;
         commit.gpgsign = true;
         gpg.format = "ssh";
         user.signingkey = "~/.ssh/id_rsa.pub";
