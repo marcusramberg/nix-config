@@ -127,7 +127,10 @@
     allowUnfree = true;
   };
 
-  nix.nixPath = [ "nixpkgs=/run/current-system/nixpkgs" ];
+  nix = {
+    nixPath = [ "nixpkgs=/run/current-system/nixpkgs" ];
+    distributedBuilds = true;
+  };
 
   security = {
     pam.loginLimits = [

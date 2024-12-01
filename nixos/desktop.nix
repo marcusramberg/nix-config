@@ -97,6 +97,7 @@ in
       displayManager.sddm = {
         enable = true;
         theme = "catppuccin-mocha";
+        settings.General.InputMethod = "";
       };
       desktopManager.plasma6.enable = true;
       xserver = {
