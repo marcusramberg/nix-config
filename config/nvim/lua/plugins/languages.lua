@@ -44,11 +44,6 @@ return {
 					directoryFilters = { "-.git", "-.vscode", "-.idea", "-.vscode-test", "-node_modules" },
 					semanticTokens = true,
 				},
-				helm_ls = {
-					yamlls = {
-						diagnosticsLimit = 0,
-					},
-				},
 				lua_ls = {
 					settings = {
 						Lua = {
