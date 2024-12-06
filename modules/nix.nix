@@ -6,7 +6,7 @@
       mode = "0440";
     };
     nix = {
-      # package = pkgs.nixVersions.unstable;
+      distributedBuilds = true;
       settings = {
         substituters = [
           #  "https://mbox.means.no"
