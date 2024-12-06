@@ -57,6 +57,7 @@ in
       inputs.hei.packages.${system}.default
       inputs.yaml2nix.packages.${system}.default
       jq
+      just
       kubectx
       lazygit
       luarocks
