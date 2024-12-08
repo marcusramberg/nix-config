@@ -22,10 +22,11 @@
     };
     extraModprobeConfig = ''
       options hid_apple iso_layout=1
+      options macsmc_hwmon melt_my_mac=1
     '';
     postBootCommands = ''
-      echo 1100 > /sys/class/hwmon/hwmon0/fan1_target
-      echo 1100 > /sys/class/hwmon/hwmon0/fan2_target
+      echo 1100 > /sys/class/hwmon/hwmon?/fan1_target
+      echo 1100 > /sys/class/hwmon/hwmon?/fan2_target
     '';
   };
 
@@ -56,7 +57,6 @@
       useExperimentalGPUDriver = true;
       experimentalGPUInstallMode = "replace";
       withRust = true;
-      enableFanControl = true;
     };
   };
 
@@ -89,7 +89,7 @@
     blueman.enable = true;
     displayManager.sddm.enableHidpi = true;
     k3s = {
-      serverAddr = "https://192.168.86.22:6443";
+      serverAddr = "https://192.168.86.1:6443";
     };
     libinput.enable = true;
     ollama.enable = true;

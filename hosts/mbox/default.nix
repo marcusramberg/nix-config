@@ -151,7 +151,10 @@
       configFile = ../../config/Caddyfile.mbox;
       adapter = "caddyfile";
     };
-    k3s.clusterInit = true;
+    k3s = {
+      clusterInit = true;
+      serverAddr = "https://192.168.86.22:6443";
+    };
     nomad = {
       enable = true;
       enableDocker = false;

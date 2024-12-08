@@ -77,7 +77,7 @@
       adapter = "caddyfile";
     };
     k3s = {
-      serverAddr = "https://192.168.86.22:6443";
+      serverAddr = "https://192.168.86.1:6443";
     };
     printing.enable = true;
   };
