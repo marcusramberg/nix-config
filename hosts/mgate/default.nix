@@ -75,6 +75,24 @@
       enable = true;
       openFirewall = false;
     };
+    haproxy = {
+      enable = true;
+      config = ''
+        frontend k3s-frontend
+          bind 192.168.86.1:6443
+          mode tcp
+          option tcplog
+          default_backend k3s-backend
+        backend k3s-backend
+          mode tcp
+          option tcp-check
+          balance roundrobin
+          default-server inter 10s downinter 5s
+          server mhub 192.168.86.20:6443 check
+          server mstudio 192.168.86.21:6443 check
+          server mbox 192.168.86.22:6443 check
+      '';
+    };
   };
   system.stateVersion = "23.05";
   systemd.network = {
