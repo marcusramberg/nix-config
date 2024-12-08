@@ -38,10 +38,12 @@
     mediaserver.enable = true;
     hass.enable = true;
     prometheus-server.enable = true;
-    k3s.enable = true;
-    staticIP = {
+    k3s = {
       enable = true;
-      ip = "192.168.86.20";
+      staticIP = {
+        enable = true;
+        ip = "192.168.86.20";
+      };
     };
   };
 
