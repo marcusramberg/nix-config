@@ -151,8 +151,10 @@
   # Always be sshing
   services.openssh.enable = true;
   nixpkgs.config.permittedInsecurePackages = [
-    "electron-25.9.0"
-    "jitsi-meet-1.0.8043"
+    "aspnetcore-runtime-6.0.36"
+    "aspnetcore-runtime-wrapped-6.0.36"
+    "dotnet-sdk-6.0.428"
+    "dotnet-sdk-wrapped-6.0.428"
   ];
   system.activationScripts.diff = {
     supportsDryActivation = true;
