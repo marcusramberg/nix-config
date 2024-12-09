@@ -38,6 +38,7 @@ in
         [
           "--disable traefik"
           "--write-kubeconfig-mode=644"
+
         ]
         ++ lib.optionals cfg.tailscale.enable [
           "--node-external-ip=${cfg.tailscale.ip}"
@@ -45,8 +46,19 @@ in
           "--flannel-external-ip ${cfg.tailscale.ip}"
         ]
         ++ lib.optionals cfg.staticIP.enable [
-          "--tls-san=${cfg.staticIP.ip}"
+          "--node-ip"
+          cfg.staticIP.ip
         ];
+
+    };
+    networking.firewall = {
+      allowedTCPPorts = [
+        2379
+        2380
+        6443
+      ];
+      allowedUDPPorts = [ 8472 ];
+      trustedInterfaces = [ "flannel.1" ];
     };
   };
 }
