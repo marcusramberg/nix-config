@@ -27,29 +27,32 @@
       # Enable swap on luks
       luks.devices."luks-0050060b-f9cb-4697-8934-aef2f5ad0e2a".device = "/dev/disk/by-uuid/0050060b-f9cb-4697-8934-aef2f5ad0e2a";
       luks.devices."luks-0050060b-f9cb-4697-8934-aef2f5ad0e2a".keyFile = "/crypto_keyfile.bin";
-      systemd = {
-        network.enable = true;
-        network.networks."10-wlan" = {
-          matchConfig.Name = "enp9s0";
-          networkConfig.DHCP = "yes";
-        };
-      };
+      # systemd = {
+      #   network.enable = true;
+      #   network.networks."10-wlan" = {
+      #     matchConfig.Name = "enp9s0";
+      #     networkConfig.DHCP = "yes";
+      #   };
+      # };
     };
 
-    kernelParams = [ "fbcon=map:1" ];
+    # kernelParams = [ "fbcon=map:1" ];
 
     # These modules are required for PCI passthrough, and must come before early modesetting stuff
     kernelModules = [
       "fbcon"
       "hid-apple"
     ];
+    kernel.sysctl = {
+
+      "fs.inotify.max_user_watches" = 2048576; # default: 8192
+      "fs.inotify.max_user_instances" = 1024; # default: 128
+      "fs.inotify.max_queued_events" = 32768; # default: 16384 };
+    };
     extraModprobeConfig = ''
       options hid_apple iso_layout=1
       options kvm_intel nested=1
     '';
-  };
-  environment.etc = {
-    "xrdp/sesman.ini".source = "${config.services.xrdp.confDir}/sesman.ini";
   };
   environment.systemPackages = with pkgs; [
     prusa-slicer
@@ -66,14 +69,6 @@
         "x-systemd.automount"
       ];
     };
-    # "/photo" = {
-    #   device = "mspace:/volume1/photo";
-    #   fsType = "nfs4";
-    #   options = [
-    #     "nfsvers=4.1"
-    #     "soft"
-    #   ];
-    # };
     "/home/marcus/org" = {
       device = "mspace:/volume1/homes/marcus/Drive/orgmode";
       fsType = "nfs4";
@@ -84,9 +79,28 @@
       ];
     };
   };
+
+  jovian = {
+    decky-loader = {
+      enable = true;
+      user = "marcus";
+    };
+    hardware.has.amd.gpu = true;
+    steamos = {
+      enableBluetoothConfig = true;
+      enableSysctlConfig = true;
+      enableVendorRadv = true;
+    };
+    steam = {
+      enable = true;
+      user = "marcus";
+      autoStart = true;
+      desktopSession = "plasma";
+    };
+  };
+
   networking = {
     extraHosts = ''
-      10.211.55.2 mbook
       0.0.0.0 vg.no www.vg.no
     '';
     hostName = "mbox";
@@ -101,9 +115,7 @@
 
   profiles = {
     autoupgrade.enable = true;
-    doom.enable = true;
-    nimdow.enable = true;
-    hyprland.enable = true;
+    desktop.enable = true;
     dockerHost.enable = true;
     gaming.enable = true;
     k3s = {
@@ -113,18 +125,6 @@
         ip = "192.168.86.22";
       };
     };
-    passthrough = {
-      enable = true;
-      hardware-ids = [
-        "8086:1901"
-        "10de:1f08"
-        "10de:10f9"
-        "10de:1ada"
-        "10de:1adb" # nvidia
-        "144d:a808" # NVME
-        "10ec:8168" # network adapter
-      ];
-    };
   };
 
   programs = {
@@ -132,11 +132,6 @@
       enable = true;
       user = "marcus";
     };
-  };
-
-  programs.streamdeck-ui = {
-    enable = false;
-    autoStart = true;
   };
 
   services = {
@@ -151,14 +146,7 @@
       configFile = ../../config/Caddyfile.mbox;
       adapter = "caddyfile";
     };
-    k3s = {
-      clusterInit = true;
-      serverAddr = "https://192.168.86.22:6443";
-    };
-    nomad = {
-      enable = true;
-      enableDocker = false;
-    };
+    displayManager.sddm.enable = lib.mkForce false;
     # grafana-kiosk.enable = true;
     immich = {
       enable = true;
@@ -167,6 +155,14 @@
       mediaLocation = "/space/immich";
       openFirewall = true;
       secretsFile = config.age.secrets.immich.path;
+    };
+    k3s = {
+      clusterInit = true;
+      serverAddr = "https://192.168.86.1:6443";
+    };
+    nomad = {
+      enable = false;
+      enableDocker = false;
     };
     nix-serve = {
       enable = true;
@@ -179,23 +175,6 @@
       # acceleration = "rocm";
     };
     tailscale.useRoutingFeatures = "server";
-
-    displayManager.defaultSession = lib.mkForce "xfce+i3";
-
-    # # Deckmaster
-    # udev.extraRules = ''
-    #   SUBSYSTEM=="usb", ATTRS{idVendor}=="0fd9", ATTRS{idProduct}=="0060", MODE:="666", GROUP="plugdev", SYMLINK+="streamdeck"
-    #   SUBSYSTEM=="usb", ATTRS{idVendor}=="0fd9", ATTRS{idProduct}=="006d", MODE:="666", GROUP="plugdev", SYMLINK+="streamdeck"
-    #   SUBSYSTEM=="usb", ATTRS{idVendor}=="0fd9", ATTRS{idProduct}=="0080", MODE:="666", GROUP="plugdev", SYMLINK+="streamdeck"
-    #   SUBSYSTEM=="usb", ATTRS{idVendor}=="0fd9", ATTRS{idProduct}=="0063", MODE:="666", GROUP="plugdev", SYMLINK+="streamdeck-mini"
-    #   SUBSYSTEM=="usb", ATTRS{idVendor}=="0fd9", ATTRS{idProduct}=="006c", MODE:="666", GROUP="plugdev", SYMLINK+="streamdeck-xl"
-    # '';
-    #
-    xrdp = {
-      enable = true;
-      audio.enable = true;
-      defaultWindowManager = lib.mkForce "${pkgs.i3}/bin/i3";
-    };
   };
   systemd.services.caddy.serviceConfig.AmbientCapabilities = "cap_net_bind_service";
   systemd.services.NetworkManager-wait-online = {

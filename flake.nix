@@ -113,6 +113,7 @@
             std
             ;
           system = "x86_64-linux";
+          extraModules = [ inputs.jovian.nixosModules.default ];
         };
         mtop = lib.mkNixHost "mtop" {
           inherit
