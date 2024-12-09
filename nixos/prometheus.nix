@@ -40,7 +40,7 @@ in
         };
       };
       exporters = {
-        node.enable = true;
+        # node.enable = true;
         systemd.enable = true;
         #      unifi.enable = true;
       };
