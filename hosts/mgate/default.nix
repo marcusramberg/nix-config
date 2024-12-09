@@ -3,13 +3,16 @@
   imports = [
     # Include the results of the hardware scan.
     ./hardware-configuration.nix
+    ./dhcp.nix
+    ./ddns.nix
+    ./dns.nix
   ];
 
   # Install static leases from agenix
-  age.secrets.leases = {
-    path = "/etc/systemd/network/lan.network.d/lan.network.conf";
-    mode = "644";
-  };
+  # age.secrets.leases = {
+  #   path = "/etc/systemd/network/lan.network.d/lan.network.conf";
+  #   mode = "644";
+  # };
   boot = {
     loader = {
       systemd-boot.enable = true;
@@ -200,7 +203,6 @@
         networkConfig = {
           ConfigureWithoutCarrier = "yes";
           MulticastDNS = "yes";
-          DHCPServer = true;
         };
         dhcpServerConfig = {
           DNS = "1.1.1.1";
