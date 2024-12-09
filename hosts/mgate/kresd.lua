@@ -25,7 +25,7 @@ end
 splitoff("lan", "127.0.0.1@5353")
 splitoff(".pig-crested.ts.net", "100.100.100.100")
 
-policy.add(policy.all(policy.STUB("10.11.0.1")))
+policy.add(policy.all(policy.STUB("1.1.1.1")))
 
 dnstap.config({
 	socket_path = "/run/splitbrain/dnstap",
