@@ -40,7 +40,7 @@ in
       gist
       gnumake
       gnugrep
-      go_1_22
+      go
       golangci-lint
       (google-cloud-sdk.withExtraComponents (
         with pkgs.google-cloud-sdk.components;
