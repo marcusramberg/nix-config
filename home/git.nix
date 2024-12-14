@@ -63,7 +63,6 @@
           excludesfile = "~/.gitignore_global";
         };
         color = {
-          init.defaultBranch = "main";
           branch = {
             current = "yellow reverse";
             local = "yellow";
@@ -75,18 +74,19 @@
             untracked = "cyan";
           };
         };
-        submodule.recurse = true;
         commit.gpgsign = true;
         gpg.format = "ssh";
+        init.defaultBranch = "main";
+        log.follow = true;
+        pull.rebase = true;
+        push.autoSetupRemote = true;
+        rebase.autoStash = true;
+        submodule.recurse = true;
         user.signingkey = "~/.ssh/id_rsa.pub";
         url = {
           "git@github.com:".insteadOf = "gh:";
           "git@github.com:reMarkable/cloud".insteadOf = "https://github.com/reMarkable/cloud";
         };
-        pull.rebase = true;
-        push.autoSetupRemote = true;
-        rebase.autoStash = true;
-        log.follow = true;
       };
       includes = [
         {
