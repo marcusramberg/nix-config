@@ -6,6 +6,7 @@
     agenix.inputs.nixpkgs.follows = "nixpkgs";
     apple-silicon-support = {
       url = "github:marcusramberg/nixos-apple-silicon/kernel_bump";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
     dagger.url = "github:dagger/nix";
     dagger.inputs.nixpkgs.follows = "nixpkgs";
