@@ -19,6 +19,7 @@ in
     [
       actionlint
       asciinema
+      bitwarden-cli
       cargo
       cloudflared
       coreutils
