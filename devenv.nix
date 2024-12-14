@@ -31,6 +31,6 @@
     head -n 7 README.md|tail -n4|lolcat
   '';
   enterTest = ''
-    nix flake check
+    nix flake info
   '';
 }
