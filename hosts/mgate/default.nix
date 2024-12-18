@@ -64,6 +64,8 @@
       ];
     };
   };
+  powerManagement.cpuFreqGovernor = "ondemand";
+
   services = {
     openssh.openFirewall = false;
     avahi = {
