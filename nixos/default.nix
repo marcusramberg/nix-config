@@ -34,6 +34,7 @@
     ./prometheus.nix
   ];
 
+  boot.loader.systemd-boot.configurationLimit = 5;
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment = {

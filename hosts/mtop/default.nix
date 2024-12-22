@@ -23,7 +23,7 @@
     bluetooth.enable = false;
     keyboard.dual-caps.enable = true;
     facetimehd.enable = true;
-    opengl.extraPackages = [ pkgs.vaapiIntel ];
+    graphics.extraPackages = [ pkgs.vaapiIntel ];
   };
   networking = {
     hostName = "mtop";

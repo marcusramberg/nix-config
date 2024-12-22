@@ -17,7 +17,6 @@
     binfmt.emulatedSystems = [ "x86_64-linux" ];
     loader = {
       systemd-boot.enable = true;
-      systemd-boot.configurationLimit = 10;
       efi.canTouchEfiVariables = false;
     };
     extraModprobeConfig = ''

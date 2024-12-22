@@ -57,6 +57,8 @@
 
   outputs =
     {
+      self,
+      deploy-rs,
       nixpkgs,
       flake-utils,
       hei,
@@ -123,33 +125,33 @@
           system = "x86_64-linux";
           extraModules = [ inputs.jovian.nixosModules.default ];
         };
-        mtop = lib.mkNixHost "mtop" {
-          inherit
-            overlays
-            nixpkgs
-            inputs
-            std
-            ;
-          system = "x86_64-linux";
-        };
-        mvirt = lib.mkNixHost "mvirt" {
-          inherit
-            overlays
-            nixpkgs
-            inputs
-            std
-            ;
-          system = "x86_64-linux";
-        };
-        mlab = lib.mkNixHost "mlab" {
-          inherit
-            overlays
-            nixpkgs
-            inputs
-            std
-            ;
-          system = "x86_64-linux";
-        };
+        # mtop = lib.mkNixHost "mtop" {
+        #   inherit
+        #     overlays
+        #     nixpkgs
+        #     inputs
+        #     std
+        #     ;
+        #   system = "x86_64-linux";
+        # };
+        # mvirt = lib.mkNixHost "mvirt" {
+        #   inherit
+        #     overlays
+        #     nixpkgs
+        #     inputs
+        #     std
+        #     ;
+        #   system = "x86_64-linux";
+        # };
+        # mlab = lib.mkNixHost "mlab" {
+        #   inherit
+        #     overlays
+        #     nixpkgs
+        #     inputs
+        #     std
+        #     ;
+        #   system = "x86_64-linux";
+        # };
         mdeck = lib.mkNixHost "mdeck" {
           inherit
             overlays
@@ -196,16 +198,19 @@
         mcloud = {
           hostname = "mcloud";
           sshUser = "marcus";
-          fastConnection = true;
+          user = "root";
+          fastConnection = false;
           profiles.system.path = aarch64-linux.activate.nixos inputs.self.nixosConfigurations.mcloud;
         };
         mhub = {
           hostname = "mhub";
           sshUser = "marcus";
+          user = "root";
           fastConnection = true;
           profiles.system.path = x86_64-linux.activate.nixos inputs.self.nixosConfigurations.mhub;
         };
       };
+      checks = builtins.mapAttrs (_: deployLib: deployLib.deployChecks self.deploy) deploy-rs.lib;
     }
     // flake-utils.lib.eachDefaultSystem (
       system:
@@ -224,21 +229,13 @@
           type = "app";
           program = "${hei.packages.${system}.hei}/bin/hei";
         };
-        packages = {
-          # mbrick-disk-image = inputs.self.nixosConfigurations.mbrick.config.mobile.outputs.default;
-          # mbrick-boot-partition = inputs.self.nixosConfigurations.mbrick.config.mobile.outputs.u-boot-partion.default;
-          homeConfigurations.marcus = lib.mkHMConfig { inherit inputs pkgs std; };
-          homeConfigurations.deck = lib.mkHMConfig {
-            inherit inputs pkgs std;
-            user = "deck";
-          };
-        };
-        devShell = pkgs.mkShell {
+        homeConfigurations.marcus = lib.mkHMConfig { inherit inputs pkgs std; };
+        devShells.default = pkgs.mkShell {
           buildInputs = with pkgs; [
             home-manager
             git
             neovim
-            inputs.deploy-rs.packages.x86_64-linux.deploy-rs
+            deploy-rs.packages.x86_64-linux.deploy-rs
           ];
           NIX_CONFIG = "experimental-features = nix-command flakes";
         };
