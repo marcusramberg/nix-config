@@ -25,14 +25,8 @@ in
         recursive = true;
       };
       ".config/nvim".source = config.lib.file.mkOutOfStoreSymlink "${flakePath}/config/nvim";
-      ".config/hypr" = {
-        source = ../config/hypr;
-        recursive = true;
-      };
-      ".config/waybar" = {
-        source = ../config/waybar;
-        recursive = true;
-      };
+      ".config/hypr".source = config.lib.file.mkOutOfStoreSymlink "${flakePath}/config/hypr";
+      ".config/waybar".source = config.lib.file.mkOutOfStoreSymlink "${flakePath}/config/waybar";
       ".config/tmuxinator" = {
         source = ../config/tmuxinator;
         recursive = true;
