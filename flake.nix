@@ -12,6 +12,13 @@
     dagger.inputs.nixpkgs.follows = "nixpkgs";
     darwin.url = "github:lnl7/nix-darwin/master";
     darwin.inputs.nixpkgs.follows = "nixpkgs";
+    deploy-rs = {
+      url = "github:serokell/deploy-rs";
+      inputs = {
+        nixpkgs.follows = "nixpkgs";
+        utils.follows = "flake-utils";
+      };
+    };
     devenv.url = "github:cachix/devenv";
     hei.url = "github:marcusramberg/hei";
     hei.inputs.nixpkgs.follows = "nixpkgs";
@@ -185,6 +192,20 @@
         inherit overlays inputs std;
         system = "aarch64-darwin";
       };
+      deploy.nodes = with inputs.deploy-rs.lib; {
+        mcloud = {
+          hostname = "mcloud";
+          sshUser = "marcus";
+          fastConnection = true;
+          profiles.system.path = aarch64-linux.activate.nixos inputs.self.nixosConfigurations.mcloud;
+        };
+        mhub = {
+          hostname = "mhub";
+          sshUser = "marcus";
+          fastConnection = true;
+          profiles.system.path = x86_64-linux.activate.nixos inputs.self.nixosConfigurations.mhub;
+        };
+      };
     }
     // flake-utils.lib.eachDefaultSystem (
       system:
@@ -217,6 +238,7 @@
             home-manager
             git
             neovim
+            inputs.deploy-rs.packages.x86_64-linux.deploy-rs
           ];
           NIX_CONFIG = "experimental-features = nix-command flakes";
         };

@@ -51,7 +51,8 @@ rec {
         [
           ../hosts/${name}
           ../nixos
-          inputs.nur.nixosModules.nur
+          ../cachix.nix
+          inputs.nur.modules.nixos.default
           inputs.home-manager.nixosModules.home-manager
           (mkOptions {
             inherit user;
