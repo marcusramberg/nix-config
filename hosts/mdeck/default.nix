@@ -24,11 +24,12 @@
   };
 
   environment.systemPackages = with pkgs; [
+    freecad-wayland
     galileo-mura
-    steamdeck-firmware
+    heroic
     jupiter-dock-updater-bin
     plex-media-player
-    heroic
+    steamdeck-firmware
   ];
 
   # Automount SD card.

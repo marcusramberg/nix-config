@@ -1,6 +1,6 @@
 {
   config,
-  # inputs,
+  inputs,
   pkgs,
   lib,
   ...
@@ -42,7 +42,7 @@ in
         element-desktop
         feh
         flameshot
-        # inputs.ghostty.packages.${pkgs.system}.default
+        inputs.ghostty.packages.${pkgs.system}.default
         gnomeExtensions.appindicator
         gnomeExtensions.paperwm
         gnomeExtensions.just-perfection
