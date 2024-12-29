@@ -80,7 +80,12 @@
       enable = true;
       enableSSHSupport = true;
     };
-    nix-ld.enable = true;
+    nix-ld = {
+      enable = true;
+      libraries = [
+        pkgs.pciutils
+      ];
+    };
     mtr.enable = true;
     neovim = {
       enable = true;

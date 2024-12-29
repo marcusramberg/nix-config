@@ -15,11 +15,17 @@
       enable = true;
       autoUpdate = true;
     };
+    decky-loader = {
+      enable = true;
+      user = "marcus";
+      package = pkgs.decky-loader-prerelease;
+    };
     steam = {
       enable = true;
       user = "marcus";
       autoStart = true;
       desktopSession = "gnome-xorg";
+      updater.splash = "jovian";
     };
   };
 
@@ -48,6 +54,8 @@
   hardware.keyboard.dual-caps.enable = true;
 
   profiles.desktop.enable = true;
+
+  powerManagement.cpuFreqGovernor = "schedutil";
 
   programs.steam = {
     enable = true;

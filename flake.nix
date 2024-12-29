@@ -19,7 +19,13 @@
         utils.follows = "flake-utils";
       };
     };
-    devenv.url = "github:cachix/devenv";
+    devenv = {
+      url = "github:cachix/devenv";
+      inputs = {
+        nixpkgs.follows = "nixpkgs";
+        cachix.inputs.nixpkgs.follows = "nixpkgs";
+      };
+    };
     hei.url = "github:marcusramberg/hei";
     hei.inputs.nixpkgs.follows = "nixpkgs";
     flake-utils.url = "github:numtide/flake-utils";
@@ -44,10 +50,10 @@
     nix-index-database.inputs.nixpkgs.follows = "nixpkgs";
     nix-std.url = "github:chessai/nix-std";
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable-small";
-    nixpkgs-staging.url = "github:marcusramberg/nixpkgs/test_no_rewrite";
+    # nixpkgs-staging.url = "github:marcusramberg/nixpkgs/test_no_rewrite";
     # Do we actually use nur?
     nur.url = "github:nix-community/NUR";
-    test.url = "github:marcusramberg/nixpkgs/tmux_redux";
+    # test.url = "github:marcusramberg/nixpkgs/tmux_redux";
     tfenv.flake = false;
     tfenv.url = "github:tfutils/tfenv";
     yaml2nix.url = "github:euank/yaml2nix";
