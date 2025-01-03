@@ -25,6 +25,13 @@ return {
 		config = true,
 	},
 
+	{
+		"folke/which-key.nvim",
+		opts = {
+			preset = "modern",
+		},
+	},
+
 	-- change some telescope options and a keymap to browse plugin files
 	{
 		"nvim-telescope/telescope.nvim",
