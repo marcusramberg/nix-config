@@ -19,7 +19,6 @@ in
     [
       actionlint
       asciinema
-      bitwarden-cli
       cargo
       cloudflared
       coreutils
@@ -73,6 +72,7 @@ in
       nodePackages.node2nix
       nodejs
       ncdu
+      nim2
       nnn
       neovim
       ollama
@@ -103,7 +103,7 @@ in
       m-cli # useful macOS CLI commands
     ]
     ++ lib.optionals stdenv.isLinux [
-      nim2
+      bitwarden-cli
       maim
       vscode
     ]
