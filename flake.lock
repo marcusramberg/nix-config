@@ -32,16 +32,15 @@
         "rust-overlay": "rust-overlay"
       },
       "locked": {
-        "lastModified": 1733064421,
-        "narHash": "sha256-P+KYBgA+G8t8hVxgBSZdXyoTWXzN7LcU2/n3sqx/hZ0=",
-        "owner": "marcusramberg",
+        "lastModified": 1735172763,
+        "narHash": "sha256-a6n8RsiAolz6p24Fsr/gTndx9xr9USpKqKK6kzBeXQc=",
+        "owner": "tpwrules",
         "repo": "nixos-apple-silicon",
-        "rev": "6e9ad2b0c7c1e6eea8354a44ebc8653d288a8c6a",
+        "rev": "3daf0637409689d7a1304cedc50d20542bc47905",
         "type": "github"
       },
       "original": {
-        "owner": "marcusramberg",
-        "ref": "kernel_bump",
+        "owner": "tpwrules",
         "repo": "nixos-apple-silicon",
         "type": "github"
       }
@@ -395,15 +394,15 @@
       "locked": {
         "lastModified": 1736092609,
         "narHash": "sha256-AyQh4Odsb2yVZb0nqoijs0vU3N3bBBEzwGi3pukObOo=",
-        "ref": "refs/heads/main",
+        "owner": "ghostty-org",
+        "repo": "ghostty",
         "rev": "f4a9b65f788ac437649fea95a905bc9e92c0e668",
-        "revCount": 8901,
-        "type": "git",
-        "url": "ssh://git@github.com/ghostty-org/ghostty"
+        "type": "github"
       },
       "original": {
-        "type": "git",
-        "url": "ssh://git@github.com/ghostty-org/ghostty"
+        "owner": "ghostty-org",
+        "repo": "ghostty",
+        "type": "github"
       }
     },
     "git-hooks": {

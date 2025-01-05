@@ -5,7 +5,8 @@
     agenix.url = "github:ryantm/agenix";
     agenix.inputs.nixpkgs.follows = "nixpkgs";
     apple-silicon-support = {
-      url = "github:marcusramberg/nixos-apple-silicon/kernel_bump";
+      #url = "github:marcusramberg/nixos-apple-silicon/kernel_bump";
+      url = "github:tpwrules/nixos-apple-silicon";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     dagger.url = "github:dagger/nix";
@@ -30,7 +31,7 @@
     hei.inputs.nixpkgs.follows = "nixpkgs";
     flake-utils.url = "github:numtide/flake-utils";
     ghostty = {
-      url = "git+ssh://git@github.com/ghostty-org/ghostty";
+      url = "github:ghostty-org/ghostty";
       inputs.nixpkgs-stable.follows = "nixpkgs";
       inputs.nixpkgs-unstable.follows = "nixpkgs";
     };
