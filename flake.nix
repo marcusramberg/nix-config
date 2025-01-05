@@ -50,10 +50,8 @@
     nix-index-database.inputs.nixpkgs.follows = "nixpkgs";
     nix-std.url = "github:chessai/nix-std";
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable-small";
-    # nixpkgs-staging.url = "github:marcusramberg/nixpkgs/test_no_rewrite";
     # Do we actually use nur?
     nur.url = "github:nix-community/NUR";
-    # test.url = "github:marcusramberg/nixpkgs/tmux_redux";
     tfenv.flake = false;
     tfenv.url = "github:tfutils/tfenv";
     yaml2nix.url = "github:euank/yaml2nix";
