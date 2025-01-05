@@ -26,6 +26,7 @@ in
       curlHTTP3
       deadnix
       delta
+      devenv
       dive
       # docker
       git
@@ -53,7 +54,6 @@ in
       gotestfmt
       grc
       inputs.dagger.packages.${system}.dagger
-      inputs.devenv.packages.${system}.devenv
       inputs.hei.packages.${system}.default
       inputs.yaml2nix.packages.${system}.default
       jq

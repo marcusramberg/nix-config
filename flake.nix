@@ -20,13 +20,13 @@
         utils.follows = "flake-utils";
       };
     };
-    devenv = {
-      url = "github:cachix/devenv";
-      inputs = {
-        nixpkgs.follows = "nixpkgs";
-        cachix.inputs.nixpkgs.follows = "nixpkgs";
-      };
-    };
+    # devenv = {
+    #   url = "github:cachix/devenv";
+    #   inputs = {
+    #     nixpkgs.follows = "nixpkgs";
+    #     cachix.inputs.nixpkgs.follows = "nixpkgs";
+    #   };
+    # };
     hei.url = "github:marcusramberg/hei";
     hei.inputs.nixpkgs.follows = "nixpkgs";
     flake-utils.url = "github:numtide/flake-utils";
