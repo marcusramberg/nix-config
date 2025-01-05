@@ -24,7 +24,7 @@
       enable = true;
       user = "marcus";
       autoStart = true;
-      desktopSession = "gnome-xorg";
+      desktopSession = "plasma";
       updater.splash = "jovian";
     };
   };
@@ -70,10 +70,10 @@
   networking.networkmanager.enable = true;
 
   services = {
+    displayManager.sddm.enable = lib.mkForce false;
     input-remapper.enable = true;
     xserver = {
       enable = true;
-      displayManager.sddm.enable = lib.mkForce false;
       displayManager.startx.enable = true;
       excludePackages = with pkgs; [ xterm ];
     };
