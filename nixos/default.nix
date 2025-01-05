@@ -41,21 +41,22 @@
     systemPackages = with pkgs; [
       cached-nix-shell
       caddy
-      gitFull
-      gcc
       file
+      gcc
+      ghostty.terminfo
+      gitFull
       inputs.agenix.packages."${pkgs.system}".default
       mosh
       netavark
       ntfs3g
       p7zip
       pciutils
-      perlPackages.Mojolicious
       perlPackages.EV
-      usbutils
+      perlPackages.Mojolicious
       unrar
-      wireguard-tools
+      usbutils
       wget
+      wireguard-tools
     ];
     variables = {
       # TERM = "xterm-256color";
