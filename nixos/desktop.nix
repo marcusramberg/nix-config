@@ -26,8 +26,24 @@ in
       with pkgs;
       [
         #bitwarden
-        catppuccin-gtk
-        catppuccin-kde
+        (catppuccin-gtk.override {
+          variant = "mocha";
+          accents = [
+            "blue"
+            "teal"
+            "lavender"
+          ];
+
+        })
+        (catppuccin-kde.override {
+          flavour = [ "mocha" ];
+          accents = [
+            "blue"
+            "teal"
+            "lavender"
+          ];
+
+        })
         catppuccin-qt5ct
         catppuccin-cursors
         catppuccin-kvantum
