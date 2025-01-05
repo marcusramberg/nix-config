@@ -86,6 +86,9 @@ in
         # Completion
         type -q kustomize; and eval (kustomize completion fish)
         type -q yq; and yq shell-completion fish | source
+        if test "$TERM" = "xterm-ghostty"
+          . ${pkgs.ghostty.shell_integration}/fish/vendor_conf.d/ghostty-shell-integration.fish
+        end
 
       ''
       + lib.optionalString isNixOS ''
