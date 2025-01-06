@@ -69,7 +69,6 @@
       lib = import ./lib;
       overlays = [
         (import ./overlays inputs)
-        (import ./overlays/caddy.nix inputs)
       ];
       std = nix-std.lib;
     in
