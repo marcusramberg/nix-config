@@ -86,13 +86,12 @@ in
         # Completion
         type -q kustomize; and eval (kustomize completion fish)
         type -q yq; and yq shell-completion fish | source
-        if test "$TERM" = "xterm-ghostty"
-          . ${pkgs.ghostty.shell_integration}/fish/vendor_conf.d/ghostty-shell-integration.fish
-        end
-
       ''
       + lib.optionalString isNixOS ''
         set -gx NIX_LD (nix eval --impure --raw --expr 'let pkgs = import <nixpkgs> {}; NIX_LD = pkgs.lib.fileContents "${pkgs.stdenv.cc}/nix-support/dynamic-linker"; in NIX_LD ')
+        if test "$TERM" = "xterm-ghostty"
+          . ${pkgs.ghostty.shell_integration}/fish/vendor_conf.d/ghostty-shell-integration.fish
+        end
       '';
     loginShellInit = ''
       gpgconf --launch gpg-agent
