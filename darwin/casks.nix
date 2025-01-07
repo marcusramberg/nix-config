@@ -81,7 +81,6 @@ _: {
       "UTM Virtual Machines" = 1538878817;
     };
     taps = [
-      "homebrew/cask-versions"
       "nikitabobko/tap"
     ];
   };

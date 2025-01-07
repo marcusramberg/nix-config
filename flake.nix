@@ -193,6 +193,10 @@
         inherit overlays inputs std;
         system = "aarch64-darwin";
       };
+      darwinConfigurations.mStudio = lib.mkDarwinHost {
+        inherit overlays inputs std;
+        system = "aarch64-darwin";
+      };
       deploy.nodes = with inputs.deploy-rs.lib; {
         mcloud = {
           hostname = "mcloud";
