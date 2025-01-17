@@ -5,9 +5,9 @@
     agenix.url = "github:ryantm/agenix";
     agenix.inputs.nixpkgs.follows = "nixpkgs";
     apple-silicon-support = {
-      #url = "github:marcusramberg/nixos-apple-silicon/kernel_bump";
-      url = "github:tpwrules/nixos-apple-silicon";
-      inputs.nixpkgs.follows = "nixpkgs";
+      # url = "github:zzywysm/nixos-asahi/supreme-asahi-6.12";
+      url = "github:oliverbestmann/nixos-apple-silicon";
+      # inputs.nixpkgs.follows = "nixpkgs";
     };
     dagger.url = "github:dagger/nix";
     dagger.inputs.nixpkgs.follows = "nixpkgs";
