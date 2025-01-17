@@ -5,12 +5,11 @@ name: "Test"
   pull_request:
   push:
 
-
 jobs:
   tests:
     strategy:
       matrix:
-        os: [ubuntu-latest, macos-latest]
+        os: [ubuntu-24.04, ubuntu-24.04-arm macos-latest]
     runs-on: ${{ matrix.os }}
     steps:
       - name: Setup push cache
