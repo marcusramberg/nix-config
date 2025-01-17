@@ -1,14 +1,14 @@
 {
   lib,
   pkgs,
-  # osConfig,
+  osConfig,
   ...
 }:
 let
   inherit (lib) mkIf;
   inherit (pkgs) stdenv;
-  # isNixOS = lib.hasAttr "nixos" osConfig.system;
-  # isDesktop = isNixOS && osConfig.services.xserver.enable;
+  isNixOS = lib.hasAttr "nixos" osConfig.system;
+  isDesktop = isNixOS && osConfig.services.xserver.enable;
 
 in
 {
@@ -19,7 +19,7 @@ in
   #     package = pkgs.nordic;
   #   };
   # };
-  programs.i3status-rust = mkIf stdenv.isLinux {
+  programs.i3status-rust = mkIf isDesktop {
     enable = true;
     bars = {
       status = {

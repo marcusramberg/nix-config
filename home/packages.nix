@@ -19,7 +19,6 @@ in
     [
       actionlint
       asciinema
-      cargo
       cloudflared
       coreutils
       nodePackages.cspell
@@ -69,7 +68,6 @@ in
       nix-output-monitor
       nix-your-shell
       nodePackages.typescript
-      nodePackages.node2nix
       nodejs
       ncdu
       nim2
@@ -105,7 +103,6 @@ in
     ++ lib.optionals stdenv.isLinux [
       bitwarden-cli
       maim
-      vscode
     ]
     ++ lib.optional (!hasK3s) kubectl
     ++ lib.optionals isNixOS [ wezterm ];
