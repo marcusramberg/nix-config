@@ -22,15 +22,19 @@ in
             - KEY: KEY_CAPSLOCK
               TAP: KEY_ESC
               HOLD: KEY_LEFTCTRL
+            - KEY: KEY_TAB
+              TAP: KEY_TAB
+              HOLD: [KEY_LEFTCTRL,KEY_LEFTMETA,KEY_LEFTALT,KEY_LEFTSHIFT]
+              HOLD_START: BEFORE_CONSUME
 
-            # # Swap LALT with LCTRL
+            # # Swap LALT with LMETA
             # - KEY: KEY_LEFTALT
-            #   TAP: KEY_LEFTCTRL
-            #   HOLD: KEY_LEFTCTRL
+            #   TAP: KEY_LEFTMETA
+            #   HOLD: KEY_LEFTMETA
             #   HOLD_START: BEFORE_CONSUME
-            #
-            # # Swap LCTRL with LALT
-            # - KEY: KEY_LEFTCTRL
+            # #
+            # # # Swap LMETA with LALT
+            # - KEY: KEY_LEFTMETA
             #   TAP: KEY_LEFTALT
             #   HOLD: KEY_LEFTALT
             #   HOLD_START: BEFORE_CONSUME
