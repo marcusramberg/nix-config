@@ -20,7 +20,11 @@
         "usb_storage"
         "sdhci_pci"
       ];
-      kernelModules = [ ];
+      kernelModules = [
+        "uas"
+        "usbhid"
+        "usb_storage"
+      ];
     };
     kernelModules = [ ];
     extraModulePackages = [ ];

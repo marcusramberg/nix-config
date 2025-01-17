@@ -82,7 +82,7 @@
     };
   };
   programs = {
-    streamcontroller.enable = true;
+    streamcontroller.enable = false;
     virt-manager.enable = true;
   };
 
