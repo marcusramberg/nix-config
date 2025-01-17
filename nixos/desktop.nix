@@ -101,7 +101,7 @@ in
 
     services = {
       dbus.packages = [ pkgs.dconf ];
-      displayManager.defaultSession = lib.mkForce "xfce+i3";
+      displayManager.defaultSession = lib.mkForce "plasma";
 
       flatpak.enable = true;
 
