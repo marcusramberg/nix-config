@@ -63,6 +63,18 @@ in
           "--privileged"
         ];
       };
+      zigbee2mqtt = {
+        # renovate: datasource=docker depName=koenkk/zigbee2mqtt
+        image = " ghcr.io/koenkk/zigbee2mqtt:2.0.0";
+        extraOptions = [
+          "--privileged"
+          "--network=host"
+        ];
+        volumes = [
+          "/var/lib/zigbee2mqtt:/app/data"
+        ];
+      };
+
       aircast = {
         image = "docker.io/1activegeek/airconnect:latest";
         extraOptions = [ "--net=host" ];
