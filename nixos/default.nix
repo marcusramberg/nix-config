@@ -162,6 +162,7 @@
     "aspnetcore-runtime-wrapped-6.0.36"
     "dotnet-sdk-6.0.428"
     "dotnet-sdk-wrapped-6.0.428"
+    "electron-31.7.7"
   ];
   system.activationScripts.diff = {
     supportsDryActivation = true;
