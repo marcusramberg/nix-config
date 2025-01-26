@@ -16,7 +16,7 @@ in
     age.secrets = {
       vaultwarden.owner = "vaultwarden";
       miniflux = {
-        group = "root";
+        group = "miniflux";
         owner = "miniflux";
       };
       transmission.owner = "transmission";
