@@ -219,6 +219,34 @@
           fastConnection = true;
           profiles.system.path = x86_64-linux.activate.nixos inputs.self.nixosConfigurations.mhub;
         };
+        mstudio = {
+          hostname = "mstudio";
+          sshUser = "marcus";
+          user = "root";
+          fastConnection = true;
+          profiles.system.path = x86_64-linux.activate.nixos inputs.self.nixosConfigurations.mstudio;
+        };
+        mgate = {
+          hostname = "mgate";
+          sshUser = "marcus";
+          user = "root";
+          fastConnection = true;
+          profiles.system.path = x86_64-linux.activate.nixos inputs.self.nixosConfigurations.mgate;
+        };
+        mbox = {
+          hostname = "mbox";
+          sshUser = "marcus";
+          user = "root";
+          fastConnection = true;
+          profiles.system.path = x86_64-linux.activate.nixos inputs.self.nixosConfigurations.mbox;
+        };
+        mhome = {
+          hostname = "mhome";
+          sshUser = "marcus";
+          user = "root";
+          fastConnection = true;
+          profiles.system.path = x86_64-linux.activate.nixos inputs.self.nixosConfigurations.mhome;
+        };
       };
       # checks = builtins.mapAttrs (_: deployLib: deployLib.deployChecks self.deploy) deploy-rs.lib;
     }
