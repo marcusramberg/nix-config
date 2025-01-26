@@ -19,6 +19,7 @@
         utils.follows = "flake-utils";
       };
     };
+    disko.url = "github:nix-community/disko";
     hei.url = "github:marcusramberg/hei";
     hei.inputs.nixpkgs.follows = "nixpkgs";
     flake-utils.url = "github:numtide/flake-utils";
@@ -42,6 +43,7 @@
     nur.url = "github:nix-community/NUR";
     tfenv.flake = false;
     tfenv.url = "github:tfutils/tfenv";
+    unattended-installer.url = "github:chrillefkr/nixos-unattended-installer";
     yaml2nix.url = "github:euank/yaml2nix";
     yaml2nix.inputs.nixpkgs.follows = "nixpkgs";
   };
@@ -74,6 +76,20 @@
             ;
           system = "x86_64-linux";
         };
+
+        mhome = lib.mkNixHost "mhome" {
+          inherit
+            overlays
+            nixpkgs
+            inputs
+            std
+            ;
+          extraModules = [ inputs.disko.nixosModules.disko ];
+          system = "x86_64-linux";
+        };
+        mhomeInstaller =
+          inputs.unattended-installer.lib.diskoInstallerWrapper self.nixosConfigurations.mhome
+            { };
         butterbee = lib.mkNixHost "butterbee" {
           inherit
             overlays
