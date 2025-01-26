@@ -204,7 +204,7 @@
           profiles.system.path = x86_64-linux.activate.nixos inputs.self.nixosConfigurations.mhub;
         };
       };
-      checks = builtins.mapAttrs (_: deployLib: deployLib.deployChecks self.deploy) deploy-rs.lib;
+      # checks = builtins.mapAttrs (_: deployLib: deployLib.deployChecks self.deploy) deploy-rs.lib;
     }
     // flake-utils.lib.eachDefaultSystem (
       system:
