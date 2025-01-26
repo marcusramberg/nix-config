@@ -34,7 +34,6 @@
       };
     };
 
-    bottom.enable = true;
     direnv = {
       enable = true;
       nix-direnv.enable = true;
@@ -43,16 +42,12 @@
       enable = true;
       tmux.enableShellIntegration = true;
     };
-    helix = {
-      enable = true;
-    };
     home-manager.enable = true;
     htop = {
       enable = true;
       settings.show_program_path = true;
     };
     keychain.enable = true;
-    # navi.enable = true;
     nix-index.enable = true;
     nix-index-database.comma.enable = true;
     neovim = {
