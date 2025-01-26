@@ -24,7 +24,6 @@ in
     environment.systemPackages =
       with pkgs;
       [
-        #bitwarden
         (catppuccin-gtk.override {
           variant = "mocha";
           accents = [
@@ -57,27 +56,28 @@ in
         element-desktop
         feh
         flameshot
+        floorp
         ghostty
         gnomeExtensions.appindicator
-        gnomeExtensions.paperwm
         gnomeExtensions.just-perfection
+        gnomeExtensions.paperwm
         nitrogen
         obsidian
+        pantheon.sideload
         pavucontrol
         picom
-        pantheon.sideload
         rofi
-        telegram-desktop
-        floorp
+        signal-desktop
         tauon
+        telegram-desktop
         vivaldi
         volumeicon
         webcord-vencord
-        zafiro-icons
         xarchiver
         xclip
         xorg.xhost
         ytmdesktop
+        zafiro-icons
       ]
       ++ lib.optionals (system == "x86_64-linux") [
         vivaldi-ffmpeg-codecs

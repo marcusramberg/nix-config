@@ -19,13 +19,6 @@
         utils.follows = "flake-utils";
       };
     };
-    # devenv = {
-    #   url = "github:cachix/devenv";
-    #   inputs = {
-    #     nixpkgs.follows = "nixpkgs";
-    #     cachix.inputs.nixpkgs.follows = "nixpkgs";
-    #   };
-    # };
     hei.url = "github:marcusramberg/hei";
     hei.inputs.nixpkgs.follows = "nixpkgs";
     flake-utils.url = "github:numtide/flake-utils";
@@ -51,7 +44,6 @@
     tfenv.url = "github:tfutils/tfenv";
     yaml2nix.url = "github:euank/yaml2nix";
     yaml2nix.inputs.nixpkgs.follows = "nixpkgs";
-
   };
 
   outputs =

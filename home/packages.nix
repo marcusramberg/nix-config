@@ -22,6 +22,7 @@ in
       cloudflared
       coreutils
       nodePackages.cspell
+      caligula
       curlHTTP3
       deadnix
       delta
