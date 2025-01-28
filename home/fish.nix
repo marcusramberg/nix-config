@@ -111,6 +111,10 @@ in
         inherit (pkgs.fishPlugins.pure) src;
       }
       {
+        name = "bass";
+        inherit (pkgs.fishPlugins.bass) src;
+      }
+      {
         name = "gcloud-completions";
         src = pkgs.fetchFromGitHub {
           owner = "lgathy";
