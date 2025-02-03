@@ -36,7 +36,10 @@
     };
     firewall = {
       enable = lib.mkForce true;
-      allowedTCPPorts = [ 443 ];
+      allowedTCPPorts = [
+        443
+        32400
+      ];
       trustedInterfaces = [
         "tailscale0"
         "lan"
@@ -60,6 +63,11 @@
           sourcePort = 443;
           proto = "tcp";
           destination = "192.168.86.20:18443";
+        }
+        {
+          sourcePort = 32400;
+          proto = "tcp";
+          destination = "192.168.86.20:32400";
         }
       ];
     };
@@ -205,11 +213,6 @@
         networkConfig = {
           ConfigureWithoutCarrier = "yes";
           MulticastDNS = "yes";
-        };
-        dhcpServerConfig = {
-          DNS = "1.1.1.1";
-          PoolOffset = 20;
-          PoolSize = 200;
         };
         address = [ "192.168.86.1/24" ];
       };
