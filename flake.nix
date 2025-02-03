@@ -270,10 +270,10 @@
         homeConfigurations.marcus = lib.mkHMConfig { inherit inputs pkgs std; };
         devShells.default = pkgs.mkShell {
           buildInputs = with pkgs; [
-            home-manager
+            pkgs.deploy-rs
             git
+            home-manager
             neovim
-            deploy-rs.packages.x86_64-linux.deploy-rs
           ];
           NIX_CONFIG = "experimental-features = nix-command flakes";
         };
