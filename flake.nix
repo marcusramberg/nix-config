@@ -219,13 +219,13 @@
           fastConnection = true;
           profiles.system.path = x86_64-linux.activate.nixos inputs.self.nixosConfigurations.mhub;
         };
-        mstudio = {
-          hostname = "mstudio";
-          sshUser = "marcus";
-          user = "root";
-          fastConnection = true;
-          profiles.system.path = x86_64-linux.activate.nixos inputs.self.nixosConfigurations.mstudio;
-        };
+        # mstudio = {
+        #   hostname = "mstudio";
+        #   sshUser = "marcus";
+        #   user = "root";
+        #   fastConnection = true;
+        #   profiles.system.path = x86_64-linux.activate.nixos inputs.self.nixosConfigurations.mstudio;
+        # };
         mgate = {
           hostname = "mgate";
           sshUser = "marcus";
@@ -267,7 +267,7 @@
           type = "app";
           program = "${hei.packages.${system}.hei}/bin/hei";
         };
-        packages.homeConfigurations.marcus = lib.mkHMConfig { inherit inputs pkgs std; };
+        homeConfigurations.marcus = lib.mkHMConfig { inherit inputs pkgs std; };
         devShells.default = pkgs.mkShell {
           buildInputs = with pkgs; [
             home-manager
