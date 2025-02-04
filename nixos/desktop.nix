@@ -76,6 +76,7 @@ in
         xarchiver
         xclip
         xorg.xhost
+        waypipe
         ytmdesktop
         zafiro-icons
       ]
