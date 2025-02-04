@@ -19,6 +19,7 @@
         utils.follows = "flake-utils";
       };
     };
+    devenv.url = "github:cachix/devenv";
     disko.url = "github:nix-community/disko";
     hei.url = "github:marcusramberg/hei";
     hei.inputs.nixpkgs.follows = "nixpkgs";
@@ -52,6 +53,7 @@
     {
       self,
       deploy-rs,
+      devenv,
       nixpkgs,
       flake-utils,
       hei,
@@ -268,14 +270,54 @@
           program = "${hei.packages.${system}.hei}/bin/hei";
         };
         homeConfigurations.marcus = lib.mkHMConfig { inherit inputs pkgs std; };
-        devShells.default = pkgs.mkShell {
-          buildInputs = with pkgs; [
-            pkgs.deploy-rs
-            git
-            home-manager
-            neovim
+        packages.devenv-up = self.devShells.${system}.default.config.procfileScript;
+        packages.devenv-test = self.devShells.${system}.default.config.test;
+        devShells.default = devenv.lib.mkShell {
+          inherit inputs pkgs;
+          modules = [
+            (
+              { pkgs, ... }:
+              {
+
+                name = "nix-config";
+                cachix.pull = [
+                  "nix-community"
+                  "marcusramberg"
+                ];
+                env.NIX_CONFIG = "experimental-features = nix-command flakes";
+                languages.lua = {
+                  enable = true;
+                };
+                languages.nix = {
+                  enable = true;
+                };
+                packages = with pkgs; [
+                  pkgs.deploy-rs
+                  git
+                  lolcat
+                  neovim
+                  home-manager
+                  neovim
+                ];
+                pre-commit.hooks = {
+                  commitizen.enable = true;
+                  deadnix.enable = true;
+                  # luacheck.enable = true;
+                  markdownlint.enable = true;
+                  nixfmt-rfc-style.enable = true;
+                  statix.enable = true;
+                  stylua.enable = true;
+                  yamllint.enable = true;
+                };
+                enterShell = ''
+                  head -n 7 README.md|tail -n4|lolcat
+                '';
+                enterTest = ''
+                  nix flake info
+                '';
+              }
+            )
           ];
-          NIX_CONFIG = "experimental-features = nix-command flakes";
         };
       }
     );

@@ -25,7 +25,8 @@
         "/crypto_keyfile.bin" = null;
       };
       # Enable swap on luks
-      luks.devices."luks-0050060b-f9cb-4697-8934-aef2f5ad0e2a".device = "/dev/disk/by-uuid/0050060b-f9cb-4697-8934-aef2f5ad0e2a";
+      luks.devices."luks-0050060b-f9cb-4697-8934-aef2f5ad0e2a".device =
+        "/dev/disk/by-uuid/0050060b-f9cb-4697-8934-aef2f5ad0e2a";
       luks.devices."luks-0050060b-f9cb-4697-8934-aef2f5ad0e2a".keyFile = "/crypto_keyfile.bin";
       # systemd = {
       #   network.enable = true;
