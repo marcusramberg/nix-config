@@ -21,7 +21,7 @@
   };
 
   fileSystems."/space" = {
-    device = "mspace:/volume1/space";
+    device = "mspace.lan:/volume1/space";
     fsType = "nfs4";
     options = [
       "nfsvers=4.1"
