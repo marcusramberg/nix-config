@@ -109,7 +109,6 @@
   };
 
   hardware = {
-    i2c.enable = true;
     gpu.amd.enable = true;
     bluetooth.enable = true;
     keyboard.dual-caps.enable = true;
@@ -126,6 +125,13 @@
         enable = true;
         ip = "192.168.86.22";
       };
+    };
+  };
+
+  programs = {
+    custom.ddcutil = {
+      enable = true;
+      user = "marcus";
     };
   };
 
