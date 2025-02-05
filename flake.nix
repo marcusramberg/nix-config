@@ -293,6 +293,7 @@
                 };
                 packages = with pkgs; [
                   pkgs.deploy-rs
+                  pkgs.devenv
                   git
                   lolcat
                   neovim
