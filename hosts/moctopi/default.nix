@@ -9,11 +9,13 @@ _: {
   boot.loader.efi.canTouchEfiVariables = true;
 
   hardware.enableAllFirmware = true;
-  hardware.pulseaudio.enable = false;
 
   profiles.nimdow.enable = true;
 
-  services.pipewire.audio.enable = true;
+  services = {
+    pipewire.audio.enable = true;
+    pulseaudio.enable = false;
+  };
 
   virtualisation.podman.enable = true;
   virtualisation.podman.dockerCompat = true;

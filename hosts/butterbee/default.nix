@@ -11,7 +11,6 @@
   boot.loader.efi.canTouchEfiVariables = true;
 
   hardware.enableAllFirmware = true;
-  hardware.pulseaudio.enable = false;
 
   profiles = {
     desktop.enable = true;
@@ -22,6 +21,7 @@
   services = {
     displayManager.sddm.enableHidpi = true;
     cloudflare-warp.enable = true;
+    pulseaudio.enable = false;
     xserver.dpi = 140;
   };
   systemd.packages = [ pkgs.cloudflare-warp ];
