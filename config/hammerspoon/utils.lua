@@ -25,10 +25,10 @@ hs.hotkey.bind(hyper, "u", function()
 	end
 end)
 
--- This is a function that fetches the current URL from Safari and types it
+-- This is a function that fetches the current URL from Browser and types it
 hs.hotkey.bind(hyper, "v", function()
 	local script = [[
-    tell application "Firefox Developer Edition"
+    tell application "Zen Browser"
         set currentURL to get URL of active tab of first window
     end tell
     return currentURL

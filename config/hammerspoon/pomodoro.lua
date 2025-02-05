@@ -135,17 +135,17 @@ end
 -- pom_create_menu()
 -- pom_update_menu()
 
-hs.hotkey.bind({ "cmd", "alt", "shift" }, "0", function()
+hs.hotkey.bind({ "alt", "shift" }, "0", function()
 	pom_disable()
 end)
-hs.hotkey.bind({ "cmd", "alt", "shift" }, "9", function()
+hs.hotkey.bind({ "alt", "shift" }, "9", function()
 	pom_enable()
 end)
-hs.hotkey.bind({ "cmd", "alt", "shift" }, "8", function()
+hs.hotkey.bind({ "alt", "shift" }, "8", function()
 	pom_time_left = pom_15min_period_sec
 	pom_enable()
 end)
-hs.hotkey.bind({ "cmd", "alt", "shift" }, "7", function()
+hs.hotkey.bind({ "alt", "shift" }, "7", function()
 	pom_time_left = pom_time_left - 60
 end)
 

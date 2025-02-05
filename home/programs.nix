@@ -66,6 +66,9 @@
     ssh = {
       enable = true;
       controlMaster = "auto";
+      addKeysToAgent = "yes";
+      forwardAgent = true;
+      matchBlocks."10.8.20.128".forwardX11 = true;
     };
     # Smarter z
     zoxide.enable = true;
