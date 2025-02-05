@@ -21,4 +21,4 @@ jobs:
         with:
           name: marcusramberg
           authToken: ${{ secrets.CACHIX_AUTH_TOKEN }}
-      - run: nix develop --quiet --impure --command "devenv test"
+      - run: nix develop --quiet --impure --command bash -c "devenv test"
