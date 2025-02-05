@@ -156,7 +156,6 @@
     immich = {
       enable = true;
       host = "0.0.0.0";
-      port = 8080;
       mediaLocation = "/space/immich";
       openFirewall = true;
       secretsFile = config.age.secrets.immich.path;
