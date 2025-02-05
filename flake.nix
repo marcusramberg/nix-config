@@ -205,6 +205,7 @@
       darwinConfigurations.mStudio = lib.mkDarwinHost {
         inherit overlays inputs std;
         system = "aarch64-darwin";
+        remoteBuild = true;
       };
       deploy.nodes = with inputs.deploy-rs.lib; {
         mcloud = {
@@ -213,6 +214,7 @@
           user = "root";
           fastConnection = false;
           profiles.system.path = aarch64-linux.activate.nixos inputs.self.nixosConfigurations.mcloud;
+          remoteBuild = true;
         };
         mhub = {
           hostname = "mhub";
