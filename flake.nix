@@ -198,11 +198,11 @@
         # };
       };
 
-      darwinConfigurations.mwork = lib.mkDarwinHost {
+      darwinConfigurations.mwork = lib.mkDarwinHost "mwork" {
         inherit overlays inputs std;
         system = "aarch64-darwin";
       };
-      darwinConfigurations.mStudio = lib.mkDarwinHost {
+      darwinConfigurations.mStudio = lib.mkDarwinHost "mstudio" {
         inherit overlays inputs std;
         system = "aarch64-darwin";
         remoteBuild = true;

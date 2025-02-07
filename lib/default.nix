@@ -1,5 +1,6 @@
 rec {
   mkDarwinHost =
+    name:
     {
       inputs,
       system,
@@ -15,6 +16,7 @@ rec {
       };
       modules = [
         # Main `nix-darwin` config
+        ../hosts/${name}
         ../darwin
         # `home-manager` module
         inputs.home-manager.darwinModules.home-manager
