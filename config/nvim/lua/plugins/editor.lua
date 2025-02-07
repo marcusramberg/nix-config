@@ -18,6 +18,7 @@ return {
   -- Simplify the macro syntax
   { "chrisgrieser/nvim-recorder", config = true },
   { "metakirby5/codi.vim" },
+  { "Pocco81/auto-save.nvim" },
   {
     "ibhagwan/smartyank.nvim",
     config = function()
