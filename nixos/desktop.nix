@@ -67,6 +67,7 @@ in
         pavucontrol
         picom
         rofi
+        showmethekey
         signal-desktop
         tauon
         telegram-desktop
