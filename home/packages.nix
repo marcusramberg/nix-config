@@ -94,7 +94,7 @@ in
       m-cli # useful macOS CLI commands
     ]
     ++ lib.optionals stdenv.isLinux [
-      bitwarden-cli
+      # bitwarden-cli
       maim
     ]
     ++ lib.optional (!hasK3s) kubectl

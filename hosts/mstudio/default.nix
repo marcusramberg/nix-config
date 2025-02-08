@@ -82,7 +82,12 @@
     };
   };
   programs = {
-    streamcontroller.enable = false;
+    obs-studio = {
+      enable = true;
+      enableVirtualCamera = true;
+
+    };
+    streamcontroller.enable = true;
     virt-manager.enable = true;
   };
 
