@@ -30,7 +30,7 @@ in
       oci-containers.containers = {
         lemmy-server = {
           # ports = [ "8536:8536" ];
-          image = "dessalines/lemmy:0.19.6";
+          image = "dessalines/lemmy:0.19.9";
           extraOptions = [ "--network=host" ];
           environment = {
             RUST_LOG = "warn";
