@@ -49,7 +49,7 @@ in
           volumes = [ "/space/pictrs:/mnt" ];
         };
         lemmy-ui = {
-          image = "dessalines/lemmy-ui:0.18.1";
+          image = "dessalines/lemmy-ui:0.19.9";
           extraOptions = [ "--network=host" ];
           # ports = [ "1236:1236" ];
           environment = {
