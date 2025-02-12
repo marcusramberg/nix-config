@@ -22,7 +22,6 @@
   programs.fish.enable = true;
 
   # Auto upgrade nix package and the daemon service.
-  services.nix-daemon.enable = true;
   services.tailscale.enable = true;
 
   nix.settings.auto-optimise-store = false;
@@ -51,7 +50,6 @@
     # extraOptions = "" + lib.optionalString (pkgs.system == "aarch64-darwin") ''
     #   extra-platforms = x86_64-darwin aarch64-darwin
     # '';
-    configureBuildUsers = true;
     nixPath = [ "nixpkgs=/run/current-system/sw/nixpkgs" ];
   };
   # Add ability to used TouchID for sudo authentication

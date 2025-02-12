@@ -11,9 +11,7 @@ _: {
       "alt-tab"
       "android-platform-tools"
       "androidtool"
-      "aerospace"
       "arc"
-      "balenaetcher"
       "barrier"
       "basictex"
       "calibre"
@@ -32,15 +30,12 @@ _: {
       "inkscape"
       "iterm2"
       "karabiner-elements"
-      "lens"
       "macfuse"
       "microsoft-remote-desktop"
       "morpheus"
       "netnewswire"
       "nordpass"
-      "notion-enhanced"
       "obs"
-      #      "obs-ndi"
       "obs-websocket"
       "obsidian"
       "parallels"
@@ -54,7 +49,6 @@ _: {
       "qlstephen"
       "quicklook-csv"
       "quicklook-json"
-      "raycast"
       "sf-symbols"
       "signal"
       "slack"
@@ -79,8 +73,5 @@ _: {
       "ReadKit" = 1615798039;
       "UTM Virtual Machines" = 1538878817;
     };
-    taps = [
-      "nikitabobko/tap"
-    ];
   };
 }
