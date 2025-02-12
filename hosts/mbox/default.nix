@@ -119,6 +119,10 @@
     desktop.enable = true;
     dockerHost.enable = true;
     gaming.enable = true;
+    caddy = {
+      enable = true;
+      configFile = ../../config/Caddyfile.mbox;
+    };
     k3s = {
       enable = true;
       staticIP = {
@@ -141,16 +145,6 @@
       retention.size = 10000000;
     };
     blueman.enable = true;
-    caddy = {
-      enable = true;
-      package = pkgs.caddy.withPlugins {
-        plugins = [ "github.com/caddy-dns/cloudflare@v0.0.0-20240703190432-89f16b99c18e" ];
-        hash = "sha256-jCcSzenewQiW897GFHF9WAcVkGaS/oUu63crJu7AyyQ=";
-
-      };
-      configFile = ../../config/Caddyfile.mbox;
-      adapter = "caddyfile";
-    };
     displayManager.sddm.enable = lib.mkForce false;
     # grafana-kiosk.enable = true;
     immich = {

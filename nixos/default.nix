@@ -12,6 +12,7 @@
   imports = [
     ../modules/agenix.nix
     ../modules/autoupgrade.nix
+    ../modules/caddy.nix
     ../modules/nix.nix
     ../modules/fonts.nix
     ./amd.nix

@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ config, ... }:
 {
   imports = [
     # Include the results of the hardware scan.
@@ -40,6 +40,10 @@
     mediaserver.enable = true;
     hass.enable = true;
     prometheus-server.enable = true;
+    caddy = {
+      enable = true;
+      configFile = ../../config/Caddyfile.mhub;
+    };
     k3s = {
       enable = true;
       staticIP = {
@@ -73,15 +77,6 @@
         compression = "auto,lzma";
         startAt = "weekly";
       };
-    };
-    caddy = {
-      enable = true;
-      package = pkgs.caddy.withPlugins {
-        plugins = [ "github.com/caddy-dns/cloudflare@v0.0.0-20240703190432-89f16b99c18e" ];
-        hash = "sha256-jCcSzenewQiW897GFHF9WAcVkGaS/oUu63crJu7AyyQ=";
-      };
-      configFile = ../../config/Caddyfile.mhub;
-      adapter = "caddyfile";
     };
     k3s = {
       serverAddr = "https://192.168.86.1:6443";
