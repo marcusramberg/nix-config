@@ -40,8 +40,6 @@
     nix-index-database.inputs.nixpkgs.follows = "nixpkgs";
     nix-std.url = "github:chessai/nix-std";
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
-    # Do we actually use nur?
-    nur.url = "github:nix-community/NUR";
     tfenv.flake = false;
     tfenv.url = "github:tfutils/tfenv";
     unattended-installer.url = "github:chrillefkr/nixos-unattended-installer";
