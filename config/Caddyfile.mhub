@@ -176,38 +176,6 @@ dev.posta.no:18443 {
 	reverse_proxy http://localhost:5173
 }
 
-posta.no:18443 {
-	import caddy-common
-	reverse_proxy http://localhost:1234
-
-	@lemmy {
-		path /api/*
-		path /pictrs/*
-		path /feeds/*
-		path /nodeinfo/*
-		path /.well-known/*
-	}
-
-	@lemmy-hdr {
-		header Accept application/*
-	}
-
-	handle @lemmy {
-		reverse_proxy http://localhost:8536
-	}
-
-	handle @lemmy-hdr {
-		reverse_proxy http://localhost:8536
-	}
-
-	@lemmy-post {
-		method POST
-	}
-	handle @lemmy-post {
-		reverse_proxy http://localhost:8536
-	}
-}
-
 www.tabdog.net:18443 {
 	import caddy-common
 	redir https://tabdog.net/ permanent

@@ -27,7 +27,6 @@
     ./k3s.nix
     ./keyboardmap.nix
     ./laptop.nix
-    ./lemmy.nix
     ./mediaserver.nix
     ./nimdow.nix
     ./nvidia.nix

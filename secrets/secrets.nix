@@ -9,7 +9,6 @@ in
   "immich.age".publicKeys = [ marcus ];
   "k3s-token.age".publicKeys = [ marcus ];
   "leases.age".publicKeys = [ marcus ];
-  "lemmy.age".publicKeys = [ marcus ];
   "miniflux.age".publicKeys = [ marcus ];
   "mosquittoPass.age".publicKeys = [ marcus ];
   "nixAccessTokens.age".publicKeys = [ marcus ];
