@@ -47,6 +47,7 @@ in
         volumes = [
           "/var/lib/homeassistant:/config"
           "/dev:/dev"
+          "/dev/null:/.dockerenv"
           "/run/udev:/run/udev"
         ];
       };
