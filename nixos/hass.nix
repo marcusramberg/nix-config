@@ -24,7 +24,10 @@ in
             omitPasswordAuth = false;
             users = {
               hass = {
-                acl = [ "readwrite homeassistant/#" ];
+                acl = [
+                  "readwrite homeassistant/#"
+                  "readwrite zigbee2mqtt/#"
+                ];
                 passwordFile = config.age.secrets.mosquittoPass.path;
               };
             };
