@@ -22,6 +22,7 @@
     displayManager.sddm.enableHidpi = true;
     cloudflare-warp.enable = true;
     pulseaudio.enable = false;
+    resolved.enable = true;
     xserver.dpi = 140;
   };
   systemd.packages = [ pkgs.cloudflare-warp ];

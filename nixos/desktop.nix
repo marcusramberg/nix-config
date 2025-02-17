@@ -17,7 +17,8 @@ in
       initrd.systemd.enable = true; # This is needed to show the plymouth login screen to unlock luks
       plymouth = {
         enable = true;
-        theme = "breeze";
+        theme = "catppuccin-mocha";
+        themePackages = [ (pkgs.catppuccin-plymouth.override { variant = "mocha"; }) ];
       };
     };
 
@@ -47,26 +48,27 @@ in
         catppuccin-kvantum
         (catppuccin-sddm.override {
           flavor = "mocha";
-          font = "Noto Sans";
+          font = "JetBrainsMono Nerd Font Propo";
           fontSize = "9";
           # background = "${./wallpaper.png}";
           # loginBackground = true;
         })
         copyq
         element-desktop
-        feh
+        # feh
         flameshot
-        floorp
+        # floorp # zen life
         ghostty
-        gnomeExtensions.appindicator
-        gnomeExtensions.just-perfection
-        gnomeExtensions.paperwm
-        nitrogen
+        # gnomeExtensions.appindicator
+        # gnomeExtensions.just-perfection
+        # gnomeExtensions.paperwm
+        hunspell
+        # nitrogen
         obsidian
-        pantheon.sideload
+        # pantheon.sideload
         pavucontrol
-        picom
-        rofi
+        # picom
+        # rofi
         showmethekey
         signal-desktop
         tauon
@@ -76,7 +78,7 @@ in
         webcord-vencord
         xarchiver
         xclip
-        xorg.xhost
+        # xorg.xhost
         waypipe
         ytmdesktop
         zafiro-icons
@@ -99,7 +101,7 @@ in
       };
     };
 
-    qt.style = "kvantum";
+    qt.style = "breeze";
 
     services = {
       dbus.packages = [ pkgs.dconf ];
@@ -118,35 +120,35 @@ in
       };
       desktopManager.plasma6.enable = true;
       xserver = {
-        enable = true;
+        enable = false;
         # displayManager.gdm.enable = true;
         # displayManager.lightdm = {
         #   greeters.slick.enable = true;
         # };
-        windowManager = {
-          i3 = {
-            enable = true;
-          };
-        };
-        desktopManager = {
-          gnome.enable = true;
-          xfce = {
-            enable = true;
-            noDesktop = true;
-            enableXfwm = false;
-          };
-        };
+        # windowManager = {
+        #   i3 = {
+        #     enable = true;
+        #   };
+        # };
+        # desktopManager = {
+        #   gnome.enable = true;
+        #   xfce = {
+        #     enable = true;
+        #     noDesktop = true;
+        #     enableXfwm = false;
+        #   };
+        # };
         xkb = {
           layout = "us";
           options = "eurosign:e";
           variant = "mac";
         };
       };
-      xrdp = {
-        enable = false;
-        defaultWindowManager = "startplasma-x11";
-
-      };
+      # xrdp = {
+      #   enable = false;
+      #   defaultWindowManager = "startplasma-x11";
+      #
+      # };
 
     };
     networking.firewall.allowedTCPPorts = [ 3389 ];
