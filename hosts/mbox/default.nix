@@ -14,7 +14,7 @@
   age.secrets.cloudflareToken.owner = "caddy";
   # Bootloader.
   boot = {
-    binfmt.emulatedSystems = [ "aarch64-linux" ];
+    # binfmt.emulatedSystems = [ "aarch64-linux" ];
     loader = {
       systemd-boot.enable = true;
       efi.canTouchEfiVariables = true;
@@ -56,8 +56,8 @@
     '';
   };
   environment.systemPackages = with pkgs; [
+    gurk-rs
     prusa-slicer
-    cage
   ];
 
   fileSystems = {
