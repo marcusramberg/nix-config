@@ -7,10 +7,6 @@
 with lib;
 let
   cfg = config.profiles.caddy;
-  hashes = {
-    x86_64-linux = "sha256-JVkUkDKdat4aALJHQCq1zorJivVCdyBT+7UhqTvaFLw=";
-    aarch64-linux = "sha256-JVkUkDKdat4aALJHQCq1zorJivVCdyBT+7UhqTvaFLw=";
-  };
 in
 {
 
@@ -28,7 +24,7 @@ in
       enable = true;
       package = pkgs.caddy.withPlugins {
         plugins = [ "github.com/caddy-dns/cloudflare@v0.0.0-20240703190432-89f16b99c18e" ];
-        hash = hashes."${pkgs.system}";
+        hash = "sha256-JVkUkDKdat4aALJHQCq1zorJivVCdyBT+7UhqTvaFLw=";
       };
       inherit (cfg) configFile;
       adapter = "caddyfile";

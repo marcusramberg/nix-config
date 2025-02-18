@@ -1,5 +1,4 @@
-{ pkgs, ... }:
-{
+_: {
   imports = [
     ./hardware-configuration.nix
     ./networking.nix # generated at runtime by nixos-infect
@@ -14,6 +13,10 @@
   services.k3s = {
     enable = false;
   };
+  profiles.caddy = {
+    enable = true;
+    configFile = ../../config/Caddyfile.mcloud;
+  };
   services = {
     gotosocial = {
       enable = true;
@@ -24,15 +27,6 @@
       };
     };
     openssh.enable = true;
-    caddy = {
-      enable = true;
-      package = pkgs.caddy.withPlugins {
-        plugins = [ "github.com/caddy-dns/cloudflare@v0.0.0-20240703190432-89f16b99c18e" ];
-        hash = "sha256-jCcSzenewQiW897GFHF9WAcVkGaS/oUu63crJu7AyyQ=";
-      };
-      configFile = ../../config/Caddyfile.mcloud;
-      adapter = "caddyfile";
-    };
   };
   systemd.services.caddy.serviceConfig.AmbientCapabilities = "cap_net_bind_service";
   users.users.root.openssh.authorizedKeys.keys = [
