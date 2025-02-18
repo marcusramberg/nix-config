@@ -63,6 +63,7 @@ in
         # gnomeExtensions.just-perfection
         # gnomeExtensions.paperwm
         hunspell
+        hunspellDicts.en_US
         # nitrogen
         obsidian
         # pantheon.sideload
