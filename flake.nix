@@ -221,13 +221,14 @@
           fastConnection = true;
           profiles.system.path = x86_64-linux.activate.nixos inputs.self.nixosConfigurations.mhub;
         };
-        # mstudio = {
-        #   hostname = "mstudio";
-        #   sshUser = "marcus";
-        #   user = "root";
-        #   fastConnection = true;
-        #   profiles.system.path = x86_64-linux.activate.nixos inputs.self.nixosConfigurations.mstudio;
-        # };
+        mstudio = {
+          hostname = "mstudio";
+          remoteBuild = true;
+          sshUser = "marcus";
+          user = "root";
+          fastConnection = true;
+          profiles.system.path = x86_64-linux.activate.nixos inputs.self.nixosConfigurations.mstudio;
+        };
         mgate = {
           hostname = "mgate";
           sshUser = "marcus";

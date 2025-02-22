@@ -38,6 +38,7 @@ in
         [
           "--disable traefik"
           "--write-kubeconfig-mode=644"
+          "--embedded-registry"
 
         ]
         ++ lib.optionals cfg.tailscale.enable [
