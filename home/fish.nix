@@ -50,15 +50,16 @@ in
       "...." = "cd ../../..";
     };
     shellAliases = {
-      cat = "bat";
       ag = "rg";
+      cat = "bat";
       emacs = "emacs -nw";
-      r = "cd (git root)";
-      imgcat = "wezterm imgcat";
       gcp = "gcloud config set project (gcloud projects list --format='get(project_id)' --sort-by=project_id --filter='project_id != ^sys-'|fzf)";
+      git-hash = "git log -1 --format=%H| tee /dev/tty |pbcopy";
+      hackerpass = "env PASSWORD_STORE_GPG_OPTS=--trust-model always PASSWORD_STORE_DIR=/home/marcus/.hackeriet_pass , pass";
+      imgcat = "wezterm imgcat";
       pbcopy = if pkgs.stdenv.isLinux then "xclip -selection clipboard" else "pbcopy";
       pbpaste = if pkgs.stdenv.isLinux then "xclip -selection clipboard -o" else "pbpaste";
-      git-hash = "git log -1 --format=%H| tee /dev/tty |pbcopy";
+      r = "cd (git root)";
     };
 
     shellInit = ''
