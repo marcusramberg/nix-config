@@ -1,6 +1,12 @@
 return {
 
   {
+    "williamboman/mason.nvim",
+    opts = {
+      PATH = "append",
+    },
+  },
+  {
     "neovim/nvim-lspconfig",
     opts = {
       servers = {
@@ -9,6 +15,7 @@ return {
             "clangd",
             "--offset-encoding=utf-16",
           },
+          mason = false,
         },
         gopls = {
           gofumpt = true,
