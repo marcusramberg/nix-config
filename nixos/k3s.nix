@@ -28,9 +28,20 @@ in
   };
 
   config = mkIf cfg.enable {
-    environment.systemPackages = with pkgs; [
-      openiscsi
-    ];
+    environment = {
+      systemPackages = with pkgs; [
+        openiscsi
+      ];
+      # Mirror all registries
+      etc."k3s-registry" = {
+        mode = "0400";
+        text = ''
+          mirrors:
+            "*":
+        '';
+        target = "rancher/k3s/registries.yaml";
+      };
+    };
     services.k3s = {
       enable = true;
       tokenFile = config.age.secrets.k3s-token.path;
