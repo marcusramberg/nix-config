@@ -10,6 +10,15 @@
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
+  environment = {
+    systemPackages = with pkgs; [
+      (google-cloud-sdk.withExtraComponents [
+        pkgs.google-cloud-sdk.components.gke-gcloud-auth-plugin
+      ])
+    ];
+  };
+
+  nix.package = pkgs.nixVersions.nix_2_26;
   hardware.enableAllFirmware = true;
 
   profiles = {
