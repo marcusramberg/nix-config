@@ -1,5 +1,18 @@
 { pkgs, ... }:
 {
+  home.packages = with pkgs; [
+    delta
+    git-crypt
+    git-extras
+    git-lfs
+    git-recent
+    gitAndTools.gh
+    gitFull
+    lazygit
+    pre-commit
+    revup
+    stgit
+  ];
   programs = {
     gh = {
       enable = true;

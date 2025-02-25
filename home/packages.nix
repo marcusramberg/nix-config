@@ -25,15 +25,8 @@ in
       caligula
       curlHTTP3
       deadnix
-      delta
       devenv
       dive
-      git
-      git-crypt
-      git-extras
-      git-lfs
-      git-recent
-      gitAndTools.gh
       fd
       fortune
       gist
@@ -51,7 +44,6 @@ in
       jq
       just
       kubectx
-      lazygit
       luarocks
       lua-language-server
       nil
@@ -67,11 +59,9 @@ in
       nnn
       neovim
       ollama
-      pre-commit
       promexplorer
       pssh
       ranger
-      revup
       ripgrep
       sccache
       stylua
@@ -93,10 +83,10 @@ in
       cocoapods
       m-cli # useful macOS CLI commands
     ]
-    ++ lib.optionals stdenv.isLinux [
-      # bitwarden-cli
-      maim
-    ]
+    # ++ lib.optionals stdenv.isLinux [
+    #   # bitwarden-cli
+    #   maim
+    # ]
     ++ lib.optional (!hasK3s) kubectl
     ++ lib.optionals isNixOS [ wezterm ];
 }
