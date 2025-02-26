@@ -7,11 +7,12 @@
     git-lfs
     git-recent
     gitAndTools.gh
-    gitFull
+    git
     lazygit
     pre-commit
     revup
     stgit
+    git-stack
   ];
   programs = {
     gh = {
@@ -64,6 +65,13 @@
         ca = "commit --amend --reuse-message=HEAD";
         edit = "!vim `git ls-files -m ` -p ";
         credit = "blame";
+        # git stack
+        next = "stack next";
+        prev = "stack previous";
+        reword = "stack reword";
+        amend = "stack amend";
+        sync = "stack sync";
+        run = "stack run";
       };
       difftastic = {
         background = "dark";
