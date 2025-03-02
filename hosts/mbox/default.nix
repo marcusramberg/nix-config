@@ -188,6 +188,7 @@
     incus = {
       enable = true;
       ui.enable = true;
+
     };
     waydroid.enable = true;
   };

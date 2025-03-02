@@ -11,6 +11,7 @@ in
   "leases.age".publicKeys = [ marcus ];
   "miniflux.age".publicKeys = [ marcus ];
   "mosquittoPass.age".publicKeys = [ marcus ];
+  "networks.age".publicKeys = [ marcus ];
   "nixAccessTokens.age".publicKeys = [ marcus ];
   "phone-pin.age".publicKeys = [ marcus ];
   "picserver.age".publicKeys = [ marcus ];
