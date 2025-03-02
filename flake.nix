@@ -149,15 +149,19 @@
         #     ;
         #   system = "x86_64-linux";
         # };
-        # mlab = lib.mkNixHost "mlab" {
-        #   inherit
-        #     overlays
-        #     nixpkgs
-        #     inputs
-        #     std
-        #     ;
-        #   system = "x86_64-linux";
-        # };
+        mbench = lib.mkNixHost "mbench" {
+          inherit
+            overlays
+            nixpkgs
+            inputs
+            std
+            ;
+          system = "x86_64-linux";
+          extraModules = [ inputs.disko.nixosModules.disko ];
+        };
+        mbenchInstaller =
+          inputs.unattended-installer.lib.diskoInstallerWrapper self.nixosConfigurations.mbench
+            { };
         mdeck = lib.mkNixHost "mdeck" {
           inherit
             overlays

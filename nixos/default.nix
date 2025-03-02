@@ -115,6 +115,7 @@
     ];
     uid = 1000;
     shell = pkgs.fish;
+    initialHashedPassword = "$y$j9T$vdfNuMb6zCVtBmzfchKSm.$LiTrJ523yfTUwrO2REbO5Bf.uLf1IhPeFbSyssqsyx8";
   };
 
   system = {
