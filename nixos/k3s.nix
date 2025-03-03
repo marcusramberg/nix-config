@@ -48,7 +48,8 @@ in
       extraFlags =
         [
           "--disable traefik"
-          "--write-kubeconfig-mode=644"
+          "--write-kubeconfig-mode=640"
+          "--write-kubeconfig-group=wheel"
           "--embedded-registry"
 
         ]
