@@ -47,6 +47,7 @@ in
       luarocks
       lua-language-server
       nil
+      lynx # for copilot
       nixfmt-rfc-style
       neofetch
       nixpkgs-review
