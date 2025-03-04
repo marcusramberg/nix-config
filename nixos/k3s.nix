@@ -37,7 +37,8 @@ in
         mode = "0400";
         text = ''
           mirrors:
-            "*":
+            docker.io:
+            registry.k8s.io:
         '';
         target = "rancher/k3s/registries.yaml";
       };
