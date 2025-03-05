@@ -41,8 +41,6 @@
     '';
   };
 
-  # services.karabiner-elements.enable = true;
-
   # Fonts
   profiles.myfonts.enable = true;
 
