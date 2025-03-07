@@ -18,6 +18,11 @@ in
         description = "tailscale ip";
       };
     };
+    role = mkOption {
+      type = types.str;
+      default = "server";
+      description = "k3s role";
+    };
     tailscale = {
       enable = mkEnableOption "Enable tailscale";
       ip = mkOption {
@@ -32,7 +37,6 @@ in
       systemPackages = with pkgs; [
         openiscsi
       ];
-      # Mirror all registries
       etc."k3s-registry" = {
         mode = "0400";
         text = ''
@@ -46,15 +50,9 @@ in
     services.k3s = {
       enable = true;
       tokenFile = config.age.secrets.k3s-token.path;
+      inherit (cfg) role;
       extraFlags =
-        [
-          "--disable traefik"
-          "--write-kubeconfig-mode=640"
-          "--write-kubeconfig-group=wheel"
-          "--embedded-registry"
-
-        ]
-        ++ lib.optionals cfg.tailscale.enable [
+        lib.optionals cfg.tailscale.enable [
           "--node-external-ip=${cfg.tailscale.ip}"
           "--flannel-backend=wireguard-native"
           "--flannel-external-ip ${cfg.tailscale.ip}"
@@ -62,6 +60,12 @@ in
         ++ lib.optionals cfg.staticIP.enable [
           "--node-ip"
           cfg.staticIP.ip
+        ]
+        ++ lib.optionals (cfg.role == "server") [
+          "--disable traefik"
+          "--write-kubeconfig-mode=640"
+          "--write-kubeconfig-group=wheel"
+          "--embedded-registry"
         ];
 
     };
