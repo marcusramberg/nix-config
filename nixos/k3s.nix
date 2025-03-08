@@ -43,6 +43,12 @@ in
           mirrors:
             docker.io:
             registry.k8s.io:
+          configs:
+            "docker.io":
+            "quay.io":
+            "*":
+              tls:
+                insecure_skip_verify: true
         '';
         target = "rancher/k3s/registries.yaml";
       };
