@@ -223,6 +223,7 @@
           sshUser = "marcus";
           user = "root";
           fastConnection = true;
+          activationTimeout = 600; # mhub is slow to activate
           profiles.system.path = x86_64-linux.activate.nixos inputs.self.nixosConfigurations.mhub;
         };
         mstudio = {
