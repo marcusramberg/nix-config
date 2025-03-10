@@ -31,5 +31,4 @@ return {
       require("smartyank").setup({ osc52 = { silent = true } })
     end,
   },
-  { "dzfrias/gsearch.nvim" },
 }
