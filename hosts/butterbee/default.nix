@@ -18,7 +18,7 @@
     ];
   };
 
-  nix.package = pkgs.nixVersions.nix_2_26;
+  nix.package = pkgs.lix;
   hardware.enableAllFirmware = true;
 
   profiles = {
@@ -29,6 +29,7 @@
 
   services = {
     displayManager.sddm.enableHidpi = true;
+    envfs.enable = true;
     cloudflare-warp.enable = true;
     pulseaudio.enable = false;
     resolved.enable = true;
