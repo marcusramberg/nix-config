@@ -1,0 +1,17 @@
+---
+name:
+root: ~/
+
+windows:
+  - dev: >
+      while true; gcloud beta compute ssh rm-shared-services-bastion
+      --tunnel-through-iap   --project=rm-shared-services-dev
+      --zone europe-west1-b -- -L8888:127.0.0.1:8888; sleep 5; end
+  - stage: >
+      while true; gcloud beta compute ssh rm-shared-services-bastion
+      --tunnel-through-iap  --project=rm-shared-services-stage
+      --zone europe-west1-b -- -L8887:127.0.0.1:8888; sleep 5; end
+  - prod: >
+      while true; gcloud beta compute ssh rm-shared-services-bastion
+      --tunnel-through-iap  --project=rm-shared-services-prod --zone
+      europe-west1-b -- -L8889:127.0.0.1:8888; sleep 5; end
