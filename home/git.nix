@@ -12,7 +12,7 @@
     pre-commit
     revup
     stgit
-    git-stack
+    # git-stack
   ];
   programs = {
     gh = {
