@@ -96,6 +96,7 @@
           };
         };
         commit.gpgsign = true;
+        format.signOff = true;
         gpg.format = "ssh";
         init.defaultBranch = "main";
         log.follow = true;
