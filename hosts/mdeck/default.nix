@@ -73,7 +73,7 @@
     displayManager.sddm.enable = lib.mkForce false;
     input-remapper.enable = true;
     xserver = {
-      enable = true;
+      enable = lib.mkForce true;
       displayManager.startx.enable = true;
       excludePackages = with pkgs; [ xterm ];
     };

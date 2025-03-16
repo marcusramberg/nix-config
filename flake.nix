@@ -41,10 +41,6 @@
     #   url = "github:astro/microvm.nix";
     #   inputs.nixpkgs.follows = "nixpkgs";
     # };
-    # mobile-nixos = {
-    #   flake = false;
-    #   url = "github:marcusramberg/mobile-nixos/enchilada";
-    # };
     nix-index-database.url = "github:Mic92/nix-index-database";
     nix-index-database.inputs.nixpkgs.follows = "nixpkgs";
     nix-std.url = "github:chessai/nix-std";
@@ -69,15 +65,18 @@
       inherit inputs;
     };
     {
-      nixosConfigurations = inputs.self.colmenaHive.nodes // {
-        mhomeInstaller =
-          inputs.unattended-installer.lib.diskoInstallerWrapper self.nixosConfigurations.mhome
-            { };
-        mbenchInstaller =
-          inputs.unattended-installer.lib.diskoInstallerWrapper self.nixosConfigurations.mbench
-            { };
+      nixosConfigurations = inputs.self.colmenaHive.nodes;
+      installers = builtins.mapAttrs (
+        _: config: (inputs.unattended-installer.lib.diskoInstallerWrapper config { })
+      ) self.nixosConfigurations;
+      #   mhomeInstaller =
+      #     inputs.unattended-installer.lib.diskoInstallerWrapper self.nixosConfigurations.mhome
+      #       { };
+      #   mbenchInstaller =
+      #     inputs.unattended-installer.lib.diskoInstallerWrapper self.nixosConfigurations.mbench
+      #       { };
+      # };
 
-      };
       colmenaHive = colmena.lib.makeHive {
         meta = {
           nixpkgs = inputs.nixpkgs.legacyPackages.x86_64-linux;
@@ -88,106 +87,68 @@
         };
 
         mhub = mkNixHost "mhub" {
-          inherit
-            overlays
-            inputs
-            ;
-          system = "x86_64-linux";
           deployment = {
-            tags = [ "k8s" ];
-            allowLocalDeployment = true;
+            tags = [
+              "k8s"
+              "servers"
+            ];
           };
         };
-
         mhome = mkNixHost "mhome" {
-          inherit
-            overlays
-            inputs
-            ;
+          deployment.tags = [ "servers" ];
           extraModules = [ inputs.disko.nixosModules.disko ];
-          system = "x86_64-linux";
         };
         butterbee = mkNixHost "butterbee" {
-          inherit
-            overlays
-            inputs
-            ;
+          deployment.buildOnTarget = true;
           system = "aarch64-linux";
         };
         mstudio = mkNixHost "mstudio" {
-          inherit
-            overlays
-            inputs
-            ;
           system = "aarch64-linux";
           deployment = {
-            tags = [ "k8s" ];
+            tags = [
+              "k8s"
+              "servers"
+            ];
             buildOnTarget = true;
-            allowLocalDeployment = true;
           };
           extraModules = [
             inputs.apple-silicon-support.nixosModules.apple-silicon-support
           ];
         };
         mcloud = mkNixHost "mcloud" {
-          inherit
-            overlays
-            inputs
-            ;
           system = "aarch64-linux";
+          deployment.tags = [ "servers" ];
         };
 
         mbox = mkNixHost "mbox" {
-          inherit
-            overlays
-            inputs
-            ;
-          system = "x86_64-linux";
           deployment = {
-            tags = [ "k8s" ];
-            allowLocalDeployment = true;
+            tags = [
+              "k8s"
+              "servers"
+            ];
           };
           extraModules = [ inputs.jovian.nixosModules.default ];
         };
         mbench = mkNixHost "mbench" {
-          inherit
-            overlays
-            inputs
-            ;
-          system = "x86_64-linux";
           extraModules = [ inputs.disko.nixosModules.disko ];
+          deployment.tags = [ "servers" ];
         };
         mdeck = mkNixHost "mdeck" {
-          inherit
-            overlays
-            inputs
-            ;
-          system = "x86_64-linux";
           extraModules = [ inputs.jovian.nixosModules.default ];
         };
         mgate = mkNixHost "mgate" {
-          inherit
-            overlays
-            inputs
-            ;
-          system = "x86_64-linux";
+          deployment.tags = [ "servers" ];
         };
       };
 
-      darwinConfigurations.mwork = mkDarwinHost "mwork" {
-        inherit overlays inputs;
-        system = "aarch64-darwin";
-      };
-      darwinConfigurations.mStudio = mkDarwinHost "mstudio" {
-        inherit overlays inputs;
-        system = "aarch64-darwin";
-      };
+      darwinConfigurations.mwork = mkDarwinHost "mwork" { };
+      darwinConfigurations.mStudio = mkDarwinHost "mstudio" { };
     }
     // flake-utils.lib.eachDefaultSystem (
       system:
       let
         pkgs = import inputs.nixpkgs {
-          inherit system overlays;
+          inherit system;
           config = {
             allowUnfree = true;
             allowBroken = true;

@@ -5,10 +5,8 @@ let
   mkDarwinHost =
     name:
     {
-      inputs,
-      system,
+      system ? "aaarch64-darwin",
       user ? "marcus",
-      overlays,
     }:
     inputs.darwin.lib.darwinSystem {
       inherit system;
@@ -25,7 +23,6 @@ let
         (mkOptions {
           inherit
             user
-            overlays
             inputs
             system
             ;
@@ -36,9 +33,7 @@ let
   mkNixHost =
     name:
     {
-      inputs,
-      system,
-      overlays,
+      system ? "x86_64-linux",
       deployment ? { },
       extraModules ? [ ],
     }:
@@ -50,14 +45,13 @@ let
         inputs.home-manager.nixosModules.home-manager
         (mkOptions {
           inherit
-            overlays
-            inputs
             system
             ;
         })
         {
           deployment = {
             targetUser = "marcus";
+            allowLocalDeployment = true;
           } // deployment;
         }
       ] ++ extraModules;
@@ -86,8 +80,6 @@ let
   mkOptions =
     {
       user ? "marcus",
-      inputs,
-      overlays,
       system,
       ...
     }:
@@ -122,6 +114,5 @@ in
     mkDarwinHost
     mkNixHost
     mkHMConfig
-    overlays
     ;
 }
