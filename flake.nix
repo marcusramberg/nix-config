@@ -85,6 +85,10 @@
             inputs
             ;
           system = "x86_64-linux";
+          deployment = {
+            tags = [ "k8s" ];
+            allowLocalDeployment = true;
+          };
         };
 
         mhome = mkNixHost "mhome" {
@@ -171,6 +175,10 @@
         inherit overlays inputs;
         system = "aarch64-darwin";
         remoteBuild = true;
+        deployment = {
+          tags = [ "k8s" ];
+          buildOnTarget = true;
+        };
       };
     }
     // flake-utils.lib.eachDefaultSystem (
