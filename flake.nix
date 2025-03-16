@@ -69,7 +69,15 @@
       inherit inputs;
     };
     {
-      nixosConfigurations = inputs.self.colmenaHive.nodes;
+      nixosConfigurations = inputs.self.colmenaHive.nodes // {
+        mhomeInstaller =
+          inputs.unattended-installer.lib.diskoInstallerWrapper self.nixosConfigurations.mhome
+            { };
+        mbenchInstaller =
+          inputs.unattended-installer.lib.diskoInstallerWrapper self.nixosConfigurations.mbench
+            { };
+
+      };
       colmenaHive = colmena.lib.makeHive {
         meta = {
           nixpkgs = inputs.nixpkgs.legacyPackages.x86_64-linux;
@@ -99,9 +107,6 @@
           extraModules = [ inputs.disko.nixosModules.disko ];
           system = "x86_64-linux";
         };
-        mhomeInstaller =
-          inputs.unattended-installer.lib.diskoInstallerWrapper self.nixosConfigurations.mhome
-            { };
         butterbee = mkNixHost "butterbee" {
           inherit
             overlays
@@ -115,6 +120,11 @@
             inputs
             ;
           system = "aarch64-linux";
+          deployment = {
+            tags = [ "k8s" ];
+            buildOnTarget = true;
+            allowLocalDeployment = true;
+          };
           extraModules = [
             inputs.apple-silicon-support.nixosModules.apple-silicon-support
           ];
@@ -147,9 +157,6 @@
           system = "x86_64-linux";
           extraModules = [ inputs.disko.nixosModules.disko ];
         };
-        mbenchInstaller =
-          inputs.unattended-installer.lib.diskoInstallerWrapper self.nixosConfigurations.mbench
-            { };
         mdeck = mkNixHost "mdeck" {
           inherit
             overlays
@@ -174,11 +181,6 @@
       darwinConfigurations.mStudio = mkDarwinHost "mstudio" {
         inherit overlays inputs;
         system = "aarch64-darwin";
-        remoteBuild = true;
-        deployment = {
-          tags = [ "k8s" ];
-          buildOnTarget = true;
-        };
       };
     }
     // flake-utils.lib.eachDefaultSystem (
