@@ -64,6 +64,7 @@ in
         # gnomeExtensions.paperwm
         hunspell
         hunspellDicts.en_US
+        kdePackages.krdp
         # nitrogen
         obsidian
         # pantheon.sideload
