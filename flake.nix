@@ -8,19 +8,28 @@
       url = "github:flokli/nixos-apple-silicon/linux-6.13";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    colmena = {
+      url = "github:zhaofengli/colmena";
+      inputs = {
+        nixpkgs.follows = "nixpkgs";
+        stable.follows = "nixpkgs";
+        # nix-github-actions.follows = "nix-github-actions";
+        flake-compat.follows = "flake-compat";
+        flake-utils.follows = "flake-utils";
+      };
+    };
     dagger.url = "github:dagger/nix";
     dagger.inputs.nixpkgs.follows = "nixpkgs";
     darwin.url = "github:lnl7/nix-darwin/master";
     darwin.inputs.nixpkgs.follows = "nixpkgs";
-    deploy-rs = {
-      url = "github:serokell/deploy-rs";
-      inputs = {
-        nixpkgs.follows = "nixpkgs";
-        utils.follows = "flake-utils";
-      };
-    };
-    devenv.url = "github:cachix/devenv";
     disko.url = "github:nix-community/disko";
+    flake-compat = {
+      url = "github:nix-community/flake-compat";
+    };
+    pre-commit-hooks = {
+      url = "github:cachix/pre-commit-hooks.nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     hei.url = "github:marcusramberg/hei";
     hei.inputs.nixpkgs.follows = "nixpkgs";
     flake-utils.url = "github:numtide/flake-utils";
@@ -50,39 +59,40 @@
   outputs =
     {
       self,
-      deploy-rs,
-      devenv,
+      colmena,
       nixpkgs,
       flake-utils,
       hei,
-      nix-std,
       ...
     }@inputs:
-    let
-      lib = import ./lib;
-      overlays = [
-        (import ./overlays inputs)
-      ];
-      std = nix-std.lib;
-    in
+    with import ./lib {
+      inherit inputs;
+    };
     {
-      nixosConfigurations = {
-        mhub = lib.mkNixHost "mhub" {
+      nixosConfigurations = inputs.self.colmenaHive.nodes;
+      colmenaHive = colmena.lib.makeHive {
+        meta = {
+          nixpkgs = inputs.nixpkgs.legacyPackages.x86_64-linux;
+          specialArgs = {
+            inherit inputs;
+            user = "marcus";
+          };
+        };
+
+        mhub = mkNixHost "mhub" {
           inherit
             overlays
             nixpkgs
             inputs
-            std
             ;
           system = "x86_64-linux";
         };
 
-        mhome = lib.mkNixHost "mhome" {
+        mhome = mkNixHost "mhome" {
           inherit
             overlays
             nixpkgs
             inputs
-            std
             ;
           extraModules = [ inputs.disko.nixosModules.disko ];
           system = "x86_64-linux";
@@ -90,71 +100,52 @@
         mhomeInstaller =
           inputs.unattended-installer.lib.diskoInstallerWrapper self.nixosConfigurations.mhome
             { };
-        butterbee = lib.mkNixHost "butterbee" {
+        butterbee = mkNixHost "butterbee" {
           inherit
             overlays
             nixpkgs
             inputs
-            std
             ;
           system = "aarch64-linux";
         };
-        mstudio = lib.mkNixHost "mstudio" {
+        mstudio = mkNixHost "mstudio" {
           inherit
             overlays
             nixpkgs
             inputs
-            std
             ;
           system = "aarch64-linux";
           extraModules = [
             inputs.apple-silicon-support.nixosModules.apple-silicon-support
           ];
         };
-        mcloud = lib.mkNixHost "mcloud" {
+        mcloud = mkNixHost "mcloud" {
           inherit
             overlays
             nixpkgs
             inputs
-            std
             ;
           system = "aarch64-linux";
         };
 
-        mbox = lib.mkNixHost "mbox" {
+        mbox = mkNixHost "mbox" {
           inherit
             overlays
             nixpkgs
             inputs
-            std
             ;
           system = "x86_64-linux";
+          deployment = {
+            tags = [ "k8s" ];
+            allowLocalDeployment = true;
+          };
           extraModules = [ inputs.jovian.nixosModules.default ];
         };
-        # mtop = lib.mkNixHost "mtop" {
-        #   inherit
-        #     overlays
-        #     nixpkgs
-        #     inputs
-        #     std
-        #     ;
-        #   system = "x86_64-linux";
-        # };
-        # mvirt = lib.mkNixHost "mvirt" {
-        #   inherit
-        #     overlays
-        #     nixpkgs
-        #     inputs
-        #     std
-        #     ;
-        #   system = "x86_64-linux";
-        # };
-        mbench = lib.mkNixHost "mbench" {
+        mbench = mkNixHost "mbench" {
           inherit
             overlays
             nixpkgs
             inputs
-            std
             ;
           system = "x86_64-linux";
           extraModules = [ inputs.disko.nixosModules.disko ];
@@ -162,101 +153,34 @@
         mbenchInstaller =
           inputs.unattended-installer.lib.diskoInstallerWrapper self.nixosConfigurations.mbench
             { };
-        mdeck = lib.mkNixHost "mdeck" {
+        mdeck = mkNixHost "mdeck" {
           inherit
             overlays
             nixpkgs
             inputs
-            std
             ;
           system = "x86_64-linux";
           extraModules = [ inputs.jovian.nixosModules.default ];
         };
-        mgate = lib.mkNixHost "mgate" {
+        mgate = mkNixHost "mgate" {
           inherit
             overlays
             nixpkgs
             inputs
-            std
             ;
           system = "x86_64-linux";
         };
-        # mbrick = lib.mkNixHost "mbrick" {
-        #   inherit
-        #     overlays
-        #     nixpkgs
-        #     inputs
-        #     std
-        #     ;
-        #   system = "aarch64-linux";
-        #   extraModules = [
-        #     (import "${inputs.mobile-nixos}/lib/configuration.nix" { device = "oneplus-fajita"; })
-        #   ];
-        # };
-        # mOctopi = mkPiImage "moctopi" {
-        #   inherit overlays nixpkgs inputs;
-        #   system = "aarch64-linux";
-        #   user = "marcus";
-        # };
       };
 
-      darwinConfigurations.mwork = lib.mkDarwinHost "mwork" {
-        inherit overlays inputs std;
+      darwinConfigurations.mwork = mkDarwinHost "mwork" {
+        inherit overlays inputs;
         system = "aarch64-darwin";
       };
-      darwinConfigurations.mStudio = lib.mkDarwinHost "mstudio" {
-        inherit overlays inputs std;
+      darwinConfigurations.mStudio = mkDarwinHost "mstudio" {
+        inherit overlays inputs;
         system = "aarch64-darwin";
         remoteBuild = true;
       };
-      deploy.nodes = with inputs.deploy-rs.lib; {
-        mcloud = {
-          hostname = "mcloud";
-          sshUser = "marcus";
-          user = "root";
-          fastConnection = false;
-          profiles.system.path = aarch64-linux.activate.nixos inputs.self.nixosConfigurations.mcloud;
-          remoteBuild = true;
-        };
-        mhub = {
-          hostname = "mhub";
-          sshUser = "marcus";
-          user = "root";
-          fastConnection = true;
-          activationTimeout = 600; # mhub is slow to activate
-          profiles.system.path = x86_64-linux.activate.nixos inputs.self.nixosConfigurations.mhub;
-        };
-        mstudio = {
-          hostname = "mstudio";
-          remoteBuild = true;
-          sshUser = "marcus";
-          user = "root";
-          fastConnection = true;
-          profiles.system.path = x86_64-linux.activate.nixos inputs.self.nixosConfigurations.mstudio;
-        };
-        mgate = {
-          hostname = "mgate";
-          sshUser = "marcus";
-          user = "root";
-          fastConnection = true;
-          profiles.system.path = x86_64-linux.activate.nixos inputs.self.nixosConfigurations.mgate;
-        };
-        mbox = {
-          hostname = "mbox";
-          sshUser = "marcus";
-          user = "root";
-          fastConnection = true;
-          profiles.system.path = x86_64-linux.activate.nixos inputs.self.nixosConfigurations.mbox;
-        };
-        mhome = {
-          hostname = "mhome";
-          sshUser = "marcus";
-          user = "root";
-          fastConnection = true;
-          profiles.system.path = x86_64-linux.activate.nixos inputs.self.nixosConfigurations.mhome;
-        };
-      };
-      # checks = builtins.mapAttrs (_: deployLib: deployLib.deployChecks self.deploy) deploy-rs.lib;
     }
     // flake-utils.lib.eachDefaultSystem (
       system:
@@ -275,57 +199,32 @@
           type = "app";
           program = "${hei.packages.${system}.hei}/bin/hei";
         };
-        homeConfigurations.marcus = lib.mkHMConfig { inherit inputs pkgs std; };
-        packages.devenv-up = self.devShells.${system}.default.config.procfileScript;
-        packages.devenv-test = self.devShells.${system}.default.config.test;
-        devShells.default = devenv.lib.mkShell {
-          inherit inputs pkgs;
-          modules = [
-            (
-              { pkgs, ... }:
-              {
-
-                name = "nix-config";
-                cachix.pull = [
-                  "nix-community"
-                  "marcusramberg"
-                ];
-                env.NIX_CONFIG = "experimental-features = nix-command flakes";
-                languages.lua = {
-                  enable = true;
-                };
-                languages.nix = {
-                  enable = true;
-                };
-                packages = with pkgs; [
-                  pkgs.deploy-rs
-                  pkgs.devenv
-                  git
-                  lolcat
-                  neovim
-                  home-manager
-                  neovim
-                ];
-                pre-commit.hooks = {
-                  commitizen.enable = true;
-                  deadnix.enable = true;
-                  # luacheck.enable = true;
-                  markdownlint.enable = true;
-                  nixfmt-rfc-style.enable = true;
-                  statix.enable = true;
-                  stylua.enable = true;
-                  yamllint.enable = true;
-                };
-                enterShell = ''
-                  head -n 7 README.md|tail -n4|lolcat
-                '';
-                enterTest = ''
-                  nix flake metadata
-                '';
-              }
-            )
+        homeConfigurations.marcus = lib.mkHMConfig { inherit inputs pkgs; };
+        devShells.default = pkgs.mkShellNoCC {
+          NIX_CONFIG = "experimental-features = nix-command flakes";
+          packages = with pkgs; [
+            colmena.packages.${system}.colmena
+            git
+            lolcat
+            neovim
+            home-manager
+            neovim
           ];
+          shellHook = ''
+            head -n 7 README.md|tail -n4|lolcat
+          '';
         };
+        checks = {
+          pre-commit-check = inputs.pre-commit-hooks.lib.${system}.run {
+            src = ./.;
+            hooks = {
+              nixfmt-rfc-style.enable = true;
+              deadnix.enable = true;
+              statix.enable = true;
+            };
+          };
+        };
+
       }
     );
 }

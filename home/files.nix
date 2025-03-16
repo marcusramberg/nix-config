@@ -1,5 +1,5 @@
 {
-  std,
+  inputs,
   lib,
   user,
   config,
@@ -37,7 +37,7 @@ in
         recursive = true;
       };
       ".config/nimdow/status".source = ../config/nimdow_status;
-      ".config/nimdow/config.toml".text = std.serde.toTOML (
+      ".config/nimdow/config.toml".text = inputs.nix-std.lib.serde.toTOML (
         import ../config/nimdow.nix {
           inherit pkgs;
           inherit osConfig;

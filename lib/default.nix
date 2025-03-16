@@ -1,4 +1,7 @@
-rec {
+{
+  inputs,
+}:
+let
   mkDarwinHost =
     name:
     {
@@ -6,7 +9,6 @@ rec {
       system,
       user ? "marcus",
       overlays,
-      std,
     }:
     inputs.darwin.lib.darwinSystem {
       inherit system;
@@ -21,10 +23,12 @@ rec {
         # `home-manager` module
         inputs.home-manager.darwinModules.home-manager
         (mkOptions {
-          inherit user;
-          inherit overlays;
-          inherit inputs;
-          inherit std;
+          inherit
+            user
+            overlays
+            inputs
+            system
+            ;
         })
       ];
     };
@@ -32,50 +36,43 @@ rec {
   mkNixHost =
     name:
     {
-      nixpkgs,
       inputs,
       system,
-      user ? "marcus",
       overlays,
-      std,
-      extraModules ? null,
+      deployment ? { },
+      extraModules ? [ ],
     }:
-    let
-      inherit (nixpkgs) lib;
-    in
-    lib.nixosSystem {
-      specialArgs = {
-        inherit inputs;
-        inherit user;
-      };
-      inherit system;
-      modules = lib.lists.flatten (
-        [
-          ../hosts/${name}
-          ../nixos
-          ../cachix.nix
-          inputs.home-manager.nixosModules.home-manager
-          (mkOptions {
-            inherit user;
-            inherit overlays;
-            inherit inputs;
-            inherit std;
-          })
-        ]
-        ++ lib.optional (extraModules != null) extraModules
-      );
+    {
+      imports = [
+        ../hosts/${name}
+        ../nixos
+        ../cachix.nix
+        inputs.home-manager.nixosModules.home-manager
+        (mkOptions {
+          inherit
+            overlays
+            inputs
+            system
+            ;
+        })
+        {
+          deployment = {
+            targetUser = "marcus";
+          } // deployment;
+        }
+      ] ++ extraModules;
+
     };
   mkHMConfig =
     {
       inputs,
       pkgs,
-      std,
       user ? "marcus",
     }:
     inputs.home-manager.lib.homeManagerConfiguration {
       inherit pkgs;
       extraSpecialArgs = {
-        inherit inputs std user;
+        inherit inputs user;
         osConfig = {
           system = { };
           networking = {
@@ -88,10 +85,10 @@ rec {
 
   mkOptions =
     {
-      user,
+      user ? "marcus",
       inputs,
       overlays,
-      std,
+      system,
       ...
     }:
     {
@@ -102,6 +99,7 @@ rec {
           allowBroken = true;
           allowUnsupportedSystem = true;
         };
+        hostPlatform = system;
       };
 
       home-manager = {
@@ -111,8 +109,19 @@ rec {
         useUserPackages = true;
         users.${user} = import ../home;
         extraSpecialArgs = {
-          inherit inputs std user;
+          inherit inputs user;
         };
       };
     };
+  overlays = [
+    (import ../overlays inputs)
+  ];
+in
+{
+  inherit
+    mkDarwinHost
+    mkNixHost
+    mkHMConfig
+    overlays
+    ;
 }
