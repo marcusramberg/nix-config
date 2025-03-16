@@ -68,7 +68,6 @@ in
       stylua
       tealdeer
       tfenv
-      thefuck
       tflint
       unzip
       unixtools.watch

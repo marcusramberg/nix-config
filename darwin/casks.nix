@@ -58,7 +58,6 @@ _: {
       "synology-drive"
       "telegram"
       "the-unarchiver"
-      "ultimaker-cura"
       "visual-studio-code"
       "vivaldi"
       "vlc"

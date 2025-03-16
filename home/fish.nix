@@ -78,7 +78,6 @@ in
         set -gx GOPRIVATE github.com/reMarkable
         # FIXME: Disable this for now as it breaks vi mode.
         set --universal pure_enable_nixdevshell false
-        type -q thefuck; and thefuck --alias | source
         test -x ~/.plenv/bin/plenv; and . (~/.plenv/bin/plenv init -|psub)
         if command -q nix-your-shell
           nix-your-shell fish | source
