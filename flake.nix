@@ -82,7 +82,6 @@
         mhub = mkNixHost "mhub" {
           inherit
             overlays
-            nixpkgs
             inputs
             ;
           system = "x86_64-linux";
@@ -91,7 +90,6 @@
         mhome = mkNixHost "mhome" {
           inherit
             overlays
-            nixpkgs
             inputs
             ;
           extraModules = [ inputs.disko.nixosModules.disko ];
@@ -103,7 +101,6 @@
         butterbee = mkNixHost "butterbee" {
           inherit
             overlays
-            nixpkgs
             inputs
             ;
           system = "aarch64-linux";
@@ -111,7 +108,6 @@
         mstudio = mkNixHost "mstudio" {
           inherit
             overlays
-            nixpkgs
             inputs
             ;
           system = "aarch64-linux";
@@ -122,7 +118,6 @@
         mcloud = mkNixHost "mcloud" {
           inherit
             overlays
-            nixpkgs
             inputs
             ;
           system = "aarch64-linux";
@@ -131,7 +126,6 @@
         mbox = mkNixHost "mbox" {
           inherit
             overlays
-            nixpkgs
             inputs
             ;
           system = "x86_64-linux";
@@ -144,7 +138,6 @@
         mbench = mkNixHost "mbench" {
           inherit
             overlays
-            nixpkgs
             inputs
             ;
           system = "x86_64-linux";
@@ -156,7 +149,6 @@
         mdeck = mkNixHost "mdeck" {
           inherit
             overlays
-            nixpkgs
             inputs
             ;
           system = "x86_64-linux";
@@ -165,7 +157,6 @@
         mgate = mkNixHost "mgate" {
           inherit
             overlays
-            nixpkgs
             inputs
             ;
           system = "x86_64-linux";
