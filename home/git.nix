@@ -37,6 +37,10 @@
         # Aliases allow you to create nicknames for gh commands
         aliases = {
           co = "pr checkout";
+          cg = "copilot suggest -t git";
+          cc = "copilot suggest -t shell";
+          cgh = "copilot suggest -t gh";
+          ce = "copilot explain";
           rev = "pr review";
           mkpr = "pr create --fill";
         };
