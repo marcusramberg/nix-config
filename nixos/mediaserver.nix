@@ -125,5 +125,9 @@ in
         volumes = [ "/var/lib/minecraft-bedrock:/mcdata" ];
       };
     };
+    services.audiobookshelf = {
+      enable = true;
+      port = 5080;
+    };
   };
 }

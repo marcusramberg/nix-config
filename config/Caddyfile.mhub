@@ -132,6 +132,10 @@ rss.means.no:443 {
 tv.means.no:443 {
 	import caddy-common
 	reverse_proxy localhost:8989
+} 
+books.means.no:443 { 
+  import caddy-common 
+  reverse_proxy localhost:5080
 }
 
 webdav.means.no:443 {
