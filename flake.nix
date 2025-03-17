@@ -159,7 +159,7 @@
       {
         apps.default = {
           type = "app";
-          program = "${hei.packages.${system}.hei}/bin/hei";
+          program = "${inputs.hei.packages.${system}.hei}/bin/hei";
         };
         homeConfigurations.marcus = lib.mkHMConfig { inherit inputs pkgs; };
         devShells.default = pkgs.mkShellNoCC {
