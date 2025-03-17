@@ -99,6 +99,10 @@ return {
     "folke/snacks.nvim",
     event = "VimEnter",
     opts = {
+      layout = { preset = "bottom" },
+      picker = {
+        layout = { preset = "bottom" },
+      },
       dashboard = {
         sections = {
           { section = "header" },

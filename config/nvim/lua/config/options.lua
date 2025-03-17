@@ -33,4 +33,4 @@ if vim.g.neovide then
     change_scale_factor(1 / 1.25)
   end)
 end
-vim.g.lazyvim_picker = "telescope"
+vim.g.lazyvim_picker = "snacks"
