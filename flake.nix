@@ -5,7 +5,7 @@
     agenix.url = "github:ryantm/agenix";
     agenix.inputs.nixpkgs.follows = "nixpkgs";
     apple-silicon-support = {
-      url = "github:flokli/nixos-apple-silicon/linux-6.13";
+      url = "github:tpwrules/nixos-apple-silicon";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     colmena = {
