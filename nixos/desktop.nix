@@ -80,6 +80,7 @@ in
         webcord-vencord
         xarchiver
         xclip
+        wl-clipboard
         # xorg.xhost
         waypipe
         ytmdesktop

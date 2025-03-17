@@ -57,8 +57,8 @@ in
       git-hash = "git log -1 --format=%H| tee /dev/tty |pbcopy";
       hackerpass = "env PASSWORD_STORE_GPG_OPTS=\"--trust-model always\" PASSWORD_STORE_DIR=/home/marcus/.hackeriet_pass , pass";
       imgcat = "wezterm imgcat";
-      pbcopy = if pkgs.stdenv.isLinux then "xclip -selection clipboard" else "pbcopy";
-      pbpaste = if pkgs.stdenv.isLinux then "xclip -selection clipboard -o" else "pbpaste";
+      pbcopy = if pkgs.stdenv.isLinux then "wl-copy" else "pbcopy";
+      pbpaste = if pkgs.stdenv.isLinux then "wl-paste" else "pbpaste";
       r = "cd (git root)";
     };
 

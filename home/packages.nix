@@ -65,6 +65,7 @@ in
       ranger
       ripgrep
       sccache
+      sqlite
       stylua
       tealdeer
       tfenv
