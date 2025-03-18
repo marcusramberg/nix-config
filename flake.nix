@@ -169,6 +169,7 @@
             colmena.packages.${system}.colmena
             git
             lolcat
+            go-task
             neovim
             home-manager
             neovim
