@@ -3,6 +3,7 @@
   imports = [
     # Include the results of the hardware scan.
     ./hardware-configuration.nix
+    ../../nixos/kanidm.nix
   ];
   age.secrets.cloudflareToken.owner = "caddy";
 
