@@ -157,6 +157,7 @@
         };
       in
       {
+        inherit inputs;
         apps.default = {
           type = "app";
           program = "${inputs.hei.packages.${system}.hei}/bin/hei";
