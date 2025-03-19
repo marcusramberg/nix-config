@@ -65,7 +65,35 @@
       inherit inputs;
     };
     {
-      nixosConfigurations = inputs.self.colmenaHive.nodes;
+      nixosConfigurations = {
+        mhub = mkNixHost "mhub" {
+        };
+        mhome = mkNixHost "mhome" {
+          extraModules = [ inputs.disko.nixosModules.disko ];
+        };
+        butterbee = mkNixHost "butterbee" {
+          system = "aarch64-linux";
+        };
+        mstudio = mkNixHost "mstudio" {
+          system = "aarch64-linux";
+          extraModules = [
+            inputs.apple-silicon-support.nixosModules.apple-silicon-support
+          ];
+        };
+        mcloud = mkNixHost "mcloud" {
+          system = "aarch64-linux";
+        };
+        mbox = mkNixHost "mbox" {
+          extraModules = [ inputs.jovian.nixosModules.default ];
+        };
+        mbench = mkNixHost "mbench" {
+          extraModules = [ inputs.disko.nixosModules.disko ];
+        };
+        mdeck = mkNixHost "mdeck" {
+          extraModules = [ inputs.jovian.nixosModules.default ];
+        };
+
+      };
       installers = builtins.mapAttrs (
         _: config: (inputs.unattended-installer.lib.diskoInstallerWrapper config { })
       ) self.nixosConfigurations;
@@ -77,68 +105,28 @@
       #       { };
       # };
 
-      colmenaHive = colmena.lib.makeHive {
-        meta = {
-          nixpkgs = inputs.nixpkgs.legacyPackages.x86_64-linux;
-          specialArgs = {
-            inherit inputs;
-            user = "marcus";
-          };
-        };
+      colmenaHive = mkColmenaHive inputs.nixpkgs.legacyPackages.x86_64-linux {
 
-        mhub = mkNixHost "mhub" {
-          deployment = {
-            tags = [
-              "k8s"
-              "servers"
-            ];
-          };
-        };
-        mhome = mkNixHost "mhome" {
-          deployment.tags = [ "servers" ];
-          extraModules = [ inputs.disko.nixosModules.disko ];
-        };
-        butterbee = mkNixHost "butterbee" {
-          deployment.buildOnTarget = true;
-          system = "aarch64-linux";
-        };
-        mstudio = mkNixHost "mstudio" {
-          system = "aarch64-linux";
-          deployment = {
-            tags = [
-              "k8s"
-              "servers"
-            ];
-            buildOnTarget = true;
-          };
-          extraModules = [
-            inputs.apple-silicon-support.nixosModules.apple-silicon-support
+        mhub.tags = [
+          "k8s"
+          "servers"
+        ];
+        mhome.tags = [ "servers" ];
+        butterbee.buildOnTarget = true;
+        mstudio = {
+          tags = [
+            "k8s"
+            "servers"
           ];
+          buildOnTarget = true;
         };
-        mcloud = mkNixHost "mcloud" {
-          system = "aarch64-linux";
-          deployment.tags = [ "servers" ];
-        };
-
-        mbox = mkNixHost "mbox" {
-          deployment = {
-            tags = [
-              "k8s"
-              "servers"
-            ];
-          };
-          extraModules = [ inputs.jovian.nixosModules.default ];
-        };
-        mbench = mkNixHost "mbench" {
-          extraModules = [ inputs.disko.nixosModules.disko ];
-          deployment.tags = [ "servers" ];
-        };
-        mdeck = mkNixHost "mdeck" {
-          extraModules = [ inputs.jovian.nixosModules.default ];
-        };
-        mgate = mkNixHost "mgate" {
-          deployment.tags = [ "servers" ];
-        };
+        mcloud.tags = [ "servers" ];
+        mbox.tags = [
+          "k8s"
+          "servers"
+        ];
+        mbench.tags = [ "servers" ];
+        mgate.tags = [ "servers" ];
       };
 
       darwinConfigurations.mwork = mkDarwinHost "mwork" { };

@@ -11,8 +11,7 @@ let
     inputs.darwin.lib.darwinSystem {
       inherit system;
       specialArgs = {
-        inherit inputs;
-        inherit user;
+        inherit inputs user;
       };
       modules = [
         # Main `nix-darwin` config
@@ -30,15 +29,40 @@ let
       ];
     };
 
+  mkColmenaHive =
+    nixpkgs: nodeDeployments:
+    let
+      confs = inputs.self.nixosConfigurations;
+      colmenaConf =
+        {
+          meta = {
+            inherit nixpkgs;
+            nodeNixpkgs = builtins.mapAttrs (_name: value: value.pkgs) confs;
+            nodeSpecialArgs = builtins.mapAttrs (_name: value: value._module.specialArgs) confs;
+          };
+        }
+        // builtins.mapAttrs (nodeName: value: {
+          imports = value._module.args.modules;
+          deployment = {
+            targetUser = "marcus";
+            allowLocalDeployment = true;
+          } // nodeDeployments.${nodeName} or { };
+        }) confs;
+    in
+    inputs.colmena.lib.makeHive colmenaConf;
+
   mkNixHost =
     name:
     {
       system ? "x86_64-linux",
-      deployment ? { },
       extraModules ? [ ],
+      user ? "marcus",
     }:
-    {
-      imports = [
+    inputs.nixpkgs.lib.nixosSystem {
+      specialArgs = {
+        inherit inputs user;
+      };
+      modules = [
         ../hosts/${name}
         ../nixos
         ../cachix.nix
@@ -49,10 +73,7 @@ let
             ;
         })
         {
-          deployment = {
-            targetUser = "marcus";
-            allowLocalDeployment = true;
-          } // deployment;
+          networking.hostName = name;
         }
       ] ++ extraModules;
 
@@ -89,7 +110,6 @@ let
         config = {
           allowUnfree = true;
           allowBroken = true;
-          allowUnsupportedSystem = true;
         };
         hostPlatform = system;
       };
@@ -112,6 +132,7 @@ in
 {
   inherit
     mkDarwinHost
+    mkColmenaHive
     mkNixHost
     mkHMConfig
     ;
