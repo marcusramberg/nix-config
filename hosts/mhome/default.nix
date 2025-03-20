@@ -52,5 +52,4 @@
 
   services.octoprint.enable = true;
 
-  networking.hostName = "mhome"; # Define your hostname.
 }

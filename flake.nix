@@ -120,18 +120,14 @@
         mdeck = mkNixHost "mdeck" {
           extraModules = [ inputs.jovian.nixosModules.default ];
         };
-
+        mrack01 = mkNixHost "mrack01" {
+          extraModules = [ inputs.disko.nixosModules.default ];
+        };
       };
       installers = builtins.mapAttrs (
-        _: config: (inputs.unattended-installer.lib.diskoInstallerWrapper config { })
+        _: config:
+        (inputs.unattended-installer.lib.diskoInstallerWrapper config { }).config.system.build.isoImage
       ) self.nixosConfigurations;
-      #   mhomeInstaller =
-      #     inputs.unattended-installer.lib.diskoInstallerWrapper self.nixosConfigurations.mhome
-      #       { };
-      #   mbenchInstaller =
-      #     inputs.unattended-installer.lib.diskoInstallerWrapper self.nixosConfigurations.mbench
-      #       { };
-      # };
 
       colmenaHive = mkColmenaHive inputs.nixpkgs.legacyPackages.x86_64-linux {
 
@@ -155,6 +151,7 @@
         ];
         mbench.tags = [ "servers" ];
         mgate.tags = [ "servers" ];
+        mrack01.targetHost = "192.168.86.36";
       };
 
       darwinConfigurations.mwork = mkDarwinHost "mwork" { };

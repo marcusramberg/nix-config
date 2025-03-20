@@ -33,7 +33,6 @@
   };
 
   networking = {
-    hostName = "mhub"; # Define your hostname.
     enableIPv6 = false;
   };
 

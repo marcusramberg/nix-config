@@ -38,7 +38,6 @@ in
       go-task
       gotestfmt
       grc
-      inputs.dagger.packages.${system}.dagger
       inputs.hei.packages.${system}.default
       inputs.nix-converter.packages.${system}.default
       jq

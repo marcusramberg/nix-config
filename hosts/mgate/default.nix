@@ -29,7 +29,6 @@
   };
 
   networking = {
-    hostName = "mgate";
     networkmanager = {
       enable = true;
       unmanaged = [ "wlan" ];
