@@ -5,7 +5,7 @@ let
   mkDarwinHost =
     name:
     {
-      system ? "aaarch64-darwin",
+      system ? "aarch64-darwin",
       user ? "marcus",
     }:
     inputs.darwin.lib.darwinSystem {
