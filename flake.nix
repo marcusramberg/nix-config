@@ -2,18 +2,25 @@
   description = "nix.means.no";
 
   inputs = {
-    agenix.url = "github:ryantm/agenix";
-    agenix.inputs.nixpkgs.follows = "nixpkgs";
+    agenix = {
+      url = "github:ryantm/agenix";
+      inputs = {
+        nixpkgs.follows = "nixpkgs";
+        darwin.follows = "darwin";
+        home-manager.follows = "home-manager";
+        systems.follows = "systems";
+      };
+    };
     apple-silicon-support = {
       url = "github:tpwrules/nixos-apple-silicon";
       inputs.nixpkgs.follows = "nixpkgs";
+      inputs.flake-compat.follows = "flake-compat";
     };
     colmena = {
       url = "github:zhaofengli/colmena";
       inputs = {
         nixpkgs.follows = "nixpkgs";
         stable.follows = "nixpkgs";
-        # nix-github-actions.follows = "nix-github-actions";
         flake-compat.follows = "flake-compat";
         flake-utils.follows = "flake-utils";
       };
@@ -23,20 +30,21 @@
     darwin.url = "github:lnl7/nix-darwin/master";
     darwin.inputs.nixpkgs.follows = "nixpkgs";
     disko.url = "github:nix-community/disko";
-    flake-compat = {
-      url = "github:nix-community/flake-compat";
+    disko.inputs.nixpkgs.follows = "nixpkgs";
+    flake-compat.url = "github:nix-community/flake-compat";
+    hei = {
+      url = "github:marcusramberg/hei";
+      inputs = {
+        nixpkgs.follows = "nixpkgs";
+        utils.follows = "flake-utils";
+      };
     };
-    pre-commit-hooks = {
-      url = "github:cachix/pre-commit-hooks.nix";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-    hei.url = "github:marcusramberg/hei";
-    hei.inputs.nixpkgs.follows = "nixpkgs";
     flake-utils.url = "github:numtide/flake-utils";
+    flake-utils.inputs.systems.follows = "systems";
     jovian.url = "github:Jovian-Experiments/Jovian-NixOS";
     jovian.inputs.nixpkgs.follows = "nixpkgs";
-    home-manager.inputs.nixpkgs.follows = "nixpkgs";
     home-manager.url = "github:nix-community/home-manager";
+    home-manager.inputs.nixpkgs.follows = "nixpkgs";
     # microvm = {
     #   url = "github:astro/microvm.nix";
     #   inputs.nixpkgs.follows = "nixpkgs";
@@ -44,12 +52,32 @@
     nix-index-database.url = "github:Mic92/nix-index-database";
     nix-index-database.inputs.nixpkgs.follows = "nixpkgs";
     nix-std.url = "github:chessai/nix-std";
+    nix-converter = {
+      url = "github:theobori/nix-converter";
+      inputs = {
+        nixpkgs.follows = "nixpkgs";
+        flake-utils.follows = "flake-utils";
+        treefmt-nix.follows = "treefmt-nix";
+      };
+    };
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+    pre-commit-hooks = {
+      url = "github:cachix/pre-commit-hooks.nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.flake-compat.follows = "flake-compat";
+    };
+    systems.url = "github:nix-systems/default";
     tfenv.flake = false;
     tfenv.url = "github:tfutils/tfenv";
-    unattended-installer.url = "github:chrillefkr/nixos-unattended-installer";
-    yaml2nix.url = "github:euank/yaml2nix";
-    yaml2nix.inputs.nixpkgs.follows = "nixpkgs";
+    treefmt-nix.url = "github:numtide/treefmt-nix";
+    treefmt-nix.inputs.nixpkgs.follows = "nixpkgs";
+    unattended-installer = {
+      url = "github:chrillefkr/nixos-unattended-installer";
+      inputs = {
+        disko.follows = "disko";
+        nixpkgs.follows = "nixpkgs";
+      };
+    };
   };
 
   outputs =
@@ -137,17 +165,13 @@
       let
         pkgs = import inputs.nixpkgs {
           inherit system;
-          config = {
-            allowUnfree = true;
-            allowBroken = true;
-            allowUnsupportedSystem = true;
-          };
+          config.allowUnfree = true;
         };
       in
       {
         apps.default = {
           type = "app";
-          program = "${inputs.hei.packages.${system}.default}/bin/hei";
+          program = "${hei.packages.${system}.default}/bin/hei";
         };
         homeConfigurations.marcus = lib.mkHMConfig { inherit inputs pkgs; };
         devShells.default = pkgs.mkShellNoCC {
