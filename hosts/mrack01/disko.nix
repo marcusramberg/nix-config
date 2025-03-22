@@ -8,7 +8,7 @@
           type = "gpt";
           partitions = {
             ESP = {
-              size = "64M";
+              size = "500M";
               type = "EF00";
               content = {
                 type = "filesystem";
@@ -143,9 +143,7 @@
       };
       zspace = {
         type = "zpool";
-        mode = "raidz1";
-        # Workaround: cannot import 'zroot': I/O error in disko tests
-        options.cachefile = "none";
+        mode = "raidz2";
         rootFsOptions = {
           compression = "zstd";
           "com.sun:auto-snapshot" = "false";

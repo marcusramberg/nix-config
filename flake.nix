@@ -151,7 +151,7 @@
         ];
         mbench.tags = [ "servers" ];
         mgate.tags = [ "servers" ];
-        mrack01.targetHost = "192.168.86.36";
+        mrack01.tags = [ "servers" ];
       };
 
       darwinConfigurations.mwork = mkDarwinHost "mwork" { };
