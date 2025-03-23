@@ -21,7 +21,9 @@ _: {
   hardware.cpu.intel.updateMicrocode = true;
   hardware.enableRedistributableFirmware = true;
   networking = {
+    firewall.trustedInterfaces = [ "incusbr0" ];
     hostId = "8fbe374d";
+    nftables.enable = true;
     useNetworkd = true;
   };
   systemd.network = {
@@ -47,6 +49,7 @@ _: {
       };
     };
   };
+  systemd.services.zfs-mount.enable = false;
   profiles = {
     dockerHost.enable = true;
   };

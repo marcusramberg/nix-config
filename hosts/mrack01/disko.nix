@@ -158,7 +158,6 @@
           };
           vms = {
             type = "zfs_fs";
-            mountpoint = "/vms";
             options."com.sun:auto-snapshot" = "true";
           };
         };
