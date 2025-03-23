@@ -112,6 +112,21 @@
     gpu.amd.enable = true;
     bluetooth.enable = true;
     keyboard.dual-caps.enable = true;
+    fancontrol = {
+      enable = true;
+      config = ''
+        INTERVAL=10
+        DEVPATH=hwmon2=devices/pci0000:00/0000:00:01.0/0000:01:00.0/0000:02:00.0/0000:03:00.0
+        DEVNAME=hwmon2=amdgpu
+        FCTEMPS=hwmon2/pwm1=hwmon2/temp1_input
+        FCFANS= hwmon2/pwm1=hwmon2/fan1_input
+        MINTEMP=hwmon2/pwm1=30
+        MAXTEMP=hwmon2/pwm1=60
+        MINSTART=hwmon2/pwm1=68
+        MINSTOP=hwmon2/pwm1=28
+        MAXPWM=hwmon2/pwm1=150
+      '';
+    };
   };
 
   profiles = {
