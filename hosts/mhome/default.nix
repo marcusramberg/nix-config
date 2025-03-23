@@ -1,4 +1,4 @@
-{ config, ... }:
+{ config, pkgs, ... }:
 
 {
   boot = {
@@ -50,6 +50,27 @@
     };
   };
 
-  services.octoprint.enable = true;
+  programs.dconf.enable = true;
+  services.xserver = {
+    enable = true;
+    desktopManager.kodi = {
+      enable = true;
+      package = pkgs.kodi.withPackages (
+        p: with p; [
+          kodi-platform
+          youtube
+        ]
+      );
+    };
+    displayManager = {
+      lightdm = {
+        enable = true;
+        greeters.tiny.enable = true;
+      };
+      defaultSession = "kodi";
+      autoLogin.enable = true;
+      autoLogin.user = "marcus";
+    };
+  };
 
 }
