@@ -50,8 +50,26 @@
     };
   };
 
+  hardware = {
+    enableAllFirmware = true;
+    graphics = {
+      enable = true;
+      enable32Bit = true;
+    };
+
+    nvidia = {
+      modesetting.enable = true;
+      powerManagement.enable = false;
+      powerManagement.finegrained = false;
+      open = false;
+      nvidiaSettings = true;
+    };
+    pulseaudio.enable = true;
+  };
   programs.dconf.enable = true;
+  services.pipewire.enable = false;
   services.xserver = {
+    videoDrivers = [ "nvidiaLegacy340" ];
     enable = true;
     desktopManager.kodi = {
       enable = true;
