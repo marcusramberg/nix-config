@@ -14,13 +14,26 @@ in
   };
   config = mkIf cfg.enable {
     programs.dconf.enable = true;
+    services.avahi.enable = true;
     services.xserver = {
       enable = true;
       desktopManager.kodi = {
         enable = true;
         package = pkgs.kodi.withPackages (
           p: with p; [
+            invidious
             kodi-platform
+            libretro-2048
+            mediacccde
+            netflix
+            pvr-iptvsimple
+            sendtokodi
+            somafm
+            vfs-sftp
+            visualization-matrix
+            visualization-projectm
+            visualization-shadertoy
+            visualization-spectrum
             youtube
           ]
         );

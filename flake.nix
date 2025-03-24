@@ -138,7 +138,10 @@
           "k8s"
           "servers"
         ];
-        mhome.tags = [ "servers" ];
+        mhome.tags = [
+          "servers"
+          "kodi"
+        ];
         butterbee.buildOnTarget = true;
         mstudio = {
           tags = [
@@ -152,7 +155,10 @@
           "k8s"
           "servers"
         ];
-        mbench.tags = [ "servers" ];
+        mbench.tags = [
+          "servers"
+          "kodi"
+        ];
         mgate.tags = [ "servers" ];
         mrack01.tags = [ "servers" ];
       };
