@@ -22,7 +22,7 @@ _: {
     networkmanager.enable = true;
   };
 
-  profiles.desktop.enable = true;
+  profiles.kodi.enable = true;
 
   services = {
     mbpfan.enable = true;

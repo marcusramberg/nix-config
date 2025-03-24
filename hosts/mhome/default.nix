@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ config, ... }:
 
 {
   boot = {
@@ -64,31 +64,12 @@
       open = false;
       nvidiaSettings = true;
     };
+  };
+  services = {
+    pipewire.enable = false;
     pulseaudio.enable = true;
   };
+  profiles.kodi.enable = true;
   programs.dconf.enable = true;
-  services.pipewire.enable = false;
-  services.xserver = {
-    videoDrivers = [ "nvidiaLegacy340" ];
-    enable = true;
-    desktopManager.kodi = {
-      enable = true;
-      package = pkgs.kodi.withPackages (
-        p: with p; [
-          kodi-platform
-          youtube
-        ]
-      );
-    };
-    displayManager = {
-      lightdm = {
-        enable = true;
-        greeters.tiny.enable = true;
-      };
-      defaultSession = "kodi";
-      autoLogin.enable = true;
-      autoLogin.user = "marcus";
-    };
-  };
-
+  services.xserver.videoDrivers = [ "nvidiaLegacy340" ];
 }

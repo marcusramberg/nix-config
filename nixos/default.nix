@@ -25,6 +25,7 @@
     # ./grafana-kiosk.nix
     ./hyprland.nix
     ./k3s.nix
+    ./kodi.nix
     ./keyboardmap.nix
     ./laptop.nix
     ./mediaserver.nix
