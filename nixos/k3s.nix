@@ -37,21 +37,6 @@ in
       systemPackages = with pkgs; [
         openiscsi
       ];
-      etc."k3s-registry" = {
-        mode = "0400";
-        text = ''
-          mirrors:
-            docker.io:
-            registry.k8s.io:
-          configs:
-            "docker.io":
-            "quay.io":
-            "*":
-              tls:
-                insecure_skip_verify: true
-        '';
-        target = "rancher/k3s/registries.yaml";
-      };
     };
     services.k3s = {
       enable = true;
@@ -71,7 +56,6 @@ in
           "--disable traefik"
           "--write-kubeconfig-mode=640"
           "--write-kubeconfig-group=wheel"
-          "--embedded-registry"
         ];
 
     };
