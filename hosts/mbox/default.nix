@@ -155,13 +155,8 @@
   };
 
   services = {
-    below = {
-      enable = true;
-      retention.size = 10000000;
-    };
     blueman.enable = true;
     displayManager.sddm.enable = lib.mkForce false;
-    # grafana-kiosk.enable = true;
     immich = {
       enable = true;
       host = "0.0.0.0";
@@ -189,13 +184,26 @@
     };
     tailscale.useRoutingFeatures = "server";
   };
-  systemd.services.caddy.serviceConfig.AmbientCapabilities = "cap_net_bind_service";
-  systemd.services.NetworkManager-wait-online = {
-    serviceConfig = {
-      ExecStart = [
-        ""
-        "${pkgs.networkmanager}/bin/nm-online -q"
-      ];
+  systemd.services = {
+    caddy.serviceConfig.AmbientCapabilities = "cap_net_bind_service";
+    NetworkManager-wait-online = {
+      serviceConfig = {
+        ExecStart = [
+          ""
+          "${pkgs.networkmanager}/bin/nm-online -q"
+        ];
+      };
+    };
+    glance = {
+      enable = true;
+      description = "Glance";
+      unitConfig = {
+        Type = "simple";
+      };
+      serviceConfig = {
+        ExecStart = "${pkgs.glance}/bin/glance --config /var/lib/glance/glance.yaml";
+      };
+      wantedBy = [ "multi-user.target" ];
     };
   };
   virtualisation = {

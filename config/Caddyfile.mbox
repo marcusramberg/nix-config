@@ -20,23 +20,6 @@
 
 # Tailnet
 
-(caddy-common) {
-	encode gzip
-	# tls /etc/caddy/cloudflare.crt /etc/caddy/cloudflare.key
-	tls {
-		import /run/agenix/cloudflareToken
-	}
-	header {
-		-Server
-		Strict-Transport-Security "max-age=31536000; include-subdomains;"
-		X-XSS-Protection "1; mode=block"
-		X-Frame-Options "DENY"
-		X-Content-Type-Options nosniff
-		Referrer-Policy no-referrer-when-downgrade
-		X-Robots-Tag "none"
-	}
-}
-
 (caddy-tailscale) {
 	encode gzip
 	tls {
@@ -61,4 +44,8 @@ localhost:80 {
 mbox.means.no:443 {
 	import caddy-tailscale
 	reverse_proxy mbox:5000
+}
+thefeed.no:443 {
+	import caddy-tailscale
+	reverse_proxy localhost:8282
 }
