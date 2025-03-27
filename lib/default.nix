@@ -1,7 +1,40 @@
 {
   inputs,
+  patches ? _: { },
+  hostSystem ? builtins.currentSystem,
 }:
 let
+  pkgsForPatching = import inputs.nixpkgs { system = hostSystem; };
+
+  patchFetchers = rec {
+    pr =
+      repo: id: hash:
+      pkgsForPatching.fetchpatch2 {
+        url = "https://github.com/${repo}/pull/${builtins.toString id}.diff";
+        inherit hash;
+      };
+    npr = pr "NixOS/nixpkgs";
+  };
+
+  fetchedPatches = patches patchFetchers;
+
+  patchInput =
+    name: value:
+    if (fetchedPatches.${name} or [ ]) != [ ] then
+      let
+        patchedSrc = pkgsForPatching.applyPatches {
+          name = "source";
+          src = value;
+          patches = fetchedPatches.${name};
+        };
+      in
+      patchedSrc
+    else
+      value;
+
+  patchedInputs = builtins.mapAttrs patchInput inputs;
+  patchedNixpkgs = import patchedInputs.nixpkgs;
+
   mkDarwinHost =
     name:
     {
@@ -11,7 +44,8 @@ let
     inputs.darwin.lib.darwinSystem {
       inherit system;
       specialArgs = {
-        inherit inputs user;
+        inputs = patchedInputs;
+        inherit user;
       };
       modules = [
         # Main `nix-darwin` config
@@ -60,7 +94,8 @@ let
     }:
     inputs.nixpkgs.lib.nixosSystem {
       specialArgs = {
-        inherit inputs user;
+        inputs = patchedInputs;
+        inherit user;
       };
       modules = [
         ../hosts/${name}
@@ -68,9 +103,7 @@ let
         ../cachix.nix
         inputs.home-manager.nixosModules.home-manager
         (mkOptions {
-          inherit
-            system
-            ;
+          inherit system;
         })
         {
           networking.hostName = name;
@@ -80,14 +113,15 @@ let
     };
   mkHMConfig =
     {
-      inputs,
-      pkgs,
+      system ? "x86_64-linux",
+      extraModules ? [ ],
       user ? "marcus",
     }:
-    inputs.home-manager.lib.homeManagerConfiguration {
-      inherit pkgs;
+    patchedInputs.home-manager.lib.homeManagerConfiguration {
+      pkgs = patchedNixpkgs { inherit system; };
       extraSpecialArgs = {
-        inherit inputs user;
+        inputs = patchedInputs;
+        inherit user;
         osConfig = {
           system = { };
           networking = {
@@ -95,7 +129,7 @@ let
           };
         };
       };
-      modules = [ ../home/default.nix ];
+      modules = [ ../home/default.nix ] ++ extraModules;
     };
 
   mkOptions =

@@ -179,7 +179,6 @@
           type = "app";
           program = "${hei.packages.${system}.default}/bin/hei";
         };
-        homeConfigurations.marcus = lib.mkHMConfig { inherit inputs pkgs; };
         devShells.default = pkgs.mkShellNoCC {
           NIX_CONFIG = "experimental-features = nix-command flakes";
           packages = with pkgs; [
@@ -207,5 +206,8 @@
         };
 
       }
-    );
+    )
+    // inputs.flake-utils.lib.eachDefaultSystemPassThrough (system: {
+      homeConfigurations.marcus = lib.mkHMConfig { inherit system; };
+    });
 }
