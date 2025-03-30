@@ -2,7 +2,7 @@
 {
   programs = {
     atuin = {
-
+      daemon.enable = true;
       enable = true;
       enableFishIntegration = true;
       settings = {
