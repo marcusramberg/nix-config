@@ -21,21 +21,23 @@ _: {
   hardware.cpu.intel.updateMicrocode = true;
   hardware.enableRedistributableFirmware = true;
   networking = {
+    useDHCP = false;
     firewall.trustedInterfaces = [ "incusbr0" ];
     hostId = "8fbe374d";
     nftables.enable = true;
     useNetworkd = true;
   };
   systemd.network = {
+    wait-online.enable = false;
     enable = true;
     networks = {
       public = {
         enable = true;
-        matchConfig.Name = "eno0";
-        networkConfig.ConfigureWithoutCarrier = "yes";
-        address = [
-          "185.35.202.218/26"
-          "2a02:ed06::218/64"
+        matchConfig.Name = "eno1";
+        DHCP = "no";
+        addresses = [
+          { Address = "185.35.202.216/26"; }
+          { Address = "2a02:ed06::216/64"; }
         ];
         routes = [
           { Gateway = "185.35.202.193"; }
@@ -43,10 +45,10 @@ _: {
 
         ];
       };
-      private = {
-        matchConfig.Name = "eno1";
-        DHCP = "yes";
-      };
+      # private = {
+      #   matchConfig.Name = "eno1";
+      #   DHCP = "yes";
+      # };
     };
   };
   systemd.services.zfs-mount.enable = false;
