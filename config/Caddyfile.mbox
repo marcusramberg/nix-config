@@ -1,6 +1,6 @@
 {
 	http_port 80
-	https_port 18443
+	https_port 443
 	email marcus@means.no
 
 	acme_ca https://acme-v02.api.letsencrypt.org/directory
@@ -45,6 +45,7 @@ mbox.means.no:443 {
 	import caddy-tailscale
 	reverse_proxy mbox:5000
 }
+
 thefeed.no:443 {
 	import caddy-tailscale
 	reverse_proxy localhost:8282

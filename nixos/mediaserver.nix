@@ -25,6 +25,11 @@ in
     profiles.dockerHost.enable = true;
 
     services = {
+      atuin = {
+        enable = true;
+        openRegistration = true;
+        database.uri = "postgresql://atuin@localhost:5432/atuin";
+      };
       vaultwarden = {
         enable = true;
         config = {
