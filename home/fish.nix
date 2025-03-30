@@ -102,10 +102,10 @@ in
       set -x GPG_TTY (tty)
     '';
     plugins = [
-      {
-        name = "fzf-fish";
-        inherit (pkgs.fishPlugins.fzf-fish) src;
-      }
+      # {
+      #   name = "fzf-fish";
+      #   inherit (pkgs.fishPlugins.fzf-fish) src;
+      # }
       {
         name = "pure";
         inherit (pkgs.fishPlugins.pure) src;

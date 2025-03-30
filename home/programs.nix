@@ -1,11 +1,17 @@
 { pkgs, ... }:
 {
   programs = {
-    eza = {
+    atuin = {
+
       enable = true;
       enableFishIntegration = true;
-      icons = "auto";
-      git = true;
+      settings = {
+        auto_sync = true;
+        sync_frequency = "5m";
+        sync_address = "https://atuin.means.no";
+        search_mode = "prefix";
+      };
+
     };
     bat = {
       enable = true;
@@ -33,10 +39,15 @@
         truecolor = "True";
       };
     };
-
     direnv = {
       enable = true;
       nix-direnv.enable = true;
+    };
+    eza = {
+      enable = true;
+      enableFishIntegration = true;
+      icons = "auto";
+      git = true;
     };
     fzf = {
       enable = true;
