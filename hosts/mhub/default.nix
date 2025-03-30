@@ -5,7 +5,6 @@
     ./hardware-configuration.nix
     ../../nixos/kanidm.nix
   ];
-  age.secrets.cloudflareToken.owner = "caddy";
 
   boot = {
     loader.grub = {

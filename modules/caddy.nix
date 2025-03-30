@@ -20,6 +20,7 @@ in
   };
 
   config = mkIf cfg.enable {
+    age.secrets.cloudflareToken.owner = "caddy";
     services.caddy = {
       enable = true;
       package = pkgs.caddy.withPlugins {

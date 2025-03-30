@@ -5,7 +5,6 @@ _: {
 
   ];
 
-  age.secrets.cloudflareToken.owner = "caddy";
   boot.tmp.cleanOnBoot = true;
   zramSwap.enable = true;
   networking.hostName = "mcloud";

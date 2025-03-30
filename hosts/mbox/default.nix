@@ -11,7 +11,6 @@
     ../../modules/pipewire.nix
   ];
 
-  age.secrets.cloudflareToken.owner = "caddy";
   # Bootloader.
   boot = {
     # binfmt.emulatedSystems = [ "aarch64-linux" ];
