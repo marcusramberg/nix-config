@@ -9,7 +9,7 @@
         auto_sync = true;
         sync_frequency = "5m";
         sync_address = "https://atuin.means.no";
-        search_mode = "prefix";
+        search_mode = "fuzzy";
         keymap_mode = "vim-insert";
         update_check = "false";
         ctrl_n_shortcuts = "true";
