@@ -26,6 +26,7 @@ in
       fish_greeting = "fortune art goedel wisdom tao literature songs-poems paradoxum; echo ''";
       rd = "fd $argv (git root)";
       run = ",";
+      fish_title = ''echo (cat /etc/hostname)": "(prompt_pwd)'';
     };
     shellAbbrs = {
       gc = "git commit";
