@@ -11,6 +11,9 @@
         sync_address = "https://atuin.means.no";
         search_mode = "prefix";
         keymap_mode = "vim-insert";
+        update_check = "false";
+        ctrl_n_shortcuts = "true";
+        style = "compact";
       };
 
     };
