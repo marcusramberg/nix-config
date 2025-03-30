@@ -53,6 +53,10 @@ _: {
   };
   systemd.services.zfs-mount.enable = false;
   profiles = {
+    caddy = {
+      enable = true;
+      configFile = ../../config/Caddyfile.mrack01;
+    };
     dockerHost.enable = true;
   };
   virtualisation.incus.enable = true;
