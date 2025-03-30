@@ -76,7 +76,7 @@
     fwupd.enable = true;
     tailscale.enable = true;
     keybase.enable = true;
-    timesyncd.enable = true;
+    timesyncd.enable = lib.mkDefault true;
   };
 
   programs = {
