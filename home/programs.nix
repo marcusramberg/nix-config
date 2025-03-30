@@ -10,6 +10,7 @@
         sync_frequency = "5m";
         sync_address = "https://atuin.means.no";
         search_mode = "prefix";
+        keymap_mode = "vim-insert";
       };
 
     };
