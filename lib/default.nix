@@ -155,7 +155,8 @@ let
         useUserPackages = true;
         users.${user} = import ../home;
         extraSpecialArgs = {
-          inherit inputs user;
+          inherit user;
+          inputs = patchedInputs;
         };
       };
     };

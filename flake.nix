@@ -91,6 +91,14 @@
     }@inputs:
     with import ./lib {
       inherit inputs;
+      patches =
+        f: with f; {
+          nixpkgs = [
+            # kio-admin fix
+            (npr 394641 "foobar")
+          ];
+        };
+
     };
     {
       nixosConfigurations = {

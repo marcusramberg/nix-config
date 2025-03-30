@@ -12,7 +12,6 @@
       catppuccin
       tmux-thumbs
       tmux-fzf
-      tilish
     ];
     prefix = "`";
     secureSocket = false; # survives user logout
