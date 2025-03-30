@@ -31,6 +31,7 @@
     ./mediaserver.nix
     ./nimdow.nix
     ./nvidia.nix
+    ./pg_upgrade.nix
     ./passthrough.nix
     ./prometheus.nix
   ];

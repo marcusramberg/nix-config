@@ -9,6 +9,7 @@ let
   cfg = config.profiles.mediaserver;
 in
 {
+  # Comment this in to do a postgres upgrade before commenting out and bumping
   options.profiles.mediaserver.enable = mkEnableOption "Enable media server profile";
 
   config = mkIf cfg.enable {
@@ -76,7 +77,7 @@ in
 
       postgresql = {
         enable = true;
-        package = pkgs.postgresql_13;
+        package = pkgs.postgresql_16;
         enableTCPIP = true;
         authentication = pkgs.lib.mkOverride 10 ''
           local all all trust
