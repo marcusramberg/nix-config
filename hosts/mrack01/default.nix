@@ -59,6 +59,16 @@ _: {
     };
     dockerHost.enable = true;
   };
+  users.users = {
+    arne = {
+      description = "Arne";
+      isNormalUser = true;
+      uid = 1002;
+      openssh.authorizedKeys.keys = [
+        "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIN+U+XWGwbEvVPgyqDLmHNvvFivn0GLN7fYizfDlYPWw arne@fismen.net"
+      ];
+    };
+  };
   virtualisation.incus.enable = true;
   virtualisation.incus.ui.enable = true;
 }
