@@ -7,11 +7,36 @@
 }:
 
 {
-  # Runtime
-  virtualisation.podman = {
-    enable = true;
-    autoPrune.enable = true;
-    dockerCompat = true;
+  virtualisation = {
+    podman = {
+      enable = true;
+      autoPrune.enable = true;
+      dockerCompat = true;
+    };
+    oci-containers = {
+      backend = "podman";
+      containers."calibre-web-automated" = {
+        image = "crocodilestick/calibre-web-automated:latest";
+        environment = {
+          "PGID" = "1000";
+          "PUID" = "1000";
+          "TZ" = "UTC";
+        };
+        volumes = [
+          "/var/lib/calibre-web:/config:rw"
+          "/space/incoming/books:/cwa-book-ingest:rw"
+          "/space/calibre:/calibre:rw"
+        ];
+        ports = [
+          "8083:8083/tcp"
+        ];
+        log-driver = "journald";
+        extraOptions = [
+          "--network-alias=calibre-web-automated"
+          "--network=calibre_web_default"
+        ];
+      };
+    };
   };
 
   # Enable container name DNS for all Podman networks.
@@ -23,61 +48,40 @@
       "${matchAll}".allowedUDPPorts = [ 53 ];
     };
 
-  virtualisation.oci-containers.backend = "podman";
-
   # Containers
-  virtualisation.oci-containers.containers."calibre-web-automated" = {
-    image = "crocodilestick/calibre-web-automated:latest";
-    environment = {
-      "PGID" = "1000";
-      "PUID" = "1000";
-      "TZ" = "UTC";
+  systemd.services = {
+    "podman-calibre-web-automated" = {
+      serviceConfig = {
+        Restart = lib.mkOverride 90 "always";
+      };
+      after = [
+        "podman-network-calibre_web_default.service"
+      ];
+      requires = [
+        "podman-network-calibre_web_default.service"
+      ];
+      partOf = [
+        "podman-compose-calibre_web-root.target"
+      ];
+      wantedBy = [
+        "podman-compose-calibre_web-root.target"
+      ];
     };
-    volumes = [
-      "/var/lib/calibre-web:/config:rw"
-      "/space/incoming/books:/cwa-book-ingest:rw"
-      "/space/calibre:/calibre:rw"
-    ];
-    ports = [
-      "8083:8083/tcp"
-    ];
-    log-driver = "journald";
-    extraOptions = [
-      "--network-alias=calibre-web-automated"
-      "--network=calibre_web_default"
-    ];
-  };
-  systemd.services."podman-calibre-web-automated" = {
-    serviceConfig = {
-      Restart = lib.mkOverride 90 "always";
-    };
-    after = [
-      "podman-network-calibre_web_default.service"
-    ];
-    requires = [
-      "podman-network-calibre_web_default.service"
-    ];
-    partOf = [
-      "podman-compose-calibre_web-root.target"
-    ];
-    wantedBy = [
-      "podman-compose-calibre_web-root.target"
-    ];
-  };
 
-  # Networks
-  systemd.services."podman-network-calibre_web_default" = {
-    path = [ pkgs.podman ];
-    serviceConfig = {
-      Type = "oneshot";
-      RemainAfterExit = true;
-      ExecStop = "podman network rm -f calibre_web_default";
+    # Networks
+    "podman-network-calibre_web_default" = {
+      path = [ pkgs.podman ];
+      serviceConfig = {
+        Type = "oneshot";
+        RemainAfterExit = true;
+        ExecStop = "podman network rm -f calibre_web_default";
+      };
+      script = ''
+        podman network inspect calibre_web_default || podman network create calibre_web_default
+      '';
+      partOf = [ "podman-compose-calibre_web-root.target" ];
+      wantedBy = [ "podman-compose-calibre_web-root.target" ];
     };
-    script = ''
-      podman network inspect calibre_web_default || podman network create calibre_web_default
-    '';
-    partOf = [ "podman-compose-calibre_web-root.target" ];
-    wantedBy = [ "podman-compose-calibre_web-root.target" ];
   };
 
   # Root service

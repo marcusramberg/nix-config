@@ -50,3 +50,8 @@ thefeed.no:443 {
 	import caddy-tailscale
 	reverse_proxy localhost:8282
 }
+
+calibre.means.no:443 {
+	import caddy-tailscale
+	reverse_proxy localhost:8083
+}
