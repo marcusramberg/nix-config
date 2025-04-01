@@ -9,6 +9,7 @@
     # Include the results of the hardware scan.
     ./hardware-configuration.nix
     ../../modules/pipewire.nix
+    ../../nixos/calibre-web.nix
   ];
 
   # Bootloader.
