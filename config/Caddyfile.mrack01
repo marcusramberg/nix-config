@@ -81,6 +81,9 @@ tabdog.net:443 {
 www.means.no:443 {
 	import caddy-common
 	root * /html
+  templates {
+      markdown
+  }
 	file_server /* {
 		browse
 		index index.md
