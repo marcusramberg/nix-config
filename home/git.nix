@@ -1,4 +1,7 @@
 { pkgs, ... }:
+let
+  inherit (pkgs.stdenv) isDarwin;
+in
 {
   home.packages = with pkgs; [
     delta
@@ -108,7 +111,11 @@
         push.autoSetupRemote = true;
         rebase.autoStash = true;
         submodule.recurse = true;
-        user.signingkey = "~/.ssh/id_rsa.pub";
+        user.signingkey =
+          if isDarwin then
+            "/Users/marcus/Library/Containers/com.maxgoedjen.Secretive.SecretAgent/Data/PublicKeys/3578d30e1ec6de843da2b8f24435027a.pub"
+          else
+            "~/.ssh/id_rsa.pub";
         url = {
           "git@github.com:".insteadOf = "gh:";
           "git@github.com:reMarkable/cloud".insteadOf = "https://github.com/reMarkable/cloud";

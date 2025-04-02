@@ -1,9 +1,10 @@
 _: {
   # Enable local linux vm builder
-  nix.linux-builder.enable = false;
+  nix.linux-builder.enable = true;
   # Use mbox to build x86_64-linux
   nix.buildMachines = [
     {
+      hostName = "mbox.means.no";
       sshUser = "marcus";
       sshKey = "/etc/nix/builder_ed25519";
       system = "x86_64-linux";

@@ -49,6 +49,7 @@ _: {
       "qlstephen"
       "quicklook-csv"
       "quicklook-json"
+      "secretive"
       "sf-symbols"
       "signal"
       "slack"

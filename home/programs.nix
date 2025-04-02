@@ -1,4 +1,7 @@
-{ pkgs, ... }:
+{ pkgs, lib, ... }:
+let
+  inherit (pkgs.stdenv) isDarwin;
+in
 {
   programs = {
     atuin = {
@@ -79,14 +82,21 @@
       settings = {
         base_url = "https://passwords.means.no/";
         email = "marcus@means.no";
-        pinentry = if pkgs.stdenv.isDarwin then pkgs.pinentry_mac else pkgs.pinentry;
+        pinentry = if isDarwin then pkgs.pinentry_mac else pkgs.pinentry;
       };
     };
     ssh = {
       enable = true;
       addKeysToAgent = "yes";
       forwardAgent = true;
-      matchBlocks."10.8.20.128".forwardX11 = true;
+      matchBlocks =
+        {
+          "10.8.20.128".forwardX11 = true;
+        }
+        // lib.optionalAttrs isDarwin {
+          "*".extraOptions.IdentityAgent =
+            "/Users/marcus/Library/Containers/com.maxgoedjen.Secretive.SecretAgent/Data/socket.ssh";
+        };
     };
     # Smarter z
     zoxide.enable = true;

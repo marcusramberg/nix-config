@@ -26,7 +26,7 @@ in
       fish_greeting = "fortune art goedel wisdom tao literature songs-poems paradoxum; echo ''";
       rd = "fd $argv (git root)";
       run = ",";
-      fish_title = ''echo (cat /etc/hostname)": "(prompt_pwd)'';
+      fish_title = ''echo (hostname -s)": "(prompt_pwd)'';
     };
     shellAbbrs = {
       gc = "git commit";
@@ -100,14 +100,18 @@ in
           . ${pkgs.ghostty.shell_integration}/fish/vendor_conf.d/ghostty-shell-integration.fish
         end
       '';
-    loginShellInit = ''
-      gpgconf --launch gpg-agent
-      if [ -f /Users/${user}/.ssh/id_rsa ]
-        ssh-add -q --apple-use-keychain  ~/.ssh/id_rsa
-        ssh-add -q --apple-use-keychain  ~/.ssh/google_compute_engine
-      end
-      set -x GPG_TTY (tty)
-    '';
+    loginShellInit =
+      ''
+        gpgconf --launch gpg-agent
+        if [ -f /Users/${user}/.ssh/id_rsa ]
+          ssh-add -q --apple-use-keychain  ~/.ssh/id_rsa
+          ssh-add -q --apple-use-keychain  ~/.ssh/google_compute_engine
+        end
+        set -x GPG_TTY (tty)
+      ''
+      + lib.optionalString isDarwin ''
+        set -x SSH_AUTH_SOCK /Users/marcus/Library/Containers/com.maxgoedjen.Secretive.SecretAgent/Data/socket.ssh
+      '';
     plugins = [
       # {
       #   name = "fzf-fish";
