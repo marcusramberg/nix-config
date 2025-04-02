@@ -177,10 +177,7 @@ unifi.means.no:443 {
 auth.means.no:443 {
 	import caddy-common
 	reverse_proxy {
-		to https://localhost:4554
-		transport http {
-			tls tls_insecure_skip_verify
-		}
+		to http://localhost:9000
 	}
 }
 

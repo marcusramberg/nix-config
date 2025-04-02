@@ -11,6 +11,7 @@
         systems.follows = "systems";
       };
     };
+    authentik.url = "github:nix-community/authentik-nix";
     apple-silicon-support = {
       url = "github:tpwrules/nixos-apple-silicon";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -103,6 +104,7 @@
     {
       nixosConfigurations = {
         mhub = mkNixHost "mhub" {
+          extraModules = [ inputs.authentik.nixosModules.default ];
         };
         mhome = mkNixHost "mhome" {
           extraModules = [ inputs.disko.nixosModules.disko ];

@@ -3,7 +3,7 @@
   imports = [
     # Include the results of the hardware scan.
     ./hardware-configuration.nix
-    ../../nixos/kanidm.nix
+    ../../nixos/authentik.nix
   ];
 
   boot = {

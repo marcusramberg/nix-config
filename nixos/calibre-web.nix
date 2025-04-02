@@ -25,7 +25,7 @@
         volumes = [
           "/var/lib/calibre-web:/config:rw"
           "/space/incoming/books:/cwa-book-ingest:rw"
-          "/space/calibre:/calibre:rw"
+          "/space/calibre:/calibre-library:rw"
         ];
         ports = [
           "8083:8083/tcp"
