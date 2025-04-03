@@ -13,9 +13,7 @@
     };
     authentik.url = "github:nix-community/authentik-nix";
     apple-silicon-support = {
-      url = "github:tpwrules/nixos-apple-silicon";
-      inputs.nixpkgs.follows = "nixpkgs";
-      inputs.flake-compat.follows = "flake-compat";
+      url = "github:schphe/nixos-apple-silicon";
     };
     colmena = {
       url = "github:zhaofengli/colmena";
