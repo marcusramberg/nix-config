@@ -19,15 +19,15 @@
 - Steam deck
 - +++
 
-This configuration is based o nusing flakes, nix-darwin and home manager.
+This configuration is based on using flakes, nix-darwin and home manager.
 
 I mostly interact with it on NixOS using
 [hei](https://github.com/marcusramberg/hei), my rewrite of
 [hlissner](https://github.com/hlissner/dotfiles)'s hey script. His
 config is also the inspiration for using Agenix for secrets management.
-Other honorable mentions go to [Mitchell
-Hashimoto's nixos-config](https://github.com/mitchellh/nixos-config).
-from which I've also stolen a lot :)
+Other honorable mentions go to [Mitchell Hashimoto's
+nixos-config](https://github.com/mitchellh/nixos-config) and
+[k900](https://gitlab.com/k900/nix) from which I've also stolen a lot :)
 
 Obviously this is always a WIP.
 
