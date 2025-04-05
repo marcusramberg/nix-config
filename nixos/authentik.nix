@@ -16,7 +16,4 @@
       avatars = "initials";
     };
   };
-  authentik-ldap = {
-    enable = true;
-  };
 }
