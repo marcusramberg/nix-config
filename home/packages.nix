@@ -23,6 +23,7 @@ in
       coreutils
       nodePackages.cspell
       caligula
+      cargo
       curlHTTP3
       deadnix
       devenv
