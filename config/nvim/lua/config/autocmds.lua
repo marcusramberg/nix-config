@@ -34,6 +34,6 @@ vim.api.nvim_create_autocmd("FileType", {
     vim.opt_local.wrap = true
     vim.opt_local.spell = true
     vim.opt.textwidth = 80
-    vim.opt.formatoptions:append("a")
+    -- vim.opt.formatoptions:append("a")
   end,
 })

@@ -52,6 +52,23 @@
       #allowedIPs = "0.0.0.0/0, ::0/0";
     };
   };
+  profiles = {
+    caddy = {
+      enable = true;
+      configFile = ../../config/Caddyfile.mrack01;
+    };
+    dockerHost.enable = true;
+  };
+  services = {
+    pocket-id = {
+      enable = true;
+      settings = {
+        PUBLIC_APP_URL = "https://auth.means.no";
+        TRUST_PROXY = true;
+        CADDY_DISABLED = true;
+      };
+    };
+  };
   systemd.network = {
     wait-online.enable = false;
     enable = true;
@@ -77,13 +94,6 @@
     };
   };
   systemd.services.zfs-mount.enable = false;
-  profiles = {
-    caddy = {
-      enable = true;
-      configFile = ../../config/Caddyfile.mrack01;
-    };
-    dockerHost.enable = true;
-  };
   users.users = {
     arne = {
       description = "Arne";
