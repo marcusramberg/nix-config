@@ -174,12 +174,6 @@ unifi.means.no:443 {
 	}
 }
 
-auth.means.no:443 {
-	import caddy-common
-	reverse_proxy {
-		to http://localhost:9000
-	}
-}
 
 # Public
 
