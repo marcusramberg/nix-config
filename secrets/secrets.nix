@@ -29,4 +29,5 @@ in
   "secrets.age".publicKeys = [ marcus ] ++ machines;
   "transmission.age".publicKeys = [ marcus ] ++ machines;
   "vaultwarden.age".publicKeys = [ marcus ] ++ machines;
+  "wg-mrack01.age".publicKeys = [ marcus ] ++ machines;
 }

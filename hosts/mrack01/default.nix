@@ -1,4 +1,5 @@
-_: {
+{ config, ... }:
+{
   imports = [
     ./disko.nix
   ];
@@ -26,6 +27,30 @@ _: {
     hostId = "8fbe374d";
     nftables.enable = true;
     useNetworkd = true;
+    wg-quick.interfaces.hack = {
+      privateKeyFile = config.age.secrets.wg-mrack01.path;
+      address = [
+        "10.10.235.30/32"
+        "2a02:ed06:235::1e/128"
+      ];
+      peers = [
+        {
+          endpoint = "185.35.202.235:443";
+          publicKey = "z8//zcFn8o9MWhC0J+tuHD6aYbN9yZOKWxqwI9uB7WI=";
+
+          ## Internal Networks (default)
+          allowedIPs = [
+            "10.10.3.0/24"
+            "10.10.50.0/24"
+          ];
+        }
+      ];
+
+      ## External Networks (except the Peer Endpoint), and Internal Networks
+      #allowedIPs = "2a02:ed06::/32, 10.10.3.0/24, 10.10.50.0/24, 185.35.202.192/27, 185.35.202.224/29, 185.35.202.232/31, 185.35.202.234/32, 185.35.202.236/30, 185.35.202.240/28";
+      ## Route all IPv4 and IPv6 traffic
+      #allowedIPs = "0.0.0.0/0, ::0/0";
+    };
   };
   systemd.network = {
     wait-online.enable = false;
