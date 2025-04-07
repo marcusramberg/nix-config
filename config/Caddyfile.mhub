@@ -24,8 +24,8 @@
 			delay_start 3
 			realm generic
 			driver generic
-			client_id ${POCKET_ID} 
-			client_secret ${POCKET_SECRET} 
+			client_id {$POCKET_ID} 
+			client_secret {$POCKET_SECRET} 
 			scopes openid email profile
 			base_auth_url https://auth.means.no
 			metadata_url https://auth.means.no/.well-known/openid-configuration
@@ -137,7 +137,16 @@ fab.means.no:443 {
 
 movies.means.no:443 {
 	import caddy-common
-	reverse_proxy localhost:7878
+  @auth {
+    path /caddy-security/*
+  }
+  route @auth {
+    authenticate with pocketid
+  }
+  route /* {
+    authorize with pocketid
+    reverse_proxy localhost:7878
+  }
 }
 
 transmission.means.no:443 {
@@ -170,7 +179,9 @@ tv.means.no:443 {
   }
   route /* {
     authorize with pocketid
-    reverse_proxy localhost:8989
+    reverse_proxy localhost:8989 {
+      header_up Authorization "Basic {$PROXY_AUTH_BASE64}"
+    }
   }
 }
 
