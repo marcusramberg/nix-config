@@ -41,7 +41,13 @@ in
       };
 
       nzbget.enable = true;
-      radarr.enable = true;
+      radarr = {
+        enable = true;
+        settings = {
+          server.bindaddress = "127.0.0.1";
+        };
+      };
+
       sonarr.enable = true;
 
       miniflux = {
@@ -50,6 +56,13 @@ in
         config = {
           LISTEN_ADDR = "localhost:8485";
           METRICS_COLLECTOR = "1";
+          OAUTH2_PROVIDER = "oidc";
+          OAUTH2_REDIRECT_URL = "https://auth.means.no/oauth2/oidc/callback";
+          OAUTH2_OIDC_DISCOVERY_ENDPOINT = "https://auth.means.no";
+          OAUTH2_OIDC_PROVIDER_NAME = "PocketID";
+          OAUTH2_USER_CREATION = 1; # optional, if you want nes users to be created automatically
+          # DISABLE_LOCAL_AUTH=1 # optional, if you want to disable local authentication
+
         };
       };
 

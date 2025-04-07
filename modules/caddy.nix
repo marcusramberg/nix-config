@@ -23,9 +23,13 @@ in
     age.secrets.cloudflareToken.owner = "caddy";
     services.caddy = {
       enable = true;
+      environmentFile = config.age.secrets.caddy-secrets.path;
       package = pkgs.caddy.withPlugins {
-        plugins = [ "github.com/caddy-dns/cloudflare@v0.0.0-20240703190432-89f16b99c18e" ];
-        hash = "sha256-W09nFfBKd+9QEuzV3RYLeNy2CTry1Tz3Vg1U2JPNPPc=";
+        plugins = [
+          "github.com/caddy-dns/cloudflare@v0.0.0-20240703190432-89f16b99c18e"
+          "github.com/greenpau/caddy-security@v1.1.31"
+        ];
+        hash = "sha256-BwrG2EbHpBcAffSU06MJZe4DiRBopLl3MYDM5LfMV5U=";
       };
       inherit (cfg) configFile;
       adapter = "caddyfile";

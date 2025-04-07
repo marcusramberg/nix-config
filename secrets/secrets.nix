@@ -13,6 +13,7 @@ in
   "appdaemonToken.age".publicKeys = [ marcus ] ++ machines;
   "authentik.age".publicKeys = [ marcus ] ++ machines;
   "borgbackup.age".publicKeys = [ marcus ] ++ machines;
+  "caddy-secrets.age".publicKeys = [ marcus ] ++ machines;
   "cloudflareToken.age".publicKeys = [ marcus ] ++ machines;
   "ha-bearer.age".publicKeys = [ marcus ] ++ machines;
   "immich.age".publicKeys = [ marcus ] ++ machines;
