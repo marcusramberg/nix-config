@@ -16,6 +16,43 @@
 	servers :80 {
 		protocols h1 h2c
 	}
+	order authenticate before respond
+	security {
+		oauth identity provider pocketid {
+			delay_start 3
+			realm generic
+			driver generic
+			client_id {$POCKET_ID}
+			client_secret {$POCKET_SECRET}
+			scopes openid email profile
+			base_auth_url https://auth.means.no
+			metadata_url https://auth.means.no/.well-known/openid-configuration
+		}
+
+		authentication portal pocketid {
+			crypto default token lifetime 3600 # Seconds until you have to re-authenticate
+			enable identity provider pocketid
+			cookie insecure off 
+      cookie domain means.no
+      ui {
+        links {
+					"My Identity" "/whoami" icon "las la-user"
+				}
+			}
+
+			transform user {
+				match realm generic
+				action add role user
+			}
+		}
+
+		authorization policy pocketid {
+			set auth url /caddy-security/oauth2/generic
+			allow roles user
+			inject headers with claims
+      validate bearer header
+		}
+	}
 }
 
 # Tailnet
@@ -53,5 +90,18 @@ thefeed.no:443 {
 
 calibre.means.no:443 {
 	import caddy-tailscale
-	reverse_proxy localhost:8083
+	@auth {
+		path /caddy-security/*
+	}
+	route @auth {
+		authenticate with pocketid
+	}
+	route /* {
+		authorize with pocketid
+		reverse_proxy localhost:8083
+	}
+}
+incus.means.no:443 {
+	import caddy-tailscale
+  reverse_proxy localhost:8443
 }
