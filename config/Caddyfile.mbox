@@ -103,5 +103,10 @@ calibre.means.no:443 {
 }
 incus.means.no:443 {
 	import caddy-tailscale
-  reverse_proxy localhost:8443
+  reverse_proxy {
+    to localhost:8443
+		transport http {
+			tls tls_insecure_skip_verify
+		}
+  }
 }
