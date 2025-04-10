@@ -110,6 +110,7 @@ incus.means.no:443 {
 		authenticate with pocketid
 	}
 	route /* {
+		authorize with pocketid
 		reverse_proxy unix//var/lib/incus/unix.socket
 	}
 }
