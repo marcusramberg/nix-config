@@ -32,10 +32,10 @@
 		authentication portal pocketid {
 			crypto default token lifetime 3600 # Seconds until you have to re-authenticate
 			enable identity provider pocketid
-			cookie insecure off 
-      cookie domain means.no
-      ui {
-        links {
+			cookie insecure off
+			cookie domain means.no
+			ui {
+				links {
 					"My Identity" "/whoami" icon "las la-user"
 				}
 			}
@@ -50,7 +50,7 @@
 			set auth url /caddy-security/oauth2/generic
 			allow roles user
 			inject headers with claims
-      validate bearer header
+			validate bearer header
 		}
 	}
 }
@@ -103,10 +103,13 @@ calibre.means.no:443 {
 }
 incus.means.no:443 {
 	import caddy-tailscale
-  reverse_proxy {
-    to localhost:8443
-		transport http {
-			tls tls_insecure_skip_verify
-		}
-  }
+	@auth {
+		path /caddy-security/*
+	}
+	route @auth {
+		authenticate with pocketid
+	}
+	route /* {
+		reverse_proxy unix//var/lib/incus/unix.socket
+	}
 }

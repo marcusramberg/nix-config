@@ -206,6 +206,7 @@
       wantedBy = [ "multi-user.target" ];
     };
   };
+  users.users.caddy.extraGroups = [ "incus-admin" ];
   virtualisation = {
     # docker.enable = true;
     incus = {
