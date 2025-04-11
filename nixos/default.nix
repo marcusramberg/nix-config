@@ -45,9 +45,9 @@
       caddy
       file
       gcc
-      ghostty.terminfo
+      inputs.ghostty.packages.${pkgs.system}.default.terminfo
       gitFull
-      inputs.agenix.packages."${pkgs.system}".default
+      inputs.agenix.packages.${pkgs.system}.default
       mosh
       netavark
       ntfs3g

@@ -1,7 +1,8 @@
 {
   config,
-  pkgs,
+  inputs,
   lib,
+  pkgs,
   ...
 }:
 let
@@ -58,7 +59,7 @@ in
         # feh
         flameshot
         # floorp # zen life
-        ghostty
+        inputs.ghostty.packages.${pkgs.system}.default
         # gnomeExtensions.appindicator
         # gnomeExtensions.just-perfection
         # gnomeExtensions.paperwm
