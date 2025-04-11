@@ -31,6 +31,7 @@
     disko.url = "github:nix-community/disko";
     disko.inputs.nixpkgs.follows = "nixpkgs";
     flake-compat.url = "github:nix-community/flake-compat";
+    ghostty.url = "github:ghostty-org/ghostty";
     hei = {
       url = "github:marcusramberg/hei";
       inputs = {

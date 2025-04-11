@@ -1,4 +1,9 @@
-{ config, lib, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 {
   config = {
     age.secrets.nixAccessTokens = {
@@ -6,6 +11,7 @@
       mode = "0440";
     };
     nix = {
+      package = pkgs.nixVersions.nix_2_28;
       distributedBuilds = true;
       settings = {
         substituters = [

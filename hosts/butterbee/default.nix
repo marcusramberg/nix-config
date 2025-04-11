@@ -18,7 +18,6 @@
     ];
   };
 
-  nix.package = pkgs.nixVersions.nix_2_26;
   hardware.enableAllFirmware = true;
 
   profiles = {
