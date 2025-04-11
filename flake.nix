@@ -116,9 +116,6 @@
             inputs.apple-silicon-support.nixosModules.apple-silicon-support
           ];
         };
-        mcloud = mkNixHost "mcloud" {
-          system = "aarch64-linux";
-        };
         mbox = mkNixHost "mbox" {
           extraModules = [ inputs.jovian.nixosModules.default ];
         };
@@ -158,7 +155,6 @@
           ];
           buildOnTarget = true;
         };
-        mcloud.tags = [ "servers" ];
         mbox.tags = [
           "k8s"
           "servers"
