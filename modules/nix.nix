@@ -11,6 +11,7 @@
       mode = "0440";
     };
     nix = {
+      channel.enable = false;
       package = pkgs.nixVersions.nix_2_28;
       distributedBuilds = true;
       settings = {
@@ -36,7 +37,10 @@
           "nix-command"
           "flakes"
         ];
-        trusted-users = [ "marcus" ];
+        trusted-users = [
+          "marcus"
+          "arne"
+        ];
         auto-optimise-store = lib.mkDefault true;
       };
       gc = {
