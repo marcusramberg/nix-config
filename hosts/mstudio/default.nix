@@ -132,6 +132,17 @@
   #
   # For more information, see `man configuration.nix` or https://nixos.org/manual/nixos/stable/options#opt-system.stateVersion .
   system.stateVersion = "24.11"; # Did you read the comment?
+  users.users = {
+    arne = {
+      description = "Arne";
+      isNormalUser = true;
+      uid = 1002;
+      openssh.authorizedKeys.keys = [
+        "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIN+U+XWGwbEvVPgyqDLmHNvvFivn0GLN7fYizfDlYPWw arne@fismen.net"
+        "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIBsxyZJbZ8ePgzuGhma5H7PfBLxg7urZPwom3SmPML40 arne@pifive"
+      ];
+    };
+  };
   virtualisation = {
     incus.enable = true;
     incus.ui.enable = true;
