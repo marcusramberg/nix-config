@@ -1,11 +1,16 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
-  "extends": ["config:base", "regexManagers:dockerfileVersions"],
+  "extends": [
+    "config:recommended",
+    "customManagers:dockerfileVersions"
+  ],
   "customManagers": [
     {
       "customType": "regex",
       "datasourceTemplate": "docker",
-      "fileMatch": [".+\\.nix$"],
+      "fileMatch": [
+        ".+\\.nix$"
+      ],
       "matchStrings": [
         "\\s+image\\s+=\\s+\"(?<depName>.*?):(?<currentValue>.*?)\""
       ]
@@ -13,7 +18,9 @@
   ],
   "lockFileMaintenance": {
     "enabled": true,
-    "extends": ["schedule:daily"]
+    "extends": [
+      "schedule:daily"
+    ]
   },
   "nix": {
     "enabled": true
