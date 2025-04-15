@@ -1,4 +1,8 @@
-{ config, ... }:
+{
+  config,
+  pkgs,
+  ...
+}:
 {
   imports = [
     ./disko.nix
@@ -67,6 +71,50 @@
         TRUST_PROXY = true;
         CADDY_DISABLED = true;
       };
+    };
+    forgejo = {
+      database = {
+        type = "postgres";
+        socket = "/run/postgresql";
+      };
+      dump = {
+        enable = true;
+        backupDir = "/backup/forgejo";
+      };
+      enable = true;
+      lfs.enable = true;
+      settings = {
+        COOKIE_SECURE = true;
+        LISTEN_PORT = "http+unix";
+        DOMAIN = "bases.means.no";
+        oauth2 = {
+          ENABLED = true;
+        };
+
+        openid = {
+          ENABLE_OPENID_SIGNIN = false;
+          ENABLE_OPENID_SIGNUP = true;
+          WHITELISTED_URIS = "https://auth.means.no";
+        };
+
+        service = {
+          # DISABLE_REGISTRATION = mkForce false;
+          # ALLOW_ONLY_EXTERNAL_REGISTRATION = false;
+          SHOW_REGISTRATION_BUTTON = false;
+        };
+      };
+    };
+    postgresql = {
+      enable = true;
+      package = pkgs.postgresql_16;
+      enableTCPIP = false;
+      ensureDatabases = [ "forgejo" ];
+      ensureUsers = [
+        {
+          name = "forgejo";
+          ensureDBOwnership = true;
+        }
+      ];
     };
   };
   systemd.network = {
