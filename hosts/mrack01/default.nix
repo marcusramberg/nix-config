@@ -86,8 +86,8 @@
       settings = {
         session.COOKIE_SECURE = true;
         server = {
-          DOMAIN = "bases.means.no";
-          HTTP_ADDR = "http+unix";
+          ROOT_URL = "https://bases.means.no";
+          PROTOCOL = "http+unix";
         };
         oauth2 = {
           ENABLED = true;
