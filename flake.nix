@@ -126,6 +126,9 @@
         mdeck = mkNixHost "mdeck" {
           extraModules = [ inputs.jovian.nixosModules.default ];
         };
+        mgate = mkNixHost "mgate" {
+          extraModules = [ ];
+        };
         mrack01 = mkNixHost "mrack01" {
           extraModules = [ inputs.disko.nixosModules.default ];
         };
