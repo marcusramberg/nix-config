@@ -84,9 +84,11 @@
       enable = true;
       lfs.enable = true;
       settings = {
-        COOKIE_SECURE = true;
-        LISTEN_PORT = "http+unix";
-        DOMAIN = "bases.means.no";
+        session.COOKIE_SECURE = true;
+        server = {
+          DOMAIN = "bases.means.no";
+          HTTP_ADDR = "http+unix";
+        };
         oauth2 = {
           ENABLED = true;
         };
