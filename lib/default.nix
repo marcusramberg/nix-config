@@ -80,8 +80,8 @@ let
           deployment = {
             targetUser = "marcus";
             allowLocalDeployment = true;
-          } // nodeDeployments.${nodeName} or { };
-        }) confs;
+          } // nodeDeployments.${nodeName};
+        }) (nixpkgs.lib.filterAttrs (n: _: builtins.hasAttr n nodeDeployments) confs);
     in
     inputs.colmena.lib.makeHive colmenaConf;
 
