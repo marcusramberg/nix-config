@@ -1,5 +1,6 @@
 {
   config,
+  lib,
   pkgs,
   ...
 }:
@@ -27,7 +28,18 @@
   hardware.enableRedistributableFirmware = true;
   networking = {
     useDHCP = false;
-    firewall.trustedInterfaces = [ "incusbr0" ];
+    firewall = {
+      trustedInterfaces = [
+        "incusbr0"
+        "tailscale0"
+      ];
+      enable = lib.mkForce true;
+      allowedTCPPorts = [
+        22
+        80
+        443
+      ];
+    };
     hostId = "8fbe374d";
     nftables.enable = true;
     useNetworkd = true;
@@ -64,6 +76,21 @@
     dockerHost.enable = true;
   };
   services = {
+    fail2ban = {
+      enable = true;
+      ignoreIP = [ "100.64.0.0/10" ];
+      banaction = "nftables-multiport";
+      banaction-allports = "nftables-allport";
+      packageFirewall = pkgs.nftables;
+      maxretry = 5;
+      bantime = "15m";
+      jails = {
+        sshd.settings = {
+          mode = "aggressive";
+          port = "22";
+        };
+      };
+    };
     pocket-id = {
       enable = true;
       settings = {
@@ -146,7 +173,7 @@
   systemd.services.zfs-mount.enable = false;
   users.users = {
     arne = {
-      description = "Arne";
+      description = "Arne Fismen";
       extraGroups = [ "wheel" ];
       isNormalUser = true;
       uid = 1002;
