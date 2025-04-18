@@ -11,7 +11,6 @@
         systems.follows = "systems";
       };
     };
-    authentik.url = "github:nix-community/authentik-nix";
     apple-silicon-support = {
       url = "github:schphe/nixos-apple-silicon";
     };
@@ -23,8 +22,6 @@
         flake-compat.follows = "flake-compat";
       };
     };
-    dagger.url = "github:dagger/nix";
-    dagger.inputs.nixpkgs.follows = "nixpkgs";
     darwin.url = "github:lnl7/nix-darwin/master";
     darwin.inputs.nixpkgs.follows = "nixpkgs";
     disko.url = "github:nix-community/disko";
