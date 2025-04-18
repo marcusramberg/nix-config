@@ -34,6 +34,7 @@
         "tailscale0"
       ];
       enable = lib.mkForce true;
+      logRefusedConnections = false;
       allowedTCPPorts = [
         22
         80
