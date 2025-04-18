@@ -112,11 +112,6 @@
       enable = true;
       lfs.enable = true;
       settings = {
-        session.COOKIE_SECURE = true;
-        server = {
-          ROOT_URL = "https://bases.means.no";
-          PROTOCOL = "http+unix";
-        };
         openid = {
           ACCOUNT_LINKING = "auto";
           USERNAME = "nickname";
@@ -125,12 +120,20 @@
           ENABLE_OPENID_SIGNUP = true;
           WHITELISTED_URIS = "https://auth.means.no";
         };
-
+        session.COOKIE_SECURE = true;
+        server = {
+          ROOT_URL = "https://bases.means.no";
+          PROTOCOL = "http+unix";
+        };
         service = {
           # DISABLE_REGISTRATION = mkForce false;
           # ALLOW_ONLY_EXTERNAL_REGISTRATION = false;
           SHOW_REGISTRATION_BUTTON = false;
           AUTO_WATCH_NEW_REPOS = false;
+        };
+        ui = {
+          THEMES = "bas-es, forgejo-auto, forgejo-light, forgejo-dark, gitea-auto, gitea-light, gitea-dark, forgejo-auto-deuteranopia-protanopia, forgejo-light-deuteranopia-protanopia, forgejo-dark-deuteranopia-protanopia, forgejo-auto-tritanopia, forgejo-light-tritanopia, forgejo-dark-tritanopia";
+          DEFAULT_THEME = "bas-es";
         };
       };
     };
