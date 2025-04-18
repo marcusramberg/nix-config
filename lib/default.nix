@@ -129,7 +129,18 @@ let
           };
         };
       };
-      modules = [ ../home/default.nix ] ++ extraModules;
+      modules = [
+        ../home/default.nix
+        {
+
+          nixpkgs = {
+            inherit overlays;
+            config = {
+              allowUnfree = true;
+            };
+          };
+        }
+      ] ++ extraModules;
     };
 
   mkOptions =

@@ -73,7 +73,7 @@ in
         # picom
         # rofi
         showmethekey
-        signal-desktop
+        signal-desktop-source
         tauon
         telegram-desktop
         vivaldi
