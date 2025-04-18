@@ -76,9 +76,6 @@ in
       wget
       yq-go
       btop
-
-      # useful nix related tools
-      cachix # adding/managing alternative binary caches hosted by cachix
     ]
     ++ lib.optionals stdenv.isDarwin [
       cocoapods

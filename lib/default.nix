@@ -100,7 +100,6 @@ let
       modules = [
         ../hosts/${name}
         ../nixos
-        ../cachix.nix
         inputs.home-manager.nixosModules.home-manager
         (mkOptions {
           inherit system;
