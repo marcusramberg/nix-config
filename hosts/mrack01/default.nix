@@ -151,7 +151,7 @@
       isNormalUser = true;
       uid = 1002;
       openssh.authorizedKeys.keys = [
-        "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIN+U+XWGwbEvVPgyqDLmHNvvFivn0GLN7fYizfDlYPWw arne@fismen.net"
+        "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJkHOi39HCigHCOneTKIiY+C809n6d3sNHd3hoy2Uq21"
       ];
     };
   };
