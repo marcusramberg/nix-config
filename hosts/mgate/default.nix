@@ -39,6 +39,7 @@
         443
         32400
       ];
+      logRefusedConnections = false;
       trustedInterfaces = [
         "tailscale0"
         "lan"
