@@ -89,12 +89,11 @@
           ROOT_URL = "https://bases.means.no";
           PROTOCOL = "http+unix";
         };
-        oauth2 = {
-          ENABLED = true;
-        };
-
         openid = {
-          ENABLE_OPENID_SIGNIN = false;
+          ACCOUNT_LINKING = "auto";
+          USERNAME = "nickname";
+          OPENID_CONNECT_SCOPES = "email profile";
+          ENABLE_OPENID_SIGNIN = true;
           ENABLE_OPENID_SIGNUP = true;
           WHITELISTED_URIS = "https://auth.means.no";
         };
@@ -103,6 +102,7 @@
           # DISABLE_REGISTRATION = mkForce false;
           # ALLOW_ONLY_EXTERNAL_REGISTRATION = false;
           SHOW_REGISTRATION_BUTTON = false;
+          AUTO_WATCH_NEW_REPOS = false;
         };
       };
     };
@@ -147,6 +147,7 @@
   users.users = {
     arne = {
       description = "Arne";
+      extraGroups = [ "wheel" ];
       isNormalUser = true;
       uid = 1002;
       openssh.authorizedKeys.keys = [
