@@ -5,6 +5,7 @@ in
 {
   home.packages = with pkgs; [
     delta
+    forgejo-cli
     git-crypt
     git-extras
     git-lfs
