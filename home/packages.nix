@@ -49,7 +49,7 @@ in
       nil
       lynx # for copilot
       nixfmt-rfc-style
-      neofetch
+      fastfetch
       nixpkgs-review
       nix-output-monitor
       nix-your-shell
