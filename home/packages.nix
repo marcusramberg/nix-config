@@ -29,7 +29,7 @@ in
       devenv
       dive
       fd
-      fortune
+      (fortune.override { withOffensive = true; })
       gist
       gnumake
       gnugrep

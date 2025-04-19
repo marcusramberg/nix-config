@@ -23,7 +23,7 @@ in
   programs.fish = {
     enable = true;
     functions = {
-      fish_greeting = "fortune art goedel wisdom tao literature songs-poems paradoxum; echo ''";
+      fish_greeting = "fortune -o art goedel wisdom tao literature songs-poems paradoxum; echo ''";
       rd = "fd $argv (git root)";
       run = ",";
       fish_title = ''echo (hostname -s)": "(prompt_pwd)'';
