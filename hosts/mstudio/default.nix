@@ -1,11 +1,4 @@
-# Edit this configuration file to define what should be installed on
-# your system. Help is available in the configuration.nix(5) man page, on
-# https://search.nixos.org/options and in the NixOS manual (`nixos-help`).
-
-{
-  pkgs,
-  ...
-}:
+{ pkgs, ... }:
 
 {
   imports = [
@@ -61,10 +54,7 @@
     };
   };
 
-  networking = {
-    hostName = "mstudio";
-    networkmanager.enable = true;
-  };
+  networking.networkmanager.enable = true;
 
   nixpkgs.config.allowUnsupportedSystem = true;
   # Enable the X11 windowing system.
@@ -94,37 +84,21 @@
   services = {
     blueman.enable = true;
     displayManager.sddm.enableHidpi = true;
-    k3s = {
-      serverAddr = "https://192.168.86.1:6443";
-    };
+    k3s.serverAddr = "https://192.168.86.1:6443";
     libinput.enable = true;
     ollama.enable = true;
     pipewire = {
       enable = true;
       pulse.enable = true;
-
-      extraConfig = {
-        pipewire-pulse = {
-          "context.exec" = [
-            {
-              path = "pactl";
-              args = "load-module module-switch-on-connect";
-            }
-          ];
-        };
-      };
-
+      extraConfig.pipewire-pulse."context.exec" = [
+        {
+          path = "pactl";
+          args = "load-module module-switch-on-connect";
+        }
+      ];
       wireplumber.enable = true;
     };
     xserver.dpi = 140;
-  };
-
-  users.users.marcus = {
-    isNormalUser = true;
-    extraGroups = [ "wheel" ]; # Enable ‘sudo’ for the user.
-    packages = with pkgs; [
-      tree
-    ];
   };
 
   # Do NOT change this value unless you have manually inspected all the changes it would make to your configuration,
@@ -138,8 +112,7 @@
       isNormalUser = true;
       uid = 1002;
       openssh.authorizedKeys.keys = [
-        "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIN+U+XWGwbEvVPgyqDLmHNvvFivn0GLN7fYizfDlYPWw arne@fismen.net"
-        "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIBsxyZJbZ8ePgzuGhma5H7PfBLxg7urZPwom3SmPML40 arne@pifive"
+        "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJkHOi39HCigHCOneTKIiY+C809n6d3sNHd3hoy2Uq21"
       ];
     };
   };
@@ -148,5 +121,4 @@
     incus.ui.enable = true;
     libvirtd.enable = true;
   };
-
 }
