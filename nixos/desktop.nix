@@ -74,7 +74,6 @@ in
         # rofi
         showmethekey
         signal-desktop-source
-        tauon
         telegram-desktop
         vivaldi
         volumeicon
