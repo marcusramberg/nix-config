@@ -34,6 +34,7 @@
       gnugrep
       gitFull
       iconv
+      gnused
       terminal-notifier
     ];
     extraSetup = ''
