@@ -23,7 +23,6 @@
   profiles = {
     desktop.enable = true;
     dockerHost.enable = true;
-    hyprland.enable = true;
   };
 
   services = {

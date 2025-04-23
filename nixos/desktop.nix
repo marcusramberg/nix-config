@@ -65,6 +65,7 @@ in
         # gnomeExtensions.paperwm
         hunspell
         hunspellDicts.en_US
+        kdePackages.karousel
         kdePackages.krdp
         # nitrogen
         obsidian
