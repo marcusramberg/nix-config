@@ -149,6 +149,7 @@
         }
       ];
     };
+    openssh.settings.PasswordAuthentication = false;
   };
   systemd.network = {
     wait-online.enable = false;
