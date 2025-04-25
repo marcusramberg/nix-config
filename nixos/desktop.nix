@@ -56,23 +56,16 @@ in
         })
         copyq
         element-desktop
-        # feh
         flameshot
         # floorp # zen life
         inputs.ghostty.packages.${pkgs.system}.default
-        # gnomeExtensions.appindicator
-        # gnomeExtensions.just-perfection
-        # gnomeExtensions.paperwm
         hunspell
         hunspellDicts.en_US
         kdePackages.karousel
         kdePackages.krdp
-        # nitrogen
+        kdePackages.kdegraphics-thumbnailers
         obsidian
-        # pantheon.sideload
         pavucontrol
-        # picom
-        # rofi
         showmethekey
         signal-desktop
         telegram-desktop
@@ -82,7 +75,6 @@ in
         xarchiver
         xclip
         wl-clipboard
-        # xorg.xhost
         waypipe
         ytmdesktop
         zafiro-icons
