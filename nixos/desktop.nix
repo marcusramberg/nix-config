@@ -85,9 +85,6 @@ in
 
     profiles.myfonts.enable = true;
     programs = {
-      gnupg.agent = {
-        pinentryPackage = lib.mkForce pkgs.pinentry-curses;
-      };
       chromium.enable = true;
       firefox = {
         enable = true;
@@ -95,6 +92,10 @@ in
           with pkgs;
           [ tridactyl-native ] ++ lib.optionals (pkgs.system == "x86_64-linux") [ fx-cast-bridge ];
       };
+      gnupg.agent = {
+        pinentryPackage = lib.mkForce pkgs.pinentry-curses;
+      };
+      kdeconnect.enable = true;
     };
 
     qt.style = "breeze";
