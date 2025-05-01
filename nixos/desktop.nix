@@ -112,6 +112,10 @@ in
       libinput.enable = true;
       displayManager.sddm = {
         enable = true;
+        wayland = {
+          enable = true;
+          compositor = "kwin";
+        };
         theme = "catppuccin-mocha";
         settings.General.InputMethod = "";
       };

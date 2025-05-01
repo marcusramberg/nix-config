@@ -12,7 +12,7 @@
       };
     };
     apple-silicon-support = {
-      url = "github:schphe/nixos-apple-silicon";
+      url = "github:second2050/nixos-apple-silicon";
     };
     colmena = {
       url = "github:zhaofengli/colmena";
@@ -102,6 +102,12 @@
             };
             butterbee = mkNixHost "butterbee" {
               system = "aarch64-linux";
+            };
+            mbook = mkNixHost "mbook" {
+              system = "aarch64-linux";
+              extraModules = [
+                inputs.apple-silicon-support.nixosModules.apple-silicon-support
+              ];
             };
             mstudio = mkNixHost "mstudio" {
               system = "aarch64-linux";
