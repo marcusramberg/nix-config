@@ -109,6 +109,7 @@
       "dialout"
       "feedbackd"
       "incus-admin"
+      "pipewire"
       "podman"
       "video"
       "libvirtd"

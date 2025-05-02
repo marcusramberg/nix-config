@@ -18,6 +18,7 @@
   boot.loader.efi.canTouchEfiVariables = false;
 
   environment.systemPackages = with pkgs; [
+    ungoogled-chromium
     spotify-player
   ];
   hardware = {
@@ -56,6 +57,7 @@
       ];
       wireplumber.enable = true;
     };
+    cloudflare-warp.enable = true;
   };
 
   system.stateVersion = "25.05"; # Did you read the comment?
