@@ -23,65 +23,71 @@ in
       };
     };
 
-    environment.systemPackages =
-      with pkgs;
-      [
-        (catppuccin-gtk.override {
-          variant = "mocha";
-          accents = [
-            "blue"
-            "teal"
-            "lavender"
-          ];
+    environment = {
+      sessionVariables.NIXOS_OZONE_WL = "1";
+      systemPackages =
+        with pkgs;
+        [
+          (catppuccin-gtk.override {
+            variant = "mocha";
+            accents = [
+              "blue"
+              "teal"
+              "lavender"
+            ];
 
-        })
-        (catppuccin-kde.override {
-          flavour = [ "mocha" ];
-          accents = [
-            "blue"
-            "teal"
-            "lavender"
-          ];
+          })
+          (catppuccin-kde.override {
+            flavour = [ "mocha" ];
+            accents = [
+              "blue"
+              "teal"
+              "lavender"
+            ];
 
-        })
-        catppuccin-qt5ct
-        catppuccin-cursors
-        catppuccin-kvantum
-        (catppuccin-sddm.override {
-          flavor = "mocha";
-          font = "JetBrainsMono Nerd Font Propo";
-          fontSize = "9";
-          # background = "${./wallpaper.png}";
-          # loginBackground = true;
-        })
-        copyq
-        element-desktop
-        flameshot
-        # floorp # zen life
-        inputs.ghostty.packages.${pkgs.system}.default
-        hunspell
-        hunspellDicts.en_US
-        kdePackages.karousel
-        kdePackages.krdp
-        kdePackages.kdegraphics-thumbnailers
-        obsidian
-        pavucontrol
-        showmethekey
-        signal-desktop
-        telegram-desktop
-        vivaldi
-        volumeicon
-        webcord-vencord
-        xarchiver
-        xclip
-        wl-clipboard
-        waypipe
-        ytmdesktop
-        zafiro-icons
-      ]
-      ++ lib.optionals (system == "x86_64-linux") [
-        vivaldi-ffmpeg-codecs
-      ];
+          })
+          catppuccin-qt5ct
+          catppuccin-cursors
+          catppuccin-kvantum
+          (catppuccin-sddm.override {
+            flavor = "mocha";
+            font = "JetBrainsMono Nerd Font Propo";
+            fontSize = "9";
+            # background = "${./wallpaper.png}";
+            # loginBackground = true;
+          })
+          copyq
+          element-desktop
+          flameshot
+          # floorp # zen life
+          inputs.ghostty.packages.${pkgs.system}.default
+          hunspell
+          hunspellDicts.en_US
+          kdePackages.karousel
+          kdePackages.krdp
+          kdePackages.kdegraphics-thumbnailers
+          nixos-icons
+          neovide
+          obsidian
+          pavucontrol
+          showmethekey
+          signal-desktop
+          telegram-desktop
+          vivaldi
+          volumeicon
+          webcord-vencord
+          xarchiver
+          xdg-utils
+          xclip
+          wl-clipboard
+          waypipe
+          ytmdesktop
+          zafiro-icons
+        ]
+        ++ lib.optionals (system == "x86_64-linux") [
+          vivaldi-ffmpeg-codecs
+        ];
+    };
 
     profiles.myfonts.enable = true;
     programs = {
@@ -172,6 +178,15 @@ in
         })
       '';
     };
-    xdg.portal.enable = true;
+    xdg = {
+      autostart.enable = true;
+      icons.enable = true;
+      menus.enable = true;
+      mime.enable = true;
+      portal = {
+        enable = true;
+        xdgOpenUsePortal = true;
+      };
+    };
   };
 }

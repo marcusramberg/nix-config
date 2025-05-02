@@ -3,6 +3,7 @@
 # https://search.nixos.org/options and in the NixOS manual (`nixos-help`).
 
 {
+  lib,
   pkgs,
   ...
 }:
@@ -31,11 +32,11 @@
       withRust = true;
     };
   };
-  networking.wireless.iwd = {
+  networking.networkmanager = {
     enable = true;
-    settings.General.EnableNetworkConfiguration = true;
+    plugins = lib.mkForce [ ];
+    wifi.backend = "iwd";
   };
-  networking.networkmanager.enable = true;
   profiles = {
     autoupgrade.enable = true;
     dockerHost.enable = true;
