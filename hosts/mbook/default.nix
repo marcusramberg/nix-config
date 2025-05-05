@@ -19,7 +19,7 @@
     loader.systemd-boot.enable = true;
     loader.efi.canTouchEfiVariables = false;
     extraModprobeConfig = ''
-      options hid_apple iso_layout=1
+      options hid_apple iso_layout=0
     '';
   };
   environment.systemPackages = with pkgs; [
