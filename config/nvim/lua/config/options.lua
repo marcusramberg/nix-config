@@ -13,6 +13,8 @@ opt.relativenumber = false
 vim.lsp.set_log_level("off")
 
 if vim.g.neovide then
+  vim.g.neovide_cursor_vfx_mode = "pixiedust"
+  vim.g.neovide_cursor_short_animation_length = 0.02
   vim.g.neovide_confirm_quit = true
   -- Clipboard
   vim.keymap.set("n", "<D-s>", ":w<CR>") -- Save

@@ -40,6 +40,7 @@
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment = {
+    etc.hosts.mode = "0644";
     systemPackages = with pkgs; [
       cached-nix-shell
       caddy
