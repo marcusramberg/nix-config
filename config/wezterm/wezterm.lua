@@ -148,8 +148,6 @@ table.insert(config.hyperlink_rules, {
 -- Reduce fontsize to fix dpi issue on mArch
 if wezterm.hostname() == "butterbee" then
 	config.font_size = 14.0
-elseif wezterm.hostname() == "mbook" or wezterm.hostname() == "mtop" then
-	config.font_size = 16.0
 elseif wezterm.hostname() == "mstudio" then
 	config.front_end = "WebGpu"
 end

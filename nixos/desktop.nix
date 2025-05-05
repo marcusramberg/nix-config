@@ -56,20 +56,22 @@ in
             # background = "${./wallpaper.png}";
             # loginBackground = true;
           })
-          copyq
           element-desktop
           flameshot
           # floorp # zen life
           inputs.ghostty.packages.${pkgs.system}.default
           hunspell
           hunspellDicts.en_US
+          kdePackages.kaccounts-providers
           kdePackages.karousel
           kdePackages.krdp
+          kdePackages.kio-gdrive
           kdePackages.kdegraphics-thumbnailers
           nixos-icons
           neovide
           obsidian
           pavucontrol
+          sherlock-launcher
           showmethekey
           signal-desktop
           telegram-desktop
@@ -128,34 +130,12 @@ in
       desktopManager.plasma6.enable = true;
       xserver = {
         enable = false;
-        # displayManager.gdm.enable = true;
-        # displayManager.lightdm = {
-        #   greeters.slick.enable = true;
-        # };
-        # windowManager = {
-        #   i3 = {
-        #     enable = true;
-        #   };
-        # };
-        # desktopManager = {
-        #   gnome.enable = true;
-        #   xfce = {
-        #     enable = true;
-        #     noDesktop = true;
-        #     enableXfwm = false;
-        #   };
-        # };
         xkb = {
           layout = "us";
           options = "eurosign:e";
           variant = "mac";
         };
       };
-      # xrdp = {
-      #   enable = false;
-      #   defaultWindowManager = "startplasma-x11";
-      #
-      # };
 
     };
     networking.firewall.allowedTCPPorts = [ 3389 ];

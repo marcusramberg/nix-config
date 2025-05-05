@@ -15,15 +15,22 @@
   ];
 
   # Use the systemd-boot EFI boot loader.
-  boot.loader.systemd-boot.enable = true;
-  boot.loader.efi.canTouchEfiVariables = false;
-
+  boot = {
+    loader.systemd-boot.enable = true;
+    loader.efi.canTouchEfiVariables = false;
+    extraModprobeConfig = ''
+      options hid_apple iso_layout=1
+    '';
+  };
   environment.systemPackages = with pkgs; [
     ungoogled-chromium
     spotify-player
   ];
   hardware = {
-    bluetooth.enable = true;
+    bluetooth = {
+      enable = true;
+      powerOnBoot = true;
+    };
     keyboard.dual-caps.enable = true;
     asahi = {
       peripheralFirmwareDirectory = ./firmware;
