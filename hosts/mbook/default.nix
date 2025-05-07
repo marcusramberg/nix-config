@@ -18,6 +18,9 @@
   boot = {
     loader.systemd-boot.enable = true;
     loader.efi.canTouchEfiVariables = false;
+    kernelParams = [
+      "apple_dcp.show_notch=1"
+    ];
     extraModprobeConfig = ''
       options hid_apple iso_layout=0
     '';
@@ -33,6 +36,7 @@
     };
     keyboard.dual-caps.enable = true;
     asahi = {
+      enable = true;
       peripheralFirmwareDirectory = ./firmware;
       useExperimentalGPUDriver = true;
       experimentalGPUInstallMode = "replace";
@@ -53,18 +57,8 @@
     appimage.enable = true;
 
   };
+  security.apparmor.enable = true;
   services = {
-    pipewire = {
-      enable = true;
-      pulse.enable = true;
-      extraConfig.pipewire-pulse."context.exec" = [
-        {
-          path = "pactl";
-          args = "load-module module-switch-on-connect";
-        }
-      ];
-      wireplumber.enable = true;
-    };
     cloudflare-warp.enable = true;
   };
 

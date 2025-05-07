@@ -32,19 +32,19 @@
     "apple-silicon-support": {
       "inputs": {
         "flake-compat": "flake-compat",
-        "nixpkgs": "nixpkgs"
+        "nixpkgs": "nixpkgs",
+        "rust-overlay": "rust-overlay"
       },
       "locked": {
-        "lastModified": 1745702639,
-        "narHash": "sha256-YwsgMXuq1+yJiRKMWcOmyy6ZxZo4uvSMwGfXnCbRCgQ=",
-        "owner": "flokli",
+        "lastModified": 1745829383,
+        "narHash": "sha256-SX5RqASV8DOMz7nFk0RsNCwI2QOOJxJp51Wxo4b5Egw=",
+        "owner": "second2050",
         "repo": "nixos-apple-silicon",
-        "rev": "88b5a309cda528ba3829a2cffb64960c97bbddce",
+        "rev": "b2b23d7f1f98c66c0ff4da886bc75ed6f1d7deb9",
         "type": "github"
       },
       "original": {
-        "owner": "flokli",
-        "ref": "wip",
+        "owner": "second2050",
         "repo": "nixos-apple-silicon",
         "type": "github"
       }
@@ -566,6 +566,22 @@
         "tfenv": "tfenv",
         "treefmt-nix": "treefmt-nix",
         "unattended-installer": "unattended-installer"
+      }
+    },
+    "rust-overlay": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1746498961,
+        "narHash": "sha256-rp+oh/N88JKHu7ySPuGiA3lBUVIsrOtHbN2eWJdYCgk=",
+        "owner": "oxalica",
+        "repo": "rust-overlay",
+        "rev": "24b00064cdd1d7ba25200c4a8565dc455dc732ba",
+        "type": "github"
+      },
+      "original": {
+        "owner": "oxalica",
+        "repo": "rust-overlay",
+        "type": "github"
       }
     },
     "systems": {
