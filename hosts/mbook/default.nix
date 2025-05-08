@@ -60,6 +60,9 @@
   security.apparmor.enable = true;
   services = {
     cloudflare-warp.enable = true;
+    udev.extraRules = ''
+      KERNEL=="event*", SUBSYSTEM=="input", ATTRS{name}=="mBoard", SYMLINK+="input/by-path/mboard.input-event-kbd"
+    '';
   };
 
   system.stateVersion = "25.05"; # Did you read the comment?

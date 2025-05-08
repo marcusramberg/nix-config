@@ -64,9 +64,10 @@ in
           hunspellDicts.en_US
           kdePackages.kaccounts-providers
           kdePackages.karousel
-          kdePackages.krdp
-          kdePackages.kio-gdrive
           kdePackages.kdegraphics-thumbnailers
+          kdePackages.kio-gdrive
+          kdePackages.krdp
+          kdePackages.plasma-browser-integration
           nixos-icons
           neovide
           obsidian
