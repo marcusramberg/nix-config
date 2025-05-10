@@ -11,7 +11,7 @@ let
       repo: id: hash:
       pkgsForPatching.fetchpatch2 {
         url = "https://github.com/${repo}/pull/${builtins.toString id}.diff";
-        inherit hash;
+        sha256 = hash;
       };
     npr = pr "NixOS/nixpkgs";
   };
@@ -92,7 +92,7 @@ let
       extraModules ? [ ],
       user ? "marcus",
     }:
-    patchedNixpkgs.lib.nixosSystem {
+    inputs.nixpkgs.lib.nixosSystem {
       specialArgs = {
         inputs = patchedInputs;
         inherit user;
@@ -100,7 +100,6 @@ let
       modules = [
         ../hosts/${name}
         ../nixos
-        ../cachix.nix
         patchedInputs.home-manager.nixosModules.home-manager
         (mkOptions {
           inherit system;

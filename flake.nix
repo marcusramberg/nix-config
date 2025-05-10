@@ -85,149 +85,141 @@
         f: with f; {
           nixpkgs = [
             # karousel
-            (npr 405797 "sha256-1jrvmn1l9cc5dqzz1c12wcclv6aazpdmsjl2zcc5byr6ihswfnh1")
+            # (npr 405797 "sha256-d/D/HyeLu0o5HmczpCfNqwU7idJ90dFNfzRcM0T/aNI=")
           ];
         };
     };
-    flake-parts.lib.mkFlake { inherit inputs; } (
-      # top@{
-      #   config,
-      #   withSystem,
-      #   moduleWithSystem,
-      #   ...
-      # }:
-      _: {
-        imports = [
-          inputs.home-manager.flakeModules.home-manager
-        ];
-        flake = {
-          nixosConfigurations = {
-            mhub = mkNixHost "mhub" {
-              extraModules = [ ];
-            };
-            mhome = mkNixHost "mhome" {
-              extraModules = [ inputs.disko.nixosModules.disko ];
-            };
-            butterbee = mkNixHost "butterbee" {
-              system = "aarch64-linux";
-            };
-            mbook = mkNixHost "mbook" {
-              system = "aarch64-linux";
-              extraModules = [
-                inputs.apple-silicon-support.nixosModules.apple-silicon-support
-              ];
-            };
-            mstudio = mkNixHost "mstudio" {
-              system = "aarch64-linux";
-              extraModules = [
-                inputs.apple-silicon-support.nixosModules.apple-silicon-support
-              ];
-            };
-            mbox = mkNixHost "mbox" {
-              extraModules = [ inputs.jovian.nixosModules.default ];
-            };
-            mbench = mkNixHost "mbench" {
-              extraModules = [ inputs.disko.nixosModules.disko ];
-            };
-            mdeck = mkNixHost "mdeck" {
-              extraModules = [ inputs.jovian.nixosModules.default ];
-            };
-            mgate = mkNixHost "mgate" {
-              extraModules = [ ];
-            };
-            mrack01 = mkNixHost "mrack01" {
-              extraModules = [ inputs.disko.nixosModules.default ];
-            };
-            mvm = mkNixHost "mvm" {
-              extraModules = [ "${inputs.nixpkgs}/nixos/modules/virtualisation/lxd-virtual-machine.nix" ];
-            };
+    flake-parts.lib.mkFlake { inherit inputs; } (_: {
+      imports = [
+        inputs.home-manager.flakeModules.home-manager
+      ];
+      flake = {
+        nixosConfigurations = {
+          mhub = mkNixHost "mhub" {
+            extraModules = [ ];
           };
-          installers = builtins.mapAttrs (
-            _: config:
-            (inputs.unattended-installer.lib.diskoInstallerWrapper config { }).config.system.build.isoImage
-          ) self.nixosConfigurations;
-
-          colmenaHive = mkColmenaHive inputs.nixpkgs.legacyPackages.x86_64-linux {
-
-            mhub.tags = [
-              "k8s"
-              "servers"
-            ];
-            mhome.tags = [
-              "servers"
-              "kodi"
-            ];
-            butterbee.buildOnTarget = true;
-            mstudio = {
-              tags = [
-                "k8s"
-                "servers"
-              ];
-              buildOnTarget = true;
-            };
-            mbox.tags = [
-              "k8s"
-              "servers"
-            ];
-            mbench.tags = [
-              "servers"
-              "kodi"
-            ];
-            mgate.tags = [ "servers" ];
-            mrack01.tags = [ "servers" ];
+          mhome = mkNixHost "mhome" {
+            extraModules = [ inputs.disko.nixosModules.disko ];
           };
-
-          darwinConfigurations.mwork = mkDarwinHost "mwork" { };
-          darwinConfigurations.mStudio = mkDarwinHost "mstudio" { };
-          homeConfigurations = {
-            x86 = mkHMConfig { system = "x86_64-linux"; };
-            aarch64 = mkHMConfig { system = "aarch64-linux"; };
-            mac = mkHMConfig { system = "aarch64-darwin"; };
+          butterbee = mkNixHost "butterbee" {
+            system = "aarch64-linux";
           };
-
+          mbook = mkNixHost "mbook" {
+            system = "aarch64-linux";
+            extraModules = [
+              inputs.apple-silicon-support.nixosModules.apple-silicon-support
+            ];
+          };
+          mstudio = mkNixHost "mstudio" {
+            system = "aarch64-linux";
+            extraModules = [
+              inputs.apple-silicon-support.nixosModules.apple-silicon-support
+            ];
+          };
+          mbox = mkNixHost "mbox" {
+            extraModules = [ inputs.jovian.nixosModules.default ];
+          };
+          mbench = mkNixHost "mbench" {
+            extraModules = [ inputs.disko.nixosModules.disko ];
+          };
+          mdeck = mkNixHost "mdeck" {
+            extraModules = [ inputs.jovian.nixosModules.default ];
+          };
+          mgate = mkNixHost "mgate" {
+            extraModules = [ ];
+          };
+          mrack01 = mkNixHost "mrack01" {
+            extraModules = [ inputs.disko.nixosModules.default ];
+          };
+          mvm = mkNixHost "mvm" {
+            extraModules = [ "${inputs.nixpkgs}/nixos/modules/virtualisation/lxd-virtual-machine.nix" ];
+          };
         };
-        perSystem =
-          {
-            pkgs,
-            system,
-            ...
-          }:
-          {
-            apps.default = {
-              type = "app";
-              program = "${hei.packages.${system}.default}/bin/hei";
-            };
-            devShells.default = pkgs.mkShellNoCC {
-              NIX_CONFIG = "experimental-features = nix-command flakes";
-              packages = with pkgs; [
-                colmena.packages.${system}.colmena
-                git
-                lolcat
-                go-task
-                neovim
-                home-manager
-                neovim
-              ];
-              shellHook = ''
-                head -n 7 README.md|tail -n4|lolcat
-              '';
-            };
-            checks = {
-              pre-commit-check = inputs.pre-commit-hooks.lib.${system}.run {
-                src = ./.;
-                hooks = {
-                  nixfmt-rfc-style.enable = true;
-                  deadnix.enable = true;
-                  statix.enable = true;
-                };
+        installers = builtins.mapAttrs (
+          _: config:
+          (inputs.unattended-installer.lib.diskoInstallerWrapper config { }).config.system.build.isoImage
+        ) self.nixosConfigurations;
+
+        colmenaHive = mkColmenaHive inputs.nixpkgs.legacyPackages.x86_64-linux {
+
+          mhub.tags = [
+            "k8s"
+            "servers"
+          ];
+          mhome.tags = [
+            "servers"
+            "kodi"
+          ];
+          butterbee.buildOnTarget = true;
+          mstudio = {
+            tags = [
+              "k8s"
+              "servers"
+            ];
+            buildOnTarget = true;
+          };
+          mbox.tags = [
+            "k8s"
+            "servers"
+          ];
+          mbench.tags = [
+            "servers"
+            "kodi"
+          ];
+          mgate.tags = [ "servers" ];
+          mrack01.tags = [ "servers" ];
+        };
+
+        darwinConfigurations.mwork = mkDarwinHost "mwork" { };
+        darwinConfigurations.mStudio = mkDarwinHost "mstudio" { };
+        homeConfigurations = {
+          x86 = mkHMConfig { system = "x86_64-linux"; };
+          aarch64 = mkHMConfig { system = "aarch64-linux"; };
+          mac = mkHMConfig { system = "aarch64-darwin"; };
+        };
+
+      };
+      perSystem =
+        {
+          pkgs,
+          system,
+          ...
+        }:
+        {
+          apps.default = {
+            type = "app";
+            program = "${hei.packages.${system}.default}/bin/hei";
+          };
+          devShells.default = pkgs.mkShellNoCC {
+            NIX_CONFIG = "experimental-features = nix-command flakes";
+            packages = with pkgs; [
+              colmena.packages.${system}.colmena
+              git
+              lolcat
+              go-task
+              neovim
+              home-manager
+              neovim
+            ];
+            shellHook = ''
+              head -n 7 README.md|tail -n4|lolcat
+            '';
+          };
+          checks = {
+            pre-commit-check = inputs.pre-commit-hooks.lib.${system}.run {
+              src = ./.;
+              hooks = {
+                nixfmt-rfc-style.enable = true;
+                deadnix.enable = true;
+                statix.enable = true;
               };
             };
           };
-        systems = [
-          "x86_64-linux"
-          "aarch64-linux"
-          "aarch64-darwin"
-        ];
-      }
-    );
+        };
+      systems = [
+        "x86_64-linux"
+        "aarch64-linux"
+        "aarch64-darwin"
+      ];
+    });
 }
