@@ -92,7 +92,7 @@ let
       extraModules ? [ ],
       user ? "marcus",
     }:
-    inputs.nixpkgs.lib.nixosSystem {
+    patchedNixpkgs.lib.nixosSystem {
       specialArgs = {
         inputs = patchedInputs;
         inherit user;
@@ -100,7 +100,8 @@ let
       modules = [
         ../hosts/${name}
         ../nixos
-        inputs.home-manager.nixosModules.home-manager
+        ../cachix.nix
+        patchedInputs.home-manager.nixosModules.home-manager
         (mkOptions {
           inherit system;
         })

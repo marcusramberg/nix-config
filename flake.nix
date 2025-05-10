@@ -77,9 +77,17 @@
       flake-parts,
       hei,
       ...
+
     }@inputs:
     with import ./lib {
       inherit inputs;
+      patches =
+        f: with f; {
+          nixpkgs = [
+            # karousel
+            (npr 405797 "sha256-1jrvmn1l9cc5dqzz1c12wcclv6aazpdmsjl2zcc5byr6ihswfnh1")
+          ];
+        };
     };
     flake-parts.lib.mkFlake { inherit inputs; } (
       # top@{
