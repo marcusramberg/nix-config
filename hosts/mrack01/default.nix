@@ -150,6 +150,7 @@
       ];
     };
     openssh.settings.PasswordAuthentication = false;
+    tailscale.useRoutingFeatures = "server";
   };
   systemd.network = {
     wait-online.enable = false;
