@@ -20,14 +20,17 @@
     loader.efi.canTouchEfiVariables = false;
     kernelParams = [
       "apple_dcp.show_notch=1"
+      "apple_dcp.unstable_edid=1"
     ];
     extraModprobeConfig = ''
       options hid_apple iso_layout=0
     '';
   };
   environment.systemPackages = with pkgs; [
-    ungoogled-chromium
+    amazon-ecr-credential-helper
+    (ungoogled-chromium.override { enableWideVine = true; })
     spotify-player
+    widevine-cdm
   ];
   hardware = {
     bluetooth = {
@@ -63,6 +66,7 @@
     udev.extraRules = ''
       KERNEL=="event*", SUBSYSTEM=="input", ATTRS{name}=="mBoard", SYMLINK+="input/by-path/mboard.input-event-kbd"
     '';
+    usbmuxd.enable = true;
   };
 
   system.stateVersion = "25.05"; # Did you read the comment?
