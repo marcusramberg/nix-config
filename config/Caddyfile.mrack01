@@ -94,7 +94,7 @@ photos.means.no:443 {
 	reverse_proxy http://mbox:2283
 }
 
-bases.means.no:443 {
+git.bas.es:443 {
 	import caddy-common
 	reverse_proxy unix//run/forgejo/forgejo.sock
 }
