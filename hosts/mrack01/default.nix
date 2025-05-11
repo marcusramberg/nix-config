@@ -118,11 +118,11 @@
           OPENID_CONNECT_SCOPES = "email profile";
           ENABLE_OPENID_SIGNIN = true;
           ENABLE_OPENID_SIGNUP = true;
-          WHITELISTED_URIS = "https://auth.means.no";
+          WHITELISTED_URIS = "https://auth.means.no,https://auth.bas.es";
         };
         session.COOKIE_SECURE = true;
         server = {
-          ROOT_URL = "https://bases.means.no";
+          ROOT_URL = "https://git.bas.es";
           PROTOCOL = "http+unix";
         };
         service = {
