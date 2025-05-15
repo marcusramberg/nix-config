@@ -94,19 +94,31 @@ photos.means.no:443 {
 	reverse_proxy http://mbox:2283
 }
 
-*.bas.es:443 {
-  import caddy-common
-  reverse_proxy https://baseone.bas.es/
-}
 
-git.bas.es:443 {
-	import caddy-common
-	reverse_proxy unix//run/forgejo/forgejo.sock
-}
 
 auth.means.no:443 {
 	import caddy-common
 	reverse_proxy /api/* http://localhost:8080
 	reverse_proxy /.well-known/* http://localhost:8080
 	reverse_proxy /* http://localhost:3000
+}
+
+
+#bases
+
+git.bas.es:443 {
+	import caddy-common
+	reverse_proxy unix//run/forgejo/forgejo.sock
+}
+
+auth.bas.es:443 {
+	import caddy-common
+	reverse_proxy /api/* http://baseone:8080
+	reverse_proxy /.well-known/* http://baseone:8080
+	reverse_proxy /* http://baseone:3333
+}
+
+docs.bas.es:443 {
+	import caddy-common
+	reverse_proxy /* http://baseone:8888
 }
