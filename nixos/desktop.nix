@@ -25,71 +25,67 @@ in
 
     environment = {
       sessionVariables.NIXOS_OZONE_WL = "1";
-      systemPackages =
-        with pkgs;
-        [
-          (catppuccin-gtk.override {
-            variant = "mocha";
-            accents = [
-              "blue"
-              "teal"
-              "lavender"
-            ];
+      systemPackages = with pkgs; [
+        (catppuccin-gtk.override {
+          variant = "mocha";
+          accents = [
+            "blue"
+            "teal"
+            "lavender"
+          ];
 
-          })
-          (catppuccin-kde.override {
-            flavour = [ "mocha" ];
-            accents = [
-              "blue"
-              "teal"
-              "lavender"
-            ];
+        })
+        (catppuccin-kde.override {
+          flavour = [ "mocha" ];
+          accents = [
+            "blue"
+            "teal"
+            "lavender"
+          ];
 
-          })
-          catppuccin-qt5ct
-          catppuccin-cursors
-          catppuccin-kvantum
-          (catppuccin-sddm.override {
-            flavor = "mocha";
-            font = "JetBrainsMono Nerd Font Propo";
-            fontSize = "9";
-            # background = "${./wallpaper.png}";
-            # loginBackground = true;
-          })
-          element-desktop
-          flameshot
-          # floorp # zen life
-          inputs.ghostty.packages.${pkgs.system}.default
-          hunspell
-          hunspellDicts.en_US
-          kdePackages.kaccounts-providers
-          kdePackages.karousel
-          kdePackages.kdegraphics-thumbnailers
-          kdePackages.kio-gdrive
-          kdePackages.krdp
-          kdePackages.plasma-browser-integration
-          nixos-icons
-          neovide
-          obsidian
-          pavucontrol
-          sherlock-launcher
-          showmethekey
-          signal-desktop
-          telegram-desktop
-          vivaldi
-          volumeicon
-          webcord-vencord
-          xarchiver
-          xdg-utils
-          xclip
-          wl-clipboard
-          waypipe
-          ytmdesktop
-          zafiro-icons
-        ]
-        ++ lib.optionals (system == "x86_64-linux") [
-          vivaldi-ffmpeg-codecs
-        ];
+        })
+        catppuccin-qt5ct
+        catppuccin-cursors
+        catppuccin-kvantum
+        (catppuccin-sddm.override {
+          flavor = "mocha";
+          font = "JetBrainsMono Nerd Font Propo";
+          fontSize = "9";
+          # background = "${./wallpaper.png}";
+          # loginBackground = true;
+        })
+        element-desktop
+        flameshot
+        # floorp # zen life
+        inputs.ghostty.packages.${pkgs.system}.default
+        hunspell
+        hunspellDicts.en_US
+        kdePackages.kaccounts-providers
+        kdePackages.karousel
+        kdePackages.kdegraphics-thumbnailers
+        kdePackages.kio-gdrive
+        kdePackages.krdp
+        kdePackages.plasma-browser-integration
+        nixos-icons
+        neovide
+        obsidian
+        pavucontrol
+        sherlock-launcher
+        showmethekey
+        signal-desktop
+        telegram-desktop
+        vivaldi
+        vivaldi-ffmpeg-codecs
+        volumeicon
+        webcord-vencord
+        xarchiver
+        xdg-utils
+        xclip
+        wl-clipboard
+        waypipe
+        ytmdesktop
+        zafiro-icons
+      ];
     };
 
     profiles.myfonts.enable = true;
@@ -110,15 +106,6 @@ in
     qt.style = "breeze";
 
     services = {
-      dbus.packages = [ pkgs.dconf ];
-      displayManager.defaultSession = lib.mkForce "plasma";
-
-      flatpak.enable = true;
-
-      openssh.settings.X11Forwarding = true;
-
-      gnome.core-utilities.enable = false;
-      libinput.enable = true;
       displayManager.sddm = {
         enable = true;
         wayland = {
@@ -129,6 +116,11 @@ in
         settings.General.InputMethod = "";
       };
       desktopManager.plasma6.enable = true;
+      dbus.packages = [ pkgs.dconf ];
+      displayManager.defaultSession = lib.mkForce "plasma";
+      flatpak.enable = true;
+      libinput.enable = true;
+      openssh.settings.X11Forwarding = true;
       xserver = {
         enable = false;
         xkb = {

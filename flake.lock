@@ -35,15 +35,15 @@
         "nixpkgs": "nixpkgs"
       },
       "locked": {
-        "lastModified": 1747414805,
-        "narHash": "sha256-xoWfdbWtsvPtKYAVuNwnR1VUrt4m9+yfrAibACIAMcU=",
-        "owner": "second2050",
+        "lastModified": 1746909655,
+        "narHash": "sha256-F3Ma9Yh38NFNHVQEkNCMZZKwfyYN/hHUKOwg1HjHHIw=",
+        "owner": "tpwrules",
         "repo": "nixos-apple-silicon",
-        "rev": "ec2b9458c41de338a56fd0a7e216e5cbc2845be6",
+        "rev": "4829c0cee5887452eed32df61937bf20bc8032fe",
         "type": "github"
       },
       "original": {
-        "owner": "second2050",
+        "owner": "tpwrules",
         "repo": "nixos-apple-silicon",
         "type": "github"
       }
