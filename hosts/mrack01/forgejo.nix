@@ -1,6 +1,6 @@
 { pkgs, ... }:
 {
-  forgejo = {
+  services.forgejo = {
     database = {
       type = "postgres";
       socket = "/run/postgresql";
@@ -41,7 +41,7 @@
       };
     };
   };
-  postgresql = {
+  services.postgresql = {
     enable = true;
     package = pkgs.postgresql_16;
     enableTCPIP = false;
