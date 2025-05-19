@@ -28,8 +28,6 @@ splitoff("pig-crested.ts.net", "100.100.100.100")
 policy.add(policy.all(policy.TLS_FORWARD({
 	{ "1.1.1.1", hostname = "cloudflare-dns.com" },
 	{ "1.0.0.1", hostname = "cloudflare-dns.com" },
-	{ "8.8.8.8", hostname = "dns.google" },
-	{ "8.8.4.4", hostname = "dns.google" },
 	{ "9.9.9.9", hostname = "dns.quad9.net" },
 })))
 
