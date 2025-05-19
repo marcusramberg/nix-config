@@ -46,6 +46,7 @@
 
   hardware = {
     keyboard.dual-caps.enable = true;
+    bluetooth.enable = true;
     asahi = {
       peripheralFirmwareDirectory = ./firmware;
       useExperimentalGPUDriver = true;
