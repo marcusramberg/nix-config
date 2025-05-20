@@ -135,6 +135,7 @@ in
     jujutsu = {
       enable = true;
       settings = {
+        ui.pager = ":builtin";
         user = {
           email = "marcus@means.no";
           name = "Marcus Ramberg";
