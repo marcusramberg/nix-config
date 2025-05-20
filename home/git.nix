@@ -132,5 +132,14 @@ in
       userEmail = "marcus@means.no";
       userName = "Marcus Ramberg";
     };
+    jujutsu = {
+      enable = true;
+      settings = {
+        user = {
+          email = "marcus@means.no";
+          name = "Marcus Ramberg";
+        };
+      };
+    };
   };
 }
