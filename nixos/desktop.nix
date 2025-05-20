@@ -44,6 +44,7 @@ in
           ];
 
         })
+        audacity
         catppuccin-qt5ct
         catppuccin-cursors
         catppuccin-kvantum
@@ -76,6 +77,7 @@ in
         telegram-desktop
         vivaldi
         vivaldi-ffmpeg-codecs
+        vlc
         volumeicon
         webcord-vencord
         xarchiver
