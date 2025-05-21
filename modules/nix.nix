@@ -17,7 +17,6 @@
       settings = {
         substituters = [
           "https://nix-community.cachix.org"
-          "https://cache.floxdev.com"
           "https://nixhelm.cachix.org"
           "https://devenv.cachix.org"
           "https://ghostty.cachix.org"
