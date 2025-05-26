@@ -11,6 +11,7 @@ opt.foldenable = false
 vim.g.root_spec = { { ".git" }, "cwd" }
 opt.relativenumber = false
 vim.lsp.set_log_level("off")
+vim.opt.mouse = "" --Disable mouse support
 
 if vim.g.neovide then
   vim.g.neovide_cursor_vfx_mode = "pixiedust"
