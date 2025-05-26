@@ -38,6 +38,7 @@
       enable = true;
       powerOnBoot = true;
     };
+    graphics.package = lib.mkForce pkgs.mesa;
     keyboard.dual-caps.enable = true;
     asahi = {
       enable = true;
