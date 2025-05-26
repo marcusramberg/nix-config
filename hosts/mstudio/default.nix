@@ -42,6 +42,15 @@
         "x-systemd.automount"
       ];
     };
+    "/homes" = {
+      device = "mspace:/volume1/homes";
+      fsType = "nfs4";
+      options = [
+        "nfsvers=4.1"
+        "soft"
+        "x-systemd.automount"
+      ];
+    };
   };
 
   hardware = {
@@ -98,6 +107,12 @@
         }
       ];
       wireplumber.enable = true;
+    };
+    rustdesk-server = {
+      enable = true;
+      relay.enable = true;
+      signal.relayHosts = [ "mstudio.pig-crested.ts.net" ];
+      openFirewall = true;
     };
     xserver.dpi = 140;
   };
