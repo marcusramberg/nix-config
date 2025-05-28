@@ -54,14 +54,12 @@
   };
 
   hardware = {
-    keyboard.dual-caps.enable = true;
-    bluetooth.enable = true;
     asahi = {
       peripheralFirmwareDirectory = ./firmware;
-      useExperimentalGPUDriver = true;
-      experimentalGPUInstallMode = "replace";
       withRust = true;
     };
+    bluetooth.enable = true;
+    keyboard.dual-caps.enable = true;
   };
 
   networking.networkmanager.enable = true;
