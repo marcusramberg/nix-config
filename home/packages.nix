@@ -60,6 +60,7 @@ in
       nnn
       neovim
       ollama
+      posting
       promexplorer
       pssh
       ranger
