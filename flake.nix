@@ -12,7 +12,7 @@
       };
     };
     apple-silicon-support = {
-      url = "github:tpwrules/nixos-apple-silicon";
+      url = "github:nix-community/nixos-apple-silicon";
     };
     colmena = {
       url = "github:zhaofengli/colmena";
