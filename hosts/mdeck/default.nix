@@ -34,7 +34,7 @@
     galileo-mura
     heroic
     jupiter-dock-updater-bin
-    plex-media-player
+    plex-desktop
     steamdeck-firmware
   ];
 
