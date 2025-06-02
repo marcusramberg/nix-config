@@ -10,7 +10,6 @@ return {
   -- Better scrolling
   "karb94/neoscroll.nvim",
   -- Improved url opener
-  "gabebw/vim-github-link-opener",
   -- Smart sort that supports yaml dicts
   { "sQVe/sort.nvim", config = true },
   -- Extend % to support words
@@ -18,6 +17,16 @@ return {
   -- Simplify the macro syntax
   { "chrisgrieser/nvim-recorder", config = true },
   { "metakirby5/codi.vim" },
+  {
+    "chrishrb/gx.nvim",
+    keys = { { "gx", "<cmd>Browse<cr>", mode = { "n", "x" } } },
+    cmd = { "Browse" },
+    init = function()
+      vim.g.netrw_nogx = 1 -- disable netrw gx
+    end,
+    enabled = true,
+    config = true,
+  },
   {
     "okuuva/auto-save.nvim",
     version = "*", -- see https://devhints.io/semver, alternatively use '*' to use the latest tagged release
