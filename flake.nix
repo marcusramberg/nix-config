@@ -97,7 +97,31 @@
     flake-parts.lib.mkFlake { inherit inputs; } (_: {
       imports = [
         inputs.home-manager.flakeModules.home-manager
+        inputs.clan-core.flakeModules.default
       ];
+      clan = {
+        # Clan wide settings. (Required)
+        meta.name = "means_no";
+        machines = {
+          mstudio = {
+            imports = [
+              ./nixos
+              inputs.agenix.nixosModules.age
+              inputs.home-manager.nixosModules.home-manager
+              (import ./lib/options.nix {
+                inherit inputs;
+                system = "aarch64-linux";
+              })
+              inputs.apple-silicon-support.nixosModules.apple-silicon-support
+            ];
+            nixpkgs.hostPlatform = "aarch64-linux";
+            clan.core.networking.targetHost = "marcus@mstudio";
+          };
+        };
+        specialArgs = {
+          inherit inputs;
+        };
+      };
       flake = {
         nixosConfigurations = {
           mhub = mkNixHost "mhub" {
@@ -110,12 +134,6 @@
             system = "aarch64-linux";
           };
           mbook = mkNixHost "mbook" {
-            system = "aarch64-linux";
-            extraModules = [
-              inputs.apple-silicon-support.nixosModules.apple-silicon-support
-            ];
-          };
-          mstudio = mkNixHost "mstudio" {
             system = "aarch64-linux";
             extraModules = [
               inputs.apple-silicon-support.nixosModules.apple-silicon-support
@@ -156,13 +174,6 @@
             "kodi"
           ];
           butterbee.buildOnTarget = true;
-          mstudio = {
-            tags = [
-              "k8s"
-              "servers"
-            ];
-            buildOnTarget = true;
-          };
           mbox.tags = [
             "k8s"
             "servers"

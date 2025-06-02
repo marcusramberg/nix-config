@@ -14,7 +14,6 @@ let
   secretsFile = "${secretsDir}/secrets.nix";
 in
 {
-  imports = [ agenix.nixosModules.age ];
   environment.systemPackages = [ agenix.packages.${pkgs.system}.agenix ];
 
   age = {
