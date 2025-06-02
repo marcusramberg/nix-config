@@ -8,7 +8,7 @@ in
   options.profiles.dockerHost.enable = mkEnableOption "dockerHost";
 
   config = mkIf cfg.enable {
-    environment.etc."containers/registries.conf".text = ''
+    environment.etc."containers/registries.conf".text = mkForce ''
       [registries.search]
       registries = ['docker.io']
     '';
