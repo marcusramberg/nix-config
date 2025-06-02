@@ -14,6 +14,11 @@
     apple-silicon-support = {
       url = "github:nix-community/nixos-apple-silicon";
     };
+    clan-core = {
+      url = "https://git.clan.lol/clan/clan-core/archive/main.tar.gz";
+      # Don't do this if your machines are on nixpkgs stable.
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     colmena = {
       url = "github:zhaofengli/colmena";
       inputs = {
@@ -195,9 +200,9 @@
             packages = with pkgs; [
               colmena.packages.${system}.colmena
               git
-              lolcat
               go-task
-              neovim
+              inputs.clan-core.packages.${system}.clan-cli
+              lolcat
               home-manager
               neovim
             ];
