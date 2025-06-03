@@ -80,30 +80,13 @@
         # Clan wide settings. (Required)
         meta.name = "means_no";
         machines = {
-          mstudio = {
-            imports = [
-              ./nixos
-              inputs.agenix.nixosModules.age
-              inputs.home-manager.nixosModules.home-manager
-              (import ./lib/options.nix {
-                inherit inputs;
-                system = "aarch64-linux";
-              })
+          mstudio = mkNixHost "mstudio" {
+            extraModules = [
               inputs.apple-silicon-support.nixosModules.apple-silicon-support
             ];
-            nixpkgs.hostPlatform = "aarch64-linux";
-            clan.core.networking.targetHost = "root@mstudio";
+            system = "aarch64-linux";
           };
-        };
-        specialArgs = {
-          inherit inputs self;
-        };
-      };
-      flake = {
-        nixosConfigurations = {
-          mhub = mkNixHost "mhub" {
-            extraModules = [ ];
-          };
+          mhub = mkNixHost "mhub" { };
           mhome = mkNixHost "mhome" {
             extraModules = [ inputs.disko.nixosModules.disko ];
           };
@@ -125,9 +108,7 @@
           mdeck = mkNixHost "mdeck" {
             extraModules = [ inputs.jovian.nixosModules.default ];
           };
-          mgate = mkNixHost "mgate" {
-            extraModules = [ ];
-          };
+          mgate = mkNixHost "mgate" { };
           mrack01 = mkNixHost "mrack01" {
             extraModules = [ inputs.disko.nixosModules.default ];
           };
@@ -135,6 +116,11 @@
             extraModules = [ "${inputs.nixpkgs}/nixos/modules/virtualisation/lxd-virtual-machine.nix" ];
           };
         };
+        specialArgs = {
+          inherit inputs self;
+        };
+      };
+      flake = {
         installers = builtins.mapAttrs (
           _: config:
           (inputs.unattended-installer.lib.diskoInstallerWrapper config { }).config.system.build.isoImage
@@ -147,7 +133,6 @@
           aarch64 = mkHMConfig { system = "aarch64-linux"; };
           mac = mkHMConfig { system = "aarch64-darwin"; };
         };
-
       };
       perSystem =
         {

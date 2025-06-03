@@ -40,7 +40,7 @@ Obviously this is always a WIP.
 - `home`/ - Shared Home manager configuration
 - `modules`/ - Shared Nix modules
 - `lib`/ - Shared Nix library functions
-- `hosts`/ - Host specific configuration
+- `machines`/ - Machine specific configuration
 - `overlays`/ - Nix custom package overlay
 - `packages`/ - Nix custom packages
 - `wallpaper/` - Wallpaper for my desktop

@@ -1,40 +1,7 @@
 {
   inputs,
-  patches ? _: { },
-  hostSystem ? builtins.currentSystem,
 }:
 let
-  pkgsForPatching = import inputs.nixpkgs { system = hostSystem; };
-
-  patchFetchers = rec {
-    pr =
-      repo: id: hash:
-      pkgsForPatching.fetchpatch2 {
-        url = "https://github.com/${repo}/pull/${builtins.toString id}.diff";
-        sha256 = hash;
-      };
-    npr = pr "NixOS/nixpkgs";
-  };
-
-  fetchedPatches = patches patchFetchers;
-
-  patchInput =
-    name: value:
-    if (fetchedPatches.${name} or [ ]) != [ ] then
-      let
-        patchedSrc = pkgsForPatching.applyPatches {
-          name = "source";
-          src = value;
-          patches = fetchedPatches.${name};
-        };
-      in
-      patchedSrc
-    else
-      value;
-
-  patchedInputs = builtins.mapAttrs patchInput inputs;
-  patchedNixpkgs = import patchedInputs.nixpkgs;
-
   mkDarwinHost =
     name:
     {
@@ -44,21 +11,16 @@ let
     inputs.darwin.lib.darwinSystem {
       inherit system;
       specialArgs = {
-        inputs = patchedInputs;
-        inherit user;
+        inherit user inputs;
       };
       modules = [
         # Main `nix-darwin` config
-        ../hosts/${name}
+        ../machines/${name}
         ../darwin
         # `home-manager` module
         inputs.home-manager.darwinModules.home-manager
-        (mkOptions {
-          inherit
-            user
-            inputs
-            system
-            ;
+        (import ./options.nix {
+          inherit inputs system;
         })
       ];
     };
@@ -68,25 +30,18 @@ let
     {
       system ? "x86_64-linux",
       extraModules ? [ ],
-      user ? "marcus",
     }:
-    inputs.nixpkgs.lib.nixosSystem {
-      specialArgs = {
-        inputs = patchedInputs;
-        inherit user;
-      };
-      modules = [
-        ../hosts/${name}
+    {
+      imports = [
         ../nixos
-        patchedInputs.home-manager.nixosModules.home-manager
-        (mkOptions {
-          inherit system;
+        inputs.agenix.nixosModules.age
+        inputs.home-manager.nixosModules.home-manager
+        (import ./options.nix {
+          inherit inputs system;
         })
-        {
-          networking.hostName = name;
-        }
       ] ++ extraModules;
-
+      clan.core.networking.targetHost = "root@${name}";
+      nixpkgs.hostPlatform = system;
     };
   mkHMConfig =
     {
@@ -94,11 +49,9 @@ let
       extraModules ? [ ],
       user ? "marcus",
     }:
-    patchedInputs.home-manager.lib.homeManagerConfiguration {
-      pkgs = patchedNixpkgs { inherit system; };
+    inputs.home-manager.lib.homeManagerConfiguration {
       extraSpecialArgs = {
-        inputs = patchedInputs;
-        inherit user;
+        inherit user inputs;
         osConfig = {
           system = { };
           networking = {
@@ -111,7 +64,7 @@ let
         {
 
           nixpkgs = {
-            inherit overlays;
+            overlays = [ (import ../overlays inputs) ];
             config = {
               allowUnfree = true;
             };
@@ -119,38 +72,6 @@ let
         }
       ] ++ extraModules;
     };
-
-  mkOptions =
-    {
-      user ? "marcus",
-      system,
-      ...
-    }:
-    {
-      nixpkgs = {
-        inherit overlays;
-        config = {
-          allowUnfree = true;
-          allowBroken = true;
-        };
-        hostPlatform = system;
-      };
-
-      home-manager = {
-        # verbose = true;
-        useGlobalPkgs = true;
-        backupFileExtension = "bak";
-        useUserPackages = true;
-        users.${user} = import ../home;
-        extraSpecialArgs = {
-          inherit user;
-          inputs = patchedInputs;
-        };
-      };
-    };
-  overlays = [
-    (import ../overlays inputs)
-  ];
 in
 {
   inherit
