@@ -20,7 +20,6 @@
           "https://nixhelm.cachix.org"
           "https://devenv.cachix.org"
           "https://ghostty.cachix.org"
-          "https://colmena.cachix.org"
           "https://marcusramberg.cachix.org"
         ];
         trusted-public-keys = [
@@ -29,7 +28,6 @@
           "nixhelm.cachix.org-1:esqauAsR4opRF0UsGrA6H3gD21OrzMnBBYvJXeddjtY="
           "devenv.cachix.org-1:w1cLUi8dv3hnoSPGAuibQv+f9TZLr6cv/Hm9XgU50cw="
           "ghostty.cachix.org-1:QB389yTa6gTyneehvqG58y0WnHjQOqgnA+wBnpWWxns="
-          "colmena.cachix.org-1:7BzpDnjjH8ki2CT3f6GdOk7QAzPOl+1t3LvTLXqYcSg="
           "marcusramberg.cachix.org-1:3gZte6tgsUkcVSgkKaoXtQQQMixtEbpEl+xqIkB9TSY="
         ];
         experimental-features = [

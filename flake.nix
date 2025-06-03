@@ -19,14 +19,6 @@
       # Don't do this if your machines are on nixpkgs stable.
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    colmena = {
-      url = "github:zhaofengli/colmena";
-      inputs = {
-        nixpkgs.follows = "nixpkgs";
-        stable.follows = "nixpkgs";
-        flake-compat.follows = "flake-compat";
-      };
-    };
     darwin.url = "github:lnl7/nix-darwin/master";
     darwin.inputs.nixpkgs.follows = "nixpkgs";
     disko.url = "github:nix-community/disko";
@@ -47,13 +39,6 @@
     nix-index-database.url = "github:Mic92/nix-index-database";
     nix-index-database.inputs.nixpkgs.follows = "nixpkgs";
     nix-std.url = "github:chessai/nix-std";
-    nix-converter = {
-      url = "github:theobori/nix-converter";
-      inputs = {
-        nixpkgs.follows = "nixpkgs";
-        treefmt-nix.follows = "treefmt-nix";
-      };
-    };
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable-small";
     pre-commit-hooks = {
       url = "github:cachix/pre-commit-hooks.nix";
@@ -77,7 +62,6 @@
   outputs =
     {
       self,
-      colmena,
       nixpkgs,
       flake-parts,
       hei,
@@ -86,13 +70,6 @@
     }@inputs:
     with import ./lib {
       inherit inputs;
-      patches =
-        f: with f; {
-          nixpkgs = [
-            # karousel
-            # (npr 405797 "sha256-d/D/HyeLu0o5HmczpCfNqwU7idJ90dFNfzRcM0T/aNI=")
-          ];
-        };
     };
     flake-parts.lib.mkFlake { inherit inputs; } (_: {
       imports = [
@@ -115,11 +92,11 @@
               inputs.apple-silicon-support.nixosModules.apple-silicon-support
             ];
             nixpkgs.hostPlatform = "aarch64-linux";
-            clan.core.networking.targetHost = "marcus@mstudio";
+            clan.core.networking.targetHost = "root@mstudio";
           };
         };
         specialArgs = {
-          inherit inputs;
+          inherit inputs self;
         };
       };
       flake = {
@@ -163,29 +140,6 @@
           (inputs.unattended-installer.lib.diskoInstallerWrapper config { }).config.system.build.isoImage
         ) self.nixosConfigurations;
 
-        colmenaHive = mkColmenaHive inputs.nixpkgs.legacyPackages.x86_64-linux {
-
-          mhub.tags = [
-            "k8s"
-            "servers"
-          ];
-          mhome.tags = [
-            "servers"
-            "kodi"
-          ];
-          butterbee.buildOnTarget = true;
-          mbox.tags = [
-            "k8s"
-            "servers"
-          ];
-          mbench.tags = [
-            "servers"
-            "kodi"
-          ];
-          mgate.tags = [ "servers" ];
-          mrack01.tags = [ "servers" ];
-        };
-
         darwinConfigurations.mwork = mkDarwinHost "mwork" { };
         darwinConfigurations.mStudio = mkDarwinHost "mstudio" { };
         homeConfigurations = {
@@ -209,7 +163,6 @@
           devShells.default = pkgs.mkShellNoCC {
             NIX_CONFIG = "experimental-features = nix-command flakes";
             packages = with pkgs; [
-              colmena.packages.${system}.colmena
               git
               go-task
               inputs.clan-core.packages.${system}.clan-cli

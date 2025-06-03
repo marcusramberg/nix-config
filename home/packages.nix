@@ -40,7 +40,7 @@ in
       gotestfmt
       grc
       inputs.hei.packages.${system}.default
-      inputs.nix-converter.packages.${system}.default
+      nix-converter
       jq
       just
       kubectx
