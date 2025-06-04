@@ -36,6 +36,7 @@ let
         ../nixos
         inputs.agenix.nixosModules.age
         inputs.home-manager.nixosModules.home-manager
+        inputs.clan-core.clanModules.trusted-nix-caches
         (import ./options.nix {
           inherit inputs system;
         })
