@@ -71,7 +71,6 @@ in
         neovide
         obsidian
         pavucontrol
-        sherlock-launcher
         showmethekey
         signal-desktop
         telegram-desktop
