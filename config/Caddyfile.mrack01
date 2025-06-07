@@ -98,9 +98,7 @@ photos.means.no:443 {
 
 auth.means.no:443 {
 	import caddy-common
-	reverse_proxy /api/* http://localhost:8080
-	reverse_proxy /.well-known/* http://localhost:8080
-	reverse_proxy /* http://localhost:3000
+	reverse_proxy /* http://localhost:1411
 }
 
 

@@ -96,9 +96,8 @@
     pocket-id = {
       enable = true;
       settings = {
-        PUBLIC_APP_URL = "https://auth.means.no";
+        APP_URL = "https://auth.means.no";
         TRUST_PROXY = true;
-        CADDY_DISABLED = true;
       };
     };
     openssh.settings.PasswordAuthentication = false;
