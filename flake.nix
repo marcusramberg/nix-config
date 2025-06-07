@@ -112,9 +112,6 @@
           mrack01 = mkNixHost "mrack01" {
             extraModules = [ inputs.disko.nixosModules.default ];
           };
-          mvm = mkNixHost "mvm" {
-            extraModules = [ "${inputs.nixpkgs}/nixos/modules/virtualisation/lxd-virtual-machine.nix" ];
-          };
         };
         specialArgs = {
           inherit inputs self;
