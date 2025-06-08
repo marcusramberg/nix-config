@@ -41,12 +41,29 @@
   programs.nm-applet.enable = true;
 
   services = {
+    displayManager.autoLogin.enable = true;
+    displayManager.autoLogin.user = "marcus";
     input-remapper.enable = true;
     logind.extraConfig = ''
       HandlePowerKey=ignore
     '';
-    mbpfan.enable = true;
+    mbpfan = {
+      enable = true;
+      aggressive = false;
+    };
+    logind.extraConfig = ''
+      HandleLidSwitch=suspend                # suspend when on battery
+      HandleLidSwitchExternalPower=lock      # lock on AC 
+      HandleLidSwitchDocked=ignore # ignore on external monitor
+    '';
     xserver.dpi = 220;
   };
+
+  systemd.sleep.extraConfig = ''
+    AllowSuspend=no
+    AllowHibernation=no
+    AllowHybridSleep=no
+    AllowSuspendThenHibernate=no
+  '';
 
 }
