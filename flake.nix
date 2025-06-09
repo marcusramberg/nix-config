@@ -105,6 +105,7 @@
           mbench = mkNixHost "mbench" {
             extraModules = [ inputs.disko.nixosModules.disko ];
           };
+          mlab = mkNixHost "mlab" { };
           mdeck = mkNixHost "mdeck" {
             extraModules = [ inputs.jovian.nixosModules.default ];
           };
