@@ -27,7 +27,9 @@
     ghostty.url = "github:ghostty-org/ghostty";
     hei = {
       url = "github:marcusramberg/hei";
-      inputs = { nixpkgs.follows = "nixpkgs"; };
+      inputs = {
+        nixpkgs.follows = "nixpkgs";
+      };
     };
     flake-parts.url = "github:hercules-ci/flake-parts";
     jovian.url = "github:Jovian-Experiments/Jovian-NixOS";
@@ -57,7 +59,12 @@
     };
   };
 
-  outputs = { self, flake-parts, hei, ...
+  outputs =
+    {
+      self,
+      flake-parts,
+      hei,
+      ...
 
     }@inputs:
     with import ./lib { inherit inputs; };
@@ -91,25 +98,26 @@
             extraModules = [ inputs.jovian.nixosModules.default ];
           };
           mtop = mkNixHost "mtop" { };
-          mlab = mkNixHost "mtop" { };
           mbench = mkNixHost "mbench" {
             extraModules = [ inputs.disko.nixosModules.disko ];
           };
-          mlab = mkNixHost "mlab" { };
           mdeck = mkNixHost "mdeck" {
             extraModules = [ inputs.jovian.nixosModules.default ];
           };
           mgate = mkNixHost "mgate" { };
+          mlab = mkNixHost "mlab" { };
           mrack01 = mkNixHost "mrack01" {
             extraModules = [ inputs.disko.nixosModules.default ];
           };
+          mvirt = mkNixHost "mvirt" { };
         };
         specialArgs = { inherit inputs self; };
       };
       flake = {
-        installers = builtins.mapAttrs (_: config:
-          (inputs.unattended-installer.lib.diskoInstallerWrapper config
-            { }).config.system.build.isoImage) self.nixosConfigurations;
+        installers = builtins.mapAttrs (
+          _: config:
+          (inputs.unattended-installer.lib.diskoInstallerWrapper config { }).config.system.build.isoImage
+        ) self.nixosConfigurations;
 
         darwinConfigurations.mwork = mkDarwinHost "mwork" { };
         darwinConfigurations.mStudio = mkDarwinHost "mstudio" { };
@@ -119,36 +127,42 @@
           mac = mkHMConfig { system = "aarch64-darwin"; };
         };
       };
-      perSystem = { pkgs, system, ... }: {
-        apps.default = {
-          type = "app";
-          program = "${hei.packages.${system}.default}/bin/hei";
-        };
-        devShells.default = pkgs.mkShellNoCC {
-          NIX_CONFIG = "experimental-features = nix-command flakes";
-          packages = with pkgs; [
-            git
-            go-task
-            inputs.clan-core.packages.${system}.clan-cli
-            lolcat
-            home-manager
-            neovim
-          ];
-          shellHook = ''
-            head -n 7 README.md|tail -n4|lolcat
-          '';
-        };
-        checks = {
-          pre-commit-check = inputs.pre-commit-hooks.lib.${system}.run {
-            src = ./.;
-            hooks = {
-              nixfmt-rfc-style.enable = true;
-              deadnix.enable = true;
-              statix.enable = true;
+      perSystem =
+        { pkgs, system, ... }:
+        {
+          apps.default = {
+            type = "app";
+            program = "${hei.packages.${system}.default}/bin/hei";
+          };
+          devShells.default = pkgs.mkShellNoCC {
+            NIX_CONFIG = "experimental-features = nix-command flakes";
+            packages = with pkgs; [
+              git
+              go-task
+              inputs.clan-core.packages.${system}.clan-cli
+              lolcat
+              home-manager
+              neovim
+            ];
+            shellHook = ''
+              head -n 7 README.md|tail -n4|lolcat
+            '';
+          };
+          checks = {
+            pre-commit-check = inputs.pre-commit-hooks.lib.${system}.run {
+              src = ./.;
+              hooks = {
+                nixfmt-rfc-style.enable = true;
+                deadnix.enable = true;
+                statix.enable = true;
+              };
             };
           };
         };
-      };
-      systems = [ "x86_64-linux" "aarch64-linux" "aarch64-darwin" ];
+      systems = [
+        "x86_64-linux"
+        "aarch64-linux"
+        "aarch64-darwin"
+      ];
     });
 }

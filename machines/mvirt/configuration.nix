@@ -16,7 +16,6 @@ _:
   hardware = {
     bluetooth.enable = false;
     facetimehd.enable = true;
-    gpu.nvidia.enable = true;
   };
   networking = {
     hostName = "mvirt";
