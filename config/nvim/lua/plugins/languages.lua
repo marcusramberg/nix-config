@@ -126,8 +126,23 @@ return {
       },
     },
   },
-  { "ray-x/guihua.lua" },
   { "alaviss/nim.nvim" },
   { "joshglendenning/vim-caddyfile" },
   { "symphorien/vim-nixhash" },
+  {
+    "fredrikaverpil/godoc.nvim",
+    version = "*",
+    dependencies = {
+      { "folke/snacks.nvim" },
+      {
+        "nvim-treesitter/nvim-treesitter",
+        opts = {
+          ensure_installed = { "go" },
+        },
+      },
+    },
+    build = "go install github.com/lotusirous/gostdsym/stdsym@latest", -- optional
+    cmd = { "GoDoc" }, -- optional
+    opts = {}, -- see further down below for configuration
+  },
 }
