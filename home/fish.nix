@@ -45,6 +45,7 @@ in
       kx = "kubectx";
       kns = "kubens";
       l = "ls";
+      lg = "lazygit";
       vi = "nvim";
       ".." = "cd ..";
       "..." = "cd ../..";
