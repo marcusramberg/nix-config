@@ -8,8 +8,8 @@
     {
       "customType": "regex",
       "datasourceTemplate": "docker",
-      "fileMatch": [
-        ".+\\.nix$"
+      "managerFilePatterns": [
+        "/.+\\.nix$/"
       ],
       "matchStrings": [
         "\\s+image\\s+=\\s+\"(?<depName>.*?):(?<currentValue>.*?)\""
