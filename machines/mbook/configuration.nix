@@ -20,7 +20,6 @@
     loader.efi.canTouchEfiVariables = false;
     kernelParams = [
       "apple_dcp.show_notch=1"
-      "apple_dcp.unstable_edid=1"
     ];
     extraModprobeConfig = ''
       options hid_apple iso_layout=0
@@ -32,6 +31,7 @@
     google-cloud-sdk
     spotify-player
     widevine-cdm
+    displaylink
   ];
   hardware = {
     bluetooth = {
@@ -66,7 +66,12 @@
       KERNEL=="event*", SUBSYSTEM=="input", ATTRS{name}=="mBoard", SYMLINK+="input/by-path/mboard.input-event-kbd"
     '';
     usbmuxd.enable = true;
+    xserver.videoDrivers = [
+      "displaylink"
+      "modesetting"
+    ];
   };
+  systemd.services.dlm.wantedBy = [ "multi-user.target" ];
 
   system.stateVersion = "25.05"; # Did you read the comment?
 

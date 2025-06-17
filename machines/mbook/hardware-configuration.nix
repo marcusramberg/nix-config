@@ -27,7 +27,7 @@
         };
       };
     };
-    kernelModules = [ ];
+    kernelModules = [ "evdi" ];
     extraModulePackages = [ ];
   };
 
