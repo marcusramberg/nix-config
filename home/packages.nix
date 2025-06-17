@@ -17,48 +17,49 @@ in
   home.packages =
     with pkgs;
     [
+      (fortune.override { withOffensive = true; })
       actionlint
       asciinema
-      cloudflared
-      coreutils
-      nodePackages.cspell
+      any-nix-shell
+      btop
       caligula
       cargo
+      cloudflared
+      coreutils
       curlHTTP3
       deadnix
       devenv
       dive
+      fastfetch
       fd
-      (fortune.override { withOffensive = true; })
       gist
-      gnumake
       gnugrep
+      gnumake
       go
+      go-task
       golangci-lint
       gopls
-      go-task
       gotestfmt
       grc
       inputs.hei.packages.${system}.default
-      nix-converter
       jq
       just
       kubectx
-      luarocks
       lua-language-server
-      nil
+      luarocks
       lynx # for copilot
-      nixfmt-rfc-style
-      fastfetch
-      nixpkgs-review
+      ncdu
+      neovim
+      nil
+      nim2
+      nix-converter
       nix-output-monitor
-      nix-your-shell
+      nixfmt-rfc-style
+      nixpkgs-review
+      nnn
+      nodePackages.cspell
       nodePackages.typescript
       nodejs
-      ncdu
-      nim2
-      nnn
-      neovim
       ollama
       posting
       promexplorer
@@ -71,12 +72,11 @@ in
       tealdeer
       tfenv
       tflint
-      unzip
       unixtools.watch
+      unzip
       uv
       wget
       yq-go
-      btop
     ]
     ++ lib.optionals stdenv.isDarwin [
       cocoapods

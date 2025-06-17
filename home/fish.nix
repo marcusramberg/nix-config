@@ -74,16 +74,13 @@ in
         set fish_cursor_insert      line       blink
         set fish_cursor_replace_one underscore blink
         set fish_cursor_visual      block
-        bind \eh 'fuck'
         set fish_theme tokyonight
         set -gx EDITOR nvim
         set -gx GOPRIVATE github.com/reMarkable
         # FIXME: Disable this for now as it breaks vi mode.
         set --universal pure_enable_nixdevshell false
         test -x ~/.plenv/bin/plenv; and . (~/.plenv/bin/plenv init -|psub)
-        if command -q nix-your-shell
-          nix-your-shell fish | source
-        end
+        any-nix-shell fish --info-right | source
         set -gx ATUIN_NOBIND "true"
         atuin init fish | source
 
