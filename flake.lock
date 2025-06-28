@@ -66,11 +66,11 @@
         "treefmt-nix": "treefmt-nix"
       },
       "locked": {
-        "lastModified": 1750947719,
-        "narHash": "sha256-G/uxwX6JUKxDSlzxwjtEiUotrDQZpI741IsiYMw21w0=",
-        "rev": "6929700c77887d80eab915fbdbc5087097ec14e9",
+        "lastModified": 1751050779,
+        "narHash": "sha256-Xt8nHqu41Cq/pdTAjOMAveCRGr6hWL8Tkg8kFc4p9l4=",
+        "rev": "8122158da7f33231a58b82765b0592aeaa3fe7c2",
         "type": "tarball",
-        "url": "https://git.clan.lol/api/v1/repos/clan/clan-core/archive/6929700c77887d80eab915fbdbc5087097ec14e9.tar.gz"
+        "url": "https://git.clan.lol/api/v1/repos/clan/clan-core/archive/8122158da7f33231a58b82765b0592aeaa3fe7c2.tar.gz"
       },
       "original": {
         "type": "tarball",
@@ -303,11 +303,11 @@
         "zon2nix": "zon2nix"
       },
       "locked": {
-        "lastModified": 1750979959,
-        "narHash": "sha256-ScD8ONt3gwDDCWN1znbnfqxcBufh4CMbcl3vwcs7nu0=",
+        "lastModified": 1751046715,
+        "narHash": "sha256-o5zgrHJXF1jJrVIWNWGuHgBQ+8OzmQT1wJfpl1+ORGI=",
         "owner": "ghostty-org",
         "repo": "ghostty",
-        "rev": "979d72056ba2f3485423bfdd07deff7626972e2a",
+        "rev": "98b1af8353077b608713d30a9863cbc6e008d034",
         "type": "github"
       },
       "original": {
@@ -579,11 +579,11 @@
     },
     "nixpkgs_3": {
       "locked": {
-        "lastModified": 1750920922,
-        "narHash": "sha256-ZJ2MrKzHf41TL0MehP1tzjawnWpKdo9OmjnP/0oV9ws=",
+        "lastModified": 1751009538,
+        "narHash": "sha256-H5v0MWj6OuuX0ct9INuwJj5kLDA0jKozmUcd5XfR9a4=",
         "owner": "nixos",
         "repo": "nixpkgs",
-        "rev": "701ee4e4f458940a335ae6a8289db75302eb8d79",
+        "rev": "ce34f10e7180bdae28e8a3b0ab2f8c0ad4383506",
         "type": "github"
       },
       "original": {
