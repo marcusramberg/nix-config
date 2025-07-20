@@ -77,11 +77,8 @@ in
         vivaldi
         vivaldi-ffmpeg-codecs
         vlc
-        volumeicon
         webcord-vencord
-        xarchiver
         xdg-utils
-        xclip
         wl-clipboard
         waypipe
         ytmdesktop
