@@ -18,14 +18,14 @@
 		protocols h1 h2c
 	}
 
-  order authenticate before respond
+	order authenticate before respond
 	security {
 		oauth identity provider pocketid {
 			delay_start 3
 			realm generic
 			driver generic
-			client_id {$POCKET_ID} 
-			client_secret {$POCKET_SECRET} 
+			client_id {$POCKET_ID}
+			client_secret {$POCKET_SECRET}
 			scopes openid email profile
 			base_auth_url https://auth.means.no
 			metadata_url https://auth.means.no/.well-known/openid-configuration
@@ -137,16 +137,20 @@ fab.means.no:443 {
 
 movies.means.no:443 {
 	import caddy-common
-  @auth {
-    path /caddy-security/*
-  }
-  route @auth {
-    authenticate with pocketid
-  }
-  route /* {
-    authorize with pocketid
-    reverse_proxy localhost:7878
-  }
+	@auth {
+		path /caddy-security/*
+	}
+	route @auth {
+		authenticate with pocketid
+	}
+	@protected not path /api/*
+	route @protected {
+		reverse_proxy localhost:7878
+		authorize with pocketid
+	}
+	route /api/* {
+		reverse_proxy localhost:7878
+	}
 }
 
 transmission.means.no:443 {
@@ -171,18 +175,22 @@ rss.means.no:443 {
 
 tv.means.no:443 {
 	import caddy-common
-  @auth {
-    path /caddy-security/*
-  }
-  route @auth {
-    authenticate with pocketid
-  }
-  route /* {
-    authorize with pocketid
-    reverse_proxy localhost:8989 {
-      header_up Authorization "Basic {$PROXY_AUTH_BASE64}"
-    }
-  }
+	@auth {
+		path /caddy-security/*
+	}
+	route @auth {
+		authenticate with pocketid
+	}
+	@protected not path /api/*
+	route @protected {
+		authorize with pocketid
+		reverse_proxy localhost:8989 {
+			header_up Authorization "Basic {$PROXY_AUTH_BASE64}"
+		}
+	}
+	route /api/* {
+		reverse_proxy localhost:8989
+	}
 }
 
 webdav.means.no:443 {
@@ -214,4 +222,3 @@ unifi.means.no:443 {
 		}
 	}
 }
-
