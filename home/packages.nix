@@ -61,7 +61,7 @@ in
       nodePackages.typescript
       nodejs
       ollama
-      posting
+      # posting
       promexplorer
       pssh
       ranger
