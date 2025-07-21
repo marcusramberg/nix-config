@@ -85,7 +85,7 @@
       enableVirtualCamera = true;
 
     };
-    streamcontroller.enable = true;
+    # streamcontroller.enable = true;
     virt-manager.enable = true;
   };
 

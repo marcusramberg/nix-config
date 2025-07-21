@@ -73,6 +73,7 @@ in
         pavucontrol
         showmethekey
         signal-desktop
+        spotify-player
         telegram-desktop
         vivaldi
         vivaldi-ffmpeg-codecs

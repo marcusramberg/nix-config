@@ -29,7 +29,6 @@
     amazon-ecr-credential-helper
     (ungoogled-chromium.override { enableWideVine = true; })
     google-cloud-sdk
-    spotify-player
     widevine-cdm
     displaylink
   ];
