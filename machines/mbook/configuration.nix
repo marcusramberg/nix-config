@@ -26,11 +26,15 @@
     '';
   };
   environment.systemPackages = with pkgs; [
-    amazon-ecr-credential-helper
     (ungoogled-chromium.override { enableWideVine = true; })
+    amazon-ecr-credential-helper
+    asahi-bless
+    asahi-btsync
+    asahi-nvram
+    asahi-wifisync
+    displaylink
     google-cloud-sdk
     widevine-cdm
-    displaylink
   ];
   hardware = {
     bluetooth = {
