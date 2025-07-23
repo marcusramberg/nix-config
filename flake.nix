@@ -122,7 +122,7 @@
         darwinConfigurations.mwork = mkDarwinHost "mwork" { };
         darwinConfigurations.mStudio = mkDarwinHost "mstudio" { };
         homeConfigurations = {
-          x86 = mkHMConfig { system = "x86_64-linux"; };
+          marcus = mkHMConfig { };
           aarch64 = mkHMConfig { system = "aarch64-linux"; };
           mac = mkHMConfig { system = "aarch64-darwin"; };
         };
