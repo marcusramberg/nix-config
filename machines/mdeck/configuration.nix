@@ -51,7 +51,10 @@
     ];
   };
 
-  hardware.keyboard.dual-caps.enable = true;
+  hardware.keyboard.dual-caps = {
+    enable = true;
+    swapAlt = true;
+  };
 
   profiles.desktop.enable = true;
 

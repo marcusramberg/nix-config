@@ -65,9 +65,6 @@
   security.apparmor.enable = true;
   services = {
     cloudflare-warp.enable = true;
-    udev.extraRules = ''
-      KERNEL=="event*", SUBSYSTEM=="input", ATTRS{name}=="mBoard", SYMLINK+="input/by-path/mboard.input-event-kbd"
-    '';
     usbmuxd.enable = true;
     xserver.videoDrivers = [
       "displaylink"
