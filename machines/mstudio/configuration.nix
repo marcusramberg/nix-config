@@ -56,7 +56,6 @@
   hardware = {
     asahi = {
       peripheralFirmwareDirectory = ./firmware;
-      withRust = true;
     };
     bluetooth.enable = true;
     keyboard.dual-caps.enable = true;

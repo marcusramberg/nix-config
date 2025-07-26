@@ -45,7 +45,6 @@
     asahi = {
       enable = true;
       peripheralFirmwareDirectory = ./firmware;
-      withRust = true;
     };
   };
   networking.networkmanager = {
