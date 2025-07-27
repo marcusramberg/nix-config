@@ -111,6 +111,10 @@ in
           "transmission"
           "nzbget"
         ];
+        readarr.extraGroups = [
+          "transmission"
+          "nzbget"
+        ];
         plex = {
           isNormalUser = false;
           description = "Plex";
