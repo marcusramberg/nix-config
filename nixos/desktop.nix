@@ -44,7 +44,6 @@ in
           ];
 
         })
-        audacity
         catppuccin-qt5ct
         catppuccin-cursors
         catppuccin-kvantum
