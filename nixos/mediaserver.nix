@@ -49,6 +49,7 @@ in
       };
 
       sonarr.enable = true;
+      readarr.enable = true;
 
       miniflux = {
         enable = true;

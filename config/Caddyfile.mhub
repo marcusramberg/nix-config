@@ -153,6 +153,11 @@ movies.means.no:443 {
 	}
 }
 
+reader.means.no:443 {
+  import caddy-common
+  reverse_proxy localhost:8787
+}
+
 transmission.means.no:443 {
 	import caddy-tailscale
 	reverse_proxy localhost:9091
