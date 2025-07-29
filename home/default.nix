@@ -10,7 +10,7 @@
     ./files.nix
     ./fish.nix
     ./git.nix
-    ./gnome.nix
+    # ./gnome.nix
     ./linux.nix
     ./packages.nix
     ./python.nix
