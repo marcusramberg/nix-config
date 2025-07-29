@@ -111,14 +111,8 @@ in
           ];
         };
 
-        # Set ulauncher to Super+Space
         "org/gnome/desktop/wm/keybindings" = {
           switch-input-source = [ ];
-        };
-        "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0" = {
-          name = "Ulauncher";
-          command = "ulauncher-toggle";
-          binding = "<Super>space";
         };
 
         # Set flameshot (with the sh fix for starting under Wayland) on alternate print screen key
@@ -313,7 +307,6 @@ in
         gnomeExtensions.tactile
         gnomeExtensions.undecorate
         gnomeExtensions.user-themes
-        ulauncher
         yaru-theme
       ];
       # Ulauncher
