@@ -32,6 +32,13 @@ in
         '';
         swapAlt = pkgs.writeText "swap-alt.yaml" ''
           MAPPINGS:
+            - KEY: KEY_CAPSLOCK
+              TAP: KEY_ESC
+              HOLD: KEY_LEFTCTRL
+            - KEY: KEY_TAB
+              TAP: KEY_TAB
+              HOLD: [KEY_LEFTCTRL,KEY_LEFTMETA,KEY_LEFTALT,KEY_LEFTSHIFT]
+              HOLD_START: BEFORE_CONSUME
             - KEY: KEY_LEFTMETA
               HOLD: KEY_LEFTALT
               TAP: KEY_LEFTALT
@@ -44,12 +51,13 @@ in
         enable = true;
         plugins = [ pkgs.interception-tools-plugins.dual-function-keys ];
         udevmonConfig = ''
+          - JOB: "${pkgs.interception-tools}/bin/intercept -g $DEVNODE | ${pkgs.interception-tools-plugins.dual-function-keys}/bin/dual-function-keys -c ${swapAlt} | ${pkgs.interception-tools}/bin/uinput -d $DEVNODE"
+            DEVICE:
+              LINK: /dev/input/by-path/mfold.input-event-kbd
           - JOB: "${pkgs.interception-tools}/bin/intercept -g $DEVNODE | ${pkgs.interception-tools-plugins.dual-function-keys}/bin/dual-function-keys -c ${dualFunctionKeysConfig} | ${pkgs.interception-tools}/bin/uinput -d $DEVNODE"
             DEVICE:
               LINK: .*-event-kbd
-          - JOB: "${pkgs.interception-tools}/bin/intercept -g $DEVNODE | ${pkgs.interception-tools-plugins.dual-function-keys}/bin/dual-function-keys -c ${swapAlt} | ${pkgs.interception-tools}/bin/uinput -d $DEVNODE"
-            DEVICE:
-              NAME: "Targus Folding Ergonomic Bluetooth Keyboard"
+              
         '';
       };
     # link bluetooth keyboards
