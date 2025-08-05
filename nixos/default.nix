@@ -46,7 +46,7 @@
       caddy
       file
       gcc
-      inputs.ghostty.packages.${pkgs.system}.default.terminfo
+      ghostty.terminfo
       gitFull
       inputs.agenix.packages.${pkgs.system}.default
       mosh

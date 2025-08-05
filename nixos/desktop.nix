@@ -57,7 +57,7 @@ in
         element-desktop
         flameshot
         # floorp # zen life
-        inputs.ghostty.packages.${pkgs.system}.default
+        ghostty
         hunspell
         hunspellDicts.en_US
         kdePackages.kaccounts-providers

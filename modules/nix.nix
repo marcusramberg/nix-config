@@ -19,7 +19,6 @@
           "https://nix-community.cachix.org"
           "https://nixhelm.cachix.org"
           "https://devenv.cachix.org"
-          "https://ghostty.cachix.org"
           "https://marcusramberg.cachix.org"
         ];
         trusted-public-keys = [
@@ -27,7 +26,6 @@
           "flox-store-public-0:8c/B+kjIaQ+BloCmNkRUKwaVPFWkriSAd0JJvuDu4F0="
           "nixhelm.cachix.org-1:esqauAsR4opRF0UsGrA6H3gD21OrzMnBBYvJXeddjtY="
           "devenv.cachix.org-1:w1cLUi8dv3hnoSPGAuibQv+f9TZLr6cv/Hm9XgU50cw="
-          "ghostty.cachix.org-1:QB389yTa6gTyneehvqG58y0WnHjQOqgnA+wBnpWWxns="
           "marcusramberg.cachix.org-1:3gZte6tgsUkcVSgkKaoXtQQQMixtEbpEl+xqIkB9TSY="
         ];
         experimental-features = [
