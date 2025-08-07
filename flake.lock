@@ -234,6 +234,27 @@
         "type": "github"
       }
     },
+    "flake-parts_3": {
+      "inputs": {
+        "nixpkgs-lib": [
+          "mcp-hub",
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1743550720,
+        "narHash": "sha256-hIshGgKZCgWh6AYJpJmRgFdR3WUbkY04o82X05xqQiY=",
+        "owner": "hercules-ci",
+        "repo": "flake-parts",
+        "rev": "c621e8422220273271f52058f618c94e405bb0f5",
+        "type": "github"
+      },
+      "original": {
+        "owner": "hercules-ci",
+        "repo": "flake-parts",
+        "type": "github"
+      }
+    },
     "gitignore": {
       "inputs": {
         "nixpkgs": [
@@ -314,6 +335,25 @@
       "original": {
         "owner": "Jovian-Experiments",
         "repo": "Jovian-NixOS",
+        "type": "github"
+      }
+    },
+    "mcp-hub": {
+      "inputs": {
+        "flake-parts": "flake-parts_3",
+        "nixpkgs": "nixpkgs_2"
+      },
+      "locked": {
+        "lastModified": 1753029274,
+        "narHash": "sha256-WwxFTg8wphvIC7jDqDqyQBtKvn3Xr0ZRptDjwkFNx78=",
+        "owner": "ravitemer",
+        "repo": "mcp-hub",
+        "rev": "bdbd7e47dbde52f95bd4e21d6b4de64f918e57dd",
+        "type": "github"
+      },
+      "original": {
+        "owner": "ravitemer",
+        "repo": "mcp-hub",
         "type": "github"
       }
     },
@@ -458,6 +498,22 @@
       "locked": {
         "lastModified": 1754498491,
         "narHash": "sha256-erbiH2agUTD0Z30xcVSFcDHzkRvkRXOQ3lb887bcVrs=",
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "rev": "2bfc080955153be0be56724be6fa5477b4eefabb",
+        "type": "github"
+      },
+      "original": {
+        "owner": "NixOS",
+        "ref": "nixpkgs-unstable",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
+    "nixpkgs_3": {
+      "locked": {
+        "lastModified": 1754410885,
+        "narHash": "sha256-wRBHrPkxEHIP3YeCogFwCKQp2loa446f5+iAF892r90=",
         "owner": "nixos",
         "repo": "nixpkgs",
         "rev": "c2ae88e026f9525daf89587f3cbee584b92b6134",
@@ -506,9 +562,10 @@
         "hei": "hei",
         "home-manager": "home-manager",
         "jovian": "jovian",
+        "mcp-hub": "mcp-hub",
         "nix-index-database": "nix-index-database",
         "nix-std": "nix-std",
-        "nixpkgs": "nixpkgs_2",
+        "nixpkgs": "nixpkgs_3",
         "pre-commit-hooks": "pre-commit-hooks",
         "systems": "systems_3",
         "tfenv": "tfenv",

@@ -35,6 +35,7 @@
     jovian.inputs.nixpkgs.follows = "nixpkgs";
     home-manager.url = "github:nix-community/home-manager";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
+    mcp-hub.url = "github:ravitemer/mcp-hub";
     nix-index-database.url = "github:Mic92/nix-index-database";
     nix-index-database.inputs.nixpkgs.follows = "nixpkgs";
     nix-std.url = "github:chessai/nix-std";

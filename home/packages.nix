@@ -52,6 +52,7 @@ in
       neovim
       nil
       nim2
+      inputs.mcp-hub.packages.${system}.default
       nix-converter
       nix-output-monitor
       nixfmt-rfc-style
