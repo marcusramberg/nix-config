@@ -27,6 +27,8 @@ in
           nerd-fonts.jetbrains-mono
           nerd-fonts.iosevka
           nerd-fonts.hack
+          roboto
+          roboto-serif
         ]
         ++ lib.optional stdenv.isLinux noto-fonts-emoji;
     };

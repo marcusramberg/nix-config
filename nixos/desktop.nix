@@ -51,8 +51,6 @@ in
           flavor = "mocha";
           font = "JetBrainsMono Nerd Font Propo";
           fontSize = "9";
-          # background = "${./wallpaper.png}";
-          # loginBackground = true;
         })
         element-desktop
         flameshot
