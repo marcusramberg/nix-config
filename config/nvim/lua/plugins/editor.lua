@@ -51,6 +51,13 @@ return {
     end,
   },
   {
+    "zbirenbaum/copilot.lua",
+    opts = {
+      -- Use gemini-2.5-pro model for Copilot
+      copilot_model = "gemini-2.5-pro",
+    },
+  },
+  {
     "CopilotC-Nvim/CopilotChat.nvim",
     dependencies = {
       { "ravitemer/mcphub.nvim" },
