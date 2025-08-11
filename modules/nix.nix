@@ -20,7 +20,6 @@
           "https://nixhelm.cachix.org"
           "https://devenv.cachix.org"
           "https://marcusramberg.cachix.org"
-          "https://app.cachix.org/cache/jovian-nixos"
           "https://jovian-nixos.cachix.org"
         ];
         trusted-public-keys = [
