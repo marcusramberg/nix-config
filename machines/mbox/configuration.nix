@@ -90,7 +90,6 @@
     steamos = {
       enableBluetoothConfig = true;
       enableSysctlConfig = true;
-      enableVendorRadv = true;
     };
     steam = {
       enable = true;
