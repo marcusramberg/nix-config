@@ -36,11 +36,11 @@ let
         ../nixos
         inputs.agenix.nixosModules.age
         inputs.home-manager.nixosModules.home-manager
-        inputs.clan-core.clanModules.trusted-nix-caches
         (import ./options.nix {
           inherit inputs system;
         })
-      ] ++ extraModules;
+      ]
+      ++ extraModules;
       clan.core.networking.targetHost = "root@${name}";
       nixpkgs.hostPlatform = system;
     };
@@ -72,7 +72,8 @@ let
             };
           };
         }
-      ] ++ extraModules;
+      ]
+      ++ extraModules;
     };
 in
 {
