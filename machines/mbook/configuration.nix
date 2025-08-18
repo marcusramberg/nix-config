@@ -35,6 +35,10 @@
     displaylink
     google-cloud-sdk
     widevine-cdm
+    fuzzel
+    swaylock
+    slacky
+    xwayland-satellite
   ];
   hardware = {
     bluetooth = {
@@ -59,6 +63,7 @@
   };
   programs = {
     appimage.enable = true;
+    niri.enable = true;
 
   };
   security.apparmor.enable = true;
