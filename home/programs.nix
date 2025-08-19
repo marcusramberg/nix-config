@@ -89,14 +89,13 @@ in
       enable = true;
       addKeysToAgent = "yes";
       forwardAgent = true;
-      matchBlocks =
-        {
-          "10.8.20.128".forwardX11 = true;
-        }
-        // lib.optionalAttrs isDarwin {
-          "*".extraOptions.IdentityAgent =
-            "/Users/marcus/Library/Containers/com.maxgoedjen.Secretive.SecretAgent/Data/socket.ssh";
-        };
+      matchBlocks = {
+        "10.8.20.128".forwardX11 = true;
+      }
+      // lib.optionalAttrs isDarwin {
+        "*".extraOptions.IdentityAgent =
+          "/Users/marcus/Library/Containers/com.maxgoedjen.Secretive.SecretAgent/Data/socket.ssh";
+      };
     };
     # Smarter z
     zoxide.enable = true;

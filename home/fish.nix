@@ -67,49 +67,47 @@ in
     shellInit = ''
       fish_add_path -p ~/.local/bin ${lib.optionalString isDarwin "/run/current-system/sw/bin /opt/homebrew/bin"} ~/go/bin/ ~/.nimble/bin ~/.cargo/bin/
     '';
-    interactiveShellInit =
-      ''
-        fish_vi_key_bindings
-        set fish_cursor_default     block      blink
-        set fish_cursor_insert      line       blink
-        set fish_cursor_replace_one underscore blink
-        set fish_cursor_visual      block
-        set fish_theme tokyonight
-        set -gx EDITOR nvim
-        set -gx GOPRIVATE github.com/reMarkable
-        # FIXME: Disable this for now as it breaks vi mode.
-        set --universal pure_enable_nixdevshell false
-        test -x ~/.plenv/bin/plenv; and . (~/.plenv/bin/plenv init -|psub)
-        any-nix-shell fish --info-right | source
-        set -gx ATUIN_NOBIND "true"
-        atuin init fish | source
+    interactiveShellInit = ''
+      fish_vi_key_bindings
+      set fish_cursor_default     block      blink
+      set fish_cursor_insert      line       blink
+      set fish_cursor_replace_one underscore blink
+      set fish_cursor_visual      block
+      set fish_theme tokyonight
+      set -gx EDITOR nvim
+      set -gx GOPRIVATE github.com/reMarkable
+      # FIXME: Disable this for now as it breaks vi mode.
+      set --universal pure_enable_nixdevshell false
+      test -x ~/.plenv/bin/plenv; and . (~/.plenv/bin/plenv init -|psub)
+      any-nix-shell fish --info-right | source
+      set -gx ATUIN_NOBIND "true"
+      atuin init fish | source
 
-        # bind to ctrl-r in normal and insert mode, add any other bindings you want here too
-        bind \cr _atuin_search
-        bind -M insert \cr _atuin_search
+      # bind to ctrl-r in normal and insert mode, add any other bindings you want here too
+      bind \cr _atuin_search
+      bind -M insert \cr _atuin_search
 
-        # Completion
-        type -q kustomize; and eval (kustomize completion fish)
-        type -q yq; and yq shell-completion fish | source
-      ''
-      + lib.optionalString isNixOS ''
-        set -gx NIX_LD (nix eval --impure --raw --expr 'let pkgs = import <nixpkgs> {}; NIX_LD = pkgs.lib.fileContents "${pkgs.stdenv.cc}/nix-support/dynamic-linker"; in NIX_LD ')
-        if test "$TERM" = "xterm-ghostty"
-          . ${pkgs.ghostty.shell_integration}/fish/vendor_conf.d/ghostty-shell-integration.fish
-        end
-      '';
-    loginShellInit =
-      ''
-        gpgconf --launch gpg-agent
-        if [ -f /Users/${user}/.ssh/id_rsa ]
-          ssh-add -q --apple-use-keychain  ~/.ssh/id_rsa
-          ssh-add -q --apple-use-keychain  ~/.ssh/google_compute_engine
-        end
-        set -x GPG_TTY (tty)
-      ''
-      + lib.optionalString isDarwin ''
-        set -x SSH_AUTH_SOCK /Users/marcus/Library/Containers/com.maxgoedjen.Secretive.SecretAgent/Data/socket.ssh
-      '';
+      # Completion
+      type -q kustomize; and eval (kustomize completion fish)
+      type -q yq; and yq shell-completion fish | source
+    ''
+    + lib.optionalString isNixOS ''
+      set -gx NIX_LD (nix eval --impure --raw --expr 'let pkgs = import <nixpkgs> {}; NIX_LD = pkgs.lib.fileContents "${pkgs.stdenv.cc}/nix-support/dynamic-linker"; in NIX_LD ')
+      if test "$TERM" = "xterm-ghostty"
+        . ${pkgs.ghostty.shell_integration}/fish/vendor_conf.d/ghostty-shell-integration.fish
+      end
+    '';
+    loginShellInit = ''
+      gpgconf --launch gpg-agent
+      if [ -f /Users/${user}/.ssh/id_rsa ]
+        ssh-add -q --apple-use-keychain  ~/.ssh/id_rsa
+        ssh-add -q --apple-use-keychain  ~/.ssh/google_compute_engine
+      end
+      set -x GPG_TTY (tty)
+    ''
+    + lib.optionalString isDarwin ''
+      set -x SSH_AUTH_SOCK /Users/marcus/Library/Containers/com.maxgoedjen.Secretive.SecretAgent/Data/socket.ssh
+    '';
     plugins = [
       # {
       #   name = "fzf-fish";

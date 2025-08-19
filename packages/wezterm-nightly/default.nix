@@ -55,30 +55,30 @@ rustPlatform.buildRustPackage rec {
     ncurses # tic for terminfo
     pkg-config
     python3
-  ] ++ lib.optional stdenv.isDarwin perl;
+  ]
+  ++ lib.optional stdenv.isDarwin perl;
 
-  buildInputs =
-    [
-      fontconfig
-      zlib
-    ]
-    ++ lib.optionals stdenv.isLinux [
-      libX11
-      libxcb
-      libxkbcommon
-      openssl
-      wayland
-      xcbutil
-      xcbutilimage
-      xcbutilkeysyms
-      xcbutilwm # contains xcb-ewmh among others
-      # ] ++ lib.optionals stdenv.isDarwin [
-      #   Cocoa
-      #   CoreGraphics
-      #   Foundation
-      #   libiconv
-      #   UserNotifications
-    ];
+  buildInputs = [
+    fontconfig
+    zlib
+  ]
+  ++ lib.optionals stdenv.isLinux [
+    libX11
+    libxcb
+    libxkbcommon
+    openssl
+    wayland
+    xcbutil
+    xcbutilimage
+    xcbutilkeysyms
+    xcbutilwm # contains xcb-ewmh among others
+    # ] ++ lib.optionals stdenv.isDarwin [
+    #   Cocoa
+    #   CoreGraphics
+    #   Foundation
+    #   libiconv
+    #   UserNotifications
+  ];
 
   buildFeatures = [ "distro-defaults" ];
 

@@ -47,7 +47,8 @@
       "floorp"
       "volumeicon"
       "zeal"
-    ] ++ pkgs.lib.optional (osConfig.networking.hostName == "mbox") "streamdeck -n";
+    ]
+    ++ pkgs.lib.optional (osConfig.networking.hostName == "mbox") "streamdeck -n";
   };
   controls = {
     decreaseMasterCount = {

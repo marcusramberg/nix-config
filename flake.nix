@@ -41,7 +41,7 @@
     nix-std.url = "github:chessai/nix-std";
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     pre-commit-hooks = {
-      url = "github:cachix/pre-commit-hooks.nix";
+      url = "github:cachix/git-hooks.nix";
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.flake-compat.follows = "flake-compat";
     };
@@ -154,6 +154,7 @@
               neovim
             ];
             shellHook = ''
+              ${self.checks.${system}.pre-commit-check.shellHook}
               head -n 7 README.md|tail -n4|lolcat
             '';
           };
