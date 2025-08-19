@@ -44,14 +44,13 @@
     systemPackages = with pkgs; [
       cached-nix-shell
       caddy
-      file
+      distrobox
       gcc
+      file
       ghostty.terminfo
       gitFull
       inputs.agenix.packages.${pkgs.system}.default
       mosh
-      netavark
-      ntfs3g
       p7zip
       pciutils
       perlPackages.EV
@@ -61,15 +60,10 @@
       wget
       wireguard-tools
     ];
-    variables = {
-      # TERM = "xterm-256color";
-      NIXPKGS_ALLOW_UNFREE = "1";
-    };
+    variables.NIXPKGS_ALLOW_UNFREE = "1";
   };
 
   age.identityPaths = [ "/home/marcus/.ssh/id_ed25519" ];
-
-  boot.supportedFilesystems = [ "ntfs" ];
 
   networking.firewall.enable = false;
 
@@ -165,11 +159,6 @@
   # Always be sshing
   services.openssh.enable = true;
   nixpkgs.config.permittedInsecurePackages = [
-    "aspnetcore-runtime-6.0.36"
-    "aspnetcore-runtime-wrapped-6.0.36"
-    "dotnet-sdk-6.0.428"
-    "dotnet-sdk-wrapped-6.0.428"
-    "electron-31.7.7"
   ];
   system.activationScripts.diff = {
     supportsDryActivation = true;
