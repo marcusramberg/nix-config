@@ -10,7 +10,13 @@ in
 {
   options.hardware.keyboard.dual-caps = {
     enable = lib.mkEnableOption "Enable dual esc/ctrl caps lock";
-    swapAlt = lib.mkEnableOption "Also swap alt/meta";
+    swapAlt.enable = lib.mkEnableOption "Also swap alt/meta";
+    swapAlt.device = lib.mkOption {
+      type = lib.types.str;
+      default = "mfold.input-event-kbd";
+      description = "Device to swap alt/meta keys on, defaults to the folding keyboard";
+      example = "mboard.input-event-kbd";
+    };
   };
 
   config.services = lib.mkIf cfg.enable {
@@ -50,15 +56,23 @@ in
       {
         enable = true;
         plugins = [ pkgs.interception-tools-plugins.dual-function-keys ];
-        udevmonConfig = ''
-          - JOB: "${pkgs.interception-tools}/bin/intercept -g $DEVNODE | ${pkgs.interception-tools-plugins.dual-function-keys}/bin/dual-function-keys -c ${swapAlt} | ${pkgs.interception-tools}/bin/uinput -d $DEVNODE"
-            DEVICE:
-              LINK: /dev/input/by-path/mfold.input-event-kbd
-          - JOB: "${pkgs.interception-tools}/bin/intercept -g $DEVNODE | ${pkgs.interception-tools-plugins.dual-function-keys}/bin/dual-function-keys -c ${dualFunctionKeysConfig} | ${pkgs.interception-tools}/bin/uinput -d $DEVNODE"
-            DEVICE:
-              LINK: .*-event-kbd
-              
-        '';
+        udevmonConfig =
+          (
+            if cfg.swapAlt.enable then
+              ''
+                - JOB: "${pkgs.interception-tools}/bin/intercept -g $DEVNODE | ${pkgs.interception-tools-plugins.dual-function-keys}/bin/dual-function-keys -c ${swapAlt} | ${pkgs.interception-tools}/bin/uinput -d $DEVNODE"
+                  DEVICE:
+                    LINK: /dev/input/by-path/${cfg.swapAlt.device}
+              ''
+            else
+              ""
+          )
+          + ''
+            - JOB: "${pkgs.interception-tools}/bin/intercept -g $DEVNODE | ${pkgs.interception-tools-plugins.dual-function-keys}/bin/dual-function-keys -c ${dualFunctionKeysConfig} | ${pkgs.interception-tools}/bin/uinput -d $DEVNODE"
+              DEVICE:
+                LINK: .*-event-kbd
+                
+          '';
       };
     # link bluetooth keyboards
     udev.extraRules = ''

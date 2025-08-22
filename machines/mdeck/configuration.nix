@@ -53,7 +53,7 @@
 
   hardware.keyboard.dual-caps = {
     enable = true;
-    swapAlt = true;
+    swapAlt.enable = true;
   };
 
   profiles.desktop.enable = true;

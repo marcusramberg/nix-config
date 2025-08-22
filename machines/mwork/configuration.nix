@@ -1,0 +1,53 @@
+{ pkgs, ... }:
+
+{
+  imports = [
+    # Include the results of the hardware scan.
+    ./hardware-configuration.nix
+    ../../modules/pipewire.nix
+  ];
+
+  # Bootloader.
+  boot = {
+    # binfmt.emulatedSystems = [ "aarch64-linux" ];
+    loader = {
+      systemd-boot.enable = true;
+      efi.canTouchEfiVariables = true;
+    };
+    # Use latest kernel.
+    kernelPackages = pkgs.linuxPackages_latest;
+
+    initrd.luks.devices."luks-9de8d567-1ec4-4d2f-896b-a0f6711d4d44".device =
+      "/dev/disk/by-uuid/9de8d567-1ec4-4d2f-896b-a0f6711d4d44";
+  };
+  environment.systemPackages = with pkgs; [
+    slack
+  ];
+
+  hardware = {
+    keyboard.dual-caps = {
+      enable = true;
+      swapAlt = {
+        enable = true;
+        device = "platform-i8042-serio-0-event-kbd";
+      };
+    };
+  };
+  # Enable networking
+  networking.networkmanager.enable = true;
+
+  profiles = {
+    autoupgrade.enable = true;
+    desktop.enable = true;
+    dockerHost.enable = true;
+  };
+
+  # This value determines the NixOS release from which the default
+  # settings for stateful data, like file locations and database versions
+  # on your system were taken. It‘s perfectly fine and recommended to leave
+  # this value at the release version of the first install of this system.
+  # Before changing this value read the documentation for this option
+  # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
+  system.stateVersion = "25.05"; # Did you read the comment?
+
+}
