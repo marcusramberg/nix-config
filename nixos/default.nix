@@ -108,6 +108,7 @@
       "podman"
       "video"
       "libvirtd"
+      "tss"
     ];
     openssh.authorizedKeys.keys = [
       "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIAqWWPb0DqvTwAJKd0Nb/MOdplnTJgxQBSGbJkL2S+nz marcus@butterbee"
@@ -155,6 +156,7 @@
       else
         [ ];
     sudo.wheelNeedsPassword = false;
+    tpm2.enable = true;
   };
   # Always be sshing
   services.openssh.enable = true;
