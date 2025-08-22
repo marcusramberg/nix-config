@@ -12,7 +12,7 @@
   "clangd_extensions.nvim": { "branch": "main", "commit": "b67cc417d9020fb4b83d46662351b4d16894905e" },
   "codi.vim": { "branch": "master", "commit": "83b9859aaf8066d95892e01eb9c01571a4b325dd" },
   "conform.nvim": { "branch": "master", "commit": "3543d000dafbc41cc7761d860cfdb24e82154f75" },
-  "copilot.lua": { "branch": "master", "commit": "d61c0436150ecd60d95cb66e7e5ee12106350c86" },
+  "copilot.lua": { "branch": "master", "commit": "633c7aa7199ea39c200931256468c9516a3aa222" },
   "crates.nvim": { "branch": "main", "commit": "a49df0f70171adc77704eac70dd2c0d179065933" },
   "diffview.nvim": { "branch": "main", "commit": "4516612fe98ff56ae0415a259ff6361a89419b0a" },
   "edgy.nvim": { "branch": "main", "commit": "7e8dedc39abebe40c289b8012cc89b11c69aa7a0" },
