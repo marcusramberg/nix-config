@@ -13,6 +13,7 @@
     };
     apple-silicon-support = {
       url = "github:nix-community/nixos-apple-silicon";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
     clan-core = {
       url = "https://git.clan.lol/clan/clan-core/archive/main.tar.gz";
@@ -35,7 +36,10 @@
     jovian.inputs.nixpkgs.follows = "nixpkgs";
     home-manager.url = "github:nix-community/home-manager";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
-    mcp-hub.url = "github:ravitemer/mcp-hub";
+    mcp-hub = {
+      url = "github:ravitemer/mcp-hub";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     nix-index-database.url = "github:Mic92/nix-index-database";
     nix-index-database.inputs.nixpkgs.follows = "nixpkgs";
     nix-std.url = "github:chessai/nix-std";

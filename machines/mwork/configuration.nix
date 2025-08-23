@@ -21,9 +21,10 @@
       "/dev/disk/by-uuid/9de8d567-1ec4-4d2f-896b-a0f6711d4d44";
   };
   environment.systemPackages = with pkgs; [
-    slack
     discord
+    slack
     spotify
+    tuba
   ];
 
   hardware = {
@@ -44,6 +45,14 @@
 
   # Install the driver
   services.fprintd.enable = true;
+  security.pam.services = {
+    login.unixAuth = true;
+    # fprint is not stable, locked sometimes after suspend
+    login.fprintAuth = false;
+    sddm.fprintAuth = false;
+    xscreensaver.fprintAuth = true;
+    kwallet.fprintAuth = true;
+  };
 
   # Enable networking
   networking.networkmanager.enable = true;
