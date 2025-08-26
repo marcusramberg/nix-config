@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, lib, ... }:
 
 {
   imports = [
@@ -21,13 +21,22 @@
       "/dev/disk/by-uuid/9de8d567-1ec4-4d2f-896b-a0f6711d4d44";
   };
   environment.systemPackages = with pkgs; [
+    act
+    amazon-ecr-credential-helper
+    docker-credential-gcr
     discord
+    fuzzel
+    (google-cloud-sdk.withExtraComponents [ pkgs.google-cloud-sdk.components.gke-gcloud-auth-plugin ])
     slack
     spotify
     tuba
   ];
 
   hardware = {
+    bluetooth = {
+      enable = true;
+      powerOnBoot = true;
+    };
     keyboard.dual-caps = {
       enable = true;
       swapAlt = {
@@ -55,12 +64,19 @@
   };
 
   # Enable networking
-  networking.networkmanager.enable = true;
+  networking.networkmanager = {
+    enable = true;
+    plugins = lib.mkForce [ ];
+    wifi.backend = "iwd";
+  };
 
   profiles = {
     autoupgrade.enable = true;
     desktop.enable = true;
     dockerHost.enable = true;
+  };
+  services = {
+    cloudflare-warp.enable = true;
   };
 
   # This value determines the NixOS release from which the default

@@ -62,6 +62,7 @@ in
       nodePackages.typescript
       nodejs
       ollama
+      otree
       # posting
       promexplorer
       pssh
