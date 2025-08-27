@@ -83,6 +83,14 @@ in
       ];
     };
 
+    systemd.services."display-manager" = {
+      conflicts = [ "plymouth-quit.service" ];
+      preStart = "${pkgs.plymouth}/bin/plymouth deactivate";
+      script = "/run/current-system/sw/bin/sddm";
+      postStart = "/bin/sh -c 'sleep 5 && ${pkgs.plymouth}/bin/plymouth quit --retain-splash'";
+      enable = true;
+    };
+
     profiles.myfonts.enable = true;
     programs = {
       chromium.enable = true;
