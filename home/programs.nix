@@ -87,9 +87,11 @@ in
     };
     ssh = {
       enable = true;
-      addKeysToAgent = "yes";
-      forwardAgent = true;
       matchBlocks = {
+        "*" = {
+          addKeysToAgent = "yes";
+          forwardAgent = true;
+        };
         "10.8.20.128".forwardX11 = true;
       }
       // lib.optionalAttrs isDarwin {
