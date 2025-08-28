@@ -107,7 +107,6 @@
       '';
     };
   };
-  system.stateVersion = "23.05";
   systemd.network = {
     enable = true;
     wait-online = {

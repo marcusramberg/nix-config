@@ -77,6 +77,5 @@
   };
   systemd.services.dlm.wantedBy = [ "multi-user.target" ];
 
-  system.stateVersion = "25.05"; # Did you read the comment?
   virtualisation.incus.enable = true;
 }
