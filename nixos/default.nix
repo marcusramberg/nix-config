@@ -124,7 +124,6 @@
     # compatible, in order to avoid breaking some software such as database
     # servers. You should change this only after NixOS release notes say you
     # should.
-    stateVersion = lib.mkDefault "23.05";
     extraSystemBuilderCmds = ''
       ln -sv ${pkgs.path} $out/nixpkgs
     '';

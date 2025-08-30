@@ -9,9 +9,21 @@
 
   # Bootloader.
   boot = {
-    # binfmt.emulatedSystems = [ "aarch64-linux" ];
     loader = {
-      systemd-boot.enable = true;
+      limine = {
+        enable = true;
+        maxGenerations = 4;
+        secureBoot.enable = true;
+        style = {
+          interface = {
+            branding = "you shall not pass";
+            resolution = "1920x1200";
+          };
+          wallpapers = [
+            "${pkgs.nixos-artwork.wallpapers.catppuccin-mocha.gnomeFilePath}"
+          ];
+        };
+      };
       efi.canTouchEfiVariables = true;
     };
     # Use latest kernel.
