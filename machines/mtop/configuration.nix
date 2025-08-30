@@ -44,12 +44,6 @@
     displayManager.autoLogin.enable = true;
     displayManager.autoLogin.user = "marcus";
     input-remapper.enable = true;
-    logind.extraConfig = ''
-      HandlePowerKey=ignore
-      HandleLidSwitch=suspend                # suspend when on battery
-      HandleLidSwitchExternalPower=lock      # lock on AC 
-      HandleLidSwitchDocked=ignore # ignore on external monitor
-    '';
     mbpfan = {
       enable = true;
       aggressive = false;
