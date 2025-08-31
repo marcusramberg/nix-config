@@ -35,10 +35,6 @@
     };
     firewall = {
       enable = lib.mkForce true;
-      allowedTCPPorts = [
-        443
-        32400
-      ];
       logRefusedConnections = false;
       trustedInterfaces = [
         "tailscale0"

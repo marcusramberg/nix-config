@@ -57,6 +57,7 @@ in
         ghostty
         hunspell
         hunspellDicts.en_US
+        kdePackages.ksshaskpass
         kdePackages.kaccounts-providers
         kdePackages.karousel
         kdePackages.kdegraphics-thumbnailers

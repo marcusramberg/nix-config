@@ -21,6 +21,11 @@ in
 
   config = mkIf cfg.enable {
     age.secrets.cloudflareToken.owner = "caddy";
+
+    networking.firewall.allowedUDPPorts = [
+      80
+      443
+    ];
     services.caddy = {
       enable = true;
       environmentFile = config.age.secrets.caddy-secrets.path;

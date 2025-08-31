@@ -32,15 +32,9 @@
     firewall = {
       trustedInterfaces = [
         "incusbr0"
-        "tailscale0"
       ];
       enable = lib.mkForce true;
       logRefusedConnections = false;
-      allowedTCPPorts = [
-        22
-        80
-        443
-      ];
     };
     hostId = "8fbe374d";
     nftables.enable = true;

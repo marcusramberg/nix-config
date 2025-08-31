@@ -27,8 +27,8 @@ _:
 
   services = {
     input-remapper.enable = true;
-    logind.extraConfig = ''
-      HandlePowerKey=ignore
-    '';
+    logind.settings.Login = {
+      HandlePowerKey = "ignore";
+    };
   };
 }

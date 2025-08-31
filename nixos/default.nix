@@ -62,7 +62,12 @@
 
   age.identityPaths = [ "/home/marcus/.ssh/id_ed25519" ];
 
-  networking.firewall.enable = false;
+  networking.firewall = {
+    enable = lib.mkDefault true;
+    trustedInterfaces = lib.mkDefault [ "tailscale0" ];
+    allowedTCPPorts = lib.mkDefault [ 22 ];
+  };
+  networking.nftables.enable = true;
 
   services = {
     fwupd.enable = true;
@@ -155,7 +160,9 @@
     tpm2.enable = true;
   };
   # Always be sshing
-  services.openssh.enable = true;
+  services.openssh = {
+    enable = true;
+  };
   nixpkgs.config.permittedInsecurePackages = [
   ];
   system.activationScripts.diff = {
