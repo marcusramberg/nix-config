@@ -34,7 +34,7 @@ in
           "github.com/caddy-dns/cloudflare@v0.0.0-20250420134112-006ebb07b349"
           "github.com/greenpau/caddy-security@v1.1.31"
         ];
-        hash = "sha256-smCfDs+hVSqsw+8ErwhHRi7hJEqLhEkAShXG1VM/CR0=";
+        hash = "sha256-dKeQhWG4I2r4+YZsEIAU2Ef6KhdWf2422G9Z7FAjD6U=";
       };
       inherit (cfg) configFile;
       adapter = "caddyfile";
