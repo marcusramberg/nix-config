@@ -160,6 +160,10 @@
       enable = true;
       host = "0.0.0.0";
       mediaLocation = "/space/immich";
+      database = {
+        enableVectors = true;
+        enableVectorChord = false;
+      };
       openFirewall = true;
       secretsFile = config.age.secrets.immich.path;
     };
@@ -175,6 +179,7 @@
       enable = true;
       secretKeyFile = "/var/cache-priv-key.pem";
     };
+    postgresql.package = pkgs.postgresql_14;
 
     ollama = {
       host = "0.0.0.0";
