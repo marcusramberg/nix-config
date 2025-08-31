@@ -82,11 +82,6 @@ in
         run = "stack run";
       };
       delta.enable = true;
-      # difftastic = {
-      #   background = "dark";
-      #   display = "inline";
-      #   enable = true;
-      # };
       extraConfig = {
         core = {
           whitespace = "trailing-space,space-before-tab";

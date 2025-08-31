@@ -22,7 +22,6 @@
     ./emacs.nix
     ./hass.nix
     ./gaming.nix
-    # ./grafana-kiosk.nix
     ./hyprland.nix
     ./k3s.nix
     ./kodi.nix
@@ -43,8 +42,6 @@
     etc.hosts.mode = "0644";
     systemPackages = with pkgs; [
       cached-nix-shell
-      caddy
-      distrobox
       gcc
       file
       ghostty.terminfo

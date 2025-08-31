@@ -22,6 +22,7 @@ in
       asciinema
       any-nix-shell
       btop
+      caddy
       caligula
       cargo
       cloudflared
@@ -63,7 +64,6 @@ in
       nodejs
       ollama
       otree
-      # posting
       promexplorer
       pssh
       ranger
@@ -84,10 +84,9 @@ in
       cocoapods
       m-cli # useful macOS CLI commands
     ]
-    # ++ lib.optionals stdenv.isLinux [
-    #   # bitwarden-cli
-    #   maim
-    # ]
+    ++ lib.optionals stdenv.isLinux [
+      distrobox
+    ]
     ++ lib.optional (!hasK3s) kubectl
     ++ lib.optionals isNixOS [ wezterm ];
 }
