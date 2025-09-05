@@ -39,7 +39,7 @@ in
     virtualisation.oci-containers.containers = {
       hass = {
         # renovate: datasource=docker depName=homeassistant/home-assistant
-        image = "ghcr.io/home-assistant/home-assistant:2025.8.2";
+        image = "ghcr.io/home-assistant/home-assistant:2025.9.1";
         environment = {
           TZ = "Europe/Oslo";
         };
