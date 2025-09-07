@@ -84,9 +84,6 @@ in
       cocoapods
       m-cli # useful macOS CLI commands
     ]
-    ++ lib.optionals stdenv.isLinux [
-      distrobox
-    ]
     ++ lib.optional (!hasK3s) kubectl
     ++ lib.optionals isNixOS [ wezterm ];
 }
