@@ -43,6 +43,7 @@
     nix-index-database.url = "github:Mic92/nix-index-database";
     nix-index-database.inputs.nixpkgs.follows = "nixpkgs";
     nix-std.url = "github:chessai/nix-std";
+    nixos-avf.url = "github:nix-community/nixos-avf";
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     pre-commit-hooks = {
       url = "github:cachix/git-hooks.nix";
@@ -124,6 +125,10 @@
             extraModules = [ inputs.disko.nixosModules.default ];
           };
           mvirt = mkNixHost "mvirt" { };
+          mpixel = mkNixHost "mpixel" {
+            system = "aarch64-linux";
+            extraModules = [ inputs.nixos-avf.nixosModules.avf ];
+          };
         };
         specialArgs = { inherit inputs self; };
       };

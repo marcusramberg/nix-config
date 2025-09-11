@@ -452,6 +452,21 @@
         "type": "github"
       }
     },
+    "nixos-avf": {
+      "locked": {
+        "lastModified": 1756812631,
+        "narHash": "sha256-EjRPR6EnTVjiHI5H0dsJNSbmpVJ65DLurdAeldqE1tI=",
+        "owner": "nix-community",
+        "repo": "nixos-avf",
+        "rev": "87a6e00a69a918c7d7c3bb40115b91f4e5f88214",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nix-community",
+        "repo": "nixos-avf",
+        "type": "github"
+      }
+    },
     "nixos-facter-modules": {
       "locked": {
         "lastModified": 1756291602,
@@ -537,6 +552,7 @@
         "mcp-hub": "mcp-hub",
         "nix-index-database": "nix-index-database",
         "nix-std": "nix-std",
+        "nixos-avf": "nixos-avf",
         "nixpkgs": "nixpkgs",
         "pre-commit-hooks": "pre-commit-hooks",
         "systems": "systems_3",
