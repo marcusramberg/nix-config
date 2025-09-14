@@ -108,7 +108,7 @@ in
           enable = true;
           compositor = "kwin";
         };
-        theme = "catppuccin-mocha";
+        theme = "catppuccin-mocha-mauve";
         settings.General.InputMethod = "";
       };
       desktopManager.plasma6.enable = true;
