@@ -12,7 +12,7 @@
     };
     nix = {
       channel.enable = false;
-      package = pkgs.lix;
+      package = pkgs.nixVersions.nix_2_31;
       distributedBuilds = true;
       settings = {
         substituters = [
