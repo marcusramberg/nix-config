@@ -88,6 +88,18 @@
     plugins = lib.mkForce [ ];
     wifi.backend = "iwd";
   };
+  networking.firewall.enable = false;
+  programs.obs-studio = {
+    enable = true;
+    enableVirtualCamera = true;
+    plugins = with pkgs.obs-studio-plugins; [
+      distroav
+      obs-teleport
+      wlrobs
+      pixel-art
+      obs-vaapi
+    ];
+  };
 
   profiles = {
     autoupgrade.enable = true;
