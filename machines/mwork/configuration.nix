@@ -46,6 +46,7 @@
     slack
     spotify
     tuba
+    woodpecker-cli
   ];
 
   hardware = {
