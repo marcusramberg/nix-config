@@ -26,7 +26,7 @@
       };
       session.COOKIE_SECURE = true;
       server = {
-        ROOT_URL = "https://git.bas.es";
+        ROOT_URL = "https://code.bas.es";
         PROTOCOL = "http+unix";
       };
       service = {

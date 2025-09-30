@@ -22,7 +22,7 @@
 (caddy-common) {
 	encode gzip
 	tls {
-    resolvers 1.1.1.1
+		resolvers 1.1.1.1
 		import /run/agenix/cloudflareToken
 	}
 	header {
@@ -63,7 +63,7 @@ localhost:80 {
 }
 
 means.no:443 {
-	reverse_proxy http://localhost:8080
+	redir https://marcus.means.no/ permanent
 	import matrix
 }
 
@@ -94,28 +94,25 @@ photos.means.no:443 {
 	reverse_proxy http://mbox:2283
 }
 
-
-
 auth.means.no:443 {
 	import caddy-common
 	reverse_proxy /* http://localhost:1411
 }
 
-
 #bases
 
-git.bas.es:443 {
+code.bas.es:443 {
 	import caddy-common
 	reverse_proxy unix//run/forgejo/forgejo.sock
 }
 
 ci.bas.es:443 {
 	import caddy-common
-  reverse_proxy /* http://127.0.0.01:8000
+	reverse_proxy /* http://127.0.0.01:8000
 }
 ci-agent.bas.es:443 {
 	import caddy-common
-  reverse_proxy h2c://127.0.0.1:9000
+	reverse_proxy h2c://127.0.0.1:9000
 }
 
 auth.bas.es:443 {
