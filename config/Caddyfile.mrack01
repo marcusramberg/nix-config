@@ -21,8 +21,8 @@
 
 (caddy-common) {
 	encode gzip
-	# tls /etc/caddy/cloudflare.crt /etc/caddy/cloudflare.key
 	tls {
+    resolvers 1.1.1.1
 		import /run/agenix/cloudflareToken
 	}
 	header {
@@ -112,6 +112,10 @@ git.bas.es:443 {
 ci.bas.es:443 {
 	import caddy-common
   reverse_proxy /* http://127.0.0.01:8000
+}
+ci-agent.bas.es:443 {
+	import caddy-common
+  reverse_proxy h2c://127.0.0.1:9000
 }
 
 auth.bas.es:443 {

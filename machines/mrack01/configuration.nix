@@ -9,6 +9,7 @@
     ./disko.nix
     ./forgejo.nix
   ];
+  age.secrets.woodpecker-ci.owner = "woodpecker-server";
   boot = {
     initrd.availableKernelModules = [
       "ahci"
@@ -32,6 +33,11 @@
     firewall = {
       trustedInterfaces = [
         "incusbr0"
+      ];
+      allowedTCPPorts = [
+        22
+        80
+        443
       ];
       enable = lib.mkForce true;
       logRefusedConnections = false;
@@ -100,10 +106,10 @@
       enable = true;
       environment = {
         WOODPECKER_HOST = "https://ci.bas.es";
-        WOODPECKER_OPEN = true;
+        WOODPECKER_OPEN = "true";
         WOODPECKER_ORGS = "bas.es";
         WOODPECKER_ADMIN = "marcus";
-        WOODPECKER_FORGEJO = true;
+        WOODPECKER_FORGEJO = "true";
         WOODPECKER_FORGEJO_URL = "https://git.bas.es";
         WOODPECKER_FORGEJO_CLIENT = "a2bb5dd4-85db-4d83-a7bc-12166b7aa5b7";
       };
