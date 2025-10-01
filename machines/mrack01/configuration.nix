@@ -6,6 +6,7 @@
 }:
 {
   imports = [
+    ./attic.nix
     ./disko.nix
     ./forgejo.nix
     ./woodpecker.nix

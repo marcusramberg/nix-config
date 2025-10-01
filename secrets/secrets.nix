@@ -11,6 +11,7 @@ let
 in
 {
   "appdaemonToken.age".publicKeys = [ marcus ] ++ machines;
+  "atticd.age".publicKeys = [ marcus ] ++ machines;
   "borgbackup.age".publicKeys = [ marcus ] ++ machines;
   "caddy-secrets.age".publicKeys = [ marcus ] ++ machines;
   "cloudflareToken.age".publicKeys = [ marcus ] ++ machines;
