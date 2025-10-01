@@ -141,6 +141,7 @@
   nix = {
     nixPath = [ "nixpkgs=/run/current-system/nixpkgs" ];
     distributedBuilds = true;
+    gc.randomizedDelaySec = "10m";
   };
 
   security = {
