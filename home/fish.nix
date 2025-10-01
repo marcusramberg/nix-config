@@ -47,6 +47,7 @@ in
       l = "ls";
       lg = "lazygit";
       vi = "nvim";
+      wp = "woodpecker-cli";
       ".." = "cd ..";
       "..." = "cd ../..";
       "...." = "cd ../../..";

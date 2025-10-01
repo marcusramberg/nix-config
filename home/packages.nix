@@ -78,6 +78,7 @@ in
       unzip
       uv
       wget
+      woodpecker-cli
       yq-go
     ]
     ++ lib.optionals stdenv.isDarwin [
