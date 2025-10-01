@@ -12,6 +12,7 @@
     enable = true;
     lfs.enable = true;
     settings = {
+      actions.ENABLED = false;
       openid = {
         ACCOUNT_LINKING = "auto";
         USERNAME = "nickname";
