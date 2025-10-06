@@ -23,6 +23,15 @@ in
       transmission.owner = "transmission";
     };
 
+    networking.firewall.allowedTCPPorts = [
+      32400 # Plex
+      40000 # Hass
+      21064 # Hass Bridge
+      1883 # MQTT
+      35105 # aircast
+      35185 # aircast
+      50387 # aircast
+    ];
     profiles.dockerHost.enable = true;
 
     services = {
