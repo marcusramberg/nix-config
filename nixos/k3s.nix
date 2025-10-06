@@ -64,6 +64,7 @@ in
         2379
         2380
         6443
+        10250
       ];
       allowedUDPPorts = [ 8472 ];
       trustedInterfaces = [ "flannel.1" ];
