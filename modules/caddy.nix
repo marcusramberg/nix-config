@@ -1,6 +1,7 @@
 {
   lib,
   config,
+  inputs,
   pkgs,
   ...
 }:
@@ -29,13 +30,7 @@ in
     services.caddy = {
       enable = true;
       environmentFile = config.age.secrets.caddy-secrets.path;
-      package = pkgs.caddy.withPlugins {
-        plugins = [
-          "github.com/caddy-dns/cloudflare@v0.0.0-20250420134112-006ebb07b349"
-          "github.com/greenpau/caddy-security@v1.1.31"
-        ];
-        hash = "sha256-9QODLTEDyWSsHZHIV3yw5Hnrq+AHAEEAxPuP6qhvGR0=";
-      };
+      package = inputs.caddy-stack.packages.${pkgs.system}.default;
       inherit (cfg) configFile;
       adapter = "caddyfile";
     };

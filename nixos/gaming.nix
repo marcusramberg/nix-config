@@ -14,7 +14,6 @@ in
   config = mkIf cfg.enable {
     environment.systemPackages = with pkgs; [
       heroic
-      teeworlds
     ];
     programs = {
       steam.enable = true;

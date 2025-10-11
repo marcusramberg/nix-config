@@ -15,6 +15,7 @@
       url = "github:nix-community/nixos-apple-silicon";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    caddy-stack.url = "https://code.bas.es/bas.es/caddy-stack/archive/main.tar.gz";
     clan-core = {
       url = "https://git.clan.lol/clan/clan-core/archive/main.tar.gz";
       # Don't do this if your machines are on nixpkgs stable.
