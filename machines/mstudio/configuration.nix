@@ -133,4 +133,5 @@
     incus.ui.enable = true;
     libvirtd.enable = true;
   };
+  zramSwap.enable = true;
 }
