@@ -14,6 +14,13 @@ end, { desc = "Lazygit" })
 keymap("n", "<leader>go", "<cmd>Octo<cr>", { desc = "Octo" })
 keymap("n", "<leader>gG", "<cmd>Neogit cwd=.<cr>", { desc = "Neogit (cwd)" })
 keymap("n", "<leader>gb", "<cmd>BlamerToggle<cr>", { desc = "Toggle Blame" })
+keymap("n", "<leader>ut", function()
+  if vim.g.colors_name == "catppuccin-mocha" then
+    vim.cmd.colorscheme("catppuccin-latte")
+  else
+    vim.cmd.colorscheme("catppuccin-mocha")
+  end
+end, { desc = "Toggle Light Theme" })
 vim.keymap.del("n", "<A-j>")
 vim.keymap.del("n", "<A-k>")
 vim.keymap.set("i", "jj", "<ESC>", { silent = true })
