@@ -54,6 +54,7 @@ in
         element-desktop
         flameshot
         # floorp # zen life
+        geeqie
         ghostty
         hunspell
         hunspellDicts.en_US

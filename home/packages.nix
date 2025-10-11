@@ -20,14 +20,12 @@ in
       (fortune.override { withOffensive = true; })
       actionlint
       asciinema
-      any-nix-shell
       btop
       caddy
       caligula
       cargo
       cloudflared
       coreutils
-      curlHTTP3
       deadnix
       devenv
       dive

@@ -80,7 +80,7 @@ in
       # FIXME: Disable this for now as it breaks vi mode.
       set --universal pure_enable_nixdevshell false
       test -x ~/.plenv/bin/plenv; and . (~/.plenv/bin/plenv init -|psub)
-      any-nix-shell fish --info-right | source
+      ${pkgs.any-nix-shell}/bin/any-nix-shell fish --info-right | source
       set -gx ATUIN_NOBIND "true"
       atuin init fish | source
 
