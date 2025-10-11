@@ -3,6 +3,8 @@ return {
   {
     "zbirenbaum/copilot.lua",
     opts = {
+      -- Use gemini-2.5-pro model for Copilot
+      copilot_model = "gemini-2.5-pro",
       filetypes = {
         markdown = true,
         yaml = true,
@@ -11,12 +13,6 @@ return {
       },
     },
   },
-  -- {
-  --   "mason-org/mason.nvim",
-  --   opts = {
-  --     PATH = "append",
-  --   },
-  -- },
   {
     "stevearc/conform.nvim",
     opts = {
@@ -130,7 +126,6 @@ return {
   },
   { "alaviss/nim.nvim" },
   { "joshglendenning/vim-caddyfile" },
-  { "symphorien/vim-nixhash" },
   {
     "fredrikaverpil/godoc.nvim",
     version = "*",

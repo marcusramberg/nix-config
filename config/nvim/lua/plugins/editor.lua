@@ -1,19 +1,20 @@
 return {
 
-  { "wakatime/vim-wakatime", lazy = false },
   -- open with line (from syntax output and such)
   "wsdjeg/vim-fetch",
   -- return where you came from
   "farmergreg/vim-lastplace",
-  -- multi cursors
-  "mg979/vim-visual-multi",
-  -- Better scrolling
-  "karb94/neoscroll.nvim",
-  -- Improved url opener
   -- Smart sort that supports yaml dicts
   { "sQVe/sort.nvim", config = true },
   -- Extend % to support words
-  "andymass/vim-matchup",
+  {
+    "andymass/vim-matchup",
+    opts = {
+      treesitter = {
+        stopline = 500,
+      },
+    },
+  },
   -- Simplify the macro syntax
   { "chrisgrieser/nvim-recorder", config = true },
   { "metakirby5/codi.vim" },
@@ -37,6 +38,7 @@ return {
     enabled = true,
     config = true,
   },
+  -- Autosave after a delay
   {
     "okuuva/auto-save.nvim",
     version = "*", -- see https://devhints.io/semver, alternatively use '*' to use the latest tagged release
@@ -49,13 +51,6 @@ return {
     config = function()
       require("smartyank").setup({ osc52 = { silent = true } })
     end,
-  },
-  {
-    "zbirenbaum/copilot.lua",
-    opts = {
-      -- Use gemini-2.5-pro model for Copilot
-      copilot_model = "gemini-2.5-pro",
-    },
   },
   {
     "CopilotC-Nvim/CopilotChat.nvim",
