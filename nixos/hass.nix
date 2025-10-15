@@ -51,7 +51,7 @@ in
       };
       zwave-js-ui = {
         # renovate: datasource=docker depName=zwave-js/zwave-js-ui
-        image = "ghcr.io/zwave-js/zwave-js-ui:11.4.1";
+        image = "ghcr.io/zwave-js/zwave-js-ui:11.5.0";
         volumes = [
           "/var/lib/zwave-js-ui:/usr/src/app/store"
           "/dev:/dev"
