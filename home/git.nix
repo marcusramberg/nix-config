@@ -5,7 +5,6 @@ in
 {
   home.packages = with pkgs; [
     delta
-    forgejo-cli
     git-crypt
     git-extras
     git-lfs
@@ -17,6 +16,7 @@ in
     revup
     stgit
     # git-stack
+    tea
   ];
   programs = {
     gh = {
