@@ -103,9 +103,8 @@
   };
 
   profiles = {
-    autoupgrade.enable = true;
     desktop.enable = true;
-    dockerHost.enable = true;
+    # dockerHost.enable = true;
   };
   services = {
     cloudflare-warp.enable = true;
@@ -115,4 +114,5 @@
       SUBSYSTEM=="usb", ATTRS{idVendor}=="0483", ATTRS{idProduct}=="df11", MODE="0664", GROUP="dialout"
     '';
   };
+  virtualisation.docker.enable = true;
 }

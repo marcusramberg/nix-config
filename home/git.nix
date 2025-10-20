@@ -56,33 +56,13 @@ in
       };
     };
 
+    delta = {
+      enable = true;
+      enableGitIntegration = true;
+    };
     git = {
       enable = true;
-      aliases = {
-
-        patch = "!git diff --no-ext-diff --no-color";
-        # rank-contributers = !$ZSH/bin/git-rank-contributers
-        count = "!git shortlog -sn";
-        co = "checkout";
-        ci = "commit";
-        st = "status";
-        br = "branch";
-        df = "diff";
-        lg = "log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit";
-        retrack = ''!retrack() { git config "branch.$1.remote" $(dirname "$2"); git config  "branch.$1.merge" "refs/heads/$(basename "$2")"; }; retrack'';
-        ca = "commit --amend --reuse-message=HEAD";
-        edit = "!vim `git ls-files -m ` -p ";
-        credit = "blame";
-        # git stack
-        next = "stack next";
-        prev = "stack previous";
-        reword = "stack reword";
-        amend = "stack amend";
-        sync = "stack sync";
-        run = "stack run";
-      };
-      delta.enable = true;
-      extraConfig = {
+      settings = {
         core = {
           whitespace = "trailing-space,space-before-tab";
           excludesfile = "~/.gitignore_global";
@@ -108,15 +88,43 @@ in
         push.autoSetupRemote = true;
         rebase.autoStash = true;
         submodule.recurse = true;
-        user.signingkey =
-          if isDarwin then
-            "/Users/marcus/Library/Containers/com.maxgoedjen.Secretive.SecretAgent/Data/PublicKeys/3578d30e1ec6de843da2b8f24435027a.pub"
-          else
-            "~/.ssh/id_rsa.pub";
         url = {
           "git@github.com:".insteadOf = "gh:";
           "git@github.com:reMarkable/cloud".insteadOf = "https://github.com/reMarkable/cloud";
         };
+        user = {
+          email = "marcus@means.no";
+          name = "Marcus Ramberg";
+          signingkey =
+            if isDarwin then
+              "/Users/marcus/Library/Containers/com.maxgoedjen.Secretive.SecretAgent/Data/PublicKeys/3578d30e1ec6de843da2b8f24435027a.pub"
+            else
+              "~/.ssh/id_rsa.pub";
+        };
+        alias = {
+          patch = "!git diff --no-ext-diff --no-color";
+          # rank-contributers = !$ZSH/bin/git-rank-contributers
+          count = "!git shortlog -sn";
+          co = "checkout";
+          ci = "commit";
+          st = "status";
+          br = "branch";
+          df = "diff";
+          lg = "log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit";
+          retrack = ''!retrack() { git config "branch.$1.remote" $(dirname "$2"); git config  "branch.$1.merge" "refs/heads/$(basename "$2")"; }; retrack'';
+          ca = "commit --amend --reuse-message=HEAD";
+          edit = "!vim `git ls-files -m ` -p ";
+          credit = "blame";
+          # git stack
+          next = "stack next";
+          prev = "stack previous";
+          reword = "stack reword";
+          amend = "stack amend";
+          sync = "stack sync";
+          run = "stack run";
+        };
+      };
+      extraConfig = {
       };
       includes = [
         {
@@ -125,8 +133,6 @@ in
         }
       ];
       lfs.enable = true;
-      userEmail = "marcus@means.no";
-      userName = "Marcus Ramberg";
     };
     jujutsu = {
       enable = true;

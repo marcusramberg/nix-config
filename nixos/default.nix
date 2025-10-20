@@ -85,7 +85,18 @@
     nix-ld = {
       enable = true;
       libraries = [
-        pkgs.pciutils
+        pkgs.stdenv.cc.cc
+        pkgs.zlib
+        pkgs.fuse3
+        pkgs.icu
+        pkgs.nss
+        pkgs.openssl
+        pkgs.curl
+        pkgs.expat
+        pkgs.xorg.libX11
+        pkgs.vulkan-headers
+        pkgs.vulkan-loader
+        pkgs.vulkan-tools
       ];
     };
     mtr.enable = true;
