@@ -61,7 +61,12 @@
     keyboard.dual-caps.enable = true;
   };
 
-  networking.networkmanager.enable = true;
+  networking = {
+    networkmanager.enable = true;
+    firewall.trustedInterfaces = [
+      "incusbr0"
+    ];
+  };
 
   nixpkgs.config.allowUnsupportedSystem = true;
   # Enable the X11 windowing system.
