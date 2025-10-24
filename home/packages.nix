@@ -46,6 +46,7 @@ in
       kubectx
       lua-language-server
       luarocks
+      lua5_1
       lynx # for copilot
       ncdu
       neovim
