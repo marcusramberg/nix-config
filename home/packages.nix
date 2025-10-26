@@ -31,6 +31,7 @@ in
       dive
       fastfetch
       fd
+      figlet
       gist
       gnugrep
       gnumake
@@ -44,6 +45,7 @@ in
       jq
       just
       kubectx
+      lolcat
       lua-language-server
       luarocks
       lua5_1

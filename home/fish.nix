@@ -23,7 +23,7 @@ in
   programs.fish = {
     enable = true;
     functions = {
-      fish_greeting = "fortune -o art goedel wisdom tao literature songs-poems paradoxum; echo ''";
+      fish_greeting = " hostname | , figlet -f rozzo   |lolcat -t -F 0.4";
       rd = "fd $argv (git root)";
       nuke = ''
         if test (count $argv) -lt 1
