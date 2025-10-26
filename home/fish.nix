@@ -45,7 +45,7 @@ in
       gwa = "git worktree add";
       gwl = "git worktree list";
       gwr = "git worktree remove";
-      gl = "git log";
+      gl = "git lg";
       gfu = "git fetch && git rebase origin/main";
       hey = "hei";
       k = "kubectl";
