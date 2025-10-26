@@ -52,49 +52,49 @@ return {
       require("smartyank").setup({ osc52 = { silent = true } })
     end,
   },
-  {
-    "CopilotC-Nvim/CopilotChat.nvim",
-    dependencies = {
-      { "ravitemer/mcphub.nvim" },
-    },
-    opts = function()
-      local user = vim.env.USER or "User"
-      user = user:sub(1, 1):upper() .. user:sub(2)
-      return {
-        auto_insert_mode = true,
-        question_header = "  " .. user .. " ",
-        answer_header = "  Copilot ",
-        prompts = {
-          GoPrompt = {
-            system_prompt = "You are a go programmer, and need to resolve my requests with code. We're using the latest version of go. Be concise and to the point.",
-            mapping = "<leader>acg",
-            description = "Go Coder",
-          },
-          DevOpsPrompt = {
-            system_prompt = "You are a DevOps engineer. Answer requests with concise, actionable solutions for automation, CI/CD, cloud infrastructure, and Linux systems.",
-            mapping = "<leader>acd",
-            description = "DevOps Expert",
-          },
-        },
-        window = {
-          width = 0.4,
-        },
-      }
-    end,
-  },
-  {
-    "ravitemer/mcphub.nvim",
-    opts = {
-      extensions = {
-        copilotchat = {
-          enabled = true,
-          convert_tools_to_functions = true,
-          convert_resources_to_functions = true,
-          add_mcp_prefix = false,
-        },
-      },
-    },
-  },
+  -- {
+  --   "CopilotC-Nvim/CopilotChat.nvim",
+  --   dependencies = {
+  --     { "ravitemer/mcphub.nvim" },
+  --   },
+  --   opts = function()
+  --     local user = vim.env.USER or "User"
+  --     user = user:sub(1, 1):upper() .. user:sub(2)
+  --     return {
+  --       auto_insert_mode = true,
+  --       question_header = "  " .. user .. " ",
+  --       answer_header = "  Copilot ",
+  --       prompts = {
+  --         GoPrompt = {
+  --           system_prompt = "You are a go programmer, and need to resolve my requests with code. We're using the latest version of go. Be concise and to the point.",
+  --           mapping = "<leader>acg",
+  --           description = "Go Coder",
+  --         },
+  --         DevOpsPrompt = {
+  --           system_prompt = "You are a DevOps engineer. Answer requests with concise, actionable solutions for automation, CI/CD, cloud infrastructure, and Linux systems.",
+  --           mapping = "<leader>acd",
+  --           description = "DevOps Expert",
+  --         },
+  --       },
+  --       window = {
+  --         width = 0.4,
+  --       },
+  --     }
+  --   end,
+  -- },
+  -- {
+  --   "ravitemer/mcphub.nvim",
+  --   opts = {
+  --     extensions = {
+  --       copilotchat = {
+  --         enabled = true,
+  --         convert_tools_to_functions = true,
+  --         convert_resources_to_functions = true,
+  --         add_mcp_prefix = false,
+  --       },
+  --     },
+  --   },
+  -- },
   {
     "Vigemus/iron.nvim",
     cmd = {

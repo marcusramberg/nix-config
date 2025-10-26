@@ -115,6 +115,7 @@ in
           ca = "commit --amend --reuse-message=HEAD";
           edit = "!vim `git ls-files -m ` -p ";
           credit = "blame";
+          sdiff = "diff --cached";
           # git stack
           next = "stack next";
           prev = "stack previous";

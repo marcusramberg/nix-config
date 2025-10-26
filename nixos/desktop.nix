@@ -53,7 +53,7 @@ in
         })
         element-desktop
         flameshot
-        # floorp # zen life
+        fuzzel
         geeqie
         ghostty
         hunspell
@@ -72,10 +72,12 @@ in
         showmethekey
         signal-desktop
         spotify-player
+        swaybg
         telegram-desktop
         vivaldi
         vivaldi-ffmpeg-codecs
         vlc
+        wl-clip-persist
         webcord-vencord
         xdg-utils
         wl-clipboard
@@ -112,9 +114,13 @@ in
         theme = "catppuccin-mocha-mauve";
         settings.General.InputMethod = "";
       };
-      desktopManager.plasma6.enable = true;
+      desktopManager.plasma6 = {
+        enable = true;
+        enableQt5Integration = false;
+      };
       dbus.packages = [ pkgs.dconf ];
       displayManager.defaultSession = lib.mkForce "plasma";
+      gnome.at-spi2-core.enable = true;
       flatpak.enable = true;
       libinput.enable = true;
       openssh.settings.X11Forwarding = true;

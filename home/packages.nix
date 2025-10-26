@@ -69,6 +69,7 @@ in
       ripgrep
       sccache
       sqlite
+      statix
       stylua
       tealdeer
       tfenv
