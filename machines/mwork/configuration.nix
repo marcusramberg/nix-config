@@ -114,5 +114,8 @@
       SUBSYSTEM=="usb", ATTRS{idVendor}=="0483", ATTRS{idProduct}=="df11", MODE="0664", GROUP="dialout"
     '';
   };
-  virtualisation.docker.enable = true;
+  virtualisation = {
+    docker.enable = true;
+    waydroid.enable = true;
+  };
 }

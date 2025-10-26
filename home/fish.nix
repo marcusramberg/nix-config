@@ -25,6 +25,13 @@ in
     functions = {
       fish_greeting = "fortune -o art goedel wisdom tao literature songs-poems paradoxum; echo ''";
       rd = "fd $argv (git root)";
+      nuke = ''
+        if test (count $argv) -lt 1
+          echo 'nuke: missing target argument' >&2
+          return 1
+         end
+        git reset $argv && git checkout $argv
+      '';
       run = ",";
       fish_title = ''echo (hostname -s)": "(prompt_pwd)'';
     };
@@ -39,7 +46,7 @@ in
       gwl = "git worktree list";
       gwr = "git worktree remove";
       gl = "git log";
-      gfu = "git fetch --all --prune && git rebase origin/main";
+      gfu = "git fetch && git rebase origin/main";
       hey = "hei";
       k = "kubectl";
       kx = "kubectx";
@@ -48,6 +55,7 @@ in
       lg = "lazygit";
       vi = "nvim";
       wp = "woodpecker-cli";
+      yolo = "git commit --amend -a && git push --force-with-lease";
       ".." = "cd ..";
       "..." = "cd ../..";
       "...." = "cd ../../..";

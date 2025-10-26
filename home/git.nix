@@ -80,6 +80,11 @@ in
           };
         };
         commit.gpgsign = true;
+        fetch = {
+          all = true;
+          prune = true;
+          pruneTags = true;
+        };
         format.signOff = true;
         gpg.format = "ssh";
         init.defaultBranch = "main";
