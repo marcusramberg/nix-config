@@ -101,6 +101,11 @@ auth.means.no:443 {
 
 #bases
 
+git.bas.es:443 {
+	import caddy-common
+	redirect / https://code.bas.es/
+}
+
 code.bas.es:443 {
 	import caddy-common
 	reverse_proxy unix//run/forgejo/forgejo.sock
