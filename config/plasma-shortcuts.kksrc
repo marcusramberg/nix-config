@@ -11,20 +11,20 @@ Switch to Next Keyboard Layout=
 [StandardShortcuts]
 AboutApp=
 AboutKDE=
-Activate Next Tab=Ctrl+]; Ctrl+PgDown
+Activate Next Tab=Ctrl+PgDown; Ctrl+]
 Activate Previous Tab=Ctrl+[; Ctrl+PgUp
 ActualSize=Ctrl+0
 AddBookmark=Ctrl+B
-Back=Back; Alt+Left
+Back=Alt+Left; Back
 BackwardWord=Ctrl+Left
 Begin=Ctrl+Home
 BeginningOfLine=Home
 Clear=
-Close=Ctrl+W; Ctrl+Esc
+Close=Ctrl+Esc; Ctrl+W
 ConfigureNotifications=
 ConfigureToolbars=
 Copy=Ctrl+C; Meta+C; Ctrl+Ins
-CreateFolder=Ctrl+Shift+N; Meta+Shift+N
+CreateFolder=Meta+Shift+N; Ctrl+Shift+N
 Cut=Meta+X; Ctrl+X
 DeleteFile=Shift+Del
 DeleteWordBack=Ctrl+Backspace
@@ -42,27 +42,27 @@ FindPrev=Shift+F3
 FitToHeight=
 FitToPage=
 FitToWidth=
-Forward=Forward; Alt+Right
+Forward=Alt+Right; Forward
 ForwardWord=Ctrl+Right
 FullScreen=Ctrl+Shift+F
 Goto=
 GotoLine=Ctrl+G
 GotoPage=
 Help=F1
-Home=Alt+Home; Home Page
+Home=Home Page; Alt+Home
 KeyBindings=Ctrl+Alt+,
 Mail=
 MoveToTrash=Del
-New=Meta+N; Ctrl+N
+New=Ctrl+N; Meta+N
 Next=PgDown
 NextCompletion=Ctrl+Down
-Open=Meta+O; Ctrl+O
+Open=Ctrl+O
 OpenContextMenu=Menu; Shift+F10
 OpenMainMenu=F10
 OpenRecent=
-Paste=Meta+V; Shift+Ins; Ctrl+V
+Paste=Shift+Ins; Ctrl+V; Meta+V
 Paste Selection=Ctrl+Shift+Ins
-Preferences=Meta+,; Ctrl+Shift+,
+Preferences=Ctrl+Shift+,; Meta+,
 PrevCompletion=Ctrl+Up
 Print=Ctrl+P
 PrintPreview=
@@ -77,7 +77,7 @@ Revert=
 RotateDown=Down
 RotateUp=Up
 Save=Ctrl+S; Meta+S
-SaveAs=Meta+Shift+S; Ctrl+Shift+S
+SaveAs=Ctrl+Shift+S; Meta+Shift+S
 SelectAll=Ctrl+A
 ShowHideHiddenFiles=Ctrl+H; Alt+.
 ShowMenubar=Ctrl+M
@@ -91,7 +91,7 @@ Undo=Ctrl+Z
 Up=Alt+Up
 WhatsThis=Shift+F1
 Zoom=
-ZoomIn=Ctrl+=; Ctrl++
+ZoomIn=Ctrl++; Ctrl+=
 ZoomOut=Ctrl+-
 
 [chromium-browser][Global Shortcuts]
@@ -107,7 +107,7 @@ ZoomOut=Ctrl+-
 97B85E32658404E90600FB1DA6B01473-lock_vault=
 
 [com.mitchellh.ghostty.desktop][Global Shortcuts]
-_launch=
+_launch=Ctrl+Alt+T
 new-window=Meta+Return
 
 [deepin-kwin][Global Shortcuts]
@@ -260,7 +260,7 @@ decrease_volume_small=Shift+Volume Down
 increase_microphone_volume=Microphone Volume Up
 increase_volume=Volume Up
 increase_volume_small=Shift+Volume Up
-mic_mute=Meta+Volume Mute; Microphone Mute
+mic_mute=Microphone Mute; Meta+Volume Mute
 mute=Volume Mute
 
 [ksmserver][Global Shortcuts]
@@ -367,7 +367,7 @@ Window Fullscreen=
 Window Grow Horizontal=
 Window Grow Vertical=
 Window Lower=
-Window Maximize=Meta+Ctrl+Alt+Shift+M
+Window Maximize=Meta+M
 Window Maximize Horizontal=
 Window Maximize Vertical=
 Window Minimize=
@@ -435,9 +435,9 @@ Window to Screen 6=
 Window to Screen 7=
 disableInputCapture=Meta+Shift+Esc
 karousel-column-move-end=Meta+Ctrl+Shift+End
-karousel-column-move-left=Meta+Shift+H
-karousel-column-move-right=Meta+Shift+L
-karousel-column-move-start=Meta+Ctrl+Alt+Shift+D
+karousel-column-move-left=Meta+Shift+O
+karousel-column-move-right=
+karousel-column-move-start=
 karousel-column-move-to-column-1=Meta+Ctrl+Shift+1
 karousel-column-move-to-column-10=
 karousel-column-move-to-column-11=
@@ -462,13 +462,13 @@ karousel-column-move-to-desktop-6=Meta+Ctrl+Shift+F6
 karousel-column-move-to-desktop-7=Meta+Ctrl+Shift+F7
 karousel-column-move-to-desktop-8=Meta+Ctrl+Shift+F8
 karousel-column-move-to-desktop-9=Meta+Ctrl+Shift+F9
-karousel-column-toggle-stacked=Meta+X
-karousel-column-width-decrease=Meta+Ctrl+Alt+Shift+B
-karousel-column-width-increase=Meta+Ctrl+Alt+Shift+N
+karousel-column-toggle-stacked=Meta+Shift+X
+karousel-column-width-decrease=Meta+±
+karousel-column-width-increase=Meta+§
 karousel-columns-squeeze-left=
 karousel-columns-squeeze-right=Meta+Ctrl+D
-karousel-columns-width-equalize=Meta+Ctrl+Alt+Shift+X
-karousel-cycle-preset-widths=Meta+Ctrl+Alt+Shift+R
+karousel-columns-width-equalize=Meta+B
+karousel-cycle-preset-widths=Meta+R
 karousel-cycle-preset-widths-reverse=
 karousel-focus-1=
 karousel-focus-10=
@@ -482,14 +482,14 @@ karousel-focus-6=
 karousel-focus-7=
 karousel-focus-8=
 karousel-focus-9=
-karousel-focus-down=Meta+Ctrl+Alt+Shift+S
+karousel-focus-down=Meta+J
 karousel-focus-end=Meta+End
-karousel-focus-left=Meta+Ctrl+Alt+Shift+O
+karousel-focus-left=Meta+H
 karousel-focus-next=
 karousel-focus-previous=
-karousel-focus-right=Meta+Ctrl+Alt+Shift+P
+karousel-focus-right=Meta+L
 karousel-focus-start=Meta+Home
-karousel-focus-up=Meta+Ctrl+Alt+Shift+W
+karousel-focus-up=Meta+K
 karousel-grid-scroll-end=Meta+Alt+End
 karousel-grid-scroll-focused=Meta+Alt+Return
 karousel-grid-scroll-left=Meta+Alt+PgUp
@@ -510,12 +510,12 @@ karousel-tail-move-to-desktop-6=Meta+Ctrl+Alt+Shift+F6
 karousel-tail-move-to-desktop-7=Meta+Ctrl+Alt+Shift+F7
 karousel-tail-move-to-desktop-8=Meta+Ctrl+Alt+Shift+F8
 karousel-tail-move-to-desktop-9=Meta+Ctrl+Alt+Shift+F9
-karousel-window-move-down=Meta+Shift+S
+karousel-window-move-down=Meta+Shift+J
 karousel-window-move-end=Meta+Shift+End
-karousel-window-move-left=Meta+Shift+A
+karousel-window-move-left=Meta+Shift+H
 karousel-window-move-next=
 karousel-window-move-previous=
-karousel-window-move-right=Meta+Shift+D
+karousel-window-move-right=Meta+Shift+L
 karousel-window-move-start=Meta+Shift+Home
 karousel-window-move-to-column-1=Meta+Shift+1
 karousel-window-move-to-column-10=
@@ -529,8 +529,8 @@ karousel-window-move-to-column-6=Meta+Shift+6
 karousel-window-move-to-column-7=Meta+Shift+7
 karousel-window-move-to-column-8=Meta+Shift+8
 karousel-window-move-to-column-9=Meta+Shift+9
-karousel-window-move-up=Meta+Shift+W
-karousel-window-toggle-floating=Meta+Ctrl+Alt+Shift+F
+karousel-window-move-up=Meta+Shift+K
+karousel-window-toggle-floating=Meta+F
 view_actual_size=Meta+=
 view_zoom_in=Meta++
 view_zoom_out=Meta+-
@@ -561,10 +561,10 @@ _launch=
 
 [org.kde.krunner.desktop][Global Shortcuts]
 RunClipboard=Alt+Shift+F2
-_launch=Alt+Space; Search
+_launch=Search; Alt+Space
 
 [org.kde.kscreen.desktop][Global Shortcuts]
-ShowOSD=Display; Meta+P
+ShowOSD=Display
 
 [org.kde.plasma-systemmonitor.desktop][Global Shortcuts]
 _launch=Meta+Esc
@@ -580,7 +580,7 @@ OpenWithoutScreenshot=
 RecordRegion=Meta+Shift+R
 RecordScreen=Meta+Alt+R
 RecordWindow=
-RectangularRegionScreenShot=Meta+Shift+P
+RectangularRegionScreenShot=Meta+Shift+S
 WindowUnderCursorScreenShot=Meta+Ctrl+Print
 _launch=Print
 
@@ -602,7 +602,7 @@ PowerOff=Power Off
 Sleep=Sleep
 Toggle Keyboard Backlight=Keyboard Light On/Off
 Turn Off Screen=
-powerProfile=Battery; Meta+B
+powerProfile=Battery
 
 [plasmashell][Global Shortcuts]
 activate application launcher=Meta+Space
@@ -632,16 +632,19 @@ previous activity=
 repeat_action=
 show dashboard=
 show-barcode=
-show-on-mouse-pos=Meta+Alt+V
+show-on-mouse-pos=
 stop current activity=
 switch to next activity=
 switch to previous activity=
 toggle do not disturb=
 
 [systemsettings.desktop][Global Shortcuts]
-_launch=Meta+Alt+,
+_launch=Meta+<
 kcm-kscreen=
 kcm-lookandfeel=
 kcm-powerdevilprofilesconfig=
 kcm-screenlocker=
 kcm-users=
+
+[transient][Global Shortcuts]
+LOGO+ALT+V||Show/hide main window=Meta+Alt+V

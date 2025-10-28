@@ -51,6 +51,7 @@ in
           font = "JetBrainsMono Nerd Font Propo";
           fontSize = "9";
         })
+        copyq
         element-desktop
         flameshot
         fuzzel
