@@ -24,6 +24,7 @@ in
       recursive = true;
     };
     ".config/nvim".source = config.lib.file.mkOutOfStoreSymlink "${flakePath}/config/nvim";
+    ".config/ghostty".source = config.lib.file.mkOutOfStoreSymlink "${flakePath}/config/ghostty";
     ".config/hypr".source = config.lib.file.mkOutOfStoreSymlink "${flakePath}/config/hypr";
     ".config/waybar".source = config.lib.file.mkOutOfStoreSymlink "${flakePath}/config/waybar";
     ".config/tmuxinator" = {

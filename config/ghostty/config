@@ -1,0 +1,13 @@
+theme=Catppuccin Mocha
+font-family=JetBrainsMono Nerd Font
+gtk-titlebar = false
+keybind = super+v=paste_from_clipboard
+keybind = super+c=copy_to_clipboard
+keybind = super+t=new_tab
+clipboard-read = allow
+clipboard-write= allow
+app-notifications=no-clipboard-copy
+background-opacity=0.93
+background-blur=true
+background-opacity-cells=true
+
