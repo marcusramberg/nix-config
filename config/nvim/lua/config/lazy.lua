@@ -8,7 +8,37 @@ vim.opt.rtp:prepend(vim.env.LAZY or lazypath)
 
 require("lazy").setup({
   spec = {
-    { "LazyVim/LazyVim", import = "lazyvim.plugins", opts = { colorscheme = "catppuccin-mocha" } },
+    {
+      "LazyVim/LazyVim",
+      import = "lazyvim.plugins",
+      opts = {
+        colorscheme = function()
+          require("catppuccin").setup({
+            flavour = "mocha",
+            background = {
+              light = "latte",
+              dark = "mocha",
+            },
+            float = {
+              transparent = false, -- enable transparent floating windows
+              solid = false, -- use solid styling for floating windows, see |winborder|
+            },
+            transparent_background = true,
+            show_end_of_buffer = false,
+            integrations = {
+              cmp = true,
+              gitsigns = true,
+              nvimtree = true,
+              telescope = true,
+              treesitter = true,
+              notify = true,
+              mini = true,
+            },
+          })
+          vim.cmd.colorscheme("catppuccin")
+        end,
+      },
+    },
     { import = "lazyvim.plugins.extras.ai.copilot" },
     { import = "lazyvim.plugins.extras.ai.copilot-chat" },
     { import = "lazyvim.plugins.extras.coding.luasnip" },
