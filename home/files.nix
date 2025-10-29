@@ -25,6 +25,7 @@ in
     };
     ".config/nvim".source = config.lib.file.mkOutOfStoreSymlink "${flakePath}/config/nvim";
     ".config/ghostty".source = config.lib.file.mkOutOfStoreSymlink "${flakePath}/config/ghostty";
+    ".config/fastfetch".source = config.lib.file.mkOutOfStoreSymlink "${flakePath}/config/fastfetch";
     ".config/hypr".source = config.lib.file.mkOutOfStoreSymlink "${flakePath}/config/hypr";
     ".config/waybar".source = config.lib.file.mkOutOfStoreSymlink "${flakePath}/config/waybar";
     ".config/tmuxinator" = {
@@ -32,10 +33,6 @@ in
       recursive = true;
     };
     "/.config/fish/themes/Catppuccin Mocha.theme".source = ./catppuccin-mocha-fish-theme;
-    ".doom.d" = {
-      source = ../config/doom.d;
-      recursive = true;
-    };
     ".config/nimdow/status".source = ../config/nimdow_status;
     ".config/nimdow/config.toml".text = inputs.nix-std.lib.serde.toTOML (
       import ../config/nimdow.nix {

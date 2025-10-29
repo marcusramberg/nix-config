@@ -33,6 +33,7 @@ in
       fd
       figlet
       gist
+      glow
       gnugrep
       gnumake
       go

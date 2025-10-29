@@ -20,7 +20,7 @@ require("lazy").setup({
               dark = "mocha",
             },
             float = {
-              transparent = false, -- enable transparent floating windows
+              transparent = true, -- enable transparent floating windows
               solid = false, -- use solid styling for floating windows, see |winborder|
             },
             transparent_background = true,
