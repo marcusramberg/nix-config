@@ -9,7 +9,7 @@ in
     git-extras
     git-lfs
     git-recent
-    gitAndTools.gh
+    gh
     git
     lazygit
     pre-commit
@@ -129,8 +129,6 @@ in
           sync = "stack sync";
           run = "stack run";
         };
-      };
-      extraConfig = {
       };
       includes = [
         {

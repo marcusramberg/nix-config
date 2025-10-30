@@ -82,7 +82,7 @@ in
       settings = {
         base_url = "https://passwords.means.no/";
         email = "marcus@means.no";
-        pinentry = if isDarwin then pkgs.pinentry_mac else pkgs.pinentry;
+        pinentry = if isDarwin then pkgs.pinentry_mac else pkgs.pinentry-curses;
       };
     };
     ssh = {

@@ -30,7 +30,7 @@ in
           roboto
           roboto-serif
         ]
-        ++ lib.optional stdenv.isLinux noto-fonts-emoji;
+        ++ lib.optional stdenv.isLinux noto-fonts-color-emoji;
     };
   };
 }

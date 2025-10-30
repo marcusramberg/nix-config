@@ -103,7 +103,10 @@ in
       kdeconnect.enable = true;
     };
 
-    qt.style = "breeze";
+    qt = {
+      style = "breeze";
+      platformTheme = "kde";
+    };
 
     services = {
       displayManager.sddm = {
