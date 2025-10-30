@@ -16,8 +16,8 @@ Switch to Next Keyboard Layout=
 [StandardShortcuts]
 AboutApp=
 AboutKDE=
-Activate Next Tab=Ctrl+PgDown; Ctrl+]
-Activate Previous Tab=Ctrl+PgUp; Ctrl+[
+Activate Next Tab=Ctrl+]; Ctrl+PgDown
+Activate Previous Tab=Ctrl+[; Ctrl+PgUp
 ActualSize=Ctrl+0
 AddBookmark=Ctrl+B
 Back=Alt+Left; Back
@@ -25,10 +25,10 @@ BackwardWord=Ctrl+Left
 Begin=Ctrl+Home
 BeginningOfLine=Home
 Clear=
-Close=Ctrl+W; Ctrl+Esc
+Close=Ctrl+Esc; Ctrl+W
 ConfigureNotifications=
 ConfigureToolbars=
-Copy=Ctrl+Ins; Ctrl+C; Meta+C
+Copy=Meta+C; Ctrl+Ins; Ctrl+C
 CreateFolder=Ctrl+Shift+N; Meta+Shift+N
 Cut=Meta+X; Ctrl+X
 DeleteFile=Shift+Del
@@ -54,7 +54,7 @@ Goto=
 GotoLine=Ctrl+G
 GotoPage=
 Help=F1
-Home=Alt+Home; Home Page
+Home=Home Page; Alt+Home
 KeyBindings=Ctrl+Alt+,
 Mail=
 MoveToTrash=Del
@@ -65,16 +65,16 @@ Open=Ctrl+O
 OpenContextMenu=Menu; Shift+F10
 OpenMainMenu=F10
 OpenRecent=
-Paste=Shift+Ins; Meta+V; Ctrl+V
+Paste=Meta+V; Shift+Ins; Ctrl+V
 Paste Selection=Ctrl+Shift+Ins
-Preferences=Meta+,; Ctrl+Shift+,
+Preferences=Ctrl+Shift+,; Meta+,
 PrevCompletion=Ctrl+Up
 Print=Ctrl+P
 PrintPreview=
 Prior=PgUp
 Quit=Ctrl+Q
 Redo=Ctrl+Shift+Z
-Reload=F5; Refresh
+Reload=Refresh; F5
 RenameFile=F2
 Replace=Ctrl+R
 ReportBug=
@@ -82,7 +82,7 @@ Revert=
 RotateDown=Down
 RotateUp=Up
 Save=Meta+S; Ctrl+S
-SaveAs=Ctrl+Shift+S; Meta+Shift+S
+SaveAs=Meta+Shift+S; Ctrl+Shift+S
 SelectAll=Ctrl+A
 ShowHideHiddenFiles=Ctrl+H; Alt+.
 ShowMenubar=Ctrl+M
@@ -96,7 +96,7 @@ Undo=Ctrl+Z
 Up=Alt+Up
 WhatsThis=Shift+F1
 Zoom=
-ZoomIn=Ctrl+=; Ctrl++
+ZoomIn=Ctrl++; Ctrl+=
 ZoomOut=Ctrl+-
 
 [chromium-browser][Global Shortcuts]
@@ -110,6 +110,10 @@ ZoomOut=Ctrl+-
 97B85E32658404E90600FB1DA6B01473-autofill_login=
 97B85E32658404E90600FB1DA6B01473-generate_password=
 97B85E32658404E90600FB1DA6B01473-lock_vault=
+
+[com.github.hluk.copyq][Global Shortcuts]
+LOGO+ALT+V||Show/hide main window=Meta+Alt+V
+LOGO+SHIFT+V||Paste clipboard as plain text=Meta+Shift+V
 
 [com.mitchellh.ghostty.desktop][Global Shortcuts]
 _launch=Ctrl+Alt+T
@@ -265,7 +269,7 @@ decrease_volume_small=Shift+Volume Down
 increase_microphone_volume=Microphone Volume Up
 increase_volume=Volume Up
 increase_volume_small=Shift+Volume Up
-mic_mute=Meta+Volume Mute; Microphone Mute
+mic_mute=Microphone Mute; Meta+Volume Mute
 mute=Volume Mute
 
 [ksmserver][Global Shortcuts]
@@ -487,14 +491,14 @@ karousel-focus-6=
 karousel-focus-7=
 karousel-focus-8=
 karousel-focus-9=
-karousel-focus-down=Meta+Down; Meta+J
+karousel-focus-down=Meta+J
 karousel-focus-end=Meta+End
 karousel-focus-left=Meta+H; Meta+Left
 karousel-focus-next=
 karousel-focus-previous=
 karousel-focus-right=Meta+Right; Meta+L
 karousel-focus-start=Meta+Home
-karousel-focus-up=Meta+K; Meta+Up
+karousel-focus-up=Meta+Up; Meta+K
 karousel-grid-scroll-end=Meta+Alt+End
 karousel-grid-scroll-focused=Meta+Alt+Return
 karousel-grid-scroll-left=Meta+Alt+PgUp
@@ -595,7 +599,7 @@ _launch=Print
 [org.kde.touchpadshortcuts.desktop][Global Shortcuts]
 DisableTouchpad=Touchpad Off
 EnableTouchpad=Touchpad On
-ToggleTouchpad=Meta+Ctrl+Zenkaku Hankaku; Touchpad Toggle
+ToggleTouchpad=Touchpad Toggle; Meta+Ctrl+Zenkaku Hankaku
 
 [org_kde_powerdevil][Global Shortcuts]
 Decrease Keyboard Brightness=Keyboard Brightness Down
@@ -613,7 +617,8 @@ Turn Off Screen=
 powerProfile=Battery
 
 [plasmashell][Global Shortcuts]
-activate application launcher=
+Slideshow Wallpaper Next Image=
+activate application launcher=Meta+Space; Meta
 activate task manager entry 1=
 activate task manager entry 10=
 activate task manager entry 2=
@@ -626,7 +631,7 @@ activate task manager entry 8=
 activate task manager entry 9=
 activate widget 28=
 activate widget 3=
-activate widget 30=Meta+Space
+activate widget 30=
 activate widget 4=
 activate widget 5=
 clear-history=
