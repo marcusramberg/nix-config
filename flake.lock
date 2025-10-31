@@ -353,6 +353,27 @@
         "type": "github"
       }
     },
+    "home-manager_2": {
+      "inputs": {
+        "nixpkgs": [
+          "plasma-manager",
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1756579987,
+        "narHash": "sha256-duCce8zGsaMsrqqOmLOsuaV1PVIw/vXWnKuLKZClsGg=",
+        "owner": "nix-community",
+        "repo": "home-manager",
+        "rev": "99a69bdf8a3c6bf038c4121e9c4b6e99706a187a",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nix-community",
+        "repo": "home-manager",
+        "type": "github"
+      }
+    },
     "jovian": {
       "inputs": {
         "nix-github-actions": "nix-github-actions",
@@ -597,6 +618,27 @@
         "type": "github"
       }
     },
+    "plasma-manager": {
+      "inputs": {
+        "home-manager": "home-manager_2",
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1761078382,
+        "narHash": "sha256-JNJesbe9MMN1Brq41BHEpuH+Z+Zg74y/nI5AFZX84Vw=",
+        "owner": "nix-community",
+        "repo": "plasma-manager",
+        "rev": "27dfa61b64d0cdb8e4ba6f3aaa4d4e067d64cb5c",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nix-community",
+        "repo": "plasma-manager",
+        "type": "github"
+      }
+    },
     "pre-commit-hooks": {
       "inputs": {
         "flake-compat": [
@@ -639,6 +681,7 @@
         "nix-std": "nix-std",
         "nixos-avf": "nixos-avf",
         "nixpkgs": "nixpkgs_3",
+        "plasma-manager": "plasma-manager",
         "pre-commit-hooks": "pre-commit-hooks",
         "systems": "systems_3",
         "tfenv": "tfenv",

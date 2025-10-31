@@ -46,6 +46,8 @@
     nix-std.url = "github:chessai/nix-std";
     nixos-avf.url = "github:nix-community/nixos-avf";
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+    plasma-manager.url = "github:nix-community/plasma-manager";
+    plasma-manager.inputs.nixpkgs.follows = "nixpkgs";
     pre-commit-hooks = {
       url = "github:cachix/git-hooks.nix";
       inputs.nixpkgs.follows = "nixpkgs";
