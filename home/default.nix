@@ -12,9 +12,9 @@
     ./git.nix
     ./linux.nix
     ./packages.nix
-    ./python.nix
-    ./plasma.nix
+    ./plasma
     ./programs.nix
+    ./python.nix
     ./tmux.nix
     inputs.nix-index-database.homeModules.nix-index
     inputs.plasma-manager.homeModules.plasma-manager
