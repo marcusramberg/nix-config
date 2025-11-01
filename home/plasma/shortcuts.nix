@@ -147,7 +147,7 @@
     "Window One Screen Up" = [ ];
     "Window One Screen to the Left" = [ ];
     "Window One Screen to the Right" = [ ];
-    "Window Operations Menu" = "Ctrl+Space";
+    "Window Operations Menu" = "Alt+Space";
     "Window Pack Down" = [ ];
     "Window Pack Left" = [ ];
     "Window Pack Right" = [ ];
@@ -311,7 +311,7 @@
   };
   plasmashell = {
     "Slideshow Wallpaper Next Image" = [ ];
-    "activate application launcher" = [ "Meta+Space" ];
+    "activate application launcher" = [ "Ctrl+Space" ];
     "activate task manager entry 1" = [ ];
     "activate task manager entry 10" = [ ];
     "activate task manager entry 2" = [ ];
@@ -343,7 +343,6 @@
   "services/com.mitchellh.ghostty.desktop".new-window = "Meta+Return";
   "services/net.local.ghostty-2.desktop"._launch = "Meta+?";
   "services/org.kde.konsole.desktop"._launch = [ ];
-  "services/org.kde.krunner.desktop"._launch = [ "Alt+Space" ];
   "services/org.kde.kscreen.desktop"."ShowOSD" = "Display";
   "services/org.kde.plasma.emojier.desktop"._launch = "Meta+.";
   "services/org.kde.spectacle.desktop" = {

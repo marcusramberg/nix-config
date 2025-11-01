@@ -25,6 +25,18 @@ in
     environment = {
       sessionVariables.NIXOS_OZONE_WL = "1";
       systemPackages = with pkgs; [
+        (catppuccin.override {
+          variant = "mocha";
+          accent = "lavender";
+          themeList = [
+            "bat"
+            "btop"
+            "element"
+            "k9s"
+            "lazygit"
+            "waybar"
+          ];
+        })
         (catppuccin-gtk.override {
           variant = "mocha";
           accents = [
@@ -36,6 +48,9 @@ in
         })
         (catppuccin-kde.override {
           flavour = [ "mocha" ];
+          winDecStyles = [
+            "classic"
+          ];
           accents = [
             "blue"
             "teal"
@@ -43,9 +58,15 @@ in
           ];
 
         })
-        catppuccin-qt5ct
-        catppuccin-cursors
-        catppuccin-kvantum
+        catppuccin-cursors.mochaLavender
+        (catppuccin-kvantum.override {
+          variant = "mocha";
+          accent = "lavender";
+        })
+        (catppuccin-papirus-folders.override {
+          flavor = "mocha";
+          accent = "lavender";
+        })
         (catppuccin-sddm.override {
           flavor = "mocha";
           font = "JetBrainsMono Nerd Font Propo";
