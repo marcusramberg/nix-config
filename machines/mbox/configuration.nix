@@ -184,6 +184,7 @@
     ollama = {
       host = "0.0.0.0";
       enable = true;
+      openFirewall = true;
       # acceleration = "rocm";
     };
     tailscale.useRoutingFeatures = "server";
