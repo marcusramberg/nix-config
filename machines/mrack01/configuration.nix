@@ -79,6 +79,40 @@
     dockerHost.enable = true;
   };
   services = {
+    borgbackup.jobs = {
+      varBackup = {
+        paths = "/var";
+        exclude = [
+          "/var/cache"
+          "/var/lib/containers"
+          "/var/log"
+          "/var/lib/lxcfs"
+          "/var/lib/prometheus2/data/"
+        ];
+        repo = "marcus@mspace:/volume1/NetBackup/mrack01/var";
+        doInit = true;
+        encryption = {
+          mode = "repokey";
+          passCommand = "cat ${config.age.secrets.borgbackup.path}";
+        };
+        compression = "auto,lzma";
+        startAt = "weekly";
+      };
+      localBackup = {
+        paths = "/backup";
+        exclude = [
+          "/backup/immich"
+        ];
+        repo = "marcus@mspace:/volume1/NetBackup/mrack01/backup";
+        doInit = true;
+        encryption = {
+          mode = "repokey";
+          passCommand = "cat ${config.age.secrets.borgbackup.path}";
+        };
+        compression = "auto,lzma";
+        startAt = "weekly";
+      };
+    };
     fail2ban = {
       enable = true;
       ignoreIP = [ "100.64.0.0/10" ];

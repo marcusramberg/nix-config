@@ -103,7 +103,7 @@ auth.means.no:443 {
 
 git.bas.es:443 {
 	import caddy-common
-	redirect / https://code.bas.es/
+	redir https://code.bas.es/
 }
 
 code.bas.es:443 {

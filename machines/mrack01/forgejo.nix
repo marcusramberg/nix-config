@@ -1,6 +1,7 @@
 { pkgs, ... }:
 {
   services.forgejo = {
+    package = pkgs.forgejo;
     database = {
       type = "postgres";
       socket = "/run/postgresql";
