@@ -23,7 +23,7 @@
     bluetooth.enable = false;
     keyboard.dual-caps.enable = true;
     facetimehd.enable = true;
-    graphics.extraPackages = [ pkgs.vaapiIntel ];
+    graphics.extraPackages = [ pkgs.intel-vaapi-driver ];
   };
   networking = {
     hostName = "mtop";
@@ -37,8 +37,6 @@
     laptop.enable = true;
     desktop.enable = true;
   };
-
-  programs.nm-applet.enable = true;
 
   services = {
     displayManager.autoLogin.enable = true;
