@@ -78,6 +78,7 @@ in
 
       transmission = {
         enable = true;
+        package = pkgs.transmission_4;
         downloadDirPermissions = "755";
         settings = {
           download-dir = "/space/incoming";

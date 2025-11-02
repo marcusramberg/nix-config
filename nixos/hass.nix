@@ -10,6 +10,9 @@ in
 
     profiles.dockerHost.enable = true;
 
+    networking.firewall.allowedTCPPorts = [
+      8123
+    ];
     services = {
       influxdb.enable = true;
       mosquitto = {
