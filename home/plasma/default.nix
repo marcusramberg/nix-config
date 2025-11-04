@@ -266,12 +266,48 @@ in
         };
       };
     };
-    programs.okular = {
-      enable = true;
-      general = {
-        mouseMode = "TextSelect";
-        obeyDrm = false;
-        zoomMode = "fitWidth";
+    programs = {
+      okular = {
+        enable = true;
+        general = {
+          mouseMode = "TextSelect";
+          obeyDrm = false;
+          zoomMode = "fitWidth";
+        };
+      };
+      vicinae = {
+        enable = true;
+        systemd.enable = true;
+        settings = {
+          theme = "base16-catppuccin-mocha";
+        };
+        themes = {
+          base16-catppuccin-mocha = {
+            version = "1.0.0";
+            appearance = "dark";
+            name = "base16 catppuccin mocha ";
+            description = "base16 catppuccin mocha";
+            palette = {
+              background = "#1e1e2e";
+              foreground = "#cdd6f4";
+              blue = "#89b4fa";
+              green = "#a6e3a1";
+              magenta = "#cba6f7";
+              orange = "#f9e2af";
+              purple = "#b4befe";
+              red = "#f38ba8";
+              yellow = "#f5e0dc";
+              cyan = "#94e2d5";
+            };
+          };
+        };
+        # extensions = [
+        #   (lib.vicinae.mkRayCastExtension {
+        #     name = "gif-search";
+        #     sha256 = "sha256-G7il8T1L+P/2mXWJsb68n4BCbVKcrrtK8GnBNxzt73Q=";
+        #     rev = "4d417c2dfd86a5b2bea202d4a7b48d8eb3dbaeb1";
+        #   })
+        # ];
       };
     };
   };
