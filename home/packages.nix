@@ -51,6 +51,7 @@ in
       luarocks
       lua5_1
       lynx # for copilot
+      man-pages
       ncdu
       neovim
       nil

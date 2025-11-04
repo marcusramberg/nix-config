@@ -246,6 +246,7 @@ in
         appearance.wallpaperPictureOfTheDay.provider = "bing";
         lockOnResume = true;
       };
+      panels = import ./panels.nix;
       session = {
         sessionRestore.restoreOpenApplicationsOnLogin = "startWithEmptySession";
       };
