@@ -72,7 +72,6 @@ in
           font = "JetBrainsMono Nerd Font Propo";
           fontSize = "9";
         })
-        copyq
         element-desktop
         flameshot
         fuzzel
@@ -116,7 +115,8 @@ in
         enable = true;
         nativeMessagingHosts.packages =
           with pkgs;
-          [ tridactyl-native ] ++ lib.optionals (pkgs.system == "x86_64-linux") [ fx-cast-bridge ];
+          [ tridactyl-native ]
+          ++ lib.optionals (pkgs.stdenv.hostPlatform.system == "x86_64-linux") [ fx-cast-bridge ];
       };
       gnupg.agent = {
         pinentryPackage = lib.mkForce pkgs.pinentry-curses;

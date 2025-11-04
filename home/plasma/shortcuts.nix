@@ -3,10 +3,6 @@
     "Switch to Last-Used Keyboard Layout" = "Meta+Alt+L";
     "Switch to Next Keyboard Layout" = "Meta+Alt+K";
   };
-  "com.github.hluk.copyq" = {
-    "LOGO+ALT+V||Show/hide main window" = "Meta+Alt+V";
-    "LOGO+SHIFT+V||Paste clipboard as plain text" = "Meta+Shift+V";
-  };
   kaccess."Toggle Screen Reader On and Off" = "Meta+Alt+S";
   kmix = {
     "decrease_microphone_volume" = "Microphone Volume Down";

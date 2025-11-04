@@ -30,7 +30,7 @@ in
     services.caddy = {
       enable = true;
       environmentFile = config.age.secrets.caddy-secrets.path;
-      package = inputs.caddy-stack.packages.${pkgs.system}.default;
+      package = inputs.caddy-stack.packages.${pkgs.stdenv.hostPlatform.system}.default;
       inherit (cfg) configFile;
       adapter = "caddyfile";
     };

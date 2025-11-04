@@ -42,7 +42,7 @@ in
       gopls
       gotestfmt
       grc
-      inputs.hei.packages.${system}.default
+      inputs.hei.packages.${stdenv.hostPlatform.system}.default
       jq
       just
       kubectx
@@ -56,7 +56,7 @@ in
       neovim
       nil
       nim2
-      inputs.mcp-hub.packages.${system}.default
+      inputs.mcp-hub.packages.${stdenv.hostPlatform.system}.default
       nix-converter
       nix-output-monitor
       nixfmt-rfc-style

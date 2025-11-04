@@ -14,7 +14,7 @@ let
   secretsFile = "${secretsDir}/secrets.nix";
 in
 {
-  environment.systemPackages = [ agenix.packages.${pkgs.system}.agenix ];
+  environment.systemPackages = [ agenix.packages.${pkgs.stdenv.hostPlatform.system}.agenix ];
 
   age = {
     secrets =

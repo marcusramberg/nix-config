@@ -1,4 +1,6 @@
 {
+  config,
+  inputs,
   lib,
   osConfig,
   pkgs,
@@ -28,6 +30,11 @@ in
           name = "Open Application Launcher";
           command = "vicinae toggle";
           key = "Meta+Space";
+        };
+        "clipboard-history" = {
+          name = "Open Clipboard History";
+          command = "vicinae vicinae://extensions/vicinae/clipboard/history";
+          key = "Meta+Alt+V";
         };
       };
       configFile = {
@@ -294,43 +301,28 @@ in
       };
       vicinae = {
         enable = true;
+        package = inputs.nixpkgs-small.legacyPackages.x86_64-linux.vicinae;
         systemd.enable = true;
         settings = {
           font = {
             size = 11;
             normal = "JetBrainsMono Nerd Font Propo";
           };
-          # theme.name = "base16-catppuccin-mocha";
+          window = {
+            csd = true;
+            opacity = 0.85;
+            rounding = 10;
+          };
           theme.name = "catppuccin-mocha";
 
         };
-        themes = {
-          base16-catppuccin-mocha = {
-            version = "1.0.0";
-            appearance = "dark";
-            name = "base16 catppuccin mocha ";
-            description = "base16 catppuccin mocha";
-            palette = {
-              background = "#1e1e2e";
-              foreground = "#cdd6f4";
-              blue = "#89b4fa";
-              green = "#a6e3a1";
-              magenta = "#cba6f7";
-              orange = "#f9e2af";
-              purple = "#b4befe";
-              red = "#f38ba8";
-              yellow = "#f5e0dc";
-              cyan = "#94e2d5";
-            };
-          };
-        };
-        # extensions = [
-        #   (lib.vicinae.mkRayCastExtension {
-        #     name = "gif-search";
-        #     sha256 = "sha256-G7il8T1L+P/2mXWJsb68n4BCbVKcrrtK8GnBNxzt73Q=";
-        #     rev = "4d417c2dfd86a5b2bea202d4a7b48d8eb3dbaeb1";
-        #   })
-        # ];
+        extensions = [
+          (config.lib.vicinae.mkRayCastExtension {
+            name = "gif-search";
+            sha256 = "sha256-G7il8T1L+P/2mXWJsb68n4BCbVKcrrtK8GnBNxzt73Q=";
+            rev = "4d417c2dfd86a5b2bea202d4a7b48d8eb3dbaeb1";
+          })
+        ];
       };
     };
   };

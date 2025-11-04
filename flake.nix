@@ -46,6 +46,7 @@
     nix-std.url = "github:chessai/nix-std";
     nixos-avf.url = "github:nix-community/nixos-avf";
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+    nixpkgs-small.url = "github:nixos/nixpkgs/nixos-unstable-small";
     plasma-manager.url = "github:nix-community/plasma-manager";
     plasma-manager.inputs.nixpkgs.follows = "nixpkgs";
     pre-commit-hooks = {
@@ -101,9 +102,7 @@
             system = "aarch64-linux";
           };
           mhub = mkNixHost "mhub" { };
-          mhome = mkNixHost "mhome" {
-            extraModules = [ inputs.disko.nixosModules.disko ];
-          };
+          mhome = mkNixHost "mhome" { };
           butterbee = mkNixHost "butterbee" { system = "aarch64-linux"; };
           mbook = mkNixHost "mbook" {
             system = "aarch64-linux";
@@ -117,16 +116,13 @@
           mwork = mkNixHost "mwork" { };
           mtop = mkNixHost "mtop" { };
           mbench = mkNixHost "mbench" {
-            extraModules = [ inputs.disko.nixosModules.disko ];
           };
           mdeck = mkNixHost "mdeck" {
             extraModules = [ inputs.jovian.nixosModules.default ];
           };
           mgate = mkNixHost "mgate" { };
           mlab = mkNixHost "mlab" { };
-          mrack01 = mkNixHost "mrack01" {
-            # extraModules = [ inputs.disko.nixosModules.default ];
-          };
+          mrack01 = mkNixHost "mrack01" { };
           mvirt = mkNixHost "mvirt" { };
           mpixel = mkNixHost "mpixel" {
             system = "aarch64-linux";
