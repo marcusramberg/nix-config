@@ -125,7 +125,7 @@
           mgate = mkNixHost "mgate" { };
           mlab = mkNixHost "mlab" { };
           mrack01 = mkNixHost "mrack01" {
-            extraModules = [ inputs.disko.nixosModules.default ];
+            # extraModules = [ inputs.disko.nixosModules.default ];
           };
           mvirt = mkNixHost "mvirt" { };
           mpixel = mkNixHost "mpixel" {

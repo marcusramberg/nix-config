@@ -9,6 +9,7 @@
     ./attic.nix
     ./disko.nix
     ./forgejo.nix
+    ./minecraft.nix
     ./woodpecker.nix
   ];
   boot = {
