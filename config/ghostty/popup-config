@@ -1,2 +1,3 @@
 class="com.mitchellh.ghostty-popup"
 background-opacity="0.5"
+command="glow -p /etc/nixos/shortcuts.md"

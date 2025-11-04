@@ -13,6 +13,23 @@ in
     programs.plasma = {
       enable = true;
       shortcuts = import ./shortcuts.nix;
+      hotkeys.commands = {
+        "launch-terminal" = {
+          name = "Launch Ghostty";
+          command = "ghostty";
+          key = "Meta+Return";
+        };
+        "help-popup" = {
+          name = "Show shortcuts popup";
+          command = ''sh -c "ghostty --config-file=~/.config/ghostty/popup-config"'';
+          key = "Meta+?";
+        };
+        "launcher" = {
+          name = "Open Application Launcher";
+          command = "vicinae toggle";
+          key = "Meta+Space";
+        };
+      };
       configFile = {
         kcminputrc = {
           "Libinput/1133/16519/Logitech G903 LS".NaturalScroll = true;
@@ -239,7 +256,7 @@ in
       krunner = {
         activateWhenTypingOnDesktop = true;
         historyBehavior = "enableSuggestions";
-        shortcuts.launch = "Meta+Space";
+        shortcuts.launch = "Meta+Shift+Space";
         position = "center";
       };
       kscreenlocker = {
@@ -279,7 +296,13 @@ in
         enable = true;
         systemd.enable = true;
         settings = {
-          theme = "base16-catppuccin-mocha";
+          font = {
+            size = 11;
+            normal = "JetBrainsMono Nerd Font Propo";
+          };
+          # theme.name = "base16-catppuccin-mocha";
+          theme.name = "catppuccin-mocha";
+
         };
         themes = {
           base16-catppuccin-mocha = {

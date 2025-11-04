@@ -340,8 +340,6 @@
     "switch to previous activity" = [ ];
     "toggle do not disturb" = [ "Meta+Alt+Ctrl+Shift+d" ];
   };
-  "services/com.mitchellh.ghostty.desktop".new-window = "Meta+Return";
-  "services/net.local.ghostty-2.desktop"._launch = "Meta+?";
   "services/org.kde.konsole.desktop"._launch = [ ];
   "services/org.kde.kscreen.desktop"."ShowOSD" = "Display";
   "services/org.kde.plasma.emojier.desktop"._launch = "Meta+.";
