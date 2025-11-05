@@ -1,0 +1,3 @@
+class="com.mitchellh.ghostty-popup-spotify"
+background-opacity="0.5"
+command="spotify_player"

@@ -36,6 +36,11 @@ in
           command = "vicinae vicinae://extensions/vicinae/clipboard/history";
           key = "Meta+Alt+V";
         };
+        "spotify" = {
+          name = "Open Clipboard History";
+          command = ''sh -c "ghostty --config-file=~/.config/ghostty/spotify-player"'';
+          key = "Meta+S";
+        };
       };
       configFile = {
         kcminputrc = {
@@ -150,7 +155,7 @@ in
                       "tile": true
                   },
                   {
-                      "class": "com.mitchellh.ghostty-popup",
+                      "class": "com.mitchellh.ghostty-popup-.*",
                       "tile": false
                   }
               ]
@@ -160,36 +165,6 @@ in
           "org.kde.kdecoration2" = {
             BorderSize = "NoSides";
             BorderSizeAuto = false;
-          };
-        };
-        kwinrulesrc = {
-          General = {
-            count = 2;
-            rules = "e211d755-ce95-4f95-91c4-62ba5b483170,0890b4cc-54cf-408f-bbe6-a37ebd42858a";
-          };
-          "0890b4cc-54cf-408f-bbe6-a37ebd42858a" = {
-            Description = "Window settings for com.mitchellh.ghostty";
-            noborder = true;
-            noborderrule = 3;
-            title = "mwork: ~/S/r/a/tectonics";
-            types = 1;
-            wmclass = "ghostty com.mitchellh.ghostty";
-            wmclasscomplete = true;
-            wmclassmatch = 1;
-          };
-          "8dcedf51-5cf8-421e-b548-d563a7d77dc4"."noborderrule" = 3;
-          "e211d755-ce95-4f95-91c4-62ba5b483170" = {
-            "Description" = "Window settings for com.mitchellh.ghostty-popup";
-            above = true;
-            aboverule = 3;
-            noborder = true;
-            noborderrule = 3;
-            placementrule = 2;
-            title = "Ghostty";
-            types = 1;
-            wmclass = "ghostty com.mitchellh.ghostty-popup";
-            wmclasscomplete = true;
-            wmclassmatch = 1;
           };
         };
         plasma-localerc.Formats = {
@@ -274,7 +249,65 @@ in
       session = {
         sessionRestore.restoreOpenApplicationsOnLogin = "startWithEmptySession";
       };
-      # window-rules = [ ];
+      window-rules = [
+        {
+          description = "Window settings for com.mitchellh.ghostty";
+          apply = {
+            noborder = {
+              value = true;
+              apply = "force";
+            };
+          };
+          match = {
+            window-class = {
+              value = "ghostty com.mitchellh.ghostty";
+              type = "substring";
+            };
+            window-types = [ "normal" ];
+          };
+        }
+        {
+          description = "Window settings for com.mitchellh.ghostty-popup-help";
+          apply = {
+            noborder = {
+              value = true;
+              apply = "force";
+            };
+            placementrule = {
+              value = 2;
+            };
+          };
+          match = {
+            window-class = {
+              value = "ghostty com.mitchellh.ghostty-popup-help";
+              type = "exact";
+            };
+            window-types = [ "normal" ];
+          };
+        }
+        {
+          description = "Window settings for com.mitchellh.ghostty-popup-spotify";
+          apply = {
+            noborder = {
+              value = true;
+              apply = "force";
+            };
+            placementrule = {
+              value = 2;
+            };
+            size = {
+              value = "900,750";
+            };
+          };
+          match = {
+            window-class = {
+              value = "ghostty com.mitchellh.ghostty-popup-spotify";
+              type = "exact";
+            };
+            window-types = [ "normal" ];
+          };
+        }
+      ];
       workspace = {
         colorScheme = "CatppuccinMochaLavender";
         cursor = {
