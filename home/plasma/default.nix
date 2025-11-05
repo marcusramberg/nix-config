@@ -13,6 +13,8 @@ in
 {
   config = lib.mkIf isDesktop {
     programs.plasma = {
+      # Make us declarative, daddy
+      overrideConfig = true;
       enable = true;
       shortcuts = import ./shortcuts.nix;
       hotkeys.commands = {
@@ -40,6 +42,11 @@ in
           name = "Open Clipboard History";
           command = ''sh -c "ghostty --config-file=~/.config/ghostty/spotify-player"'';
           key = "Meta+S";
+        };
+        "gif-search" = {
+          name = "Open GIF Search";
+          command = "vicinae vicinae://extensions/josephschmitt/gif-search/search";
+          key = "Meta+G";
         };
       };
       configFile = {
@@ -203,6 +210,7 @@ in
             "󰝚"
             ""
           ];
+          rows = 1;
         };
       };
       fonts = {
@@ -343,7 +351,7 @@ in
           };
           window = {
             csd = true;
-            opacity = 0.85;
+            opacity = 0.94;
             rounding = 10;
           };
           theme.name = "catppuccin-mocha";
@@ -358,5 +366,9 @@ in
         ];
       };
     };
+    systemd.user.services.vicinae = {
+      Unit.BindsTo = lib.mkForce [ ];
+    };
+
   };
 }

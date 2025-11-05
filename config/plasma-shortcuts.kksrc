@@ -111,9 +111,6 @@ ZoomOut=Ctrl+-
 97B85E32658404E90600FB1DA6B01473-generate_password=
 97B85E32658404E90600FB1DA6B01473-lock_vault=
 
-[com.github.hluk.copyq][Global Shortcuts]
-LOGO+ALT+V||Show/hide main window=Meta+Alt+V
-LOGO+SHIFT+V||Paste clipboard as plain text=Meta+Shift+V
 
 [com.mitchellh.ghostty.desktop][Global Shortcuts]
 _launch=Ctrl+Alt+T
