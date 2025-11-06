@@ -39,7 +39,7 @@ in
           key = "Meta+Alt+V";
         };
         "spotify" = {
-          name = "Open Clipboard History";
+          name = "Spotify tui";
           command = ''sh -c "ghostty --config-file=~/.config/ghostty/spotify-player"'';
           key = "Meta+S";
         };
@@ -210,10 +210,10 @@ in
           names = [
             ""
             ""
-            ""
+            ""
             "󰭹"
             "󰝚"
-            ""
+            "󰱫"
           ];
           rows = 1;
         };
@@ -334,7 +334,7 @@ in
           theme = "__aurorae__svg__CatppuccinMocha-Classic";
 
         };
-        splashScreen.theme = "Catppuccin-Mocha-Lavender-splash";
+        splashScreen.theme = "Catppuccin-Mocha-Lavender";
       };
     };
     programs = {

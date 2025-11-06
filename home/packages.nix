@@ -67,6 +67,7 @@ in
       nodejs
       ollama
       otree
+      prek
       promexplorer
       pssh
       ranger
