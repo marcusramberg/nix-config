@@ -104,12 +104,6 @@
           mhub = mkNixHost "mhub" { };
           mhome = mkNixHost "mhome" { };
           butterbee = mkNixHost "butterbee" { system = "aarch64-linux"; };
-          mbook = mkNixHost "mbook" {
-            system = "aarch64-linux";
-            extraModules = [
-              inputs.apple-silicon-support.nixosModules.apple-silicon-support
-            ];
-          };
           mbox = mkNixHost "mbox" {
             extraModules = [ inputs.jovian.nixosModules.default ];
           };
