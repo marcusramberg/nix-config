@@ -48,6 +48,11 @@ in
           command = "vicinae vicinae://extensions/josephschmitt/gif-search/search";
           key = "Meta+G";
         };
+        "emoji" = {
+          name = "Open Emoji Search";
+          command = "vicinae vicinae://extensions/vicinae/vicinae/search-emojis";
+          key = "Meta+.";
+        };
       };
       configFile = {
         kcminputrc = {
@@ -319,16 +324,17 @@ in
       workspace = {
         colorScheme = "CatppuccinMochaLavender";
         cursor = {
-          theme = "catppuccin-mocha-lavender-cursors";
+          theme = "Catppuccin-Mocha-Lavender-cursors";
           size = 24;
         };
-        theme = "breeze-dark";
         iconTheme = "breeze-dark";
         wallpaper = "/etc/nixos/wallpaper/Cloudsnight.jpg";
         windowDecorations = {
-          theme = "CatppuccinMocha-Classic";
-          library = "org.kde.kdecoration2";
+          library = "org.kde.kwin.aurorae";
+          theme = "__aurorae__svg__CatppuccinMocha-Classic";
+
         };
+        splashScreen.theme = "Catppuccin-Mocha-Lavender-splash";
       };
     };
     programs = {

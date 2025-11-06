@@ -338,7 +338,7 @@
   };
   "services/org.kde.konsole.desktop"._launch = [ ];
   "services/org.kde.kscreen.desktop"."ShowOSD" = "Display";
-  "services/org.kde.plasma.emojier.desktop"._launch = "Meta+.";
+  "services/org.kde.plasma.emojier.desktop"._launch = [ ];
   "services/org.kde.spectacle.desktop" = {
     RecordRegion = "Meta+Shift+V";
     RecordWindow = [ ];
