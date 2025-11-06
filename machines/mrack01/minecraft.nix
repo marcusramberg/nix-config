@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, inputs, ... }:
 {
   networking.firewall = {
     allowedUDPPorts = [
@@ -10,7 +10,7 @@
     eula = true;
     jvmOpts = "-Xms10000M -Xmx24000M";
     openFirewall = true;
-    package = pkgs.papermcServers.papermc;
+    package = inputs.nixpkgs-small.legacyPackages.${pkgs.system}.papermcServers.papermc;
     # whitelist = {
     #   mramberg = "d2be212b-ac47-4f8f-b7be-2ae551a41102";
     # };
