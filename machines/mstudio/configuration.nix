@@ -62,7 +62,7 @@
   };
 
   networking = {
-    networkmanager.enable = true;
+    networkmanager.enable = false;
     firewall.trustedInterfaces = [
       "incusbr0"
     ];
@@ -117,6 +117,10 @@
       openFirewall = true;
     };
     xserver.dpi = 140;
+  };
+  systemd.network = {
+    enable = true;
+    wait-online.enable = false;
   };
 
   # Do NOT change this value unless you have manually inspected all the changes it would make to your configuration,
