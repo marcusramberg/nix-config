@@ -1,0 +1,36 @@
+diff --git a/k2k.c b/k2k.c
+index 435d1cd..c54e586 100644
+--- a/k2k.c
++++ b/k2k.c
+@@ -82,9 +82,9 @@ static struct tap_rule {
+  */
+ static struct multi_rule {
+     int const keys[8]; /** Keys to watch. */
+-    int const down_press[2]; /** Press first key and release second key when
++    int const down_press[4]; /** Press first key and release second key when
+                                toggled down. */
+-    int const up_press[2]; /** Press first key and release second key when
++    int const up_press[4]; /** Press first key and release second key when
+                              toggled up. */
+     int const nbeforedown; /** Only allow toggling down after this many `keys`
+                              have been down. Negative value means inequality. */
+@@ -539,7 +539,7 @@ main(void) {
+             if (v->can_toggle && (!v->is_down
+                         ? ndown == ntotal
+                         : (v->nup >= 0 ? ndown == v->nup : ndown != -v->nup))) {
+-                int press[2];
++                int press[4];
+ 
+                 v->is_down ^= 1;
+                 memcpy(press, v->is_down ? v->down_press : v->up_press, sizeof press);
+@@ -555,6 +555,10 @@ main(void) {
+ 
+                     if (press[1] != KEY_RESERVED)
+                         write_key_event(press[1], EVENT_VALUE_KEYUP);
++                    if (press[2] != KEY_RESERVED)
++                        write_key_event(press[2], EVENT_VALUE_KEYDOWN);
++                    if (press[3] != KEY_RESERVED)
++                        write_key_event(press[3], EVENT_VALUE_KEYUP);
+                 }
+ 
+                 for (j = 0; j < ntotal; ++j) {
