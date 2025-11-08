@@ -9,6 +9,8 @@ steps:
         from_secret: attic_token
     commands:
       - echo 'experimental-features = flakes nix-command' >> /etc/nix/nix.conf
+      - echo 'extra-substituters = https://cache.bas.es/bases' >> /etc/nix/nix.conf
+      - echo 'extra-trusted-public-keys =  bases:bg7mtzwSME8dI+IXhYLzDTQ4TzY4zMmIzyeqjgR5Isg=' >> /etc/nix/nix.conf
       - attic login local https://cache.bas.es/ $ATTIC_TOKEN
       - attic use bases
       - nix build .#nixosConfigurations.mdeck.config.system.build.toplevel
