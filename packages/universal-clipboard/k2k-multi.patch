@@ -1,5 +1,5 @@
 diff --git a/k2k.c b/k2k.c
-index 435d1cd..c54e586 100644
+index 435d1cd..c9f90ff 100644
 --- a/k2k.c
 +++ b/k2k.c
 @@ -82,9 +82,9 @@ static struct tap_rule {
@@ -34,3 +34,15 @@ index 435d1cd..c54e586 100644
                  }
  
                  for (j = 0; j < ntotal; ++j) {
+@@ -575,6 +579,11 @@ main(void) {
+ 
+                     if (press[1] != KEY_RESERVED)
+                         write_key_event(press[1], EVENT_VALUE_KEYUP);
++                    if (press[2] != KEY_RESERVED)
++                        write_key_event(press[2], EVENT_VALUE_KEYDOWN);
++
++                    if (press[3] != KEY_RESERVED)
++                        write_key_event(press[3], EVENT_VALUE_KEYUP);
+                 }
+ 
+                 ignore = 1;

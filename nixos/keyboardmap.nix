@@ -63,16 +63,13 @@ in
         ];
         udevmonConfig =
           (lib.optionalString cfg.swapAlt.enable ''
-            - JOB: "${intercept} -g $DEVNODE | ${dual} -c ${swapAlt} | ${uinput} -d $DEVNODE" 
-              DEVICE: 
+            - JOB: "${intercept} -g $DEVNODE | ${dual} -c ${swapAlt} | ${uc} | ${uinput} -d $DEVNODE"
+              DEVICE:
                 LINK: /dev/input/by-path/${cfg.swapAlt.device}
           '')
           + ''
-            - JOB: "${intercept} -g $DEVNODE | ${dual} -c ${dualFunctionKeysConfig} | ${uinput} -d $DEVNODE"
-              DEVICE: 
-                LINK: .*-event-kbd
-            - JOB: "${intercept} -g $DEVNODE | ${uc} | ${uinput} -d $DEVNODE"
-              DEVICE: 
+            - JOB: "${intercept} -g $DEVNODE | ${dual} -c ${dualFunctionKeysConfig} | ${uc} | ${uinput} -d $DEVNODE"
+              DEVICE:
                 LINK: .*-event-kbd
           '';
       };
