@@ -37,7 +37,7 @@ in
           "clipboard-history" = {
             name = "Open Clipboard History";
             command = "vicinae vicinae://extensions/vicinae/clipboard/history";
-            key = "Meta+Alt+V";
+            key = "Alt+Shift+Insert";
           };
           "spotify" = {
             name = "Spotify tui";
