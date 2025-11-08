@@ -7,9 +7,7 @@ in
 
   config = lib.mkIf cfg.enable {
     # Enable OpenGL
-    hardware.graphics = {
-      enable = true;
-    };
+    hardware.graphics.enable = true;
 
     # Load amd driver for Xorg and Wayland
     services.xserver.videoDrivers = [ "amdgpu" ];

@@ -1,0 +1,19 @@
+when:
+  - event: cron
+    cron: nightly
+steps:
+  - name: update
+    image: nixos/nix
+    environment:
+      ATTIC_TOKEN:
+        from_secret: attic_token
+    commands:
+      - echo 'experimental-features = flakes nix-command' >> /etc/nix/nix.conf
+      - attic login local https://cache.bas.es/ $ATTIC_TOKEN
+      - attic use bases
+      - nix build .#nixosConfigurations.mdeck.config.system.build.toplevel
+      - attic push bases ./result
+      - nix build .#devShells.x86_64-linux.default
+      - attic push bases ./result
+    volumes:
+      - /nix
