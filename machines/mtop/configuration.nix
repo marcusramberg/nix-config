@@ -20,6 +20,7 @@
   };
 
   hardware = {
+    enableRedistributableFirmware = true;
     bluetooth.enable = false;
     keyboard.dual-caps.enable = true;
     facetimehd.enable = true;
@@ -34,7 +35,6 @@
   powerManagement.enable = true;
 
   profiles = {
-    laptop.enable = true;
     desktop.enable = true;
   };
 
@@ -46,7 +46,10 @@
       enable = true;
       aggressive = false;
     };
-    xserver.dpi = 220;
+    xserver = {
+      dpi = 220;
+      videoDrivers = [ "radeon" ];
+    };
   };
 
   systemd.sleep.extraConfig = ''
