@@ -48,16 +48,17 @@
 
   # Install the driver
   services = {
-    fprintd.enable = true;
+    fprintd = {
+      enable = true;
+    };
     envfs.enable = true;
   };
   security.pam.services = {
     login.unixAuth = true;
-    # fprint is not stable, locked sometimes after suspend
     login.fprintAuth = false;
     sddm.fprintAuth = false;
-    xscreensaver.fprintAuth = true;
     kwallet.fprintAuth = true;
+    kscreenlocker.fprintAuth = false;
   };
 
   # Enable networking
