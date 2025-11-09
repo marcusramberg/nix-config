@@ -173,6 +173,7 @@
     enable = true;
   };
   nixpkgs.config.permittedInsecurePackages = [
+    "electron-36.9.5"
   ];
   system.activationScripts.diff = {
     supportsDryActivation = true;

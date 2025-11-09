@@ -16,6 +16,8 @@ vim.opt.mouse = "" --Disable mouse support
 if vim.g.neovide then
   vim.g.neovide_cursor_vfx_mode = "pixiedust"
   vim.g.neovide_cursor_short_animation_length = 0.02
+  vim.api.nvim_command("set autochdir")
+  vim.api.nvim_command("cd /Users/marcus/Source")
   vim.g.neovide_confirm_quit = true
   -- Clipboard
   vim.keymap.set("n", "<D-s>", ":w<CR>") -- Save

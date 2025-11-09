@@ -1,73 +1,6 @@
 {
   description = "nix.means.no";
 
-  inputs = {
-    agenix = {
-      url = "github:ryantm/agenix";
-      inputs = {
-        nixpkgs.follows = "nixpkgs";
-        darwin.follows = "darwin";
-        home-manager.follows = "home-manager";
-        systems.follows = "systems";
-      };
-    };
-    apple-silicon-support = {
-      url = "github:nix-community/nixos-apple-silicon";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-    caddy-stack.url = "https://code.bas.es/bas.es/caddy-stack/archive/main.tar.gz";
-    clan-core = {
-      url = "https://git.clan.lol/clan/clan-core/archive/main.tar.gz";
-      # Don't do this if your machines are on nixpkgs stable.
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-    darwin.url = "github:lnl7/nix-darwin/master";
-    darwin.inputs.nixpkgs.follows = "nixpkgs";
-    disko.url = "github:nix-community/disko";
-    disko.inputs.nixpkgs.follows = "nixpkgs";
-    flake-compat.url = "github:nix-community/flake-compat";
-    hei = {
-      url = "github:marcusramberg/hei";
-      inputs = {
-        nixpkgs.follows = "nixpkgs";
-      };
-    };
-    flake-parts.url = "github:hercules-ci/flake-parts";
-    jovian.url = "github:Jovian-Experiments/Jovian-NixOS";
-    jovian.inputs.nixpkgs.follows = "nixpkgs";
-    home-manager.url = "github:nix-community/home-manager";
-    home-manager.inputs.nixpkgs.follows = "nixpkgs";
-    mcp-hub = {
-      url = "github:ravitemer/mcp-hub";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-    nix-index-database.url = "github:Mic92/nix-index-database";
-    nix-index-database.inputs.nixpkgs.follows = "nixpkgs";
-    nix-std.url = "github:chessai/nix-std";
-    nixos-avf.url = "github:nix-community/nixos-avf";
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
-    nixpkgs-small.url = "github:nixos/nixpkgs/nixos-unstable-small";
-    plasma-manager.url = "github:nix-community/plasma-manager";
-    plasma-manager.inputs.nixpkgs.follows = "nixpkgs";
-    pre-commit-hooks = {
-      url = "github:cachix/git-hooks.nix";
-      inputs.nixpkgs.follows = "nixpkgs";
-      inputs.flake-compat.follows = "flake-compat";
-    };
-    systems.url = "github:nix-systems/default";
-    tfenv.flake = false;
-    tfenv.url = "github:tfutils/tfenv";
-    treefmt-nix.url = "github:numtide/treefmt-nix";
-    treefmt-nix.inputs.nixpkgs.follows = "nixpkgs";
-    unattended-installer = {
-      url = "github:chrillefkr/nixos-unattended-installer";
-      inputs = {
-        disko.follows = "disko";
-        nixpkgs.follows = "nixpkgs";
-      };
-    };
-  };
-
   outputs =
     {
       self,
@@ -102,8 +35,6 @@
             system = "aarch64-linux";
           };
           mhub = mkNixHost "mhub" { };
-          mhome = mkNixHost "mhome" { };
-          butterbee = mkNixHost "butterbee" { system = "aarch64-linux"; };
           mbox = mkNixHost "mbox" {
             extraModules = [ inputs.jovian.nixosModules.default ];
           };
@@ -149,6 +80,7 @@
           devShells.default = pkgs.mkShellNoCC {
             NIX_CONFIG = "experimental-features = nix-command flakes";
             packages = with pkgs; [
+              attic-client
               git
               go-task
               inputs.clan-core.packages.${system}.clan-cli
@@ -178,4 +110,78 @@
         "aarch64-darwin"
       ];
     });
+
+  inputs = {
+    agenix = {
+      url = "github:ryantm/agenix";
+      inputs = {
+        nixpkgs.follows = "nixpkgs";
+        darwin.follows = "darwin";
+        home-manager.follows = "home-manager";
+        systems.follows = "systems";
+      };
+    };
+    apple-silicon-support = {
+      url = "github:nix-community/nixos-apple-silicon";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    caddy-stack = {
+      url = "https://code.bas.es/bas.es/caddy-stack/archive/main.tar.gz";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    clan-core = {
+      url = "https://git.clan.lol/clan/clan-core/archive/main.tar.gz";
+      # Don't do this if your machines are on nixpkgs stable.
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    darwin.url = "github:lnl7/nix-darwin/master";
+    darwin.inputs.nixpkgs.follows = "nixpkgs";
+    disko.url = "github:nix-community/disko";
+    disko.inputs.nixpkgs.follows = "nixpkgs";
+    flake-compat.url = "github:nix-community/flake-compat";
+    hei = {
+      url = "github:marcusramberg/hei";
+      inputs = {
+        nixpkgs.follows = "nixpkgs";
+      };
+    };
+    flake-parts.url = "github:hercules-ci/flake-parts";
+    jovian.url = "github:Jovian-Experiments/Jovian-NixOS";
+    jovian.inputs.nixpkgs.follows = "nixpkgs";
+    home-manager.url = "github:nix-community/home-manager";
+    home-manager.inputs.nixpkgs.follows = "nixpkgs";
+    mcp-hub = {
+      url = "github:ravitemer/mcp-hub";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    nix-index-database.url = "github:Mic92/nix-index-database";
+    nix-index-database.inputs.nixpkgs.follows = "nixpkgs";
+    nix-std.url = "github:chessai/nix-std";
+    nixos-avf = {
+      url = "github:nix-community/nixos-avf";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+    nixpkgs-small.url = "github:nixos/nixpkgs/nixos-unstable-small";
+    nixpkgs-bump.url = "github:marcusramberg/nixpkgs/bump";
+    plasma-manager.url = "github:nix-community/plasma-manager";
+    plasma-manager.inputs.nixpkgs.follows = "nixpkgs";
+    pre-commit-hooks = {
+      url = "github:cachix/git-hooks.nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.flake-compat.follows = "flake-compat";
+    };
+    systems.url = "github:nix-systems/default";
+    tfenv.flake = false;
+    tfenv.url = "github:tfutils/tfenv";
+    treefmt-nix.url = "github:numtide/treefmt-nix";
+    treefmt-nix.inputs.nixpkgs.follows = "nixpkgs";
+    unattended-installer = {
+      url = "github:chrillefkr/nixos-unattended-installer";
+      inputs = {
+        disko.follows = "disko";
+        nixpkgs.follows = "nixpkgs";
+      };
+    };
+  };
 }

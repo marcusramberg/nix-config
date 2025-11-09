@@ -64,7 +64,6 @@ let
       modules = [
         ../home/default.nix
         {
-
           nixpkgs = {
             overlays = [ (import ../overlays inputs) ];
             config = {
