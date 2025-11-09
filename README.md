@@ -10,13 +10,12 @@
 ## Supports
 
 - My media center / home hub
-- VM running in Parallels
-- Mac Studio running NixOS
-- Mac laptop
-- NixOS on my desktop
+- Thinkpad
+- Mac x86 laptop running nixos
+- M1 Studio running NixOS/nix-darwin dual boot on my desktop
 - NixOS based router
+- Steam deck + Gaming desktop using [Jovian](https://jovian-experiments.github.io/Jovian-NixOS/)
 - Various experiments
-- Steam deck
 - +++
 
 This configuration is based on using flakes, nix-darwin and home manager.

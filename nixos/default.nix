@@ -13,25 +13,26 @@
     ../modules/agenix.nix
     ../modules/autoupgrade.nix
     ../modules/caddy.nix
-    ../modules/nix.nix
     ../modules/fonts.nix
+    ../modules/nix.nix
     ./amd.nix
+    ./boot.nix
     ./ddcutil.nix
     ./desktop.nix
     ./docker.nix
     ./emacs.nix
-    ./hass.nix
     ./gaming.nix
+    ./hass.nix
     ./hyprland.nix
     ./k3s.nix
-    ./kodi.nix
     ./keyboardmap.nix
+    ./kodi.nix
     ./laptop.nix
     ./mediaserver.nix
     ./nimdow.nix
     ./nvidia.nix
-    ./pg_upgrade.nix
     ./passthrough.nix
+    ./pg_upgrade.nix
     ./prometheus.nix
   ];
 

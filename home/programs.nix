@@ -25,7 +25,7 @@ in
       config = {
         theme = "Catppuccin-mocha";
         map-syntax = ".ignore:Git Ignore";
-        style = "numbers,changes";
+        style = "changes";
       };
       themes = {
         Catppuccin-mocha = {

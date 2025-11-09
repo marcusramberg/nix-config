@@ -7,11 +7,7 @@
     ../../modules/pipewire.nix
   ];
   boot = {
-    loader = {
-      systemd-boot.enable = true;
-      efi.canTouchEfiVariables = true;
-      efi.efiSysMountPoint = "/boot/efi";
-    };
+    loader.efi.efiSysMountPoint = "/boot/efi";
     extraModprobeConfig = ''
       options snd_hda_intel index=0 model=intel-mac-auto id=PCM
       options snd_hda_intel index=1 model=intel-mac-auto id=HDMI
@@ -36,6 +32,7 @@
 
   profiles = {
     desktop.enable = true;
+    limine.enable = true;
   };
 
   services = {
@@ -48,7 +45,7 @@
     };
     xserver = {
       dpi = 220;
-      videoDrivers = [ "radeon" ];
+      # videoDrivers = [ "radeon" ];
     };
   };
 
