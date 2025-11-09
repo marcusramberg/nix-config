@@ -72,10 +72,6 @@ in
           font = "JetBrainsMono Nerd Font Propo";
           fontSize = "9";
         })
-        element-desktop
-        flameshot
-        fuzzel
-        geeqie
         ghostty
         hunspell
         hunspellDicts.en_US
@@ -87,24 +83,8 @@ in
         kdePackages.krdp
         kdePackages.plasma-browser-integration
         nixos-icons
-        neovide
-        obsidian
-        pavucontrol
-        showmethekey
-        signal-desktop
-        spotify-player
-        swaybg
-        telegram-desktop
-        vivaldi
-        vivaldi-ffmpeg-codecs
-        vlc
-        wl-clip-persist
         webcord-vencord
         xdg-utils
-        wl-clipboard
-        waypipe
-        ytmdesktop
-        zafiro-icons
       ];
     };
 

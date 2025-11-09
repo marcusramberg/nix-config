@@ -12,6 +12,22 @@ let
 in
 {
   config = lib.mkIf isDesktop {
+    home.packages = with pkgs; [
+      element-desktop
+      geeqie
+      neovide
+      obsidian
+      showmethekey
+      signal-desktop
+      spotify-player
+      telegram-desktop
+      tokodon
+      vivaldi
+      vivaldi-ffmpeg-codecs
+      vlc
+      wl-clipboard
+      waypipe
+    ];
     programs = {
       plasma = {
         # Make us declarative, daddy
