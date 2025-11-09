@@ -1,8 +1,6 @@
 {
   config,
   lib,
-  pkgs,
-  ...
 }:
 let
   cfg = config.profiles.limine;
@@ -24,10 +22,10 @@ in
           };
           graphicalTerminal = {
             palette = "4c4f69;d20f39;40a02b;dc8a78;1e66f5;ea76cb;209fb5;7c7f93";
-            font.scale = "2x2";
+            font.scale = "3x3";
           };
           wallpapers = [
-            "${pkgs.nixos-artwork.wallpapers.catppuccin-mocha.gnomeFilePath}"
+            ../wallpaper/tokyonight.jpg
           ];
         };
       };
