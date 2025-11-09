@@ -8,6 +8,7 @@ opt.guifont = "JetBrainsMono Nerd Font:h12"
 opt.synmaxcol = 300
 opt.iskeyword:append("-")
 opt.foldenable = false
+opt.autochdir = true
 vim.g.root_spec = { { ".git" }, "cwd" }
 opt.relativenumber = false
 vim.lsp.set_log_level("off")
@@ -15,9 +16,11 @@ vim.opt.mouse = "" --Disable mouse support
 
 if vim.g.neovide then
   vim.g.neovide_cursor_vfx_mode = "pixiedust"
+  vim.g.neovide_opacity = 0.8
+  vim.g.neovide_text_gamma = 0.0
+  vim.g.neovide_text_contrast = 0.5
   vim.g.neovide_cursor_short_animation_length = 0.02
-  vim.api.nvim_command("set autochdir")
-  vim.api.nvim_command("cd /Users/marcus/Source")
+  vim.api.nvim_command("cd ~/Source")
   vim.g.neovide_confirm_quit = true
   -- Clipboard
   vim.keymap.set("n", "<D-s>", ":w<CR>") -- Save
