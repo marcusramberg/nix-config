@@ -21,7 +21,7 @@ in
       signal-desktop
       spotify-player
       telegram-desktop
-      tokodon
+      kdePackages.tokodon
       vivaldi
       vivaldi-ffmpeg-codecs
       vlc
