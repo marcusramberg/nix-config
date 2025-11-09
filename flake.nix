@@ -39,7 +39,9 @@
             extraModules = [ inputs.jovian.nixosModules.default ];
           };
           mwork = mkNixHost "mwork" { };
-          mtop = mkNixHost "mtop" { };
+          mtop = mkNixHost "mtop" {
+            extraModules = [ inputs.chaotic.nixosModules.default ];
+          };
           mbench = mkNixHost "mbench" {
           };
           mdeck = mkNixHost "mdeck" {
@@ -134,6 +136,7 @@
       # Don't do this if your machines are on nixpkgs stable.
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    chaotic.url = "github:chaotic-cx/nyx/nyxpkgs-unstable"; # IMPORTANT
     darwin.url = "github:lnl7/nix-darwin/master";
     darwin.inputs.nixpkgs.follows = "nixpkgs";
     disko.url = "github:nix-community/disko";

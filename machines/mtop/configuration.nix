@@ -13,14 +13,21 @@
       options snd_hda_intel index=1 model=intel-mac-auto id=HDMI
       options snd_hda_intel model=mbp101
     '';
+    kernelPackages = pkgs.linuxPackages_cachyos;
   };
+  services.scx.enable = true; # by default uses scx_rustland scheduler
 
+  environment.systemPackages = with pkgs; [
+    firedragon-catppuccin-bin
+  ];
   hardware = {
     enableRedistributableFirmware = true;
     bluetooth.enable = false;
     keyboard.dual-caps.enable = true;
     facetimehd.enable = true;
-    graphics.extraPackages = [ pkgs.intel-vaapi-driver ];
+    graphics = {
+      enable = true;
+    };
   };
   networking = {
     hostName = "mtop";
@@ -43,10 +50,8 @@
       enable = true;
       aggressive = false;
     };
-    xserver = {
-      dpi = 220;
-      # videoDrivers = [ "radeon" ];
-    };
+    xserver.videoDrivers = [ "modesetting" ];
+
   };
 
   systemd.sleep.extraConfig = ''
