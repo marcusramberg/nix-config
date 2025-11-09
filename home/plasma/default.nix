@@ -388,9 +388,5 @@ in
       };
     };
     xdg.configFile."vicinae/vicinae.json".force = true;
-    systemd.user.services.vicinae = {
-      Unit.BindsTo = lib.mkForce [ ];
-    };
-
   };
 }
