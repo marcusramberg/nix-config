@@ -8,6 +8,7 @@
 let
   inherit (pkgs.stdenv) isDarwin;
   isNixOS = lib.hasAttr "nixos" osConfig.system;
+  isDesktop = pkgs.stdenv.isLinux && (isNixOS && osConfig.services.desktopManager.plasma6.enable);
 in
 {
   programs.bash = {
@@ -105,6 +106,9 @@ in
       if test "$TERM" = "xterm-ghostty"
         . ${pkgs.ghostty.shell_integration}/fish/vendor_conf.d/ghostty-shell-integration.fish
       end
+    ''
+    + lib.optionalString isDesktop ''
+      set SSH_ASKPASS "${pkgs.kdePackages.ksshaskpass}/bin/ksshaskpass"
     '';
     loginShellInit = ''
       gpgconf --launch gpg-agent
