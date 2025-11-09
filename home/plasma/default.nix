@@ -26,6 +26,7 @@ in
       vivaldi-ffmpeg-codecs
       vlc
       wl-clipboard
+      wl-clip-persist
       waypipe
     ];
     programs = {
