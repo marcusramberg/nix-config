@@ -1,6 +1,8 @@
 when:
   - event: cron
     cron: nightly
+  - event: pull_request
+    path: flake.lock
 steps:
   - name: update
     image: nixos/nix
