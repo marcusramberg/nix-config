@@ -177,7 +177,7 @@
     "Window to Screen 0" = "Meta+Ctrl+1";
     "Window to Screen 1" = "Meta+Ctrl+2";
     "Window to Screen 2" = "Meta+Ctrl+2";
-    "disableInputCapture" = "Meta+Shift+Esc";
+    "disableInputCapture" = [ ];
     "karousel-column-move-end" = "Meta+Ctrl+Alt+Shift+End";
     "karousel-column-move-start" = "Meta+Ctrl+Alt+Shift+Home";
     "karousel-column-move-left" = "Meta+Shift+O";

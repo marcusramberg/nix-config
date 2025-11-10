@@ -13,6 +13,8 @@
 | `super+shift`+s | selection screenshot | `super+shift`+v    | record selection  |
 | `super+shift`+q | close window         | `super+g`          | gif search        |
 | `hyper`+a       | attention window     | `ctrl`+space       | launch kickoff    |
-| `hyper`+L       | lock screen          | `super-shift-e`    | log out           |
+| `super`+d       | show desktop         | `super`+tab        | walk windows      |
+| `hyper`+l       | lock screen          | `super-shift`+e    | log out           |
+| `hyper`+home    | move column first    | `hyper`+end        | move column last  |
 
 (`q` to quit this popup - hyper key is tab)
