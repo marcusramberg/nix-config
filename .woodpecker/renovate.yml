@@ -21,6 +21,7 @@ steps:
         from_secret: renovate_token
     when:
       - event: push
+        path: renovate.json
   - name: renovate
     image: renovate/renovate
     pull: true
