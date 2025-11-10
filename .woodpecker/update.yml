@@ -11,19 +11,23 @@ steps:
         cron: nightly
       - event: pull_request
       - path: flake.lock
-    image: nixos/nix
+    image: ghcr.io/remarkable/helmfile-nix/nix-alpine:main@sha256:95b260489c9a416cfa8908de31fb2df4b4faf7aa47352c03b31111df18d80318
     environment:
       ATTIC_TOKEN:
         from_secret: attic_token
     commands:
+      - mkdir -p /etc/nix
       - echo 'experimental-features = flakes nix-command' >> /etc/nix/nix.conf
       - echo 'extra-substituters = https://cache.bas.es/bases' >> /etc/nix/nix.conf
       - echo 'extra-trusted-public-keys =  bases:bg7mtzwSME8dI+IXhYLzDTQ4TzY4zMmIzyeqjgR5Isg=' >> /etc/nix/nix.conf
-      - nix profile add nixpkgs#attic-client
+      - echo "build-users-group =" >> /etc/nix/nix.conf
+      - nix --version
+      - nix profile install nixpkgs#attic-client github:Mic92/nix-fast-build
+      - export PATH=/nix/var/nix/profiles/default/bin/:$PATH
       - attic login local https://cache.bas.es/ $ATTIC_TOKEN
       - attic use bases
-      - nix run github:Mic92/nix-fast-build -- --attic bases -f .#devShells.x86_64-linux.default --no-nom --skip-cached --eval-max-memory-size 1500
-      - nix run github:Mic92/nix-fast-build -- --attic bases -f .#nixosConfigurations.mdeck.config.system.build.toplevel --no-nom --skip-cached --eval-max-memory-size 1500
+      - nix-fast-build --attic bases -f .#devShells.x86_64-linux.default --no-nom --skip-cached --no-link
+      - nix-fast-build --attic bases -f .#nixosConfigurations.mdeck.config.system.build.toplevel --no-nom --skip-cached --no-link
 
     volumes:
-      - /nix
+      - /mnt/nix:/nix

@@ -8,13 +8,8 @@
 
 {
   virtualisation = {
-    podman = {
-      enable = true;
-      autoPrune.enable = true;
-      dockerCompat = true;
-    };
     oci-containers = {
-      backend = "podman";
+      backend = "docker";
       containers."calibre-web-automated" = {
         image = "crocodilestick/calibre-web-automated:latest";
         environment = {
@@ -31,10 +26,10 @@
           "8083:8083/tcp"
         ];
         log-driver = "journald";
-        extraOptions = [
-          "--network-alias=calibre-web-automated"
-          "--network=calibre_web_default"
-        ];
+        # extraOptions = [
+        #   "--network-alias=calibre-web-automated"
+        #   "--network=calibre_web_default"
+        # ];
       };
     };
   };

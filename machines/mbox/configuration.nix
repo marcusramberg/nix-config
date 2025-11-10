@@ -131,7 +131,7 @@
   profiles = {
     autoupgrade.enable = true;
     desktop.enable = true;
-    dockerHost.enable = true;
+    # dockerHost.enable = true;
     gaming.enable = true;
     caddy = {
       enable = true;
@@ -194,11 +194,11 @@
         WOODPECKER_SERVER = "passthrough:///ci-agent.bas.es:443";
         WOODPECKER_GRPC_SECURE = "true";
         WOODPECKER_BACKEND = "docker";
-        DOCKER_HOST = "unix:///run/podman/podman.sock";
-        WOODPECKER_AGENT_LABELS = "!builder=x86";
+        DOCKER_HOST = "unix:///run/docker.sock";
+        WOODPECKER_AGENT_LABELS = "!builder=x86,builder=x86";
         WOODPECKER_AGENT_CONFIG_FILE = "/var/lib/woodpecker/agent_config.yaml";
       };
-      extraGroups = [ "podman" ];
+      extraGroups = [ "docker" ];
       environmentFile = [ config.age.secrets.woodpecker-ci.path ];
     };
   };
@@ -226,7 +226,7 @@
   };
   users.users.caddy.extraGroups = [ "incus-admin" ];
   virtualisation = {
-    # docker.enable = true;
+    docker.enable = true;
     incus = {
       enable = true;
       ui.enable = true;

@@ -175,6 +175,7 @@
   };
   nixpkgs.config.permittedInsecurePackages = [
     "electron-36.9.5"
+    "jitsi-meet-1.0.8792"
   ];
   system.activationScripts.diff = {
     supportsDryActivation = true;
