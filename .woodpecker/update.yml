@@ -1,10 +1,14 @@
+when:
+  event:
+    - pull_request
+    - cron
 steps:
   - name: update
     when:
       - event: cron
         cron: nightly
       - event: pull_request
-        path: flake.lock
+      - path: flake.lock
     image: nixos/nix
     environment:
       ATTIC_TOKEN:
