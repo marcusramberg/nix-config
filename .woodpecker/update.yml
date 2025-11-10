@@ -20,9 +20,7 @@ steps:
       - nix profile add nixpkgs#attic-client
       - attic login local https://cache.bas.es/ $ATTIC_TOKEN
       - attic use bases
-      - nix build .#nixosConfigurations.mdeck.config.system.build.toplevel
-      - attic push bases ./result
-      - nix build .#devShells.x86_64-linux.default
-      - attic push bases ./result
+      - nix run github:Mic92/nix-fast-build -- --attic bases -f .#devShells.x86_64-linux.default
+      - nix run github:Mic92/nix-fast-build -- --attic bases -f .#nixosConfigurations.mdeck.config.system.build.toplevel
     volumes:
       - /nix
