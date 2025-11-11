@@ -32,4 +32,5 @@ in
   "vaultwarden.age".publicKeys = [ marcus ] ++ machines;
   "wg-mrack01.age".publicKeys = [ marcus ] ++ machines;
   "woodpecker-ci.age".publicKeys = [ marcus ] ++ machines;
+  "wp-agent-mbox.age".publicKeys = [ marcus ] ++ machines;
 }

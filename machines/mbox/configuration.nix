@@ -188,6 +188,19 @@
       # acceleration = "rocm";
     };
     tailscale.useRoutingFeatures = "server";
+    woodpecker-agents.agents.mbox = {
+      enable = true;
+      environment = {
+        WOODPECKER_SERVER = "passthrough:///ci-agent.bas.es:443";
+        WOODPECKER_GRPC_SECURE = "true";
+        WOODPECKER_BACKEND = "docker";
+        DOCKER_HOST = "unix:///run/podman/podman.sock";
+        WOODPECKER_AGENT_LABELS = "!nix-builder=x86_64-linux";
+        WOODPECKER_AGENT_CONFIG_FILE = "/var/lib/woodpecker/agent_config.yaml";
+      };
+      extraGroups = [ "podman" ];
+      environmentFile = [ config.age.secrets.wp-agent-mbox.path ];
+    };
   };
   systemd.services = {
     caddy.serviceConfig.AmbientCapabilities = "cap_net_bind_service";
