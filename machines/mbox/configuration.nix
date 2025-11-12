@@ -199,7 +199,7 @@
         WOODPECKER_AGENT_CONFIG_FILE = "/var/lib/woodpecker/agent_config.yaml";
       };
       extraGroups = [ "podman" ];
-      environmentFile = [ config.age.secrets.wp-agent-mbox.path ];
+      environmentFile = [ config.age.secrets.woodpecker-ci.path ];
     };
   };
   systemd.services = {
