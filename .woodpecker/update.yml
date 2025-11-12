@@ -11,7 +11,7 @@ steps:
         cron: nightly
       - event: pull_request
       - path: flake.lock
-    image: ghcr.io/remarkable/helmfile-nix/nix-alpine:main@sha256:95b260489c9a416cfa8908de31fb2df4b4faf7aa47352c03b31111df18d80318
+    image: ghcr.io/remarkable/helmfile-nix/nix-alpine:main@sha256:dd522e322d2aa7afd9c23014947c3b61bf067124290c2775079389bc62826511
     environment:
       ATTIC_TOKEN:
         from_secret: attic_token
