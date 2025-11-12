@@ -195,7 +195,7 @@
         WOODPECKER_GRPC_SECURE = "true";
         WOODPECKER_BACKEND = "docker";
         DOCKER_HOST = "unix:///run/podman/podman.sock";
-        WOODPECKER_AGENT_LABELS = "!nix-builder=x86_64-linux";
+        WOODPECKER_AGENT_LABELS = "!builder=x86";
         WOODPECKER_AGENT_CONFIG_FILE = "/var/lib/woodpecker/agent_config.yaml";
       };
       extraGroups = [ "podman" ];

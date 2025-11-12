@@ -1,5 +1,5 @@
 labels:
-  nix-builder: x86_64-linux
+  builder: x86
 when:
   event:
     - pull_request
