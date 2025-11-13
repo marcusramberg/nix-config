@@ -58,7 +58,6 @@
     login.fprintAuth = false;
     sddm.fprintAuth = false;
     kwallet.fprintAuth = true;
-    kscreenlocker.fprintAuth = false;
   };
 
   # Enable networking
@@ -95,6 +94,11 @@
       SUBSYSTEM=="usb", ATTRS{idVendor}=="0483", ATTRS{idProduct}=="df11", MODE="0664", GROUP="dialout"
     '';
   };
+  systemd.sleep.extraConfig = ''
+    AllowHibernation=no
+    AllowHybridSleep=no
+    AllowSuspendThenHibernate=no
+  '';
   virtualisation = {
     docker.enable = true;
     waydroid.enable = true;
