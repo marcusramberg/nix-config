@@ -22,7 +22,6 @@
     secretsFile = config.age.secrets.wireless.path;
     networks."means.no".pskRaw = "ext:meanspsk";
   };
-  profiles.nimdow.enable = true;
   programs.nm-applet.enable = true;
 
   services = {

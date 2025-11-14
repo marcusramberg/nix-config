@@ -1,5 +1,4 @@
 {
-  inputs,
   lib,
   user,
   config,
@@ -33,13 +32,13 @@ in
       recursive = true;
     };
     "/.config/fish/themes/Catppuccin Mocha.theme".source = ./catppuccin-mocha-fish-theme;
-    ".config/nimdow/status".source = ../config/nimdow_status;
-    ".config/nimdow/config.toml".text = inputs.nix-std.lib.serde.toTOML (
-      import ../config/nimdow.nix {
-        inherit pkgs;
-        inherit osConfig;
-      }
-    );
+    # ".config/nimdow/status".source = ../config/nimdow_status;
+    # ".config/nimdow/config.toml".text = inputs.nix-std.lib.serde.toTOML (
+    #   import ../config/nimdow.nix {
+    #     inherit pkgs;
+    #     inherit osConfig;
+    #   }
+    # );
     ".config/rofi" = {
       source = ../config/rofi;
       recursive = true;

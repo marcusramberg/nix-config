@@ -5,6 +5,7 @@ in
 {
   home.packages = with pkgs; [
     delta
+    git-absorb
     git-crypt
     git-extras
     git-lfs

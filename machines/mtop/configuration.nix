@@ -36,6 +36,7 @@
   };
 
   powerManagement.enable = true;
+  programs.niri.enable = true;
 
   profiles = {
     desktop.enable = true;

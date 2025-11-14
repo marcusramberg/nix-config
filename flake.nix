@@ -40,7 +40,15 @@
           };
           mwork = mkNixHost "mwork" { };
           mtop = mkNixHost "mtop" {
-            extraModules = [ inputs.chaotic.nixosModules.default ];
+            extraModules = [
+              inputs.chaotic.nixosModules.default
+              inputs.niri.nixosModules.niri
+              {
+                nixpkgs.overlays = [
+                  inputs.niri.overlay
+                ];
+              }
+            ];
           };
           mbench = mkNixHost "mbench" {
           };
@@ -133,10 +141,9 @@
     };
     clan-core = {
       url = "https://git.clan.lol/clan/clan-core/archive/main.tar.gz";
-      # Don't do this if your machines are on nixpkgs stable.
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    chaotic.url = "github:chaotic-cx/nyx/nyxpkgs-unstable"; # IMPORTANT
+    chaotic.url = "github:chaotic-cx/nyx/nyxpkgs-unstable";
     darwin.url = "github:lnl7/nix-darwin/master";
     darwin.inputs.nixpkgs.follows = "nixpkgs";
     disko.url = "github:nix-community/disko";
@@ -144,9 +151,7 @@
     flake-compat.url = "github:nix-community/flake-compat";
     hei = {
       url = "github:marcusramberg/hei";
-      inputs = {
-        nixpkgs.follows = "nixpkgs";
-      };
+      inputs.nixpkgs.follows = "nixpkgs";
     };
     flake-parts.url = "github:hercules-ci/flake-parts";
     jovian.url = "github:Jovian-Experiments/Jovian-NixOS";
@@ -157,16 +162,15 @@
       url = "github:ravitemer/mcp-hub";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    niri.url = "github:sodiboo/niri-flake";
     nix-index-database.url = "github:Mic92/nix-index-database";
     nix-index-database.inputs.nixpkgs.follows = "nixpkgs";
-    nix-std.url = "github:chessai/nix-std";
     nixos-avf = {
       url = "github:nix-community/nixos-avf";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     nixpkgs-small.url = "github:nixos/nixpkgs/nixos-unstable-small";
-    nixpkgs-bump.url = "github:marcusramberg/nixpkgs/bump";
     plasma-manager.url = "github:nix-community/plasma-manager";
     plasma-manager.inputs.nixpkgs.follows = "nixpkgs";
     pre-commit-hooks = {
@@ -177,8 +181,6 @@
     systems.url = "github:nix-systems/default";
     tfenv.flake = false;
     tfenv.url = "github:tfutils/tfenv";
-    treefmt-nix.url = "github:numtide/treefmt-nix";
-    treefmt-nix.inputs.nixpkgs.follows = "nixpkgs";
     unattended-installer = {
       url = "github:chrillefkr/nixos-unattended-installer";
       inputs = {
