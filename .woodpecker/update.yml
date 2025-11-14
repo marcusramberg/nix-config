@@ -11,19 +11,12 @@ steps:
         cron: nightly
       - event: pull_request
       - path: flake.lock
-    image: ghcr.io/remarkable/helmfile-nix/nix-alpine:main@sha256:dd522e322d2aa7afd9c23014947c3b61bf067124290c2775079389bc62826511
+    image: code.bas.es/bas.es/nixbuilder
     environment:
       ATTIC_TOKEN:
         from_secret: attic_token
     commands:
-      - mkdir -p /etc/nix
-      - echo 'experimental-features = flakes nix-command' >> /etc/nix/nix.conf
-      - echo 'extra-substituters = https://cache.bas.es/bases' >> /etc/nix/nix.conf
-      - echo 'extra-trusted-public-keys =  bases:bg7mtzwSME8dI+IXhYLzDTQ4TzY4zMmIzyeqjgR5Isg=' >> /etc/nix/nix.conf
-      - echo "build-users-group =" >> /etc/nix/nix.conf
-      - nix --version
       - nix profile install nixpkgs#attic-client github:Mic92/nix-fast-build
-      - export PATH=/nix/var/nix/profiles/default/bin/:$PATH
       - attic login local https://cache.bas.es/ $ATTIC_TOKEN
       - attic use bases
       - nix-fast-build --attic bases -f .#devShells.x86_64-linux.default --no-nom --skip-cached --no-link
