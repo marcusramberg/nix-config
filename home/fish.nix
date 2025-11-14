@@ -54,6 +54,7 @@ in
       kns = "kubens";
       l = "ls";
       lg = "lazygit";
+      sr = "sudo systemctl restart -v";
       vi = "nvim";
       wp = "woodpecker-cli";
       yolo = "git commit --amend -a && git push --force-with-lease";
