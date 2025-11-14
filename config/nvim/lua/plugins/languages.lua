@@ -121,7 +121,7 @@ return {
         "vim",
         "yaml",
       },
-      ignore_install = { "ipk", "ipkg" },
+      ignore_install = { "ipk", "ipkg", "org" },
     },
   },
   { "alaviss/nim.nvim" },
