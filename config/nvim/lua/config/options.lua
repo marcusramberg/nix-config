@@ -20,6 +20,8 @@ if vim.g.neovide then
   vim.g.neovide_text_gamma = 0.0
   vim.g.neovide_text_contrast = 0.5
   vim.g.neovide_cursor_short_animation_length = 0.02
+  vim.g.neovide_cursor_short_animation_length = 0.04
+  vim.g.neovide_scroll_animation_length = 0.05
   vim.api.nvim_command("cd ~/Source")
   vim.g.neovide_confirm_quit = true
   -- Clipboard

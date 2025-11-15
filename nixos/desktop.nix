@@ -110,6 +110,7 @@ in
         pinentryPackage = lib.mkForce pkgs.pinentry-curses;
       };
       kdeconnect.enable = true;
+      ssh.enableAskPassword = true;
     };
 
     qt = {

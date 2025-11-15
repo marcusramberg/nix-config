@@ -52,6 +52,9 @@
       enable = true;
     };
     envfs.enable = true;
+    resolved.extraConfig = ''
+      MulticastDNS=No
+    '';
   };
   security.pam.services = {
     login.unixAuth = true;
@@ -61,10 +64,16 @@
   };
 
   # Enable networking
-  networking.networkmanager = {
-    enable = true;
-    plugins = lib.mkForce [ ];
-    wifi.backend = "iwd";
+  networking = {
+    nameservers = [
+      "1.1.1.1"
+      "8.8.8.8"
+    ];
+    networkmanager = {
+      enable = true;
+      plugins = lib.mkForce [ ];
+      wifi.backend = "iwd";
+    };
   };
   networking.firewall.enable = false;
   programs.obs-studio = {

@@ -59,7 +59,10 @@
       wget
       wireguard-tools
     ];
-    variables.NIXPKGS_ALLOW_UNFREE = "1";
+    variables = {
+      NIXPKGS_ALLOW_UNFREE = "1";
+      SSL_CERT_FILE = "/etc/ssl/certs/ca-bundle.crt";
+    };
   };
 
   age.identityPaths = [ "/home/marcus/.ssh/id_ed25519" ];
@@ -83,6 +86,8 @@
       enable = true;
       enableSSHSupport = true;
     };
+    fish.enable = true;
+    mtr.enable = true;
     nix-ld = {
       enable = true;
       libraries = [
@@ -100,13 +105,11 @@
         pkgs.vulkan-tools
       ];
     };
-    mtr.enable = true;
     neovim = {
       enable = true;
       viAlias = true;
       defaultEditor = true;
     };
-    fish.enable = true;
   };
 
   users.users.marcus = {
