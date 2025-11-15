@@ -4,6 +4,12 @@ when:
   event:
     - pull_request
     - cron
+clone:
+  - name: git
+    image: woodpeckerci/plugin-git
+    backend_options:
+      docker:
+        user: 65534:65534
 steps:
   - name: chown
     image: alpine:latest
