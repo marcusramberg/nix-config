@@ -15,6 +15,7 @@
       package = pkgs.nixVersions.nix_2_31;
       distributedBuilds = true;
       settings = {
+        download-buffer-size = 500000000;
         substituters = [
           "https://nix-community.cachix.org"
           "https://devenv.cachix.org"
