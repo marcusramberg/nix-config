@@ -31,6 +31,11 @@ in
     };
 
     environment = {
+      plasma6.excludePackages = with pkgs.kdePackages; [
+        kwin-x11
+        kate
+        ktexteditor
+      ];
       sessionVariables.NIXOS_OZONE_WL = "1";
       systemPackages = with pkgs; [
         (catppuccin.override {
@@ -83,16 +88,10 @@ in
         ghostty
         hunspell
         hunspellDicts.en_US
-        kdePackages.ksshaskpass
         kdePackages.kaccounts-providers
         kdePackages.karousel
-        kdePackages.kdegraphics-thumbnailers
         kdePackages.kio-gdrive
-        kdePackages.krdp
-        kdePackages.plasma-browser-integration
-        nixos-icons
         webcord-vencord
-        xdg-utils
       ];
     };
 
@@ -105,9 +104,6 @@ in
           with pkgs;
           [ tridactyl-native ]
           ++ lib.optionals (pkgs.stdenv.hostPlatform.system == "x86_64-linux") [ fx-cast-bridge ];
-      };
-      gnupg.agent = {
-        pinentryPackage = lib.mkForce pkgs.pinentry-curses;
       };
       kdeconnect.enable = true;
       ssh.enableAskPassword = true;
@@ -137,7 +133,6 @@ in
       gnome.at-spi2-core.enable = true;
       flatpak.enable = true;
       libinput.enable = true;
-      openssh.settings.X11Forwarding = true;
       xserver = {
         enable = false;
         xkb = {
@@ -146,7 +141,6 @@ in
           variant = "mac";
         };
       };
-
     };
     networking.firewall.allowedTCPPorts = [ 3389 ];
     security.polkit = {
@@ -168,15 +162,6 @@ in
         })
       '';
     };
-    xdg = {
-      autostart.enable = true;
-      icons.enable = true;
-      menus.enable = true;
-      mime.enable = true;
-      portal = {
-        enable = true;
-        xdgOpenUsePortal = true;
-      };
-    };
+    xdg.portal.xdgOpenUsePortal = true;
   };
 }
