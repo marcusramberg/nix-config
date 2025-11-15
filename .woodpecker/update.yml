@@ -5,6 +5,10 @@ when:
     - pull_request
     - cron
 steps:
+  - name: chown
+    image: alpine:latest
+    commands:
+      - chown -R nobody:noobdy .
   - name: update
     when:
       - event: cron
