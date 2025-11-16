@@ -19,12 +19,16 @@ steps:
     environment:
       ATTIC_TOKEN:
         from_secret: attic_token
+      SSH_PRIVATE_KEY:
+        from_secret: mcbuildface-key
     commands:
+      - eval `ssh-agent -s`
+      - ssh-add <(echo "$SSH_PRIVATE_KEY")
+      - mkdir - ~/.ssh
       - nix profile install nixpkgs#attic-client github:Mic92/nix-fast-build
       - attic login local https://cache.bas.es/ $ATTIC_TOKEN
       - attic use bases
-      - nix-fast-build --attic bases -f .#devShells.x86_64-linux.default --no-nom --skip-cached --no-link
-      - nix-fast-build --attic bases -f .#nixosConfigurations.mdeck.config.system.build.toplevel --no-nom --skip-cached --no-link
-
+      - nix-fast-build --remote marcus@mouse2 --remote-ssh-option ProxyJump marcus@mcbuildface.stig.io  --attic bases -f .#devShells.x86_64-linux.default --no-nom --skip-cached --no-link
+      - nix-fast-build --remote marcus@mouse2 --remote-ssh-option ProxyJump marcus@mcbuildface.stig.io  --attic bases -f .#nixosConfigurations.mwork.config.system.build.toplevel --no-nom --skip-cached --no-link
     volumes:
       - /mnt/nix:/nix
