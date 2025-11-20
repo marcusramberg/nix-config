@@ -115,6 +115,11 @@ in
     };
 
     services = {
+      desktopManager.plasma6 = {
+        enable = true;
+        enableQt5Integration = false;
+      };
+      dbus.packages = [ pkgs.dconf ];
       displayManager.sddm = {
         enable = true;
         wayland = {
@@ -124,14 +129,10 @@ in
         theme = "catppuccin-mocha-mauve";
         settings.General.InputMethod = "";
       };
-      desktopManager.plasma6 = {
-        enable = true;
-        enableQt5Integration = false;
-      };
-      dbus.packages = [ pkgs.dconf ];
       displayManager.defaultSession = lib.mkForce "plasma";
       gnome.at-spi2-core.enable = true;
       flatpak.enable = true;
+      orca.enable = false;
       xserver = {
         enable = false;
         xkb = {
