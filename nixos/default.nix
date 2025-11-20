@@ -137,11 +137,9 @@
 
   };
 
-  system = {
-    extraSystemBuilderCmds = ''
-      ln -sv ${pkgs.path} $out/nixpkgs
-    '';
-  };
+  system.systemBuilderCommands = ''
+    ln -sv ${pkgs.path} $out/nixpkgs
+  '';
   time.timeZone = "Europe/Oslo";
   i18n.defaultLocale = "en_DK.UTF-8";
 
