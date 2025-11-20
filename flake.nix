@@ -103,6 +103,13 @@
               head -n 7 README.md|tail -n4|lolcat
             '';
           };
+          devShells.update = pkgs.mkShellNoCC {
+            NIX_CONFIG = "experimental-features = nix-command flakes";
+            packages = with pkgs; [
+              attic-client
+              inputs.nix-fast-build.packages.${system}.default
+            ];
+          };
           checks = {
             pre-commit-check = inputs.pre-commit-hooks.lib.${system}.run {
               src = ./.;
@@ -163,6 +170,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     niri.url = "github:sodiboo/niri-flake";
+    nix-fast-build.url = "github:Mic92/nix-fast-build";
     nix-index-database.url = "github:Mic92/nix-index-database";
     nix-index-database.inputs.nixpkgs.follows = "nixpkgs";
     nixos-avf = {
