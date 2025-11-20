@@ -132,7 +132,6 @@ in
       displayManager.defaultSession = lib.mkForce "plasma";
       gnome.at-spi2-core.enable = true;
       flatpak.enable = true;
-      libinput.enable = true;
       xserver = {
         enable = false;
         xkb = {

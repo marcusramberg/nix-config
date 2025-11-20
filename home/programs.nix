@@ -93,7 +93,12 @@ in
           addKeysToAgent = "yes";
           forwardAgent = true;
         };
-        "10.8.20.128".forwardX11 = true;
+        "mouse1" = {
+          proxyJump = "mcbuildface.stig.io";
+        };
+        "mouse2" = {
+          proxyJump = "mcbuildface.stig.io";
+        };
       }
       // lib.optionalAttrs isDarwin {
         "*".extraOptions.IdentityAgent =
