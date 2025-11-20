@@ -70,6 +70,14 @@
         "x-systemd.automount"
       ];
     };
+    "/mnt/nix" = {
+      device = "/dev/nvme1n1p1";
+      fsType = "btrfs";
+      options = [
+        "compress=zstd"
+        "subvol=nix"
+      ];
+    };
     "/home/marcus/org" = {
       device = "mspace:/volume1/homes/marcus/Drive/orgmode";
       fsType = "nfs4";
@@ -144,6 +152,12 @@
         ip = "192.168.86.22";
       };
     };
+  };
+
+  networking = {
+    firewall.trustedInterfaces = [
+      "incusbr0"
+    ];
   };
 
   programs = {
