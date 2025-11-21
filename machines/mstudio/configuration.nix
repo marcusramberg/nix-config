@@ -13,8 +13,8 @@
       efi.canTouchEfiVariables = false;
     };
     extraModprobeConfig = ''
-      # options hid_apple iso_layout=1
-      options macsmc_hwmon melt_my_mac=1
+      options hid_apple iso_layout=1
+      options macsmc_hwmon fan_control=1
     '';
     postBootCommands = ''
       echo 1100 > /sys/class/hwmon/hwmon?/fan1_target
