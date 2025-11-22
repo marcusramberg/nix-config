@@ -424,11 +424,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1763838026,
-        "narHash": "sha256-SKu2CuSLmy/XylJl6HVK9vDkoRFY1AsTW9+ft1uvwJw=",
+        "lastModified": 1763838244,
+        "narHash": "sha256-dFEB5YqRuoIO/4GIpb4DIE4kYqurspjCxmHet4qf33M=",
         "owner": "marcusramberg",
         "repo": "hei",
-        "rev": "449612b904df301556e14d901924b05eb8f76f7d",
+        "rev": "10d3fcb1a66e7907ba3133d72b2363bdcee3ff7b",
         "type": "github"
       },
       "original": {
