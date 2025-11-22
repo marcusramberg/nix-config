@@ -351,6 +351,24 @@
         "url": "https://flakehub.com/f/DeterminateSystems/flake-schemas/%3D0.1.5.tar.gz"
       }
     },
+    "flake-utils": {
+      "inputs": {
+        "systems": "systems_2"
+      },
+      "locked": {
+        "lastModified": 1731533236,
+        "narHash": "sha256-l0KFg5HjrsfsO/JpG+r7fRrqm12kzFHyUHqHCVpMMbI=",
+        "owner": "numtide",
+        "repo": "flake-utils",
+        "rev": "11707dc2f618dd54ca8739b309ec4fc024de578b",
+        "type": "github"
+      },
+      "original": {
+        "owner": "numtide",
+        "repo": "flake-utils",
+        "type": "github"
+      }
+    },
     "gitignore": {
       "inputs": {
         "nixpkgs": [
@@ -372,19 +390,45 @@
         "type": "github"
       }
     },
-    "hei": {
+    "gomod2nix": {
       "inputs": {
-        "nixpkgs": [
-          "nixpkgs"
+        "flake-utils": [
+          "hei",
+          "flake-utils"
         ],
-        "utils": "utils"
+        "nixpkgs": [
+          "hei",
+          "nixpkgs"
+        ]
       },
       "locked": {
-        "lastModified": 1762696775,
-        "narHash": "sha256-5os7K3gLRmV6n51jSv/7hauteKd9AlnFRu9ATPSZsWU=",
+        "lastModified": 1759991118,
+        "narHash": "sha256-pDyrtUQyeP1lVTMIYqJtftzDtsXEZaJjYy9ZQ/SGhL8=",
+        "owner": "nix-community",
+        "repo": "gomod2nix",
+        "rev": "7f8d7438f5870eb167abaf2c39eea3d2302019d1",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nix-community",
+        "repo": "gomod2nix",
+        "type": "github"
+      }
+    },
+    "hei": {
+      "inputs": {
+        "flake-utils": "flake-utils",
+        "gomod2nix": "gomod2nix",
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1763838026,
+        "narHash": "sha256-SKu2CuSLmy/XylJl6HVK9vDkoRFY1AsTW9+ft1uvwJw=",
         "owner": "marcusramberg",
         "repo": "hei",
-        "rev": "b54d1db4fdc13aaba87577d551d9dc83bf6e9890",
+        "rev": "449612b904df301556e14d901924b05eb8f76f7d",
         "type": "github"
       },
       "original": {
@@ -1093,24 +1137,6 @@
       "original": {
         "owner": "chrillefkr",
         "repo": "nixos-unattended-installer",
-        "type": "github"
-      }
-    },
-    "utils": {
-      "inputs": {
-        "systems": "systems_2"
-      },
-      "locked": {
-        "lastModified": 1731533236,
-        "narHash": "sha256-l0KFg5HjrsfsO/JpG+r7fRrqm12kzFHyUHqHCVpMMbI=",
-        "owner": "numtide",
-        "repo": "flake-utils",
-        "rev": "11707dc2f618dd54ca8739b309ec4fc024de578b",
-        "type": "github"
-      },
-      "original": {
-        "owner": "numtide",
-        "repo": "flake-utils",
         "type": "github"
       }
     },

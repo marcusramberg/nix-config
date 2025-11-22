@@ -14,6 +14,7 @@ end, { desc = "Lazygit" })
 keymap("n", "<leader>go", "<cmd>Octo<cr>", { desc = "Octo" })
 keymap("n", "<leader>gG", "<cmd>Neogit cwd=.<cr>", { desc = "Neogit (cwd)" })
 keymap("n", "<leader>gb", "<cmd>BlamerToggle<cr>", { desc = "Toggle Blame" })
+keymap("n", "<leader>ot", "<cmd>Task<cr>", { desc = "Run task" })
 keymap("n", "<leader>ut", function()
   if vim.g.colors_name == "catppuccin-mocha" then
     vim.cmd.colorscheme("catppuccin-latte")

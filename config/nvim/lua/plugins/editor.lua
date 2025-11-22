@@ -103,4 +103,10 @@ return {
       center_slides = true,
     },
   },
+  { "dasvh/taskfile.nvim", opts = {
+    layout = "v",
+    keymaps = {
+      rerun = "<leader>or",
+    },
+  } },
 }

@@ -7,7 +7,6 @@
 }:
 let
   inherit (pkgs) stdenv;
-  inherit (stdenv.hostPlatform) system;
   isNixOS = lib.hasAttr "nixos" osConfig.system;
   hasK3s =
     lib.hasAttr "profiles" osConfig
