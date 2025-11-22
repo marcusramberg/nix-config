@@ -45,7 +45,7 @@
               inputs.niri.nixosModules.niri
               {
                 nixpkgs.overlays = [
-                  inputs.niri.overlay
+                  inputs.niri.overlays
                 ];
               }
             ];
