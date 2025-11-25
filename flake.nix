@@ -94,6 +94,7 @@
               git
               go-task
               inputs.clan-core.packages.${system}.clan-cli
+              inputs.hei.packages.${system}.default
               lolcat
               home-manager
               neovim

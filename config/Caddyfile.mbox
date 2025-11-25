@@ -101,6 +101,19 @@ calibre.means.no:443 {
 		reverse_proxy localhost:8083
 	}
 }
+jelly.means.no:443 {
+	import caddy-tailscale
+	# @auth {
+	# 	path /caddy-security/*
+	# }
+	# route @auth {
+	# 	authenticate with pocketid
+	# }
+	route /* {
+    #		authorize with pocketid
+		reverse_proxy localhost:8096
+	}
+}
 incus.means.no:443 {
 	import caddy-tailscale
 	@auth {

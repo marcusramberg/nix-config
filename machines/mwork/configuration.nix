@@ -55,6 +55,7 @@
     resolved.extraConfig = ''
       MulticastDNS=No
     '';
+    xserver.xkb.variant = lib.mkForce "mac-iso";
   };
   security.pam.services = {
     login.unixAuth = true;

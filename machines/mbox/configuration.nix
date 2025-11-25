@@ -181,6 +181,9 @@
       openFirewall = true;
       secretsFile = config.age.secrets.immich.path;
     };
+    jellyfin = {
+      enable = true;
+    };
     k3s = {
       clusterInit = true;
       serverAddr = "https://192.168.86.1:6443";
