@@ -398,8 +398,8 @@ in
         extensions = [
           (config.lib.vicinae.mkRayCastExtension {
             name = "gif-search";
-            sha256 = "sha256-G7il8T1L+P/2mXWJsb68n4BCbVKcrrtK8GnBNxzt73Q=";
-            rev = "4d417c2dfd86a5b2bea202d4a7b48d8eb3dbaeb1";
+            sha256 = "sha256-F0Q/xSytdlFRDAkr9pB9Zf2ys4FjHpw5+VbJf0fHVrw=";
+            rev = "b8c8fcd7ebd441a5452b396923f2a40e879565ba";
           })
         ];
       };
