@@ -4,6 +4,7 @@ gtk-titlebar = false
 clipboard-read = allow
 clipboard-write= allow
 app-notifications=no-clipboard-copy
+bell-features = no-system,no-audio,no-attention,title,no-border
 background-opacity=0.93
 background-blur=true
 background-opacity-cells=true
