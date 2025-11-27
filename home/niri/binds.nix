@@ -60,6 +60,10 @@ in
     action = dms-ipc "mpris" "previous";
   };
 
+  "Mod+B" = {
+    action = dms-ipc "bar" "toggle" "1";
+  };
+
   "Mod+Shift+Q" = {
     action = close-window;
     repeat = false;

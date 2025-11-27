@@ -22,7 +22,11 @@ in
       spotify-player
       telegram-desktop
       kdePackages.tokodon
-      vivaldi
+      (vivaldi.override {
+        commandLineArgs = [ "--password-store=kwallet6" ];
+        enableWidevine = true;
+        proprietaryCodecs = true;
+      })
       vivaldi-ffmpeg-codecs
       vlc
       wl-clipboard

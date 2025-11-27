@@ -24,6 +24,7 @@ in
       caddy
       caligula
       cargo
+      chafa
       cloudflared
       coreutils
       deadnix

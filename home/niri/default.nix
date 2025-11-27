@@ -33,9 +33,7 @@ in
         prefer-no-csd = true;
         input = {
           keyboard.xkb = {
-            layout = "us";
-            options = "eurosign:e";
-            variant = "mac";
+            inherit (osConfig.services.xserver.xkb) layout options variant;
           };
 
           touchpad = {
@@ -51,7 +49,7 @@ in
         };
         binds = import ./binds.nix { inherit config; };
         outputs = {
-          "eDP-1".scale = 1;
+          "eDP-1".scale = 1.05;
           "DP-1".scale = 1.25;
         };
 
