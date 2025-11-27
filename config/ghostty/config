@@ -1,6 +1,7 @@
 theme=Catppuccin Mocha
 font-family=JetBrainsMono Nerd Font
 gtk-titlebar = false
+window-decoration = false
 clipboard-read = allow
 clipboard-write= allow
 app-notifications=no-clipboard-copy
@@ -9,6 +10,7 @@ background-opacity=0.93
 background-blur=true
 background-opacity-cells=true
 unfocused-split-opacity=0.7
+
 
 # custom keybindings
 keybind = super+v=paste_from_clipboard

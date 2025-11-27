@@ -17,11 +17,12 @@
       settings = {
         download-buffer-size = 500000000;
         substituters = [
+          "https://cache.bas.es/bases"
           "https://nix-community.cachix.org"
           "https://devenv.cachix.org"
           "https://marcusramberg.cachix.org"
           "https://jovian-nixos.cachix.org"
-          "https://cache.bas.es/bases"
+
         ];
         trusted-public-keys = [
           "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
