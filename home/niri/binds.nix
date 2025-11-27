@@ -21,23 +21,44 @@ in
 
   XF86AudioRaiseVolume = {
     allow-when-locked = true;
-    action = spawn "pamixer" "-i" "5";
+    action = dms-ipc "audio" "increment" "5";
   };
   XF86AudioLowerVolume = {
     allow-when-locked = true;
-    action = spawn "pamixer" "-d" "5";
+    action = dms-ipc "audio" "decrement" "5";
   };
   XF86AudioMute = {
     allow-when-locked = true;
-    action = spawn "pamixer" "-t";
+    action = dms-ipc "audio" "mute";
   };
-  # XF86AudioMicMute     allow-when-locked=true { spawn-sh "wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle"; }
-
-  # // Example brightness key mappings for brightnessctl.
-  # // You can use regular spawn with multiple arguments too (to avoid going through "sh"),
-  # // but you need to manually put each argument in separate "" quotes.
-  # XF86MonBrightnessUp allow-when-locked=true { spawn "brightnessctl" "--class=backlight" "set" "+10%"; }
-  # XF86MonBrightnessDown allow-when-locked=true { spawn "brightnessctl" "--class=backlight" "set" "10%-"; }
+  XF86AudioMicMute = {
+    allow-when-locked = true;
+    action = dms-ipc "audio" "toggle-mic-mute";
+  };
+  XF86MonBrightnessUp = {
+    allow-when-locked = true;
+    action = dms-ipc "brightness" "increment" "10" "backlight:intel_backlight";
+  };
+  XF86MonBrightnessDown = {
+    allow-when-locked = true;
+    action = dms-ipc "brightness" "decrement" "10" "backlight:intel_backlight";
+  };
+  XF86AudioPlay = {
+    allow-when-locked = true;
+    action = dms-ipc "mpris" "playPause";
+  };
+  XF86AudioStop = {
+    allow-when-locked = true;
+    action = dms-ipc "mpris" "pause";
+  };
+  XF86AudioNext = {
+    allow-when-locked = true;
+    action = dms-ipc "mpris" "next";
+  };
+  XF86AudioPrev = {
+    allow-when-locked = true;
+    action = dms-ipc "mpris" "previous";
+  };
 
   "Mod+Shift+Q" = {
     action = close-window;
