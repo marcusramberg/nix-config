@@ -45,7 +45,7 @@
               inputs.niri.nixosModules.niri
               {
                 nixpkgs.overlays = [
-                  inputs.niri.overlays
+                  inputs.niri.overlays.niri
                 ];
               }
             ];
@@ -152,6 +152,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     chaotic.url = "github:chaotic-cx/nyx/nyxpkgs-unstable";
+    dank-shell.url = "github:AvengeMedia/DankMaterialShell";
     darwin.url = "github:lnl7/nix-darwin/master";
     darwin.inputs.nixpkgs.follows = "nixpkgs";
     disko.url = "github:nix-community/disko";
