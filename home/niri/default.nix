@@ -30,6 +30,7 @@ in
     niri = {
       settings = {
         hotkey-overlay.skip-at-startup = true;
+        prefer-no-csd = true;
         input = {
           keyboard.xkb = {
             layout = "us";
@@ -49,7 +50,10 @@ in
           workspace-auto-back-and-forth = true;
         };
         binds = import ./binds.nix { inherit config; };
-        outputs."DP-1".scale = 1.25;
+        outputs = {
+          "eDP-1".scale = 1;
+          "DP-1".scale = 1.25;
+        };
 
         layout = {
           gaps = 6;
