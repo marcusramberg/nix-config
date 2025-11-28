@@ -18,7 +18,9 @@ in
       neovide
       obsidian
       showmethekey
-      signal-desktop
+      (signal-desktop.override {
+        commandLineArgs = [ "--password-store=kwallet6" ];
+      })
       spotify-player
       telegram-desktop
       kdePackages.tokodon

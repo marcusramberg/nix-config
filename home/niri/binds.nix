@@ -2,11 +2,12 @@
 with config.lib.niri.actions;
 let
   dms-ipc = spawn "dms" "ipc";
+  vicinae = spawn "vicinae";
 in
 {
   "Mod+Return".action = spawn "ghostty";
   "Mod+Space" = {
-    action = dms-ipc "spotlight" "toggle";
+    action = vicinae "toggle";
     hotkey-overlay.title = "Toggle Application Launcher";
   };
   "Mod+Shift+Comma" = {
@@ -15,6 +16,8 @@ in
   };
   "Mod+Ctrl+Shift+Alt+L".action = dms-ipc "lock" "lock";
   "Mod+E".action = spawn "dolphin";
+  # "Mod+?".action = show-hotkey-overlay;
+  "Mod+G".action = vicinae "vicinae://extensions/josephschmitt/gif-search/search";
   "Mod+Alt+V" = {
     action = dms-ipc "clipboard" "toggle";
   };
