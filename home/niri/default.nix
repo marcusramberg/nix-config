@@ -116,7 +116,7 @@ in
           "03-music" = {
             name = "music";
           };
-          "03-chat" = {
+          "04-chat" = {
             name = "chat";
           };
         };

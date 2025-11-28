@@ -5,3 +5,4 @@ devenv.local.nix
 .pre-commit-config.yaml
 .direnv
 config/hammerspoon/Spoons/EmmyLua.spoon/annotations
+config/ghostty/config-dankcolors
