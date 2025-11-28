@@ -49,7 +49,7 @@ in
         };
         binds = import ./binds.nix { inherit config; };
         outputs = {
-          "eDP-1".scale = 1.05;
+          "eDP-1".scale = 1.1;
           "DP-1".scale = 1.25;
         };
 
@@ -72,10 +72,10 @@ in
           focus-ring = {
             width = 1;
             active = {
-              color = "#04a5e5";
+              color = "#fab387";
             };
             inactive = {
-              color = "#7c7f93";
+              color = "#b4befe";
             };
           };
 
@@ -87,13 +87,13 @@ in
         };
         window-rules = [
           {
+            draw-border-with-background = false;
             geometry-corner-radius = {
               bottom-left = 0.0;
               bottom-right = 0.0;
               top-left = 0.0;
               top-right = 0.0;
             };
-            clip-to-geometry = true;
           }
           {
             matches = [
