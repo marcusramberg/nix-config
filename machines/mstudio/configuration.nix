@@ -81,7 +81,6 @@
   profiles = {
     autoupgrade.enable = true;
     dockerHost.enable = true;
-    desktop.niri.enable = true;
     k3s = {
       enable = true;
       staticIP = {

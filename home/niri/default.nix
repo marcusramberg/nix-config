@@ -29,7 +29,10 @@ in
     };
     niri = {
       settings = {
-        hotkey-overlay.skip-at-startup = true;
+        hotkey-overlay = {
+          skip-at-startup = true;
+          hide-not-bound = true;
+        };
         prefer-no-csd = true;
         input = {
           keyboard.xkb = {

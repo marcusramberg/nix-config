@@ -5,7 +5,10 @@ let
   vicinae = spawn "vicinae";
 in
 {
-  "Mod+Return".action = spawn "ghostty";
+  "Mod+Return" = {
+    action = spawn "ghostty";
+    hotkey-overlay.title = "Open Terminal Emulator";
+  };
   "Mod+Space" = {
     action = vicinae "toggle";
     hotkey-overlay.title = "Toggle Application Launcher";
@@ -14,11 +17,21 @@ in
     action = dms-ipc "settings" "toggle";
     hotkey-overlay.title = "Toggle Settings";
   };
-  "Mod+Ctrl+Shift+Alt+L".action = dms-ipc "lock" "lock";
-  "Mod+E".action = spawn "dolphin";
-  # "Mod+?".action = show-hotkey-overlay;
-  "Mod+G".action = vicinae "vicinae://extensions/josephschmitt/gif-search/search";
+  "Mod+Ctrl+Shift+Alt+L" = {
+    action = dms-ipc "lock" "lock";
+    hotkey-overlay.title = "Lock Screen";
+  };
+  "Mod+E" = {
+    action = spawn "dolphin";
+    hotkey-overlay.title = "Open File Manager";
+  };
+  "Mod+Shift+Slash".action = show-hotkey-overlay;
+  "Mod+G" = {
+    action = vicinae "vicinae://extensions/josephschmitt/gif-search/search";
+    hotkey-overlay.title = "Open GIF Search";
+  };
   "Mod+Alt+V" = {
+    hotkey-overlay.title = "Toggle Clipboard Manager";
     action = dms-ipc "clipboard" "toggle";
   };
 
@@ -65,6 +78,7 @@ in
 
   "Mod+B" = {
     action = dms-ipc "bar" "toggle" "1";
+    hotkey-overlay.title = "Toggle Top Bar";
   };
 
   "Mod+Shift+Q" = {
@@ -72,9 +86,15 @@ in
     repeat = false;
   };
 
-  "Mod+K".action = focus-window-or-workspace-up;
+  "Mod+K" = {
+    action = focus-window-or-workspace-up;
+    hotkey-overlay.title = "Focus Window or Workspace Up";
+  };
   "Mod+H".action = focus-column-left;
-  "Mod+J".action = focus-window-or-workspace-down;
+  "Mod+J" = {
+    action = focus-window-or-workspace-down;
+    hotkey-overlay.title = "Focus Window or Workspace Down";
+  };
   "Mod+L".action = focus-column-right;
 
   "Mod+Shift+K".action = move-column-to-workspace-up;
@@ -122,8 +142,14 @@ in
   "Mod+F".action = toggle-window-floating;
   "Mod+Shift+F".action = switch-focus-between-floating-and-tiling;
 
-  "Mod+Shift+S".action = spawn "grimshot" "--notify" "savecopy" "area";
-  "Mod+Ctrl+S".action = spawn "grimshot" "--notify" "savecopy" "output";
+  "Mod+Shift+S" = {
+    action = spawn "grimshot" "--notify" "savecopy" "area";
+    hotkey-overlay.title = "Take Area Screenshot";
+  };
+  "Mod+Ctrl+S" = {
+    action = spawn "grimshot" "--notify" "savecopy" "output";
+    hotkey-overlay.title = "Take Fullscreen Screenshot";
+  };
 
   "Mod+Escape" = {
     allow-inhibiting = false;

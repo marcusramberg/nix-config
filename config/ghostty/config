@@ -10,6 +10,7 @@ background-opacity=0.98
 background-blur=true
 background-opacity-cells=true
 unfocused-split-opacity=0.8
+window-padding-x = 5
 
 
 # custom keybindings

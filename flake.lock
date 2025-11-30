@@ -108,11 +108,11 @@
         "treefmt-nix": "treefmt-nix"
       },
       "locked": {
-        "lastModified": 1764497939,
-        "narHash": "sha256-emnKVhJTF1Mmx8YBCZyN2EEdocEf3IKQAPrR094pAns=",
-        "rev": "2bbf36673db678a398d35981cadabe6dd632ccfe",
+        "lastModified": 1764518079,
+        "narHash": "sha256-qHutQc3ImiN7yi6GaczebRU7PgER/fhR259dclHucFc=",
+        "rev": "41f2fff70d21e6396c5e9ecb8152579deeb78922",
         "type": "tarball",
-        "url": "https://git.clan.lol/api/v1/repos/clan/clan-core/archive/2bbf36673db678a398d35981cadabe6dd632ccfe.tar.gz"
+        "url": "https://git.clan.lol/api/v1/repos/clan/clan-core/archive/41f2fff70d21e6396c5e9ecb8152579deeb78922.tar.gz"
       },
       "original": {
         "type": "tarball",
@@ -125,11 +125,11 @@
         "nixpkgs": "nixpkgs_2"
       },
       "locked": {
-        "lastModified": 1764485030,
-        "narHash": "sha256-h4gc3mUw/yJfEuh0ckxvehfBSu8GO+9XEz0z9nhj8iE=",
+        "lastModified": 1764519675,
+        "narHash": "sha256-PwuecbQSdQaOBGj53YovMmx80+C+4tC0GwTSXC4hEi4=",
         "owner": "AvengeMedia",
         "repo": "DankMaterialShell",
-        "rev": "6297b0679c05207bac83d859c30780ce6d2b2fb9",
+        "rev": "cbd1fd908cb10a4088988a71c8af99fc312ff1f1",
         "type": "github"
       },
       "original": {
@@ -505,11 +505,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1764361670,
-        "narHash": "sha256-jgWzgpIaHbL3USIq0gihZeuy1lLf2YSfwvWEwnfAJUw=",
+        "lastModified": 1764510518,
+        "narHash": "sha256-hDFkciyjhjMLRC/qXCREWX1dgq8kopiuJdwXdfVlJuQ=",
         "owner": "nix-community",
         "repo": "home-manager",
-        "rev": "780be8ef503a28939cf9dc7996b48ffb1a3e04c6",
+        "rev": "83053e1d337f33e0b48250588006e4b9df2f0d9d",
         "type": "github"
       },
       "original": {
@@ -861,11 +861,11 @@
     },
     "nixpkgs-small": {
       "locked": {
-        "lastModified": 1764460241,
-        "narHash": "sha256-6EHIflWWHHLBJ68xg7PvOgHjcvqR/MzD/+9GRJR4GpA=",
+        "lastModified": 1764505699,
+        "narHash": "sha256-F6hwfLIZ7aeW2JI11EkuUNmybxqwNCYlEw9qCdAjGRs=",
         "owner": "nixos",
         "repo": "nixpkgs",
-        "rev": "71f1d68b32bdfba3cc93203521dd7cfb48df09ee",
+        "rev": "3268229081495e937b6ffaf6b7619445426cfeed",
         "type": "github"
       },
       "original": {

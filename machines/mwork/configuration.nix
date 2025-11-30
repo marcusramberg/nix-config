@@ -19,7 +19,6 @@
     act
     amazon-ecr-credential-helper
     docker-credential-gcr
-    discord
     (google-cloud-sdk.withExtraComponents [ pkgs.google-cloud-sdk.components.gke-gcloud-auth-plugin ])
     slack
     spotify
@@ -78,7 +77,6 @@
   };
   networking.firewall.enable = false;
   programs = {
-    niri.enable = true;
     obs-studio = {
       enable = true;
       enableVirtualCamera = true;

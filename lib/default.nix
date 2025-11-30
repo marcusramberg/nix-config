@@ -34,7 +34,10 @@ let
     let
       modules = [
         {
-          profiles.desktop.enable = true;
+          profiles.desktop = {
+            enable = true;
+            niri.enable = true;
+          };
         }
       ]
       ++ extraModules;
