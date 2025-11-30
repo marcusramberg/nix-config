@@ -92,8 +92,8 @@
     };
   };
 
+  powerManagement.enable = true;
   profiles = {
-    desktop.enable = true;
     limine = {
       enable = true;
       secureboot = true;

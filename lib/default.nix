@@ -25,6 +25,24 @@ let
       ];
     };
 
+  mkDesktopHost =
+    name:
+    {
+      system ? "x86_64-linux",
+      extraModules ? [ ],
+    }:
+    let
+      modules = [
+        {
+          profiles.desktop.enable = true;
+        }
+      ]
+      ++ extraModules;
+    in
+    mkNixHost name {
+      inherit system;
+      extraModules = modules;
+    };
   mkNixHost =
     name:
     {
@@ -35,6 +53,13 @@ let
       imports = [
         ../nixos
         inputs.agenix.nixosModules.age
+        inputs.niri.nixosModules.niri
+        # inputs.dank-shell.nixosModules.dank-material-shell
+        {
+          nixpkgs.overlays = [
+            inputs.niri.overlays.niri
+          ];
+        }
         inputs.home-manager.nixosModules.home-manager
         (import ./options.nix {
           inherit inputs system;
@@ -79,6 +104,7 @@ in
   inherit
     mkDarwinHost
     mkNixHost
+    mkDesktopHost
     mkHMConfig
     ;
 }

@@ -1,6 +1,5 @@
 {
   config,
-  inputs,
   lib,
   osConfig,
   pkgs,
@@ -386,7 +385,6 @@ in
       };
       vicinae = {
         enable = true;
-        package = inputs.nixpkgs-small.legacyPackages.x86_64-linux.vicinae;
         systemd.enable = true;
         settings = {
           font = {

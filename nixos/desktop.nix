@@ -1,6 +1,7 @@
 {
   config,
   lib,
+  inputs,
   pkgs,
   ...
 }:
@@ -8,7 +9,10 @@ let
   cfg = config.profiles.desktop;
 in
 {
-  options.profiles.desktop.enable = lib.mkEnableOption "desktop";
+  options.profiles.desktop = {
+    enable = lib.mkEnableOption "desktop environment with plasma and catppuccin theme";
+    niri.enable = lib.mkEnableOption "enable niri environment";
+  };
 
   config = lib.mkIf cfg.enable {
 
@@ -106,6 +110,10 @@ in
           ++ lib.optionals (pkgs.stdenv.hostPlatform.system == "x86_64-linux") [ fx-cast-bridge ];
       };
       kdeconnect.enable = true;
+      niri = lib.mkIf cfg.niri.enable {
+        enable = true;
+        package = inputs.nixpkgs-small.legacyPackages.${pkgs.stdenv.hostPlatform.system}.niri;
+      };
       ssh.enableAskPassword = true;
     };
 
@@ -129,7 +137,7 @@ in
         theme = "catppuccin-mocha-mauve";
         settings.General.InputMethod = "";
       };
-      displayManager.defaultSession = lib.mkForce "plasma";
+      displayManager.defaultSession = lib.mkForce (if cfg.niri.enable then "niri" else "plasma");
       gnome.at-spi2-core.enable = true;
       flatpak.enable = true;
       orca.enable = false;

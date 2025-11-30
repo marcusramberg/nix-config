@@ -36,12 +36,8 @@
   };
 
   powerManagement.enable = true;
-  programs.niri.enable = true;
 
-  profiles = {
-    desktop.enable = true;
-    limine.enable = true;
-  };
+  profiles.limine.enable = true;
 
   services = {
     displayManager.autoLogin.enable = true;

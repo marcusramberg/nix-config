@@ -28,7 +28,7 @@
           };
         };
         machines = {
-          mstudio = mkNixHost "mstudio" {
+          mstudio = mkDesktopHost "mstudio" {
             extraModules = [
               inputs.apple-silicon-support.nixosModules.apple-silicon-support
             ];
@@ -38,25 +38,10 @@
           mbox = mkNixHost "mbox" {
             extraModules = [ inputs.jovian.nixosModules.default ];
           };
-          mwork = mkNixHost "mwork" {
-            extraModules = [
-              inputs.niri.nixosModules.niri
-              {
-                nixpkgs.overlays = [
-                  inputs.niri.overlays.niri
-                ];
-              }
-            ];
-          };
-          mtop = mkNixHost "mtop" {
+          mwork = mkDesktopHost "mwork" { };
+          mtop = mkDesktopHost "mtop" {
             extraModules = [
               inputs.chaotic.nixosModules.default
-              inputs.niri.nixosModules.niri
-              {
-                nixpkgs.overlays = [
-                  inputs.niri.overlays.niri
-                ];
-              }
             ];
           };
           mbench = mkNixHost "mbench" {
