@@ -120,6 +120,9 @@ in
             name = "chat";
           };
         };
+        environment = {
+          QT_QPA_PLATFORM = "wayland";
+        };
       };
     };
   };
