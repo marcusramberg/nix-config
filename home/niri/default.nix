@@ -126,6 +126,16 @@ in
           QT_QPA_PLATFORM = "wayland";
           DMS_SCREENSHOT_EDITOR = "satty";
         };
+        spawn-at-startup = [
+          {
+            argv = [
+              "${pkgs.wvkbd}/bin/wvkbd-mobintl"
+              "--alpha"
+              "220"
+              "--hidden"
+            ];
+          }
+        ];
       };
     };
   };
