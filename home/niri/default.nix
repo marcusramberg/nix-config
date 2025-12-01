@@ -32,6 +32,7 @@ in
           skip-at-startup = true;
           hide-not-bound = true;
         };
+        gestures.hot-corners.enable = false;
         prefer-no-csd = true;
         input = {
           keyboard.xkb = {
@@ -52,7 +53,7 @@ in
         binds = import ./binds.nix { inherit config; };
         outputs = {
           "eDP-1".scale = 1.1;
-          "DP-1".scale = 1.25;
+          "DP-1".scale = 1.4;
         };
 
         layout = {
