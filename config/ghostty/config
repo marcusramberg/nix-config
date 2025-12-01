@@ -6,6 +6,7 @@ clipboard-read = allow
 clipboard-write= allow
 app-notifications=no-clipboard-copy
 bell-features = no-system,no-audio,no-attention,title,no-border
+shell-integration-features = no-path,sudo,ssh-terminfo
 background-opacity=0.98
 background-blur=true
 background-opacity-cells=true
