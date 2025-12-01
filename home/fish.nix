@@ -75,7 +75,7 @@ in
     };
 
     shellInit = ''
-      fish_add_path -p ~/.local/bin ${lib.optionalString isDarwin "/run/current-system/sw/bin /opt/homebrew/bin"} ~/go/bin/ ~/.nimble/bin ~/.cargo/bin/
+      fish_add_path -p ~/.local/bin ${lib.optionalString isDarwin "/run/current-system/sw/bin /opt/homebrew/bin"} ~/go/bin/ ~/.cargo/bin/
     '';
     interactiveShellInit = ''
       fish_vi_key_bindings
@@ -104,7 +104,7 @@ in
     + lib.optionalString isNixOS ''
       set -gx NIX_LD (nix eval --impure --raw --expr 'let pkgs = import <nixpkgs> {}; NIX_LD = pkgs.lib.fileContents "${pkgs.stdenv.cc}/nix-support/dynamic-linker"; in NIX_LD ')
       if test "$TERM" = "xterm-ghostty"
-        . ${pkgs.ghostty.shell_integration}/fish/vendor_conf.d/ghostty-shell-integration.fish
+        . ${pkgs.ghostty.shell_integration}/shell-integration/fish/vendor_conf.d/ghostty-shell-integration.fish
       end
     '';
     loginShellInit = ''
