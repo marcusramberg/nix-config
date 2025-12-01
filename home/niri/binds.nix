@@ -143,11 +143,11 @@ in
   "Mod+Shift+F".action = switch-focus-between-floating-and-tiling;
 
   "Mod+Shift+S" = {
-    action = spawn "grimshot" "--notify" "savecopy" "area";
+    action = dms-ipc "niri" "screenshot";
     hotkey-overlay.title = "Take Area Screenshot";
   };
   "Mod+Ctrl+S" = {
-    action = spawn "grimshot" "--notify" "savecopy" "output";
+    action = dms-ipc "niri" "screenshotScreen";
     hotkey-overlay.title = "Take Fullscreen Screenshot";
   };
 

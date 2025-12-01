@@ -12,7 +12,6 @@ in
 {
   home = mkIf isNiri {
     packages = with pkgs; [
-      sway-contrib.grimshot
       satty
     ];
     sessionVariables.QML2_IMPORT_PATH = lib.concatStringsSep ":" [
@@ -125,6 +124,7 @@ in
         };
         environment = {
           QT_QPA_PLATFORM = "wayland";
+          DMS_SCREENSHOT_EDITOR = "satty";
         };
       };
     };
