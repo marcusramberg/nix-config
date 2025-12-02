@@ -57,7 +57,7 @@ let
         ../nixos
         inputs.agenix.nixosModules.age
         inputs.niri.nixosModules.niri
-        # inputs.dank-shell.nixosModules.dank-material-shell
+        inputs.dank-shell.nixosModules.dankMaterialShell
         {
           nixpkgs.overlays = [
             inputs.niri.overlays.niri
@@ -91,7 +91,6 @@ let
         };
       };
       modules = [
-        ../home/default.nix
         {
           nixpkgs = {
             overlays = [ (import ../overlays inputs) ];
@@ -100,6 +99,7 @@ let
             };
           };
         }
+        ../home/default.nix
       ]
       ++ extraModules;
     };

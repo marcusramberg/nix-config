@@ -55,9 +55,12 @@
       enable = true;
     };
     envfs.enable = true;
-    resolved.extraConfig = ''
-      MulticastDNS=No
-    '';
+    resolved = {
+      enable = false;
+      # extraConfig = ''
+      #   MulticastDNS=No
+      # '';
+    };
     xserver.xkb.variant = lib.mkForce "mac-iso";
   };
   security.pam.services = {
@@ -69,11 +72,11 @@
 
   # Enable networking
   networking = {
-    nameservers = [
-      "1.1.1.1"
-      "8.8.8.8"
-    ];
     networkmanager = {
+      insertNameservers = [
+        "1.1.1.1"
+        "8.8.8.8"
+      ];
       enable = true;
       plugins = lib.mkForce [ ];
       wifi.backend = "iwd";

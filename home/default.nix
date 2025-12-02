@@ -19,8 +19,6 @@
     ./tmux.nix
     inputs.nix-index-database.homeModules.nix-index
     inputs.plasma-manager.homeModules.plasma-manager
-    inputs.dank-shell.homeModules.dankMaterialShell.default
-    inputs.dank-shell.homeModules.dankMaterialShell.niri
   ];
 
   home = {

@@ -22,10 +22,6 @@ in
     ];
   };
   programs = mkIf isNiri {
-    dankMaterialShell = {
-      enable = true;
-      niri.enableSpawn = true;
-    };
     niri = {
       settings = {
         hotkey-overlay = {

@@ -114,6 +114,12 @@ in
         enable = true;
         package = inputs.nixpkgs-small.legacyPackages.${pkgs.stdenv.hostPlatform.system}.niri;
       };
+      dankMaterialShell = {
+        enable = true;
+        systemd.enable = true;
+        quickshell.package = inputs.quickshell.packages.${pkgs.stdenv.hostPlatform.system}.default;
+      };
+
       ssh.enableAskPassword = true;
     };
 
