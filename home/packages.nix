@@ -34,6 +34,7 @@ in
       fd
       figlet
       gist
+      github-copilot-cli
       glow
       gnugrep
       gnumake

@@ -13,13 +13,6 @@ return {
         org_default_notes_file = "~/org/refile.org",
       })
 
-      -- NOTE: If you are using nvim-treesitter with `ensure_installed = "all"` option
-      -- add `org` to ignore_install
-      -- require("nvim-treesitter.configs").setup({
-      --   ensure_installed = "all",
-      --   ignore_install = { "org" },
-      -- })
-      ---
       require("org-bullets").setup()
     end,
   },

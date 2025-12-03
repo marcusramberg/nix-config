@@ -32,47 +32,6 @@ return {
     },
   },
 
-  -- change some telescope options and a keymap to browse plugin files
-  {
-    "nvim-telescope/telescope.nvim",
-    dependencies = {
-      { "nvim-lua/plenary.nvim" },
-      { "nvim-telescope/telescope-project.nvim" },
-      { "nvim-telescope/telescope-ui-select.nvim" },
-      { "olacin/telescope-gitmoji.nvim" },
-      { "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
-    },
-    -- change some options
-    opts = {
-      defaults = require("telescope.themes").get_ivy(),
-      file_ignore_patterns = { ".git/", "node_modules", "poetry.lock" },
-      vimgrep_arguments = {
-        "rg",
-        "--color=never",
-        "--no-heading",
-        "--hidden",
-        "--with-filename",
-        "--line-number",
-        "--column",
-        "--smart-case",
-        "--trim",
-      },
-      extensions = {
-        project = {
-          theme = "dropdown",
-          base_dirs = {
-            "~/Source",
-          },
-        },
-      },
-    },
-    config = function(_, opts)
-      local telescope = require("telescope")
-      telescope.setup(opts)
-      telescope.load_extension("fzf")
-      telescope.load_extension("project")
-    end,
-  },
   -- see hidden files in neotree
   {
     "nvim-neo-tree/neo-tree.nvim",

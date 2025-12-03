@@ -3,15 +3,17 @@
 -- -- Add any additional keymaps here
 --
 local keymap = vim.keymap.set
-keymap({ "n", "v", "i" }, "<C-p>", "<cmd>Telescope find_files<cr>", { desc = "Find Files" })
+keymap({ "n", "v", "i" }, "<C-p>", function()
+  Snacks.picker.files()
+end, { desc = "Open File Explorer" })
 keymap("n", "U", "<C-r>", { desc = "Redo" })
-keymap("n", "<C-r>", "<cmd>Telescope oldfiles<cr>", { desc = "Find Files" })
-keymap("n", "<leader>pp", "<cmd>Telescope project<cr>", { desc = "Switch Project" })
+keymap("n", "<leader>pp", function()
+  Snacks.picker.projects({ dev = { "~/Source/reMarkable", "~/Source/" } })
+end, { desc = "Switch Project" })
 keymap("n", "<leader>gg", "<cmd>Neogit<cr>", { desc = "Neogit" })
 keymap("n", "<leader>gl", function()
   Snacks.lazygit()
 end, { desc = "Lazygit" })
-keymap("n", "<leader>go", "<cmd>Octo<cr>", { desc = "Octo" })
 keymap("n", "<leader>gG", "<cmd>Neogit cwd=.<cr>", { desc = "Neogit (cwd)" })
 keymap("n", "<leader>gb", "<cmd>BlamerToggle<cr>", { desc = "Toggle Blame" })
 keymap("n", "<leader>ot", "<cmd>Task<cr>", { desc = "Run task" })
