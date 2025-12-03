@@ -24,7 +24,7 @@
       enable = true;
       user = "marcus";
       autoStart = true;
-      desktopSession = "plasma";
+      desktopSession = "niri";
       updater.splash = "jovian";
     };
   };

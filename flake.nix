@@ -46,7 +46,7 @@
           };
           mbench = mkNixHost "mbench" {
           };
-          mdeck = mkNixHost "mdeck" {
+          mdeck = mkDesktopHost "mdeck" {
             extraModules = [ inputs.jovian.nixosModules.default ];
           };
           mgate = mkNixHost "mgate" { };
