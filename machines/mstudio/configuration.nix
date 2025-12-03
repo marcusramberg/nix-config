@@ -79,7 +79,6 @@
   nixpkgs.config.allowUnsupportedSystem = true;
   # Enable the X11 windowing system.
   profiles = {
-    autoupgrade.enable = true;
     dockerHost.enable = true;
     k3s = {
       enable = true;
