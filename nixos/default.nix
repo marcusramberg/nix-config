@@ -36,6 +36,7 @@
     ./prometheus.nix
   ];
 
+  age.identityPaths = [ "/home/marcus/.ssh/id_ed25519" ];
   boot.loader.systemd-boot.configurationLimit = 5;
   # List packages installed in system profile. To search, run:
   # $ nix search wget
@@ -64,8 +65,7 @@
       SSL_CERT_FILE = "/etc/ssl/certs/ca-bundle.crt";
     };
   };
-
-  age.identityPaths = [ "/home/marcus/.ssh/id_ed25519" ];
+  hardware.i2c.enable = true;
 
   networking.firewall = {
     enable = lib.mkDefault true;
@@ -121,6 +121,7 @@
       "docker"
       "dialout"
       "feedbackd"
+      "i2c"
       "incus-admin"
       "pipewire"
       "podman"

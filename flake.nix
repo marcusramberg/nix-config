@@ -147,6 +147,9 @@
     };
     chaotic.url = "github:chaotic-cx/nyx/nyxpkgs-unstable";
     dank-shell.url = "github:AvengeMedia/DankMaterialShell";
+    dsearch.url = "github:AvengeMedia/danksearch";
+    dsearch.inputs.nixpkgs.follows = "nixpkgs";
+
     darwin.url = "github:lnl7/nix-darwin/master";
     darwin.inputs.nixpkgs.follows = "nixpkgs";
     disko.url = "github:nix-community/disko";

@@ -10,7 +10,7 @@ in
     hotkey-overlay.title = "Open Terminal Emulator";
   };
   "Mod+Space" = {
-    action = vicinae "toggle";
+    action = dms-ipc "spotlight" "toggle";
     hotkey-overlay.title = "Toggle Application Launcher";
   };
   "Mod+Shift+Comma" = {
