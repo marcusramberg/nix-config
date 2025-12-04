@@ -165,7 +165,7 @@ workspace "terminal"
 workspace "browser"
 workspace "music"
 workspace "chat"
-spawn-at-startup "/nix/store/rmzhkvr99rbcf8c6q1qkr8vnl5r4wwkc-wvkbd-0.18/bin/wvkbd-mobintl" "--alpha" "220" "--hidden"
+spawn-at-startup "wvkbd-mobintl" "--alpha" "220" "--hidden"
 window-rule {
     draw-border-with-background false
     geometry-corner-radius 0.000000 0.000000 0.000000 0.000000
