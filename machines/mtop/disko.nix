@@ -1,15 +1,15 @@
 # ---
 # schema = "single-disk"
 # [placeholders]
-# mainDisk = "/dev/disk/by-id/ata-APPLE_SSD_SM0512G_S29ANYAH722645" 
+# mainDisk = "/dev/disk/by-id/ata-APPLE_SSD_SM0512G_S29ANYAH722645"
 # ---
 # This file was automatically generated!
 # CHANGING this configuration requires wiping and reinstalling the machine
 {
 
-  boot.loader.grub.efiSupport = true;
-  boot.loader.grub.efiInstallAsRemovable = true;
-  boot.loader.grub.enable = true;
+  #boot.loader.grub.efiSupport = true;
+  # boot.loader.grub.efiInstallAsRemovable = true;
+  #boot.loader.grub.enable = true;
   disko.devices = {
     disk = {
       main = {
@@ -26,7 +26,7 @@
             };
             ESP = {
               type = "EF00";
-              size = "500M";
+              size = "1000M";
               content = {
                 type = "filesystem";
                 format = "vfat";
@@ -38,7 +38,7 @@
               size = "100%";
               content = {
                 type = "filesystem";
-                format = "ext4";
+                format = "btrfs";
                 mountpoint = "/";
               };
             };

@@ -125,11 +125,11 @@
         "nixpkgs": "nixpkgs_2"
       },
       "locked": {
-        "lastModified": 1764741581,
-        "narHash": "sha256-CbeO9Ie4Ecf8TsQWBJCrOenFmESC8XOSJ0UY69/ZTCw=",
+        "lastModified": 1764824923,
+        "narHash": "sha256-nFkDU9axL1RfVjQxjqzBlnP8+s8Ty2hWt6cmtX9Q8DA=",
         "owner": "AvengeMedia",
         "repo": "DankMaterialShell",
-        "rev": "0ea0602aecf5ec6814988c61d4d43ff36c613f18",
+        "rev": "5b7302b46dfaf770832ada283ad2be7d823e5599",
         "type": "github"
       },
       "original": {

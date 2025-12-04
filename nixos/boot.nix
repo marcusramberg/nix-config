@@ -7,8 +7,8 @@ let
   cfg = config.profiles.limine;
 in
 {
-  options.profiles.limine.enable = lib.mkEnableOption "Enable config for amd gpu";
-  options.profiles.limine.secureboot = lib.mkEnableOption "Enable secureboot";
+  options.profiles.limine.enable = lib.mkEnableOption "Limine bootloader";
+  options.profiles.limine.secureboot = lib.mkEnableOption "Secureboot";
 
   config = lib.mkIf cfg.enable {
     boot.loader = {
