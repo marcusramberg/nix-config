@@ -13,6 +13,7 @@ background-opacity-cells=true
 unfocused-split-opacity=0.8
 window-padding-x = 5
 window-padding-y = 8,0
+config-file="config-dankcolors"
 
 
 # custom keybindings

@@ -22,6 +22,7 @@ in
       source = ../config/wezterm;
       recursive = true;
     };
+    ".config/niri".source = config.lib.file.mkOutOfStoreSymlink "${flakePath}/config/niri";
     ".config/nvim".source = config.lib.file.mkOutOfStoreSymlink "${flakePath}/config/nvim";
     ".config/ghostty".source = config.lib.file.mkOutOfStoreSymlink "${flakePath}/config/ghostty";
     ".config/fastfetch".source = config.lib.file.mkOutOfStoreSymlink "${flakePath}/config/fastfetch";

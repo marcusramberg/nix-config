@@ -1,0 +1,180 @@
+input {
+    keyboard {
+        xkb {
+            layout "us"
+            model ""
+            rules ""
+            variant "mac"
+            options "eurosign:e"
+        }
+        repeat-delay 600
+        repeat-rate 25
+        track-layout "global"
+    }
+    touchpad {
+        tap
+        natural-scroll
+    }
+    mouse {
+        natural-scroll
+        accel-profile "flat"
+    }
+    workspace-auto-back-and-forth
+}
+output "Apple Computer Inc Color LCD Unknown" {
+  scale 1.400000
+  transform "normal"
+}
+output "DP-1" {
+    scale 1.400000
+    transform "normal"
+}
+output "eDP-1" {
+    scale 1.100000
+    transform "normal"
+}
+screenshot-path "~/Pictures/Screenshots/Screenshot from %Y-%m-%d %H-%M-%S.png"
+prefer-no-csd
+layout {
+    gaps 6
+    struts {
+        left 0
+        right 0
+        top 0
+        bottom 0
+    }
+    focus-ring {
+        width 1
+        active-color "#fab387"
+        inactive-color "#b4befe"
+    }
+    border { off; }
+    shadow {
+        on
+        offset x=0.000000 y=5.000000
+        softness 30
+        spread 4
+        draw-behind-window false
+        color "#00000070"
+    }
+    default-column-width { proportion 0.500000; }
+    preset-column-widths {
+        proportion 0.300000
+        proportion 0.500000
+        proportion 0.700000
+    }
+    center-focused-column "never"
+    always-center-single-column
+}
+cursor {
+    xcursor-theme "default"
+    xcursor-size 24
+}
+hotkey-overlay {
+    skip-at-startup
+    hide-not-bound
+}
+environment {
+    "DMS_SCREENSHOT_EDITOR" "satty"
+    "QT_QPA_PLATFORM" "wayland"
+}
+binds {
+    Mod+1 { focus-workspace "terminal"; }
+    Mod+2 { focus-workspace "browser"; }
+    Mod+3 { focus-workspace "music"; }
+    Mod+4 { focus-workspace "chat"; }
+    Mod+5 { focus-workspace 5; }
+    Mod+6 { focus-workspace 6; }
+    Mod+7 { focus-workspace 7; }
+    Mod+8 { focus-workspace 8; }
+    Mod+Alt+V hotkey-overlay-title="Toggle Clipboard Manager" { spawn "dms" "ipc" "clipboard" "toggle"; }
+    Mod+B hotkey-overlay-title="Toggle Top Bar" { spawn "dms" "ipc" "bar" "toggle" "1"; }
+    Mod+Ctrl+H { focus-monitor-left; }
+    Mod+Ctrl+J { focus-monitor-down; }
+    Mod+Ctrl+K { focus-monitor-up; }
+    Mod+Ctrl+L { focus-monitor-right; }
+    Mod+Ctrl+M { expand-column-to-available-width; }
+    Mod+Ctrl+R { reset-window-height; }
+    Mod+Ctrl+S hotkey-overlay-title="Take Fullscreen Screenshot" { spawn "dms" "ipc" "niri" "screenshotScreen"; }
+    Mod+Ctrl+Shift+Alt+L hotkey-overlay-title="Lock Screen" { spawn "dms" "ipc" "lock" "lock"; }
+    Mod+E hotkey-overlay-title="Open File Manager" { spawn "dolphin"; }
+    Mod+End { focus-column-last; }
+    Mod+Escape allow-inhibiting=false { toggle-keyboard-shortcuts-inhibit; }
+    Mod+F { toggle-window-floating; }
+    Mod+G hotkey-overlay-title="Open GIF Search" { spawn "vicinae" "vicinae://extensions/josephschmitt/gif-search/search"; }
+    Mod+H { focus-column-left; }
+    Mod+Home { focus-column-first; }
+    Mod+J hotkey-overlay-title="Focus Window or Workspace Down" { focus-window-or-workspace-down; }
+    Mod+K hotkey-overlay-title="Focus Window or Workspace Up" { focus-window-or-workspace-up; }
+    Mod+L { focus-column-right; }
+    Mod+M { maximize-column; }
+    Mod+O { consume-or-expel-window-left; }
+    Mod+P { consume-or-expel-window-right; }
+    Mod+R { switch-preset-column-width; }
+    Mod+Return hotkey-overlay-title="Open Terminal Emulator" { spawn "ghostty"; }
+    Mod+Shift+1 { move-column-to-workspace "terminal"; }
+    Mod+Shift+2 { move-column-to-workspace "browser"; }
+    Mod+Shift+3 { move-column-to-workspace "music"; }
+    Mod+Shift+4 { move-column-to-workspace "chat"; }
+    Mod+Shift+5 { move-column-to-workspace 5; }
+    Mod+Shift+6 { move-column-to-workspace 6; }
+    Mod+Shift+7 { move-column-to-workspace 7; }
+    Mod+Shift+8 { move-column-to-workspace 8; }
+    Mod+Shift+Comma hotkey-overlay-title="Toggle Settings" { spawn "dms" "ipc" "settings" "toggle"; }
+    Mod+Shift+Ctrl+H { move-column-to-monitor-left; }
+    Mod+Shift+Ctrl+J { move-column-to-monitor-down; }
+    Mod+Shift+Ctrl+K { move-column-to-monitor-up; }
+    Mod+Shift+Ctrl+L { move-column-to-monitor-right; }
+    Mod+Shift+E { quit; }
+    Mod+Shift+End { move-column-to-last; }
+    Mod+Shift+Equal { set-window-height "+10%"; }
+    Mod+Shift+F { switch-focus-between-floating-and-tiling; }
+    Mod+Shift+H { move-column-left; }
+    Mod+Shift+Home { move-column-to-first; }
+    Mod+Shift+J { move-column-to-workspace-down; }
+    Mod+Shift+K { move-column-to-workspace-up; }
+    Mod+Shift+L { move-column-right; }
+    Mod+Shift+M { fullscreen-window; }
+    Mod+Shift+Minus { set-window-height "-10%"; }
+    Mod+Shift+O { consume-window-into-column; }
+    Mod+Shift+P { expel-window-from-column; }
+    Mod+Shift+Q repeat=false { close-window; }
+    Mod+Shift+R { switch-preset-window-height; }
+    Mod+Shift+S hotkey-overlay-title="Take Area Screenshot" { spawn "dms" "ipc" "niri" "screenshot"; }
+    Mod+Shift+Slash { show-hotkey-overlay; }
+    Mod+Shift+Y { move-workspace-to-monitor-previous; }
+    Mod+Space hotkey-overlay-title="Toggle Application Launcher" { spawn "dms" "ipc" "spotlight" "toggle"; }
+    Mod+Y { move-workspace-to-monitor-next; }
+    Mod+grave { toggle-overview; }
+    XF86AudioLowerVolume allow-when-locked=true { spawn "dms" "ipc" "audio" "decrement" "5"; }
+    XF86AudioMicMute allow-when-locked=true { spawn "dms" "ipc" "audio" "toggle-mic-mute"; }
+    XF86AudioMute allow-when-locked=true { spawn "dms" "ipc" "audio" "mute"; }
+    XF86AudioNext allow-when-locked=true { spawn "dms" "ipc" "mpris" "next"; }
+    XF86AudioPlay allow-when-locked=true { spawn "dms" "ipc" "mpris" "playPause"; }
+    XF86AudioPrev allow-when-locked=true { spawn "dms" "ipc" "mpris" "previous"; }
+    XF86AudioRaiseVolume allow-when-locked=true { spawn "dms" "ipc" "audio" "increment" "5"; }
+    XF86AudioStop allow-when-locked=true { spawn "dms" "ipc" "mpris" "pause"; }
+    XF86MonBrightnessDown allow-when-locked=true { spawn "dms" "ipc" "brightness" "decrement" "10" "backlight:intel_backlight"; }
+    XF86MonBrightnessUp allow-when-locked=true { spawn "dms" "ipc" "brightness" "increment" "10" "backlight:intel_backlight"; }
+}
+workspace "terminal"
+workspace "browser"
+workspace "music"
+workspace "chat"
+spawn-at-startup "/nix/store/rmzhkvr99rbcf8c6q1qkr8vnl5r4wwkc-wvkbd-0.18/bin/wvkbd-mobintl" "--alpha" "220" "--hidden"
+window-rule {
+    draw-border-with-background false
+    geometry-corner-radius 0.000000 0.000000 0.000000 0.000000
+}
+window-rule {
+    match app-id="firefox$" title="^Picture-in-Picture$"
+    open-floating true
+}
+gestures { hot-corners { off; }; }
+animations { workspace-switch { off; }; }
+
+include "dms/alttab.kdl"
+include "dms/colors.kdl"
+include "dms/layout.kdl"
+include "dms/wpblur.kdl"
+include "dms/binds.kdl"
