@@ -1,0 +1,46 @@
+{
+  "dankPomodoroTimer": {
+    "enabled": true,
+    "autoStartBreaks": true
+  },
+  "dankActions": {
+    "enabled": true,
+    "variants": [
+      {
+        "icon": "keyboard",
+        "displayText": "",
+        "displayCommand": "",
+        "clickCommand": "pkill --signal 34 wvkbd-mobintl",
+        "middleClickCommand": "",
+        "rightClickCommand": "",
+        "updateInterval": 0,
+        "showIcon": true,
+        "showText": true,
+        "id": "variant_1764569670354",
+        "name": "Keyboard"
+      }
+    ]
+  },
+  "calculator": {
+    "enabled": true,
+    "noTrigger": false,
+    "trigger": "="
+  },
+  "webSearch": {
+    "enabled": true,
+    "searchEngines": [
+      {
+        "id": "kagi",
+        "name": "Kagi",
+        "icon": "material:search",
+        "url": "https://kagi.com/search?q=%sk",
+        "keywords": [
+          "k"
+        ]
+      }
+    ]
+  },
+  "emojiLauncher": {
+    "enabled": true
+  }
+}

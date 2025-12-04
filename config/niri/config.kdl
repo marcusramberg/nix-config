@@ -22,15 +22,19 @@ input {
     workspace-auto-back-and-forth
 }
 output "Apple Computer Inc Color LCD Unknown" {
-  scale 1.400000
+  scale 1.4
   transform "normal"
 }
+output "AU Optronics 0xD291 Unknown" {
+  scale 1.0
+}
+
 output "DP-1" {
-    scale 1.400000
+    scale 1.4
     transform "normal"
 }
 output "eDP-1" {
-    scale 1.100000
+    scale 1.1
     transform "normal"
 }
 screenshot-path "~/Pictures/Screenshots/Screenshot from %Y-%m-%d %H-%M-%S.png"
@@ -87,7 +91,7 @@ binds {
     Mod+6 { focus-workspace 6; }
     Mod+7 { focus-workspace 7; }
     Mod+8 { focus-workspace 8; }
-    Mod+Alt+V hotkey-overlay-title="Toggle Clipboard Manager" { spawn "dms" "ipc" "clipboard" "toggle"; }
+    Alt+Shift+Insert hotkey-overlay-title="Toggle Clipboard Manager" { spawn "dms" "ipc" "clipboard" "toggle"; }
     Mod+B hotkey-overlay-title="Toggle Top Bar" { spawn "dms" "ipc" "bar" "toggle" "1"; }
     Mod+Ctrl+H { focus-monitor-left; }
     Mod+Ctrl+J { focus-monitor-down; }
