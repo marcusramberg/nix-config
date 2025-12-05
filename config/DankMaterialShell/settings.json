@@ -278,7 +278,11 @@
           "mediaSize": 1
         },
         "clock",
-        "weather"
+        "weather",
+        {
+          "id": "dankPomodoroTimer",
+          "enabled": true
+        }
       ],
       "rightWidgets": [
         {

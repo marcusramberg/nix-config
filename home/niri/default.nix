@@ -16,7 +16,6 @@ in
       libnotify
       satty
       wvkbd
-      wvkbd
     ];
     sessionVariables.QML2_IMPORT_PATH = lib.concatStringsSep ":" [
       "${pkgs.quickshell}/lib/qt-6/qml"
