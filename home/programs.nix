@@ -50,7 +50,6 @@ in
       enable = true;
       nix-direnv.enable = true;
     };
-    dsearch.enable = true;
     eza = {
       enable = true;
       enableFishIntegration = true;

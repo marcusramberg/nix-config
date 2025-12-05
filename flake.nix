@@ -146,9 +146,9 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     chaotic.url = "github:chaotic-cx/nyx/nyxpkgs-unstable";
+    chaotic.inputs.nixpkgs.follows = "nixpkgs";
     dank-shell.url = "github:AvengeMedia/DankMaterialShell";
-    dsearch.url = "github:AvengeMedia/danksearch";
-    dsearch.inputs.nixpkgs.follows = "nixpkgs";
+    dank-shell.inputs.nixpkgs.follows = "nixpkgs";
 
     darwin.url = "github:lnl7/nix-darwin/master";
     darwin.inputs.nixpkgs.follows = "nixpkgs";
@@ -156,6 +156,7 @@
     disko.inputs.nixpkgs.follows = "nixpkgs";
     flake-compat.url = "github:nix-community/flake-compat";
     ghostty.url = "github:ghostty-org/ghostty";
+    ghostty.inputs.nixpkgs.follows = "nixpkgs";
     hei = {
       url = "github:marcusramberg/hei";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -169,7 +170,6 @@
       url = "github:ravitemer/mcp-hub";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    niri.url = "github:sodiboo/niri-flake";
     nix-fast-build.url = "github:Mic92/nix-fast-build";
     nix-index-database.url = "github:Mic92/nix-index-database";
     nix-index-database.inputs.nixpkgs.follows = "nixpkgs";
@@ -187,6 +187,7 @@
       inputs.flake-compat.follows = "flake-compat";
     };
     quickshell.url = "github:quickshell-mirror/quickshell";
+    quickshell.inputs.nixpkgs.follows = "nixpkgs";
     systems.url = "github:nix-systems/default";
     tfenv.flake = false;
     tfenv.url = "github:tfutils/tfenv";

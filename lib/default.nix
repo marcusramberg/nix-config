@@ -56,11 +56,8 @@ let
       imports = [
         ../nixos
         inputs.agenix.nixosModules.age
-        inputs.niri.nixosModules.niri
-        inputs.dank-shell.nixosModules.dankMaterialShell
         {
           nixpkgs.overlays = [
-            inputs.niri.overlays.niri
             inputs.ghostty.overlays.default
           ];
         }

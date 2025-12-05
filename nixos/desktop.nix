@@ -112,13 +112,13 @@ in
       kdeconnect.enable = true;
       niri = lib.mkIf cfg.niri.enable {
         enable = true;
-        package = inputs.nixpkgs-small.legacyPackages.${pkgs.stdenv.hostPlatform.system}.niri;
       };
-      dankMaterialShell = {
+      dms-shell = {
         enable = true;
-        systemd.enable = true;
+        package = inputs.dank-shell.packages.${pkgs.stdenv.hostPlatform.system}.default;
         quickshell.package = inputs.quickshell.packages.${pkgs.stdenv.hostPlatform.system}.default;
       };
+      dsearch.enable = true;
 
       ssh.enableAskPassword = true;
     };
