@@ -23,7 +23,7 @@
     act
     amazon-ecr-credential-helper
     docker-credential-gcr
-    (google-cloud-sdk.withExtraComponents [ pkgs.google-cloud-sdk.components.gke-gcloud-auth-plugin ])
+    google-cloud-sdk # .withExtraComponents [ pkgs.google-cloud-sdk.components.gke-gcloud-auth-plugin ])
     slack
     spotify
     woodpecker-cli
