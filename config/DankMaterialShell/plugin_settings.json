@@ -1,7 +1,8 @@
 {
   "dankPomodoroTimer": {
     "enabled": true,
-    "autoStartBreaks": true
+    "autoStartBreaks": true,
+    "workDuration": "20"
   },
   "dankActions": {
     "enabled": true,
@@ -41,6 +42,9 @@
     ]
   },
   "emojiLauncher": {
+    "enabled": true
+  },
+  "commandRunner": {
     "enabled": true
   }
 }

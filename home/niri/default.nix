@@ -12,9 +12,10 @@ in
 {
   home = mkIf isNiri {
     packages = with pkgs; [
+      inputs.nixpkgs-small.legacyPackages.${pkgs.stdenv.targetPlatform.system}.xwayland-satellite
+      libnotify
       satty
       wvkbd
-      inputs.nixpkgs-small.legacyPackages.${pkgs.stdenv.targetPlatform.system}.xwayland-satellite
       wvkbd
     ];
     sessionVariables.QML2_IMPORT_PATH = lib.concatStringsSep ":" [

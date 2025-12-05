@@ -122,6 +122,7 @@
       "dialout"
       "feedbackd"
       "i2c"
+      "input"
       "incus-admin"
       "pipewire"
       "podman"

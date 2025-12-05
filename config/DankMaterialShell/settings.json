@@ -281,19 +281,36 @@
         "weather"
       ],
       "rightWidgets": [
-        "systemTray",
-        "clipboard",
+        {
+          "id": "dankPomodoroTimer",
+          "enabled": true
+        },
+        {
+          "id": "systemTray",
+          "enabled": true
+        },
+        {
+          "id": "clipboard",
+          "enabled": true
+        },
         {
           "id": "cpuUsage",
-          "enabled": true,
-          "minimumWidth": true
+          "enabled": true
         },
-        "memUsage",
-        "notificationButton",
-        "battery",
-        "controlCenterButton",
         {
-          "id": "dankActions:variant_1764569670354",
+          "id": "memUsage",
+          "enabled": true
+        },
+        {
+          "id": "notificationButton",
+          "enabled": true
+        },
+        {
+          "id": "battery",
+          "enabled": true
+        },
+        {
+          "id": "controlCenterButton",
           "enabled": true
         }
       ],
