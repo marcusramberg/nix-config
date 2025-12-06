@@ -92,14 +92,14 @@ binds {
     Mod+7 { focus-workspace 7; }
     Mod+8 { focus-workspace 8; }
     Alt+Shift+Insert hotkey-overlay-title="Toggle Clipboard Manager" { spawn "dms" "ipc" "clipboard" "toggle"; }
-    Mod+B hotkey-overlay-title="Toggle Top Bar" { spawn "dms" "ipc" "bar" "toggle" "1"; }
+    Mod+B hotkey-overlay-title="Toggle Top Bar" { spawn "dms" "ipc" "bar" "toggle" "index" "0"; }
     Mod+Ctrl+H { focus-monitor-left; }
     Mod+Ctrl+J { focus-monitor-down; }
     Mod+Ctrl+K { focus-monitor-up; }
     Mod+Ctrl+L { focus-monitor-right; }
     Mod+Ctrl+M { expand-column-to-available-width; }
     Mod+Ctrl+R { reset-window-height; }
-    Mod+Ctrl+S hotkey-overlay-title="Take Fullscreen Screenshot" { spawn "dms" "ipc" "niri" "screenshotScreen"; }
+    Mod+Ctrl+S hotkey-overlay-title="Take Fullscreen Screenshot" { spawn "dms" "screenshot" "full"; }
     Mod+Ctrl+Shift+Alt+L hotkey-overlay-title="Lock Screen" { spawn "dms" "ipc" "lock" "lock"; }
     Mod+E hotkey-overlay-title="Open File Manager" { spawn "dolphin"; }
     Mod+End { focus-column-last; }
@@ -144,7 +144,7 @@ binds {
     Mod+Shift+P { expel-window-from-column; }
     Mod+Shift+Q repeat=false { close-window; }
     Mod+Shift+R { switch-preset-window-height; }
-    Mod+Shift+S hotkey-overlay-title="Take Area Screenshot" { spawn "dms" "ipc" "niri" "screenshot"; }
+    Mod+Shift+S hotkey-overlay-title="Take Area Screenshot" { spawn "dms" "screenshot" "region"; }
     Mod+Shift+Slash { show-hotkey-overlay; }
     Mod+Shift+Y { move-workspace-to-monitor-previous; }
     Mod+Space hotkey-overlay-title="Toggle Application Launcher" { spawn "dms" "ipc" "spotlight" "toggle"; }
