@@ -7,3 +7,5 @@ devenv.local.nix
 config/hammerspoon/Spoons/EmmyLua.spoon/annotations
 config/ghostty/config-dankcolors
 config/DankMaterialShell/plugins
+config/niri/dms/colors.kdl
+config/DankMaterialShell/firefox.css

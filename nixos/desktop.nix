@@ -7,7 +7,6 @@
 }:
 let
   cfg = config.profiles.desktop;
-  dms = inputs.dank-shell.packages.${pkgs.stdenv.hostPlatform.system}.default;
 in
 {
   options.profiles.desktop = {
@@ -114,9 +113,8 @@ in
       niri.enable = cfg.niri.enable;
       dms-shell = {
         enable = true;
-        package = dms;
+        package = inputs.dank-shell.packages.${pkgs.stdenv.hostPlatform.system}.default;
         quickshell.package = inputs.quickshell.packages.${pkgs.stdenv.hostPlatform.system}.default;
-        configHome = "/home/marcus";
       };
       dsearch.enable = true;
 
@@ -135,13 +133,14 @@ in
       };
       dbus.packages = [ pkgs.dconf ];
       displayManager = {
-        dms-greeter = {
-          inherit (cfg.niri) enable;
-          package = dms;
-          compositor.name = "niri";
-        };
+        # dms-greeter = {
+        #   #inherit (cfg.niri) enable;
+        #   package = dms;
+        #   compositor.name = "niri";
+        #   configHome = "/home/marcus";
+        # };
         sddm = {
-          enable = !cfg.niri.enable;
+          enable = true;
           wayland = {
             enable = true;
             compositor = "kwin";

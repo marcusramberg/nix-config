@@ -1,5 +1,5 @@
 {
-  "currentThemeName": "cat-mauve",
+  "currentThemeName": "dynamic",
   "customThemeFile": "",
   "matugenScheme": "scheme-tonal-spot",
   "runUserMatugenTemplates": true,
@@ -16,8 +16,8 @@
   "animationSpeed": 1,
   "customAnimationDuration": 500,
   "wallpaperFillMode": "Fill",
-  "blurredWallpaperLayer": false,
-  "blurWallpaperOnOverview": false,
+  "blurredWallpaperLayer": true,
+  "blurWallpaperOnOverview": true,
   "showLauncherButton": true,
   "showWorkspaceSwitcher": true,
   "showFocusedWindow": true,
