@@ -40,6 +40,7 @@ output "eDP-1" {
 screenshot-path "~/Pictures/Screenshots/Screenshot from %Y-%m-%d %H-%M-%S.png"
 prefer-no-csd
 layout {
+    background-color "transparent"
     gaps 6
     struts {
         left 0
@@ -51,15 +52,6 @@ layout {
         width 1
         active-color "#fab387"
         inactive-color "#b4befe"
-    }
-    border { off; }
-    shadow {
-        on
-        offset x=0.000000 y=5.000000
-        softness 30
-        spread 4
-        draw-behind-window false
-        color "#00000070"
     }
     default-column-width { proportion 0.500000; }
     preset-column-widths {
@@ -80,7 +72,11 @@ hotkey-overlay {
 }
 environment {
     "DMS_SCREENSHOT_EDITOR" "satty"
-    "QT_QPA_PLATFORM" "wayland"
+  XDG_CURRENT_DESKTOP "niri"
+  QT_QPA_PLATFORM "wayland"
+  ELECTRON_OZONE_PLATFORM_HINT "auto"
+  QT_QPA_PLATFORMTHEME "gtk3"
+  QT_QPA_PLATFORMTHEME_QT6 "gtk3"
 }
 binds {
     Mod+1 { focus-workspace "terminal"; }
@@ -166,16 +162,52 @@ workspace "browser"
 workspace "music"
 workspace "chat"
 spawn-at-startup "wvkbd-mobintl" "--alpha" "220" "--hidden"
+spawn-at-startup "bash" "-c" "wl-paste --watch cliphist store &"
+
 window-rule {
-    draw-border-with-background false
     geometry-corner-radius 0.000000 0.000000 0.000000 0.000000
 }
 window-rule {
     match app-id="firefox$" title="^Picture-in-Picture$"
     open-floating true
 }
+window-rule {
+    match app-id=r#"^org\.gnome\."#
+    draw-border-with-background false
+    geometry-corner-radius 12
+    clip-to-geometry true
+}
+
+window-rule {
+    match app-id=r#"^org\.wezfurlong\.wezterm$"#
+    match app-id="Alacritty"
+    match app-id="zen"
+    match app-id="com.mitchellh.ghostty"
+    match app-id="kitty"
+    draw-border-with-background false
+}
+
+window-rule {
+    match is-active=false
+    opacity 0.9
+}
+
+window-rule {
+    geometry-corner-radius 12
+    clip-to-geometry true
+}
+
+// Open DMS windows as floating by default
+window-rule {
+    match app-id=r#"org.quickshell$"#
+    open-floating true
+}
 gestures { hot-corners { off; }; }
 animations { workspace-switch { off; }; }
+layer-rule {
+    match namespace="dms:blurwallpaper"
+    place-within-backdrop true
+}
 
 include "dms/alttab.kdl"
 include "dms/colors.kdl"
