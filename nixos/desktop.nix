@@ -7,6 +7,7 @@
 }:
 let
   cfg = config.profiles.desktop;
+  dms = inputs.dank-shell.packages.${pkgs.stdenv.hostPlatform.system}.default;
 in
 {
   options.profiles.desktop = {
@@ -115,8 +116,9 @@ in
       };
       dms-shell = {
         enable = true;
-        package = inputs.dank-shell.packages.${pkgs.stdenv.hostPlatform.system}.default;
+        package = dms;
         quickshell.package = inputs.quickshell.packages.${pkgs.stdenv.hostPlatform.system}.default;
+        configHome = "/home/marcus";
       };
       dsearch.enable = true;
 
