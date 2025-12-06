@@ -26,6 +26,7 @@
 
   environment.systemPackages = with pkgs; [
     firedragon-catppuccin-bin
+    spotify
   ];
   hardware = {
     amdgpu.legacySupport.enable = true;
@@ -48,8 +49,8 @@
   profiles.limine.enable = true;
 
   services = {
-    displayManager.autoLogin.enable = true;
-    displayManager.autoLogin.user = "marcus";
+    # displayManager.autoLogin.enable = true;
+    # displayManager.autoLogin.user = "marcus";
     input-remapper.enable = true;
     mbpfan = {
       enable = true;
@@ -68,6 +69,7 @@
   systemd.services.brightness-init = {
     description = "brightness init";
     wantedBy = [ "graphical.target" ];
+    after = [ "graphical.target" ];
     serviceConfig = {
       Type = "oneshot";
       RemainAfterExit = true;
@@ -75,6 +77,7 @@
       Group = "root";
     };
     script = ''
+      sleep 5
       echo 150 > /sys/class/backlight/amdgpu_bl1/brightness
     '';
   };

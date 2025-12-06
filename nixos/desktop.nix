@@ -111,9 +111,7 @@ in
           ++ lib.optionals (pkgs.stdenv.hostPlatform.system == "x86_64-linux") [ fx-cast-bridge ];
       };
       kdeconnect.enable = true;
-      niri = lib.mkIf cfg.niri.enable {
-        enable = true;
-      };
+      niri.enable = cfg.niri.enable;
       dms-shell = {
         enable = true;
         package = dms;
@@ -136,16 +134,23 @@ in
         enableQt5Integration = false;
       };
       dbus.packages = [ pkgs.dconf ];
-      displayManager.sddm = {
-        enable = true;
-        wayland = {
-          enable = true;
-          compositor = "kwin";
+      displayManager = {
+        dms-greeter = {
+          inherit (cfg.niri) enable;
+          package = dms;
+          compositor.name = "niri";
         };
-        theme = "catppuccin-mocha-mauve";
-        settings.General.InputMethod = "";
+        sddm = {
+          enable = !cfg.niri.enable;
+          wayland = {
+            enable = true;
+            compositor = "kwin";
+          };
+          theme = "catppuccin-mocha-mauve";
+          settings.General.InputMethod = "";
+        };
+        defaultSession = lib.mkForce (if cfg.niri.enable then "niri" else "plasma");
       };
-      displayManager.defaultSession = lib.mkForce (if cfg.niri.enable then "niri" else "plasma");
       gnome.at-spi2-core.enable = true;
       flatpak.enable = true;
       orca.enable = false;
