@@ -7,37 +7,29 @@
 {
   imports = [
     # Include the results of the hardware scan.
-    ./hardware-configuration.nix
     ../../modules/pipewire.nix
     ../../nixos/calibre-web.nix
   ];
 
   # Bootloader.
   boot = {
-    # binfmt.emulatedSystems = [ "aarch64-linux" ];
-    loader = {
-      systemd-boot.enable = true;
-      efi.canTouchEfiVariables = true;
-    };
+    loader.efi.canTouchEfiVariables = true;
     # Setup keyfile
     initrd = {
       secrets = {
-        "/crypto_keyfile.bin" = null;
+        "/hdd.key" = "/var/lib/secrets/hdd.key";
       };
-      # Enable swap on luks
-      luks.devices."luks-0050060b-f9cb-4697-8934-aef2f5ad0e2a".device =
-        "/dev/disk/by-uuid/0050060b-f9cb-4697-8934-aef2f5ad0e2a";
-      luks.devices."luks-0050060b-f9cb-4697-8934-aef2f5ad0e2a".keyFile = "/crypto_keyfile.bin";
-      # systemd = {
-      #   network.enable = true;
-      #   network.networks."10-wlan" = {
-      #     matchConfig.Name = "enp9s0";
-      #     networkConfig.DHCP = "yes";
-      #   };
-      # };
+      luks.devices = {
+        "luks-0050060b-f9cb-4697-8934-aef2f5ad0e2a" = {
+          device = "/dev/disk/by-uuid/0050060b-f9cb-4697-8934-aef2f5ad0e2a";
+          keyFile = "/hdd.key";
+        };
+        "luks-cc871eb9-17d2-4e3a-a779-7f830d1f4065" = {
+          device = "/dev/disk/by-uuid/cc871eb9-17d2-4e3a-a779-7f830d1f4065";
+          keyFile = "/hdd.key";
+        };
+      };
     };
-
-    # kernelParams = [ "fbcon=map:1" ];
 
     # These modules are required for PCI passthrough, and must come before early modesetting stuff
     kernelModules = [
@@ -45,7 +37,6 @@
       "hid-apple"
     ];
     kernel.sysctl = {
-
       "fs.inotify.max_user_watches" = 2048576; # default: 8192
       "fs.inotify.max_user_instances" = 1024; # default: 128
       "fs.inotify.max_queued_events" = 32768; # default: 16384 };
@@ -55,12 +46,17 @@
       options kvm_intel nested=1
     '';
   };
-  environment.systemPackages = with pkgs; [
-    gurk-rs
-    prusa-slicer
-  ];
 
   fileSystems = {
+    "/" = {
+      device = "/dev/disk/by-uuid/026028f5-9639-4140-ae09-010c05dfa3c6";
+      fsType = "ext4";
+    };
+
+    "/boot" = {
+      device = "/dev/disk/by-uuid/1CB4-F73F";
+      fsType = "vfat";
+    };
     "/space" = {
       device = "mspace:/volume1/space";
       fsType = "nfs4";
@@ -68,6 +64,7 @@
         "nfsvers=4.1"
         "soft"
         "x-systemd.automount"
+        "noauto"
       ];
     };
     "/mnt/nix" = {
@@ -85,6 +82,7 @@
         "nfsvers=4.1"
         "soft"
         "x-systemd.automount"
+        "noauto"
       ];
     };
   };
@@ -103,19 +101,17 @@
       enable = true;
       user = "marcus";
       autoStart = true;
-      desktopSession = "plasma";
+      desktopSession = "niri";
     };
   };
 
   networking = {
-    extraHosts = ''
-      0.0.0.0 vg.no www.vg.no
-    '';
     hostName = "mbox";
     networkmanager.enable = true;
   };
 
   hardware = {
+    enableRedistributableFirmware = true;
     gpu.amd.enable = true;
     bluetooth.enable = true;
     keyboard.dual-caps.enable = true;
@@ -136,9 +132,14 @@
     };
   };
 
+  swapDevices = [ { device = "/dev/disk/by-uuid/a3e364f4-a757-4e71-b220-5c850de97136"; } ];
+
   profiles = {
-    autoupgrade.enable = true;
-    desktop.enable = true;
+    limine.enable = true;
+    desktop = {
+      enable = true;
+      niri.enable = true;
+    };
     # dockerHost.enable = true;
     gaming.enable = true;
     caddy = {
