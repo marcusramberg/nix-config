@@ -4,12 +4,12 @@ let
     {.keys = {KEY_LEFTMETA, KEY_V},
      .down_press = {KEY_LEFTSHIFT, KEY_RESERVED, KEY_INSERT, KEY_RESERVED},
      .up_press = {KEY_RESERVED, KEY_INSERT, KEY_RESERVED, KEY_LEFTSHIFT},
-     DOWN_IFF_ALL_DOWN(2)},
+     .nbeforedown = -2, .nbeforeup = 0, .nup = 0},
     {
       .keys = {KEY_LEFTMETA, KEY_C},
       .down_press = {KEY_LEFTCTRL, KEY_RESERVED, KEY_INSERT, KEY_RESERVED},
       .up_press = {KEY_RESERVED, KEY_INSERT, KEY_RESERVED, KEY_LEFTCTRL},
-      DOWN_IFF_ALL_DOWN(2)
+      .nbeforedown = -2, .nbeforeup = 0, .nup = 0
     }
   '';
 in
