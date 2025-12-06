@@ -167,12 +167,12 @@
   "acLockTimeout": 0,
   "acSuspendTimeout": 0,
   "acSuspendBehavior": 0,
-  "acProfileName": "",
+  "acProfileName": "1",
   "batteryMonitorTimeout": 0,
   "batteryLockTimeout": 0,
   "batterySuspendTimeout": 0,
   "batterySuspendBehavior": 0,
-  "batteryProfileName": "",
+  "batteryProfileName": "0",
   "lockBeforeSuspend": false,
   "preventIdleForMedia": false,
   "loginctlLockIntegration": true,
@@ -270,7 +270,11 @@
       "centerWidgets": [
         "music",
         "clock",
-        "weather"
+        "weather",
+        {
+          "id": "dankPomodoroTimer",
+          "enabled": true
+        }
       ],
       "rightWidgets": [
         "systemTray",
