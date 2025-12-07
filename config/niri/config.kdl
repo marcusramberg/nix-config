@@ -28,6 +28,9 @@ output "Apple Computer Inc Color LCD Unknown" {
 output "AU Optronics 0xD291 Unknown" {
   scale 1.0
 }
+output "Dell Inc. DELL U3223QE 757H2P3" {
+  scale 1.5
+}
 
 output "HDMI-A-1" {
     scale 2.0
