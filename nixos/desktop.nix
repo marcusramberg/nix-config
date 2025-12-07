@@ -97,6 +97,7 @@ in
         kdePackages.kaccounts-providers
         kdePackages.karousel
         kdePackages.kio-gdrive
+        kdePackages.qtdeclarative
         webcord-vencord
       ];
     };
@@ -124,6 +125,7 @@ in
     };
 
     qt = {
+      enable = true;
       style = "breeze";
       platformTheme = "kde";
     };

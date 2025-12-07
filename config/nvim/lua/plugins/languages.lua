@@ -84,6 +84,13 @@ return {
             },
           },
         },
+        qmlls = {
+          cmd = {
+            "qmlls",
+            "-E",
+          },
+          mason = false,
+        },
         yamlls = {
           settings = {
             yaml = {
