@@ -17,11 +17,5 @@ in
       satty
       wvkbd
     ];
-    sessionVariables.QML2_IMPORT_PATH = lib.concatStringsSep ":" [
-      "${pkgs.quickshell}/lib/qt-6/qml"
-      "${pkgs.kdePackages.qtdeclarative}/lib/qt-6/qml"
-      "${pkgs.kdePackages.kirigami.unwrapped}/lib/qt-6/qml"
-      "${pkgs.kdePackages.qtmultimedia}/lib/qt-6/qml"
-    ];
   };
 }

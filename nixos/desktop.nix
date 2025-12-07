@@ -7,6 +7,8 @@
 }:
 let
   cfg = config.profiles.desktop;
+  dms = inputs.dank-shell.packages.${pkgs.stdenv.hostPlatform.system}.default;
+  quickshell = inputs.quickshell.packages.${pkgs.stdenv.hostPlatform.system}.default;
 in
 {
   options.profiles.desktop = {
@@ -113,8 +115,8 @@ in
       niri.enable = cfg.niri.enable;
       dms-shell = {
         enable = true;
-        package = inputs.dank-shell.packages.${pkgs.stdenv.hostPlatform.system}.default;
-        quickshell.package = inputs.quickshell.packages.${pkgs.stdenv.hostPlatform.system}.default;
+        package = dms;
+        quickshell.package = quickshell;
       };
       dsearch.enable = true;
 
@@ -133,14 +135,16 @@ in
       };
       dbus.packages = [ pkgs.dconf ];
       displayManager = {
-        # dms-greeter = {
-        #   #inherit (cfg.niri) enable;
-        #   package = dms;
-        #   compositor.name = "niri";
-        #   configHome = "/home/marcus";
-        # };
+        dms-greeter = {
+          inherit (cfg.niri) enable;
+          package = dms;
+          quickshell.package = quickshell;
+          logs.save = true;
+          compositor.name = "niri";
+          configHome = "/home/marcus";
+        };
         sddm = {
-          enable = true;
+          enable = !cfg.niri.enable;
           wayland = {
             enable = true;
             compositor = "kwin";
@@ -162,6 +166,13 @@ in
         };
       };
     };
+    environment.sessionVariables.QML2_IMPORT_PATH = lib.concatStringsSep ":" [
+      "${quickshell}/lib/qt-6/qml"
+      "${pkgs.kdePackages.qtdeclarative}/lib/qt-6/qml"
+      "${pkgs.kdePackages.kirigami.unwrapped}/lib/qt-6/qml"
+      "${pkgs.kdePackages.sonnet}/lib/qt-6/qml"
+      "${pkgs.kdePackages.qtmultimedia}/lib/qt-6/qml"
+    ];
     networking.firewall.allowedTCPPorts = [ 3389 ];
     security.polkit = {
       enable = true;
