@@ -77,6 +77,7 @@ in
     udev.extraRules = ''
       KERNEL=="event*", SUBSYSTEM=="input", ATTRS{name}=="Targus Folding Ergonomic Bluetooth Keyboard", SYMLINK+="input/by-path/mfold.input-event-kbd"
       KERNEL=="event*", SUBSYSTEM=="input", ATTRS{name}=="mBoard", SYMLINK+="input/by-path/mboard.input-event-kbd"
+      KERNEL=="event*", SUBSYSTEM=="input", ATTRS{name}=="Milla Rambergs tastatur", SYMLINK+="input/by-path/tvboard.input-event-kbd"
     '';
   };
 }

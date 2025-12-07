@@ -4,7 +4,7 @@ input {
             layout "us"
             model ""
             rules ""
-            variant "mac"
+            variant "mac-iso"
             options "eurosign:e"
         }
         repeat-delay 600
@@ -27,6 +27,11 @@ output "Apple Computer Inc Color LCD Unknown" {
 }
 output "AU Optronics 0xD291 Unknown" {
   scale 1.0
+}
+
+output "HDMI-A-1" {
+    scale 2.0
+    transform "normal"
 }
 
 output "DP-1" {

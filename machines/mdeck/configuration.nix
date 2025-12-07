@@ -74,6 +74,7 @@
 
   services = {
     displayManager.sddm.enable = lib.mkForce false;
+    displayManager.dms-greeter.enable = lib.mkForce false;
     input-remapper.enable = true;
     xserver = {
       enable = lib.mkForce true;

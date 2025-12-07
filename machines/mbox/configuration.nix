@@ -170,6 +170,7 @@
 
   services = {
     blueman.enable = true;
+    displayManager.dms-greeter.enable = lib.mkForce false;
     displayManager.sddm.enable = lib.mkForce false;
     immich = {
       enable = true;
