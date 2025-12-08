@@ -1,9 +1,9 @@
 binds {
     Ctrl+Alt+Delete hotkey-overlay-title="Task Manager" { spawn "dms" "ipc" "call" "processlist" "toggle"; }
-    Mod+Comma hotkey-overlay-title="Settings" { spawn "dms" "ipc" "call" "settings" "toggle"; }
     Mod+N hotkey-overlay-title="Notification Center" { spawn "dms" "ipc" "call" "notifications" "toggle"; }
     Mod+Shift+N hotkey-overlay-title="Notepad" { spawn "dms" "ipc" "call" "notepad" "toggle"; }
     Mod+Space hotkey-overlay-title="Application Launcher" { spawn "dms" "ipc" "call" "spotlight" "toggle"; }
+    Super+W hotkey-overlay-title="Wallpaper Browser" { spawn "dms" "ipc" "call" "dankdash" "wallpaper"; }
     XF86AudioMicMute allow-when-locked=true { spawn "dms" "ipc" "call" "audio" "micmute"; }
     XF86AudioMute allow-when-locked=true { spawn "dms" "ipc" "call" "audio" "mute"; }
     XF86MonBrightnessDown allow-when-locked=true { spawn "dms" "ipc" "call" "brightness" "decrement" "5"; }
