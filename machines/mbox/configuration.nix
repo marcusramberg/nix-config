@@ -136,11 +136,7 @@
 
   profiles = {
     limine.enable = true;
-    desktop = {
-      enable = true;
-      niri.enable = true;
-    };
-    # dockerHost.enable = true;
+    desktop.enable = true;
     gaming.enable = true;
     caddy = {
       enable = true;

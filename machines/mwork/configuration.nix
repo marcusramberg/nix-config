@@ -51,10 +51,7 @@
 
   # Install the driver
   services = {
-    fprintd = {
-      enable = true;
-    };
-    envfs.enable = true;
+    fprintd.enable = true;
     resolved = {
       enable = true;
       extraConfig = ''
@@ -64,9 +61,9 @@
     xserver.xkb.variant = lib.mkForce "mac-iso";
   };
   security.pam.services = {
+    greetd.fprintAuth = false;
     login.unixAuth = true;
     login.fprintAuth = false;
-    sddm.fprintAuth = false;
     kwallet.fprintAuth = true;
   };
 
@@ -95,7 +92,6 @@
     };
   };
 
-  powerManagement.enable = true;
   profiles = {
     limine = {
       enable = true;

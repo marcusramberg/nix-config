@@ -156,14 +156,14 @@
   };
 
   security = {
-    pam.loginLimits = [
-      {
-        domain = "marcus";
-        type = "soft";
-        item = "nofile";
-        value = "200000";
-      }
-    ];
+    # pam.loginLimits = [
+    #   {
+    #     domain = "marcus";
+    #     type = "soft";
+    #     item = "nofile";
+    #     value = "200000";
+    #   }
+    # ];
     pki.certificateFiles =
       if builtins.pathExists "/home/marcus/.local/share/mkcert/rootCA.pem" then
         [ /home/marcus/.local/share/mkcert/rootCA.pem ]

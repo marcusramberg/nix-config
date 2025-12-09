@@ -1,5 +1,4 @@
 {
-  config,
   lib,
   osConfig,
   pkgs,
@@ -12,27 +11,8 @@ in
 {
   config = lib.mkIf isDesktop {
     home.packages = with pkgs; [
-      element-desktop
       geeqie
-      neovide
       obsidian
-      showmethekey
-      (signal-desktop.override {
-        commandLineArgs = [ "--password-store=kwallet6" ];
-      })
-      spotify-player
-      telegram-desktop
-      kdePackages.tokodon
-      (vivaldi.override {
-        commandLineArgs = [ "--password-store=kwallet6" ];
-        enableWidevine = true;
-        proprietaryCodecs = true;
-      })
-      vivaldi-ffmpeg-codecs
-      vlc
-      wl-clipboard
-      wl-clip-persist
-      waypipe
     ];
     programs = {
       plasma = {
@@ -382,30 +362,6 @@ in
           obeyDrm = false;
           zoomMode = "fitWidth";
         };
-      };
-      vicinae = {
-        enable = true;
-        systemd.enable = true;
-        settings = {
-          font = {
-            size = 11;
-            normal = "JetBrainsMono Nerd Font Propo";
-          };
-          window = {
-            csd = true;
-            opacity = 0.94;
-            rounding = 10;
-          };
-          theme.name = "catppuccin-mocha";
-
-        };
-        extensions = [
-          (config.lib.vicinae.mkRayCastExtension {
-            name = "gif-search";
-            sha256 = "sha256-F0Q/xSytdlFRDAkr9pB9Zf2ys4FjHpw5+VbJf0fHVrw=";
-            rev = "b8c8fcd7ebd441a5452b396923f2a40e879565ba";
-          })
-        ];
       };
     };
     xdg.configFile."vicinae/vicinae.json".force = true;

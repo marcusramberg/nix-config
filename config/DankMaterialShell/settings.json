@@ -174,7 +174,6 @@
   "batterySuspendBehavior": 0,
   "batteryProfileName": "0",
   "lockBeforeSuspend": true,
-  "preventIdleForMedia": false,
   "loginctlLockIntegration": true,
   "fadeToLockEnabled": false,
   "fadeToLockGracePeriod": 5,

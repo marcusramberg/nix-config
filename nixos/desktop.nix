@@ -12,8 +12,7 @@ let
 in
 {
   options.profiles.desktop = {
-    enable = lib.mkEnableOption "desktop environment with plasma and catppuccin theme";
-    niri.enable = lib.mkEnableOption "enable niri environment";
+    enable = lib.mkEnableOption "niri+dank environment";
   };
 
   config = lib.mkIf cfg.enable {
@@ -37,70 +36,84 @@ in
     };
 
     environment = {
-      plasma6.excludePackages = with pkgs.kdePackages; [
-        kwin-x11
-        kate
-        ktexteditor
-      ];
       sessionVariables.NIXOS_OZONE_WL = "1";
-      systemPackages = with pkgs; [
-        (catppuccin.override {
-          variant = "mocha";
-          accent = "lavender";
-          themeList = [
-            "bat"
-            "btop"
-            "element"
-            "k9s"
-            "lazygit"
-            "waybar"
-          ];
-        })
-        (catppuccin-gtk.override {
-          variant = "mocha";
-          accents = [
-            "blue"
-            "teal"
-            "lavender"
-          ];
+      systemPackages =
+        with pkgs;
+        [
+          (catppuccin.override {
+            variant = "mocha";
+            accent = "lavender";
+            themeList = [
+              "bat"
+              "btop"
+              "element"
+              "k9s"
+              "lazygit"
+              "waybar"
+            ];
+          })
+          (catppuccin-gtk.override {
+            variant = "mocha";
+            accents = [
+              "blue"
+              "teal"
+              "lavender"
+            ];
 
-        })
-        (catppuccin-kde.override {
-          flavour = [ "mocha" ];
-          winDecStyles = [
-            "classic"
-          ];
-          accents = [
-            "blue"
-            "teal"
-            "lavender"
-          ];
+          })
+          (catppuccin-kde.override {
+            flavour = [ "mocha" ];
+            winDecStyles = [
+              "classic"
+            ];
+            accents = [
+              "blue"
+              "teal"
+              "lavender"
+            ];
 
-        })
-        catppuccin-cursors.mochaLavender
-        (catppuccin-kvantum.override {
-          variant = "mocha";
-          accent = "lavender";
-        })
-        (catppuccin-papirus-folders.override {
-          flavor = "mocha";
-          accent = "lavender";
-        })
-        (catppuccin-sddm.override {
-          flavor = "mocha";
-          font = "JetBrainsMono Nerd Font Propo";
-          fontSize = "9";
-        })
-        ghostty
-        hunspell
-        hunspellDicts.en_US
-        kdePackages.kaccounts-providers
-        kdePackages.karousel
-        kdePackages.kio-gdrive
-        kdePackages.qtdeclarative
-        nautilus
-        webcord-vencord
-      ];
+          })
+          catppuccin-cursors.mochaLavender
+          (catppuccin-kvantum.override {
+            variant = "mocha";
+            accent = "lavender";
+          })
+          (catppuccin-papirus-folders.override {
+            flavor = "mocha";
+            accent = "lavender";
+          })
+          element-desktop
+          ghostty
+          hunspell
+          hunspellDicts.en_US
+          nautilus
+          neovide
+          showmethekey
+          vlc
+          wl-clipboard
+          wl-clip-persist
+          waypipe
+          (vivaldi.override {
+            commandLineArgs = [ "--password-store=kwallet6" ];
+            enableWidevine = true;
+            proprietaryCodecs = true;
+          })
+          vivaldi-ffmpeg-codecs
+          spotify-player
+          telegram-desktop
+          kdePackages.tokodon
+          (signal-desktop.override {
+            commandLineArgs = [ "--password-store=kwallet6" ];
+          })
+          webcord-vencord
+        ]
+        ++ (with kdePackages; [
+          kaccounts-providers
+          kio-gdrive
+          qtdeclarative
+          kwallet # provides helper service
+          kwallet-pam # provides helper service
+        ]);
     };
 
     profiles.myfonts.enable = true;
@@ -114,7 +127,7 @@ in
           ++ lib.optionals (pkgs.stdenv.hostPlatform.system == "x86_64-linux") [ fx-cast-bridge ];
       };
       kdeconnect.enable = true;
-      niri.enable = cfg.niri.enable;
+      niri.enable = true;
       dms-shell = {
         enable = true;
         package = dms;
@@ -132,34 +145,23 @@ in
     };
 
     services = {
-      desktopManager.plasma6 = {
-        enable = true;
-        enableQt5Integration = false;
-      };
       dbus.packages = [ pkgs.dconf ];
       displayManager = {
         dms-greeter = {
-          inherit (cfg.niri) enable;
+          enable = true;
           package = dms;
           quickshell.package = quickshell;
-          logs.save = true;
           compositor.name = "niri";
           configHome = "/home/marcus";
         };
-        sddm = {
-          enable = !cfg.niri.enable;
-          wayland = {
-            enable = true;
-            compositor = "kwin";
-          };
-          theme = "catppuccin-mocha-mauve";
-          settings.General.InputMethod = "";
-        };
-        defaultSession = lib.mkForce (if cfg.niri.enable then "niri" else "plasma");
+        defaultSession = lib.mkForce "niri";
       };
       gnome.at-spi2-core.enable = true;
       flatpak.enable = true;
       orca.enable = false;
+      power-profiles-daemon.enable = true;
+      upower.enable = true;
+
       xserver = {
         enable = false;
         xkb = {
@@ -176,7 +178,6 @@ in
       "${pkgs.kdePackages.sonnet}/lib/qt-6/qml"
       "${pkgs.kdePackages.qtmultimedia}/lib/qt-6/qml"
     ];
-    networking.firewall.allowedTCPPorts = [ 3389 ];
     security.polkit = {
       enable = true;
       extraConfig = ''
@@ -196,6 +197,17 @@ in
         })
       '';
     };
-    xdg.portal.xdgOpenUsePortal = true;
+    security.pam.services = {
+      login.kwallet = {
+        enable = true;
+        package = pkgs.kdePackages.kwallet-pam;
+      };
+    };
+    xdg.portal = {
+      xdgOpenUsePortal = true;
+      extraPortals = [
+        pkgs.kdePackages.kwallet
+      ];
+    };
   };
 }
