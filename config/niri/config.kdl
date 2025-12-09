@@ -105,7 +105,7 @@ binds {
     Mod+Ctrl+R { reset-window-height; }
     Mod+Ctrl+S hotkey-overlay-title="Take Fullscreen Screenshot" { spawn "dms" "screenshot" "full"; }
     Mod+Ctrl+Shift+Alt+L hotkey-overlay-title="Lock Screen" { spawn "dms" "ipc" "lock" "lock"; }
-    Mod+E hotkey-overlay-title="Open File Manager" { spawn "dolphin"; }
+    Mod+E hotkey-overlay-title="Open File Manager" { spawn "nautilus"; }
     Mod+End { focus-column-last; }
     Mod+Escape allow-inhibiting=false { toggle-keyboard-shortcuts-inhibit; }
     Mod+F { toggle-window-floating; }
@@ -197,7 +197,7 @@ window-rule {
 
 window-rule {
     match is-active=false
-    opacity 0.9
+    opacity 0.99
 }
 
 window-rule {

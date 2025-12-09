@@ -1,10 +1,10 @@
 {
-  "currentThemeName": "cat-blue",
+  "currentThemeName": "cat-lavender",
   "customThemeFile": "",
   "matugenScheme": "scheme-tonal-spot",
   "runUserMatugenTemplates": true,
   "matugenTargetMonitor": "",
-  "popupTransparency": 1,
+  "popupTransparency": 0.89,
   "dockTransparency": 1,
   "widgetBackgroundColor": "sch",
   "widgetColorMode": "default",
@@ -17,7 +17,7 @@
   "customAnimationDuration": 500,
   "wallpaperFillMode": "Fill",
   "blurredWallpaperLayer": true,
-  "blurWallpaperOnOverview": false,
+  "blurWallpaperOnOverview": true,
   "showLauncherButton": true,
   "showWorkspaceSwitcher": true,
   "showFocusedWindow": true,
@@ -116,8 +116,8 @@
       "value": "looks_3"
     }
   },
-  "waveProgressEnabled": true,
-  "scrollTitleEnabled": true,
+  "waveProgressEnabled": false,
+  "scrollTitleEnabled": false,
   "clockCompactMode": false,
   "focusedWindowCompactMode": false,
   "runningAppsCompactMode": true,
@@ -172,8 +172,8 @@
   "batteryLockTimeout": 0,
   "batterySuspendTimeout": 0,
   "batterySuspendBehavior": 0,
-  "batteryProfileName": "",
-  "lockBeforeSuspend": false,
+  "batteryProfileName": "0",
+  "lockBeforeSuspend": true,
   "preventIdleForMedia": false,
   "loginctlLockIntegration": true,
   "fadeToLockEnabled": false,
@@ -191,7 +191,7 @@
   "gtkThemingEnabled": false,
   "qtThemingEnabled": false,
   "syncModeWithPortal": true,
-  "terminalsAlwaysDark": false,
+  "terminalsAlwaysDark": true,
   "showDock": false,
   "dockAutoHide": false,
   "dockGroupByApp": false,
@@ -270,7 +270,11 @@
       "centerWidgets": [
         "music",
         "clock",
-        "weather"
+        "weather",
+        {
+          "id": "dankPomodoroTimer",
+          "enabled": true
+        }
       ],
       "rightWidgets": [
         "systemTray",

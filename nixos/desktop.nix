@@ -98,6 +98,7 @@ in
         kdePackages.karousel
         kdePackages.kio-gdrive
         kdePackages.qtdeclarative
+        nautilus
         webcord-vencord
       ];
     };
