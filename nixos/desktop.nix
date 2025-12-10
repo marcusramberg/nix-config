@@ -94,7 +94,6 @@ in
           wl-clip-persist
           waypipe
           (vivaldi.override {
-            commandLineArgs = [ "--password-store=kwallet6" ];
             enableWidevine = true;
             proprietaryCodecs = true;
           })
@@ -102,17 +101,16 @@ in
           spotify-player
           telegram-desktop
           kdePackages.tokodon
-          (signal-desktop.override {
-            commandLineArgs = [ "--password-store=kwallet6" ];
-          })
+          signal-desktop
           webcord-vencord
         ]
         ++ (with kdePackages; [
           kaccounts-providers
           kio-gdrive
+          discover
+          dolphin
+          dolphin-plugins
           qtdeclarative
-          kwallet # provides helper service
-          kwallet-pam # provides helper service
         ]);
     };
 
@@ -126,15 +124,19 @@ in
           [ tridactyl-native ]
           ++ lib.optionals (pkgs.stdenv.hostPlatform.system == "x86_64-linux") [ fx-cast-bridge ];
       };
-      kdeconnect.enable = true;
-      niri.enable = true;
       dms-shell = {
         enable = true;
         package = dms;
         quickshell.package = quickshell;
       };
       dsearch.enable = true;
-
+      kdeconnect.enable = true;
+      nautilus-open-any-terminal = {
+        enable = true;
+        terminal = "ghostty";
+      };
+      niri.enable = true;
+      seahorse.enable = true;
       ssh.enableAskPassword = true;
     };
 
@@ -145,7 +147,6 @@ in
     };
 
     services = {
-      dbus.packages = [ pkgs.dconf ];
       displayManager = {
         dms-greeter = {
           enable = true;
@@ -198,16 +199,14 @@ in
       '';
     };
     security.pam.services = {
-      login.kwallet = {
-        enable = true;
-        package = pkgs.kdePackages.kwallet-pam;
-      };
+      greetd.fprintAuth = lib.mkDefault false;
     };
-    xdg.portal = {
-      xdgOpenUsePortal = true;
-      extraPortals = [
-        pkgs.kdePackages.kwallet
-      ];
+    xdg = {
+      portal.xdgOpenUsePortal = true;
+      mime = {
+        enable = true;
+        defaultApplications."inode/directory" = "dolphin.desktop";
+      };
     };
   };
 }

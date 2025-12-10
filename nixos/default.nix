@@ -29,7 +29,6 @@
     ./kodi.nix
     ./laptop.nix
     ./mediaserver.nix
-    ./nimdow.nix
     ./nvidia.nix
     ./passthrough.nix
     ./pg_upgrade.nix

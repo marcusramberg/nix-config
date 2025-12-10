@@ -13,7 +13,7 @@ vim.api.nvim_create_autocmd({ "FileType" }, {
 })
 
 vim.api.nvim_create_autocmd({ "BufEnter" }, {
-  pattern = vim.fn.expand("~") .. "/Source/{nimdow,nixpkgs,github_exporter}/*",
+  pattern = vim.fn.expand("~") .. "/Source/{github_exporter}/*",
   callback = function()
     vim.b.autoformat = false
   end,

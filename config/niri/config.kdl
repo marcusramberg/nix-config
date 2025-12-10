@@ -108,7 +108,7 @@ binds {
     Mod+Ctrl+R { reset-window-height; }
     Mod+Ctrl+S hotkey-overlay-title="Take Fullscreen Screenshot" { spawn "dms" "screenshot" "full"; }
     Mod+Ctrl+Shift+Alt+L hotkey-overlay-title="Lock Screen" { spawn "dms" "ipc" "lock" "lock"; }
-    Mod+E hotkey-overlay-title="Open File Manager" { spawn "nautilus"; }
+    Mod+E hotkey-overlay-title="Open File Manager" { spawn "dolphin"; }
     Mod+End { focus-column-last; }
     Mod+Escape allow-inhibiting=false { toggle-keyboard-shortcuts-inhibit; }
     Mod+F { toggle-window-floating; }
@@ -213,6 +213,35 @@ window-rule {
     match app-id=r#"org.quickshell$"#
     open-floating true
 }
+// kde connect pointer.
+window-rule {
+  match app-id=r"org.kde.kdeconnect.daemon" // ID of presentation pointer overlay
+  open-floating true
+  open-fullscreen false
+  default-floating-position x=0 y=0 relative-to="top-left"
+
+  // Adjust these to your monitor's resolution
+  min-width 1920
+  min-height 1080
+
+  // Optionally customize opacity of pointer
+  // opacity 1.0
+
+  tiled-state true
+
+  focus-ring {
+    off
+  }
+  border {
+    off
+  }
+  shadow {
+    off
+  }
+  draw-border-with-background false
+}
+
+
 gestures { hot-corners { off; }; }
 animations { workspace-switch { off; }; }
 layer-rule {

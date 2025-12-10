@@ -53,6 +53,11 @@ in
     eza = {
       enable = true;
       enableFishIntegration = true;
+      extraOptions = [
+        "--group-directories-first"
+        "--group"
+        "--smart-group"
+      ];
       icons = "auto";
       git = true;
     };
