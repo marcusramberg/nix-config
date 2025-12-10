@@ -1,7 +1,6 @@
 {
   pkgs,
   lib,
-  inputs,
   config,
   ...
 }:
@@ -47,9 +46,6 @@
       options kvm_intel nested=1
     '';
   };
-  environment.systemPackages = [
-    inputs.nix-proton-cachyos.packages.${pkgs.stdenv.hostPlatform.system}.proton-cachyos
-  ];
 
   fileSystems = {
     "/" = {
@@ -137,12 +133,6 @@
   };
 
   swapDevices = [ { device = "/dev/disk/by-uuid/a3e364f4-a757-4e71-b220-5c850de97136"; } ];
-
-  programs.steam = {
-    extraCompatPackages = [
-      inputs.nix-proton-cachyos.packages.${pkgs.stdenv.hostPlatform.system}.proton-cachyos
-    ];
-  };
 
   profiles = {
     limine.enable = true;
