@@ -13,7 +13,6 @@
     ./linux.nix
     ./niri
     ./packages.nix
-    #    ./plasma
     ./programs.nix
     ./python.nix
     ./tmux.nix

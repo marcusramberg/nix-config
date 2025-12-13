@@ -8,7 +8,7 @@
 }:
 let
   inherit (lib) mkIf;
-  isNiri = (lib.hasAttr "niri" osConfig.programs) && osConfig.programs.niri.enable;
+  isNiri = (lib.hasAttr "programs" osConfig) && osConfig.programs.niri.enable;
 in
 {
   home = mkIf isNiri {
