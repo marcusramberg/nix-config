@@ -46,5 +46,18 @@
   },
   "commandRunner": {
     "enabled": true
+  },
+  "worldClock": {
+    "enabled": true,
+    "timezones": [
+      {
+        "timezone": "Asia/Tokyo",
+        "label": ""
+      },
+      {
+        "timezone": "America/New_York",
+        "label": ""
+      }
+    ]
   }
 }

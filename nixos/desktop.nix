@@ -103,6 +103,7 @@ in
           kdePackages.tokodon
           signal-desktop
           webcord-vencord
+          wtype
         ]
         ++ (with kdePackages; [
           kaccounts-providers
