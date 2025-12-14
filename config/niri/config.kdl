@@ -22,7 +22,7 @@ input {
     workspace-auto-back-and-forth
 }
 output "Apple Computer Inc Color LCD Unknown" {
-  scale 1.4
+  scale 1.5
   transform "normal"
 }
 output "PNP(BNQ) BenQ PD3205U RBP00519019" {
