@@ -83,7 +83,7 @@ in
       set fish_cursor_insert      line       blink
       set fish_cursor_replace_one underscore blink
       set fish_cursor_visual      block
-      set fish_theme tokyonight
+      set fish_theme "Catppuccin Mocha"
       set -gx EDITOR nvim
       set -gx GOPRIVATE github.com/reMarkable
       # FIXME: Disable this for now as it breaks vi mode.

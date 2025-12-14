@@ -4,7 +4,7 @@ input {
             layout "us"
             model ""
             rules ""
-            variant "mac-iso"
+            variant "mac"
             options "eurosign:e"
         }
         repeat-delay 600
