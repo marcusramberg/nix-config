@@ -46,6 +46,11 @@
       options kvm_intel nested=1
     '';
   };
+  environment.systemPackages = with pkgs; [
+    heroic
+    lutris
+    wine
+  ];
 
   fileSystems = {
     "/" = {
@@ -73,6 +78,14 @@
       options = [
         "compress=zstd"
         "subvol=nix"
+      ];
+    };
+    "/home/marcus/Games" = {
+      device = "/dev/nvme1n1p1";
+      fsType = "btrfs";
+      options = [
+        "compress=zstd"
+        "subvol=games"
       ];
     };
     "/home/marcus/org" = {
@@ -161,6 +174,19 @@
     custom.ddcutil = {
       enable = true;
       user = "marcus";
+    };
+    gamemode = {
+      enable = true;
+      settings = {
+        general = {
+          renice = 10;
+        };
+        gpu = {
+          apply_gpu_optimisations = "accept-responsibility"; # For systems with AMD GPUs
+          gpu_device = 0;
+          amd_performance_level = "high";
+        };
+      };
     };
   };
 
