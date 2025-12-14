@@ -2,7 +2,6 @@
   lib,
   config,
   osConfig,
-  inputs,
   pkgs,
   ...
 }:
@@ -13,7 +12,7 @@ in
 {
   home = mkIf isNiri {
     packages = with pkgs; [
-      inputs.nixpkgs-small.legacyPackages.${pkgs.stdenv.targetPlatform.system}.xwayland-satellite
+      xwayland-satellite
       libnotify
       satty
       wvkbd

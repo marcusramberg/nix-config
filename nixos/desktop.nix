@@ -9,6 +9,18 @@ let
   cfg = config.profiles.desktop;
   dms = inputs.dank-shell.packages.${pkgs.stdenv.hostPlatform.system}.default;
   quickshell = inputs.quickshell.packages.${pkgs.stdenv.hostPlatform.system}.default;
+  dmsPlugins = pkgs.fetchFromGitHub {
+    owner = "AvengeMedia";
+    repo = "dms-plugins";
+    rev = "8715ca35b61d7c6275a300fa4992e2b0490f70f7";
+    hash = "sha256-6ScuVcvSaXc35Sf1iwtCy8aM/pFID3+0G4NRMw8aBcM=";
+  };
+  worldClock = pkgs.fetchFromGitHub {
+    owner = "rochacbruno";
+    repo = "WorldClock";
+    rev = "3e9b62ae2fe7550891a61436ebe8248a9724bd93";
+    hash = "sha256-SYGB+04NNGiuRVaQ7wEFcM+Cbo0raVDgaZ0fnxAbVpc=";
+  };
 in
 {
   options.profiles.desktop = {
@@ -129,6 +141,21 @@ in
         enable = true;
         package = dms;
         quickshell.package = quickshell;
+        plugins = {
+          "dankActions" = {
+            enable = true;
+            src = "${dmsPlugins}/DankActions";
+          };
+          "dankPomodoroTimer" = {
+            enable = true;
+            src = "${dmsPlugins}/DankPomodoroTimer";
+          };
+          worldClock = {
+            enable = true;
+            src = worldClock;
+          };
+
+        };
       };
       dsearch.enable = true;
       kdeconnect.enable = true;
