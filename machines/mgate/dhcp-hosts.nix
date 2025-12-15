@@ -42,7 +42,7 @@
   {
     hostname = "mTop";
     ip-address = "192.168.86.42";
-    hw-address = "98:01:a7:b4:74:d1";
+    hw-address = "f2:3d:66:2b:96:85";
   }
   {
     hostname = "mhub";
