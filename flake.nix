@@ -24,7 +24,6 @@
               name = "trusted-nix-caches";
               input = "clan-core";
             };
-            roles.default.machines.draper = { };
           };
         };
         machines = {
@@ -39,11 +38,7 @@
             extraModules = [ inputs.jovian.nixosModules.default ];
           };
           mwork = mkDesktopHost "mwork" { };
-          mtop = mkDesktopHost "mtop" {
-            extraModules = [
-              inputs.chaotic.nixosModules.default
-            ];
-          };
+          mtop = mkDesktopHost "mtop" { };
           mbench = mkNixHost "mbench" {
           };
           mdeck = mkDesktopHost "mdeck" {
@@ -145,10 +140,11 @@
       url = "https://git.clan.lol/clan/clan-core/archive/main.tar.gz";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    chaotic.url = "github:chaotic-cx/nyx/nyxpkgs-unstable";
-    chaotic.inputs.nixpkgs.follows = "nixpkgs";
-    dank-shell.url = "github:AvengeMedia/DankMaterialShell";
-    dank-shell.inputs.nixpkgs.follows = "nixpkgs";
+    dank-shell = {
+      url = "github:AvengeMedia/DankMaterialShell";
+      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.quickshell.follows = "quickshell";
+    };
 
     darwin.url = "github:lnl7/nix-darwin/master";
     darwin.inputs.nixpkgs.follows = "nixpkgs";
@@ -177,8 +173,7 @@
       url = "github:nix-community/nixos-avf";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable-small";
-    #nixpkgs-small.url = "github:nixos/nixpkgs/nixos-unstable-small";
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     plasma-manager.url = "github:nix-community/plasma-manager";
     plasma-manager.inputs.nixpkgs.follows = "nixpkgs";
     pre-commit-hooks = {
@@ -187,7 +182,6 @@
       inputs.flake-compat.follows = "flake-compat";
     };
     quickshell.url = "github:quickshell-mirror/quickshell";
-    quickshell.inputs.nixpkgs.follows = "nixpkgs";
     systems.url = "github:nix-systems/default";
     tfenv.flake = false;
     tfenv.url = "github:tfutils/tfenv";

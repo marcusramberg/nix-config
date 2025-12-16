@@ -25,7 +25,6 @@
   services.scx.enable = true; # by default uses scx_rustland scheduler
 
   environment.systemPackages = with pkgs; [
-    firedragon-catppuccin-bin
     spotify
   ];
   hardware = {

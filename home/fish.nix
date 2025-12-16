@@ -62,7 +62,6 @@ in
       "...." = "cd ../../..";
     };
     shellAliases = {
-      ag = "rg";
       cat = "bat";
       emacs = "emacs -nw";
       gcp = "gcloud config set project (gcloud projects list --format='get(project_id)' --sort-by=project_id --filter='project_id != ^sys-'|fzf)";
@@ -78,6 +77,7 @@ in
       fish_add_path -p ~/.local/bin ${lib.optionalString isDarwin "/run/current-system/sw/bin /opt/homebrew/bin"} ~/go/bin/ ~/.cargo/bin/
     '';
     interactiveShellInit = ''
+      set -x RIPGREP_CONFIG_PATH "$HOME/.ripgrep/ripgrep.toml"
       fish_vi_key_bindings
       set fish_cursor_default     block      blink
       set fish_cursor_insert      line       blink
@@ -109,14 +109,14 @@ in
     '';
     loginShellInit = ''
       gpgconf --launch gpg-agent
-      if [ -f /Users/${user}/.ssh/id_rsa ]
-        ssh-add -q --apple-use-keychain  ~/.ssh/id_rsa
-        ssh-add -q --apple-use-keychain  ~/.ssh/google_compute_engine
-      end
       set -x GPG_TTY (tty)
     ''
     + lib.optionalString isDarwin ''
       set -x SSH_AUTH_SOCK /Users/marcus/Library/Containers/com.maxgoedjen.Secretive.SecretAgent/Data/socket.ssh
+      if [ -f /Users/${user}/.ssh/id_rsa ]
+        ssh-add -q --apple-use-keychain  ~/.ssh/id_rsa
+        ssh-add -q --apple-use-keychain  ~/.ssh/google_compute_engine
+      end
     '';
     plugins = [
       # {

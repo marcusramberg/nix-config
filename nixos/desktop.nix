@@ -7,8 +7,8 @@
 }:
 let
   cfg = config.profiles.desktop;
-  dms = inputs.dank-shell.packages.${pkgs.stdenv.hostPlatform.system}.default;
   quickshell = inputs.quickshell.packages.${pkgs.stdenv.hostPlatform.system}.default;
+  dms = inputs.dank-shell.packages.${pkgs.stdenv.hostPlatform.system}.default;
   dmsPlugins = pkgs.fetchFromGitHub {
     owner = "AvengeMedia";
     repo = "dms-plugins";
@@ -52,6 +52,7 @@ in
       systemPackages =
         with pkgs;
         [
+          bitwarden-desktop
           (catppuccin.override {
             variant = "mocha";
             accent = "lavender";

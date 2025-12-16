@@ -56,6 +56,7 @@ let
         {
           nixpkgs.overlays = [
             inputs.ghostty.overlays.default
+            inputs.quickshell.overlays.default
           ];
         }
         inputs.home-manager.nixosModules.home-manager
