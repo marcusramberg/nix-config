@@ -5,7 +5,7 @@
 
     kresd = {
       enable = true;
-      package = pkgs.knot-resolver.override { extraFeatures = true; };
+      package = pkgs.knot-resolver_5.override { extraFeatures = true; };
 
       listenPlain = [ "53" ];
 

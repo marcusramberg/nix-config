@@ -36,6 +36,8 @@
     firewall = {
       enable = lib.mkForce true;
       logRefusedConnections = false;
+      filterForward = true;
+
       trustedInterfaces = [
         "tailscale0"
         "lan"
@@ -122,16 +124,12 @@
       "11-unused-1" = {
         enable = true;
         matchConfig.Path = "pci-0000:09:00.0";
-        linkConfig = {
-          Name = "unused-1";
-        };
+        linkConfig.Name = "unused-1";
       };
       "12-unused-2" = {
         enable = true;
         matchConfig.Path = "pci-0000:0a:00.0";
-        linkConfig = {
-          Name = "unused-2";
-        };
+        linkConfig.Name = "unused-2";
       };
       "20-wlan" = {
         enable = true;
@@ -146,21 +144,17 @@
       "wan" = {
         name = "wan";
         enable = true;
-        matchConfig = {
-          Name = "wan";
-        };
+        matchConfig.Name = "wan";
         networkConfig = {
           DHCP = "ipv4";
+          IPv6AcceptRA = true;
+          Tunnel = "he-ipv6";
         };
-        dhcpConfig = {
-          RouteMetric = "10";
-        };
+        dhcpConfig.RouteMetric = "10";
       };
       "switch" = {
         enable = true;
-        matchConfig = {
-          Name = "switch";
-        };
+        matchConfig.Name = "switch";
         networkConfig = {
           VLAN = [
             "lan"
@@ -180,12 +174,8 @@
       };
       "switchdevs" = {
         enable = true;
-        matchConfig = {
-          Name = "en*";
-        };
-        networkConfig = {
-          Bridge = "switch";
-        };
+        matchConfig.Name = "en*";
+        networkConfig.Bridge = "switch";
         extraConfig = ''
           [Bridge]
           PVID=1
@@ -202,21 +192,29 @@
       "lan" = {
         name = "lan";
         enable = true;
-        matchConfig = {
-          Name = "lan";
-        };
+        matchConfig.Name = "lan";
         networkConfig = {
           ConfigureWithoutCarrier = "yes";
           MulticastDNS = "yes";
+          IPv6SendRA = true;
+          IPv6AcceptRA = false;
+          DHCPPrefixDelegation = true;
+
         };
-        address = [ "192.168.86.1/24" ];
+        ipv6Prefixes = [
+          {
+            Prefix = "2600:70ff:b09e::/48";
+            Assign = true;
+          }
+        ];
+        address = [
+          "192.168.86.1/24"
+        ];
       };
       "isolated" = {
         name = "isolated";
         enable = true;
-        matchConfig = {
-          Name = "isolated";
-        };
+        matchConfig.Name = "isolated";
         networkConfig = {
           ConfigureWithoutCarrier = "yes";
           MulticastDNS = "no";
@@ -226,9 +224,7 @@
       "iot" = {
         name = "iot";
         enable = true;
-        matchConfig = {
-          Name = "iot";
-        };
+        matchConfig.Name = "iot";
         networkConfig = {
           ConfigureWithoutCarrier = "yes";
           MulticastDNS = "no";
@@ -238,14 +234,25 @@
       "mgmt" = {
         name = "mgmt";
         enable = true;
-        matchConfig = {
-          Name = "mgmt";
-        };
+        matchConfig.Name = "mgmt";
         networkConfig = {
           ConfigureWithoutCarrier = "yes";
           MulticastDNS = "no";
         };
         address = [ "192.168.50.1/24" ];
+      };
+      "he-ipv6" = {
+        name = "he-ipv6";
+        enable = true;
+        matchConfig.Name = "he-ipv6";
+        networkConfig = {
+          ConfigureWithoutCarrier = "yes";
+          Address = "2001:470:27:bca::2/64";
+        };
+        routes = [
+          { Destination = [ "::/0" ]; }
+        ];
+
       };
     };
     netdevs = {
@@ -255,9 +262,7 @@
           Name = "lan";
           Kind = "vlan";
         };
-        vlanConfig = {
-          Id = 1;
-        };
+        vlanConfig.Id = 1;
       };
       "isolated" = {
         enable = true;
@@ -265,9 +270,7 @@
           Name = "isolated";
           Kind = "vlan";
         };
-        vlanConfig = {
-          Id = 66;
-        };
+        vlanConfig.Id = 66;
       };
       "iot" = {
         enable = true;
@@ -275,9 +278,7 @@
           Name = "iot";
           Kind = "vlan";
         };
-        vlanConfig = {
-          Id = 99;
-        };
+        vlanConfig.Id = 99;
       };
       "mgmt" = {
         enable = true;
@@ -285,9 +286,7 @@
           Name = "mgmt";
           Kind = "vlan";
         };
-        vlanConfig = {
-          Id = 255;
-        };
+        vlanConfig.Id = 255;
       };
       "switch" = {
         enable = true;
@@ -300,6 +299,19 @@
           DefaultPVID=1
           VLANFiltering=yes
         '';
+      };
+      "he-ipv6" = {
+        enable = true;
+        netdevConfig = {
+          Name = "he-ipv6";
+          Kind = "sit";
+          MTUBytes = "1412";
+        };
+        tunnelConfig = {
+          Local = "dhcp4";
+          Remote = "216.66.80.90";
+          TTL = 255;
+        };
       };
     };
   };
