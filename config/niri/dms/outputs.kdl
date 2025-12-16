@@ -2,12 +2,13 @@
 
 output "AU Optronics 0xD291 Unknown" {
     mode "1920x1200@60.026"
-    position x=0 y=0
+    scale 1.09765625
+    position x=0 y=347
 }
 
 output "PNP(BNQ) BenQ PD3205U RBP00519019" {
     mode "3840x2160@30.000"
     scale 1.5
-    position x=1920 y=0
+    position x=1749 y=0
 }
 

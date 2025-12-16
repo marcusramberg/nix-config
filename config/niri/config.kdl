@@ -25,12 +25,6 @@ output "Apple Computer Inc Color LCD Unknown" {
   scale 1.5
   transform "normal"
 }
-output "PNP(BNQ) BenQ PD3205U RBP00519019" {
-  scale 1.5
-}
-output "AU Optronics 0xD291 Unknown" {
-  scale 1.0
-}
 output "Dell Inc. DELL U3223QE 757H2P3" {
   scale 1.5
 }

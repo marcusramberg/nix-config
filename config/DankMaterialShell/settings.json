@@ -303,7 +303,7 @@
       ],
       "rightWidgets": [
         {
-          "id": "systemTray",
+          "id": "colorPicker",
           "enabled": true
         },
         {
