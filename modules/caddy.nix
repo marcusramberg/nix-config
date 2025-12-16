@@ -4,8 +4,8 @@
   pkgs,
   ...
 }:
-with lib;
 let
+  inherit (lib) mkIf mkOption mkEnableOption types;
   cfg = config.profiles.caddy;
 in
 {

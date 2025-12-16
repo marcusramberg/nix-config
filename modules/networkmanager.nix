@@ -1,6 +1,11 @@
-{ lib, config, pkgs, ... }:
-with lib;
+{
+  lib,
+  config,
+  pkgs,
+  ...
+}:
 let
+  inherit (lib) mkIf;
   cfg = config.networking.networkmanager;
 in
 {
