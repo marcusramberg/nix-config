@@ -4,8 +4,6 @@ _: {
     ./networking.nix # generated at runtime by nixos-infect
 
   ];
-
-  age.secrets.cloudflareToken.owner = "caddy";
   boot.tmp.cleanOnBoot = true;
   zramSwap.enable = true;
   networking.hostName = "mcloud";
@@ -28,7 +26,6 @@ _: {
     };
     openssh.enable = true;
   };
-  systemd.services.caddy.serviceConfig.AmbientCapabilities = "cap_net_bind_service";
   users.users.root.openssh.authorizedKeys.keys = [
     "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIAqWWPb0DqvTwAJKd0Nb/MOdplnTJgxQBSGbJkL2S+nz"
   ];

@@ -23,6 +23,11 @@ in
       default = "server";
       description = "k3s role";
     };
+    serverAddr = mkOption {
+      type = types.nullOr types.str;
+      default = null;
+      description = "k3s server address for agent nodes";
+    };
     tailscale = {
       enable = mkEnableOption "Enable tailscale";
       ip = mkOption {
@@ -53,28 +58,32 @@ in
         target = "rancher/k3s/registries.yaml";
       };
     };
-    services.k3s = {
-      enable = true;
-      tokenFile = config.age.secrets.k3s-token.path;
-      inherit (cfg) role;
-      extraFlags =
-        lib.optionals cfg.tailscale.enable [
-          "--node-external-ip=${cfg.tailscale.ip}"
-          "--flannel-backend=wireguard-native"
-          "--flannel-external-ip ${cfg.tailscale.ip}"
-        ]
-        ++ lib.optionals cfg.staticIP.enable [
-          "--node-ip"
-          cfg.staticIP.ip
-        ]
-        ++ lib.optionals (cfg.role == "server") [
-          "--disable traefik"
-          "--write-kubeconfig-mode=640"
-          "--write-kubeconfig-group=wheel"
-          "--embedded-registry"
-        ];
-
-    };
+    services.k3s = mkMerge [
+      {
+        enable = true;
+        tokenFile = config.age.secrets.k3s-token.path;
+        inherit (cfg) role;
+        extraFlags =
+          lib.optionals cfg.tailscale.enable [
+            "--node-external-ip=${cfg.tailscale.ip}"
+            "--flannel-backend=wireguard-native"
+            "--flannel-external-ip ${cfg.tailscale.ip}"
+          ]
+          ++ lib.optionals cfg.staticIP.enable [
+            "--node-ip"
+            cfg.staticIP.ip
+          ]
+          ++ lib.optionals (cfg.role == "server") [
+            "--disable traefik"
+            "--write-kubeconfig-mode=640"
+            "--write-kubeconfig-group=wheel"
+            "--embedded-registry"
+          ];
+      }
+      (mkIf (cfg.serverAddr != null) {
+        serverAddr = cfg.serverAddr;
+      })
+    ];
     networking.firewall = {
       allowedTCPPorts = [
         2379

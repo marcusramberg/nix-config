@@ -13,6 +13,7 @@
     ../modules/agenix.nix
     ../modules/autoupgrade.nix
     ../modules/caddy.nix
+    ../modules/networkmanager.nix
     ../modules/nix.nix
     ../modules/fonts.nix
     ./amd.nix

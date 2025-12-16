@@ -4,7 +4,6 @@
     # Include the results of the hardware scan.
     ./hardware-configuration.nix
   ];
-  age.secrets.cloudflareToken.owner = "caddy";
 
   boot = {
     loader.grub = {
@@ -46,6 +45,7 @@
     };
     k3s = {
       enable = true;
+      serverAddr = "https://192.168.86.1:6443";
       staticIP = {
         enable = true;
         ip = "192.168.86.20";
@@ -78,13 +78,8 @@
         startAt = "weekly";
       };
     };
-    k3s = {
-      serverAddr = "https://192.168.86.1:6443";
-    };
     printing.enable = true;
   };
-
-  systemd.services.caddy.serviceConfig.AmbientCapabilities = "cap_net_bind_service";
 
   users.users = {
     arne = {

@@ -15,6 +15,7 @@ _: {
     k3s = {
       enable = true;
       role = "agent";
+      serverAddr = "https://192.168.86.1:6443";
     };
   };
   networking = {
@@ -27,8 +28,5 @@ _: {
   services = {
     mbpfan.enable = true;
     input-remapper.enable = true;
-    k3s = {
-      serverAddr = "https://192.168.86.1:6443";
-    };
   };
 }

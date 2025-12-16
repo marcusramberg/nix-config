@@ -20,6 +20,9 @@ in
   };
 
   config = mkIf cfg.enable {
+    # Setup Cloudflare token secret for caddy
+    age.secrets.cloudflareToken.owner = "caddy";
+
     services.caddy = {
       enable = true;
       package = pkgs.caddy.withPlugins {
@@ -29,5 +32,8 @@ in
       inherit (cfg) configFile;
       adapter = "caddyfile";
     };
+
+    # Allow caddy to bind to privileged ports
+    systemd.services.caddy.serviceConfig.AmbientCapabilities = "cap_net_bind_service";
   };
 }

@@ -10,8 +10,6 @@
     ./hardware-configuration.nix
     ../../modules/pipewire.nix
   ];
-
-  age.secrets.cloudflareToken.owner = "caddy";
   # Bootloader.
   boot = {
     # binfmt.emulatedSystems = [ "aarch64-linux" ];
@@ -125,6 +123,7 @@
     };
     k3s = {
       enable = true;
+      serverAddr = "https://192.168.86.1:6443";
       staticIP = {
         enable = true;
         ip = "192.168.86.22";
@@ -156,7 +155,6 @@
     };
     k3s = {
       clusterInit = true;
-      serverAddr = "https://192.168.86.1:6443";
     };
     nomad = {
       enable = false;
@@ -173,15 +171,6 @@
       # acceleration = "rocm";
     };
     tailscale.useRoutingFeatures = "server";
-  };
-  systemd.services.caddy.serviceConfig.AmbientCapabilities = "cap_net_bind_service";
-  systemd.services.NetworkManager-wait-online = {
-    serviceConfig = {
-      ExecStart = [
-        ""
-        "${pkgs.networkmanager}/bin/nm-online -q"
-      ];
-    };
   };
   virtualisation = {
     # docker.enable = true;

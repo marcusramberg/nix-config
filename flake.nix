@@ -64,131 +64,57 @@
         (import ./overlays inputs)
       ];
       std = nix-std.lib;
+
+      # Common configuration for all hosts
+      commonHostConfig = {
+        inherit overlays nixpkgs inputs std;
+      };
+
+      # Helper to create a host with common config
+      mkHost = name: system: extraConfig:
+        lib.mkNixHost name (commonHostConfig // { inherit system; } // extraConfig);
     in
     {
       nixosConfigurations = {
-        mhub = lib.mkNixHost "mhub" {
-          inherit
-            overlays
-            nixpkgs
-            inputs
-            std
-            ;
-          system = "x86_64-linux";
-        };
+        mhub = mkHost "mhub" "x86_64-linux" { };
 
-        mhome = lib.mkNixHost "mhome" {
-          inherit
-            overlays
-            nixpkgs
-            inputs
-            std
-            ;
+        mhome = mkHost "mhome" "x86_64-linux" {
           extraModules = [ inputs.disko.nixosModules.disko ];
-          system = "x86_64-linux";
         };
         mhomeInstaller =
           inputs.unattended-installer.lib.diskoInstallerWrapper self.nixosConfigurations.mhome
             { };
-        butterbee = lib.mkNixHost "butterbee" {
-          inherit
-            overlays
-            nixpkgs
-            inputs
-            std
-            ;
-          system = "aarch64-linux";
-        };
-        mstudio = lib.mkNixHost "mstudio" {
-          inherit
-            overlays
-            nixpkgs
-            inputs
-            std
-            ;
-          system = "aarch64-linux";
+
+        butterbee = mkHost "butterbee" "aarch64-linux" { };
+
+        mstudio = mkHost "mstudio" "aarch64-linux" {
           extraModules = [
             inputs.apple-silicon-support.nixosModules.apple-silicon-support
           ];
         };
-        mcloud = lib.mkNixHost "mcloud" {
-          inherit
-            overlays
-            nixpkgs
-            inputs
-            std
-            ;
-          system = "aarch64-linux";
-        };
 
-        mbox = lib.mkNixHost "mbox" {
-          inherit
-            overlays
-            nixpkgs
-            inputs
-            std
-            ;
-          system = "x86_64-linux";
+        mcloud = mkHost "mcloud" "aarch64-linux" { };
+
+        mbox = mkHost "mbox" "x86_64-linux" {
           extraModules = [ inputs.jovian.nixosModules.default ];
         };
-        # mtop = lib.mkNixHost "mtop" {
-        #   inherit
-        #     overlays
-        #     nixpkgs
-        #     inputs
-        #     std
-        #     ;
-        #   system = "x86_64-linux";
-        # };
-        # mvirt = lib.mkNixHost "mvirt" {
-        #   inherit
-        #     overlays
-        #     nixpkgs
-        #     inputs
-        #     std
-        #     ;
-        #   system = "x86_64-linux";
-        # };
-        mbench = lib.mkNixHost "mbench" {
-          inherit
-            overlays
-            nixpkgs
-            inputs
-            std
-            ;
-          system = "x86_64-linux";
+        # mtop = mkHost "mtop" "x86_64-linux" { };
+        # mvirt = mkHost "mvirt" "x86_64-linux" { };
+
+        mbench = mkHost "mbench" "x86_64-linux" {
           extraModules = [ inputs.disko.nixosModules.disko ];
         };
         mbenchInstaller =
           inputs.unattended-installer.lib.diskoInstallerWrapper self.nixosConfigurations.mbench
             { };
-        mdeck = lib.mkNixHost "mdeck" {
-          inherit
-            overlays
-            nixpkgs
-            inputs
-            std
-            ;
-          system = "x86_64-linux";
+
+        mdeck = mkHost "mdeck" "x86_64-linux" {
           extraModules = [ inputs.jovian.nixosModules.default ];
         };
-        mgate = lib.mkNixHost "mgate" {
-          inherit
-            overlays
-            nixpkgs
-            inputs
-            std
-            ;
-          system = "x86_64-linux";
-        };
-        # mbrick = lib.mkNixHost "mbrick" {
-        #   inherit
-        #     overlays
-        #     nixpkgs
-        #     inputs
-        #     std
-        #     ;
-        #   system = "aarch64-linux";
+
+        mgate = mkHost "mgate" "x86_64-linux" { };
+
+        # mbrick = mkHost "mbrick" "aarch64-linux" {
         #   extraModules = [
         #     (import "${inputs.mobile-nixos}/lib/configuration.nix" { device = "oneplus-fajita"; })
         #   ];
