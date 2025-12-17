@@ -21,7 +21,6 @@ in
       actionlint
       asciinema
       btop
-      caddy
       caligula
       cargo
       chafa

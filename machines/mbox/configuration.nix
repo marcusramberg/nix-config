@@ -157,6 +157,7 @@
     };
     k3s = {
       enable = true;
+      serverAddr = "https://192.168.86.1:6443";
       staticIP = {
         enable = true;
         ip = "192.168.86.22";
@@ -205,17 +206,8 @@
       openFirewall = true;
       secretsFile = config.age.secrets.immich.path;
     };
-    jellyfin = {
-      enable = true;
-    };
-    k3s = {
-      clusterInit = true;
-      serverAddr = "https://192.168.86.1:6443";
-    };
-    nomad = {
-      enable = false;
-      enableDocker = false;
-    };
+    jellyfin.enable = true;
+    k3s.clusterInit = true;
     nix-serve = {
       enable = true;
       secretKeyFile = "/var/cache-priv-key.pem";
@@ -244,7 +236,6 @@
     };
   };
   systemd.services = {
-    caddy.serviceConfig.AmbientCapabilities = "cap_net_bind_service";
     NetworkManager-wait-online = {
       serviceConfig = {
         ExecStart = [

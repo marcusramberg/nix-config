@@ -82,6 +82,7 @@
     dockerHost.enable = true;
     k3s = {
       enable = true;
+      serverAddr = "https://192.168.86.1:6443";
       staticIP = {
         enable = true;
         ip = "192.168.86.21";
@@ -101,7 +102,6 @@
   services = {
     blueman.enable = true;
     displayManager.sddm.enableHidpi = true;
-    k3s.serverAddr = "https://192.168.86.1:6443";
     libinput.enable = true;
     ollama.enable = true;
     pipewire = {

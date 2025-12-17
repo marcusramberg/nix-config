@@ -23,6 +23,11 @@ in
       default = "server";
       description = "k3s role";
     };
+    serverAddr = mkOption {
+      type = types.nullOr types.str;
+      default = null;
+      description = "k3s server address for agent nodes";
+    };
     tailscale = {
       enable = mkEnableOption "Enable tailscale";
       ip = mkOption {
@@ -40,6 +45,7 @@ in
     };
     services.k3s = {
       enable = true;
+      serverAddr = mkIf (cfg.serverAddr != null) cfg.serverAddr;
       tokenFile = config.age.secrets.k3s-token.path;
       inherit (cfg) role;
       extraFlags =

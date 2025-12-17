@@ -1,4 +1,4 @@
-{ lib, pkgs, ... }:
+{ pkgs, ... }:
 {
   imports = [
     # Include the results of the hardware scan.
@@ -6,13 +6,9 @@
     ./dhcp.nix
     ./ddns.nix
     ./dns.nix
+    ./firewall.nix
   ];
 
-  # Install static leases from agenix
-  # age.secrets.leases = {
-  #   path = "/etc/systemd/network/lan.network.d/lan.network.conf";
-  #   mode = "644";
-  # };
   boot = {
     loader = {
       systemd-boot.enable = true;
@@ -33,22 +29,7 @@
       enable = true;
       unmanaged = [ "wlan" ];
     };
-    firewall = {
-      enable = lib.mkForce true;
-      logRefusedConnections = false;
-      filterForward = true;
-
-      trustedInterfaces = [
-        "tailscale0"
-        "lan"
-        "iot"
-        "mgmt"
-      ];
-
-    };
-    nftables = {
-      enable = true;
-    };
+    nftables.enable = true;
     nat = {
       enable = true;
       internalInterfaces = [
