@@ -29,27 +29,6 @@
       enable = true;
       unmanaged = [ "wlan" ];
     };
-    nftables.enable = true;
-    nat = {
-      enable = true;
-      internalInterfaces = [
-        "lan"
-        "iot"
-      ];
-      externalInterface = "wan";
-      forwardPorts = [
-        {
-          sourcePort = 443;
-          proto = "tcp";
-          destination = "192.168.86.20:18443";
-        }
-        {
-          sourcePort = 32400;
-          proto = "tcp";
-          destination = "192.168.86.20:32400";
-        }
-      ];
-    };
   };
   powerManagement.cpuFreqGovernor = "ondemand";
 
@@ -86,222 +65,229 @@
       '';
     };
   };
-  systemd.network = {
-    enable = true;
-    wait-online = {
-      anyInterface = true;
-      ignoredInterfaces = [ "tailscale0" ];
-    };
+  systemd = {
+    network = {
+      enable = true;
+      wait-online = {
+        anyInterface = true;
+        ignoredInterfaces = [ "tailscale0" ];
+      };
 
-    links = {
-      "10-wan" = {
-        enable = true;
-        matchConfig.Path = "pci-0000:04:00.0";
-        linkConfig = {
-          Name = "wan";
-          Description = "WAN Interface";
+      links = {
+        "10-wan" = {
+          enable = true;
+          matchConfig.Path = "pci-0000:04:00.0";
+          linkConfig = {
+            Name = "wan";
+            Description = "WAN Interface";
+          };
+        };
+        "11-unused-1" = {
+          enable = true;
+          matchConfig.Path = "pci-0000:09:00.0";
+          linkConfig.Name = "unused-1";
+        };
+        "12-unused-2" = {
+          enable = true;
+          matchConfig.Path = "pci-0000:0a:00.0";
+          linkConfig.Name = "unused-2";
+        };
+        "20-wlan" = {
+          enable = true;
+          matchConfig.Path = "pci-0000:00:14.0-usb-0:10:1.0";
+          linkConfig = {
+            Name = "wlan";
+            Description = "WLAN interface";
+          };
         };
       };
-      "11-unused-1" = {
-        enable = true;
-        matchConfig.Path = "pci-0000:09:00.0";
-        linkConfig.Name = "unused-1";
-      };
-      "12-unused-2" = {
-        enable = true;
-        matchConfig.Path = "pci-0000:0a:00.0";
-        linkConfig.Name = "unused-2";
-      };
-      "20-wlan" = {
-        enable = true;
-        matchConfig.Path = "pci-0000:00:14.0-usb-0:10:1.0";
-        linkConfig = {
-          Name = "wlan";
-          Description = "WLAN interface";
+      networks = {
+        "wan" = {
+          name = "wan";
+          enable = true;
+          matchConfig.Name = "wan";
+          networkConfig = {
+            DHCP = "ipv4";
+            IPv6AcceptRA = true;
+            Tunnel = "he-ipv6";
+          };
+          dhcpConfig.RouteMetric = "10";
         };
-      };
-    };
-    networks = {
-      "wan" = {
-        name = "wan";
-        enable = true;
-        matchConfig.Name = "wan";
-        networkConfig = {
-          DHCP = "ipv4";
-          IPv6AcceptRA = true;
-          Tunnel = "he-ipv6";
-        };
-        dhcpConfig.RouteMetric = "10";
-      };
-      "switch" = {
-        enable = true;
-        matchConfig.Name = "switch";
-        networkConfig = {
-          VLAN = [
-            "lan"
-            "isolated"
-            "iot"
-            "mgmt"
+        "switch" = {
+          enable = true;
+          matchConfig.Name = "switch";
+          networkConfig = {
+            VLAN = [
+              "lan"
+              "isolated"
+              "iot"
+              "mgmt"
+            ];
+            LinkLocalAddressing = "no";
+          };
+          linkConfig.RequiredForOnline = "no";
+          bridgeVLANs = [
+            { VLAN = "1"; }
+            { VLAN = "66"; }
+            { VLAN = "99"; }
+            { VLAN = "255"; }
           ];
-          LinkLocalAddressing = "no";
         };
-        linkConfig.RequiredForOnline = "no";
-        bridgeVLANs = [
-          { VLAN = "1"; }
-          { VLAN = "66"; }
-          { VLAN = "99"; }
-          { VLAN = "255"; }
-        ];
-      };
-      "switchdevs" = {
-        enable = true;
-        matchConfig.Name = "en*";
-        networkConfig.Bridge = "switch";
-        extraConfig = ''
-          [Bridge]
-          PVID=1
-          VLAN=1
-          EgressUntagged = 1
-          [Bridge]
-          VLAN = 66
-          [Bridge]
-          VLAN = 99
-          [Bridge]
-          VLAN = 255
-        '';
-      };
-      "lan" = {
-        name = "lan";
-        enable = true;
-        matchConfig.Name = "lan";
-        networkConfig = {
-          ConfigureWithoutCarrier = "yes";
-          MulticastDNS = "yes";
-          IPv6SendRA = true;
-          IPv6AcceptRA = false;
-          DHCPPrefixDelegation = true;
+        "switchdevs" = {
+          enable = true;
+          matchConfig.Name = "en*";
+          networkConfig.Bridge = "switch";
+          extraConfig = ''
+            [BridgeVLAN]
+            PVID=1
+            VLAN=1
+            EgressUntagged = 1
+            [BridgeVLAN]
+            VLAN = 66
+            [BridgeVLAN]
+            VLAN = 99
+            [BridgeVLAN]
+            VLAN = 255
+          '';
+        };
+        "lan" = {
+          name = "lan";
+          enable = true;
+          matchConfig.Name = "lan";
+          networkConfig = {
+            ConfigureWithoutCarrier = "yes";
+            MulticastDNS = "yes";
+            IPv6SendRA = true;
+            IPv6AcceptRA = false;
+            DHCPPrefixDelegation = false;
 
+          };
+          ipv6Prefixes = [
+            {
+              Prefix = "2001:470:28:bca::/64";
+              Assign = false;
+            }
+          ];
+          ipv6SendRAConfig = {
+            DNS = [ "2001:470:28:bca::1" ];
+            EmitDNS = true;
+            RouterLifetimeSec = 1800;
+          };
+          address = [
+            "192.168.86.1/24"
+            "2001:470:28:bca::1/64"
+          ];
         };
-        ipv6Prefixes = [
-          {
-            Prefix = "2600:70ff:b09e::/48";
-            Assign = true;
-          }
-        ];
-        address = [
-          "192.168.86.1/24"
-        ];
+        "isolated" = {
+          name = "isolated";
+          enable = true;
+          matchConfig.Name = "isolated";
+          networkConfig = {
+            ConfigureWithoutCarrier = "yes";
+            MulticastDNS = "no";
+          };
+          address = [ "192.168.69.1/24" ];
+        };
+        "iot" = {
+          name = "iot";
+          enable = true;
+          matchConfig.Name = "iot";
+          networkConfig = {
+            ConfigureWithoutCarrier = "yes";
+            MulticastDNS = "no";
+          };
+          address = [ "192.168.68.1/24" ];
+        };
+        "mgmt" = {
+          name = "mgmt";
+          enable = true;
+          matchConfig.Name = "mgmt";
+          networkConfig = {
+            ConfigureWithoutCarrier = "yes";
+            MulticastDNS = "no";
+          };
+          address = [ "192.168.50.1/24" ];
+        };
+        "he-ipv6" = {
+          name = "he-ipv6";
+          enable = true;
+          matchConfig.Name = "he-ipv6";
+          address = [
+            "2001:470:27:bca::2/64"
+          ];
+          routes = [
+            { Destination = "::/0"; }
+          ];
+        };
       };
-      "isolated" = {
-        name = "isolated";
-        enable = true;
-        matchConfig.Name = "isolated";
-        networkConfig = {
-          ConfigureWithoutCarrier = "yes";
-          MulticastDNS = "no";
+      netdevs = {
+        "lan" = {
+          enable = true;
+          netdevConfig = {
+            Name = "lan";
+            Kind = "vlan";
+          };
+          vlanConfig.Id = 1;
         };
-        address = [ "192.168.69.1/24" ];
-      };
-      "iot" = {
-        name = "iot";
-        enable = true;
-        matchConfig.Name = "iot";
-        networkConfig = {
-          ConfigureWithoutCarrier = "yes";
-          MulticastDNS = "no";
+        "isolated" = {
+          enable = true;
+          netdevConfig = {
+            Name = "isolated";
+            Kind = "vlan";
+          };
+          vlanConfig.Id = 66;
         };
-        address = [ "192.168.68.1/24" ];
-      };
-      "mgmt" = {
-        name = "mgmt";
-        enable = true;
-        matchConfig.Name = "mgmt";
-        networkConfig = {
-          ConfigureWithoutCarrier = "yes";
-          MulticastDNS = "no";
+        "iot" = {
+          enable = true;
+          netdevConfig = {
+            Name = "iot";
+            Kind = "vlan";
+          };
+          vlanConfig.Id = 99;
         };
-        address = [ "192.168.50.1/24" ];
-      };
-      "he-ipv6" = {
-        name = "he-ipv6";
-        enable = true;
-        matchConfig.Name = "he-ipv6";
-        networkConfig = {
-          ConfigureWithoutCarrier = "yes";
-          Address = "2001:470:27:bca::2/64";
+        "mgmt" = {
+          enable = true;
+          netdevConfig = {
+            Name = "mgmt";
+            Kind = "vlan";
+          };
+          vlanConfig.Id = 255;
         };
-        routes = [
-          { Destination = [ "::/0" ]; }
-        ];
-
-      };
-    };
-    netdevs = {
-      "lan" = {
-        enable = true;
-        netdevConfig = {
-          Name = "lan";
-          Kind = "vlan";
+        "switch" = {
+          enable = true;
+          netdevConfig = {
+            Name = "switch";
+            Kind = "bridge";
+          };
+          extraConfig = ''
+            [Bridge]
+            DefaultPVID=1
+            VLANFiltering=yes
+          '';
         };
-        vlanConfig.Id = 1;
-      };
-      "isolated" = {
-        enable = true;
-        netdevConfig = {
-          Name = "isolated";
-          Kind = "vlan";
-        };
-        vlanConfig.Id = 66;
-      };
-      "iot" = {
-        enable = true;
-        netdevConfig = {
-          Name = "iot";
-          Kind = "vlan";
-        };
-        vlanConfig.Id = 99;
-      };
-      "mgmt" = {
-        enable = true;
-        netdevConfig = {
-          Name = "mgmt";
-          Kind = "vlan";
-        };
-        vlanConfig.Id = 255;
-      };
-      "switch" = {
-        enable = true;
-        netdevConfig = {
-          Name = "switch";
-          Kind = "bridge";
-        };
-        extraConfig = ''
-          [Bridge]
-          DefaultPVID=1
-          VLANFiltering=yes
-        '';
-      };
-      "he-ipv6" = {
-        enable = true;
-        netdevConfig = {
-          Name = "he-ipv6";
-          Kind = "sit";
-          MTUBytes = "1412";
-        };
-        tunnelConfig = {
-          Local = "dhcp4";
-          Remote = "216.66.80.90";
-          TTL = 255;
+        "he-ipv6" = {
+          enable = true;
+          netdevConfig = {
+            Name = "he-ipv6";
+            Kind = "sit";
+            MTUBytes = "1412";
+          };
+          tunnelConfig = {
+            Local = "dhcp4";
+            Remote = "216.66.80.90";
+            TTL = 255;
+          };
         };
       };
     };
-  };
-  systemd.services.NetworkManager-wait-online = {
-    serviceConfig = {
-      ExecStart = [
-        ""
-        "${pkgs.networkmanager}/bin/nm-online -q"
-      ];
+    services.systemd-networkd.environment.SYSTEMD_LOG_LEVEL = "debug";
+    services.NetworkManager-wait-online = {
+      serviceConfig = {
+        ExecStart = [
+          ""
+          "${pkgs.networkmanager}/bin/nm-online -q"
+        ];
+      };
     };
   };
 }
