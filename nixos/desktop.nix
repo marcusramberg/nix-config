@@ -12,8 +12,8 @@ let
   dmsPlugins = pkgs.fetchFromGitHub {
     owner = "AvengeMedia";
     repo = "dms-plugins";
-    rev = "8715ca35b61d7c6275a300fa4992e2b0490f70f7";
-    hash = "sha256-6ScuVcvSaXc35Sf1iwtCy8aM/pFID3+0G4NRMw8aBcM=";
+    rev = "8fa7c5286171c66a209dd74e9a47d6e72ccfdad6";
+    hash = "sha256-0RXRgUXXoX+C0q+drsShjx2rCTdmqFzOCR/1rGB/W2E=";
   };
   worldClock = pkgs.fetchFromGitHub {
     owner = "rochacbruno";

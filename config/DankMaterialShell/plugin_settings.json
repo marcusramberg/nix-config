@@ -2,7 +2,8 @@
   "dankPomodoroTimer": {
     "enabled": true,
     "autoStartBreaks": true,
-    "workDuration": "20"
+    "workDuration": "20",
+    "autoSetDND": true
   },
   "dankActions": {
     "enabled": true,

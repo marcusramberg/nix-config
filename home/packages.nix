@@ -58,7 +58,7 @@ in
       nil
       nim2
       inputs.mcp-hub.packages.${stdenv.hostPlatform.system}.default
-      nix-converter
+      inputs.nix-converter.packages.${stdenv.hostPlatform.system}.default
       nix-output-monitor
       nixfmt-rfc-style
       nixpkgs-review
