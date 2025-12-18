@@ -14,6 +14,18 @@ let
     allowUnfree = true;
     allowBroken = true;
   };
+
+  # Common home-manager configuration
+  commonHomeManagerConfig = {
+    useGlobalPkgs = true;
+    backupFileExtension = "bak";
+    useUserPackages = true;
+    users.marcus = import ../home;
+    extraSpecialArgs = {
+      user = "marcus";
+      inherit inputs;
+    };
+  };
   mkDarwinHost =
     name:
     {
@@ -37,16 +49,7 @@ let
             config = commonNixpkgsConfig;
             hostPlatform = system;
           };
-          home-manager = {
-            useGlobalPkgs = true;
-            backupFileExtension = "bak";
-            useUserPackages = true;
-            users.marcus = import ../home;
-            extraSpecialArgs = {
-              user = "marcus";
-              inherit inputs;
-            };
-          };
+          home-manager = commonHomeManagerConfig;
         }
       ];
     };
@@ -86,16 +89,7 @@ let
             config = commonNixpkgsConfig;
             hostPlatform = system;
           };
-          home-manager = {
-            useGlobalPkgs = true;
-            backupFileExtension = "bak";
-            useUserPackages = true;
-            users.marcus = import ../home;
-            extraSpecialArgs = {
-              user = "marcus";
-              inherit inputs;
-            };
-          };
+          home-manager = commonHomeManagerConfig;
         }
       ]
       ++ extraModules;
