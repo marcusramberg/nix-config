@@ -48,7 +48,7 @@ in
     };
 
     ".i3/config".source = ../config/i3-config${lib.optionalString isNixOS "-ghost"};
-    ".ripgreprc".source = ../config/ripgreprc;
+    ".ripgrep/ripgrep.toml".source = ../config/ripgrep.toml;
     ".config/direnv/direnv.toml".source = ../config/direnv/direnv.toml;
     ".amethyst.yml".source = ../config/amethyst.yml;
   }
