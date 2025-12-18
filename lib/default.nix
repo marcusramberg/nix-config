@@ -2,6 +2,18 @@
   inputs,
 }:
 let
+  # Centralized overlays configuration
+  commonOverlays = [
+    (import ../overlays inputs)
+    inputs.ghostty.overlays.default
+    inputs.quickshell.overlays.default
+  ];
+
+  # Common nixpkgs configuration
+  commonNixpkgsConfig = {
+    allowUnfree = true;
+    allowBroken = true;
+  };
   mkDarwinHost =
     name:
     {
@@ -19,9 +31,23 @@ let
         ../darwin
         # `home-manager` module
         inputs.home-manager.darwinModules.home-manager
-        (import ./options.nix {
-          inherit inputs system;
-        })
+        {
+          nixpkgs = {
+            overlays = commonOverlays;
+            config = commonNixpkgsConfig;
+            hostPlatform = system;
+          };
+          home-manager = {
+            useGlobalPkgs = true;
+            backupFileExtension = "bak";
+            useUserPackages = true;
+            users.marcus = import ../home;
+            extraSpecialArgs = {
+              user = "marcus";
+              inherit inputs;
+            };
+          };
+        }
       ];
     };
 
@@ -53,16 +79,24 @@ let
       imports = [
         ../nixos
         inputs.agenix.nixosModules.age
-        {
-          nixpkgs.overlays = [
-            inputs.ghostty.overlays.default
-            inputs.quickshell.overlays.default
-          ];
-        }
         inputs.home-manager.nixosModules.home-manager
-        (import ./options.nix {
-          inherit inputs system;
-        })
+        {
+          nixpkgs = {
+            overlays = commonOverlays;
+            config = commonNixpkgsConfig;
+            hostPlatform = system;
+          };
+          home-manager = {
+            useGlobalPkgs = true;
+            backupFileExtension = "bak";
+            useUserPackages = true;
+            users.marcus = import ../home;
+            extraSpecialArgs = {
+              user = "marcus";
+              inherit inputs;
+            };
+          };
+        }
       ]
       ++ extraModules;
       clan.core.networking.targetHost = "root@${name}";
@@ -88,10 +122,8 @@ let
       modules = [
         {
           nixpkgs = {
-            overlays = [ (import ../overlays inputs) ];
-            config = {
-              allowUnfree = true;
-            };
+            overlays = commonOverlays;
+            config = commonNixpkgsConfig;
           };
         }
         ../home/default.nix
