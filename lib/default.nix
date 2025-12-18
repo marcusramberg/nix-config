@@ -26,6 +26,16 @@ let
       inherit inputs;
     };
   };
+
+  # Common system configuration module for both NixOS and Darwin
+  mkSystemConfigModule = system: {
+    nixpkgs = {
+      overlays = commonOverlays;
+      config = commonNixpkgsConfig;
+      hostPlatform = system;
+    };
+    home-manager = commonHomeManagerConfig;
+  };
   mkDarwinHost =
     name:
     {
@@ -43,14 +53,7 @@ let
         ../darwin
         # `home-manager` module
         inputs.home-manager.darwinModules.home-manager
-        {
-          nixpkgs = {
-            overlays = commonOverlays;
-            config = commonNixpkgsConfig;
-            hostPlatform = system;
-          };
-          home-manager = commonHomeManagerConfig;
-        }
+        (mkSystemConfigModule system)
       ];
     };
 
@@ -83,14 +86,7 @@ let
         ../nixos
         inputs.agenix.nixosModules.age
         inputs.home-manager.nixosModules.home-manager
-        {
-          nixpkgs = {
-            overlays = commonOverlays;
-            config = commonNixpkgsConfig;
-            hostPlatform = system;
-          };
-          home-manager = commonHomeManagerConfig;
-        }
+        (mkSystemConfigModule system)
       ]
       ++ extraModules;
       clan.core.networking.targetHost = "root@${name}";
