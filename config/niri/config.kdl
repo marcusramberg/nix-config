@@ -94,6 +94,7 @@ binds {
     Mod+8 { focus-workspace 8; }
     Alt+Shift+Insert hotkey-overlay-title="Toggle Clipboard Manager" { spawn "dms" "ipc" "clipboard" "toggle"; }
     Mod+B hotkey-overlay-title="Toggle Top Bar" { spawn "dms" "ipc" "bar" "toggle" "index" "0"; }
+    Mod+W hotkey-overlay-title="Start Pomodoro" { spawn "dms" "ipc" "pomodoroTimer" "startWork"; }
     Mod+Ctrl+H { focus-monitor-left; }
     Mod+Ctrl+J { focus-monitor-down; }
     Mod+Ctrl+K { focus-monitor-up; }
