@@ -13,7 +13,6 @@
         "mgmt"
       ];
 
-      backend = "firewalld";
     };
     nftables = {
       enable = true;

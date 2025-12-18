@@ -70,7 +70,7 @@
     enable = lib.mkDefault true;
     trustedInterfaces = lib.mkDefault [ "tailscale0" ];
     allowedTCPPorts = lib.mkDefault [ 22 ];
-    backend = "firewalld";
+    backend = "nftables";
   };
   networking.nftables.enable = true;
 
