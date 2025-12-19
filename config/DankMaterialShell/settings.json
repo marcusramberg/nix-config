@@ -302,10 +302,16 @@
         }
       ],
       "centerWidgets": [
-        "music",
-        "weather",
         {
           "id": "dankPomodoroTimer",
+          "enabled": true
+        },
+        {
+          "id": "music",
+          "enabled": true
+        },
+        {
+          "id": "weather",
           "enabled": true
         },
         {

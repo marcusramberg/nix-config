@@ -53,11 +53,11 @@
     "timezones": [
       {
         "timezone": "Asia/Tokyo",
-        "label": ""
+        "label": "JP"
       },
       {
         "timezone": "America/New_York",
-        "label": ""
+        "label": "NYC"
       }
     ]
   }
