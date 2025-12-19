@@ -20,7 +20,7 @@ steps:
       ATTIC_TOKEN:
         from_secret: attic_token
     commands:
-      - nix develop .#update -c './update.sh'
+      - nix develop .#update -c './build-cache.sh'
 
     volumes:
       - /mnt/nix:/nix
