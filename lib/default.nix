@@ -55,7 +55,6 @@ let
         inputs.agenix.nixosModules.age
         {
           nixpkgs.overlays = [
-            inputs.ghostty.overlays.default
             inputs.quickshell.overlays.default
           ];
         }
