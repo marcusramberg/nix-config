@@ -39,7 +39,6 @@
   };
   networking = {
     hostName = "mtop";
-    enableIPv6 = false;
     networkmanager.enable = true;
   };
 

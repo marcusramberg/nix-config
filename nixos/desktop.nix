@@ -15,6 +15,8 @@ let
     rev = "8fa7c5286171c66a209dd74e9a47d6e72ccfdad6";
     hash = "sha256-0RXRgUXXoX+C0q+drsShjx2rCTdmqFzOCR/1rGB/W2E=";
   };
+  gsettingsSchemas = pkgs.gsettings-desktop-schemas;
+  schemaDir = pkgs.glib.makeSchemaPath gsettingsSchemas gsettingsSchemas.name;
   worldClock = pkgs.fetchFromGitHub {
     owner = "rochacbruno";
     repo = "WorldClock";
@@ -202,13 +204,7 @@ in
       };
     };
     environment.sessionVariables = {
-      XDG_DATA_DIRS = lib.mkForce (
-        lib.concatStringsSep ":" [
-          "${pkgs.gsettings-desktop-schemas}/share/gsettings-schemas/${pkgs.gsettings-desktop-schemas.name}"
-          "${config.services.displayManager.sessionData.desktops}/share"
-        ]
-      );
-
+      GSETTINGS_SCHEMA_DIR = schemaDir;
       QML2_IMPORT_PATH = lib.concatStringsSep ":" [
         "${quickshell}/lib/qt-6/qml"
         "${pkgs.kdePackages.qtdeclarative}/lib/qt-6/qml"
