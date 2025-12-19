@@ -201,13 +201,22 @@ in
         };
       };
     };
-    environment.sessionVariables.QML2_IMPORT_PATH = lib.concatStringsSep ":" [
-      "${quickshell}/lib/qt-6/qml"
-      "${pkgs.kdePackages.qtdeclarative}/lib/qt-6/qml"
-      "${pkgs.kdePackages.kirigami.unwrapped}/lib/qt-6/qml"
-      "${pkgs.kdePackages.sonnet}/lib/qt-6/qml"
-      "${pkgs.kdePackages.qtmultimedia}/lib/qt-6/qml"
-    ];
+    environment.sessionVariables = {
+      XDG_DATA_DIRS = lib.mkForce (
+        lib.concatStringsSep ":" [
+          "${pkgs.gsettings-desktop-schemas}/share/gsettings-schemas/${pkgs.gsettings-desktop-schemas.name}"
+          "${config.services.displayManager.sessionData.desktops}/share"
+        ]
+      );
+
+      QML2_IMPORT_PATH = lib.concatStringsSep ":" [
+        "${quickshell}/lib/qt-6/qml"
+        "${pkgs.kdePackages.qtdeclarative}/lib/qt-6/qml"
+        "${pkgs.kdePackages.kirigami.unwrapped}/lib/qt-6/qml"
+        "${pkgs.kdePackages.sonnet}/lib/qt-6/qml"
+        "${pkgs.kdePackages.qtmultimedia}/lib/qt-6/qml"
+      ];
+    };
     security.polkit = {
       enable = true;
       extraConfig = ''

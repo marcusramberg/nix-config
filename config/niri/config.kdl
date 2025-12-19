@@ -21,6 +21,7 @@ input {
     }
     workspace-auto-back-and-forth
 }
+include "dms/outputs.kdl"
 output "Apple Computer Inc Color LCD Unknown" {
   scale 1.5
   transform "normal"
@@ -250,4 +251,3 @@ include "dms/layout.kdl"
 include "dms/wpblur.kdl"
 include "dms/binds.kdl"
 
-include "dms/outputs.kdl"
