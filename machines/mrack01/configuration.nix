@@ -134,6 +134,10 @@
         TRUST_PROXY = true;
       };
     };
+    prometheus.exporters.node = {
+      enable = true;
+      openFirewall = false;
+    };
     openssh.settings.PasswordAuthentication = false;
     tailscale.useRoutingFeatures = "server";
 
