@@ -115,6 +115,7 @@
       ];
       wireplumber.enable = true;
     };
+    prometheus.exporters.node.enable = true;
     rustdesk-server = {
       enable = true;
       relay.enable = true;

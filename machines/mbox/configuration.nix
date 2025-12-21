@@ -206,6 +206,7 @@
       openFirewall = true;
       secretsFile = config.age.secrets.immich.path;
     };
+    prometheus.exporters.node.enable = true;
     jellyfin.enable = true;
     k3s.clusterInit = true;
     nix-serve = {
