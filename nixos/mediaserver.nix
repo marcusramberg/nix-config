@@ -137,7 +137,8 @@ in
 
     virtualisation.oci-containers.containers = {
       plex = {
-        image = "lscr.io/linuxserver/plex:latest";
+        # renovate: datasource=docker depName=linuxserver/plex
+        image = "linuxserver/plex:1.42.2";
         environment = {
           TZ = "Europe/Oslo";
           PUID = "193";
