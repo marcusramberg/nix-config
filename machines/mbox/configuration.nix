@@ -219,7 +219,10 @@
       host = "0.0.0.0";
       enable = true;
       openFirewall = true;
-      # acceleration = "rocm";
+      package = pkgs.ollama-vulkan;
+      environmentVariables = {
+        OLLAMA_CONTEXT_LENGTH = "32400";
+      };
     };
     tailscale.useRoutingFeatures = "server";
     woodpecker-agents.agents.mbox = {
