@@ -1,0 +1,14 @@
+labels:
+  test: test
+when:
+  event:
+    - push
+steps:
+  - name: echo
+    image: alpine:latest
+    commands:
+      - echo "FIRST STEP AFTER CLONE"
+  - name: echo
+    image: alpine:latest
+    commands:
+      - echo "SECOND STEP AFTER CLONE"
