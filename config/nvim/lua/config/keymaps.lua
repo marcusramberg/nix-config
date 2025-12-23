@@ -4,8 +4,8 @@
 --
 local keymap = vim.keymap.set
 keymap({ "n", "v", "i" }, "<C-p>", function()
-  Snacks.picker.files()
-end, { desc = "Open File Explorer" })
+  require("snacks.picker").files({ cwd = require("lazyvim.util").root() })
+end, { desc = "Open File Explorer (Git Root)" })
 keymap("n", "U", "<C-r>", { desc = "Redo" })
 keymap("n", "<leader>pp", function()
   Snacks.picker.projects({ dev = { "~/Source/reMarkable", "~/Source/" } })
@@ -15,7 +15,7 @@ keymap("n", "<leader>gl", function()
   Snacks.lazygit()
 end, { desc = "Lazygit" })
 keymap("n", "<leader>gG", "<cmd>Neogit cwd=.<cr>", { desc = "Neogit (cwd)" })
-keymap("n", "<leader>gb", "<cmd>BlamerToggle<cr>", { desc = "Toggle Blame" })
+keymap("n", "<leader>gb", "<cmd>Gitsigns blame<cr>", { desc = "Git Blame" })
 keymap("n", "<leader>ot", "<cmd>Task<cr>", { desc = "Run task" })
 keymap("n", "<leader>ut", function()
   if vim.g.colors_name == "catppuccin-mocha" then

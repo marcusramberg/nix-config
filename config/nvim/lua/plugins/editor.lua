@@ -2,8 +2,6 @@ return {
 
   -- open with line (from syntax output and such)
   "wsdjeg/vim-fetch",
-  -- return where you came from
-  "farmergreg/vim-lastplace",
   -- Smart sort that supports yaml dicts
   { "sQVe/sort.nvim", config = true },
   -- Extend % to support words

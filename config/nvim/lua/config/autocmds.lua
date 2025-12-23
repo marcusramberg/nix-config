@@ -37,3 +37,13 @@ vim.api.nvim_create_autocmd("FileType", {
     -- vim.opt.formatoptions:append("a")
   end,
 })
+
+vim.api.nvim_create_autocmd("VimEnter", {
+  callback = function()
+    if vim.g.neovide and vim.fn.argc() == 0 then
+      vim.schedule(function()
+        vim.cmd("cd ~/Source")
+      end)
+    end
+  end,
+})
