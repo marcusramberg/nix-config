@@ -10,7 +10,6 @@ opt.iskeyword:append("-")
 opt.foldenable = false
 vim.g.root_spec = { { ".git" }, "cwd" }
 opt.relativenumber = false
-vim.lsp.set_log_level("off")
 vim.opt.mouse = "" --Disable mouse support
 
 if vim.g.neovide then
@@ -58,4 +57,3 @@ if vim.g.neovide then
   vim.g.terminal_color_14 = "#94e2d5"
   vim.g.terminal_color_15 = "#a6adc8"
 end
-vim.g.lazyvim_picker = "snacks"
