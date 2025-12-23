@@ -23,6 +23,7 @@ in
   "mosquittoPass.age".publicKeys = [ marcus ] ++ machines;
   "networks.age".publicKeys = [ marcus ] ++ machines;
   "nixAccessTokens.age".publicKeys = [ marcus ] ++ machines;
+  "ollamaApiKey.age".publicKeys = [ marcus ] ++ machines;
   "phone-pin.age".publicKeys = [ marcus ] ++ machines;
   "picserver.age".publicKeys = [ marcus ] ++ machines;
   "prompass.age".publicKeys = [ marcus ] ++ machines;

@@ -12,6 +12,9 @@
   ];
 
   # Bootloader.
+  age.secrets.ollamaApiKey = {
+    owner = "ollama";
+  };
   boot = {
     loader.efi.canTouchEfiVariables = true;
     # Setup keyfile
@@ -166,9 +169,14 @@
   };
 
   networking = {
-    firewall.trustedInterfaces = [
-      "incusbr0"
-    ];
+    firewall = {
+      trustedInterfaces = [
+        "incusbr0"
+      ];
+      allowedTCPPorts = [
+        3080
+      ];
+    };
   };
 
   programs = {
@@ -224,6 +232,11 @@
         OLLAMA_CONTEXT_LENGTH = "32400";
       };
     };
+    nextjs-ollama-llm-ui = {
+      enable = true;
+      ollamaUrl = "http://mbox:11434";
+      port = 3080;
+    };
     tailscale.useRoutingFeatures = "server";
     woodpecker-agents.agents.mbox = {
       enable = true;
@@ -259,6 +272,9 @@
       };
       wantedBy = [ "multi-user.target" ];
     };
+  };
+  systemd.services.ollama = {
+    serviceConfig.EnvironmentFile = [ config.age.secrets.ollamaApiKey.path ];
   };
   users.users.caddy.extraGroups = [ "incus-admin" ];
   virtualisation = {
