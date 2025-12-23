@@ -8,7 +8,6 @@ opt.guifont = "JetBrainsMono Nerd Font:h12"
 opt.synmaxcol = 300
 opt.iskeyword:append("-")
 opt.foldenable = false
-opt.autochdir = true
 vim.g.root_spec = { { ".git" }, "cwd" }
 opt.relativenumber = false
 vim.lsp.set_log_level("off")
@@ -20,7 +19,6 @@ if vim.g.neovide then
   vim.g.neovide_text_gamma = 0.0
   vim.g.neovide_text_contrast = 0.5
   vim.g.neovide_cursor_short_animation_length = 0.02
-  vim.g.neovide_cursor_short_animation_length = 0.04
   vim.g.neovide_scroll_animation_length = 0.05
   vim.api.nvim_command("cd ~/Source")
   vim.g.neovide_confirm_quit = true
@@ -42,7 +40,8 @@ if vim.g.neovide then
   vim.keymap.set("n", "<C-->", function()
     change_scale_factor(1 / 1.25)
   end)
-  -- Terminal colors  vim.g.terminal_color_0 = "#45475a"
+  -- Terminal colors
+  vim.g.terminal_color_0 = "#45475a"
   vim.g.terminal_color_1 = "#f38ba8"
   vim.g.terminal_color_2 = "#a6e3a1"
   vim.g.terminal_color_3 = "#f9e2af"

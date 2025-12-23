@@ -9,7 +9,7 @@ return {
         kind = "vsplit",
         integrations = {
           diffview = true,
-          snack = true,
+          snacks = true,
         },
         graph_style = "unicode",
         git_services = {

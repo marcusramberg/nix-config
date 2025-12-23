@@ -1,30 +1,9 @@
 return {
-  -- change trouble config
-  --
-  -- {
-  --   "gbprod/nord.nvim",
-  --   lazy = false,
-  --   priority = 1000,
-  --   config = function()
-  --     require("nord").setup({})
-  --     vim.cmd.colorscheme("nord")
-  --   end,
-  -- },
-  -- { "folke/tokyonight.nvim", enabled = false },
   {
     "folke/trouble.nvim",
     -- opts will be merged with the parent spec
     opts = { use_diagnostic_signs = true },
   },
-
-  -- add symbols-outline
-  -- {
-  --   "simrat39/symbols-outline.nvim",
-  --   cmd = "SymbolsOutline",
-  --   keys = { { "<leader>cs", "<cmd>SymbolsOutline<cr>", desc = "Symbols Outline" } },
-  --   config = true,
-  -- },
-
   {
     "folke/which-key.nvim",
     opts = {
@@ -32,26 +11,7 @@ return {
     },
   },
 
-  -- see hidden files in neotree
-  {
-    "nvim-neo-tree/neo-tree.nvim",
-    opts = {
-      filesystem = {
-        filtered_items = {
-          visible = true,
-          show_hidden_count = true,
-          hide_dotfiles = false,
-          hide_gitignored = true,
-          hide_by_name = {
-            -- '.git',
-            -- '.DS_Store',
-            -- 'thumbs.db',
-          },
-          never_show = {},
-        },
-      },
-    },
-  },
+
   -- Scope buffers to tabs
   { "tiagovla/scope.nvim", config = true },
   {
