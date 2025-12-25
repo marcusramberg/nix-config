@@ -114,6 +114,7 @@
   virtualisation = {
     docker.enable = true;
     incus.enable = true;
+    incus.package = pkgs.incus;
     waydroid.enable = true;
   };
 }
