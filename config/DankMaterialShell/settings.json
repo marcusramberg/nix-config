@@ -274,7 +274,11 @@
   "displayNameMode": "model",
   "screenPreferences": {},
   "showOnLastDisplay": {},
-  "niriOutputSettings": {},
+  "niriOutputSettings": {
+    "AU Optronics 0xD291 Unknown": {
+      "vrrOnDemand": true
+    }
+  },
   "hyprlandOutputSettings": {},
   "barConfigs": [
     {

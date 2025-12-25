@@ -20,7 +20,8 @@ output "Dell Inc. DELL U3223QE 757H2P3" {
 
 output "AU Optronics 0xD291 Unknown" {
     mode "1920x1200@60.026"
-    scale 1.09765625
+    scale 1.25
     position x=0 y=0
+    variable-refresh-rate on-demand=true
 }
 
