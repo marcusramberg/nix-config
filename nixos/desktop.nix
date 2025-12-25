@@ -50,7 +50,17 @@ in
     };
 
     environment = {
-      sessionVariables.NIXOS_OZONE_WL = "1";
+      sessionVariables = {
+        GSETTINGS_SCHEMA_DIR = schemaDir;
+        NIXOS_OZONE_WL = "1";
+        QML2_IMPORT_PATH = lib.concatStringsSep ":" [
+          "${quickshell}/lib/qt-6/qml"
+          "${pkgs.kdePackages.qtdeclarative}/lib/qt-6/qml"
+          "${pkgs.kdePackages.kirigami.unwrapped}/lib/qt-6/qml"
+          "${pkgs.kdePackages.sonnet}/lib/qt-6/qml"
+          "${pkgs.kdePackages.qtmultimedia}/lib/qt-6/qml"
+        ];
+      };
       systemPackages =
         with pkgs;
         [
@@ -202,16 +212,6 @@ in
           variant = "mac";
         };
       };
-    };
-    environment.sessionVariables = {
-      GSETTINGS_SCHEMA_DIR = schemaDir;
-      QML2_IMPORT_PATH = lib.concatStringsSep ":" [
-        "${quickshell}/lib/qt-6/qml"
-        "${pkgs.kdePackages.qtdeclarative}/lib/qt-6/qml"
-        "${pkgs.kdePackages.kirigami.unwrapped}/lib/qt-6/qml"
-        "${pkgs.kdePackages.sonnet}/lib/qt-6/qml"
-        "${pkgs.kdePackages.qtmultimedia}/lib/qt-6/qml"
-      ];
     };
     security.polkit = {
       enable = true;
