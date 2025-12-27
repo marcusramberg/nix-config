@@ -44,4 +44,9 @@ in
       ];
     };
   };
+  qt = {
+    enable = true;
+    qt5ctSettings.Appearance.icon_theme = "breeze-dark";
+    qt6ctSettings.Appearance.icon_theme = "breeze-dark";
+  };
 }
