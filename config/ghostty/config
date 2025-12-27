@@ -1,4 +1,4 @@
-theme=dankcolors
+theme=Catppuccin Mocha
 font-family=JetBrainsMono Nerd Font
 gtk-titlebar = false
 window-decoration = false
