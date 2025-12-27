@@ -151,9 +151,10 @@
   swapDevices = [ { device = "/dev/disk/by-uuid/a3e364f4-a757-4e71-b220-5c850de97136"; } ];
 
   profiles = {
-    limine.enable = true;
     desktop.enable = true;
     gaming.enable = true;
+    incus.enable = true;
+    limine.enable = true;
     caddy = {
       enable = true;
       configFile = ../../config/Caddyfile.mbox;
@@ -170,9 +171,6 @@
 
   networking = {
     firewall = {
-      trustedInterfaces = [
-        "incusbr0"
-      ];
       allowedTCPPorts = [
         3080
       ];
@@ -279,11 +277,6 @@
   users.users.caddy.extraGroups = [ "incus-admin" ];
   virtualisation = {
     docker.enable = true;
-    incus = {
-      enable = true;
-      ui.enable = true;
-
-    };
     waydroid.enable = true;
   };
 }

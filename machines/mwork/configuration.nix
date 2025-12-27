@@ -93,6 +93,7 @@
   };
 
   profiles = {
+    incus.enable = true;
     limine = {
       enable = true;
       secureboot = true;
@@ -113,8 +114,6 @@
   '';
   virtualisation = {
     docker.enable = true;
-    incus.enable = true;
-    incus.package = pkgs.incus;
     waydroid.enable = true;
   };
 }

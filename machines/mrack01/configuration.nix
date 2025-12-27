@@ -33,9 +33,6 @@
   networking = {
     useDHCP = false;
     firewall = {
-      trustedInterfaces = [
-        "incusbr0"
-      ];
       allowedTCPPorts = [
         22
         80
@@ -78,6 +75,7 @@
       configFile = ../../config/Caddyfile.mrack01;
     };
     dockerHost.enable = true;
+    incus.enable = true;
   };
   services = {
     borgbackup.jobs = {
@@ -176,6 +174,4 @@
       ];
     };
   };
-  virtualisation.incus.enable = true;
-  virtualisation.incus.ui.enable = true;
 }

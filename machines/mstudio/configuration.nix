@@ -61,12 +61,7 @@
     keyboard.dual-caps.enable = true;
   };
 
-  networking = {
-    networkmanager.enable = false;
-    firewall.trustedInterfaces = [
-      "incusbr0"
-    ];
-  };
+  networking.networkmanager.enable = false;
 
   nix.settings = {
     extra-substituters = [
@@ -80,6 +75,7 @@
   # Enable the X11 windowing system.
   profiles = {
     dockerHost.enable = true;
+    incus.enable = true;
     k3s = {
       enable = true;
       serverAddr = "https://192.168.86.1:6443";
@@ -143,10 +139,6 @@
       ];
     };
   };
-  virtualisation = {
-    incus.enable = true;
-    incus.ui.enable = true;
-    libvirtd.enable = true;
-  };
+  virtualisation.libvirtd.enable = true;
   zramSwap.enable = true;
 }
