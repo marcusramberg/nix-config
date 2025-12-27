@@ -60,10 +60,14 @@ in
           "${pkgs.kdePackages.sonnet}/lib/qt-6/qml"
           "${pkgs.kdePackages.qtmultimedia}/lib/qt-6/qml"
         ];
+        QT_QPA_PLATFORMTHEME = "qt6ct";
+        QT_QPA_PLATFORMTHEME_QT6 = "qt6ct";
+
       };
       systemPackages =
         with pkgs;
         [
+          adw-gtk3
           bitwarden-desktop
           (catppuccin.override {
             variant = "mocha";
@@ -77,36 +81,36 @@ in
               "waybar"
             ];
           })
-          (catppuccin-gtk.override {
-            variant = "mocha";
-            accents = [
-              "blue"
-              "teal"
-              "lavender"
-            ];
-
-          })
-          (catppuccin-kde.override {
-            flavour = [ "mocha" ];
-            winDecStyles = [
-              "classic"
-            ];
-            accents = [
-              "blue"
-              "teal"
-              "lavender"
-            ];
-
-          })
-          catppuccin-cursors.mochaLavender
-          (catppuccin-kvantum.override {
-            variant = "mocha";
-            accent = "lavender";
-          })
-          (catppuccin-papirus-folders.override {
-            flavor = "mocha";
-            accent = "lavender";
-          })
+          # (catppuccin-gtk.override {
+          #   variant = "mocha";
+          #   accents = [
+          #     "blue"
+          #     "teal"
+          #     "lavender"
+          #   ];
+          #
+          # })
+          # (catppuccin-kde.override {
+          #   flavour = [ "mocha" ];
+          #   winDecStyles = [
+          #     "classic"
+          #   ];
+          #   accents = [
+          #     "blue"
+          #     "teal"
+          #     "lavender"
+          #   ];
+          #
+          # })
+          # catppuccin-cursors.mochaLavender
+          # (catppuccin-kvantum.override {
+          #   variant = "mocha";
+          #   accent = "lavender";
+          # })
+          # (catppuccin-papirus-folders.override {
+          #   flavor = "mocha";
+          #   accent = "lavender";
+          # })
           element-desktop
           ghostty
           hunspell
@@ -125,18 +129,20 @@ in
           vivaldi-ffmpeg-codecs
           spotify-player
           telegram-desktop
-          kdePackages.tokodon
           signal-desktop
           webcord-vencord
           wtype
         ]
         ++ (with kdePackages; [
-          kaccounts-providers
-          kio-gdrive
+          breeze-icons
           discover
           dolphin
           dolphin-plugins
+          kaccounts-providers
+          kio-gdrive
+          qt6ct
           qtdeclarative
+          tokodon
         ]);
     };
 
@@ -184,7 +190,6 @@ in
     qt = {
       enable = true;
       style = "breeze";
-      platformTheme = "kde";
     };
 
     services = {
