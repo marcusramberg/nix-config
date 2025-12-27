@@ -61,8 +61,6 @@
           (inputs.unattended-installer.lib.diskoInstallerWrapper config { }).config.system.build.isoImage
         ) self.nixosConfigurations;
 
-        darwinConfigurations.mwork = mkDarwinHost "mwork" { };
-        darwinConfigurations.mStudio = mkDarwinHost "mstudio" { };
         homeConfigurations = {
           marcus = mkHMConfig { };
           aarch64 = mkHMConfig { system = "aarch64-linux"; };
@@ -114,7 +112,6 @@
       systems = [
         "x86_64-linux"
         "aarch64-linux"
-        "aarch64-darwin"
       ];
     });
 
@@ -123,7 +120,6 @@
       url = "github:ryantm/agenix";
       inputs = {
         nixpkgs.follows = "nixpkgs";
-        darwin.follows = "darwin";
         home-manager.follows = "home-manager";
         systems.follows = "systems";
       };
@@ -146,8 +142,6 @@
       inputs.quickshell.follows = "quickshell";
     };
 
-    darwin.url = "github:lnl7/nix-darwin/master";
-    darwin.inputs.nixpkgs.follows = "nixpkgs";
     disko.url = "github:nix-community/disko";
     disko.inputs.nixpkgs.follows = "nixpkgs";
     flake-compat.url = "github:nix-community/flake-compat";

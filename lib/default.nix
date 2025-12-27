@@ -2,28 +2,6 @@
   inputs,
 }:
 let
-  mkDarwinHost =
-    name:
-    {
-      system ? "aarch64-darwin",
-      user ? "marcus",
-    }:
-    inputs.darwin.lib.darwinSystem {
-      inherit system;
-      specialArgs = {
-        inherit user inputs;
-      };
-      modules = [
-        # Main `nix-darwin` config
-        ../machines/${name}
-        ../darwin
-        # `home-manager` module
-        inputs.home-manager.darwinModules.home-manager
-        (import ./options.nix {
-          inherit inputs system;
-        })
-      ];
-    };
 
   mkDesktopHost =
     name:
@@ -100,7 +78,6 @@ let
 in
 {
   inherit
-    mkDarwinHost
     mkNixHost
     mkDesktopHost
     mkHMConfig
