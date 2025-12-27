@@ -23,7 +23,7 @@
     ./emacs.nix
     ./gaming.nix
     ./hass.nix
-    ./hyprland.nix
+    ./incus.nix
     ./k3s.nix
     ./keyboardmap.nix
     ./kodi.nix

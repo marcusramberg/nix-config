@@ -23,26 +23,15 @@ in
     bat = {
       enable = true;
       config = {
-        theme = "Catppuccin-mocha";
+        theme = "Nord";
         map-syntax = ".ignore:Git Ignore";
         style = "changes";
-      };
-      themes = {
-        Catppuccin-mocha = {
-          src = pkgs.fetchFromGitHub {
-            owner = "catppuccin";
-            repo = "bat";
-            rev = "ba4d16880d63e656acced2b7d4e034e4a93f74b1";
-            sha256 = "sha256-6WVKQErGdaqb++oaXnY3i6/GuH2FhTgK0v4TN4Y0Wbw=";
-          };
-          file = "Catppuccin-mocha.tmTheme";
-        };
       };
     };
     btop = {
       enable = true;
       settings = {
-        color_theme = "catppuccin_mocha";
+        color_theme = "nord";
         truecolor = "True";
       };
     };

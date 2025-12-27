@@ -32,7 +32,7 @@ in
           opacity = 0.94;
           rounding = 10;
         };
-        theme.name = "catppuccin-mocha";
+        theme.name = "nord";
 
       };
       extensions = [

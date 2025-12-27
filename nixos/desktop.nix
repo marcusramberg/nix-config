@@ -69,48 +69,6 @@ in
         [
           adw-gtk3
           bitwarden-desktop
-          (catppuccin.override {
-            variant = "mocha";
-            accent = "lavender";
-            themeList = [
-              "bat"
-              "btop"
-              "element"
-              "k9s"
-              "lazygit"
-              "waybar"
-            ];
-          })
-          # (catppuccin-gtk.override {
-          #   variant = "mocha";
-          #   accents = [
-          #     "blue"
-          #     "teal"
-          #     "lavender"
-          #   ];
-          #
-          # })
-          # (catppuccin-kde.override {
-          #   flavour = [ "mocha" ];
-          #   winDecStyles = [
-          #     "classic"
-          #   ];
-          #   accents = [
-          #     "blue"
-          #     "teal"
-          #     "lavender"
-          #   ];
-          #
-          # })
-          # catppuccin-cursors.mochaLavender
-          # (catppuccin-kvantum.override {
-          #   variant = "mocha";
-          #   accent = "lavender";
-          # })
-          # (catppuccin-papirus-folders.override {
-          #   flavor = "mocha";
-          #   accent = "lavender";
-          # })
           element-desktop
           ghostty
           hunspell
@@ -130,7 +88,7 @@ in
           spotify-player
           telegram-desktop
           signal-desktop
-          webcord-vencord
+          vesktop
           wtype
         ]
         ++ (with kdePackages; [

@@ -1,4 +1,4 @@
-theme=Catppuccin Mocha
+theme=Nord
 font-family=JetBrainsMono Nerd Font
 gtk-titlebar = false
 window-decoration = false

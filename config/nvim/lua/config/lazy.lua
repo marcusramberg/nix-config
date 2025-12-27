@@ -9,32 +9,19 @@ vim.opt.rtp:prepend(vim.env.LAZY or lazypath)
 require("lazy").setup({
   spec = {
     {
+      "AlexvZyl/nordic.nvim",
+      lazy = false,
+      priority = 1000,
+      config = function()
+        require("nordic").load()
+      end,
+    },
+    {
       "LazyVim/LazyVim",
       import = "lazyvim.plugins",
       opts = {
         colorscheme = function()
-          require("catppuccin").setup({
-            flavour = "mocha",
-            background = {
-              light = "latte",
-              dark = "mocha",
-            },
-            float = {
-              transparent = true, -- enable transparent floating windows
-              solid = false, -- use solid styling for floating windows, see |winborder|
-            },
-            transparent_background = true,
-            show_end_of_buffer = false,
-            integrations = {
-              cmp = true,
-              gitsigns = true,
-              nvimtree = true,
-              treesitter = true,
-              notify = true,
-              mini = true,
-            },
-          })
-          vim.cmd.colorscheme("catppuccin")
+          vim.cmd.colorscheme("nordic")
         end,
       },
     },
