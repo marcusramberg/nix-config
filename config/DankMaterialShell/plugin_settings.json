@@ -60,5 +60,8 @@
         "label": "NYC"
       }
     ]
+  },
+  "nixMonitor": {
+    "enabled": true
   }
 }

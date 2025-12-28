@@ -15,7 +15,7 @@
         }
         }
         window-rule {
-        geometry-corner-radius 3
+        geometry-corner-radius 4
         clip-to-geometry true
         tiled-state true
         draw-border-with-background false

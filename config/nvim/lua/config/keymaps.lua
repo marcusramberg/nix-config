@@ -19,13 +19,6 @@ end, { desc = "Lazygit" })
 keymap("n", "<leader>gG", "<cmd>Neogit cwd=.<cr>", { desc = "Neogit (cwd)" })
 keymap("n", "<leader>gb", "<cmd>Gitsigns blame<cr>", { desc = "Git Blame" })
 keymap("n", "<leader>ot", "<cmd>Task<cr>", { desc = "Run task" })
-keymap("n", "<leader>ut", function()
-  if vim.g.colors_name == "catppuccin-mocha" then
-    vim.cmd.colorscheme("catppuccin-latte")
-  else
-    vim.cmd.colorscheme("catppuccin-mocha")
-  end
-end, { desc = "Toggle Light Theme" })
 vim.keymap.del("n", "<A-j>")
 vim.keymap.del("n", "<A-k>")
 vim.keymap.set("i", "jj", "<ESC>", { silent = true })

@@ -116,7 +116,7 @@ binds {
     Mod+O { consume-or-expel-window-left; }
     Mod+P { consume-or-expel-window-right; }
     Mod+R { switch-preset-column-width; }
-    Mod+Return hotkey-overlay-title="Open Terminal Emulator" { spawn "ghostty"; }
+    Mod+Return hotkey-overlay-title="Open Terminal Emulator" { spawn "foot" ; }
     Mod+Shift+1 { move-column-to-workspace "terminal"; }
     Mod+Shift+2 { move-column-to-workspace "browser"; }
     Mod+Shift+3 { move-column-to-workspace "music"; }
