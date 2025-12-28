@@ -77,7 +77,7 @@ in
       fish_add_path -p ~/.local/bin ${lib.optionalString isDarwin "/run/current-system/sw/bin /opt/homebrew/bin"} ~/go/bin/ ~/.cargo/bin/
     '';
     interactiveShellInit = ''
-      set -x RIPGREP_CONFIG_PATH "$HOME/.ripgrep/ripgrep.toml"
+      set -x RIPGREP_CONFIG_PATH "$HOME/.ripgreprc"
       fish_vi_key_bindings
       set fish_cursor_default     block      blink
       set fish_cursor_insert      line       blink

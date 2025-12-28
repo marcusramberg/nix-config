@@ -26,7 +26,7 @@ in
       recursive = true;
     };
     "/.config/fish/themes/nord.theme".source = ../config/fish/nord.theme;
-    ".ripgrep/ripgreprc".source = ../config/ripgreprc;
+    ".ripgreprc".source = ../config/ripgreprc;
     ".config/direnv/direnv.toml".source = ../config/direnv/direnv.toml;
   };
 }
