@@ -96,7 +96,6 @@
     },
     "dank-shell": {
       "inputs": {
-        "dgop": "dgop",
         "nixpkgs": [
           "nixpkgs"
         ],
@@ -105,11 +104,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1766846622,
-        "narHash": "sha256-ZFV1DWbOpmvwUA5waRlFU65hUW0XbcqwJWYFnnrOJGU=",
+        "lastModified": 1767023553,
+        "narHash": "sha256-r+bJQvF1nYkeXgadZqZppOz3mGQEEUhSR/7seQcsBE4=",
         "owner": "AvengeMedia",
         "repo": "DankMaterialShell",
-        "rev": "23a93082c654695c22b2e7a296fff016f99c1915",
+        "rev": "60034be06aa30ebf630150f86aa28805fa4fed18",
         "type": "github"
       },
       "original": {
@@ -165,27 +164,6 @@
       "original": {
         "type": "tarball",
         "url": "https://git.clan.lol/clan/data-mesher/archive/main.tar.gz"
-      }
-    },
-    "dgop": {
-      "inputs": {
-        "nixpkgs": [
-          "dank-shell",
-          "nixpkgs"
-        ]
-      },
-      "locked": {
-        "lastModified": 1765838956,
-        "narHash": "sha256-A3a2ZfvjirX8VIdIPI+nAyukWs6vx4vet3fU0mpr7lU=",
-        "owner": "AvengeMedia",
-        "repo": "dgop",
-        "rev": "0ff697a4e3418966caa714c838fc73f1ef6ba59b",
-        "type": "github"
-      },
-      "original": {
-        "owner": "AvengeMedia",
-        "repo": "dgop",
-        "type": "github"
       }
     },
     "disko": {
@@ -633,16 +611,15 @@
         "treefmt-nix": "treefmt-nix_2"
       },
       "locked": {
-        "lastModified": 1766057941,
-        "narHash": "sha256-9Z+vemlL4VipXY3x+WcMQ23rYKjlaaBB00k+cR/txYU=",
-        "owner": "marcusramberg",
+        "lastModified": 1766965993,
+        "narHash": "sha256-Pdw/vUgfEws+EOyFT9WK8SjZP6DCVJkWWJgI01+5+KI=",
+        "owner": "theobori",
         "repo": "nix-converter",
-        "rev": "380aa2c1bd7b4ccfc2e8af99e32303fe5b1b7e45",
+        "rev": "6e5c00e94f078a1eea610e736e7e1fb8349b1ab5",
         "type": "github"
       },
       "original": {
-        "owner": "marcusramberg",
-        "ref": "marcus/multiline",
+        "owner": "theobori",
         "repo": "nix-converter",
         "type": "github"
       }
