@@ -107,13 +107,6 @@ in
     profiles.myfonts.enable = true;
     programs = {
       chromium.enable = true;
-      firefox = {
-        enable = true;
-        nativeMessagingHosts.packages =
-          with pkgs;
-          [ tridactyl-native ]
-          ++ lib.optionals (pkgs.stdenv.hostPlatform.system == "x86_64-linux") [ fx-cast-bridge ];
-      };
       dms-shell = {
         enable = true;
         package = dms;
@@ -135,6 +128,17 @@ in
         };
       };
       dsearch.enable = true;
+      firefox = {
+        enable = true;
+        nativeMessagingHosts.packages =
+          with pkgs;
+          [ tridactyl-native ]
+          ++ lib.optionals (pkgs.stdenv.hostPlatform.system == "x86_64-linux") [ fx-cast-bridge ];
+      };
+      foot = {
+        enable = true;
+        enableFishIntegration = true;
+      };
       kdeconnect.enable = true;
       nautilus-open-any-terminal = {
         enable = true;

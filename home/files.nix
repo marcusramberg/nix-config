@@ -19,6 +19,7 @@ in
       config.lib.file.mkOutOfStoreSymlink "${flakePath}/config/DankMaterialShell";
     ".config/niri".source = config.lib.file.mkOutOfStoreSymlink "${flakePath}/config/niri";
     ".config/nvim".source = config.lib.file.mkOutOfStoreSymlink "${flakePath}/config/nvim";
+    ".config/foot".source = config.lib.file.mkOutOfStoreSymlink "${flakePath}/config/foot";
     ".config/ghostty".source = config.lib.file.mkOutOfStoreSymlink "${flakePath}/config/ghostty";
     ".config/tmuxinator" = {
       source = ../config/tmuxinator;

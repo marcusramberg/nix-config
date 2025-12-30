@@ -151,7 +151,7 @@
   "networkPreference": "wifi",
   "vpnLastConnected": "",
   "iconTheme": "breeze-dark",
-  "launcherLogoMode": "os",
+  "launcherLogoMode": "dank",
   "launcherLogoCustomPath": "",
   "launcherLogoColorOverride": "",
   "launcherLogoColorInvertOnMode": false,
@@ -343,7 +343,7 @@
       "rightWidgets": [
         {
           "id": "colorPicker",
-          "enabled": true
+          "enabled": false
         },
         {
           "id": "clipboard",
@@ -373,14 +373,10 @@
           "id": "clock",
           "enabled": true,
           "clockCompactMode": true
-        },
-        {
-          "id": "systemTray",
-          "enabled": true
         }
       ],
       "spacing": 4,
-      "innerPadding": 4,
+      "innerPadding": 2,
       "bottomGap": 1,
       "transparency": 0.86,
       "widgetTransparency": 0.78,
@@ -393,7 +389,7 @@
       "borderColor": "primary",
       "borderOpacity": 0.28,
       "borderThickness": 3,
-      "fontScale": 1,
+      "fontScale": 0.98,
       "autoHide": false,
       "autoHideDelay": 250,
       "openOnOverview": true,

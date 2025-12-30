@@ -62,6 +62,9 @@
     ]
   },
   "nixMonitor": {
+    "enabled": false
+  },
+  "gitmojiLauncher": {
     "enabled": true
   }
 }
