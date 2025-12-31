@@ -99,7 +99,13 @@
     blueman.enable = true;
     displayManager.sddm.enableHidpi = true;
     libinput.enable = true;
-    ollama.enable = true;
+    ollama = {
+      enable = true;
+      package = pkgs.ollama-vulkan;
+      environmentVariables = {
+        OLLAMA_CONTEXT_LENGTH = "32400";
+      };
+    };
     pipewire = {
       enable = true;
       pulse.enable = true;
