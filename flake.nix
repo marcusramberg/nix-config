@@ -156,10 +156,6 @@
     jovian.inputs.nixpkgs.follows = "nixpkgs";
     home-manager.url = "github:nix-community/home-manager";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
-    mcp-hub = {
-      url = "github:ravitemer/mcp-hub";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
     nix-converter.url = "github:theobori/nix-converter";
     nix-fast-build.url = "github:Mic92/nix-fast-build";
     nix-index-database.url = "github:Mic92/nix-index-database";
@@ -169,6 +165,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+    neovim-nightly-overlay.url = "github:nix-community/neovim-nightly-overlay";
     plasma-manager.url = "github:nix-community/plasma-manager";
     plasma-manager.inputs.nixpkgs.follows = "nixpkgs";
     pre-commit-hooks = {

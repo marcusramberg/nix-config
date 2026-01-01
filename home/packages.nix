@@ -54,10 +54,8 @@ in
       lynx # for copilot
       man-pages
       ncdu
-      neovim
       nil
       nim2
-      inputs.mcp-hub.packages.${stdenv.hostPlatform.system}.default
       inputs.nix-converter.packages.${stdenv.hostPlatform.system}.default
       nix-output-monitor
       nixfmt-rfc-style

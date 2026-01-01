@@ -1,4 +1,9 @@
-{ pkgs, lib, ... }:
+{
+  pkgs,
+  inputs,
+  lib,
+  ...
+}:
 let
   inherit (pkgs.stdenv) isDarwin;
 in
@@ -63,7 +68,8 @@ in
     nix-index.enable = true;
     nix-index-database.comma.enable = true;
     neovim = {
-      extraConfig = ":luafile ~/.config/nvim/init.lua";
+      enable = true;
+      package = inputs.neovim-nightly-overlay.packages.${pkgs.system}.default;
       viAlias = true;
       vimAlias = true;
     };
