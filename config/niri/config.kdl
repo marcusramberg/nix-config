@@ -54,19 +54,20 @@ layout {
         top 0
         bottom 0
     }
-    focus-ring {
-        width 1
-        active-color "#fab387"
-        inactive-color "#b4befe"
-    }
-    default-column-width { proportion 0.500000; }
+    default-column-width { proportion 0.499000; }
     preset-column-widths {
-        proportion 0.300000
-        proportion 0.500000
-        proportion 0.700000
+        proportion 0.299000
+        proportion 0.499000
+        proportion 0.699000
     }
-    center-focused-column "never"
+    center-focused-column "on-overflow"
     always-center-single-column
+    tab-indicator {
+      hide-when-single-tab
+      place-within-column
+      width 8
+      position "left"
+    }
 }
 cursor {
     xcursor-theme "default"
