@@ -125,7 +125,7 @@
       };
     };
     apple-silicon-support = {
-      url = "github:nix-community/nixos-apple-silicon";
+      url = "github:marcusramberg/nixos-apple-silicon";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     caddy-stack = {
