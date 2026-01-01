@@ -67,10 +67,6 @@ in
       viAlias = true;
       vimAlias = true;
     };
-    pay-respects = {
-      enable = true;
-      enableFishIntegration = true;
-    };
     rbw = {
       enable = true;
       settings = {
