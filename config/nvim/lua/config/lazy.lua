@@ -8,15 +8,9 @@ vim.opt.rtp:prepend(vim.env.LAZY or lazypath)
 
 require("lazy").setup({
   spec = {
-    { "shaunsingh/nord.nvim", lazy = false, priority = 1000 },
     {
       "LazyVim/LazyVim",
       import = "lazyvim.plugins",
-      opts = {
-        colorscheme = function()
-          vim.cmd.colorscheme("nord")
-        end,
-      },
     },
     { import = "lazyvim.plugins.extras.ai.copilot" },
     { import = "lazyvim.plugins.extras.ai.copilot-chat" },
