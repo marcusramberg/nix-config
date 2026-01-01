@@ -28,7 +28,7 @@ in
     bat = {
       enable = true;
       config = {
-        theme = "base-16";
+        theme = "base16";
         map-syntax = ".ignore:Git Ignore";
         style = "changes";
       };
