@@ -56,7 +56,7 @@
 [delta]
     features = line-numbers decorations
 [apply]
-  syntax-theme = Nord
+  syntax-theme = base16-256
   whitespace = nowarn
 [advice]
   pushNonFastForward = false

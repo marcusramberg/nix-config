@@ -10,7 +10,7 @@
     keyMode = "vi";
     plugins = with pkgs.tmuxPlugins; [
       {
-        plugin = nord;
+        plugin = tokyo-night-tmux;
       }
       {
         plugin = tmux-thumbs;

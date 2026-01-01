@@ -1,6 +1,0 @@
-@theme "nord"
-configuration {
-  location: 2;
-  font: "JetBrainsMono Nerd Font 16";
-
-}

@@ -23,7 +23,7 @@ in
     bat = {
       enable = true;
       config = {
-        theme = "Nord";
+        theme = "base-16";
         map-syntax = ".ignore:Git Ignore";
         style = "changes";
       };
@@ -31,7 +31,7 @@ in
     btop = {
       enable = true;
       settings = {
-        color_theme = "nord";
+        color_theme = "tokyo-night";
         truecolor = "True";
       };
     };
