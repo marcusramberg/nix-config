@@ -34,6 +34,7 @@
 
   services = {
     openssh.openFirewall = false;
+    ntopng.enable = true;
     avahi = {
       enable = true;
       nssmdns4 = true;
@@ -157,25 +158,25 @@
           networkConfig = {
             ConfigureWithoutCarrier = "yes";
             MulticastDNS = "yes";
-            IPv6SendRA = true;
-            IPv6AcceptRA = false;
-            DHCPPrefixDelegation = false;
+            # IPv6SendRA = true;
+            # IPv6AcceptRA = false;
+            # DHCPPrefixDelegation = false;
 
           };
-          ipv6Prefixes = [
-            {
-              Prefix = "2001:470:28:bca::/64";
-              Assign = false;
-            }
-          ];
-          ipv6SendRAConfig = {
-            DNS = [ "2001:470:28:bca::1" ];
-            EmitDNS = true;
-            RouterLifetimeSec = 1800;
-          };
+          # ipv6Prefixes = [
+          #   {
+          #     Prefix = "2001:470:28:bca::/64";
+          #     Assign = false;
+          #   }
+          # ];
+          # ipv6SendRAConfig = {
+          #   DNS = [ "2001:470:28:bca::1" ];
+          #   EmitDNS = true;
+          #   RouterLifetimeSec = 1800;
+          # };
           address = [
             "192.168.86.1/24"
-            "2001:470:28:bca::1/64"
+            # "2001:470:28:bca::1/64"
           ];
         };
         "isolated" = {
