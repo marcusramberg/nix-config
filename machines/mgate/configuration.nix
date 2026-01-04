@@ -34,7 +34,6 @@
 
   services = {
     openssh.openFirewall = false;
-    ntopng.enable = true;
     avahi = {
       enable = true;
       nssmdns4 = true;
