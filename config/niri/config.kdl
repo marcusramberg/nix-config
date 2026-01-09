@@ -15,6 +15,17 @@ input {
         tap
         natural-scroll
     }
+        trackpoint {
+        // natural-scroll
+        accel-speed 0.1
+        accel-profile "flat"
+        scroll-method "on-button-down"
+        scroll-button 273
+        // scroll-button-lock
+        // left-handed
+        // middle-emulation
+    }
+
     mouse {
         natural-scroll
         accel-profile "flat"
