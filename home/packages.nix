@@ -56,11 +56,12 @@ in
       ncdu
       nil
       nim2
-      inputs.nix-converter.packages.${stdenv.hostPlatform.system}.default
+      inputs.theheck.packages.${stdenv.hostPlatform.system}.default
       nix-output-monitor
       nixfmt-rfc-style
       nixpkgs-review
       nnn
+      nix-converter
       nodePackages.cspell
       nodePackages.typescript
       nodejs

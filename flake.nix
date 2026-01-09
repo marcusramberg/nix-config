@@ -156,7 +156,6 @@
     jovian.inputs.nixpkgs.follows = "nixpkgs";
     home-manager.url = "github:nix-community/home-manager";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
-    nix-converter.url = "github:theobori/nix-converter";
     nix-fast-build.url = "github:Mic92/nix-fast-build";
     nix-index-database.url = "github:Mic92/nix-index-database";
     nix-index-database.inputs.nixpkgs.follows = "nixpkgs";
@@ -177,6 +176,10 @@
     systems.url = "github:nix-systems/default";
     tfenv.flake = false;
     tfenv.url = "github:tfutils/tfenv";
+    theheck = {
+      url = "https://code.bas.es/marcus/theheck/archive/main.tar.gz";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     unattended-installer = {
       url = "github:chrillefkr/nixos-unattended-installer";
       inputs = {

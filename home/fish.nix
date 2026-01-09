@@ -92,6 +92,7 @@ in
       ${pkgs.any-nix-shell}/bin/any-nix-shell fish --info-right | source
       set -gx ATUIN_NOBIND "true"
       atuin init fish | source
+      theheck fish | source
 
       # bind to ctrl-r in normal and insert mode, add any other bindings you want here too
       bind \cr _atuin_search
