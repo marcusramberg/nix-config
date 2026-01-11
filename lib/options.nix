@@ -7,7 +7,6 @@
   nixpkgs = {
     overlays = [
       (import ../overlays inputs)
-      inputs.ghostty.overlays.default
     ];
     config = {
       allowUnfree = true;

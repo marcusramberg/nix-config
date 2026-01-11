@@ -102,7 +102,7 @@
             pre-commit-check = inputs.pre-commit-hooks.lib.${system}.run {
               src = ./.;
               hooks = {
-                nixfmt-rfc-style.enable = true;
+                nixfmt.enable = true;
                 deadnix.enable = true;
                 statix.enable = true;
               };
@@ -145,8 +145,6 @@
     disko.url = "github:nix-community/disko";
     disko.inputs.nixpkgs.follows = "nixpkgs";
     flake-compat.url = "github:nix-community/flake-compat";
-    ghostty.url = "github:ghostty-org/ghostty";
-    ghostty.inputs.nixpkgs.follows = "nixpkgs";
     hei = {
       url = "github:marcusramberg/hei";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -163,7 +161,7 @@
       url = "github:nix-community/nixos-avf";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable-small";
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     neovim-nightly-overlay.url = "github:nix-community/neovim-nightly-overlay";
     plasma-manager.url = "github:nix-community/plasma-manager";
     plasma-manager.inputs.nixpkgs.follows = "nixpkgs";

@@ -58,7 +58,7 @@ in
       nim2
       inputs.theheck.packages.${stdenv.hostPlatform.system}.default
       nix-output-monitor
-      nixfmt-rfc-style
+      nixfmt
       nixpkgs-review
       nnn
       nix-converter

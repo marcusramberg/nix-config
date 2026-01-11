@@ -12,8 +12,8 @@ let
   dmsPlugins = pkgs.fetchFromGitHub {
     owner = "AvengeMedia";
     repo = "dms-plugins";
-    rev = "8fa7c5286171c66a209dd74e9a47d6e72ccfdad6";
-    hash = "sha256-0RXRgUXXoX+C0q+drsShjx2rCTdmqFzOCR/1rGB/W2E=";
+    rev = "da1714820ff2c997092c97d31c72faad5a4e5a01";
+    hash = "sha256-wkvSRLjD5NhSD84MUQEnGkQU0ihWZgBrIXtoCCKWwOE=";
   };
   gsettingsSchemas = pkgs.gsettings-desktop-schemas;
   schemaDir = pkgs.glib.makeSchemaPath gsettingsSchemas gsettingsSchemas.name;
@@ -119,6 +119,14 @@ in
           "dankPomodoroTimer" = {
             enable = true;
             src = "${dmsPlugins}/DankPomodoroTimer";
+          };
+          "dankBatteryAlerts" = {
+            enable = true;
+            src = "${dmsPlugins}/DankBatteryAlerts";
+          };
+          "dankLauncherKeys" = {
+            enable = true;
+            src = "${dmsPlugins}/DankLauncherKeys";
           };
           worldClock = {
             enable = true;

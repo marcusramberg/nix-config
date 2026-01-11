@@ -1,4 +1,4 @@
-theme=Tokyo Night
+theme=TokyoNight Night
 font-family=JetBrainsMono Nerd Font
 gtk-titlebar = false
 window-decoration = false
