@@ -12,6 +12,9 @@ in
   options.profiles.prometheus-server.enable = mkEnableOption "Prometheus setup";
 
   config = mkIf cfg.enable {
+    age.secrets.ha-bearer = {
+      owner = "vmagent";
+    };
     services = {
       prometheus = {
         pushgateway = {
@@ -109,7 +112,7 @@ in
         enable = true;
         remoteWrite.url = "http://monitor01:8428/api/v1/write";
         prometheusConfig = {
-          scrapeConfigs = [
+          scrape_configs = [
             {
               job_name = "node";
               scrape_interval = "10s";

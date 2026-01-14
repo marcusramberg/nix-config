@@ -158,6 +158,29 @@ movies.means.no:443 {
 	}
 }
 
+mp3s.means.no:443 {
+	import caddy-common
+	@auth {
+		path /caddy-security/*
+	}
+	route @auth {
+		authenticate with pocketid
+	}
+	@protected not path /api/*
+	route @protected {
+		reverse_proxy localhost:8686
+		authorize with pocketid
+	}
+	route /api/* {
+		reverse_proxy localhost:8686
+	}
+}
+
+music.means.no:443 {
+  import caddy-common
+  reverse_proxy localhost:4533
+}
+
 reader.means.no:443 {
 	import caddy-common
 	reverse_proxy localhost:8787

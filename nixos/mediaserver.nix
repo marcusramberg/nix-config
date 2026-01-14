@@ -59,6 +59,13 @@ in
 
       sonarr.enable = true;
       readarr.enable = true;
+      navidrome = {
+        enable = true;
+        settings = {
+          MusicFolder = "/space/Music";
+        };
+      };
+      lidarr.enable = true;
 
       miniflux = {
         enable = true;
@@ -113,6 +120,10 @@ in
 
     users = {
       users = {
+        lidarr.extraGroups = [
+          "transmission"
+          "nzbget"
+        ];
         radarr.extraGroups = [
           "transmission"
           "nzbget"
