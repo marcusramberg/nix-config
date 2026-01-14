@@ -56,15 +56,15 @@
         ]
       },
       "locked": {
-        "lastModified": 1767855802,
-        "narHash": "sha256-ZJQD/82ZHN8W8OjGK0FQftPetoXUuHRmdbRiAo+YE3Y=",
-        "rev": "2db1b44e9186c28c0bddf8f45d3412a8750e7cb0",
+        "lastModified": 1768028645,
+        "narHash": "sha256-aqmfbpsfqewQBHjWOp8gyiSwg4kSPFBI1IAY/D1sKjY=",
+        "rev": "9a9077bab5bdaa51bfdb7e4a611169082d9a8625",
         "type": "tarball",
-        "url": "https://code.bas.es/api/v1/repos/bas.es/caddy-stack/archive/2db1b44e9186c28c0bddf8f45d3412a8750e7cb0.tar.gz"
+        "url": "https://code.bas.es/api/v1/repos/bases/caddy-stack/archive/9a9077bab5bdaa51bfdb7e4a611169082d9a8625.tar.gz"
       },
       "original": {
         "type": "tarball",
-        "url": "https://code.bas.es/bas.es/caddy-stack/archive/main.tar.gz"
+        "url": "https://code.bas.es/bases/caddy-stack/archive/main.tar.gz"
       }
     },
     "clan-core": {
