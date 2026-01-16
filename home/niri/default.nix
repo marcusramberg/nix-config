@@ -32,7 +32,7 @@ in
           opacity = 0.94;
           rounding = 10;
         };
-        theme.name = "tokyo-night";
+        theme.name = "Tokyo Night";
 
       };
       extensions = [
