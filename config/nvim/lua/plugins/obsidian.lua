@@ -15,9 +15,9 @@ return {
     --   -- Overrides the 'gf' mapping to work on markdown/wiki links within your vault.
     --   ["gf"] = require("obsidian.mapping").gf_passthrough(),
     -- },
+    new_notes_location = "~/Notes/Notes",
     completion = {
       nvim_cmp = true, -- set to false if you don't want to use nvim-cmp
-      new_notes_location = "~/Notes/Notes",
     },
     templates = {
       subdir = "Templates",
