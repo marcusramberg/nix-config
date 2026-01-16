@@ -13,6 +13,13 @@
   "cornerRadius": 4,
   "niriLayoutGapsOverride": -1,
   "niriLayoutRadiusOverride": 4,
+  "niriLayoutBorderSize": -1,
+  "hyprlandLayoutGapsOverride": -1,
+  "hyprlandLayoutRadiusOverride": -1,
+  "hyprlandLayoutBorderSize": -1,
+  "mangoLayoutGapsOverride": -1,
+  "mangoLayoutRadiusOverride": -1,
+  "mangoLayoutBorderSize": -1,
   "use24HourClock": true,
   "showSeconds": false,
   "useFahrenheit": false,
@@ -98,14 +105,22 @@
     }
   ],
   "showWorkspaceIndex": false,
+  "showWorkspaceName": false,
   "showWorkspacePadding": true,
   "workspaceScrolling": false,
   "showWorkspaceApps": true,
   "maxWorkspaceIcons": 8,
-  "workspacesPerMonitor": true,
+  "groupWorkspaceApps": true,
+  "workspaceFollowFocus": false,
   "showOccupiedWorkspacesOnly": false,
   "reverseScrolling": false,
   "dwlShowAllTags": false,
+  "workspaceColorMode": "default",
+  "workspaceUnfocusedColorMode": "default",
+  "workspaceUrgentColorMode": "default",
+  "workspaceFocusedBorderEnabled": false,
+  "workspaceFocusedBorderColor": "primary",
+  "workspaceFocusedBorderThickness": 2,
   "workspaceNameIcons": {
     "browser": {
       "type": "icon",
@@ -127,13 +142,40 @@
   "waveProgressEnabled": false,
   "scrollTitleEnabled": false,
   "audioVisualizerEnabled": true,
-  "audioScrollEnabled": true,
+  "audioScrollMode": "volume",
   "clockCompactMode": false,
   "focusedWindowCompactMode": false,
   "runningAppsCompactMode": true,
   "keyboardLayoutNameCompactMode": false,
   "runningAppsCurrentWorkspace": true,
   "runningAppsGroupByApp": false,
+  "appIdSubstitutions": [
+    {
+      "pattern": "Spotify",
+      "replacement": "spotify",
+      "type": "exact"
+    },
+    {
+      "pattern": "beepertexts",
+      "replacement": "beeper",
+      "type": "exact"
+    },
+    {
+      "pattern": "home assistant desktop",
+      "replacement": "homeassistant-desktop",
+      "type": "exact"
+    },
+    {
+      "pattern": "com.transmissionbt.transmission",
+      "replacement": "transmission-gtk",
+      "type": "contains"
+    },
+    {
+      "pattern": "^steam_app_(\\d+)$",
+      "replacement": "steam_icon_$1",
+      "type": "regex"
+    }
+  ],
   "centeringMode": "index",
   "clockDateFormat": "yyyy-MM-dd",
   "lockDateFormat": "yyyy-MM-dd",
@@ -149,7 +191,23 @@
   "networkPreference": "wifi",
   "vpnLastConnected": "",
   "iconTheme": "breeze-dark",
-  "launcherLogoMode": "dank",
+  "cursorSettings": {
+    "theme": "System Default",
+    "size": 24,
+    "niri": {
+      "hideWhenTyping": false,
+      "hideAfterInactiveMs": 0
+    },
+    "hyprland": {
+      "hideOnKeyPress": false,
+      "hideOnTouch": false,
+      "inactiveTimeout": 0
+    },
+    "dwl": {
+      "cursorHideTimeout": 0
+    }
+  },
+  "launcherLogoMode": "apps",
   "launcherLogoCustomPath": "",
   "launcherLogoColorOverride": "",
   "launcherLogoColorInvertOnMode": false,
@@ -186,6 +244,8 @@
   "loginctlLockIntegration": true,
   "fadeToLockEnabled": true,
   "fadeToLockGracePeriod": 5,
+  "fadeToDpmsEnabled": true,
+  "fadeToDpmsGracePeriod": 5,
   "launchPrefix": "",
   "brightnessDevicePins": {},
   "wifiNetworkPins": {},
@@ -203,6 +263,8 @@
   "runDmsMatugenTemplates": true,
   "matugenTemplateGtk": true,
   "matugenTemplateNiri": true,
+  "matugenTemplateHyprland": true,
+  "matugenTemplateMangowc": true,
   "matugenTemplateQt5ct": true,
   "matugenTemplateQt6ct": true,
   "matugenTemplateFirefox": true,
@@ -246,11 +308,19 @@
   "maxFprintTries": 3,
   "lockScreenActiveMonitor": "all",
   "lockScreenInactiveColor": "#000000",
+  "lockScreenNotificationMode": 0,
   "hideBrightnessSlider": false,
   "notificationTimeoutLow": 5000,
   "notificationTimeoutNormal": 5000,
   "notificationTimeoutCritical": 0,
+  "notificationCompactMode": false,
   "notificationPopupPosition": 0,
+  "notificationHistoryEnabled": true,
+  "notificationHistoryMaxCount": 50,
+  "notificationHistoryMaxAgeDays": 7,
+  "notificationHistorySaveLow": true,
+  "notificationHistorySaveNormal": true,
+  "notificationHistorySaveCritical": true,
   "osdAlwaysShowValue": false,
   "osdPosition": 5,
   "osdVolumeEnabled": true,
@@ -468,5 +538,11 @@
   "desktopWidgetPositions": {},
   "desktopWidgetGridSettings": {},
   "desktopWidgetInstances": [],
+  "desktopWidgetGroups": [],
+  "builtInPluginSettings": {
+    "dms_settings_search": {
+      "trigger": "?"
+    }
+  },
   "configVersion": 5
 }

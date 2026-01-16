@@ -5,7 +5,11 @@
     "workDuration": "20",
     "autoSetDND": true,
     "shortBreakDuration": 5,
-    "completedPomodoros-2026-01-10": 2
+    "completedPomodoros-2026-01-10": 2,
+    "completedPomodoros-2026-01-12": 5,
+    "completedPomodoros-2026-01-13": 4,
+    "completedPomodoros-2026-01-14": 1,
+    "completedPomodoros-2026-01-16": 1
   },
   "dankActions": {
     "enabled": true,
@@ -68,5 +72,17 @@
   },
   "gitmojiLauncher": {
     "enabled": true
+  },
+  "dankBatteryAlerts": {
+    "enabled": true
+  },
+  "dankLauncherKeys": {
+    "enabled": true,
+    "noTrigger": true,
+    "trigger": ""
+  },
+  "gifLauncher": {
+    "enabled": true,
+    "apiKey": "tmeZpnTvVHOoJVMfZ08jlMIWn8uAWnM1"
   }
 }
