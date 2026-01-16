@@ -23,7 +23,8 @@
     act
     amazon-ecr-credential-helper
     docker-credential-gcr
-    google-cloud-sdk # .withExtraComponents [ pkgs.google-cloud-sdk.components.gke-gcloud-auth-plugin ])
+    (google-cloud-sdk.withExtraComponents [ pkgs.google-cloud-sdk.components.gke-gcloud-auth-plugin ])
+    plexamp
     slack
     spotify
     woodpecker-cli
@@ -119,5 +120,6 @@
   virtualisation = {
     docker.enable = true;
     waydroid.enable = true;
+    podman.enable = true;
   };
 }
