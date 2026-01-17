@@ -55,9 +55,10 @@
     fprintd.enable = true;
     resolved = {
       enable = true;
-      extraConfig = ''
-        MulticastDNS=No
-      '';
+      settings.Resolve = {
+        MulticastDNS = false;
+      };
+
     };
     xserver.xkb.variant = lib.mkForce "mac-iso";
   };
