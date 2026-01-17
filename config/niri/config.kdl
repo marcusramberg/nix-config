@@ -1,12 +1,6 @@
 input {
     keyboard {
-        xkb {
-            layout "us"
-            model ""
-            rules ""
-            variant "mac"
-            options "eurosign:e"
-        }
+        xkb { }
         repeat-delay 600
         repeat-rate 25
         track-layout "global"
