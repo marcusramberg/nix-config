@@ -39,6 +39,7 @@
   boot.loader.systemd-boot.configurationLimit = 5;
   # List packages installed in system profile. To search, run:
   # $ nix search wget
+  documentation.man.generateCaches = false;
   environment = {
     etc.hosts.mode = "0644";
     systemPackages = with pkgs; [
