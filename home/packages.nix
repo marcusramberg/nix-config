@@ -43,6 +43,7 @@ in
       gopls
       gotestfmt
       grc
+      hadolint
       inputs.hei.packages.${stdenv.hostPlatform.system}.default
       jq
       just
