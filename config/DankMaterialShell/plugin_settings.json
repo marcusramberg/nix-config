@@ -5,10 +5,10 @@
     "workDuration": "20",
     "autoSetDND": true,
     "shortBreakDuration": 5,
-    "completedPomodoros-2026-01-12": 5,
-    "completedPomodoros-2026-01-13": 4,
-    "completedPomodoros-2026-01-14": 1,
-    "completedPomodoros-2026-01-16": 1
+    "completedPomodoros-2026-01-16": 1,
+    "completedPomodoros-2026-01-19": 1,
+    "completedPomodoros-2026-01-20": 2,
+    "completedPomodoros-2026-01-23": 1
   },
   "dankActions": {
     "enabled": true,
@@ -83,5 +83,16 @@
   "gifLauncher": {
     "enabled": true,
     "apiKey": "tmeZpnTvVHOoJVMfZ08jlMIWn8uAWnM1"
+  },
+  "dankKDEConnect": {
+    "enabled": true,
+    "selectedDeviceId": "0fb8bded434141518e914d7319c6424b"
+  },
+  "tailscale": {
+    "enabled": true
+  },
+  "dankBitwarden": {
+    "enabled": true,
+    "trigger": "["
   }
 }

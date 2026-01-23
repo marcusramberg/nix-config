@@ -1,6 +1,6 @@
 {
-  "currentThemeName": "custom",
-  "currentThemeCategory": "registry",
+  "currentThemeName": "dynamic",
+  "currentThemeCategory": "dynamic",
   "customThemeFile": "/home/marcus/.config/DankMaterialShell/themes/tokyoNight/theme.json",
   "registryThemeVariants": {},
   "matugenScheme": "scheme-tonal-spot",
@@ -23,6 +23,7 @@
   "use24HourClock": true,
   "showSeconds": false,
   "useFahrenheit": false,
+  "windSpeedUnit": "kmh",
   "nightModeEnabled": false,
   "animationSpeed": 1,
   "customAnimationDuration": 500,
@@ -58,6 +59,7 @@
   "controlCenterShowMicPercent": false,
   "controlCenterShowBatteryIcon": false,
   "controlCenterShowPrinterIcon": false,
+  "controlCenterShowScreenSharingIcon": true,
   "showPrivacyButton": true,
   "privacyShowMicIcon": false,
   "privacyShowCameraIcon": false,
@@ -116,6 +118,7 @@
   "reverseScrolling": false,
   "dwlShowAllTags": false,
   "workspaceColorMode": "default",
+  "workspaceOccupiedColorMode": "none",
   "workspaceUnfocusedColorMode": "default",
   "workspaceUrgentColorMode": "default",
   "workspaceFocusedBorderEnabled": false,
@@ -185,7 +188,14 @@
   "sortAppsAlphabetically": false,
   "appLauncherGridColumns": 4,
   "spotlightCloseNiriOverview": true,
+  "spotlightSectionViewModes": {},
+  "appDrawerSectionViewModes": {},
   "niriOverviewOverlayEnabled": true,
+  "dankLauncherV2Size": "compact",
+  "dankLauncherV2BorderEnabled": false,
+  "dankLauncherV2BorderThickness": 2,
+  "dankLauncherV2BorderColor": "primary",
+  "dankLauncherV2ShowFooter": true,
   "useAutoLocation": false,
   "weatherEnabled": true,
   "networkPreference": "wifi",
@@ -281,8 +291,10 @@
   "matugenTemplateDgop": true,
   "matugenTemplateKcolorscheme": true,
   "matugenTemplateVscode": true,
+  "matugenTemplateEmacs": true,
   "showDock": false,
   "dockAutoHide": false,
+  "dockSmartAutoHide": false,
   "dockGroupByApp": false,
   "dockOpenOnOverview": false,
   "dockPosition": 1,
@@ -296,6 +308,13 @@
   "dockBorderOpacity": 1,
   "dockBorderThickness": 1,
   "dockIsolateDisplays": false,
+  "dockLauncherEnabled": false,
+  "dockLauncherLogoMode": "apps",
+  "dockLauncherLogoCustomPath": "",
+  "dockLauncherLogoColorOverride": "",
+  "dockLauncherLogoSizeOffset": 0,
+  "dockLauncherLogoBrightness": 0.5,
+  "dockLauncherLogoContrast": 1,
   "notificationOverlayEnabled": false,
   "modalDarkenBackground": true,
   "lockScreenShowPowerActions": true,
@@ -304,6 +323,7 @@
   "lockScreenShowDate": true,
   "lockScreenShowProfileImage": true,
   "lockScreenShowPasswordField": true,
+  "lockScreenPowerOffMonitorsOnLock": false,
   "enableFprint": true,
   "maxFprintTries": 3,
   "lockScreenActiveMonitor": "all",
@@ -374,10 +394,6 @@
       "showOnLastDisplay": true,
       "leftWidgets": [
         {
-          "id": "launcherButton",
-          "enabled": true
-        },
-        {
           "id": "workspaceSwitcher",
           "enabled": true
         },
@@ -389,31 +405,16 @@
       ],
       "centerWidgets": [
         {
-          "id": "nixMonitor",
-          "enabled": true
+          "id": "music",
+          "enabled": true,
+          "mediaSize": 0
         },
         {
           "id": "dankPomodoroTimer",
           "enabled": true
-        },
-        {
-          "id": "music",
-          "enabled": true
-        },
-        {
-          "id": "weather",
-          "enabled": true
-        },
-        {
-          "id": "worldClock",
-          "enabled": true
         }
       ],
       "rightWidgets": [
-        {
-          "id": "colorPicker",
-          "enabled": false
-        },
         {
           "id": "clipboard",
           "enabled": true
@@ -423,11 +424,11 @@
           "enabled": true
         },
         {
-          "id": "memUsage",
+          "id": "notificationButton",
           "enabled": true
         },
         {
-          "id": "notificationButton",
+          "id": "dankKDEConnect",
           "enabled": true
         },
         {
@@ -544,5 +545,7 @@
       "trigger": "?"
     }
   },
+  "launcherPluginVisibility": {},
+  "launcherPluginOrder": [],
   "configVersion": 5
 }

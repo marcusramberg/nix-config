@@ -103,11 +103,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1768629988,
-        "narHash": "sha256-yIdDcV1dqTGvrtPmahi2UjGqSBgY6VhjjOtV6DPOjHE=",
+        "lastModified": 1769187785,
+        "narHash": "sha256-1RUpZv6Bu/oYF6NcKBLmPTV6rQ5CcR/uAJ2l4/ymfAM=",
         "owner": "AvengeMedia",
         "repo": "DankMaterialShell",
-        "rev": "ec8ab4746228f53e3885f9319c2a3121d60cc4fe",
+        "rev": "972fc534a4ac880739ba00c356b678608b4b4779",
         "type": "github"
       },
       "original": {
@@ -821,11 +821,11 @@
         "nixpkgs": "nixpkgs_4"
       },
       "locked": {
-        "lastModified": 1768549203,
-        "narHash": "sha256-DxN7v8g8DO8gGJmgBJMo3fsSR3HEs+DFCXeKeHq61zA=",
+        "lastModified": 1768985439,
+        "narHash": "sha256-qkU4r+l+UPz4dutMMRZSin64HuVZkEv9iFpu9yMWVY0=",
         "owner": "quickshell-mirror",
         "repo": "quickshell",
-        "rev": "d03c59768c680f052dff6e7a7918bbf990b0f743",
+        "rev": "191085a8821b35680bba16ce5411fc9dbe912237",
         "type": "github"
       },
       "original": {
@@ -967,11 +967,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1768574029,
-        "narHash": "sha256-zOMpZRTUciK6F8c6MNaQfln7ZPyn60Y2HjEb76kgxiQ=",
-        "rev": "c9cade818ea147e5ad77a886a21de8b00440aa37",
+        "lastModified": 1768820959,
+        "narHash": "sha256-iiR0NYWzYjEQOMj2GpoG4lz7/L+GkAwY3IrwZjqHKiM=",
+        "rev": "f60874a98529b20d1cee20f26f6f2633229e2896",
         "type": "tarball",
-        "url": "https://code.bas.es/api/v1/repos/marcus/theheck/archive/c9cade818ea147e5ad77a886a21de8b00440aa37.tar.gz"
+        "url": "https://code.bas.es/api/v1/repos/marcus/theheck/archive/f60874a98529b20d1cee20f26f6f2633229e2896.tar.gz"
       },
       "original": {
         "type": "tarball",
