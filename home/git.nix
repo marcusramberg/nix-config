@@ -26,7 +26,6 @@ in
         pkgs.gh-dash
         pkgs.gh-poi
         pkgs.gh-tidy
-        pkgs.gh-copilot
       ];
       settings = {
         git_protocol = "ssh";
