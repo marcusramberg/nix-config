@@ -112,7 +112,7 @@ binds {
     Mod+End { focus-column-last; }
     Mod+Escape allow-inhibiting=false { toggle-keyboard-shortcuts-inhibit; }
     Mod+F { toggle-window-floating; }
-    Mod+G hotkey-overlay-title="Open GIF Search" { spawn "vicinae" "vicinae://extensions/josephschmitt/gif-search/search"; }
+    Mod+G hotkey-overlay-title="Open GIF Search" { spawn "dms" "ipc" "launcher" "openQuery" "gif "; }
     Mod+H { focus-column-left; }
     Mod+Home { focus-column-first; }
     Mod+J hotkey-overlay-title="Focus Window or Workspace Down" { focus-window-or-workspace-down; }

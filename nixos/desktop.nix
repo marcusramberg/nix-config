@@ -12,8 +12,8 @@ let
   dmsPlugins = pkgs.fetchFromGitHub {
     owner = "AvengeMedia";
     repo = "dms-plugins";
-    rev = "da1714820ff2c997092c97d31c72faad5a4e5a01";
-    hash = "sha256-wkvSRLjD5NhSD84MUQEnGkQU0ihWZgBrIXtoCCKWwOE=";
+    rev = "de077d66832419caabed9aacc3241ae3e3a0eb31";
+    hash = "sha256-+9oqCoLd/riQrlw2ifzrSbChSYA0qDeIWQSVJgY+wE8=";
   };
   gsettingsSchemas = pkgs.gsettings-desktop-schemas;
   schemaDir = pkgs.glib.makeSchemaPath gsettingsSchemas gsettingsSchemas.name;
@@ -59,6 +59,7 @@ in
           "${pkgs.kdePackages.kirigami.unwrapped}/lib/qt-6/qml"
           "${pkgs.kdePackages.sonnet}/lib/qt-6/qml"
           "${pkgs.kdePackages.qtmultimedia}/lib/qt-6/qml"
+          "${pkgs.kdePackages.qtimageformats}/lib/qt-6/qml"
         ];
         QT_QPA_PLATFORMTHEME = "qt6ct";
         QT_QPA_PLATFORMTHEME_QT6 = "qt6ct";
@@ -112,21 +113,29 @@ in
         package = dms;
         quickshell.package = quickshell;
         plugins = {
-          "dankActions" = {
+          dankActions = {
             enable = true;
             src = "${dmsPlugins}/DankActions";
           };
-          "dankPomodoroTimer" = {
-            enable = true;
-            src = "${dmsPlugins}/DankPomodoroTimer";
-          };
-          "dankBatteryAlerts" = {
+          dankBatteryAlerts = {
             enable = true;
             src = "${dmsPlugins}/DankBatteryAlerts";
           };
-          "dankLauncherKeys" = {
+          dankGifSearch = {
+            enable = true;
+            src = "${dmsPlugins}/DankGifSearch";
+          };
+          dankLauncherKeys = {
             enable = true;
             src = "${dmsPlugins}/DankLauncherKeys";
+          };
+          dankKDEConnect = {
+            enable = true;
+            src = "${dmsPlugins}/DankKDEConnect";
+          };
+          dankPomodoroTimer = {
+            enable = true;
+            src = "${dmsPlugins}/DankPomodoroTimer";
           };
           worldClock = {
             enable = true;
