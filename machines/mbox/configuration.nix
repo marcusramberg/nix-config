@@ -38,6 +38,7 @@
     kernelModules = [
       "fbcon"
       "hid-apple"
+      "kvm-intel"
     ];
     kernel.sysctl = {
       "fs.inotify.max_user_watches" = 2048576; # default: 8192
@@ -180,6 +181,7 @@
         };
       };
     };
+    steam.remotePlay.openFirewall = true;
   };
 
   services = {
