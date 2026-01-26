@@ -69,6 +69,7 @@ in
         with pkgs;
         [
           adw-gtk3
+          bazaar
           bitwarden-desktop
           element-desktop
           ghostty
@@ -94,7 +95,6 @@ in
         ]
         ++ (with kdePackages; [
           breeze-icons
-          discover
           dolphin
           dolphin-plugins
           kaccounts-providers
