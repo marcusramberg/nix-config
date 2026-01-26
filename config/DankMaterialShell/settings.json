@@ -10,6 +10,7 @@
   "dockTransparency": 1,
   "widgetBackgroundColor": "sth",
   "widgetColorMode": "default",
+  "controlCenterTileColorMode": "primary",
   "cornerRadius": 4,
   "niriLayoutGapsOverride": -1,
   "niriLayoutRadiusOverride": 4,
@@ -113,6 +114,7 @@
   "workspaceScrolling": false,
   "showWorkspaceApps": true,
   "maxWorkspaceIcons": 8,
+  "workspaceAppIconSizeOffset": 0,
   "groupWorkspaceApps": true,
   "workspaceFollowFocus": false,
   "showOccupiedWorkspacesOnly": false,
@@ -204,7 +206,6 @@
   "useAutoLocation": false,
   "weatherEnabled": true,
   "networkPreference": "wifi",
-  "vpnLastConnected": "",
   "iconTheme": "breeze-dark",
   "cursorSettings": {
     "theme": "System Default",
@@ -552,6 +553,16 @@
     }
   },
   "launcherPluginVisibility": {},
-  "launcherPluginOrder": [],
+  "launcherPluginOrder": [
+    "dms_settings_search",
+    "calculator",
+    "dankGifSearch",
+    "dankBitwarden",
+    "gitmojiLauncher",
+    "commandRunner",
+    "emojiLauncher",
+    "webSearch",
+    "dankLauncherKeys"
+  ],
   "configVersion": 5
 }

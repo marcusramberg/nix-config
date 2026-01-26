@@ -12,8 +12,8 @@ let
   dmsPlugins = pkgs.fetchFromGitHub {
     owner = "AvengeMedia";
     repo = "dms-plugins";
-    rev = "de077d66832419caabed9aacc3241ae3e3a0eb31";
-    hash = "sha256-+9oqCoLd/riQrlw2ifzrSbChSYA0qDeIWQSVJgY+wE8=";
+    rev = "68299c5d7e04fd9ca219cb40eb6365beebaefd1c";
+    hash = "sha256-igRtQXvBaDx7hJu0lepA+S7QSovehkY4fi4C1RUSrVo=";
   };
   gsettingsSchemas = pkgs.gsettings-desktop-schemas;
   schemaDir = pkgs.glib.makeSchemaPath gsettingsSchemas gsettingsSchemas.name;
@@ -124,6 +124,10 @@ in
           dankGifSearch = {
             enable = true;
             src = "${dmsPlugins}/DankGifSearch";
+          };
+          dankStickerSearch = {
+            enable = true;
+            src = "${dmsPlugins}/DankStickerSearch";
           };
           dankLauncherKeys = {
             enable = true;
