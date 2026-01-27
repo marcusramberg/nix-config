@@ -82,7 +82,7 @@
   networking.firewall.enable = false;
   programs = {
     obs-studio = {
-      enable = true;
+      enable = false;
       enableVirtualCamera = true;
       plugins = with pkgs.obs-studio-plugins; [
         distroav
