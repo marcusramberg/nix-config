@@ -47,7 +47,6 @@ return {
       ensure_installed = {
         "go",
         "html",
-        -- "dom",
         "http",
         -- "css",
         -- "javascript",
