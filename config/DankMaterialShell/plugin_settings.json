@@ -5,11 +5,11 @@
     "workDuration": "20",
     "autoSetDND": true,
     "shortBreakDuration": 5,
-    "completedPomodoros-2026-01-20": 2,
     "completedPomodoros-2026-01-23": 1,
     "completedPomodoros-2026-01-24": 1,
     "completedPomodoros-2026-01-26": 2,
-    "completedPomodoros-2026-01-27": 1
+    "completedPomodoros-2026-01-27": 1,
+    "completedPomodoros-2026-01-28": 2
   },
   "dankActions": {
     "enabled": true,
@@ -97,10 +97,12 @@
     "trigger": "["
   },
   "dankGifSearch": {
-    "enabled": true
+    "enabled": true,
+    "preferredFormat": "gif"
   },
   "dankStickerSearch": {
     "enabled": true,
-    "trigger": "stick"
+    "trigger": "stick",
+    "preferredFormat": "gif"
   }
 }

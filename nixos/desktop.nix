@@ -12,8 +12,8 @@ let
   dmsPlugins = pkgs.fetchFromGitHub {
     owner = "AvengeMedia";
     repo = "dms-plugins";
-    rev = "68299c5d7e04fd9ca219cb40eb6365beebaefd1c";
-    hash = "sha256-igRtQXvBaDx7hJu0lepA+S7QSovehkY4fi4C1RUSrVo=";
+    rev = "1e2cfdefce4fbcb2ccfbb60d575814538283b87f";
+    hash = "sha256-NFxXWBaWk5I75Lr2Pmh6AcEac6QhKvaAjzsbuUOrF7c=";
   };
   gsettingsSchemas = pkgs.gsettings-desktop-schemas;
   schemaDir = pkgs.glib.makeSchemaPath gsettingsSchemas gsettingsSchemas.name;
