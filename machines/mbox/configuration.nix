@@ -1,7 +1,8 @@
 {
-  pkgs,
-  lib,
   config,
+  inputs,
+  lib,
+  pkgs,
   ...
 }:
 {
@@ -212,7 +213,7 @@
       host = "0.0.0.0";
       enable = true;
       openFirewall = true;
-      package = pkgs.ollama-vulkan;
+      package = inputs.nixpkgs-small.legacyPackages.${pkgs.stdenv.hostPlatform.system}.ollama-rocm;
       environmentVariables = {
         OLLAMA_CONTEXT_LENGTH = "32400";
       };
