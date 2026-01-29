@@ -451,11 +451,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1768424254,
-        "narHash": "sha256-wJHlqOEMT9KsWBjpo+2AXBY7i+oI8mt+LoxPltowH90=",
+        "lastModified": 1769642368,
+        "narHash": "sha256-pkGaQrldp3eTe/4CctDHwSmjtrwrbypDfWwi2ttnnaM=",
         "owner": "marcusramberg",
         "repo": "hei",
-        "rev": "4e0857fb7328adadd495b283d02208fd0b9d44ca",
+        "rev": "d9443bd96521eac45f3700f5c0766b159603de6e",
         "type": "github"
       },
       "original": {
@@ -837,15 +837,16 @@
         "nixpkgs": "nixpkgs_4"
       },
       "locked": {
-        "lastModified": 1768985439,
-        "narHash": "sha256-qkU4r+l+UPz4dutMMRZSin64HuVZkEv9iFpu9yMWVY0=",
-        "owner": "quickshell-mirror",
+        "lastModified": 1769106948,
+        "narHash": "sha256-BMhnnJ90HnrgWiO2y16+QuVfoSLqBrrBzGViTvsIKSo=",
+        "owner": "marcusramberg",
         "repo": "quickshell",
-        "rev": "191085a8821b35680bba16ce5411fc9dbe912237",
+        "rev": "04ac53c35d3f307f78e156b3f7dddb9183ceab34",
         "type": "github"
       },
       "original": {
-        "owner": "quickshell-mirror",
+        "owner": "marcusramberg",
+        "ref": "pipewire",
         "repo": "quickshell",
         "type": "github"
       }

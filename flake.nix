@@ -171,7 +171,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.flake-compat.follows = "flake-compat";
     };
-    quickshell.url = "github:quickshell-mirror/quickshell";
+    quickshell.url = "github:marcusramberg/quickshell/pipewire";
     systems.url = "github:nix-systems/default";
     tfenv.flake = false;
     tfenv.url = "github:tfutils/tfenv";
