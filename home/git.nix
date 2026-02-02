@@ -24,6 +24,7 @@ in
       enable = true;
       extensions = [
         pkgs.gh-dash
+        pkgs.gh-notify
         pkgs.gh-poi
         pkgs.gh-tidy
       ];
