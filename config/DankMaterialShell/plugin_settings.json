@@ -5,11 +5,10 @@
     "workDuration": "20",
     "autoSetDND": true,
     "shortBreakDuration": 5,
-    "completedPomodoros-2026-01-23": 1,
-    "completedPomodoros-2026-01-24": 1,
     "completedPomodoros-2026-01-26": 2,
     "completedPomodoros-2026-01-27": 1,
-    "completedPomodoros-2026-01-28": 2
+    "completedPomodoros-2026-01-28": 2,
+    "completedPomodoros-2026-01-29": 1
   },
   "dankActions": {
     "enabled": true,

@@ -113,7 +113,7 @@
   "showWorkspacePadding": true,
   "workspaceScrolling": false,
   "showWorkspaceApps": true,
-  "maxWorkspaceIcons": 8,
+  "maxWorkspaceIcons": 5,
   "workspaceAppIconSizeOffset": 0,
   "groupWorkspaceApps": true,
   "workspaceFollowFocus": false,
@@ -267,7 +267,11 @@
   "fadeToDpmsGracePeriod": 5,
   "launchPrefix": "",
   "brightnessDevicePins": {},
-  "wifiNetworkPins": {},
+  "wifiNetworkPins": {
+    "preferredWifi": [
+      "mPixel"
+    ]
+  },
   "bluetoothDevicePins": {
     "preferredDevice": "BC:87:FA:C5:50:47"
   },
@@ -392,6 +396,9 @@
   "niriOutputSettings": {
     "AU Optronics 0xD291 Unknown": {
       "vrrOnDemand": true
+    },
+    "Nreal XREAL One Unknown": {
+      "vrrOnDemand": false
     }
   },
   "hyprlandOutputSettings": {},
@@ -412,7 +419,7 @@
         },
         {
           "id": "focusedWindow",
-          "enabled": true,
+          "enabled": false,
           "focusedWindowCompactMode": false
         }
       ],
@@ -430,6 +437,10 @@
       "rightWidgets": [
         {
           "id": "clipboard",
+          "enabled": false
+        },
+        {
+          "id": "dankKDEConnect",
           "enabled": true
         },
         {
@@ -438,10 +449,6 @@
         },
         {
           "id": "notificationButton",
-          "enabled": true
-        },
-        {
-          "id": "dankKDEConnect",
           "enabled": true
         },
         {
