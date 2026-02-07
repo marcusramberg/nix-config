@@ -203,6 +203,18 @@
     prometheus.exporters.node.enable = true;
     jellyfin.enable = true;
     k3s.clusterInit = true;
+    monado = {
+      enable = true;
+      package = inputs.monado.packages.${pkgs.stdenv.hostPlatform.system}.default;
+      #   package = pkgs.monado.overrideAttrs {
+      #     src = pkgs.fetchFromGitHub {
+      #       owner = "DMJC";
+      #       repo = "monado-psvr2";
+      #       rev = "d1c38abf995c8b44620727825ce1c0fb061d47ee";
+      #       sha256 = "sha256-eebD5GgE4u38AWx8sxuRrY0aiy4ndgyztSxkJZYtCmw=";
+      #     };
+      defaultRuntime = true;
+    };
     nix-serve = {
       enable = true;
       secretKeyFile = "/var/cache-priv-key.pem";
@@ -259,8 +271,16 @@
       wantedBy = [ "multi-user.target" ];
     };
   };
-  systemd.services.ollama = {
-    serviceConfig.EnvironmentFile = [ config.age.secrets.ollamaApiKey.path ];
+  systemd = {
+    services.ollama = {
+      serviceConfig.EnvironmentFile = [ config.age.secrets.ollamaApiKey.path ];
+    };
+    user.services.monado.environment = {
+      STEAMVR_LH_ENABLE = "1";
+      XRT_COMPOSITOR_COMPUTE = "1";
+      WMR_HANDTRACKING = "0";
+
+    };
   };
   users.users.caddy.extraGroups = [ "incus-admin" ];
   virtualisation = {

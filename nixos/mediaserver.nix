@@ -78,7 +78,7 @@ in
           OAUTH2_OIDC_DISCOVERY_ENDPOINT = "https://auth.means.no";
           OAUTH2_OIDC_PROVIDER_NAME = "PocketID";
           OAUTH2_USER_CREATION = 1; # optional, if you want nes users to be created automatically
-          # DISABLE_LOCAL_AUTH=1 # optional, if you want to disable local authentication
+          DISABLE_LOCAL_AUTH = 1; # optional, if you want to disable local authentication
 
         };
       };
