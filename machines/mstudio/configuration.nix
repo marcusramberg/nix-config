@@ -61,7 +61,10 @@
     keyboard.dual-caps.enable = true;
   };
 
-  networking.networkmanager.enable = false;
+  networking = {
+    networkmanager.enable = false;
+    firewall.allowedTCPPorts = [ 6667 ];
+  };
 
   nix.settings = {
     extra-substituters = [
@@ -96,6 +99,8 @@
   };
 
   services = {
+    ergochat.enable = true;
+
     blueman.enable = true;
     displayManager.sddm.enableHidpi = true;
     libinput.enable = true;
