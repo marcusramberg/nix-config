@@ -129,6 +129,9 @@
     };
     pocket-id = {
       enable = true;
+      credentials = {
+        ENCRYPTION_KEY = config.age.secrets.pocket-id.path;
+      };
       settings = {
         APP_URL = "https://auth.means.no";
         TRUST_PROXY = true;

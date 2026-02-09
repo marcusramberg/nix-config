@@ -26,6 +26,7 @@ in
   "ollamaApiKey.age".publicKeys = [ marcus ] ++ machines;
   "phone-pin.age".publicKeys = [ marcus ] ++ machines;
   "picserver.age".publicKeys = [ marcus ] ++ machines;
+  "pocket-id.age".publicKeys = [ marcus ] ++ machines;
   "prompass.age".publicKeys = [ marcus ] ++ machines;
   "promtail.age".publicKeys = [ marcus ] ++ machines;
   "secrets.age".publicKeys = [ marcus ] ++ machines;
