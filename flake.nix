@@ -164,6 +164,7 @@
     };
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     nixpkgs-small.url = "github:nixos/nixpkgs/nixos-unstable-small";
+    nixpkgs-marcus.url = "github:marcusramberg/nixpkgs/codecs";
     neovim-nightly-overlay.url = "github:nix-community/neovim-nightly-overlay";
     pre-commit-hooks = {
       url = "github:cachix/git-hooks.nix";
