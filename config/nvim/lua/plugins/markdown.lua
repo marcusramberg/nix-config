@@ -76,6 +76,17 @@ return {
           modes = { "n" },
         },
       },
+      metadata = {
+        done = {
+          key = "<leder>md",
+        },
+        started = {
+          key = "<leader>ms",
+        },
+        priority = {
+          key = "<leader>mp",
+        },
+      },
     },
   },
   {
