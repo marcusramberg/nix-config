@@ -99,7 +99,12 @@
   };
 
   services = {
-    ergochat.enable = true;
+    ergochat = {
+      enable = true;
+      settings = {
+        log.level = "debug";
+      };
+    };
 
     blueman.enable = true;
     displayManager.sddm.enableHidpi = true;
