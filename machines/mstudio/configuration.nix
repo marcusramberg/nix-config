@@ -117,7 +117,14 @@
     ergochat = {
       enable = true;
       settings = {
-        log.level = "debug";
+        logging = [
+          {
+            level = "debug";
+            type = "* -userinput -useroutput";
+            method = "stderr";
+          }
+        ];
+
       };
     };
 
