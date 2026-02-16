@@ -13,18 +13,6 @@ output "Nreal XREAL One Unknown" {
     variable-refresh-rate
 }
 
-output "Dell Inc. DELL U3223QE 757H2P3" {
-    mode "3840x2160@30.000"
-    scale 1.75
-    position x=111 y=0
-}
-
-output "AU Optronics 0xD291 Unknown" {
-    mode "1920x1200@60.026"
-    scale 1.25
-    position x=1442 y=1440
-}
-
 output "Lenovo Group Limited P27h-20 V907TWAZ" {
     mode "2560x1440@59.951"
     scale 1
@@ -35,5 +23,17 @@ output "Lenovo Group Limited P27h-20 V907TWB8" {
     mode "2560x1440@59.951"
     scale 1
     position x=0 y=0
+}
+
+output "AU Optronics 0xD291 Unknown" {
+    mode "1920x1200@60.026"
+    scale 1.25
+    position x=1442 y=1440
+}
+
+output "Dell Inc. DELL U3223QE 757H2P3" {
+    mode "3840x2160@30.000"
+    scale 1.75
+    position x=135 y=206
 }
 
