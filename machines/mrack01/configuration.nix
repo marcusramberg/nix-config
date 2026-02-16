@@ -8,7 +8,7 @@
   imports = [
     ./attic.nix
     ./disko.nix
-    ./forgejo.nix
+    # ./forgejo.nix
     ./minecraft.nix
     ./woodpecker.nix
   ];

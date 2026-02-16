@@ -106,10 +106,10 @@ git.bas.es:443 {
 	redir https://code.bas.es/
 }
 
-code.bas.es:443 {
-	import caddy-common
-	reverse_proxy unix//run/forgejo/forgejo.sock
-}
+# code.bas.es:443 {
+# 	import caddy-common
+# 	reverse_proxy unix//run/forgejo/forgejo.sock
+# }
 
 cache.bas.es:443 {
 	import caddy-common
