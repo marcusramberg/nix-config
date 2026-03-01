@@ -100,7 +100,7 @@
         pkgs.openssl
         pkgs.curl
         pkgs.expat
-        pkgs.xorg.libX11
+        pkgs.libx11
         pkgs.vulkan-headers
         pkgs.vulkan-loader
         pkgs.vulkan-tools

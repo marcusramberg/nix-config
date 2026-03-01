@@ -616,5 +616,6 @@
     "webSearch",
     "dankLauncherKeys"
   ],
-  "configVersion": 5
+  "configVersion": 6,
+  "barElevationEnabled": true
 }

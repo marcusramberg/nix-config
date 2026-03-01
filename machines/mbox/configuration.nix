@@ -53,7 +53,7 @@
   };
   environment.systemPackages = with pkgs; [
     heroic
-    lutris
+    # lutris # FIXME: temp disable as build is broken
     wine
   ];
 
@@ -188,7 +188,7 @@
   services = {
     blueman.enable = true;
     displayManager.dms-greeter.enable = lib.mkForce false;
-    displayManager.sddm.enable = lib.mkForce false;
+    displayManager.sddm.wayland.enable = true;
     immich = {
       enable = true;
       host = "0.0.0.0";

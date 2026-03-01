@@ -66,7 +66,7 @@ in
       nodePackages.cspell
       nodePackages.typescript
       nodejs
-      ollama
+      inputs.nixpkgs-small.legacyPackages.${stdenv.hostPlatform.system}.ollama
       otree
       prek
       promexplorer
