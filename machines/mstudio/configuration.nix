@@ -1,4 +1,4 @@
-{ pkgs, inputs, ... }:
+{ pkgs, ... }:
 
 {
   imports = [
@@ -74,22 +74,7 @@
       "nixos-apple-silicon.cachix.org-1:8psDu5SA5dAD7qA0zMy5UT292TxeEPzIz8VVEr2Js20="
     ];
   };
-  nixpkgs.config = {
-    allowUnsupportedSystem = true;
-    packageOverrides =
-      let
-        pkgs-marcus = import inputs.nixpkgs-marcus {
-          inherit (pkgs) system;
-          config.allowUnfree = true;
-        };
-      in
-      _: {
-        inherit (pkgs-marcus)
-          vivaldi
-          vivaldi-ffmpeg-codecs
-          ;
-      };
-  };
+  nixpkgs.config.allowUnsupportedSystem = true;
   # Enable the X11 windowing system.
   profiles = {
     dockerHost.enable = true;
