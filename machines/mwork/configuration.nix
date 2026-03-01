@@ -11,7 +11,6 @@
     ../../modules/pipewire.nix
   ];
 
-  # Bootloader.
   boot = {
     # Use latest kernel.
     kernelPackages = pkgs.linuxPackages_latest;
@@ -102,6 +101,7 @@
     };
   };
   services = {
+    knot.enable = true;
     cloudflare-warp.enable = true;
     udev.extraRules = ''
       # DFU (Internal bootloader for STM32 and AT32 MCUs)

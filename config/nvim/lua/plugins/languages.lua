@@ -3,8 +3,6 @@ return {
   {
     "zbirenbaum/copilot.lua",
     opts = {
-      -- Use gemini-2.5-pro model for Copilot
-      copilot_model = "gemini-2.5-pro",
       filetypes = {
         markdown = true,
         yaml = true,

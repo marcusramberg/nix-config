@@ -39,7 +39,7 @@
   boot.loader.systemd-boot.configurationLimit = 5;
   # List packages installed in system profile. To search, run:
   # $ nix search wget
-  documentation.man.generateCaches = false;
+  documentation.man.cache.enable = false;
   environment = {
     etc.hosts.mode = "0644";
     systemPackages = with pkgs; [
@@ -146,9 +146,19 @@
   time.timeZone = "Europe/Oslo";
   i18n.defaultLocale = "en_DK.UTF-8";
 
-  nixpkgs.config = {
-    allowUnfree = true;
-  };
+  # nixpkgs.config = {
+  #   allowUnfree = true;
+  #   packageOverrides =
+  #     let
+  #       nixpkgs-small = import inputs.nixpkgs-small {
+  #         inherit (pkgs) system;
+  #         config.allowUnfree = true;
+  #       };
+  #     in
+  #     _: {
+  #       pythonModules.sphinxcontrib-newsfeed = nixpkgs-small.small.pythonModules.sphinxcontrib-newsfeed;
+  #     };
+  # };
 
   nix = {
     nixPath = [ "nixpkgs=/run/current-system/nixpkgs" ];
