@@ -119,7 +119,7 @@
       enable = true;
       user = "marcus";
       autoStart = true;
-      desktopSession = "niri";
+      desktopSession = "gamescope-wayland";
     };
   };
 
@@ -138,7 +138,7 @@
   swapDevices = [ { device = "/dev/disk/by-uuid/a3e364f4-a757-4e71-b220-5c850de97136"; } ];
 
   profiles = {
-    desktop.enable = true;
+    desktop.enable = false;
     gaming.enable = true;
     incus.enable = true;
     limine.enable = true;

@@ -184,7 +184,7 @@ in
           compositor.name = "niri";
           configHome = "/home/marcus";
         };
-        defaultSession = lib.mkForce "niri";
+        defaultSession = lib.mkDefault "niri";
       };
       gnome.at-spi2-core.enable = true;
       flatpak.enable = true;
