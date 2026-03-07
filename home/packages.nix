@@ -15,82 +15,86 @@ let
 in
 {
   home.packages =
-    with pkgs;
-    [
-      (fortune.override { withOffensive = true; })
-      actionlint
-      asciinema
-      btop
-      caligula
-      cargo
-      chafa
-      cloudflared
-      coreutils
-      deadnix
+    (
+      with pkgs;
+      [
+        (fortune.override { withOffensive = true; })
+        actionlint
+        asciinema
+        btop
+        caligula
+        cargo
+        chafa
+        cloudflared
+        coreutils
+        deadnix
+        dive
+        fastfetch
+        fd
+        figlet
+        gist
+        github-copilot-cli
+        glow
+        gnugrep
+        gnumake
+        go
+        go-task
+        golangci-lint
+        gopls
+        gotestfmt
+        grc
+        hadolint
+        inputs.hei.packages.${stdenv.hostPlatform.system}.default
+        jq
+        just
+        kubectx
+        lolcat
+        lua-language-server
+        luarocks
+        lua5_1
+        lynx # for copilot
+        man-pages
+        ncdu
+        nil
+        nim2
+        inputs.theheck.packages.${stdenv.hostPlatform.system}.default
+        nix-output-monitor
+        nixfmt
+        nixpkgs-review
+        nnn
+        nix-converter
+        nodePackages.cspell
+        nodePackages.typescript
+        nodejs
+        otree
+        prek
+        promexplorer
+        pssh
+        ranger
+        ripgrep
+        sccache
+        sqlite
+        statix
+        stylua
+        tealdeer
+        tfenv
+        tflint
+        unixtools.watch
+        unzip
+        uv
+        wget
+        woodpecker-cli
+        yq-go
+      ]
+      ++ lib.optionals stdenv.isDarwin [
+        cocoapods
+        m-cli # useful macOS CLI commands
+      ]
+      ++ lib.optional (!hasK3s) kubectl
+      ++ lib.optionals isNixOS [ wezterm ]
+    )
+    ++ (with inputs.nixpkgs-small.legacyPackages.${stdenv.hostPlatform.system}; [
       devenv
-      dive
-      fastfetch
-      fd
-      figlet
-      gist
-      github-copilot-cli
-      glow
-      gnugrep
-      gnumake
-      go
-      go-task
-      golangci-lint
-      gopls
-      gotestfmt
-      grc
-      hadolint
-      inputs.hei.packages.${stdenv.hostPlatform.system}.default
-      jq
-      just
-      kubectx
-      lolcat
-      lua-language-server
-      luarocks
-      lua5_1
-      lynx # for copilot
-      man-pages
-      ncdu
-      nil
-      nim2
-      inputs.theheck.packages.${stdenv.hostPlatform.system}.default
-      nix-output-monitor
-      nixfmt
-      nixpkgs-review
-      nnn
-      nix-converter
-      nodePackages.cspell
-      nodePackages.typescript
-      nodejs
-      inputs.nixpkgs-small.legacyPackages.${stdenv.hostPlatform.system}.ollama
-      otree
-      prek
-      promexplorer
-      pssh
-      ranger
-      ripgrep
-      sccache
-      sqlite
-      statix
-      stylua
-      tealdeer
-      tfenv
-      tflint
-      unixtools.watch
-      unzip
-      uv
-      wget
-      woodpecker-cli
-      yq-go
-    ]
-    ++ lib.optionals stdenv.isDarwin [
-      cocoapods
-      m-cli # useful macOS CLI commands
-    ]
-    ++ lib.optional (!hasK3s) kubectl
-    ++ lib.optionals isNixOS [ wezterm ];
+      ollama
+    ]);
 }
