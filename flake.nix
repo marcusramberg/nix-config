@@ -130,7 +130,6 @@
     };
     caddy-stack = {
       url = "https://code.bas.es/bases/caddy-stack/archive/main.tar.gz";
-      inputs.nixpkgs.follows = "nixpkgs";
     };
     clan-core = {
       url = "https://git.clan.lol/clan/clan-core/archive/main.tar.gz";
