@@ -35,11 +35,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1773067393,
-        "narHash": "sha256-ree+mXP2xuZZBEBhmWfH6eY/AEXObH0OsnwGShzpz7o=",
+        "lastModified": 1773085236,
+        "narHash": "sha256-3Ske2CEjtz48icyJVnAg5LfWE99bYwlltze92Fi7dtc=",
         "owner": "marcusramberg",
         "repo": "nixos-apple-silicon",
-        "rev": "2c11bfa4aa81806b6daef3bd249e235bb86f56ff",
+        "rev": "af01cbfac690745ce6819e871f3401978753feea",
         "type": "github"
       },
       "original": {
