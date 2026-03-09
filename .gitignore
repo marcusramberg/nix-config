@@ -9,3 +9,6 @@ config/ghostty/config-dankcolors
 config/DankMaterialShell/plugins
 config/niri/dms/colors.kdl
 config/DankMaterialShell/firefox.css
+config/DankMaterialShell/.changelog*
+config/foot/dank-colors.ini
+config/ghostty/themes/dankcolors
