@@ -11,9 +11,9 @@ in
   options.hardware.keyboard.dual-caps = {
     enable = lib.mkEnableOption "Enable keyboard remapping (caps2esc/ctrl and cmd-v/c -> ctrl/shift-insert";
     swapAlt.enable = lib.mkEnableOption "Also swap alt/meta";
-    swapAlt.device = lib.mkOption {
-      type = lib.types.str;
-      default = "mfold.input-event-kbd";
+    swapAlt.devices = lib.mkOption {
+      type = lib.types.listOf lib.types.str;
+      default = [ "mfold.input-event-kbd" ];
       description = "Device to swap alt/meta keys on, defaults to the folding keyboard";
       example = "mboard.input-event-kbd";
     };
@@ -62,11 +62,13 @@ in
           universalClipboard
         ];
         udevmonConfig =
-          (lib.optionalString cfg.swapAlt.enable ''
-            - JOB: "${intercept} -g $DEVNODE | ${dual} -c ${swapAlt} | ${uc} | ${uinput} -d $DEVNODE"
-              DEVICE:
-                LINK: /dev/input/by-path/${cfg.swapAlt.device}
-          '')
+          (lib.optionalString cfg.swapAlt.enable (
+            lib.concatMapStrings (dev: ''
+              - JOB: "${intercept} -g $DEVNODE | ${dual} -c ${swapAlt} | ${uc} | ${uinput} -d $DEVNODE"
+                DEVICE:
+                  LINK: /dev/input/by-path/${dev}
+            '') cfg.swapAlt.devices
+          ))
           + ''
             - JOB: "${intercept} -g $DEVNODE | ${dual} -c ${dualFunctionKeysConfig} | ${uc} | ${uinput} -d $DEVNODE"
               DEVICE:

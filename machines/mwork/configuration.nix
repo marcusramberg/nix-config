@@ -38,7 +38,10 @@
       enable = true;
       swapAlt = {
         enable = true;
-        device = "platform-i8042-serio-0-event-kbd";
+        devices = [
+          "platform-i8042-serio-0-event-kbd"
+          "pci-0000:00:14.0-usbv2-0:1:1.0-event-kbd"
+        ];
       };
     };
   };
