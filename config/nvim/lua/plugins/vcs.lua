@@ -6,7 +6,7 @@ return {
         use_magit_keybindings = true,
         disable_builtin_notifications = true,
         disable_commit_confirmation = true,
-        kind = "vsplit",
+        kind = "auto",
         integrations = {
           diffview = true,
           snacks = true,
@@ -24,5 +24,4 @@ return {
     dependencies = { "nvim-lua/plenary.nvim", "sindrets/diffview.nvim" },
   },
   { "akinsho/git-conflict.nvim", config = true },
-
 }
