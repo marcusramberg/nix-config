@@ -1,7 +1,6 @@
 {
   config,
   inputs,
-  lib,
   pkgs,
   ...
 }:
@@ -78,7 +77,7 @@
       ];
     };
     "/mnt/nix" = {
-      device = "/dev/nvme1n1p1";
+      device = "/dev/disk/by-id/nvme-Samsung_SSD_970_EVO_1TB_S5H9NS0R223863N-part1";
       fsType = "btrfs";
       options = [
         "compress=zstd"
@@ -86,7 +85,7 @@
       ];
     };
     "/home/marcus/Games" = {
-      device = "/dev/nvme1n1p1";
+      device = "/dev/disk/by-id/nvme-Samsung_SSD_970_EVO_1TB_S5H9NS0R223863N-part1";
       fsType = "btrfs";
       options = [
         "compress=zstd"
@@ -187,9 +186,10 @@
 
   services = {
     blueman.enable = true;
-    displayManager.dms-greeter.enable = lib.mkForce false;
-    displayManager.sddm.wayland.enable = true;
+    #displayManager.dms-greeter.enable = lib.mkForce false;
+    # displayManager.sddm.wayland.enable = true;
     immich = {
+
       enable = true;
       host = "0.0.0.0";
       mediaLocation = "/space/immich";
