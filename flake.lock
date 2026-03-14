@@ -874,16 +874,15 @@
         "nixpkgs": "nixpkgs_6"
       },
       "locked": {
-        "lastModified": 1771798036,
-        "narHash": "sha256-EUZcqe0pdotlr0D+NyDxa07By9xzF8w4dcvjFRDsatc=",
-        "owner": "marcusramberg",
+        "lastModified": 1773480707,
+        "narHash": "sha256-VkuO1LWpK7tS/YDmxJSDeONEwt1RFLPfOucQJwKnsV0=",
+        "owner": "quickshell-mirror",
         "repo": "quickshell",
-        "rev": "3826fcb43bae438b6bd37525f070affabe717d27",
+        "rev": "1b2519d9f3d963e575b8a1ef08fab47c7af0d1b3",
         "type": "github"
       },
       "original": {
-        "owner": "marcusramberg",
-        "ref": "pipewire",
+        "owner": "quickshell-mirror",
         "repo": "quickshell",
         "type": "github"
       }

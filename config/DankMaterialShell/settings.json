@@ -624,7 +624,7 @@
       "trigger": "?"
     }
   },
-  "clipboardEnterToPaste": false,
+  "clipboardEnterToPaste": true,
   "launcherPluginVisibility": {},
   "launcherPluginOrder": [
     "dms_settings_search",

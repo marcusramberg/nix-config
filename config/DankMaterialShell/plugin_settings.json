@@ -4,8 +4,7 @@
     "autoStartBreaks": true,
     "workDuration": "20",
     "autoSetDND": true,
-    "shortBreakDuration": 5,
-    "completedPomodoros-2026-02-09": 1
+    "shortBreakDuration": 5
   },
   "dankActions": {
     "enabled": true,

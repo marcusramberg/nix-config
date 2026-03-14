@@ -12,3 +12,4 @@ config/DankMaterialShell/firefox.css
 config/DankMaterialShell/.changelog*
 config/foot/dank-colors.ini
 config/ghostty/themes/dankcolors
+config/DankMaterialShell/zen.css
