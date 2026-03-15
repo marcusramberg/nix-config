@@ -163,6 +163,7 @@
     };
     nixpkgs.url = "github:nixos/nixpkgs/nixpkgs-unstable";
     nixpkgs-small.url = "github:nixos/nixpkgs/nixos-unstable-small";
+    nixpkgs-super.url = "github:SuperSandro2000/nixpkgs/music-assistant-airplay";
     neovim-nightly-overlay.url = "github:nix-community/neovim-nightly-overlay";
     pre-commit-hooks = {
       url = "github:cachix/git-hooks.nix";

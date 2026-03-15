@@ -1,7 +1,8 @@
 {
-  pkgs,
-  lib,
   config,
+  inputs,
+  lib,
+  pkgs,
   ...
 }:
 with lib;
@@ -9,6 +10,9 @@ let
   cfg = config.profiles.mediaserver;
 in
 {
+  disabledModules = [ "services/audio/music-assistant.nix" ];
+  imports = [ "${inputs.nixpkgs-super}/nixos/modules/services/audio/music-assistant.nix" ];
+
   # Comment this in to do a postgres upgrade before commenting out and bumping
   options.profiles.mediaserver.enable = mkEnableOption "Enable media server profile";
 
@@ -22,12 +26,12 @@ in
       };
       transmission.owner = "transmission";
     };
-
     networking.firewall.allowedTCPPorts = [
       32400 # Plex
       40000 # Hass
       21064 # Hass Bridge
       1883 # MQTT
+      8095 # music-assistant
       35105 # aircast
       35185 # aircast
       50387 # aircast
@@ -49,23 +53,33 @@ in
         environmentFile = config.age.secrets.vaultwarden.path;
       };
 
+      music-assistant = {
+        enable = true;
+        providers = [
+          "airplay"
+          "airplay_receiver"
+          "audiobookshelf"
+          "chromecast"
+          "hass"
+          "hass_players"
+          "plex"
+          "plex_connect"
+          "sendspin"
+        ];
+
+      };
+
       nzbget.enable = true;
+
+      lidarr.enable = true;
       radarr = {
         enable = true;
         settings = {
           server.BindAddress = "127.0.0.1";
         };
       };
-
-      sonarr.enable = true;
       readarr.enable = true;
-      navidrome = {
-        enable = true;
-        settings = {
-          MusicFolder = "/space/Music";
-        };
-      };
-      lidarr.enable = true;
+      sonarr.enable = true;
 
       miniflux = {
         enable = true;

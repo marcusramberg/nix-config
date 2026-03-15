@@ -77,10 +77,10 @@ in
         ];
       };
 
-      aircast = {
-        image = "docker.io/1activegeek/airconnect:latest";
-        extraOptions = [ "--net=host" ];
-      };
+      # aircast = {
+      #   image = "docker.io/1activegeek/airconnect:latest";
+      #   extraOptions = [ "--net=host" ];
+      # };
       appdaemon = {
         image = "acockburn/appdaemon:latest";
         environmentFiles = [ config.age.secrets.appdaemonToken.path ];

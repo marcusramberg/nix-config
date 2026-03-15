@@ -146,19 +146,24 @@
   time.timeZone = "Europe/Oslo";
   i18n.defaultLocale = "en_DK.UTF-8";
 
-  # nixpkgs.config = {
-  #   allowUnfree = true;
-  #   packageOverrides =
-  #     let
-  #       nixpkgs-small = import inputs.nixpkgs-small {
-  #         inherit (pkgs) system;
-  #         config.allowUnfree = true;
-  #       };
-  #     in
-  #     _: {
-  #       pythonModules.sphinxcontrib-newsfeed = nixpkgs-small.small.pythonModules.sphinxcontrib-newsfeed;
-  #     };
-  # };
+  nixpkgs.config = {
+    allowUnfree = true;
+    packageOverrides =
+      let
+        nixpkgs-super = import inputs.nixpkgs-super {
+          inherit (pkgs) system;
+          config.allowUnfree = true;
+        };
+      in
+      _: {
+        inherit (nixpkgs-super)
+          shairport-sync
+          music-assistant
+          cliairplay
+          libraop
+          ;
+      };
+  };
 
   nix = {
     nixPath = [ "nixpkgs=/run/current-system/nixpkgs" ];

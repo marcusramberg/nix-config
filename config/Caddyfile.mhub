@@ -178,7 +178,7 @@ mp3s.means.no:443 {
 
 music.means.no:443 {
   import caddy-common
-  reverse_proxy localhost:4533
+  reverse_proxy localhost:8095
 }
 
 reader.means.no:443 {
