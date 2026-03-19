@@ -49,6 +49,7 @@ in
         just
         kubectx
         lolcat
+        lsof
         lua-language-server
         luarocks
         lua5_1
