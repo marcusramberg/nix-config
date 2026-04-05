@@ -4,6 +4,7 @@
   "customThemeFile": "/home/marcus/.config/DankMaterialShell/themes/tokyoNight/theme.json",
   "registryThemeVariants": {},
   "matugenScheme": "scheme-tonal-spot",
+  "matugenContrast": 0,
   "runUserMatugenTemplates": true,
   "matugenTargetMonitor": "",
   "popupTransparency": 0.98,
@@ -23,6 +24,7 @@
   "mangoLayoutRadiusOverride": -1,
   "mangoLayoutBorderSize": -1,
   "firstDayOfWeek": -1,
+  "showWeekNumber": false,
   "use24HourClock": true,
   "showSeconds": false,
   "padHours12Hour": false,
@@ -46,6 +48,10 @@
   "modalElevationEnabled": true,
   "popoutElevationEnabled": true,
   "barElevationEnabled": true,
+  "blurEnabled": false,
+  "blurBorderColor": "outline",
+  "blurBorderCustomColor": "#ffffff",
+  "blurBorderOpacity": 1,
   "wallpaperFillMode": "Fill",
   "blurredWallpaperLayer": true,
   "blurWallpaperOnOverview": true,
@@ -138,6 +144,7 @@
   "showOccupiedWorkspacesOnly": false,
   "reverseScrolling": false,
   "dwlShowAllTags": false,
+  "workspaceActiveAppHighlightEnabled": false,
   "workspaceColorMode": "default",
   "workspaceOccupiedColorMode": "none",
   "workspaceUnfocusedColorMode": "default",
@@ -235,6 +242,7 @@
   "sortAppsAlphabetically": false,
   "appLauncherGridColumns": 4,
   "spotlightCloseNiriOverview": true,
+  "rememberLastQuery": false,
   "spotlightSectionViewModes": {},
   "appDrawerSectionViewModes": {},
   "niriOverviewOverlayEnabled": true,
@@ -321,6 +329,10 @@
   "qtThemingEnabled": false,
   "syncModeWithPortal": true,
   "terminalsAlwaysDark": true,
+  "muxType": "tmux",
+  "muxUseCustomCommand": false,
+  "muxCustomCommand": "",
+  "muxSessionFilter": "",
   "runDmsMatugenTemplates": true,
   "matugenTemplateGtk": true,
   "matugenTemplateNiri": true,
@@ -343,10 +355,23 @@
   "matugenTemplateKcolorscheme": true,
   "matugenTemplateVscode": true,
   "matugenTemplateEmacs": true,
+  "matugenTemplateZed": true,
+  "matugenTemplateNeovimSettings": {
+    "dark": {
+      "baseTheme": "github_dark",
+      "harmony": 0.5
+    },
+    "light": {
+      "baseTheme": "github_light",
+      "harmony": 0.5
+    }
+  },
+  "matugenTemplateNeovimSetBackground": true,
   "showDock": true,
   "dockAutoHide": true,
   "dockSmartAutoHide": false,
   "dockGroupByApp": false,
+  "dockRestoreSpecialWorkspaceOnClick": false,
   "dockOpenOnOverview": false,
   "dockPosition": 3,
   "dockSpacing": 4,
@@ -407,6 +432,7 @@
   "notificationHistorySaveNormal": true,
   "notificationHistorySaveCritical": true,
   "notificationRules": [],
+  "notificationFocusedMonitor": false,
   "osdAlwaysShowValue": false,
   "osdPosition": 5,
   "osdVolumeEnabled": true,
@@ -637,5 +663,5 @@
     "webSearch",
     "dankLauncherKeys"
   ],
-  "configVersion": 6
+  "configVersion": 5
 }

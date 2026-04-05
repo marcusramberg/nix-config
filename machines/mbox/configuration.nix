@@ -205,7 +205,7 @@
     k3s.clusterInit = true;
     monado = {
       enable = true;
-      package = inputs.monado.packages.${pkgs.stdenv.hostPlatform.system}.default;
+      # package = inputs.monado.packages.${pkgs.stdenv.hostPlatform.system}.default;
       #   package = pkgs.monado.overrideAttrs {
       #     src = pkgs.fetchFromGitHub {
       #       owner = "DMJC";

@@ -153,7 +153,6 @@
     jovian.inputs.nixpkgs.follows = "nixpkgs";
     home-manager.url = "github:nix-community/home-manager";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
-    monado.url = "https://gitlab.freedesktop.org/monado/monado/-/archive/main/monado-main.tar.gz?ref_type=heads";
     nix-fast-build.url = "github:Mic92/nix-fast-build";
     nix-index-database.url = "github:Mic92/nix-index-database";
     nix-index-database.inputs.nixpkgs.follows = "nixpkgs";
@@ -163,7 +162,6 @@
     };
     nixpkgs.url = "github:nixos/nixpkgs/nixpkgs-unstable";
     nixpkgs-small.url = "github:nixos/nixpkgs/nixos-unstable-small";
-    nixpkgs-super.url = "github:SuperSandro2000/nixpkgs/music-assistant-airplay";
     neovim-nightly-overlay.url = "github:nix-community/neovim-nightly-overlay";
     pre-commit-hooks = {
       url = "github:cachix/git-hooks.nix";

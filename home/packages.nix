@@ -64,8 +64,6 @@ in
         nixpkgs-review
         nnn
         nix-converter
-        nodePackages.cspell
-        nodePackages.typescript
         nodejs
         otree
         prek

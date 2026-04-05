@@ -148,21 +148,21 @@
 
   nixpkgs.config = {
     allowUnfree = true;
-    packageOverrides =
-      let
-        nixpkgs-super = import inputs.nixpkgs-super {
-          inherit (pkgs) system;
-          config.allowUnfree = true;
-        };
-      in
-      _: {
-        inherit (nixpkgs-super)
-          shairport-sync
-          music-assistant
-          cliairplay
-          libraop
-          ;
-      };
+    # packageOverrides =
+    #   let
+    #     nixpkgs-super = import inputs.nixpkgs-super {
+    #       inherit (pkgs) system;
+    #       config.allowUnfree = true;
+    #     };
+    #   in
+    #   _: {
+    #     inherit (nixpkgs-super)
+    #       shairport-sync
+    #       music-assistant
+    #       cliairplay
+    #       libraop
+    #       ;
+    #   };
   };
 
   nix = {

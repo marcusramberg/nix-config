@@ -1,5 +1,8 @@
 { pkgs, ... }:
 
+let
+  music-assistant-companion = pkgs.callPackage ../../packages/music-assistant-companion { };
+in
 {
   imports = [
     # Include the results of the hardware scan.
@@ -30,6 +33,7 @@
     box64
     freecad-wayland
     prusa-slicer
+    music-assistant-companion
   ];
 
   fileSystems = {
@@ -96,6 +100,7 @@
     };
     # streamcontroller.enable = true;
     virt-manager.enable = true;
+    wayvnc.enable = true;
   };
 
   services = {
