@@ -1,25 +1,14 @@
 {
   pkgs,
   lib,
-  user,
   osConfig,
   ...
 }:
 let
-  inherit (pkgs.stdenv) isDarwin;
   isNixOS = lib.hasAttr "nixos" osConfig.system;
 in
 {
-  programs.bash = {
-    enable = true;
-    # initExtra = ''
-    #   if [[ $(${pkgs.procps}/bin/ps --no-header --pid=$PPID --format=comm) != "fish" && -z ''${BASH_EXECUTION_STRING} ]]
-    #   then
-    #     shopt -q login_shell && LOGIN_OPTION='--login' || LOGIN_OPTION=""
-    #     exec ${pkgs.fish}/bin/fish $LOGIN_OPTION
-    #   fi
-    # '';
-  };
+  programs.bash.enable = true;
   programs.fish = {
     enable = true;
     functions = {
@@ -74,7 +63,7 @@ in
     };
 
     shellInit = ''
-      fish_add_path -p ~/.local/bin ${lib.optionalString isDarwin "/run/current-system/sw/bin /opt/homebrew/bin"} ~/go/bin/ ~/.cargo/bin/
+      fish_add_path -p ~/.local/bin  ~/go/bin/ ~/.cargo/bin/
     '';
     interactiveShellInit = ''
       set -x RIPGREP_CONFIG_PATH "$HOME/.ripgreprc"
@@ -108,22 +97,7 @@ in
         . ${pkgs.ghostty.shell_integration}/shell-integration/fish/vendor_conf.d/ghostty-shell-integration.fish
       end
     '';
-    loginShellInit = ''
-      gpgconf --launch gpg-agent
-      set -x GPG_TTY (tty)
-    ''
-    + lib.optionalString isDarwin ''
-      set -x SSH_AUTH_SOCK /Users/marcus/Library/Containers/com.maxgoedjen.Secretive.SecretAgent/Data/socket.ssh
-      if [ -f /Users/${user}/.ssh/id_rsa ]
-        ssh-add -q --apple-use-keychain  ~/.ssh/id_rsa
-        ssh-add -q --apple-use-keychain  ~/.ssh/google_compute_engine
-      end
-    '';
     plugins = [
-      # {
-      #   name = "fzf-fish";
-      #   inherit (pkgs.fishPlugins.fzf-fish) src;
-      # }
       {
         name = "pure";
         inherit (pkgs.fishPlugins.pure) src;
