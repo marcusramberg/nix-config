@@ -173,7 +173,6 @@ workspace "browser"
 workspace "music"
 workspace "chat"
 spawn-at-startup "wvkbd-mobintl" "--alpha" "220" "--hidden"
-spawn-at-startup "bash" "-c" "wl-paste --watch cliphist store &"
 
 window-rule {
     geometry-corner-radius 0.000000 0.000000 0.000000 0.000000
