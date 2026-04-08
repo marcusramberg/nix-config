@@ -57,9 +57,7 @@ let
         inherit user inputs;
         osConfig = {
           system = { };
-          networking = {
-            hostName = "";
-          };
+          networking.hostName = "";
         };
       };
       modules = [
