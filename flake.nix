@@ -136,7 +136,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     dank-shell = {
-      url = "github:AvengeMedia/DankMaterialShell";
+      url = "github:marcusramberg/DankMaterialShell/pipefix";
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.quickshell.follows = "quickshell";
     };

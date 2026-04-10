@@ -27,6 +27,7 @@
     slack
     spotify
     woodpecker-cli
+    ssh-tpm-agent
   ];
 
   hardware = {

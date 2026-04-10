@@ -1,7 +1,4 @@
 { pkgs, ... }:
-let
-  inherit (pkgs.stdenv) isDarwin;
-in
 {
   home.packages = with pkgs; [
     delta
@@ -63,6 +60,7 @@ in
     };
     git = {
       enable = true;
+      signing.format = "ssh";
       settings = {
         core = {
           whitespace = "trailing-space,space-before-tab";
@@ -101,11 +99,7 @@ in
         user = {
           email = "marcus@means.no";
           name = "Marcus Ramberg";
-          signingkey =
-            if isDarwin then
-              "/Users/marcus/Library/Containers/com.maxgoedjen.Secretive.SecretAgent/Data/PublicKeys/3578d30e1ec6de843da2b8f24435027a.pub"
-            else
-              "~/.ssh/id_rsa.pub";
+          signingkey = "~/.ssh/id_rsa.pub";
         };
         alias = {
           patch = "!git diff --no-ext-diff --no-color";

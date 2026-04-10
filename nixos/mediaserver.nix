@@ -9,8 +9,6 @@ let
   cfg = config.profiles.mediaserver;
 in
 {
-  # disabledModules = [ "services/audio/music-assistant.nix" ];
-  # imports = [ "${inputs.nixpkgs-super}/nixos/modules/services/audio/music-assistant.nix" ];
 
   # Comment this in to do a postgres upgrade before commenting out and bumping
   options.profiles.mediaserver.enable = mkEnableOption "Enable media server profile";
