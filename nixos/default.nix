@@ -127,6 +127,7 @@
       "incus-admin"
       "pipewire"
       "podman"
+      "systemd-journal"
       "video"
       "libvirtd"
       "tss"

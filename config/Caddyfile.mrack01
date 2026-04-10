@@ -89,6 +89,14 @@ www.means.no:443 {
 		index index.md
 	}
 }
+
+bases.means.no *.bases.means.no {
+	import caddy-common
+  reverse_proxy http://bases-dev.pig-crested.ts.net {
+      header_up Host {http.request.host}
+  }
+}
+
 photos.means.no:443 {
 	import caddy-common
 	reverse_proxy http://mbox:2283

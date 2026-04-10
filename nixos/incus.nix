@@ -17,6 +17,7 @@ in
     networking.firewall = {
       trustedInterfaces = [
         "incusbr0"
+        "tailscale0"
       ];
     };
     virtualisation.incus = {

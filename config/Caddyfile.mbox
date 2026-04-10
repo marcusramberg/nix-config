@@ -127,6 +127,7 @@ incus.means.no:443 {
 		reverse_proxy unix//var/lib/incus/unix.socket
 	}
 }
+
 ollama.means.no:443 {
 	import caddy-tailscale
 	reverse_proxy localhost:3080
