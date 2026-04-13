@@ -13,9 +13,9 @@ in
     swapAlt.enable = lib.mkEnableOption "Also swap alt/meta";
     swapAlt.devices = lib.mkOption {
       type = lib.types.listOf lib.types.str;
-      default = [ "mfold.input-event-kbd" ];
+      default = [ "/dev/input/by-path/mfold.input-event-kbd" ];
       description = "Device to swap alt/meta keys on, defaults to the folding keyboard";
-      example = "mboard.input-event-kbd";
+      example = "/derv/input/by-path/mboard.input-event-kbd";
     };
   };
 
@@ -66,7 +66,7 @@ in
             lib.concatMapStrings (dev: ''
               - JOB: "${intercept} -g $DEVNODE | ${dual} -c ${swapAlt} | ${uc} | ${uinput} -d $DEVNODE"
                 DEVICE:
-                  LINK: /dev/input/by-path/${dev}
+                  LINK: ${dev}
             '') cfg.swapAlt.devices
           ))
           + ''
@@ -77,9 +77,9 @@ in
       };
     # link bluetooth keyboards
     udev.extraRules = ''
-      KERNEL=="event*", SUBSYSTEM=="input", ATTRS{name}=="Targus Folding Ergonomic Bluetooth Keyboard", SYMLINK+="input/by-path/mfold.input-event-kbd"
-      KERNEL=="event*", SUBSYSTEM=="input", ATTRS{name}=="mBoard", SYMLINK+="input/by-path/mboard.input-event-kbd"
-      KERNEL=="event*", SUBSYSTEM=="input", ATTRS{name}=="Milla Rambergs tastatur", SYMLINK+="input/by-path/tvboard.input-event-kbd"
+      KERNEL=="event*", SUBSYSTEM=="input", ATTRS{name}=="Targus Folding Ergonomic Bluetooth Keyboard", SYMLINK+="input/by-id/mfold.input-event-kbd"
+      KERNEL=="event*", SUBSYSTEM=="input", ATTRS{name}=="mBoard", SYMLINK+="input/by-id/mboard.input-event-kbd"
+      KERNEL=="event*", SUBSYSTEM=="input", ATTRS{name}=="Milla Rambergs tastatur", SYMLINK+="input/by-id/tvboard.input-event-kbd"
     '';
   };
 }

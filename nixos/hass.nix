@@ -67,7 +67,7 @@ in
       };
       zigbee2mqtt = {
         # renovate: datasource=docker depName=koenkk/zigbee2mqtt
-        image = " ghcr.io/koenkk/zigbee2mqtt:2.0.0";
+        image = " ghcr.io/koenkk/zigbee2mqtt:2.9.2";
         extraOptions = [
           "--privileged"
           "--network=host"

@@ -1,6 +1,5 @@
 {
   pkgs,
-  inputs,
   lib,
   ...
 }:
@@ -67,12 +66,12 @@ in
     keychain.enable = true;
     nix-index.enable = true;
     nix-index-database.comma.enable = true;
-    neovim = {
-      enable = true;
-      package = inputs.neovim-nightly-overlay.packages.${pkgs.system}.default;
-      viAlias = true;
-      vimAlias = true;
-    };
+    # neovim = {
+    #   enable = true;
+    #   package = inputs.neovim-nightly-overlay.packages.${pkgs.system}.default;
+    #   viAlias = true;
+    #   vimAlias = true;
+    # };
     rbw = {
       enable = true;
       settings = {
