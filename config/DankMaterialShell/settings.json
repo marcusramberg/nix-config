@@ -172,6 +172,7 @@
   },
   "waveProgressEnabled": false,
   "scrollTitleEnabled": false,
+  "mediaAdaptiveWidthEnabled": true,
   "audioVisualizerEnabled": true,
   "audioScrollMode": "volume",
   "audioWheelScrollAmount": 5,
@@ -291,6 +292,7 @@
   "notepadLastCustomTransparency": 0.7,
   "soundsEnabled": true,
   "useSystemSoundTheme": false,
+  "soundLogin": false,
   "soundNewNotification": true,
   "soundVolumeChanged": true,
   "soundPluggedIn": true,
@@ -470,9 +472,7 @@
   "screenPreferences": {},
   "showOnLastDisplay": {},
   "niriOutputSettings": {
-    "AU Optronics 0xD291 Unknown": {
-      "vrrOnDemand": true
-    },
+    "AU Optronics 0xD291 Unknown": {},
     "Nreal XREAL One Unknown": {
       "vrrOnDemand": false
     }

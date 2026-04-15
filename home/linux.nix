@@ -7,7 +7,7 @@ _: {
     #   defaultCacheTtl = 31536000;
     #   maxCacheTtl = 31536000;
     # };
-    ssh-tpm-agent.enable = true;
+    #ssh-tpm-agent.enable = true;
     ssh-agent.enable = false;
   };
 
