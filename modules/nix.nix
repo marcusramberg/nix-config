@@ -23,6 +23,7 @@
           "https://devenv.cachix.org"
           "https://marcusramberg.cachix.org"
           "https://jovian-nixos.cachix.org"
+          "https://niri.cachix.org"
 
         ];
         trusted-public-keys = [
@@ -32,6 +33,7 @@
           "ghostty.cachix.org-1:QB389yTa6gTyneehvqG58y0WnHjQOqgnA+wBnpWWxns="
           "jovian-nixos.cachix.org-1:mAWLjAxLNlfxAnozUjOqGj4AxQwCl7MXwOfu7msVlAo="
           "bases:bg7mtzwSME8dI+IXhYLzDTQ4TzY4zMmIzyeqjgR5Isg="
+          "niri.cachix.org-1:Wv0OmO7PsuocRKzfDoJ3mulSl7Z6oezYhGhR+3W2964="
         ];
         experimental-features = [
           "nix-command"

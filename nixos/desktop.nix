@@ -165,7 +165,10 @@ in
         enable = true;
         terminal = "ghostty";
       };
-      niri.enable = true;
+      niri = {
+        enable = true;
+        # package = pkgs.niri-unstable;
+      };
       seahorse.enable = true;
       ssh.enableAskPassword = true;
     };

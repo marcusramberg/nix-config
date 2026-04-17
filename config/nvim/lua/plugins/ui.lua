@@ -1,5 +1,15 @@
 return {
   {
+    "folke/tokyonight.nvim",
+    opts = {
+      transparent = true,
+      styles = {
+        sidebars = "transparent",
+        floats = "transparent",
+      },
+    },
+  },
+  {
     "folke/trouble.nvim",
     -- opts will be merged with the parent spec
     opts = { use_diagnostic_signs = true },
@@ -10,7 +20,6 @@ return {
       preset = "modern",
     },
   },
-
 
   -- Scope buffers to tabs
   { "tiagovla/scope.nvim", config = true },

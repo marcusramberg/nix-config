@@ -242,6 +242,23 @@ window-rule {
 }
 
 
+window-rule {
+    match app-id="^foot$"
+
+    background-effect {
+        blur true
+    }
+}
+
+
+window-rule {
+    match app-id="vivaldi|telegram|vesktop|neovide"
+
+    background-effect {
+        blur true
+    }
+}
+
 gestures { hot-corners { off; }; }
 animations { workspace-switch { off; }; }
 layer-rule {

@@ -153,6 +153,9 @@
     jovian.inputs.nixpkgs.follows = "nixpkgs";
     home-manager.url = "github:nix-community/home-manager";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
+    niri = {
+      url = "github:sodiboo/niri-flake";
+    };
     nix-fast-build.url = "github:Mic92/nix-fast-build";
     nix-index-database.url = "github:Mic92/nix-index-database";
     nix-index-database.inputs.nixpkgs.follows = "nixpkgs";
