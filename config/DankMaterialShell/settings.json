@@ -479,6 +479,9 @@
     "AU Optronics 0xD291 Unknown": {},
     "Nreal XREAL One Unknown": {
       "vrrOnDemand": false
+    },
+    "Dell Inc. DELL U3223QE 757H2P3": {
+      "vrrOnDemand": true
     }
   },
   "hyprlandOutputSettings": {},

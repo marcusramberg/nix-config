@@ -14,9 +14,10 @@ output "Nreal XREAL One Unknown" {
 }
 
 output "Dell Inc. DELL U3223QE 757H2P3" {
-    mode "2048x1280@60.196"
-    scale 1.25
+    mode "3840x2160@59.997"
+    scale 1.5
     position x=1340 y=416
+    variable-refresh-rate on-demand=true
 }
 
 output "AU Optronics 0xD291 Unknown" {
@@ -25,15 +26,15 @@ output "AU Optronics 0xD291 Unknown" {
     position x=1442 y=1440
 }
 
-output "Microstep MAG342CQRV DB6H070800774" {
-    mode "3440x1440@59.999"
-    scale 1.25
-    position x=2305 y=0
-}
-
 output "Lenovo Group Limited P27h-20 V907TWAZ" {
     mode "2560x1440@59.951"
     scale 1
     position x=2560 y=0
+}
+
+output "Microstep MAG342CQRV DB6H070800774" {
+    mode "3440x1440@59.999"
+    scale 1.25
+    position x=3900 y=0
 }
 
