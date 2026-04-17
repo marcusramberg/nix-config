@@ -22,7 +22,10 @@
     act
     amazon-ecr-credential-helper
     docker-credential-gcr
-    (google-cloud-sdk.withExtraComponents [ pkgs.google-cloud-sdk.components.gke-gcloud-auth-plugin ])
+    (google-cloud-sdk.withExtraComponents [
+      google-cloud-sdk.components.gke-gcloud-auth-plugin
+      google-cloud-sdk.components.spanner-cli
+    ])
     plexamp
     slack
     spotify
