@@ -68,6 +68,7 @@
   "selectedGpuIndex": 0,
   "enabledGpuPciIds": [],
   "showSystemTray": true,
+  "systemTrayMonochromeIcons": false,
   "showClock": true,
   "showNotificationButton": true,
   "showBattery": true,
@@ -321,6 +322,7 @@
   "brightnessDevicePins": {},
   "wifiNetworkPins": {
     "preferredWifi": [
+      "Suicidesquad",
       "mPixel"
     ]
   },
@@ -578,7 +580,9 @@
       "shadowIntensity": 5,
       "shadowOpacity": 52,
       "widgetOutlineOpacity": 0.27,
-      "shadowColorMode": "secondary"
+      "shadowColorMode": "secondary",
+      "scrollXBehavior": "workspace",
+      "scrollYBehavior": "column"
     }
   ],
   "desktopClockEnabled": false,

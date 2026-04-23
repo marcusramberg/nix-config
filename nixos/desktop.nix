@@ -192,7 +192,8 @@ in
       gnome.at-spi2-core.enable = true;
       flatpak.enable = true;
       orca.enable = false;
-      power-profiles-daemon.enable = true;
+      power-profiles-daemon.enable = false;
+      tlp.enable = true;
       upower.enable = true;
 
       xserver = {

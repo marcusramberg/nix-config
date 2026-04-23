@@ -14,9 +14,9 @@ output "Nreal XREAL One Unknown" {
 }
 
 output "Dell Inc. DELL U3223QE 757H2P3" {
-    mode "3840x2160@59.997"
+    mode "3840x2160@30.000"
     scale 1.5
-    position x=1340 y=416
+    position x=1442 y=0
     variable-refresh-rate on-demand=true
 }
 

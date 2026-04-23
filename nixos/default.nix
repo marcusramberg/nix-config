@@ -44,6 +44,7 @@
     etc.hosts.mode = "0644";
     systemPackages = with pkgs; [
       cached-nix-shell
+      clang-tools
       distrobox
       gcc
       file
