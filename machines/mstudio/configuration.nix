@@ -166,6 +166,14 @@ in
         "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJkHOi39HCigHCOneTKIiY+C809n6d3sNHd3hoy2Uq21"
       ];
     };
+    jomar = {
+      description = "Jomar";
+      isNormalUser = true;
+      uid = 1003;
+      openssh.authorizedKeys.keys = [
+        "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIPkWRFjzmUk/FJR1g3Ck5jRmRUctAeS/remDgAWZPFWP jomarj@gmail.com"
+      ];
+    };
   };
   virtualisation.libvirtd.enable = true;
   zramSwap.enable = true;
