@@ -152,21 +152,18 @@
 
   nixpkgs.config = {
     allowUnfree = true;
-    # packageOverrides =
-    #   let
-    #     nixpkgs-super = import inputs.nixpkgs-super {
-    #       inherit (pkgs) system;
-    #       config.allowUnfree = true;
-    #     };
-    #   in
-    #   _: {
-    #     inherit (nixpkgs-super)
-    #       shairport-sync
-    #       music-assistant
-    #       cliairplay
-    #       libraop
-    #       ;
-    #   };
+    packageOverrides =
+      let
+        nixpkgs-small = import inputs.nixpkgs-small {
+          inherit (pkgs) system;
+          config.allowUnfree = true;
+        };
+      in
+      _: {
+        inherit (nixpkgs-small)
+          niri
+          ;
+      };
   };
 
   nix = {
@@ -197,6 +194,7 @@
   nixpkgs.config.permittedInsecurePackages = [
     "electron-36.9.5"
     "jitsi-meet-1.0.8792"
+    "minio-2025-10-15T17-29-55Z"
   ];
   system.activationScripts.diff = {
     supportsDryActivation = true;
