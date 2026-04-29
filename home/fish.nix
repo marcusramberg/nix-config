@@ -115,6 +115,15 @@ in
           sha256 = "BIbzdxAj3mrf340l4hNkXwA13rIIFnC6BxM6YuJ7/w8=";
         };
       }
+      {
+        name = "replay.fish";
+        src = pkgs.fetchFromGitHub {
+          owner = "jorgebucaran";
+          repo = "replay.fish";
+          rev = "bd8e5b89ec78313538e747f0292fcaf631e87bd2";
+          sha256 = "sha256-bM6+oAd/HXaVgpJMut8bwqO54Le33hwO9qet9paK1kY=";
+        };
+      }
     ];
   };
 }
