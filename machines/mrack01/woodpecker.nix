@@ -5,7 +5,7 @@
     environment = {
       WOODPECKER_HOST = "https://ci.bas.es";
       WOODPECKER_OPEN = "true";
-      WOODPECKER_ORGS = "bases,marcus";
+      WOODPECKER_ORGS = "bases,marcus,tjue";
       WOODPECKER_ADMIN = "marcus";
       WOODPECKER_LOG_LEVEL = "info";
       WOODPECKER_FORGEJO = "true";
