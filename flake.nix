@@ -138,7 +138,7 @@
     dank-shell = {
       url = "github:AvengeMedia/DankMaterialShell";
       inputs.nixpkgs.follows = "nixpkgs";
-      inputs.quickshell.follows = "quickshell";
+      # inputs.quickshell.follows = "quickshell";
     };
 
     disko.url = "github:nix-community/disko";
@@ -171,7 +171,8 @@
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.flake-compat.follows = "flake-compat";
     };
-    quickshell.url = "github:quickshell-mirror/quickshell";
+    # quickshell.url = "github:quickshell-mirror/quickshell";
+    # quickshell.inputs.nixpkgs.follows = "nixpkgs";
     systems.url = "github:nix-systems/default";
     tfenv.flake = false;
     tfenv.url = "github:tfutils/tfenv";

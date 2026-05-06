@@ -33,7 +33,7 @@ let
         inputs.agenix.nixosModules.age
         {
           nixpkgs.overlays = [
-            inputs.quickshell.overlays.default
+            # inputs.quickshell.overlays.default
             inputs.niri.overlays.niri
           ];
         }

@@ -7,7 +7,7 @@
 }:
 let
   cfg = config.profiles.desktop;
-  quickshell = inputs.quickshell.packages.${pkgs.stdenv.hostPlatform.system}.default;
+  # quickshell = inputs.quickshell.packages.${pkgs.stdenv.hostPlatform.system}.default;
   dms = inputs.dank-shell.packages.${pkgs.stdenv.hostPlatform.system}.default;
   dmsPlugins = pkgs.fetchFromGitHub {
     owner = "AvengeMedia";
@@ -53,17 +53,6 @@ in
       sessionVariables = {
         GSETTINGS_SCHEMA_DIR = schemaDir;
         NIXOS_OZONE_WL = "1";
-        QML2_IMPORT_PATH = lib.concatStringsSep ":" [
-          "${quickshell}/lib/qt-6/qml"
-          "${pkgs.kdePackages.qtdeclarative}/lib/qt-6/qml"
-          "${pkgs.kdePackages.kirigami.unwrapped}/lib/qt-6/qml"
-          "${pkgs.kdePackages.sonnet}/lib/qt-6/qml"
-          "${pkgs.kdePackages.qtmultimedia}/lib/qt-6/qml"
-          "${pkgs.kdePackages.qtimageformats}/lib/qt-6/qml"
-        ];
-        QT_QPA_PLATFORMTHEME = "qt6ct";
-        QT_QPA_PLATFORMTHEME_QT6 = "qt6ct";
-
       };
       systemPackages =
         with pkgs;
@@ -111,7 +100,7 @@ in
       dms-shell = {
         enable = true;
         package = dms;
-        quickshell.package = quickshell;
+        # quickshell.package = quickshell;
         plugins = {
           dankActions = {
             enable = true;
@@ -183,12 +172,13 @@ in
         dms-greeter = {
           enable = true;
           package = dms;
-          quickshell.package = quickshell;
+          # quickshell.package = quickshell;
           compositor.name = "niri";
           configHome = "/home/marcus";
         };
         defaultSession = lib.mkDefault "niri";
       };
+      desktopManager.gnome.enable = true;
       gnome.at-spi2-core.enable = true;
       flatpak.enable = true;
       orca.enable = false;
