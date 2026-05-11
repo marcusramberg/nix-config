@@ -22,7 +22,6 @@ in
     };
     virtualisation.incus = {
       enable = true;
-      bucketSupport = false;
       ui.enable = true;
       package = pkgs.incus;
     };

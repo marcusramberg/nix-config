@@ -156,7 +156,6 @@ in
       };
       niri = {
         enable = true;
-        package = pkgs.niri-unstable;
       };
       seahorse.enable = true;
       ssh.enableAskPassword = true;

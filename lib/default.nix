@@ -34,7 +34,7 @@ let
         {
           nixpkgs.overlays = [
             # inputs.quickshell.overlays.default
-            inputs.niri.overlays.niri
+            # inputs.niri.overlays.niri
           ];
         }
         inputs.home-manager.nixosModules.home-manager
