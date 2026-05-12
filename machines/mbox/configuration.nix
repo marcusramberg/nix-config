@@ -159,7 +159,7 @@
   networking = {
     firewall = {
       allowedTCPPorts = [
-        3080
+        8081
       ];
     };
   };
