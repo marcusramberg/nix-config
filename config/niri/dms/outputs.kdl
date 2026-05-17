@@ -23,7 +23,7 @@ output "Dell Inc. DELL U3223QE 757H2P3" {
 output "AU Optronics 0xD291 Unknown" {
     mode "1920x1200@60.026"
     scale 1.25
-    position x=1442 y=1440
+    position x=2466 y=1440
 }
 
 output "Lenovo Group Limited P27h-20 V907TWAZ" {
