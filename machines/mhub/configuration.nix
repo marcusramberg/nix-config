@@ -25,14 +25,15 @@
     options = [
       "nfsvers=4.1"
       "soft"
-      "x-systemd.automount"
-      "noauto"
     ];
   };
 
   networking = {
     enableIPv6 = false;
     firewall.enable = false;
+    hosts = {
+      "192.168.86.189" = [ "mspace.lan" ];
+    };
   };
 
   profiles = {
