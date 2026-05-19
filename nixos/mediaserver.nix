@@ -160,7 +160,7 @@ in
     virtualisation.oci-containers.containers = {
       plex = {
         # renovate: datasource=docker depName=linuxserver/plex
-        image = "linuxserver/plex:1.43.1";
+        image = "linuxserver/plex:1.43.2";
         environment = {
           TZ = "Europe/Oslo";
           PUID = "193";
