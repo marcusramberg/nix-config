@@ -175,6 +175,9 @@ in
       ];
     };
   };
-  virtualisation.libvirtd.enable = true;
+  virtualisation = {
+    libvirtd.enable = true;
+    waydroid.enable = true;
+  };
   zramSwap.enable = true;
 }
