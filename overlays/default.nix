@@ -7,5 +7,6 @@ in
 _: super: {
 
   gh-tidy = super.callPackage ../packages/gh-tidy { };
+  gh-release-mono = super.callPackage ../packages/gh-release-mono { };
   tfenv = super.callPackage ../packages/tfenv { inherit inputs; };
 }

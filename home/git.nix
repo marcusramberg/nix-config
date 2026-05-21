@@ -24,6 +24,7 @@
         pkgs.gh-notify
         pkgs.gh-poi
         pkgs.gh-tidy
+        pkgs.gh-release-mono
       ];
       settings = {
         git_protocol = "ssh";
