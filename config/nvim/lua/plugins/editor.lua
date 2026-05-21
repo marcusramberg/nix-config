@@ -58,10 +58,10 @@ return {
       center_slides = true,
     },
   },
-  { "dasvh/taskfile.nvim", opts = {
-    layout = "v",
-    keymaps = {
-      rerun = "<leader>or",
-    },
-  } },
+  {
+    "https://github.com/esensar/nvim-dev-container",
+    config = function()
+      require("devcontainer").setup({})
+    end,
+  },
 }
