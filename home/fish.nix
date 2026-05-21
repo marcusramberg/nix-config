@@ -63,7 +63,7 @@ in
     };
 
     shellInit = ''
-      fish_add_path -p ~/.local/bin  ~/go/bin/ ~/.cargo/bin/
+      fish_add_path -p ~/.local/bin  ~/go/bin/ ~/.cargo/bin/ ~/.npm-global/bin
     '';
     interactiveShellInit = ''
       set -x RIPGREP_CONFIG_PATH "$HOME/.ripgreprc"
