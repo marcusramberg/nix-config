@@ -15,9 +15,10 @@ in
 
   };
 
-  config = mkIf cfg.server.enable { };
-  services.gitea = {
-    enable = true;
-    settings.service.ROOT_URL = cfg.host;
+  config = mkIf cfg.enable {
+    services.gitea = {
+      enable = true;
+      settings.service.ROOT_URL = cfg.host;
+    };
   };
 }
