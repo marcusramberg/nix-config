@@ -9,8 +9,8 @@ stdenvNoCC.mkDerivation {
   pname = "gh-release-mono";
   src = fetchgit {
     url = "https://github.com/marcusramberg/gh-release-mono";
-    rev = "140f3120c4ac2d59188f9ffb6c30741f15ef5c3d";
-    hash = "sha256-g8XJxkRGeWTBb3WRncU/C6JXI13JHiqnZP0MwbWrssc=";
+    rev = "6913b764a0bfa28d1f4dc05c0763d66093d858c5";
+    hash = "sha256-pFU6lz5cc8rPrCJIDJWzcCZWVQ/x484R4pWDBTc8VMA=";
   };
   dontConfigure = true;
   dontBuild = true;
