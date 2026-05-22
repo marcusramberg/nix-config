@@ -177,7 +177,13 @@ spawn-at-startup "wvkbd-mobintl" "--alpha" "220" "--hidden"
 
 window-rule {
     geometry-corner-radius 0.000000 0.000000 0.000000 0.000000
+    clip-to-geometry true
+    opacity 0.95
+    background-effect {
+        blur true
+    }
 }
+
 window-rule {
     match app-id="firefox$" title="^Picture-in-Picture$"
     open-floating true
@@ -201,13 +207,9 @@ window-rule {
 
 window-rule {
     match is-active=false
-    opacity 0.99
+    opacity 0.70
 }
 
-window-rule {
-    geometry-corner-radius 12
-    clip-to-geometry true
-}
 
 // Open DMS windows as floating by default
 window-rule {
@@ -242,15 +244,6 @@ window-rule {
   draw-border-with-background false
 }
 
-
-window-rule {
-    match app-id="^foot$"
-
-    background-effect {
-        blur true
-    }
-}
-
 gestures { hot-corners { off; }; }
 animations { workspace-switch { off; }; }
 
@@ -262,3 +255,5 @@ include "dms/binds.kdl"
 
 
 include "dms/cursor.kdl"
+
+include "dms/windowrules.kdl"

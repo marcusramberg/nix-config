@@ -25,6 +25,7 @@
     options = [
       "nfsvers=4.1"
       "soft"
+      "_netdev"
     ];
   };
 
