@@ -50,10 +50,25 @@
     };
   };
 
-  # fingerprint readre
-  systemd.services.fprintd = {
-    wantedBy = [ "multi-user.target" ];
-    serviceConfig.Type = "simple";
+  # fprintd fails to suspend cleanly ("still busy with another operation") which
+  # leaves a stale device claim after resume. Fix: stop it cleanly before sleep
+  # so the device is released properly; it re-initialises on demand after wake.
+  systemd.services = {
+    printd = {
+      wantedBy = [ "multi-user.target" ];
+      serviceConfig.Type = "simple";
+    };
+    fprintd-sleep = {
+      description = "Stop fprintd before sleep, restart after resume";
+      before = [ "sleep.target" ];
+      wantedBy = [ "sleep.target" ];
+      serviceConfig = {
+        Type = "oneshot";
+        RemainAfterExit = true;
+        ExecStart = "/run/current-system/sw/bin/systemctl stop fprintd.service";
+        ExecStop = "/run/current-system/sw/bin/systemctl start fprintd.service";
+      };
+    };
   };
 
   # Install the driver
