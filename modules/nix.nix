@@ -1,7 +1,6 @@
 {
   config,
   lib,
-  pkgs,
   ...
 }:
 {
@@ -12,7 +11,6 @@
     };
     nix = {
       channel.enable = false;
-      package = pkgs.nixVersions.nix_2_31;
       distributedBuilds = true;
       settings = {
         download-buffer-size = 500000000;
