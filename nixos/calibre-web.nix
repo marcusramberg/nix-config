@@ -9,7 +9,7 @@
 {
   virtualisation = {
     oci-containers = {
-      backend = "docker";
+      backend = "podman";
       containers."calibre-web-automated" = {
         image = "crocodilestick/calibre-web-automated:latest";
         environment = {

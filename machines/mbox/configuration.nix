@@ -34,7 +34,7 @@
       };
     };
 
-    kernelPackages = pkgs.linuxPackages_6_19;
+    kernelPackages = pkgs.linuxPackages_latest;
     # These modules are required for PCI passthrough, and must come before early modesetting stuff
     kernelModules = [
       "fbcon"
@@ -138,7 +138,7 @@
   swapDevices = [ { device = "/dev/disk/by-uuid/a3e364f4-a757-4e71-b220-5c850de97136"; } ];
 
   profiles = {
-    desktop.enable = false;
+    dockerHost.enable = true;
     gaming.enable = true;
     incus.enable = true;
     limine.enable = true;
@@ -284,7 +284,6 @@
   };
   users.users.caddy.extraGroups = [ "incus-admin" ];
   virtualisation = {
-    docker.enable = true;
     libvirtd.enable = true;
     waydroid.enable = true;
   };
