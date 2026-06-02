@@ -1,6 +1,6 @@
 {
   config,
-  inputs,
+  lib,
   pkgs,
   ...
 }:
@@ -12,9 +12,6 @@
   ];
 
   # Bootloader.
-  age.secrets.ollamaApiKey = {
-    owner = "ollama";
-  };
   boot = {
     loader.efi.canTouchEfiVariables = true;
     # Setup keyfile
@@ -85,6 +82,14 @@
         "subvol=nix"
       ];
     };
+    "/var/lib/llama-models" = {
+      device = "/dev/disk/by-id/nvme-Samsung_SSD_970_EVO_1TB_S5H9NS0R223863N-part1";
+      fsType = "btrfs";
+      options = [
+        "compress=zstd"
+        "subvol=llama-models"
+      ];
+    };
     "/home/marcus/Games" = {
       device = "/dev/disk/by-id/nvme-Samsung_SSD_970_EVO_1TB_S5H9NS0R223863N-part1";
       fsType = "btrfs";
@@ -119,7 +124,7 @@
       enable = true;
       user = "marcus";
       autoStart = true;
-      desktopSession = "gamescope-wayland";
+      desktopSession = "niri";
     };
   };
 
@@ -156,15 +161,9 @@
     };
   };
 
-  networking = {
-    firewall = {
-      allowedTCPPorts = [
-        8081
-      ];
-    };
-  };
-
   programs = {
+    niri.enable = true;
+    dms-shell.enable = true;
     custom.ddcutil = {
       enable = true;
       user = "marcus";
@@ -221,20 +220,68 @@
       secretKeyFile = "/var/cache-priv-key.pem";
     };
 
-    ollama = {
-      host = "0.0.0.0";
-      enable = true;
-      openFirewall = true;
-      package = inputs.nixpkgs-small.legacyPackages.${pkgs.stdenv.hostPlatform.system}.ollama-rocm;
-      environmentVariables = {
-        OLLAMA_CONTEXT_LENGTH = "32400";
+    llama-swap =
+      let
+        modelsDir = "/var/lib/llama-models";
+      in
+      {
+        enable = true;
+        listenAddress = "0.0.0.0";
+        port = 8081;
+        openFirewall = true;
+        settings = {
+          logLevel = "debug";
+          models =
+            let
+              llamaServer = lib.getExe' (pkgs.llama-cpp.override { rocmSupport = true; }) "llama-server";
+              mkCmd = args: lib.concatStringsSep " " (lib.filter (a: a != "") args);
+            in
+            {
+              "unsloth/Qwen3.6-27B-GGUF:Q4_K_M" = {
+                cmd = mkCmd [
+                  "${llamaServer}"
+                  "--port \${PORT}"
+                  "-m ${modelsDir}/Qwen3.6-27B-Q4_K_M.gguf"
+                  "--fit on"
+                  "-np 1"
+                  "-c 70000"
+                  "--cache-ram 10000"
+                  "-ctxcp 2"
+                  "--jinja"
+                  "--temp 0.6"
+                  "--top-p 0.95"
+                  "--top-k 20"
+                  "--min-p 0.0"
+                  "--presence-penalty 0.0"
+                  "--repeat-penalty 1.0"
+                  "--reasoning off"
+                  # "--chat-template-kwargs '{" preserve_thinking ": true}'"
+                ];
+              };
+              "gemma4" = {
+                cmd = mkCmd [
+                  "${llamaServer}"
+                  "--port \${PORT}"
+                  "-m ${modelsDir}/gemma-4-26B-A4B-it-UD-Q4_K_M.gguf"
+                  "--fit on"
+                  "-np 1"
+                  "-c 70000"
+                  "--cache-ram 10000"
+                  "-ctxcp 2"
+                  "--jinja"
+                  "--temp 0.6"
+                  "--top-p 0.95"
+                  "--top-k 20"
+                  "--min-p 0.0"
+                  "--presence-penalty 0.0"
+                  "--repeat-penalty 1.0"
+                  "--flash-attn on"
+                ];
+              };
+            };
+        };
       };
-    };
-    nextjs-ollama-llm-ui = {
-      enable = true;
-      ollamaUrl = "http://mbox:11434";
-      port = 3080;
-    };
+
     tailscale.useRoutingFeatures = "server";
     woodpecker-agents.agents.mbox = {
       enable = true;
@@ -272,9 +319,6 @@
     };
   };
   systemd = {
-    services.ollama = {
-      serviceConfig.EnvironmentFile = [ config.age.secrets.ollamaApiKey.path ];
-    };
     user.services.monado.environment = {
       STEAMVR_LH_ENABLE = "1";
       XRT_COMPOSITOR_COMPUTE = "1";
