@@ -83,33 +83,30 @@ in
     ssh = {
       enable = true;
       enableDefaultConfig = false;
-      matchBlocks = {
+      settings = {
         "*" = {
-          addKeysToAgent = "yes";
-          forwardAgent = true;
+          AddKeysToAgent = "yes";
+          ForwardAgent = true;
+        }
+        // lib.optionalAttrs isDarwin {
+          IdentityAgent = "/Users/marcus/Library/Containers/com.maxgoedjen.Secretive.SecretAgent/Data/socket.ssh";
         };
         "mouse1" = {
-          proxyJump = "mcbuildface.stig.io";
+          ProxyJump = "mcbuildface.stig.io";
         };
         "mouse2" = {
-          proxyJump = "mcbuildface.stig.io";
+          ProxyJump = "mcbuildface.stig.io";
         };
         "*.hackeriet.no 10.10.32.*" = {
-          extraOptions = {
-            HostKeyAlgorithms = "+ssh-rsa";
-            PubkeyAcceptedKeyTypes = "+ssh-rsa";
-            KexAlgorithms = "+diffie-hellman-group1-sha1,diffie-hellman-group14-sha1";
-            Ciphers = "+aes256-cbc";
-          };
+          HostKeyAlgorithms = "+ssh-rsa";
+          PubkeyAcceptedKeyTypes = "+ssh-rsa";
+          KexAlgorithms = "+diffie-hellman-group1-sha1,diffie-hellman-group14-sha1";
+          Ciphers = "+aes256-cbc";
         };
         # "*.hackeriet.no" = {
-        #   kexAlgorithms = "diffie-hellman-group-exchange-sha1";
-        #   hostKeyAlgorithms = "+ssh-rs";
+        #   KexAlgorithms = "diffie-hellman-group-exchange-sha1";
+        #   HostKeyAlgorithms = "+ssh-rs";
         # };
-      }
-      // lib.optionalAttrs isDarwin {
-        "*".extraOptions.IdentityAgent =
-          "/Users/marcus/Library/Containers/com.maxgoedjen.Secretive.SecretAgent/Data/socket.ssh";
       };
     };
     # Smarter z
