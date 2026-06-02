@@ -43,7 +43,8 @@
       swapAlt = {
         enable = true;
         devices = [
-          "/dev/input/by-path/platform-i8042-serio-0-event-kbd"
+          "/dev/input/by-id/usb-Logitech_USB_Receiver-event-kbd"
+
           "/dev/input/by-id/usb-SDINNOVATION_Gaming_Keyboard_003123456789-event-kbd"
         ];
       };

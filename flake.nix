@@ -38,6 +38,7 @@
             extraModules = [ inputs.jovian.nixosModules.default ];
           };
           mwork = mkDesktopHost "mwork" { };
+          mdesk = mkDesktopHost "mdesk" { };
           mtop = mkDesktopHost "mtop" { };
           mbench = mkNixHost "mbench" {
           };

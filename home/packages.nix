@@ -65,6 +65,7 @@ in
         nnn
         nix-converter
         nodejs
+        nono
         otree
         prek
         promexplorer
