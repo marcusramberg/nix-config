@@ -102,19 +102,6 @@
     };
   };
   networking.firewall.enable = false;
-  programs = {
-    obs-studio = {
-      enable = false;
-      enableVirtualCamera = true;
-      plugins = with pkgs.obs-studio-plugins; [
-        distroav
-        obs-teleport
-        wlrobs
-        pixel-art
-        obs-vaapi
-      ];
-    };
-  };
 
   profiles = {
     incus.enable = true;
@@ -134,6 +121,11 @@
       SUBSYSTEM=="usb",  ATTRS{idVendor}=="0416", ATTRS{idProduct}=="5020", MODE="0666"
       # FIXME: the following line is not sufficient for pyhidapi.
       KERNEL=="hidraw*", ATTRS{idVendor}=="0416", ATTRS{idProduct}=="5020", ATTRS{busnum}=="1", MODE="0666"
+
+      # power management for  x1 fprint sensor
+      ACTION=="add", SUBSYSTEM=="usb", ATTR{idVendor}=="06cb", 
+      ATTR{idProduct}=="00fc", TEST=="power/control", ATTR{power/control}="on"
+
     '';
   };
   systemd.sleep.settings.Sleep = {
