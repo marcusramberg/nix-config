@@ -62,6 +62,14 @@
     cloudflare-warp.enable = true;
   };
 
+  system.activationScripts = {
+    makeQuiet.text = ''
+      echo 1 > /sys/devices/system/cpu/intel_pstate/no_turbo
+      echo 75 > /sys/devices/system/cpu/intel_pstate/max_perf_pct
+      echo 10 > /sys/class/thermal/cooling_device38/cur_state
+    '';
+  };
+
   virtualisation = {
     docker.enable = true;
     waydroid.enable = true;
