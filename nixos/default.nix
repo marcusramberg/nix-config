@@ -92,19 +92,20 @@
     mtr.enable = true;
     nix-ld = {
       enable = true;
-      libraries = [
-        pkgs.stdenv.cc.cc
-        pkgs.zlib
-        pkgs.fuse3
-        pkgs.icu
-        pkgs.nss
-        pkgs.openssl
-        pkgs.curl
-        pkgs.expat
-        pkgs.libx11
-        pkgs.vulkan-headers
-        pkgs.vulkan-loader
-        pkgs.vulkan-tools
+      libraries = with pkgs; [
+        libgcc.lib
+        stdenv.cc.cc
+        zlib
+        fuse3
+        icu
+        nss
+        openssl
+        curl
+        expat
+        libx11
+        vulkan-headers
+        vulkan-loader
+        vulkan-tools
       ];
     };
     neovim = {
