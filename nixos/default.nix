@@ -192,7 +192,7 @@
   # Always be sshing
   services.openssh.enable = true;
   nixpkgs.config.permittedInsecurePackages = [
-    "electron-36.9.5"
+    "electron-39.8.10"
     "jitsi-meet-1.0.8792"
     "minio-2025-10-15T17-29-55Z"
   ];
