@@ -143,6 +143,10 @@
   swapDevices = [ { device = "/dev/disk/by-uuid/a3e364f4-a757-4e71-b220-5c850de97136"; } ];
 
   profiles = {
+    desktop = {
+      enable = true;
+      displayManager = false;
+    };
     dockerHost.enable = true;
     gaming.enable = true;
     incus.enable = true;
@@ -162,8 +166,6 @@
   };
 
   programs = {
-    niri.enable = true;
-    dms-shell.enable = true;
     custom.ddcutil = {
       enable = true;
       user = "marcus";
@@ -186,8 +188,6 @@
 
   services = {
     blueman.enable = true;
-    #displayManager.dms-greeter.enable = lib.mkForce false;
-    # displayManager.sddm.wayland.enable = true;
     immich = {
 
       enable = true;
@@ -220,67 +220,68 @@
       secretKeyFile = "/var/cache-priv-key.pem";
     };
 
-    llama-swap =
-      let
-        modelsDir = "/var/lib/llama-models";
-      in
-      {
-        enable = true;
-        listenAddress = "0.0.0.0";
-        port = 8081;
-        openFirewall = true;
-        settings = {
-          logLevel = "debug";
-          models =
-            let
-              llamaServer = lib.getExe' (pkgs.llama-cpp.override { rocmSupport = true; }) "llama-server";
-              mkCmd = args: lib.concatStringsSep " " (lib.filter (a: a != "") args);
-            in
-            {
-              "unsloth/Qwen3.6-27B-GGUF:Q4_K_M" = {
-                cmd = mkCmd [
-                  "${llamaServer}"
-                  "--port \${PORT}"
-                  "-m ${modelsDir}/Qwen3.6-27B-Q4_K_M.gguf"
-                  "--fit on"
-                  "-np 1"
-                  "-c 70000"
-                  "--cache-ram 10000"
-                  "-ctxcp 2"
-                  "--jinja"
-                  "--temp 0.6"
-                  "--top-p 0.95"
-                  "--top-k 20"
-                  "--min-p 0.0"
-                  "--presence-penalty 0.0"
-                  "--repeat-penalty 1.0"
-                  "--reasoning off"
-                  # "--chat-template-kwargs '{" preserve_thinking ": true}'"
-                ];
-              };
-              "gemma4" = {
-                cmd = mkCmd [
-                  "${llamaServer}"
-                  "--port \${PORT}"
-                  "-m ${modelsDir}/gemma-4-26B-A4B-it-UD-Q4_K_M.gguf"
-                  "--fit on"
-                  "-np 1"
-                  "-c 70000"
-                  "--cache-ram 10000"
-                  "-ctxcp 2"
-                  "--jinja"
-                  "--temp 0.6"
-                  "--top-p 0.95"
-                  "--top-k 20"
-                  "--min-p 0.0"
-                  "--presence-penalty 0.0"
-                  "--repeat-penalty 1.0"
-                  "--flash-attn on"
-                ];
-              };
+    llama-swap = {
+      enable = true;
+      listenAddress = "0.0.0.0";
+      port = 8081;
+      openFirewall = true;
+      settings = {
+        logLevel = "debug";
+        models =
+          let
+            modelsDir = "/var/lib/llama-models";
+            llamaServer = lib.getExe' (pkgs.llama-cpp.override { vulkanSupport = true; }) "llama-server";
+            mkCmd = args: lib.concatStringsSep " " (lib.filter (a: a != "") args);
+          in
+          {
+            "unsloth/Qwen3.6-27B-GGUF:Q4_K_M" = {
+              cmd = mkCmd [
+                "${llamaServer}"
+                "--port \${PORT}"
+                "-m ${modelsDir}/Qwen3.6-27B-Q4_K_M.gguf"
+                "--fit on"
+                "-ngl 99"
+                "-fa on"
+                "-np 1"
+                "--spec-type draft-mtp"
+                "--spec-draft-n-max 2"
+                "-c 70000"
+                "--cache-ram 10000"
+                "-ctxcp 2"
+                "--jinja"
+                "--temp 0.6"
+                "--top-p 0.95"
+                "--top-k 20"
+                "--min-p 0.0"
+                "--presence-penalty 0.0"
+                "--repeat-penalty 1.0"
+                "--reasoning off"
+                # "--chat-template-kwargs '{" preserve_thinking ": true}'"
+              ];
             };
-        };
+            "gemma4" = {
+              cmd = mkCmd [
+                "${llamaServer}"
+                "--port \${PORT}"
+                "-m ${modelsDir}/gemma-4-26B-A4B-it-UD-Q4_K_M.gguf"
+                "--mmproj ${modelsDir}/mmproj-F16.gguf "
+                "-ngl 99"
+                "-np 1"
+                "-c 70000"
+                "--cache-ram 10000"
+                "-ctxcp 2"
+                "--temp 0.6"
+                "--top-p 0.95"
+                "--top-k 20"
+                "--min-p 0.0"
+                "--verbose"
+                "--no-warmup"
+                ''--chat-template-kwargs '{"enable_thinking":false}''
+              ];
+            };
+          };
       };
+    };
 
     tailscale.useRoutingFeatures = "server";
     woodpecker-agents.agents.mbox = {
