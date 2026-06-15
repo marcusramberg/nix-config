@@ -27,6 +27,9 @@ in
 {
   options.profiles.desktop = {
     enable = lib.mkEnableOption "niri+dank environment";
+    displayManager = lib.mkEnableOption "display manager (dms-greeter)" // {
+      default = true;
+    };
   };
 
   config = lib.mkIf cfg.enable {
@@ -167,7 +170,7 @@ in
     };
 
     services = {
-      displayManager = {
+      displayManager = lib.mkIf cfg.displayManager {
         dms-greeter = {
           enable = true;
           package = dms;
