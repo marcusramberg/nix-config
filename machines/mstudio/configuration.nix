@@ -153,6 +153,28 @@ in
     wait-online.enable = false;
   };
 
+  # Work around a Linux 7.0 UDP-GSO regression that craters tailscale TX
+  # throughput on end0 (outbound bulk transfers collapse to ~150 kB/s while
+  # raw TCP / receive stay fast). Disabling UDP segmentation + GSO on the
+  # physical NIC restores full speed. See tailscale/tailscale#19777.
+  #
+  # This is an interim hack. Tailscale ships a proper client-side workaround
+  # (keeps UDP GSO, no offload disabling) from v1.99.110 / stable v1.100, and
+  # the kernel bug itself is fixed in 7.1.5. mstudio is on tailscale 1.98.2.
+  # DROP THIS once any of: tailscale >= 1.100 (or >= 1.99.110), kernel >= 7.1.5,
+  # or the two fix commits (torvalds/linux@78effd8, @5f17ae0f595a) are backported.
+  systemd.services.fix-end0-udp-gso = {
+    description = "Disable broken UDP GSO on end0 (tailscale TX throughput, kernel 7.0 regression)";
+    wantedBy = [ "multi-user.target" ];
+    after = [ "sys-subsystem-net-devices-end0.device" ];
+    bindsTo = [ "sys-subsystem-net-devices-end0.device" ];
+    serviceConfig = {
+      Type = "oneshot";
+      RemainAfterExit = true;
+      ExecStart = "${pkgs.ethtool}/bin/ethtool -K end0 tx-udp-segmentation off generic-segmentation-offload off";
+    };
+  };
+
   # Do NOT change this value unless you have manually inspected all the changes it would make to your configuration,
   # and migrated your data accordingly.
   #
