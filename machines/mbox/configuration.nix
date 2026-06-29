@@ -239,6 +239,7 @@
                 "${llamaServer}"
                 "--port \${PORT}"
                 "-m ${modelsDir}/Qwen3.6-27B-Q4_K_M.gguf"
+                "--mmproj ${modelsDir}/mmproj-qwen.gguf"
                 "--fit on"
                 "-ngl 99"
                 "-fa on"
