@@ -448,6 +448,7 @@
   "notificationTimeoutNormal": 5000,
   "notificationTimeoutCritical": 0,
   "notificationCompactMode": false,
+  "notificationDedupeEnabled": true,
   "notificationPopupPosition": 0,
   "notificationAnimationSpeed": 1,
   "notificationCustomAnimationDuration": 400,
@@ -526,6 +527,10 @@
       ],
       "showOnLastDisplay": true,
       "leftWidgets": [
+        {
+          "id": "launcherButton",
+          "enabled": true
+        },
         {
           "id": "workspaceSwitcher",
           "enabled": true
