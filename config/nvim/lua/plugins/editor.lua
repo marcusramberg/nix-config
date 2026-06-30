@@ -18,23 +18,17 @@ return {
   { "metakirby5/codi.vim" },
   {
     "chrishrb/gx.nvim",
+    keys = { { "gx", "<cmd>Browse<cr>", mode = { "n", "x" } } },
+    cmd = { "Browse" },
+    init = function()
+      vim.g.netrw_nogx = 1 -- disable netrw gx
+    end,
     opts = {
-      -- default browser to use, can be a string or a function that returns a string
       browser = "firefox",
-      -- whether to open links in a new tab
       new_tab = true,
-      -- whether to open links in a new window
       new_window = false,
-      -- whether to open links in the background
       background = false,
-      keys = { { "gx", "<cmd>Browse<cr>", mode = { "n", "x" } } },
-      cmd = { "Browse" },
-      init = function()
-        vim.g.netrw_nogx = 1 -- disable netrw gx
-      end,
     },
-    enabled = true,
-    config = true,
   },
   -- Autosave after a delay
   {

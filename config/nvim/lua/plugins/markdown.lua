@@ -78,7 +78,7 @@ return {
       },
       metadata = {
         done = {
-          key = "<leder>md",
+          key = "<leader>md",
         },
         started = {
           key = "<leader>ms",
@@ -90,30 +90,22 @@ return {
     },
   },
   {
-    "mason-org/mason.nvim",
-    opts = { ensure_installed = { "markdown-oxide" } },
-    handlers = {
-      markdown_oxide = function()
-        vim.tbl_deep_extend("force", {}, vim.lsp.protocol.make_client_capabilities(), cmp_lsp.default_capabilities())
-        require("lspconfig").markdown_oxide.setup({
-          -- Ensure that dynamicRegistration is enabled! This allows the LS to take into account actions like the
-          -- Create Unresolved File code action, resolving completions for unindexed code blocks, ...
-          -- 		capabilities = vim.tbl_deep_extend("force", capabilities, {
+    "neovim/nvim-lspconfig",
+    opts = {
+      servers = {
+        markdown_oxide = {
           workspace = {
             didChangeWatchedFiles = {
               dynamicRegistration = true,
             },
           },
           on_attach = function(client, bufnr)
-            -- your on_attach code here
             vim.api.nvim_create_user_command("Daily", function(args)
-              local input = args.args
-
-              vim.lsp.buf.execute_command({ command = "jump", arguments = { input } })
+              vim.lsp.buf.execute_command({ command = "jump", arguments = { args.args } })
             end, { desc = "Open daily note", nargs = "*" })
           end,
-        })
-      end,
+        },
+      },
     },
   },
 }

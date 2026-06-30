@@ -21,7 +21,7 @@ keymap("n", "<leader>gb", "<cmd>Gitsigns blame<cr>", { desc = "Git Blame" })
 keymap("n", "<leader>ot", "<cmd>Task<cr>", { desc = "Run task" })
 vim.keymap.del("n", "<A-j>")
 vim.keymap.del("n", "<A-k>")
-vim.keymap.set("i", "jj", "<ESC>", { silent = true })
+keymap("i", "jj", "<ESC>", { silent = true })
 
 -- Octo nvim ideas
 -- https://docs.github.com/en/search-github/searching-on-github/searching-issues-and-pull-requests
@@ -35,5 +35,5 @@ keymap(
   "n",
   "<Leader>Gr",
   "<cmd>Octo search is:pr review:required state:open review-requested:@me<cr>",
-  { desc = "Octo » PRs involving me", silent = true }
+  { desc = "Octo » PRs needing my review", silent = true }
 )

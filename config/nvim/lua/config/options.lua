@@ -10,7 +10,6 @@ opt.iskeyword:append("-")
 opt.foldenable = false
 vim.g.root_spec = { { ".git" }, "cwd" }
 opt.relativenumber = false
--- vim.opt.mouse = "" --Disable mouse support
 
 if vim.g.neovide then
   vim.g.neovide_cursor_vfx_mode = "pixiedust"
@@ -19,7 +18,7 @@ if vim.g.neovide then
   vim.g.neovide_text_contrast = 0.5
   vim.g.neovide_cursor_short_animation_length = 0.02
   vim.g.neovide_scroll_animation_length = 0.05
-  if vim.g.neovide and vim.fn.argc() == 0 then
+  if vim.fn.argc() == 0 then
     vim.api.nvim_command("cd ~/Source")
   end
   vim.g.neovide_confirm_quit = true
