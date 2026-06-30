@@ -23,6 +23,7 @@ input {
     mouse {
         natural-scroll
         accel-profile "flat"
+        left-handed
     }
     workspace-auto-back-and-forth
 }
