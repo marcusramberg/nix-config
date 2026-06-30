@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, lib, ... }:
 
 {
   imports = [
@@ -36,13 +36,18 @@
       enable = true;
       powerOnBoot = true;
     };
+    logitech.wireless = {
+      enable = true;
+      enableGraphical = true;
+    };
     keyboard.dual-caps = {
       enable = true;
       swapAlt = {
         enable = true;
         devices = [
-          "/dev/input/by-id/usb-Logitech_USB_Receiver-event-kbd"
           "/dev/input/by-id/usb-SDINNOVATION_Gaming_Keyboard_003123456789-event-kbd"
+          "/dev/input/by-path/pci-0000:00:14.0-usb-0:13.2:1.1-event-kbd"
+          "/dev/input/by-id/logitech.input-event-kbd"
         ];
       };
     };
@@ -54,12 +59,11 @@
     hostName = "mdesk";
   };
 
-  profiles = {
-    incus.enable = true;
-  };
+  profiles.incus.enable = true;
 
   services = {
     cloudflare-warp.enable = true;
+    xserver.xkb.variant = lib.mkForce "mac-iso";
   };
 
   system.activationScripts = {
