@@ -142,3 +142,13 @@ docs.bas.es:443 {
 	import caddy-common
 	reverse_proxy /* http://baseone:8888
 }
+
+m.bas.es {
+	import caddy-common
+  reverse_proxy bases-dev:8090
+}
+
+*.m.bas.es {
+	import caddy-common
+  reverse_proxy bases-dev:80
+}
