@@ -13,9 +13,9 @@ in
     swapAlt.enable = lib.mkEnableOption "Also swap alt/meta";
     swapAlt.devices = lib.mkOption {
       type = lib.types.listOf lib.types.str;
-      default = [ "/dev/input/by-path/mfold.input-event-kbd" ];
+      default = [ "/dev/input/by-id/mfold.input-event-kbd" ];
       description = "Device to swap alt/meta keys on, defaults to the folding keyboard";
-      example = "/derv/input/by-path/mboard.input-event-kbd";
+      example = "/derv/input/by-id/mboard.input-event-kbd";
     };
   };
 
