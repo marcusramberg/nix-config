@@ -64,4 +64,9 @@ return {
       require("devcontainer").setup({})
     end,
   },
+  {
+    "kamegoro/tobira.nvim",
+    event = "VeryLazy",
+    opts = {},
+  },
 }

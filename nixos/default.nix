@@ -153,18 +153,18 @@
 
   nixpkgs.config = {
     allowUnfree = true;
-    packageOverrides =
-      let
-        nixpkgs-small = import inputs.nixpkgs-small {
-          inherit (pkgs) system;
-          config.allowUnfree = true;
-        };
-      in
-      _: {
-        inherit (nixpkgs-small)
-          niri
-          ;
-      };
+    # packageOverrides =
+    #   let
+    #     nixpkgs-small = import inputs.nixpkgs-small {
+    #       inherit (pkgs) system;
+    #       config.allowUnfree = true;
+    #     };
+    #   in
+    #   _: {
+    #     inherit (nixpkgs-small)
+    #       python314Packages
+    #       ;
+    #   };
   };
 
   nix = {

@@ -43,11 +43,22 @@
       swapAlt = {
         enable = true;
         devices = [
+          "/dev/input/by-path/platform-i8042-serio-0-event-kbd"
           "/dev/input/by-id/usb-Logitech_USB_Receiver-event-kbd"
-
           "/dev/input/by-id/usb-SDINNOVATION_Gaming_Keyboard_003123456789-event-kbd"
         ];
       };
+    };
+  };
+  programs.appimage = {
+    enable = true;
+    binfmt = true;
+    package = pkgs.appimage-run.override {
+      extraPkgs = pkgs: [
+        pkgs.libglvnd
+        pkgs.mesa
+        pkgs.mesa.drivers
+      ];
     };
   };
 
@@ -123,8 +134,7 @@
       KERNEL=="hidraw*", ATTRS{idVendor}=="0416", ATTRS{idProduct}=="5020", ATTRS{busnum}=="1", MODE="0666"
 
       # power management for  x1 fprint sensor
-      ACTION=="add", SUBSYSTEM=="usb", ATTR{idVendor}=="06cb", 
-      ATTR{idProduct}=="00fc", TEST=="power/control", ATTR{power/control}="on"
+      ACTION=="add", SUBSYSTEM=="usb", ATTR{idVendor}=="06cb", ATTR{idProduct}=="00fc", TEST=="power/control", ATTR{power/control}="on"
 
     '';
   };

@@ -57,7 +57,7 @@ in
         man-pages
         ncdu
         nil
-        nim2
+        nim
         inputs.theheck.packages.${stdenv.hostPlatform.system}.default
         nix-output-monitor
         nixfmt

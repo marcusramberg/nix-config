@@ -10,6 +10,7 @@ in
   programs = {
     atuin = {
       daemon.enable = true;
+      flags = [ "--disable-ctrl-r" ];
       enable = true;
       # enableFishIntegration = true;
       settings = {
