@@ -16,9 +16,13 @@ web:*.{html,css,js}*
 # Follow symlinks
 -L
 
-# Set the colors.
---colors=line:none
+# Set the colors (Tokyo Night).
+--colors=path:fg:122,162,247
+--colors=line:fg:224,175,104
 --colors=line:style:bold
+--colors=column:fg:125,207,255
+--colors=match:fg:247,118,142
+--colors=match:style:bold
 
 # Because who cares about case!?
 --smart-case
