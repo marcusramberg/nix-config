@@ -36,6 +36,38 @@
           "niri": {}
         }
       }
+    },
+    {
+      "id": "auto_78d65d9f",
+      "name": "",
+      "outputs": {
+        "Dell Inc. DELL U3223QE 757H2P3": {
+          "mode": "3840x2160@59.997",
+          "position": {
+            "x": 0,
+            "y": 0
+          },
+          "scale": 1.5,
+          "transform": "Normal",
+          "vrr": false,
+          "disabled": false,
+          "niri": {
+            "vrrOnDemand": true
+          }
+        },
+        "Microstep MAG342CQRV DB6H070800774": {
+          "mode": "3440x1440@59.999",
+          "position": {
+            "x": 2560,
+            "y": 0
+          },
+          "scale": 1.25,
+          "transform": "Normal",
+          "vrr": false,
+          "disabled": false,
+          "niri": {}
+        }
+      }
     }
   ]
 }

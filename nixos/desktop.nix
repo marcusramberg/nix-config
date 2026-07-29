@@ -166,7 +166,7 @@ in
       displayManager = lib.mkIf cfg.displayManager {
         dms-greeter = {
           enable = true;
-          package = dms;
+          package = pkgs.dms-shell;
           # quickshell.package = quickshell;
           compositor.name = "niri";
           configHome = "/home/marcus";

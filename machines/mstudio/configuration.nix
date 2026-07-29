@@ -60,6 +60,7 @@ in
   hardware = {
     asahi = {
       peripheralFirmwareDirectory = ./firmware;
+      enable = true;
     };
     bluetooth.enable = true;
     keyboard.dual-caps.enable = true;
@@ -117,6 +118,7 @@ in
 
       };
     };
+    ratbagd.enable = true;
 
     blueman.enable = true;
     displayManager.sddm.enableHidpi = true;

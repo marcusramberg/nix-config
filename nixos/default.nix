@@ -163,6 +163,8 @@
       _: {
         inherit (nixpkgs-small)
           niri
+          vivaldi
+          vivaldi-ffmpeg-codecs
           ;
       };
   };
