@@ -17,17 +17,7 @@
   };
 
   environment.systemPackages = with pkgs; [
-    act
-    amazon-ecr-credential-helper
-    docker-credential-gcr
-    (google-cloud-sdk.withExtraComponents [
-      google-cloud-sdk.components.gke-gcloud-auth-plugin
-      google-cloud-sdk.components.spanner-cli
-    ])
-    plexamp
-    slack
     spotify
-    woodpecker-cli
     ssh-tpm-agent
   ];
 
@@ -59,12 +49,12 @@
     hostName = "mdesk";
   };
 
-  profiles.incus.enable = true;
-
-  services = {
-    cloudflare-warp.enable = true;
-    xserver.xkb.variant = lib.mkForce "mac-iso";
+  profiles = {
+    incus.enable = true;
+    work.enable = true;
   };
+
+  services.xserver.xkb.variant = lib.mkForce "mac-iso";
 
   system.activationScripts = {
     makeQuiet.text = ''

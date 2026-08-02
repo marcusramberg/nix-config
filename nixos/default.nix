@@ -43,7 +43,6 @@
   environment = {
     etc.hosts.mode = "0644";
     systemPackages = with pkgs; [
-      cached-nix-shell
       clang-tools
       distrobox
       gcc
@@ -54,12 +53,9 @@
       mosh
       p7zip
       pciutils
-      perlPackages.EV
-      perlPackages.Mojolicious
       unrar
       usbutils
       wget
-      wireguard-tools
     ];
     variables = {
       NIXPKGS_ALLOW_UNFREE = "1";
@@ -198,6 +194,7 @@
     "electron-39.8.10"
     "jitsi-meet-1.0.8792"
     "minio-2025-10-15T17-29-55Z"
+    "pnpm-9.15.9"
   ];
   system.activationScripts.diff = {
     supportsDryActivation = true;

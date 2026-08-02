@@ -30,7 +30,6 @@
   };
 
   environment.systemPackages = with pkgs; [
-    freecad-wayland
     galileo-mura
     heroic
     jupiter-dock-updater-bin

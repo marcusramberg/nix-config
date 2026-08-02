@@ -19,17 +19,8 @@
       "/dev/disk/by-uuid/9de8d567-1ec4-4d2f-896b-a0f6711d4d44";
   };
   environment.systemPackages = with pkgs; [
-    act
-    amazon-ecr-credential-helper
-    docker-credential-gcr
-    (google-cloud-sdk.withExtraComponents [
-      google-cloud-sdk.components.gke-gcloud-auth-plugin
-      google-cloud-sdk.components.spanner-cli
-    ])
     plexamp
-    slack
     spotify
-    woodpecker-cli
     ssh-tpm-agent
   ];
 
@@ -62,11 +53,8 @@
     };
   };
 
-  # fprintd fails to suspend cleanly ("still busy with another operation") which
-  # leaves a stale device claim after resume. Fix: stop it cleanly before sleep
-  # so the device is released properly; it re-initialises on demand after wake.
   systemd.services = {
-    printd = {
+    fprintd = {
       wantedBy = [ "multi-user.target" ];
       serviceConfig.Type = "simple";
     };
@@ -120,10 +108,10 @@
       enable = true;
       secureboot = true;
     };
+    work.enable = true;
   };
   services = {
     knot.enable = true;
-    cloudflare-warp.enable = true;
     udev.extraRules = ''
       # DFU (Internal bootloader for STM32 and AT32 MCUs)
       SUBSYSTEM=="usb", ATTRS{idVendor}=="2e3c", ATTRS{idProduct}=="df11", MODE="0664", GROUP="dialout"

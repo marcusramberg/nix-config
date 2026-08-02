@@ -31,8 +31,6 @@ in
     asahi-btsync
     asahi-wifisync
     box64
-    freecad-wayland
-    prusa-slicer
     music-assistant-companion
   ];
 

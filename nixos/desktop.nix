@@ -78,7 +78,6 @@ in
             enableWidevine = true;
             proprietaryCodecs = true;
           })
-          vivaldi-ffmpeg-codecs
           spotify-player
           telegram-desktop
           signal-desktop
@@ -87,10 +86,7 @@ in
         ]
         ++ (with kdePackages; [
           breeze-icons
-          dolphin
-          dolphin-plugins
           kaccounts-providers
-          kio-gdrive
           qt6ct
           qtdeclarative
           tokodon
@@ -99,7 +95,6 @@ in
 
     profiles.myfonts.enable = true;
     programs = {
-      chromium.enable = true;
       dms-shell = {
         enable = true;
         package = dms;
@@ -141,6 +136,7 @@ in
         };
       };
       dsearch.enable = true;
+      gnome-terminal.enable = false;
       foot = {
         enable = true;
         enableFishIntegration = true;
@@ -148,7 +144,7 @@ in
       kdeconnect.enable = true;
       nautilus-open-any-terminal = {
         enable = true;
-        terminal = "ghostty";
+        terminal = "foot";
       };
       niri = {
         enable = true;
@@ -177,8 +173,7 @@ in
       gnome.at-spi2-core.enable = true;
       flatpak.enable = true;
       orca.enable = false;
-      power-profiles-daemon.enable = false;
-      tlp.enable = true;
+      power-profiles-daemon.enable = true;
       upower.enable = true;
 
       xserver = {
