@@ -7,7 +7,6 @@
 }:
 let
   inherit (pkgs) stdenv;
-  isNixOS = lib.hasAttr "nixos" osConfig.system;
   hasK3s =
     lib.hasAttr "profiles" osConfig
     && lib.hasAttr "k3s" osConfig.profiles
@@ -15,86 +14,66 @@ let
 in
 {
   home.packages =
-    (
-      with pkgs;
-      [
-        (fortune.override { withOffensive = true; })
-        actionlint
-        asciinema
-        btop
-        caligula
-        cargo
-        chafa
-        cloudflared
-        coreutils
-        deadnix
-        dive
-        fastfetch
-        fd
-        figlet
-        gist
-        github-copilot-cli
-        glow
-        gnugrep
-        gnumake
-        go
-        go-task
-        golangci-lint
-        gopls
-        gotestfmt
-        grc
-        hadolint
-        inputs.hei.packages.${stdenv.hostPlatform.system}.default
-        jq
-        just
-        kubectx
-        lolcat
-        lsof
-        lua-language-server
-        luarocks
-        lua5_1
-        lynx # for copilot
-        man-pages
-        ncdu
-        nil
-        nim
-        inputs.theheck.packages.${stdenv.hostPlatform.system}.default
-        nix-output-monitor
-        nixfmt
-        nixpkgs-review
-        nnn
-        nix-converter
-        nodejs
-        nono
-        otree
-        prek
-        promexplorer
-        pssh
-        ranger
-        ripgrep
-        sccache
-        sqlite
-        statix
-        stylua
-        tealdeer
-        tfenv
-        tflint
-        unixtools.watch
-        unzip
-        uv
-        wget
-        woodpecker-cli
-        yq-go
-      ]
-      ++ lib.optionals stdenv.isDarwin [
-        cocoapods
-        m-cli # useful macOS CLI commands
-      ]
-      ++ lib.optional (!hasK3s) kubectl
-      ++ lib.optionals isNixOS [ wezterm ]
-    )
-    ++ (with inputs.nixpkgs-small.legacyPackages.${stdenv.hostPlatform.system}; [
+    with pkgs;
+    [
+      (fortune.override { withOffensive = true; })
+      actionlint
+      btop
+      caligula
+      chafa
+      cloudflared
+      coreutils
+      deadnix
       devenv
-      ollama
-    ]);
+      dive
+      fastfetch
+      fd
+      figlet
+      gist
+      github-copilot-cli
+      gnugrep
+      gnumake
+      go
+      go-task
+      golangci-lint
+      gopls
+      gotestfmt
+      grc
+      hadolint
+      inputs.hei.packages.${stdenv.hostPlatform.system}.default
+      jq
+      just
+      lolcat
+      lsof
+      lua-language-server
+      luarocks
+      lua5_1
+      lynx # for copilot
+      ncdu
+      nil
+      inputs.theheck.packages.${stdenv.hostPlatform.system}.default
+      nix-output-monitor
+      nixfmt
+      nixpkgs-review
+      nix-converter
+      nodejs
+      nono
+      otree
+      prek
+      promexplorer
+      ripgrep
+      sqlite
+      statix
+      stylua
+      tealdeer
+      tfenv
+      tflint
+      unixtools.watch
+      unzip
+      uv
+      wget
+      woodpecker-cli
+      yq-go
+    ]
+    ++ lib.optional (!hasK3s) kubectl;
 }
