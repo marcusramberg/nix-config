@@ -136,6 +136,7 @@ in
         };
       };
       dsearch.enable = true;
+      evolution.enable = false;
       gnome-terminal.enable = false;
       foot = {
         enable = true;
@@ -170,6 +171,7 @@ in
         defaultSession = lib.mkDefault "niri";
       };
       desktopManager.gnome.enable = true;
+      gnome.evolution-data-server.enable = lib.mkForce false;
       gnome.at-spi2-core.enable = true;
       flatpak.enable = true;
       orca.enable = false;
