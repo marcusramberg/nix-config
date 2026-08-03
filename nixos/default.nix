@@ -14,6 +14,7 @@
     ../modules/autoupgrade.nix
     ../modules/caddy.nix
     ../modules/fonts.nix
+    ../modules/work.nix
     ../modules/nix.nix
     ./amd.nix
     ./boot.nix
@@ -44,7 +45,6 @@
     etc.hosts.mode = "0644";
     systemPackages = with pkgs; [
       clang-tools
-      distrobox
       gcc
       file
       ghostty.terminfo
@@ -62,8 +62,6 @@
       SSL_CERT_FILE = "/etc/ssl/certs/ca-bundle.crt";
     };
   };
-  hardware.i2c.enable = true;
-
   networking.firewall = {
     enable = lib.mkDefault true;
     trustedInterfaces = lib.mkDefault [ "tailscale0" ];
@@ -75,7 +73,6 @@
   services = {
     fwupd.enable = true;
     tailscale.enable = true;
-    keybase.enable = true;
     timesyncd.enable = lib.mkDefault true;
   };
 
@@ -186,7 +183,6 @@
       else
         [ ];
     sudo.wheelNeedsPassword = false;
-    tpm2.enable = true;
   };
   # Always be sshing
   services.openssh.enable = true;

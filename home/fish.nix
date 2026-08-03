@@ -80,12 +80,9 @@ in
       test -x ~/.plenv/bin/plenv; and . (~/.plenv/bin/plenv init -|psub)
       ${pkgs.any-nix-shell}/bin/any-nix-shell fish --info-right | source
       set -gx ATUIN_NOBIND "true"
-      atuin init fish | source
+      atuin init fish --disable-ctrl-r | source
       theheck fish | source
 
-      # bind to ctrl-r in normal and insert mode, add any other bindings you want here too
-      bind \cr _atuin_search
-      bind -M insert \cr _atuin_search
 
       # Completion
       type -q kustomize; and eval (kustomize completion fish)

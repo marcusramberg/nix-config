@@ -1,4 +1,5 @@
 {
+  config,
   pkgs,
   lib,
   osConfig,
@@ -7,73 +8,86 @@
 }:
 let
   inherit (pkgs) stdenv;
-  hasK3s =
-    lib.hasAttr "profiles" osConfig
-    && lib.hasAttr "k3s" osConfig.profiles
-    && osConfig.profiles.k3s.enable;
-in
-{
-  home.packages =
+  cfg = config.profiles.home;
+  hasK3s = lib.attrByPath [ "profiles" "k3s" "enable" ] false osConfig;
+  # Standalone home-manager (no NixOS profiles) keeps dev tools; NixOS hosts
+  # follow their desktop profile unless overridden.
+  desktopDefault =
+    if osConfig ? profiles then lib.attrByPath [ "desktop" "enable" ] false osConfig.profiles else true;
+
+  base = with pkgs; [
+    (fortune.override { withOffensive = true; })
+    btop
+    caligula
+    chafa
+    cloudflared
+    coreutils
+    fastfetch
+    fd
+    figlet
+    gnugrep
+    grc
+    inputs.hei.packages.${stdenv.hostPlatform.system}.default
+    jq
+    lolcat
+    lsof
+    ncdu
+    inputs.theheck.packages.${stdenv.hostPlatform.system}.default
+    nono
+    otree
+    ripgrep
+    sqlite
+    tealdeer
+    unixtools.watch
+    unzip
+    wget
+    yq-go
+  ];
+
+  dev =
     with pkgs;
     [
-      (fortune.override { withOffensive = true; })
       actionlint
-      btop
-      caligula
-      chafa
-      cloudflared
-      coreutils
       deadnix
       devenv
       dive
-      fastfetch
-      fd
-      figlet
       gist
       github-copilot-cli
-      gnugrep
       gnumake
       go
       go-task
       golangci-lint
       gopls
       gotestfmt
-      grc
       hadolint
-      inputs.hei.packages.${stdenv.hostPlatform.system}.default
-      jq
       just
-      lolcat
-      lsof
       lua-language-server
       luarocks
       lua5_1
       lynx # for copilot
-      ncdu
       nil
-      inputs.theheck.packages.${stdenv.hostPlatform.system}.default
       nix-output-monitor
       nixfmt
       nixpkgs-review
       nix-converter
       nodejs
-      nono
-      otree
       prek
       promexplorer
-      ripgrep
-      sqlite
       statix
       stylua
-      tealdeer
       tfenv
       tflint
-      unixtools.watch
-      unzip
       uv
-      wget
       woodpecker-cli
-      yq-go
     ]
     ++ lib.optional (!hasK3s) kubectl;
+in
+{
+  options.profiles.home.dev.enable = lib.mkOption {
+    type = lib.types.bool;
+    default = desktopDefault;
+    description = "Developer CLI tooling (compilers, LSPs, linters, CI) in home-manager";
+  };
+
+  config.home.packages = base ++ lib.optionals cfg.dev.enable dev;
 }

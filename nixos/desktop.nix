@@ -34,6 +34,8 @@ in
 
   config = lib.mkIf cfg.enable {
 
+    hardware.i2c.enable = true;
+
     # Enable plymouth
     boot = {
       initrd.systemd.enable = true; # This is needed to show the plymouth login screen to unlock luks
@@ -63,6 +65,7 @@ in
           adw-gtk3
           bazaar
           bitwarden-desktop
+          distrobox
           element-desktop
           ghostty
           hunspell
@@ -160,6 +163,7 @@ in
     };
 
     services = {
+      keybase.enable = true;
       displayManager = lib.mkIf cfg.displayManager {
         dms-greeter = {
           enable = true;
@@ -187,27 +191,30 @@ in
         };
       };
     };
-    security.polkit = {
-      enable = true;
-      extraConfig = ''
-        polkit.addRule(function(action, subject) {
-          if (
-            subject.isInGroup("users")
-              && (
-                action.id == "org.freedesktop.login1.reboot" ||
-                action.id == "org.freedesktop.login1.reboot-multiple-sessions" ||
-                action.id == "org.freedesktop.login1.power-off" ||
-                action.id == "org.freedesktop.login1.power-off-multiple-sessions"
+    security = {
+      pam.services = {
+        greetd.fprintAuth = lib.mkDefault false;
+      };
+      polkit = {
+        enable = true;
+        extraConfig = ''
+          polkit.addRule(function(action, subject) {
+            if (
+              subject.isInGroup("users")
+                && (
+                  action.id == "org.freedesktop.login1.reboot" ||
+                  action.id == "org.freedesktop.login1.reboot-multiple-sessions" ||
+                  action.id == "org.freedesktop.login1.power-off" ||
+                  action.id == "org.freedesktop.login1.power-off-multiple-sessions"
+                )
               )
-            )
-          {
-            return polkit.Result.YES;
-          }
-        })
-      '';
-    };
-    security.pam.services = {
-      greetd.fprintAuth = lib.mkDefault false;
+            {
+              return polkit.Result.YES;
+            }
+          })
+        '';
+      };
+      tpm2.enable = true;
     };
     xdg = {
       portal.xdgOpenUsePortal = true;
