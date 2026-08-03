@@ -20,6 +20,7 @@
     ./boot.nix
     ./ddcutil.nix
     ./desktop.nix
+    ./dmsmobile.nix
     ./docker.nix
     ./emacs.nix
     ./gaming.nix

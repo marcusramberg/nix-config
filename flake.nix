@@ -53,6 +53,13 @@
             system = "aarch64-linux";
             extraModules = [ inputs.nixos-avf.nixosModules.avf ];
           };
+          dmsmobile = mkNixHost "dmsmobile" {
+            system = "aarch64-linux";
+            extraModules = [
+              inputs.springchick.nixosModules.springchick
+              inputs.nixos-fairphone-fp5.nixosModules.minimal
+            ];
+          };
         };
         specialArgs = { inherit inputs self; };
       };
@@ -184,6 +191,18 @@
         disko.follows = "disko";
         nixpkgs.follows = "nixpkgs";
       };
+    };
+    nixos-fairphone-fp5 = {
+      url = "github:marcusramberg/nixos-fairphone-fp5";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    dmsmobile = {
+      url = "github:marcusramberg/DankMaterialShell/mobile";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    springchick = {
+      url = "git+https://code.bas.es/marcus/springchick.git?ref=main";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
   };
 }
