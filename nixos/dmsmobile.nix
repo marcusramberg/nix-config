@@ -95,7 +95,10 @@ in
     systemd = {
       user.services.dms.environment.DMS_MOBILE = "1";
       user.services = {
-        dms.wantedBy = lib.mkForce [ "niri.service" ];
+        dms.wantedBy = lib.mkForce [
+          "niri.service"
+          "springchick.service"
+        ];
         rotation = {
           description = "Screen rotation for DMS Mobile";
           after = [ "niri.service" ];
@@ -131,7 +134,10 @@ in
         wvkbd = {
           description = "On-screen keyboard";
           partOf = [ "graphical-session.target" ];
-          wantedBy = [ "niri.service" ];
+          wantedBy = [
+            "niri.service"
+            "springchick.service"
+          ];
           serviceConfig = {
             ExecStart = "${pkgs.wvkbd}/bin/wvkbd-mobintl --alpha 220 --hidden";
             Restart = "always";
