@@ -626,11 +626,11 @@
   },
   "activeDisplayProfileModes": {
     "niri": {
-      "Dell Inc. DELL U3223QE 757H2P3": {
-        "mode": "3840x2160@59.997"
+      "Lenovo Group Limited P27h-20 V907TWAZ": {
+        "mode": "2560x1440@59.951"
       },
-      "Microstep MAG342CQRV DB6H070800774": {
-        "mode": "3440x1440@59.999"
+      "Lenovo Group Limited P27h-20 V907TWB8": {
+        "mode": "2560x1440@59.951"
       }
     }
   },

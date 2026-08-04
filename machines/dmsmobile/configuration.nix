@@ -1,5 +1,9 @@
 { pkgs, lib, ... }:
 {
+  imports = [
+
+    ../../nixos/dmsmobile.nix
+  ];
   environment = {
     variables.GTK_IM_MODULE = lib.mkForce "wayland";
     systemPackages = with pkgs; [
