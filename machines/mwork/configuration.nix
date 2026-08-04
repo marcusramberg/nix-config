@@ -123,7 +123,9 @@
 
       # power management for  x1 fprint sensor
       ACTION=="add", SUBSYSTEM=="usb", ATTR{idVendor}=="06cb", ATTR{idProduct}=="00fc", TEST=="power/control", ATTR{power/control}="on"
-
+      # xreal one
+      KERNEL=="hidraw*", SUBSYSTEM=="hidraw", MODE="0666"
+      SUBSYSTEM=="usb", ATTR{idVendor}=="3318", MODE="0666"
     '';
   };
   systemd.sleep.settings.Sleep = {
