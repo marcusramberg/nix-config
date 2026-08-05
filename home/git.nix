@@ -2,6 +2,7 @@
 {
   home.packages = with pkgs; [
     delta
+    hunk
     git-absorb
     git-crypt
     git-extras
