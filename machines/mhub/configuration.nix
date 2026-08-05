@@ -24,8 +24,10 @@
     fsType = "nfs4";
     options = [
       "nfsvers=4.1"
+      "_netdev"
       "soft"
       "_netdev"
+      "x-systemd.after=network-online.target"
     ];
   };
 
@@ -33,7 +35,7 @@
     enableIPv6 = false;
     firewall.enable = false;
     hosts = {
-      "192.168.86.189" = [ "mspace.lan" ];
+      "192.168.86.4" = [ "mspace.lan" ];
     };
   };
 
