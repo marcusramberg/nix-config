@@ -234,6 +234,31 @@
             mkCmd = args: lib.concatStringsSep " " (lib.filter (a: a != "") args);
           in
           {
+            "qwen-3.6-fable" = {
+              cmd = mkCmd [
+                "${llamaServer}"
+                "--port \${PORT}"
+                "-m ${modelsDir}/Qwen3.6-27B-Fable-Fus-711-UnHeretic-NM-DAU-NEO-MAX-NEO-AMD-MTP-IQ4_XS.gguf"
+                "--mmproj ${modelsDir}/mmproj-qwen.gguf"
+                "-ngl 99"
+                "-fa on"
+                "-np 1"
+                "--spec-type draft-mtp"
+                "--spec-draft-n-max 2"
+                "-c 70000"
+                "--cache-ram 10000"
+                "-ctxcp 2"
+                "--jinja"
+                "--temp 0.6"
+                "--top-p 0.95"
+                "--top-k 20"
+                "--min-p 0.0"
+                "--presence-penalty 0.0"
+                "--repeat-penalty 1.0"
+                "--reasoning on"
+                # "--chat-template-kwargs '{" preserve_thinking ": true}'"
+              ];
+            };
             "unsloth/Qwen3.6-27B-GGUF:Q4_K_M" = {
               cmd = mkCmd [
                 "${llamaServer}"
@@ -258,26 +283,6 @@
                 "--repeat-penalty 1.0"
                 "--reasoning off"
                 # "--chat-template-kwargs '{" preserve_thinking ": true}'"
-              ];
-            };
-            "gemma4" = {
-              cmd = mkCmd [
-                "${llamaServer}"
-                "--port \${PORT}"
-                "-m ${modelsDir}/gemma-4-26B-A4B-it-UD-Q4_K_M.gguf"
-                "--mmproj ${modelsDir}/mmproj-F16.gguf "
-                "-ngl 99"
-                "-np 1"
-                "-c 70000"
-                "--cache-ram 10000"
-                "-ctxcp 2"
-                "--temp 0.6"
-                "--top-p 0.95"
-                "--top-k 20"
-                "--min-p 0.0"
-                "--verbose"
-                "--no-warmup"
-                ''--chat-template-kwargs '{"enable_thinking":false}''
               ];
             };
           };
