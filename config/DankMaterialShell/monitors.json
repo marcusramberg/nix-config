@@ -86,6 +86,38 @@
           }
         }
       }
+    },
+    {
+      "id": "auto_8a0ee723",
+      "name": "",
+      "outputs": {
+        "AU Optronics 0xD291 Unknown": {
+          "mode": "1920x1200@60.026",
+          "position": {
+            "x": 2560,
+            "y": 0
+          },
+          "scale": 1.09765625,
+          "transform": "Normal",
+          "vrr": false,
+          "disabled": false,
+          "niri": {}
+        },
+        "Dell Inc. DELL U3223QE 757H2P3": {
+          "mode": "3840x2160@59.997",
+          "position": {
+            "x": 0,
+            "y": 0
+          },
+          "scale": 1.5,
+          "transform": "Normal",
+          "vrr": false,
+          "disabled": false,
+          "niri": {
+            "vrrOnDemand": true
+          }
+        }
+      }
     }
   ]
 }

@@ -7,21 +7,9 @@ output "Dell Inc. DELL U3223QE 757H2P3" {
     variable-refresh-rate on-demand=true
 }
 
-output "Lenovo Group Limited P27h-20 V907TWB8" {
-    mode "2560x1440@59.951"
-    scale 1
+output "AU Optronics 0xD291 Unknown" {
+    mode "1920x1200@60.026"
+    scale 1.09765625
     position x=2560 y=0
-}
-
-output "Microstep MAG342CQRV DB6H070800774" {
-    mode "3440x1440@59.999"
-    scale 1.25
-    position x=2560 y=0
-}
-
-output "Lenovo Group Limited P27h-20 V907TWAZ" {
-    mode "2560x1440@59.951"
-    scale 1
-    position x=5120 y=0
 }
 

@@ -622,15 +622,15 @@
   "hyprlandOutputSettings": {},
   "displayProfiles": {},
   "activeDisplayProfile": {
-    "niri": "auto_78d65d9f"
+    "niri": "auto_8a0ee723"
   },
   "activeDisplayProfileModes": {
     "niri": {
-      "Lenovo Group Limited P27h-20 V907TWAZ": {
-        "mode": "2560x1440@59.951"
+      "AU Optronics 0xD291 Unknown": {
+        "mode": "1920x1200@60.026"
       },
-      "Lenovo Group Limited P27h-20 V907TWB8": {
-        "mode": "2560x1440@59.951"
+      "Dell Inc. DELL U3223QE 757H2P3": {
+        "mode": "3840x2160@59.997"
       }
     }
   },
