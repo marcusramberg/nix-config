@@ -747,11 +747,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1785401141,
-        "narHash": "sha256-gj85k8PaaUbwLTJk0LEsLpa69y9cxFv9u+zAJxadPA4=",
+        "lastModified": 1786276425,
+        "narHash": "sha256-njfO1HGaFVVI5cuFucbpU3BN9WhrXVX7yzzMo3u3TgM=",
         "owner": "marcusramberg",
         "repo": "nixos-fairphone-fp5",
-        "rev": "ea10084c778378c2dad3812e68dd4ab18e67d291",
+        "rev": "593482c795fd653055fba04bca19dfc9595f5742",
         "type": "github"
       },
       "original": {
@@ -986,11 +986,11 @@
         "rust-overlay": "rust-overlay"
       },
       "locked": {
-        "lastModified": 1785764144,
-        "narHash": "sha256-3NYmWvTi/CY95o0f/7i55/rd0DAvdtQX3aQBL5cvGdI=",
+        "lastModified": 1786229346,
+        "narHash": "sha256-D0W/1ypW7e/jQuAwuT7cGnFuw0Zj2CFIUaHsvqzc3R0=",
         "ref": "main",
-        "rev": "cbe98fc99981987187a0e36cfc7a7faaaefa6b95",
-        "revCount": 146,
+        "rev": "fa27615445d3ab0d3e2def66b4319a8adfda1109",
+        "revCount": 180,
         "type": "git",
         "url": "https://code.bas.es/marcus/springchick.git"
       },

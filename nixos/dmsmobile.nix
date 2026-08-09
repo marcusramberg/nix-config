@@ -13,9 +13,6 @@ let
 in
 
 {
-  imports = [
-    inputs.nixos-fairphone-fp5.nixosModules.minimal
-  ];
   options = {
     profiles.dmsMobile = {
       enable = lib.mkEnableOption "Enable DMS Mobile configuration";
@@ -29,16 +26,21 @@ in
   };
   config = lib.mkIf cfg.enable {
     boot = {
-      kernelParams = lib.mkIf cfg.debug.enable [ "rd.systemd.debug_shell=ttyGS0" ];
-      initrd = lib.mkIf cfg.debug.enable {
-        # We need the `emergencyAccess` option above to get a root shell in the initrd, but that also enables the `rd.break` emergency target, which we don't want. So we override the initrd's systemd configuration to disable it.
-        systemd.emergencyAccess = true;
-      };
+      initrd.systemd.enable = true; # This is needed to show the plymouth login screen to unlock luks
       plymouth = {
         enable = true;
+        theme = "catppuccin-mocha";
+        themePackages = [ (pkgs.catppuccin-plymouth.override { variant = "mocha"; }) ];
       };
+      consoleLogLevel = 3;
+      initrd.verbose = false;
+      kernelParams = [
+        "quiet"
+        "boot.shell_on_fail"
+        "udev.log_priority=3"
+        "rd.systemd.show_status=auto"
+      ];
     };
-    documentation.nixos.enable = false;
     environment = {
       sessionVariables = {
         GSETTINGS_SCHEMA_DIR = schemaDir;
@@ -49,10 +51,6 @@ in
         firefox-mobile
         wl-clipboard
       ];
-    };
-    nixos-fairphone-fp5 = {
-      modem.enable = true;
-      hardware.serial.enable = cfg.debug.enable;
     };
     programs = {
       dms-shell = {
@@ -139,7 +137,7 @@ in
             "springchick.service"
           ];
           serviceConfig = {
-            ExecStart = "${pkgs.wvkbd}/bin/wvkbd-mobintl --alpha 220 --hidden";
+            ExecStart = "${pkgs.wvkbd}/bin/wvkbd-mobintl --alpha 220 --hidden --auto";
             Restart = "always";
             RestartSec = 5;
           };
