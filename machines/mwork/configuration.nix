@@ -59,14 +59,28 @@
       serviceConfig.Type = "simple";
     };
     fprintd-sleep = {
-      description = "Stop fprintd before sleep, restart after resume";
+      description = "Stop fprintd before sleep, reset USB reader and restart after resume";
       before = [ "sleep.target" ];
       wantedBy = [ "sleep.target" ];
       serviceConfig = {
         Type = "oneshot";
         RemainAfterExit = true;
         ExecStart = "/run/current-system/sw/bin/systemctl stop fprintd.service";
-        ExecStop = "/run/current-system/sw/bin/systemctl start fprintd.service";
+        ExecStop = pkgs.writeShellScript "fprintd-resume" ''
+          # Re-enumerate the Synaptics fingerprint reader (06cb:00fc);
+          # it wedges across suspend and libusb keeps stale references.
+          for d in /sys/bus/usb/devices/*; do
+            [ -f "$d/idVendor" ] || continue
+            [ "$(cat $d/idVendor)" = "06cb" ] || continue
+            [ "$(cat $d/idProduct)" = "00fc" ] || continue
+            port=$(basename "$d")
+            echo $port > /sys/bus/usb/drivers/usb/unbind || true
+            sleep 1
+            echo $port > /sys/bus/usb/drivers/usb/bind || true
+            sleep 1
+          done
+          ${pkgs.systemd}/bin/systemctl start fprintd.service
+        '';
       };
     };
   };
