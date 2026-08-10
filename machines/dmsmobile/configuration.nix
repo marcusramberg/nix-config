@@ -22,7 +22,10 @@
     # application image, and provides `ftharness` to drive it. This is not
     # working fingerprint authentication -- the application still needs a
     # supplicant for its file service before it can enrol or match.
-    fingerprint.enable = true;
+    fingerprint = {
+      enable = true;
+      fprintd = true;
+    };
   };
 
   # Don't block boot ~9.5s waiting for wifi (ath11k rproc probe defers wlan0 late).
