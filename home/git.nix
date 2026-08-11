@@ -20,13 +20,14 @@
   programs = {
     gh = {
       enable = true;
-      extensions = [
-        pkgs.gh-dash
-        pkgs.gh-notify
-        pkgs.gh-poi
-        pkgs.gh-release-mono
-        pkgs.gh-stack
-        pkgs.gh-tidy
+      extensions = with pkgs; [
+        gh-dash
+        gh-notify
+        gh-poi
+        gh-pr-review
+        gh-release-mono
+        gh-stack
+        gh-tidy
       ];
       settings = {
         git_protocol = "ssh";
