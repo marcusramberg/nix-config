@@ -50,6 +50,7 @@ in
         bazaar
         firefox-mobile
         wl-clipboard
+        telegram-desktop
       ];
     };
     programs = {

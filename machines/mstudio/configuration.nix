@@ -61,7 +61,13 @@ in
       enable = true;
     };
     bluetooth.enable = true;
-    keyboard.dual-caps.enable = true;
+    keyboard.dual-caps = {
+      enable = true;
+      swapAlt = {
+        enable = true;
+        devices = [ "/dev/input/by-id/logiwave-event-kbd" ];
+      };
+    };
   };
 
   networking = {

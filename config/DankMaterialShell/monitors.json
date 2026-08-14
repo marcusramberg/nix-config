@@ -41,25 +41,27 @@
       "id": "auto_78d65d9f",
       "name": "",
       "outputs": {
-        "Lenovo Group Limited P27h-20 V907TWAZ": {
-          "mode": "2560x1440@59.951",
+        "Dell Inc. DELL U3223QE 757H2P3": {
+          "mode": "3840x2160@59.997",
           "position": {
-            "x": 5120,
+            "x": 0,
             "y": 0
           },
-          "scale": 1,
+          "scale": 1.5,
           "transform": "Normal",
           "vrr": false,
           "disabled": false,
-          "niri": {}
+          "niri": {
+            "vrrOnDemand": true
+          }
         },
-        "Lenovo Group Limited P27h-20 V907TWB8": {
-          "mode": "2560x1440@59.951",
+        "Microstep MAG342CQRV DB6H070800774": {
+          "mode": "3440x1440@59.999",
           "position": {
             "x": 2560,
             "y": 0
           },
-          "scale": 1,
+          "scale": 2,
           "transform": "Normal",
           "vrr": false,
           "disabled": false,

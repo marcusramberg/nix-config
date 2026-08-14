@@ -81,6 +81,7 @@ in
       KERNEL=="event*", SUBSYSTEM=="input", ATTRS{name}=="mBoard", SYMLINK+="input/by-id/mboard.input-event-kbd"
       KERNEL=="event*", SUBSYSTEM=="input", ATTRS{name}=="Milla Rambergs tastatur", SYMLINK+="input/by-id/tvboard.input-event-kbd"
       KERNEL=="event*", SUBSYSTEM=="input", ATTRS{name}=="Logitech MX Keys", SYMLINK+="input/by-id/logitech.input-event-kbd"
+      KERNEL=="event*", SUBSYSTEM=="input", ATTRS{name}=="Logitech USB Receiver", ENV{ID_INPUT_KEYBOARD}=="1", SYMLINK+="input/by-id/logiwave-event-kbd"
     '';
   };
 }

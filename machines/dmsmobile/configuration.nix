@@ -17,6 +17,7 @@
 
   nixos-fairphone-fp5 = {
     modem.enable = true;
+    usb-signaller.enable = true;
     # Reach to the fingerprint sensor's trusted application over the QSEECOM
     # TEE driver: loads the sensor's GPIO/IRQ driver, installs the trusted
     # application image, and provides `ftharness` to drive it. This is not

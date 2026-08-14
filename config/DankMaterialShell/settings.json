@@ -9,6 +9,11 @@
   "matugenTargetMonitor": "",
   "popupTransparency": 0.98,
   "dockTransparency": 1,
+  "floatingWindowSyncGlobal": true,
+  "floatingWindowTransparency": 1,
+  "floatingWindowForegroundLayers": true,
+  "floatingWindowForegroundTransparency": 1,
+  "dmsWindowsFloating": true,
   "widgetBackgroundColor": "sth",
   "widgetBackgroundCustomColor": "#6750A4",
   "widgetBackgroundCustomStrength": 0.5,
@@ -47,6 +52,15 @@
   "touchpadScrollMethod": "default",
   "touchpadTapAndDrag": true,
   "touchpadTapToClick": true,
+  "keyboardLayouts": "",
+  "keyboardVariants": "",
+  "keyboardModel": "",
+  "keyboardOptions": "",
+  "keyboardKeymapFile": "",
+  "keyboardTrackLayout": "",
+  "keyboardRepeatDelay": 0,
+  "keyboardRepeatRate": 0,
+  "keyboardNumlock": false,
   "firstDayOfWeek": -1,
   "showWeekNumber": false,
   "calendarBackend": "auto",
@@ -77,6 +91,7 @@
   "barElevationEnabled": true,
   "blurEnabled": true,
   "blurForegroundLayers": true,
+  "foregroundLayerTransparency": 1,
   "blurLayerOutlineOpacity": 0.12,
   "blurBorderEnabled": true,
   "blurBorderColor": "primary",
@@ -237,6 +252,7 @@
   "mediaAdaptiveWidthEnabled": true,
   "audioVisualizerEnabled": true,
   "mediaUseAlbumArtAccent": false,
+  "appleMusicAnimatedArtEnabled": false,
   "audioScrollMode": "volume",
   "audioWheelScrollAmount": 5,
   "audioDeviceScrollVolumeEnabled": false,
@@ -442,8 +458,6 @@
   "fadeToDpmsEnabled": true,
   "fadeToDpmsGracePeriod": 5,
   "launchPrefix": "",
-  "gtkThemingEnabled": false,
-  "qtThemingEnabled": false,
   "syncModeWithPortal": true,
   "terminalsAlwaysDark": true,
   "muxType": "tmux",
@@ -535,6 +549,8 @@
   "enableU2f": false,
   "u2fMode": "or",
   "lockPamPath": "",
+  "lockScreenSecurityKeyShortcut": "Ctrl+Q",
+  "lockScreenSecurityKeyShortcutEnabled": false,
   "lockPamInlineFprint": false,
   "lockPamInlineU2f": false,
   "lockPamExternallyManaged": false,
@@ -595,6 +611,7 @@
   "customPowerActionHibernate": "",
   "customPowerActionReboot": "",
   "customPowerActionPowerOff": "",
+  "customPowerButtons": [],
   "updaterHideWidget": false,
   "updaterCheckOnStart": false,
   "updaterUseCustomCommand": false,
@@ -622,15 +639,15 @@
   "hyprlandOutputSettings": {},
   "displayProfiles": {},
   "activeDisplayProfile": {
-    "niri": "auto_8a0ee723"
+    "niri": "auto_78d65d9f"
   },
   "activeDisplayProfileModes": {
     "niri": {
-      "AU Optronics 0xD291 Unknown": {
-        "mode": "1920x1200@60.026"
-      },
       "Dell Inc. DELL U3223QE 757H2P3": {
         "mode": "3840x2160@59.997"
+      },
+      "Microstep MAG342CQRV DB6H070800774": {
+        "mode": "3440x1440@59.999"
       }
     }
   },
