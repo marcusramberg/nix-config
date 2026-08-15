@@ -1,11 +1,7 @@
 {
   pkgs,
-  lib,
   ...
 }:
-let
-  inherit (pkgs.stdenv) isDarwin;
-in
 {
   programs = {
     atuin = {
@@ -72,7 +68,6 @@ in
       settings = {
         base_url = "https://passwords.means.no/";
         email = "marcus@means.no";
-        pinentry = if isDarwin then pkgs.pinentry_mac else pkgs.pinentry-curses;
       };
     };
     ssh = {
@@ -82,9 +77,6 @@ in
         "*" = {
           AddKeysToAgent = "yes";
           ForwardAgent = true;
-        }
-        // lib.optionalAttrs isDarwin {
-          IdentityAgent = "/Users/marcus/Library/Containers/com.maxgoedjen.Secretive.SecretAgent/Data/socket.ssh";
         };
         "mouse1" = {
           ProxyJump = "mcbuildface.stig.io";

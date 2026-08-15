@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, lib, ... }:
 
 let
   music-assistant-companion = pkgs.callPackage ../../packages/music-assistant-companion { };
@@ -152,7 +152,10 @@ in
       signal.relayHosts = [ "mstudio.pig-crested.ts.net" ];
       openFirewall = true;
     };
-    xserver.dpi = 140;
+    xserver = {
+      dpi = 140;
+      xkb.variant = lib.mkForce "mac-iso";
+    };
   };
   systemd.network = {
     enable = true;
