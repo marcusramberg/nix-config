@@ -155,9 +155,7 @@
       in
       _: {
         inherit (nixpkgs-small)
-          niri
-          vivaldi
-          vivaldi-ffmpeg-codecs
+          waypipe
           ;
       };
   };
