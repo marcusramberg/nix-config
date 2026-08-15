@@ -259,11 +259,11 @@
                 # "--chat-template-kwargs '{" preserve_thinking ": true}'"
               ];
             };
-            "unsloth/Qwen3.6-27B-GGUF:Q4_K_M" = {
+            "Qwen3.8-27B" = {
               cmd = mkCmd [
                 "${llamaServer}"
                 "--port \${PORT}"
-                "-m ${modelsDir}/Qwen3.6-27B-Q4_K_M.gguf"
+                "-m ${modelsDir}/Qwen3.8-27B-Q4_K_M.gguf"
                 "--mmproj ${modelsDir}/mmproj-qwen.gguf"
                 "--fit on"
                 "-ngl 99"
