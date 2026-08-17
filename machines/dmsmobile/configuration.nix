@@ -15,6 +15,10 @@
   networking.hostName = "dmsMobile";
   console.font = "solar24x32";
 
+  hardware = {
+    keyboard.dual-caps.enable = true;
+    keyboard.dual-caps.swapAlt.enable = true;
+  };
   nixos-fairphone-fp5 = {
     modem.enable = true;
     usb-signaller.enable = true;

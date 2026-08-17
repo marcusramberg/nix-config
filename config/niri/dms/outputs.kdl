@@ -8,7 +8,7 @@ output "Dell Inc. DELL U3223QE 757H2P3" {
 }
 
 output "Microstep MAG342CQRV DB6H070800774" {
-    mode "3440x1440@59.999"
+    mode "1720x1440@60.001"
     scale 2
     position x=2560 y=0
 }

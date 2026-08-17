@@ -26,15 +26,18 @@ in
   };
   config = lib.mkIf cfg.enable {
     boot = {
-      initrd.systemd.enable = true; # This is needed to show the plymouth login screen to unlock luks
+      initrd = {
+        systemd.enable = true;
+        kernelModules = [ "panel-raydium-rm692e5" ];
+        verbose = false;
+      };
       plymouth = {
         enable = true;
         theme = "catppuccin-mocha";
         themePackages = [ (pkgs.catppuccin-plymouth.override { variant = "mocha"; }) ];
       };
       consoleLogLevel = 3;
-      initrd.verbose = false;
-      kernelParams = [
+      kernelParams = lib.mkOrder 1600 [
         "quiet"
         "boot.shell_on_fail"
         "udev.log_priority=3"
@@ -49,8 +52,9 @@ in
       systemPackages = with pkgs; [
         bazaar
         firefox-mobile
-        wl-clipboard
+        signal-desktop
         telegram-desktop
+        wl-clipboard
       ];
     };
     programs = {
@@ -79,8 +83,9 @@ in
           compositor.name = "niri";
           configHome = "/home/marcus";
         };
-        defaultSession = lib.mkDefault "niri";
+        defaultSession = lib.mkForce "springchick";
       };
+      geoclue2.enable = true;
       gnome.at-spi2-core.enable = true;
       flatpak.enable = true;
       orca.enable = false;
@@ -91,45 +96,36 @@ in
         HandlePowerKey = "ignore";
       };
     };
+    security = {
+      polkit = {
+        enable = true;
+        extraConfig = ''
+          polkit.addRule(function(action, subject) {
+            if (
+              subject.isInGroup("users")
+                && (
+                  action.id == "org.freedesktop.login1.reboot" ||
+                  action.id == "org.freedesktop.login1.reboot-multiple-sessions" ||
+                  action.id == "org.freedesktop.login1.power-off" ||
+                  action.id == "org.freedesktop.login1.power-off-multiple-sessions"
+                )
+              )
+            {
+              return polkit.Result.YES;
+            }
+          })
+        '';
+      };
+      pam.services = {
+        greetd.fprintAuth = lib.mkForce false;
+      };
+    };
     systemd = {
       user.services.dms.environment.DMS_MOBILE = "1";
       user.services = {
         dms.wantedBy = lib.mkForce [
-          "niri.service"
           "springchick.service"
         ];
-        rotation = {
-          description = "Screen rotation for DMS Mobile";
-          after = [ "niri.service" ];
-          partOf = [ "graphical-session.target" ];
-          wantedBy = [ "niri.service" ];
-          serviceConfig = {
-            ExecStart = "${pkgs.writeShellScript "update-rotation" ''
-              ${pkgs.toybox}/bin/killall monitor-sensor
-              ${pkgs.iio-sensor-proxy}/bin/monitor-sensor > /dev/shm/sensor.log 2>&1 &
-              while ${pkgs.inotify-tools}/bin/inotifywait -e modify /dev/shm/sensor.log; do
-                sleep 0.5
-                ORIENTATION=$(${pkgs.coreutils}/bin/tail /dev/shm/sensor.log | ${pkgs.gnugrep}/bin/grep 'orientation' | tail -1 | grep -oE '[^ ]+$')
-                case "$ORIENTATION" in
-                  normal)
-                    ${pkgs.niri}/bin/niri msg output ${cfg.display} transform normal
-                    ;;
-                  left-up)
-                    ${pkgs.niri}/bin/niri msg output ${cfg.display} transform 90
-                    ;;
-                  bottom-up)
-                    ${pkgs.niri}/bin/niri msg output ${cfg.display} transform 180
-                    ;;
-                  right-up)
-                    ${pkgs.niri}/bin/niri msg output ${cfg.display} transform 270
-                    ;;
-                esac
-              done
-            ''}";
-            Restart = "always";
-            RestartSec = 5;
-          };
-        };
         wvkbd = {
           description = "On-screen keyboard";
           partOf = [ "graphical-session.target" ];
