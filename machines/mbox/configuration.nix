@@ -32,6 +32,10 @@
     };
 
     kernelPackages = pkgs.linuxPackages_latest;
+    kernelParams = [
+      "pcie_aspm=off"
+      "amdgpu.runpm=0"
+    ];
     # These modules are required for PCI passthrough, and must come before early modesetting stuff
     kernelModules = [
       "fbcon"
