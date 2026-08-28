@@ -58,6 +58,7 @@
     nix-index-database.comma.enable = true;
     rbw = {
       enable = true;
+      package = pkgs.pinentry-egui;
       settings = {
         base_url = "https://passwords.means.no/";
         email = "marcus@means.no";
