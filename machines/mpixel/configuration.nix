@@ -27,7 +27,7 @@
         enable = true;
         modemManager = true;
       };
-      blankFramebuffer.enable = true; # Try to protect oled while we hackin'
+      sensors.enable = true;
     };
   };
 

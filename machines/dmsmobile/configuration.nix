@@ -30,10 +30,6 @@
 
   };
   programs.stoandl.enable = true;
-  services.displayManager = {
-    phrog.enable = true;
-    dms-greeter.enable = lib.mkForce false;
-  };
   # Don't block boot ~9.5s waiting for wifi (ath11k rproc probe defers wlan0 late).
   systemd.services.NetworkManager-wait-online.enable = false;
 
