@@ -7,6 +7,7 @@
   documentation.nixos.enable = false;
   environment = {
     variables.GTK_IM_MODULE = lib.mkForce "wayland";
+    sessionVariables.WLR_RENDER_DRM_DEVICE = "/dev/dri/by-path/platform-1f000000.gpu-render"; # panthor, stable across probe order
     systemPackages = with pkgs; [
       hunspell
       hunspellDicts.en-us
