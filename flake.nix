@@ -51,13 +51,25 @@
           mvirt = mkNixHost "mvirt" { };
           mpixel = mkNixHost "mpixel" {
             system = "aarch64-linux";
-            extraModules = [ inputs.nixos-avf.nixosModules.avf ];
+            extraModules = [
+              inputs.springchick.nixosModules.springchick
+              inputs.nixos-pixel-9pro.nixosModules.default
+              inputs.nixos-fairphone-fp5.nixosModules.default
+            ];
           };
           dmsmobile = mkNixHost "dmsmobile" {
             system = "aarch64-linux";
             extraModules = [
               inputs.springchick.nixosModules.springchick
-              inputs.nixos-fairphone-fp5.nixosModules.minimal
+              inputs.nixos-fairphone-fp5.nixosModules.default
+            ];
+          };
+          mfajita = mkNixHost "mfajita" {
+            system = "aarch64-linux";
+            extraModules = [
+              inputs.springchick.nixosModules.springchick
+              inputs.nixos-fajita.nixosModules.default
+              inputs.nixos-fairphone-fp5.nixosModules.default
             ];
           };
         };
@@ -164,10 +176,6 @@
     nix-fast-build.url = "github:Mic92/nix-fast-build";
     nix-index-database.url = "github:Mic92/nix-index-database";
     nix-index-database.inputs.nixpkgs.follows = "nixpkgs";
-    nixos-avf = {
-      url = "github:nix-community/nixos-avf";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     nixpkgs-small.url = "github:nixos/nixpkgs/master";
     neovim-nightly-overlay.url = "github:nix-community/neovim-nightly-overlay";
@@ -192,6 +200,14 @@
         nixpkgs.follows = "nixpkgs";
       };
     };
+    nixos-fajita = {
+      url = "github:marcusramberg/nixos-fajita";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    nixos-pixel-9pro = {
+      url = "git+https://code.bas.es/marcus/nixos-pixel-9pro.git?ref=main";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     nixos-fairphone-fp5 = {
       url = "github:marcusramberg/nixos-fairphone-fp5";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -200,6 +216,7 @@
       url = "github:marcusramberg/DankMaterialShell/mobile";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    dmsgreeter.url = "github:AvengeMedia/dank-greeter";
     springchick = {
       url = "git+https://code.bas.es/marcus/springchick.git?ref=main";
       inputs.nixpkgs.follows = "nixpkgs";

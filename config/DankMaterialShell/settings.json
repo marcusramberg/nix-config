@@ -1,7 +1,7 @@
 {
   "currentThemeName": "custom",
   "currentThemeCategory": "registry",
-  "customThemeFile": "/home/marcus/.config/DankMaterialShell/themes/tokyoNightNightMoon/theme.json",
+  "customThemeFile": "/home/marcus/.config/DankMaterialShell/themes/catppuccin/theme.json",
   "popupTransparency": 0.98,
   "widgetBackgroundColor": "sth",
   "cornerRadius": 0,
@@ -183,6 +183,32 @@
       "iconScale": 1.05
     }
   ],
+  "desktopClockCustomColor": {
+    "r": 1,
+    "g": 1,
+    "b": 1,
+    "a": 1,
+    "hsvHue": -1,
+    "hsvSaturation": 0,
+    "hsvValue": 1,
+    "hslHue": -1,
+    "hslSaturation": 0,
+    "hslLightness": 1,
+    "valid": true
+  },
+  "systemMonitorCustomColor": {
+    "r": 1,
+    "g": 1,
+    "b": 1,
+    "a": 1,
+    "hsvHue": -1,
+    "hsvSaturation": 0,
+    "hsvValue": 1,
+    "hslHue": -1,
+    "hslSaturation": 0,
+    "hslLightness": 1,
+    "valid": true
+  },
   "desktopWidgetInstances": [
     {
       "id": "dw_1778005925303_w2sv8xgd6",
@@ -242,6 +268,5 @@
   "frameBarSize": 35,
   "frameShowOnOverview": true,
   "frameCloseGaps": false,
-  "frameLauncherEdgeHover": true,
-  "configVersion": 15
+  "configVersion": 16
 }

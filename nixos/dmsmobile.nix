@@ -13,6 +13,7 @@ let
 in
 
 {
+
   options = {
     profiles.dmsMobile = {
       enable = lib.mkEnableOption "Enable DMS Mobile configuration";
@@ -25,24 +26,37 @@ in
     };
   };
   config = lib.mkIf cfg.enable {
+    # Temp patch for wvkbd while we try to get it fixed upstream
+    nixpkgs.overlays = [
+      (_final: prev: {
+        wvkbd = prev.wvkbd.overrideAttrs (o: {
+          patches = (o.patches or [ ]) ++ [ ./wvkbd-show-reentrancy.patch ];
+        });
+      })
+    ];
+
     boot = {
       initrd = {
         systemd.enable = true;
-        kernelModules = [ "panel-raydium-rm692e5" ];
         verbose = false;
       };
       plymouth = {
-        enable = true;
+        # Plymouth takes DRM master in the initrd and blanks unl0kr's LUKS prompt.
+        enable = lib.mkDefault true;
         theme = "catppuccin-mocha";
         themePackages = [ (pkgs.catppuccin-plymouth.override { variant = "mocha"; }) ];
       };
-      consoleLogLevel = 3;
-      kernelParams = lib.mkOrder 1600 [
-        "quiet"
-        "boot.shell_on_fail"
-        "udev.log_priority=3"
-        "rd.systemd.show_status=auto"
-      ];
+      consoleLogLevel = lib.mkDefault 3;
+      kernelParams = lib.mkOrder 1600 (
+        [
+          "boot.shell_on_fail"
+          "rd.systemd.show_status=auto"
+        ]
+        ++ lib.optionals config.boot.plymouth.enable [
+          "quiet"
+          "udev.log_priority=3"
+        ]
+      );
     };
     environment = {
       sessionVariables = {
@@ -71,17 +85,13 @@ in
         enable = true;
         terminal = "foot";
       };
-      niri = {
-        enable = true;
-      };
+      springchick.enable = true;
     };
     services = {
       displayManager = {
-        dms-greeter = {
+        phrog = {
           enable = true;
-          package = dms;
-          compositor.name = "niri";
-          configHome = "/home/marcus";
+          package = inputs.nixos-fairphone-fp5.pkgs.phrog;
         };
         defaultSession = lib.mkForce "springchick";
       };
@@ -89,7 +99,7 @@ in
       gnome.at-spi2-core.enable = true;
       flatpak.enable = true;
       orca.enable = false;
-      power-profiles-daemon.enable = true;
+      power-profiles-daemon.enable = lib.mkDefault true;
       upower.enable = true;
 
       logind.settings.Login = {
@@ -118,6 +128,7 @@ in
       };
       pam.services = {
         greetd.fprintAuth = lib.mkForce false;
+        login.fprintAuth = false;
       };
     };
     systemd = {

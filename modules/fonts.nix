@@ -14,7 +14,7 @@ in
   };
   config = mkIf cfg.enable {
     fonts = {
-      fontDir.enable = lib.mkIf pkgs.stdenv.isLinux true;
+      fontDir.enable = lib.mkIf pkgs.stdenv.hostPlatform.isLinux true;
       packages =
         with pkgs;
         [
@@ -30,7 +30,7 @@ in
           roboto
           roboto-serif
         ]
-        ++ lib.optional stdenv.isLinux noto-fonts-color-emoji;
+        ++ lib.optional stdenv.hostPlatform.isLinux noto-fonts-color-emoji;
     };
   };
 }

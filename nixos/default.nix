@@ -37,7 +37,7 @@
   ];
 
   age.identityPaths = [ "/home/marcus/.ssh/id_ed25519" ];
-  boot.loader.systemd-boot.configurationLimit = 5;
+  boot.loader.systemd-boot.configurationLimit = lib.mkDefault 5;
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   documentation.man.cache.enable = false;
@@ -188,6 +188,7 @@
     "electron-39.8.10"
     "jitsi-meet-1.0.8792"
     "minio-2025-10-15T17-29-55Z"
+    "olm-3.2.16"
     "pnpm-9.15.9"
   ];
   system.activationScripts.diff = {

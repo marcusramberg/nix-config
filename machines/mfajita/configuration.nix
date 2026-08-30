@@ -12,28 +12,22 @@
       hunspellDicts.en-us
     ];
   };
+  # unl0kr owns the display in the initrd here; Plymouth would blank the LUKS prompt.
+  boot = {
+    plymouth.enable = false;
+    consoleLogLevel = lib.mkForce 7;
+  };
+
+  oneplus-fajita = {
+    enable = true;
+    user = "marcus";
+  };
 
   hardware = {
     keyboard.dual-caps.enable = true;
     keyboard.dual-caps.swapAlt.enable = true;
-    pixel9pro = {
-      display.enable = true;
-      wifi = {
-        enable = true;
-        driver = "bcmdhd"; # FIXME:  We want brcmfmac but it's broken
-      };
-      modem = {
-        enable = true;
-        modemManager = true;
-      };
-      blankFramebuffer.enable = true; # Try to protect oled while we hackin'
-    };
   };
 
-  # Gotta shut this off until we get proper early drm
-  boot.plymouth.enable = false;
-
-  # Don't block boot ~9.5s waiting for wifi (ath11k rproc probe defers wlan0 late).
   systemd.services.NetworkManager-wait-online.enable = false;
 
   nix = {
@@ -56,6 +50,8 @@
       max-jobs = 0;
     };
   };
+  programs.springchick.enable = true;
+  programs.niri.enable = true;
   profiles = {
     dmsMobile.enable = true;
     myfonts.enable = true;

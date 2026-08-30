@@ -12,27 +12,28 @@
       hunspellDicts.en-us
     ];
   };
-  networking.hostName = "dmsMobile";
   console.font = "solar24x32";
+  boot.initrd.kernelModules = [ "panel-raydium-rm692e5" ];
 
   hardware = {
     keyboard.dual-caps.enable = true;
     keyboard.dual-caps.swapAlt.enable = true;
-  };
-  nixos-fairphone-fp5 = {
-    modem.enable = true;
-    usb-signaller.enable = true;
-    # Reach to the fingerprint sensor's trusted application over the QSEECOM
-    # TEE driver: loads the sensor's GPIO/IRQ driver, installs the trusted
-    # application image, and provides `ftharness` to drive it. This is not
-    # working fingerprint authentication -- the application still needs a
-    # supplicant for its file service before it can enrol or match.
-    fingerprint = {
+    fairphone5 = {
       enable = true;
-      fprintd = true;
+      modem.enable = true;
+      usb-signaller.enable = true;
+      fingerprint = {
+        enable = true;
+        fprintd = true;
+      };
     };
-  };
 
+  };
+  programs.stoandl.enable = true;
+  services.displayManager = {
+    phrog.enable = true;
+    dms-greeter.enable = lib.mkForce false;
+  };
   # Don't block boot ~9.5s waiting for wifi (ath11k rproc probe defers wlan0 late).
   systemd.services.NetworkManager-wait-online.enable = false;
 
