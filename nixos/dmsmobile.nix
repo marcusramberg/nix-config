@@ -63,6 +63,9 @@ in
         GSETTINGS_SCHEMA_DIR = schemaDir;
         NIXOS_OZONE_WL = "1";
       };
+      # GNOME's module defaults this to "ibus", which stops Qt binding
+      # zwp_text_input_v3 at all, so wvkbd --auto never sees a text field.
+      variables.QT_IM_MODULE = lib.mkForce "wayland";
       systemPackages = with pkgs; [
         bazaar
         firefox-mobile
