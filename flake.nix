@@ -217,6 +217,11 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     dmsgreeter.url = "github:AvengeMedia/dank-greeter";
+    dms-plugin-registry = {
+      url = "github:AvengeMedia/dms-plugin-registry";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     springchick = {
       url = "git+https://code.bas.es/marcus/springchick.git?ref=main";
       inputs.nixpkgs.follows = "nixpkgs";

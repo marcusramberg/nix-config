@@ -9,20 +9,9 @@ let
   cfg = config.profiles.desktop;
   # quickshell = inputs.quickshell.packages.${pkgs.stdenv.hostPlatform.system}.default;
   dms = inputs.dank-shell.packages.${pkgs.stdenv.hostPlatform.system}.default;
-  dmsPlugins = pkgs.fetchFromGitHub {
-    owner = "AvengeMedia";
-    repo = "dms-plugins";
-    rev = "1e2cfdefce4fbcb2ccfbb60d575814538283b87f";
-    hash = "sha256-NFxXWBaWk5I75Lr2Pmh6AcEac6QhKvaAjzsbuUOrF7c=";
-  };
+  dmsRegistry = inputs.dms-plugin-registry.packages.${pkgs.system};
   gsettingsSchemas = pkgs.gsettings-desktop-schemas;
   schemaDir = pkgs.glib.makeSchemaPath gsettingsSchemas gsettingsSchemas.name;
-  worldClock = pkgs.fetchFromGitHub {
-    owner = "rochacbruno";
-    repo = "WorldClock";
-    rev = "3e9b62ae2fe7550891a61436ebe8248a9724bd93";
-    hash = "sha256-SYGB+04NNGiuRVaQ7wEFcM+Cbo0raVDgaZ0fnxAbVpc=";
-  };
 in
 {
   options.profiles.desktop = {
@@ -105,37 +94,40 @@ in
         plugins = {
           dankActions = {
             enable = true;
-            src = "${dmsPlugins}/DankActions";
+            src = dmsRegistry.dankActions;
           };
           dankBatteryAlerts = {
             enable = true;
-            src = "${dmsPlugins}/DankBatteryAlerts";
+            src = dmsRegistry.dankBatteryAlerts;
           };
           dankGifSearch = {
             enable = true;
-            src = "${dmsPlugins}/DankGifSearch";
+            src = dmsRegistry.dankGifSearch;
           };
           dankStickerSearch = {
             enable = true;
-            src = "${dmsPlugins}/DankStickerSearch";
+            src = dmsRegistry.dankStickerSearch;
           };
           dankLauncherKeys = {
             enable = true;
-            src = "${dmsPlugins}/DankLauncherKeys";
+            src = dmsRegistry.dankLauncherKeys;
           };
           dankKDEConnect = {
             enable = true;
-            src = "${dmsPlugins}/DankKDEConnect";
+            src = dmsRegistry.dankKDEConnect;
           };
           dankPomodoroTimer = {
             enable = true;
-            src = "${dmsPlugins}/DankPomodoroTimer";
+            src = dmsRegistry.dankPomodoroTimer;
           };
           worldClock = {
             enable = true;
-            src = worldClock;
+            src = dmsRegistry.worldClock;
           };
-
+          quickCapture = {
+            enable = true;
+            src = dmsRegistry.quickCapture;
+          };
         };
       };
       dsearch.enable = true;

@@ -82,7 +82,7 @@
   },
   "dankKDEConnect": {
     "enabled": true,
-    "selectedDeviceId": "0fb8bded434141518e914d7319c6424b"
+    "selectedDeviceId": ""
   },
   "tailscale": {
     "enabled": true
@@ -99,5 +99,8 @@
     "enabled": true,
     "trigger": "stick",
     "preferredFormat": "gif"
+  },
+  "quickCapture": {
+    "enabled": true
   }
 }

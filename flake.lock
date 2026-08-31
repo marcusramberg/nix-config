@@ -252,6 +252,26 @@
         "type": "github"
       }
     },
+    "dms-plugin-registry": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1788154251,
+        "narHash": "sha256-82gY3/Is98y7Ibpk5JopgSZubPqPH/Ba8s56azGY5B4=",
+        "owner": "AvengeMedia",
+        "repo": "dms-plugin-registry",
+        "rev": "900398fbc01b1d48dbd3332b8e0f817632d441dd",
+        "type": "github"
+      },
+      "original": {
+        "owner": "AvengeMedia",
+        "repo": "dms-plugin-registry",
+        "type": "github"
+      }
+    },
     "dmsgreeter": {
       "inputs": {
         "dank-qml-common": "dank-qml-common_2",
@@ -1026,6 +1046,7 @@
         "clan-core": "clan-core",
         "dank-shell": "dank-shell",
         "disko": "disko_2",
+        "dms-plugin-registry": "dms-plugin-registry",
         "dmsgreeter": "dmsgreeter",
         "dmsmobile": "dmsmobile",
         "flake-compat": "flake-compat_4",

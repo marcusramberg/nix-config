@@ -258,3 +258,4 @@ include "dms/binds.kdl"
 include "dms/cursor.kdl"
 
 include "dms/windowrules.kdl"
+include "dms/input.kdl"
