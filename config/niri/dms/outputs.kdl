@@ -14,7 +14,7 @@ output "Lenovo Group Limited P27h-20 V907TWB8" {
 }
 
 output "Microstep MAG342CQRV DB6H070800774" {
-    mode "1720x1440@60.001"
+    mode "3440x1440@99.994"
     scale 1.5
     position x=2560 y=0
 }
