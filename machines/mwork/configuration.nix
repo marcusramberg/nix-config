@@ -8,6 +8,7 @@
   imports = [
     # Include the results of the hardware scan.
     ./hardware-configuration.nix
+    ./sound.nix
     ../../modules/pipewire.nix
   ];
 
@@ -84,6 +85,8 @@
       };
     };
   };
+
+  # Friendlier audio device names (dock + RØDE are specific to this laptop).
 
   # Install the driver
   services = {
