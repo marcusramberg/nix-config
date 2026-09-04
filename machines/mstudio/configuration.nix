@@ -86,6 +86,7 @@ in
   nixpkgs.config.allowUnsupportedSystem = true;
   # Enable the X11 windowing system.
   profiles = {
+    ccache.enable = true;
     dockerHost.enable = true;
     incus.enable = true;
     k3s = {
@@ -98,6 +99,7 @@ in
     };
   };
   programs = {
+    # shared ccache for ARM kernel/device builds (see sandbox-paths above)
     obs-studio = {
       enable = true;
       enableVirtualCamera = true;
