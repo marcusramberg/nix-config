@@ -108,8 +108,6 @@
           matchConfig.Name = "wan";
           networkConfig = {
             DHCP = "ipv4";
-            IPv6AcceptRA = true;
-            Tunnel = "he-ipv6";
           };
           dhcpConfig.RouteMetric = "10";
         };
@@ -208,17 +206,6 @@
           };
           address = [ "192.168.50.1/24" ];
         };
-        "he-ipv6" = {
-          name = "he-ipv6";
-          enable = true;
-          matchConfig.Name = "he-ipv6";
-          address = [
-            "2001:470:27:bca::2/64"
-          ];
-          routes = [
-            { Destination = "::/0"; }
-          ];
-        };
       };
       netdevs = {
         "lan" = {
@@ -264,19 +251,6 @@
             DefaultPVID=1
             VLANFiltering=yes
           '';
-        };
-        "he-ipv6" = {
-          enable = true;
-          netdevConfig = {
-            Name = "he-ipv6";
-            Kind = "sit";
-            MTUBytes = "1412";
-          };
-          tunnelConfig = {
-            Local = "dhcp4";
-            Remote = "216.66.80.90";
-            TTL = 255;
-          };
         };
       };
     };
