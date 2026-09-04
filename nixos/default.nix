@@ -18,6 +18,7 @@
     ../modules/nix.nix
     ./amd.nix
     ./boot.nix
+    ./ccache.nix
     ./ddcutil.nix
     ./desktop.nix
     ./docker.nix

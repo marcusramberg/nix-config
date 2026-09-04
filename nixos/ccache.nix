@@ -9,7 +9,7 @@ let
 in
 {
   options.profiles.ccache = {
-    enable = mkEnableOption "ccache";
+    enable = mkEnableOption "Host ccache on this machine";
   };
   config = mkIf cfg.enable {
     nix.settings.extra-sandbox-paths = [ "/var/cache/ccache" ];
