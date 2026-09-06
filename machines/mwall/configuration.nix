@@ -8,14 +8,16 @@
   ];
 
   fileSystems."/" = {
-    device = "/dev/disk/by-label/nixos";
+    device = "/dev/disk/by-label/NIXOS_SD";
     fsType = "ext4";
     options = [ "noatime" ];
   };
 
-  # bpi module exports hardware.nix only, so the ccache overlay from its
-  # configuration.nix is not inherited; must match kernel.nix's base package
   programs.ccache.packageNames = [ "linux_7_2" ];
+
+  # mtk_eth wants 3x2M contiguous for the PPE FOE tables at probe; the 32M
+  # default pool is already spoken for and every boot logs cma alloc failed
+  boot.kernelParams = [ "cma=128M" ];
 
   boot.kernel.sysctl = {
     "net.core.rmem_max" = 4194304;
@@ -24,9 +26,11 @@
   };
 
   networking.useDHCP = false;
-  powerManagement.cpuFreqGovernor = "ondemand";
+  powerManagement.cpuFreqGovernor = "schedutil";
 
   services = {
+    # all five frame-engine irqs land on cpu0 otherwise
+    irqbalance.enable = true;
     openssh.openFirewall = false;
     avahi = {
       enable = true;

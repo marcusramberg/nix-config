@@ -14,16 +14,13 @@
             name = "/var/lib/kea/dhcp4.leases";
           };
 
-          # kea 3.2 dropped the control agent; dhcp4 serves http itself
+          # kea 3.2 dropped the control agent; dhcp4 serves http itself, but it
+          # refuses an http channel with neither auth nor TLS ("Unsecured HTTP
+          # control channel"). Nothing here scrapes it, so unix socket only.
           control-sockets = [
             {
               socket-type = "unix";
               socket-name = "/run/kea/dhcp4.sock";
-            }
-            {
-              socket-type = "http";
-              socket-address = "127.0.0.1";
-              socket-port = 4000;
             }
           ];
 

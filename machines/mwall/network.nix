@@ -5,10 +5,13 @@
     links = {
       # gmac1: the combo port marked WAN. The eth-mux picks sfp2 or the phy24
       # RJ45 from mod-def0, so this one netdev covers both.
+      # No Name=: mtk_soc_eth renames eth1 -> end1 from the DT label after the
+      # netdev is registered, i.e. after udev has run net_setup_link, so the
+      # kernel name wins and name_assign_type ends up NET_NAME_RENAMED. The
+      # MAC still applies. Everything downstream matches end1.
       "10-wan" = {
         matchConfig.OriginalName = "end1";
         linkConfig = {
-          Name = "wan";
           Description = "WAN Interface";
           MACAddress = "02:bb:c6:06:62:01";
         };
@@ -68,20 +71,29 @@
       "99-ethernet-default-dhcp".enable = false;
       "99-wireless-client-dhcp".enable = false;
       "wan" = {
-        matchConfig.Name = "wan";
+        matchConfig.Name = "end1";
         networkConfig.DHCP = "ipv4";
         dhcpConfig.RouteMetric = "10";
+        # address = [ "172.30.0.2/24" ];
+        # routes = [
+        #   {
+        #     Gateway = "172.30.0.1";
+        #     Metric = 10;
+        #   }
+        # ];
       };
 
-      # ponytail: temporary - keeps a lease from mgate so the box stays
-      # reachable across the cutover. Fold into the admin network once the
-      # rest is proven; a router should not depend on the one it replaces.
-      # High metric so the wan default route always wins.
+      # The 1G jack, kept as a rescue port: plug a laptop in at 10.10.10.2 and
+      # ssh to .1 no matter what the rest of the routing is doing. Static and
+      # gateway-less on purpose - a DHCP lease here would land in the house
+      # switch's 192.168.86.0/24, the same prefix as our own lan, and one of the
+      # two would swallow the route. This subnet collides with nothing, so the
+      # port is equally safe direct-attached or left in the switch.
       # lan5 is the 7.2 name for mgmt; only one of the two ever exists
       "10-mgmt" = {
         matchConfig.Name = "mgmt lan5";
-        networkConfig.DHCP = "ipv4";
-        dhcpV4Config.RouteMetric = 2048;
+        networkConfig.ConfigureWithoutCarrier = "yes";
+        address = [ "10.10.10.1/24" ];
       };
 
       # DSA conduits: end0 carries the mt7530 (mgmt), end2 the mxl862xx
@@ -145,6 +157,10 @@
           ConfigureWithoutCarrier = "yes";
           MulticastDNS = "yes";
         };
+        # Safe to hold the real gateway address on the bench: vlan1 rides only
+        # the mxl862xx ports, and lan5 - the one jack on the house switch - is
+        # on the mt7530, a different DSA tree, deliberately not in this bridge.
+        # Nothing mwall serves can reach mgate's LAN.
         address = [ "192.168.86.1/24" ];
       };
       "isolated" = {

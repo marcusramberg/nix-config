@@ -13,6 +13,8 @@
         "admin"
       ];
 
+      # Rescue port. ssh only, not trusted
+      interfaces."lan5".allowedTCPPorts = [ 22 ];
     };
     nat = {
       enable = true;
@@ -20,7 +22,7 @@
         "lan"
         "iot"
       ];
-      externalInterface = "wan";
+      externalInterface = "end1";
       forwardPorts = [
         {
           sourcePort = 443;
