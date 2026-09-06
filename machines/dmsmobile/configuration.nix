@@ -13,6 +13,7 @@
     ];
   };
   console.font = "solar24x32";
+
   boot.initrd.kernelModules = [ "panel-raydium-rm692e5" ];
 
   hardware = {
@@ -29,7 +30,10 @@
     };
 
   };
-  programs.stoandl.enable = true;
+  programs = {
+    ccache.packageNames = [ "kernel-fairphone-fp5" ];
+    stoandl.enable = true;
+  };
   # Don't block boot ~9.5s waiting for wifi (ath11k rproc probe defers wlan0 late).
   systemd.services.NetworkManager-wait-online.enable = false;
 
