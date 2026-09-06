@@ -74,13 +74,11 @@ let
       ]
       ++ extraModules;
     };
-  inherit (inputs.nixos-pixel-9pro.lib) mkRootfsImage;
 in
 {
   inherit
     mkNixHost
     mkDesktopHost
     mkHMConfig
-    mkRootfsImage
     ;
 }

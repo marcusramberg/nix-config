@@ -126,16 +126,15 @@
     "dank-qml-common_3": {
       "flake": false,
       "locked": {
-        "lastModified": 1787483078,
-        "narHash": "sha256-RyGqH3xhOhHG0M9FqvyI3y4GF//c6dHLj5Dv0j9Bfhw=",
-        "owner": "marcusramberg",
+        "lastModified": 1788376015,
+        "narHash": "sha256-/tT8rTznLADndTwLBzdgzzgfJH1ZhYQibYo5v/F8U+U=",
+        "owner": "AvengeMedia",
         "repo": "dank-qml-common",
-        "rev": "9d7bc6091c12c532b5e9ef1a0de947b83ac9d926",
+        "rev": "26396ce432d6c71c3f5367438f96f4a8d667e160",
         "type": "github"
       },
       "original": {
-        "owner": "marcusramberg",
-        "ref": "marcus/mobile",
+        "owner": "AvengeMedia",
         "repo": "dank-qml-common",
         "type": "github"
       }
@@ -300,11 +299,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1788369200,
-        "narHash": "sha256-X+RhX2gW2i5PHzmeqYSQxGL9BZx11SiEAfXxJD7My54=",
+        "lastModified": 1788695943,
+        "narHash": "sha256-wweJEaCz2bKRtHr5doUHgR8rDNGn02MgReJP0PLGt3I=",
         "owner": "marcusramberg",
         "repo": "DankMaterialShell",
-        "rev": "cdbb5cf6a9a5640476a7261fbe7ef9c3d7d41034",
+        "rev": "9ab9b99a915a53f4ef892c4886249ef90d8f2348",
         "type": "github"
       },
       "original": {
@@ -839,11 +838,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1788082555,
-        "narHash": "sha256-AwfcddKKlop6LnMY9quhbe6NERfLRB91xVQBJMQkcLA=",
+        "lastModified": 1788721992,
+        "narHash": "sha256-lGg1v4F/ZWoZ+MXgpBLcdppRWct78s1n0kCPgzN70u0=",
         "owner": "marcusramberg",
         "repo": "nixos-fairphone-fp5",
-        "rev": "a8b0bf006ab922a982db7decf378c159e71ec862",
+        "rev": "0ad98670c084c6a5e7449874de41a77e8af4b90f",
         "type": "github"
       },
       "original": {

@@ -98,9 +98,6 @@
             type = "app";
             program = "${hei.packages.${system}.default}/bin/hei";
           };
-          packages = inputs.nixpkgs.lib.optionalAttrs (system == "aarch64-linux") {
-            rootfs-dmsmobile = mkRootfsImage self.nixosConfigurations.dmsmobile;
-          };
           devShells.default = pkgs.mkShellNoCC {
             NIX_CONFIG = "experimental-features = nix-command flakes";
             packages = with pkgs; [
