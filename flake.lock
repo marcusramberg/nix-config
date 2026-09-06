@@ -300,11 +300,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1787483502,
+        "lastModified": 1788369200,
         "narHash": "sha256-X+RhX2gW2i5PHzmeqYSQxGL9BZx11SiEAfXxJD7My54=",
         "owner": "marcusramberg",
         "repo": "DankMaterialShell",
-        "rev": "ca864b38ae12f06a64865427ce3403bfe80914c5",
+        "rev": "cdbb5cf6a9a5640476a7261fbe7ef9c3d7d41034",
         "type": "github"
       },
       "original": {
@@ -810,6 +810,27 @@
         "url": "https://git.clan.lol/clan/nix-select/archive/main.tar.gz"
       }
     },
+    "nixos-bpi-r4-pro": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1788587556,
+        "narHash": "sha256-d6IgX9RZdcfC68K7knuZLqrU/Buhm5JUgF+1oahIwPw=",
+        "ref": "main",
+        "rev": "0dc73397a2941f791393b416690bb1013ff4b72e",
+        "revCount": 10,
+        "type": "git",
+        "url": "https://code.bas.es/marcus/nixos-bpi-r4-pro.git"
+      },
+      "original": {
+        "ref": "main",
+        "type": "git",
+        "url": "https://code.bas.es/marcus/nixos-bpi-r4-pro.git"
+      }
+    },
     "nixos-fairphone-fp5": {
       "inputs": {
         "flake-utils": "flake-utils_2",
@@ -859,11 +880,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1788115636,
-        "narHash": "sha256-tHpD2a+LIMVFvDYmUGcDXaRaq5uosZpGli8wnG79Wr4=",
+        "lastModified": 1788638483,
+        "narHash": "sha256-NHaR0x2CCRp9IxJXAsLG2lFAnavKwux9WAsnjcQG3LY=",
         "ref": "main",
-        "rev": "f1a26c891f64bd71853b6f64c0c415ea13dfa8d7",
-        "revCount": 46,
+        "rev": "7a835b91331f8804ee77cda79d698869ccbafd1f",
+        "revCount": 68,
         "type": "git",
         "url": "https://code.bas.es/marcus/nixos-pixel-9pro.git"
       },
@@ -1057,6 +1078,7 @@
         "neovim-nightly-overlay": "neovim-nightly-overlay",
         "nix-fast-build": "nix-fast-build",
         "nix-index-database": "nix-index-database",
+        "nixos-bpi-r4-pro": "nixos-bpi-r4-pro",
         "nixos-fairphone-fp5": "nixos-fairphone-fp5",
         "nixos-fajita": "nixos-fajita",
         "nixos-pixel-9pro": "nixos-pixel-9pro",

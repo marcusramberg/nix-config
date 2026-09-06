@@ -46,6 +46,10 @@
             extraModules = [ inputs.jovian.nixosModules.default ];
           };
           mgate = mkNixHost "mgate" { };
+          mwall = mkNixHost "mwall" {
+            system = "aarch64-linux";
+            extraModules = [ inputs.nixos-bpi-r4-pro.nixosModules.default ];
+          };
           mlab = mkNixHost "mlab" { };
           mrack01 = mkNixHost "mrack01" { };
           mvirt = mkNixHost "mvirt" { };
@@ -93,6 +97,9 @@
           apps.default = {
             type = "app";
             program = "${hei.packages.${system}.default}/bin/hei";
+          };
+          packages = inputs.nixpkgs.lib.optionalAttrs (system == "aarch64-linux") {
+            rootfs-dmsmobile = mkRootfsImage self.nixosConfigurations.dmsmobile;
           };
           devShells.default = pkgs.mkShellNoCC {
             NIX_CONFIG = "experimental-features = nix-command flakes";
@@ -224,6 +231,10 @@
 
     springchick = {
       url = "git+https://code.bas.es/marcus/springchick.git?ref=main";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    nixos-bpi-r4-pro = {
+      url = "git+https://code.bas.es/marcus/nixos-bpi-r4-pro.git?ref=main";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
