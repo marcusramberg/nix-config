@@ -18,16 +18,17 @@
     keyboard.dual-caps.enable = true;
     keyboard.dual-caps.swapAlt.enable = true;
     pixel9pro = {
+      audio.enable = true;
       display.enable = true;
-      wifi = {
-        enable = true;
-        driver = "bcmdhd"; # FIXME:  We want brcmfmac but it's broken
-      };
       modem = {
         enable = true;
         modemManager = true;
       };
       sensors.enable = true;
+      wifi = {
+        enable = true;
+        driver = "bcmdhd"; # FIXME:  We want brcmfmac but it's broken
+      };
     };
   };
 
