@@ -35,7 +35,7 @@
     enableIPv6 = false;
     firewall.enable = false;
     hosts = {
-      "192.168.86.4" = [ "mspace.lan" ];
+      "192.168.86.8" = [ "mspace.lan" ];
     };
   };
 
