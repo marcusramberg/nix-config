@@ -28,7 +28,6 @@
     };
     logitech.wireless = {
       enable = true;
-      enableGraphical = true;
     };
     keyboard.dual-caps = {
       enable = true;
@@ -54,6 +53,7 @@
     incus.enable = true;
     work.enable = true;
   };
+  programs.solaar.enable = true;
 
   services.xserver.xkb.variant = lib.mkForce "mac-iso";
 
