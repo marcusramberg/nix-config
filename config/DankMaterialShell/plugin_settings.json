@@ -82,7 +82,7 @@
   },
   "dankKDEConnect": {
     "enabled": true,
-    "selectedDeviceId": ""
+    "selectedDeviceId": "0fb8bded434141518e914d7319c6424b"
   },
   "tailscale": {
     "enabled": true

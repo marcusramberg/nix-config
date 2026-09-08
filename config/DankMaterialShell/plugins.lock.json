@@ -1,0 +1,39 @@
+{
+  "lockfileVersion": 1,
+  "plugins": {
+    "calculator": {
+      "repo": "https://github.com/rochacbruno/DankCalculator",
+      "commit": "de6dbd59b7630e897a50e107f704c1cd4a131128"
+    },
+    "commandRunner": {
+      "repo": "https://github.com/devnullvoid/dms-command-runner",
+      "commit": "d89a09413e2fc041089b595a06c0fb316b12e17a"
+    },
+    "dankBitwarden": {
+      "repo": "https://github.com/pacman99/DankBitwarden",
+      "commit": "df4cf77ed4c06639f19f7a3ce8fb8bc00850ff67"
+    },
+    "dankKDEConnect": {
+      "repo": "https://github.com/AvengeMedia/dms-plugins",
+      "path": "DankKDEConnect",
+      "commit": "b94f9edcbbfb43519b904b37d7fa730b48d90aea"
+    },
+    "emojiLauncher": {
+      "repo": "https://github.com/devnullvoid/dms-emoji-launcher",
+      "commit": "2951ec7f823c983c11b6b231403581a386a7c9f6"
+    },
+    "gitmojiLauncher": {
+      "repo": "https://github.com/lucyfire/dms-plugins",
+      "path": "gitmojiLauncher",
+      "commit": "b9b5b28ed868e06706d3f24c694bb79e6c8197c5"
+    },
+    "tailscale": {
+      "repo": "https://github.com/cglavin50/dms-tailscale",
+      "commit": "f035c3a0923e5872f912fc9bd4cc0c7f161fbe2a"
+    },
+    "webSearch": {
+      "repo": "https://github.com/devnullvoid/dms-web-search",
+      "commit": "81ccd9fd8249b3c9ef40dde42549f807e36ae3e3"
+    }
+  }
+}

@@ -54,6 +54,10 @@
     };
   };
 
+  services = {
+    scx.enable = false; # causes crashes on 7.1
+  };
+
   systemd.services = {
     fprintd = {
       wantedBy = [ "multi-user.target" ];

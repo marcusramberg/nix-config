@@ -1,8 +1,18 @@
 {
   "currentThemeName": "custom",
   "currentThemeCategory": "registry",
-  "customThemeFile": "/home/marcus/.config/DankMaterialShell/themes/catppuccin/theme.json",
+  "customThemeFile": "/home/marcus/.config/DankMaterialShell/themes/tokyoNightNightMoon/theme.json",
+  "registryThemeVariants": {
+    "catppuccin": {
+      "light": {
+        "flavor": "latte",
+        "accent": "flamingo"
+      }
+    }
+  },
   "popupTransparency": 0.98,
+  "floatingWindowSyncGlobal": false,
+  "floatingWindowTransparency": 0.65,
   "widgetBackgroundColor": "sth",
   "cornerRadius": 0,
   "niriLayoutRadiusOverride": 0,
@@ -13,8 +23,9 @@
   "clockFormat": "24h",
   "animationVariant": 1,
   "blurEnabled": true,
+  "blurLayerOutlineOpacity": 0.15,
   "blurBorderColor": "primary",
-  "blurBorderOpacity": 0.54,
+  "blurBorderOpacity": 0.48,
   "blurWallpaperOnOverview": true,
   "systemTrayIconTintMode": "monochrome",
   "showWorkspacePadding": true,

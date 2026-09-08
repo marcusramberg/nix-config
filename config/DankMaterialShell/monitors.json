@@ -168,6 +168,66 @@
           "niri": {}
         }
       }
+    },
+    {
+      "id": "auto_be6e5b70",
+      "name": "",
+      "outputs": {
+        "AU Optronics 0xD291 Unknown": {
+          "mode": "1920x1200@60.026",
+          "position": {
+            "x": 0,
+            "y": 0
+          },
+          "scale": 1.09765625,
+          "transform": "Normal",
+          "vrr": false,
+          "disabled": false,
+          "niri": {}
+        },
+        "Nreal XREAL One Unknown": {
+          "mode": "1920x1080@90.000",
+          "position": {
+            "x": 1746,
+            "y": 0
+          },
+          "scale": 1,
+          "transform": "Normal",
+          "vrr": false,
+          "disabled": false,
+          "niri": {}
+        }
+      }
+    },
+    {
+      "id": "auto_6b024d1d",
+      "name": "",
+      "outputs": {
+        "AU Optronics 0xD291 Unknown": {
+          "mode": "1920x1200@60.026",
+          "position": {
+            "x": 2560,
+            "y": 0
+          },
+          "scale": 1.09765625,
+          "transform": "Normal",
+          "vrr": false,
+          "disabled": false,
+          "niri": {}
+        },
+        "Lenovo Group Limited P27h-20 V907TWB8": {
+          "mode": "2560x1440@59.951",
+          "position": {
+            "x": 0,
+            "y": 0
+          },
+          "scale": 1,
+          "transform": "Normal",
+          "vrr": false,
+          "disabled": false,
+          "niri": {}
+        }
+      }
     }
   ]
 }
