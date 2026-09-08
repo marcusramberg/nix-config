@@ -93,6 +93,7 @@
         init.defaultBranch = "main";
         log.follow = true;
         pull.rebase = true;
+        rerere.enabled = true;
         push.autoSetupRemote = true;
         rebase.autoStash = true;
         submodule.recurse = true;
