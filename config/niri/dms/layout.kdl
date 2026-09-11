@@ -24,7 +24,6 @@ window-rule {
 
 layer-rule {
     exclude namespace="^dms:bar$"
-    exclude namespace="^dms:dankisland$"
     background-effect {
         xray false
     }
