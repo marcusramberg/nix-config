@@ -151,7 +151,7 @@ binds {
     Mod+Shift+Minus { set-window-height "-10%"; }
     Mod+Shift+O { consume-window-into-column; }
     Mod+Shift+P { expel-window-from-column; }
-    Mod+Shift+Q repeat=false { close-window; }
+    Mod+Q repeat=false { close-window; }
     Mod+Shift+R { switch-preset-window-height; }
     Mod+Shift+S hotkey-overlay-title="Take Area Screenshot" { spawn "dms" "screenshot" "region"; }
     Mod+Shift+Slash { show-hotkey-overlay; }

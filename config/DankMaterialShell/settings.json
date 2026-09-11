@@ -51,6 +51,7 @@
   },
   "waveProgressEnabled": false,
   "scrollTitleEnabled": false,
+  "appleMusicAnimatedArtEnabled": true,
   "clockDateFormat": "yyyy-MM-dd",
   "lockDateFormat": "yyyy-MM-dd",
   "networkPreference": "wifi",
@@ -86,23 +87,17 @@
   "dockPosition": 3,
   "enableFprint": true,
   "maxFprintTries": 3,
+  "lockScreenNotificationMode": 2,
+  "osdPosition": 0,
   "osdMediaPlaybackEnabled": true,
   "displayNameMode": "model",
   "displayProfileAutoSelect": true,
-  "connectedFrameBarStyleBackups": {
-    "default": {
-      "shadowIntensity": 41,
-      "squareCorners": true,
-      "gothCornersEnabled": false,
-      "borderEnabled": false
-    }
-  },
   "barConfigs": [
     {
       "id": "default",
       "name": "Main Bar",
       "enabled": true,
-      "position": 0,
+      "position": 2,
       "screenPreferences": [
         "all"
       ],
@@ -169,7 +164,7 @@
       "bottomGap": 0,
       "transparency": 0.38,
       "widgetTransparency": 0.39,
-      "squareCorners": false,
+      "squareCorners": true,
       "noBackground": true,
       "gothCornersEnabled": false,
       "gothCornerRadiusOverride": true,
@@ -186,7 +181,7 @@
       "popupGapsAuto": true,
       "popupGapsManual": 4,
       "widgetOutlineEnabled": false,
-      "shadowIntensity": 0,
+      "shadowIntensity": 41,
       "shadowOpacity": 38,
       "widgetOutlineOpacity": 0.27,
       "shadowColorMode": "secondary",
@@ -194,7 +189,8 @@
       "scrollYBehavior": "column",
       "maximizeWidgetIcons": false,
       "removeWidgetPadding": false,
-      "iconScale": 1.05
+      "iconScale": 1.05,
+      "island": false
     }
   ],
   "desktopClockCustomColor": {
@@ -274,7 +270,6 @@
     "webSearch",
     "dankLauncherKeys"
   ],
-  "frameEnabled": true,
   "frameThickness": 4,
   "frameRounding": 0,
   "frameColor": "surface",
