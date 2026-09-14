@@ -17,11 +17,46 @@ return {
   },
   {
     "stevearc/conform.nvim",
-    opts = {
-      formatters_by_ft = {
-        yaml = { "yamlfmt" },
-      },
-    },
+    opts = function(_, opts)
+      opts.formatters_by_ft = opts.formatters_by_ft or {}
+      opts.formatters_by_ft.yaml = { "yamlfmt" }
+
+      -- Prefer oxfmt over prettier in projects that ship an oxfmt config
+      -- (e.g. oxfmt.config.ts / .oxfmtrc.json). Falls back to prettier
+      -- elsewhere. See lazyvim.plugins.extras.formatting.prettier.
+      local oxfmt_fts = {
+        "css",
+        "graphql",
+        "javascript",
+        "javascriptreact",
+        "json",
+        "jsonc",
+        "less",
+        "markdown",
+        "markdown.mdx",
+        "scss",
+        "typescript",
+        "typescriptreact",
+        "vue",
+      }
+      for _, ft in ipairs(oxfmt_fts) do
+        opts.formatters_by_ft[ft] = { "oxfmt", "prettier", stop_after_first = true }
+      end
+
+      opts.formatters = opts.formatters or {}
+      opts.formatters.oxfmt = {
+        condition = function(_, ctx)
+          return vim.fs.find({
+            "oxfmt.config.ts",
+            "oxfmt.config.js",
+            "oxfmt.config.mts",
+            "oxfmt.config.mjs",
+            ".oxfmtrc.json",
+            ".oxfmtrc.jsonc",
+          }, { upward = true, path = ctx.dirname })[1] ~= nil
+        end,
+      }
+    end,
   },
   {
     "neovim/nvim-lspconfig",
