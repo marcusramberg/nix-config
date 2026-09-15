@@ -304,11 +304,16 @@
         WOODPECKER_AGENT_LABELS = "!builder=x86,builder=x86";
         WOODPECKER_AGENT_CONFIG_FILE = "/var/lib/woodpecker/agent_config.yaml";
       };
-      extraGroups = [ "docker" ];
+      extraGroups = [ "podman" ];
       environmentFile = [ config.age.secrets.woodpecker-ci.path ];
     };
   };
   systemd.services = {
+    "woodpecker-agent-mbox".serviceConfig = {
+      StateDirectory = "/var/lib/woodpecker";
+      ReadWritePaths = [ "/var/lib/woodpecker" ];
+    };
+
     NetworkManager-wait-online = {
       serviceConfig = {
         ExecStart = [
