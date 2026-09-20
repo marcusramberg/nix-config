@@ -1,5 +1,4 @@
-{ config, ... }:
-{
+_: {
   imports = [
     # Include the results of the hardware scan.
     ./hardware-configuration.nix
@@ -18,10 +17,10 @@
   };
   hardware.enableRedistributableFirmware = true;
 
-  networking.wireless = {
-    secretsFile = config.age.secrets.wireless.path;
-    networks."means.no".pskRaw = "ext:meanspsk";
-  };
+  # networking.wireless = {
+  #   secretsFile = config.age.secrets.wireless.path;
+  #   networks."means.no".pskRaw = "ext:meanspsk";
+  # };
   programs.nm-applet.enable = true;
 
   services = {

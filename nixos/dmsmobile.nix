@@ -89,6 +89,15 @@ in
         terminal = "foot";
       };
       springchick.enable = true;
+      # phrog drives the backlight from the ambient sensor, and caiman's ALS
+      # sits under the display: a lit room measures ~2.7 lux, which phosh's
+      # curve maps to 64/4095 -- unreadable. Lift the whole curve until the
+      # sensor is properly calibrated, at which point this should go back to 0.
+      dconf.profiles.user.databases = [
+        {
+          settings."mobi/phosh/shell/brightness".auto-brightness-offset = 0.3;
+        }
+      ];
     };
     services = {
       displayManager = {

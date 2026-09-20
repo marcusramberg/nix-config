@@ -46,7 +46,11 @@
             extraModules = [ inputs.jovian.nixosModules.default ];
           };
           mgrate = mkDesktopHost "mgrate" { };
-          mwall = mkNixHost "mwall" { system = "aarch64-linux"; extraModules = [ inputs.nixos-bpi-r4-pro.nixosModules.default ]; }; mlab = mkNixHost "mlab" { };
+          mwall = mkNixHost "mwall" {
+            system = "aarch64-linux";
+            extraModules = [ inputs.nixos-bpi-r4-pro.nixosModules.default ];
+          };
+          mlab = mkDesktopHost "mlab" { };
           mrack01 = mkNixHost "mrack01" { };
           mvirt = mkNixHost "mvirt" { };
           mpixel = mkNixHost "mpixel" {

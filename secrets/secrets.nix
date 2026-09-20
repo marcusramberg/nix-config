@@ -16,6 +16,7 @@ in
   "borgbackup.age".publicKeys = [ marcus ] ++ machines;
   "caddy-secrets.age".publicKeys = [ marcus ] ++ machines;
   "cloudflareToken.age".publicKeys = [ marcus ] ++ machines;
+  "email-password.age".publicKeys = [ marcus ];
   "ha-bearer.age".publicKeys = [ marcus ] ++ machines;
   "hackeriet-door.age".publicKeys = [ marcus ] ++ machines;
   "immich.age".publicKeys = [ marcus ] ++ machines;

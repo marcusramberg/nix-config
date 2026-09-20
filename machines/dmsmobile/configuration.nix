@@ -1,4 +1,9 @@
-{ pkgs, lib, ... }:
+{
+  pkgs,
+  lib,
+  config,
+  ...
+}:
 {
   imports = [
 
@@ -27,6 +32,7 @@
         enable = true;
         fprintd = true;
       };
+      nfcEmulationUidFile = config.age.secrets.hackeriet-door.path;
     };
 
   };
@@ -65,6 +71,10 @@
   services = {
     desktopManager = {
       gnome.enable = true;
+    };
+    scx = {
+      enable = true;
+      scheduler = "scx_lavd";
     };
   };
 }

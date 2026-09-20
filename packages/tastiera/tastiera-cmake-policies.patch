@@ -1,0 +1,21 @@
+Embed the QML module in the executable (Qt policies QTP0001/QTP0004).
+
+Without them qt_add_qml_module() links the qmlcache objects but registers no
+resources, so the binary has no copy of Main.qml and engine.loadFromModule()
+fails with "Module "org.kde.plasma.keyboard" contains no type named "Main"" —
+and, because nixpkgs' Qt is built with QT_NO_DEBUG_OUTPUT, it fails silently
+with exit code 255.
+
+--- a/CMakeLists.txt
++++ b/CMakeLists.txt
+@@ -12,6 +12,10 @@
+ set(CMAKE_MODULE_PATH ${ECM_MODULE_PATH})
+ 
+ find_package(Qt6 REQUIRED COMPONENTS Core Gui Quick Qml DBus GuiPrivate)
++# Without QTP0001/QTP0004 NEW the QML files are not embedded as resources of
++# the executable, so loadFromModule() finds no "Main" type and the app exits.
++qt_policy(SET QTP0001 NEW)
++qt_policy(SET QTP0004 NEW)
+ find_package(KF6CoreAddons REQUIRED)
+ find_package(KF6I18n REQUIRED)
+ find_package(PkgConfig REQUIRED)

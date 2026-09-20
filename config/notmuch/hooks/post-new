@@ -1,0 +1,40 @@
+#!/usr/bin/env bash
+# Tag rules for the mstudio maildir. Notmuch runs this after `notmuch new`
+# has imported mail, and mbsync's systemd timer is what runs `notmuch new`
+# (services.mbsync.postExec in machines/mstudio/email.nix).
+#
+# Deliberately outside nix: a rule change is then one `notmuch new` away
+# instead of a system rebuild. The sidebar entries that show these tags stay
+# in nix, so adding a tag means touching both files.
+#
+# Each tag is cleared before it is re-derived, because `notmuch tag` only ever
+# adds: without the untag, an edited rule would leave stale tags behind.
+set -u
+
+NOTMUCH="/etc/profiles/per-user/$(id -un)/bin/notmuch"
+
+# tag <name> <query> [hide-from]   hide-from is the aggregate tag the parent
+# view filters on: noise drops out of INBOX, bulk out of the work view.
+tag() {
+    name=$1 query=$2 hide=${3-}
+    $NOTMUCH tag "-$name" -- "tag:$name"
+    $NOTMUCH tag "+$name" -- "$query"
+    [ -n "$hide" ] && $NOTMUCH tag "+$hide" -- "tag:$name"
+}
+
+$NOTMUCH tag -noise -- tag:noise
+$NOTMUCH tag -bulk -- tag:bulk
+
+tag github     'from:github'                                                 noise
+tag linkedin   'from:linkedin'                                               noise
+tag list       'to:pm.org or to:lists.hackeriet.no'                          noise
+tag signups    'to:iusethis.com'                                             noise
+tag nordaaker  'to:nordaaker.com'
+tag cloudflare 'from:notify.cloudflare.com or from:support@cloudflare.com'   bulk
+tag dmarc      'subject:"report domain"'                                     bulk
+tag digests    'subject:"app store connect" or from:data.ai'                 bulk
+tag finn       'from:finn.no'                                                bulk
+# Invoices and payment confirmations, kept visible in their own box.
+tag receipts   'subject:receipt or subject:payment or subject:invoice or subject:faktura or subject:kvittering or from:paypal.com or from:efaktura.no' bulk
+# Must come after receipts: it keeps purchase mails out of marketing.
+tag promo      '(from:adidas.com or from:facebookmail.com or from:coursera.org or from:apple.com or from:parallels.com or from:mobelaris.com or from:marmarafuar.net) and not tag:receipts' bulk

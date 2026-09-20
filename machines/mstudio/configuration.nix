@@ -1,13 +1,23 @@
-{ pkgs, lib, ... }:
+{
+  pkgs,
+  lib,
+  config,
+  ...
+}:
 
-let
-  music-assistant-companion = pkgs.callPackage ../../packages/music-assistant-companion { };
-in
 {
   imports = [
     # Include the results of the hardware scan.
     ./hardware-configuration.nix
   ];
+
+  age.secrets.email-password = {
+    # mbsync/msmtp run as the user, so marcus needs to read it.
+    # No `marcus` group on NixOS: leave group alone, agenix defaults to the
+    # user's primary group. A wrong group here aborts agenix's whole chown step.
+    mode = "0400";
+    owner = "marcus";
+  };
 
   boot = {
     binfmt.emulatedSystems = [ "x86_64-linux" ];
@@ -31,7 +41,7 @@ in
     asahi-btsync
     asahi-wifisync
     box64
-    music-assistant-companion
+    music-assistant-desktop
   ];
 
   fileSystems = {
@@ -68,6 +78,10 @@ in
         devices = [ "/dev/input/by-id/logiwave-event-kbd" ];
       };
     };
+  };
+
+  home-manager.users.marcus = {
+    imports = [ ./email.nix ];
   };
 
   networking = {
@@ -158,10 +172,45 @@ in
       dpi = 140;
       xkb.variant = lib.mkForce "mac-iso";
     };
+    woodpecker-agents.agents = {
+      studio = {
+        enable = true;
+        environment = {
+          WOODPECKER_SERVER = "passthrough:///ci-agent.bas.es:443";
+          WOODPECKER_GRPC_SECURE = "true";
+          WOODPECKER_BACKEND = "docker";
+          DOCKER_HOST = "unix:///run/podman/podman.sock";
+          WOODPECKER_AGENT_CONFIG_FILE = "/var/lib/woodpecker/agent_config.yaml";
+        };
+        extraGroups = [ "podman" ];
+        environmentFile = [ config.age.secrets.woodpecker-ci.path ];
+      };
+    };
   };
-  systemd.network = {
-    enable = true;
-    wait-online.enable = false;
+  systemd = {
+    # services."woodpecker-agent-studio".serviceConfig = {
+    #   StateDirectory = "woodpecker";
+    #   ReadWritePaths = [ "/var/lib/woodpecker" ];
+    # };
+
+    network = {
+      enable = true;
+      wait-online.enable = false;
+      # The USB NIC is a fallback link: keep the built-in end0 (which holds the
+      # 192.168.86.21 that k3s and incus bind) as the preferred default route.
+      # A 30- unit wins over nixos' generic 99-ethernet-default-dhcp for this
+      # interface, so it repeats those settings and only raises the metric.
+      networks."30-usb-lan" = {
+        matchConfig.Name = "enu1u4u3";
+        DHCP = "yes";
+        networkConfig = {
+          IPv6PrivacyExtensions = "kernel";
+          MulticastDNS = true;
+        };
+        dhcpV4Config.RouteMetric = 2000;
+        ipv6AcceptRAConfig.RouteMetric = 2000;
+      };
+    };
   };
 
   # Work around a Linux 7.0 UDP-GSO regression that craters tailscale TX
@@ -206,6 +255,10 @@ in
       openssh.authorizedKeys.keys = [
         "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIPkWRFjzmUk/FJR1g3Ck5jRmRUctAeS/remDgAWZPFWP jomarj@gmail.com"
       ];
+    };
+    marcus = {
+      # Needed for the mbsync systemd user timer to run without a login session.
+      linger = true;
     };
   };
   virtualisation = {
