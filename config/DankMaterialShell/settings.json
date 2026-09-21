@@ -75,6 +75,7 @@
   "monoFontFamily": "JetBrainsMono NF",
   "textRenderType": 1,
   "acMonitorTimeout": 900,
+  "acLockTimeout": 300,
   "acProfileName": "1",
   "batteryMonitorTimeout": 600,
   "batteryLockTimeout": 300,
