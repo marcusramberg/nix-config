@@ -7,9 +7,18 @@
 # instead of a system rebuild. The sidebar entries that show these tags stay
 # in nix, so adding a tag means touching both files.
 #
-# Each tag is cleared before it is re-derived, because `notmuch tag` only ever
-# adds: without the untag, an edited rule would leave stale tags behind.
+# `notmuch tag` only ever adds, so a rule edit leaves stale tags behind. Re-run
+# this by hand with an argument to clear and re-derive everything:
+#
+#     ~/.config/notmuch/default/hooks/post-new rebuild
+#
+# Clearing is deliberately NOT part of the normal run, because notmuch calls
+# this hook from `notmuch new` on the mbsync timer, and a query like
+# `folder:/INBOX$/ and not tag:noise` returns the whole folder for the second
+# that +noise is empty. Measured: 3641 -> 5358 -> 3641.
 set -u
+
+REBUILD=${1-}
 
 NOTMUCH="/etc/profiles/per-user/$(id -un)/bin/notmuch"
 
@@ -17,13 +26,15 @@ NOTMUCH="/etc/profiles/per-user/$(id -un)/bin/notmuch"
 # view filters on: noise drops out of INBOX, bulk out of the work view.
 tag() {
     name=$1 query=$2 hide=${3-}
-    $NOTMUCH tag "-$name" -- "tag:$name"
+    [ -n "$REBUILD" ] && $NOTMUCH tag "-$name" -- "tag:$name"
     $NOTMUCH tag "+$name" -- "$query"
     [ -n "$hide" ] && $NOTMUCH tag "+$hide" -- "tag:$name"
 }
 
-$NOTMUCH tag -noise -- tag:noise
-$NOTMUCH tag -bulk -- tag:bulk
+if [ -n "$REBUILD" ]; then
+    $NOTMUCH tag -noise -- tag:noise
+    $NOTMUCH tag -bulk -- tag:bulk
+fi
 
 tag github     'from:github'                                                 noise
 tag linkedin   'from:linkedin'                                               noise

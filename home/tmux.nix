@@ -22,7 +22,11 @@
     ];
     prefix = "`";
     secureSocket = false; # survives user logout
-    terminal = "tmux-256color";
+    # tmux-256color advertises colors#0x100, and ncurses apps decide on 24-bit
+    # support from that count (not $COLORTERM) - neomutt's theme then fails to
+    # source. xterm-direct is the same entry with colors#0x1000000; tmux still
+    # translates for outer terminals without the RGB override below.
+    terminal = "xterm-direct";
     tmuxinator.enable = true;
     extraConfig = "${pkgs.lib.readFile ../config/tmux.conf}";
   };

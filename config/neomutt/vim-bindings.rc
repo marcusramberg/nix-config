@@ -1,0 +1,78 @@
+# Port of https://ryanlue.com/posts/2017-05-21-mutt-the-vim-way
+# Adaptations for neomutt 2026 + this setup:
+# - dd/dat drop <sync-mailbox>: $delete = "yes" already auto-syncs.
+# - zt/zz/zb bound in index only: current-top/middle/bottom are
+#   index-only functions in neomutt (pager has no such functions).
+# - tt/tat bound per menu: 't' is a real key (tag-message) in index and
+#   pager, so 't' must be nooped per menu, not via 'generic'.
+# - pager tat is a macro (bind cannot take a description argument when the
+#   key sequence contains a quoted mark-message sequence).
+# - ;s/;c need a 'bind \;s noop' first: ';' is the default tag-prefix key,
+#   so the two-char sequence would otherwise be parsed as tag-prefix + s.
+# - Folder macros (gi/gd/gs/gt/gf) omitted: the notmuch sidebar already
+#   handles folder switching.
+# - The DSUSP bashrc wrapper for ^Y is omitted (fish shell).
+
+# Navigation
+bind index,pager,attach g noop
+bind index gT noop
+bind index,pager d noop
+bind index,pager dT noop
+bind index,pager s noop
+bind index,pager c noop
+bind pager t noop
+bind generic,index,pager \Cf next-page
+bind generic,index,pager \Cb previous-page
+bind generic gg first-entry
+bind generic,index G last-entry
+bind pager gg top
+bind pager G bottom
+bind generic,pager \Cy previous-line
+bind generic,index,pager \Ce next-line
+bind generic,index,pager \Cd half-down
+bind generic,index,pager \Cu half-up
+bind index zt current-top
+bind index zz current-middle
+bind index zb current-bottom
+bind index za collapse-thread
+bind index zA collapse-all
+bind index,pager N search-opposite
+bind index <Backtab> previous-new-then-unread
+
+# Actions
+bind index,pager a group-reply
+macro index,pager dd "<delete-message>" "move message to trash"
+macro index,pager dat "<delete-thread>" "move thread to trash"
+bind index \;s noop
+macro index \;s "<tag-prefix-cond><save-message>?" "save tagged messages to a mailbox"
+bind index \;c noop
+macro index \;c "<tag-prefix-cond><copy-message>?" "copy tagged messages to a mailbox"
+macro index sat "<mark-message>q<enter><untag-pattern>.<enter><tag-thread><tag-prefix-cond><save-message>?" "save thread to a mailbox"
+macro pager sat "<exit><mark-message>q<enter><untag-pattern>.<enter><tag-thread><tag-prefix><save-message>?" "save thread to a mailbox"
+bind index \;w noop
+macro index \;w "<tag-prefix-cond><set-flag>N" "mark tagged messages as read"
+macro index,pager cc "<copy-message>?" "copy message to a mailbox"
+macro index cat "<mark-message>q<enter><untag-pattern>.<enter><tag-thread><tag-prefix-cond><copy-message>?" "copy thread to a mailbox"
+macro pager cat "<exit><mark-message>q<enter><untag-pattern>.<enter><tag-thread><tag-prefix><copy-message>?" "copy thread to a mailbox"
+bind index t noop
+bind index tt tag-entry
+bind index tat tag-thread
+macro pager tat "<exit><mark-message>q<enter><tag-thread>'q<display-message>" "tag-thread"
+macro index,pager gx "<pipe-message>urlview<Enter>" "call urlview to extract URLs out of a message"
+macro attach,compose gx "<pipe-entry>urlview<Enter>" "call urlview to extract URLs out of a message"
+
+# Sidebar (vi-style: j/k move, o open, ^N/^P new mailboxes, gg/G first/last)
+# ^B noops first: it is the default previous-page key, so ^BK would alias it.
+bind index,pager \CB noop
+bind index,pager \CO sidebar-open
+bind index,pager \CP sidebar-prev
+bind index,pager \CN sidebar-next
+bind index,pager \CJ sidebar-next-new
+bind index,pager \CK sidebar-prev-new
+bind index,pager \CF sidebar-page-down
+bind index,pager \CBK sidebar-last
+bind index,pager \CG sidebar-first
+
+# Command line
+bind editor \Cp history-up
+bind editor \Cn history-down

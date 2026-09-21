@@ -27,9 +27,7 @@ in
     keyboard.dual-caps.swapAlt.enable = true;
     pixel9pro = {
       audio.enable = true;
-      display = {
-        enable = true;
-      };
+      display.enable = true;
       modem = {
         enable = true;
         modemManager = true;

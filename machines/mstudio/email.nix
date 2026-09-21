@@ -10,6 +10,10 @@ let
   # "Nord Wave.rc") - re-copy from upstream if it changes.
   nordWave = ../../config/neomutt/nord-wave.rc;
 
+  # Vim-style keybindings, ported from
+  # https://ryanlue.com/posts/2017-05-21-mutt-the-vim-way
+  vimBindings = ../../config/neomutt/vim-bindings.rc;
+
   # Sidebar mailboxes. The tags they filter on are assigned by
   # config/notmuch/hooks/post-new, which is kept out of nix on purpose so that
   # retagging mail is one `notmuch new` away, not a system rebuild.
@@ -22,6 +26,10 @@ let
     {
       name = "Nordaaker";
       query = "tag:nordaaker and not tag:bulk";
+    }
+    {
+      name = "Nordaaker/Bulk";
+      query = "tag:nordaaker and tag:bulk";
     }
     {
       name = "GitHub";
@@ -126,6 +134,7 @@ in
   home.file.".config/notmuch/default/hooks".source =
     config.lib.file.mkOutOfStoreSymlink "/etc/nixos/config/notmuch/hooks";
 
+  home.packages = [ pkgs.w3m ];
   programs = {
     mbsync.enable = true;
     msmtp.enable = true;
@@ -140,15 +149,16 @@ in
       # the plain +INBOX maildir holds everything, tags included.
       extraConfig = ''
         source ${nordWave}
+        source ${vimBindings}
         set spoolfile = "notmuch://?query=${lib.escapeURL inboxQuery}"
       '';
       settings = {
         rfc2047_parameters = "yes";
         sleep_time = "0";
-        # Without this neomutt never asks a backend for message counts, so the
-        # sidebar shows 0 for every virtual mailbox until you enter it.
+        # Show counts for folder
         mail_check_stats = "yes";
         mail_check_stats_interval = "30";
+        delete = "yes";
       };
     };
     # Config file and package only; the tag rules live in the hook above.
