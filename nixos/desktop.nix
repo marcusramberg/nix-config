@@ -59,6 +59,7 @@ in
           ghostty
           hunspell
           hunspellDicts.en_US
+          inputs.nixpkgs-small.legacyPackages.${pkgs.stdenv.hostPlatform.system}.dankcalendar
           nautilus
           neovide
           showmethekey
