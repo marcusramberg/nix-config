@@ -115,20 +115,21 @@
     isNormalUser = true;
     description = "Marcus Ramberg";
     extraGroups = [
-      "wheel"
-      "networkmanager"
-      "docker"
       "dialout"
+      "docker"
       "feedbackd"
       "i2c"
-      "input"
       "incus-admin"
+      "input"
+      "libvirtd"
+      "networkmanager"
       "pipewire"
       "podman"
       "systemd-journal"
-      "video"
-      "libvirtd"
       "tss"
+      "uinput"
+      "video"
+      "wheel"
     ];
     openssh.authorizedKeys.keys = [
       "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIAqWWPb0DqvTwAJKd0Nb/MOdplnTJgxQBSGbJkL2S+nz marcus@butterbee"
