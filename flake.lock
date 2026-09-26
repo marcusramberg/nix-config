@@ -126,11 +126,11 @@
     "dank-qml-common_3": {
       "flake": false,
       "locked": {
-        "lastModified": 1788376015,
-        "narHash": "sha256-/tT8rTznLADndTwLBzdgzzgfJH1ZhYQibYo5v/F8U+U=",
+        "lastModified": 1790386421,
+        "narHash": "sha256-3jc0FpT1hRl+AiYwxxcp6frmXHwbuf/yhWnSMp3TWTk=",
         "owner": "AvengeMedia",
         "repo": "dank-qml-common",
-        "rev": "26396ce432d6c71c3f5367438f96f4a8d667e160",
+        "rev": "bc4c94659adfaef960339dff8f2c91a185fbf991",
         "type": "github"
       },
       "original": {
@@ -299,11 +299,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1789485362,
-        "narHash": "sha256-WbAJC9tcdQK5K2GKricUx+XGpwEPkDNyFlH9HLzMFDw=",
+        "lastModified": 1790413570,
+        "narHash": "sha256-sjq+D5LGMHo+ZRxyaxUMlhuwWk4XxZ33frLeeKGyCnA=",
         "owner": "marcusramberg",
         "repo": "DankMaterialShell",
-        "rev": "7338f3078ea1d6457563af37eb56cb3a56dfe46c",
+        "rev": "41afd6c3303464947b399bdcaa62f237e9b33a63",
         "type": "github"
       },
       "original": {
@@ -879,11 +879,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1789680206,
-        "narHash": "sha256-hRqeONpxoWLA7klIBlhtSgYWlYByF9syS6emptdH5A0=",
+        "lastModified": 1790337225,
+        "narHash": "sha256-VA7huFgMg54m/jiYVGTx7eHWXzbz27HO10zE5wM4r6Y=",
         "ref": "main",
-        "rev": "8ffab915315413264fd53d79faf200d2589b6891",
-        "revCount": 93,
+        "rev": "e187bb755e188267e9dd39d171dab4afb892cb56",
+        "revCount": 100,
         "type": "git",
         "url": "https://code.bas.es/marcus/nixos-pixel-9pro.git"
       },
@@ -1139,11 +1139,11 @@
         "rust-overlay": "rust-overlay"
       },
       "locked": {
-        "lastModified": 1789566318,
-        "narHash": "sha256-/h024lvc/5d6A4D/ql2U9MvPNNA+1p9+/u5++ZuKOWQ=",
+        "lastModified": 1790355013,
+        "narHash": "sha256-VixBF4o+LgVQ5gOs2RYw6cvQltiT8LqF3me31UQRWsg=",
         "ref": "main",
-        "rev": "6a6b2eaac6a70848886afa3b5d23a9d8183f92cf",
-        "revCount": 275,
+        "rev": "90e3603bad74e9b91e9f2a2da10f7cdc2597433c",
+        "revCount": 284,
         "type": "git",
         "url": "https://code.bas.es/marcus/springchick.git"
       },

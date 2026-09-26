@@ -10,6 +10,7 @@ let
   dms = inputs.dmsmobile.packages.${pkgs.stdenv.hostPlatform.system}.default;
   gsettingsSchemas = pkgs.gsettings-desktop-schemas;
   schemaDir = pkgs.glib.makeSchemaPath gsettingsSchemas gsettingsSchemas.name;
+  mobile-config-firefox = pkgs.callPackage ../packages/mobile-config-firefox { };
 in
 
 {
@@ -58,7 +59,25 @@ in
         ]
       );
     };
+    home-manager.users.marcus =
+      { config, ... }:
+      {
+        home.file.".config/DankMaterialShell".source = lib.mkForce (
+          config.lib.file.mkOutOfStoreSymlink "/etc/nixos/config/dmsmobile"
+        );
+      };
+
+    # Deployed with --target-host, so the flake isn't checked out here. Copy it
+    # in writable so home-manager's out-of-store symlinks resolve and DMS can
+    # still save its settings; a deploy overwrites tracked files.
+    system.activationScripts.nixosSource.text = ''
+      mkdir -p /etc/nixos
+      cp -rT --no-preserve=mode,ownership ${../.} /etc/nixos
+      chown -R marcus:users /etc/nixos
+    '';
+
     environment = {
+      etc."firefox/policies/policies.json".enable = false;
       sessionVariables = {
         GSETTINGS_SCHEMA_DIR = schemaDir;
         NIXOS_OZONE_WL = "1";
@@ -67,9 +86,14 @@ in
       # zwp_text_input_v3 at all, so wvkbd --auto never sees a text field.
       variables.QT_IM_MODULE = lib.mkForce "wayland";
       systemPackages = with pkgs; [
+        alpaca
         bazaar
-        firefox-mobile
+        firefoxpwa
+        freetube
+        melonds
+        reco
         signal-desktop
+        # supertuxkart
         telegram-desktop
         wl-clipboard
       ];
@@ -80,6 +104,27 @@ in
         package = dms;
       };
       dsearch.enable = true;
+      firefox = {
+        enable = true;
+        package = pkgs.firefox.override (prev: {
+          extraPolicies = (prev.extraPolicies or { }) // config.programs.firefox.policies;
+          extraPoliciesFiles = (prev.extraPoliciesFiles or [ ]) ++ [
+            "${pkgs.firefox}/lib/firefox/distribution/policies.json"
+          ];
+        });
+
+        autoConfig = ''
+          // Allow autoconfig to run regular JS code.
+          pref('general.config.sandbox_enabled', false);
+
+          // Enable touch density.
+          pref('browser.uidensity', 2);
+        '';
+        autoConfigFiles = [
+          "${mobile-config-firefox}/lib/firefox/mobile-config-autoconfig.js"
+        ];
+        nativeMessagingHosts.packages = [ pkgs.firefoxpwa ];
+      };
       foot = {
         enable = true;
         enableFishIntegration = true;

@@ -1,0 +1,106 @@
+{
+  "dankPomodoroTimer": {
+    "enabled": true,
+    "autoStartBreaks": true,
+    "workDuration": "20",
+    "autoSetDND": true,
+    "shortBreakDuration": 5
+  },
+  "dankActions": {
+    "enabled": true,
+    "variants": [
+      {
+        "icon": "keyboard",
+        "displayText": "",
+        "displayCommand": "",
+        "clickCommand": "pkill --signal 34 wvkbd-mobintl",
+        "middleClickCommand": "",
+        "rightClickCommand": "",
+        "updateInterval": 0,
+        "showIcon": true,
+        "showText": true,
+        "id": "variant_1764569670354",
+        "name": "Keyboard"
+      }
+    ]
+  },
+  "calculator": {
+    "enabled": true,
+    "noTrigger": false,
+    "trigger": "="
+  },
+  "webSearch": {
+    "enabled": true,
+    "searchEngines": [
+      {
+        "id": "kagi",
+        "name": "Kagi",
+        "icon": "material:search",
+        "url": "https://kagi.com/search?q=%sk",
+        "keywords": [
+          "k"
+        ]
+      }
+    ]
+  },
+  "emojiLauncher": {
+    "enabled": true
+  },
+  "commandRunner": {
+    "enabled": true
+  },
+  "worldClock": {
+    "enabled": true,
+    "timezones": [
+      {
+        "timezone": "Asia/Tokyo",
+        "label": "JP"
+      },
+      {
+        "timezone": "America/New_York",
+        "label": "NYC"
+      }
+    ]
+  },
+  "nixMonitor": {
+    "enabled": false
+  },
+  "gitmojiLauncher": {
+    "enabled": true
+  },
+  "dankBatteryAlerts": {
+    "enabled": true
+  },
+  "dankLauncherKeys": {
+    "enabled": true,
+    "noTrigger": true,
+    "trigger": ""
+  },
+  "gifLauncher": {
+    "enabled": true,
+    "apiKey": "tmeZpnTvVHOoJVMfZ08jlMIWn8uAWnM1"
+  },
+  "dankKDEConnect": {
+    "enabled": true,
+    "selectedDeviceId": "_28c0afa0_6ac4_40fd_8935_1dfc1a2901ec_"
+  },
+  "tailscale": {
+    "enabled": true
+  },
+  "dankBitwarden": {
+    "enabled": true,
+    "trigger": "["
+  },
+  "dankGifSearch": {
+    "enabled": true,
+    "preferredFormat": "gif"
+  },
+  "dankStickerSearch": {
+    "enabled": true,
+    "trigger": "stick",
+    "preferredFormat": "gif"
+  },
+  "quickCapture": {
+    "enabled": true
+  }
+}
