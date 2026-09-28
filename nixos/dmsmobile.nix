@@ -8,9 +8,11 @@
 let
   cfg = config.profiles.dmsMobile;
   dms = inputs.dmsmobile.packages.${pkgs.stdenv.hostPlatform.system}.default;
+  enroll = pkgs.callPackage ../packages/enroll { };
   gsettingsSchemas = pkgs.gsettings-desktop-schemas;
   schemaDir = pkgs.glib.makeSchemaPath gsettingsSchemas gsettingsSchemas.name;
   mobile-config-firefox = pkgs.callPackage ../packages/mobile-config-firefox { };
+  voyager = pkgs.callPackage ../packages/voyager { };
 in
 
 {
@@ -88,6 +90,7 @@ in
       systemPackages = with pkgs; [
         alpaca
         bazaar
+        enroll
         firefoxpwa
         freetube
         melonds
@@ -95,6 +98,7 @@ in
         signal-desktop
         # supertuxkart
         telegram-desktop
+        voyager
         wl-clipboard
       ];
     };

@@ -66,6 +66,7 @@
             extraModules = [
               inputs.springchick.nixosModules.springchick
               inputs.nixos-fairphone-fp5.nixosModules.default
+              # inputs.nixos-vanilla-mobile-nixos.nixosModules.vanilla-mobile
             ];
           };
           mfajita = mkNixHost "mfajita" {
@@ -98,29 +99,34 @@
             type = "app";
             program = "${hei.packages.${system}.default}/bin/hei";
           };
-          devShells.default = pkgs.mkShellNoCC {
-            NIX_CONFIG = "experimental-features = nix-command flakes";
-            packages = with pkgs; [
-              attic-client
-              git
-              go-task
-              inputs.clan-core.packages.${system}.clan-cli
-              inputs.hei.packages.${system}.default
-              lolcat
-              home-manager
-              neovim
-            ];
-            shellHook = ''
-              ${self.checks.${system}.pre-commit-check.shellHook}
-              head -n 7 README.md|tail -n4|lolcat
-            '';
+          devShells = {
+            default = pkgs.mkShellNoCC {
+              NIX_CONFIG = "experimental-features = nix-command flakes";
+              packages = with pkgs; [
+                attic-client
+                git
+                go-task
+                inputs.clan-core.packages.${system}.clan-cli
+                inputs.hei.packages.${system}.default
+                lolcat
+                home-manager
+                neovim
+              ];
+              shellHook = ''
+                ${self.checks.${system}.pre-commit-check.shellHook}
+                head -n 7 README.md|tail -n4|lolcat
+              '';
+            };
+            update = pkgs.mkShellNoCC {
+              NIX_CONFIG = "experimental-features = nix-command flakes";
+              packages = with pkgs; [
+                attic-client
+                inputs.nix-fast-build.packages.${system}.default
+              ];
+            };
           };
-          devShells.update = pkgs.mkShellNoCC {
-            NIX_CONFIG = "experimental-features = nix-command flakes";
-            packages = with pkgs; [
-              attic-client
-              inputs.nix-fast-build.packages.${system}.default
-            ];
+          packages = {
+            voyager = pkgs.callPackage ./packages/voyager { };
           };
           checks = {
             pre-commit-check = inputs.pre-commit-hooks.lib.${system}.run {
@@ -214,6 +220,10 @@
     };
     nixos-fairphone-fp5 = {
       url = "github:marcusramberg/nixos-fairphone-fp5";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    nixos-vanilla-mobile-nixos = {
+      url = "github:marcusramberg/vanilla-mobile-nixos/marcus/fp5";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     dmsmobile = {

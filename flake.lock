@@ -548,7 +548,25 @@
     },
     "flake-utils_5": {
       "inputs": {
-        "systems": "systems_7"
+        "systems": "systems_6"
+      },
+      "locked": {
+        "lastModified": 1731533236,
+        "narHash": "sha256-l0KFg5HjrsfsO/JpG+r7fRrqm12kzFHyUHqHCVpMMbI=",
+        "owner": "numtide",
+        "repo": "flake-utils",
+        "rev": "11707dc2f618dd54ca8739b309ec4fc024de578b",
+        "type": "github"
+      },
+      "original": {
+        "owner": "numtide",
+        "repo": "flake-utils",
+        "type": "github"
+      }
+    },
+    "flake-utils_6": {
+      "inputs": {
+        "systems": "systems_8"
       },
       "locked": {
         "lastModified": 1731533236,
@@ -893,6 +911,28 @@
         "url": "https://code.bas.es/marcus/nixos-pixel-9pro.git"
       }
     },
+    "nixos-vanilla-mobile-nixos": {
+      "inputs": {
+        "flake-utils": "flake-utils_4",
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1790537284,
+        "narHash": "sha256-b27pAwwRqdzWBn1/mv0L8K1LPLaypOsegqeTmKhrC+s=",
+        "owner": "marcusramberg",
+        "repo": "vanilla-mobile-nixos",
+        "rev": "d402ee1a06a92b0875caccc70fac97588cdc407d",
+        "type": "github"
+      },
+      "original": {
+        "owner": "marcusramberg",
+        "ref": "marcus/fp5",
+        "repo": "vanilla-mobile-nixos",
+        "type": "github"
+      }
+    },
     "nixpkgs": {
       "locked": {
         "lastModified": 1772198003,
@@ -1081,11 +1121,12 @@
         "nixos-fairphone-fp5": "nixos-fairphone-fp5",
         "nixos-fajita": "nixos-fajita",
         "nixos-pixel-9pro": "nixos-pixel-9pro",
+        "nixos-vanilla-mobile-nixos": "nixos-vanilla-mobile-nixos",
         "nixpkgs": "nixpkgs_5",
         "nixpkgs-small": "nixpkgs-small",
         "pre-commit-hooks": "pre-commit-hooks",
         "springchick": "springchick",
-        "systems": "systems_6",
+        "systems": "systems_7",
         "tfenv": "tfenv",
         "theheck": "theheck",
         "unattended-installer": "unattended-installer"
@@ -1132,18 +1173,18 @@
     },
     "springchick": {
       "inputs": {
-        "flake-utils": "flake-utils_4",
+        "flake-utils": "flake-utils_5",
         "nixpkgs": [
           "nixpkgs"
         ],
         "rust-overlay": "rust-overlay"
       },
       "locked": {
-        "lastModified": 1790355013,
-        "narHash": "sha256-VixBF4o+LgVQ5gOs2RYw6cvQltiT8LqF3me31UQRWsg=",
+        "lastModified": 1790577207,
+        "narHash": "sha256-2Afghp7mngBYzztVsgXBLaAu8UeRIXQ8Mf9myXUONxw=",
         "ref": "main",
-        "rev": "90e3603bad74e9b91e9f2a2da10f7cdc2597433c",
-        "revCount": 284,
+        "rev": "42f9164f28eeeb0ad17cd27ffe4dcc32c073835e",
+        "revCount": 295,
         "type": "git",
         "url": "https://code.bas.es/marcus/springchick.git"
       },
@@ -1259,6 +1300,21 @@
         "type": "github"
       }
     },
+    "systems_8": {
+      "locked": {
+        "lastModified": 1681028828,
+        "narHash": "sha256-Vy1rq5AaRuLzOxct8nz4T6wlgyUR7zLU309k9mBC768=",
+        "owner": "nix-systems",
+        "repo": "default",
+        "rev": "da67096a3b9bf56a91d16901293e51ba5b49a27e",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nix-systems",
+        "repo": "default",
+        "type": "github"
+      }
+    },
     "tfenv": {
       "flake": false,
       "locked": {
@@ -1277,7 +1333,7 @@
     },
     "theheck": {
       "inputs": {
-        "flake-utils": "flake-utils_5",
+        "flake-utils": "flake-utils_6",
         "gomod2nix": "gomod2nix_2",
         "nixpkgs": [
           "nixpkgs"
