@@ -8,6 +8,9 @@
 rustPlatform.buildRustPackage (finalAttrs: {
   pname = "enroll";
   version = "1.2.8";
+
+  __structuredAttrs = true;
+
   src = fetchFromGitHub {
     owner = "cosmic-utils";
     repo = "enroll";
@@ -29,6 +32,7 @@ rustPlatform.buildRustPackage (finalAttrs: {
   meta = {
     description = "Fingerprint enrollment for COSMIC";
     license = lib.licenses.mpl20;
+    maintainers = with lib.maintainers; [ marcusramberg ];
     homepage = "https://github.com/cosmic-utils/enroll";
     changelog = "https://github.com/cosmic-utils/enroll/releases/tag/v${finalAttrs.version}";
     mainProgram = "cosmic-utils-enroll";

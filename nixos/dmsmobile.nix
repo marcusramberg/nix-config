@@ -9,6 +9,7 @@ let
   cfg = config.profiles.dmsMobile;
   dms = inputs.dmsmobile.packages.${pkgs.stdenv.hostPlatform.system}.default;
   enroll = pkgs.callPackage ../packages/enroll { };
+  riff = pkgs.callPackage ../packages/riff-client { };
   gsettingsSchemas = pkgs.gsettings-desktop-schemas;
   schemaDir = pkgs.glib.makeSchemaPath gsettingsSchemas gsettingsSchemas.name;
   mobile-config-firefox = pkgs.callPackage ../packages/mobile-config-firefox { };
@@ -94,7 +95,9 @@ in
         firefoxpwa
         freetube
         melonds
+        powersupply
         reco
+        riff
         signal-desktop
         # supertuxkart
         telegram-desktop
@@ -129,6 +132,7 @@ in
         ];
         nativeMessagingHosts.packages = [ pkgs.firefoxpwa ];
       };
+      feedbackd.enable = true;
       foot = {
         enable = true;
         enableFishIntegration = true;

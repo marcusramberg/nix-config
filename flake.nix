@@ -127,6 +127,7 @@
           };
           packages = {
             voyager = pkgs.callPackage ./packages/voyager { };
+            riff-client = pkgs.callPackage ./packages/riff-client { };
           };
           checks = {
             pre-commit-check = inputs.pre-commit-hooks.lib.${system}.run {
