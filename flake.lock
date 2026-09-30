@@ -919,11 +919,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1790537284,
-        "narHash": "sha256-b27pAwwRqdzWBn1/mv0L8K1LPLaypOsegqeTmKhrC+s=",
+        "lastModified": 1790681801,
+        "narHash": "sha256-wdgDk3yCPthOMbJRIZGFOtUPwlKHqrr4/0BqJSu3ZbA=",
         "owner": "marcusramberg",
         "repo": "vanilla-mobile-nixos",
-        "rev": "d402ee1a06a92b0875caccc70fac97588cdc407d",
+        "rev": "49b30938bd209e384947228a7908ac9c21b6aba9",
         "type": "github"
       },
       "original": {

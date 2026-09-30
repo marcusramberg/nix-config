@@ -1,7 +1,6 @@
 {
   pkgs,
   lib,
-  config,
   ...
 }:
 {
@@ -19,26 +18,27 @@
   };
   console.font = "solar24x32";
 
+  vanilla-mobile.device.fairphone5 = {
+    enable = true;
+    fingerprint.enable = true;
+  };
+  # Matches the partition labels of the image the phone was flashed with.
+  fileSystems = {
+    "/" = {
+      device = "/dev/disk/by-label/nixos";
+      fsType = "ext4";
+    };
+    "/boot" = {
+      device = "/dev/disk/by-label/ESP";
+      fsType = "vfat";
+    };
+  };
+
   boot.initrd.kernelModules = [ "panel-raydium-rm692e5" ];
 
   hardware = {
     keyboard.dual-caps.enable = true;
     keyboard.dual-caps.swapAlt.enable = true;
-    fairphone5 = {
-      enable = true;
-      modem.enable = true;
-      usb-signaller.enable = true;
-      fingerprint = {
-        enable = true;
-        fprintd = true;
-      };
-      nfcEmulationUidFile = config.age.secrets.hackeriet-door.path;
-    };
-
-  };
-  programs = {
-    ccache.packageNames = [ "kernel-fairphone-fp5" ];
-    stoandl.enable = true;
   };
   # Don't block boot ~9.5s waiting for wifi (ath11k rproc probe defers wlan0 late).
   systemd.services.NetworkManager-wait-online.enable = false;
@@ -72,6 +72,8 @@
     desktopManager = {
       gnome.enable = true;
     };
+    # GNOME brings power-profiles-daemon; vanilla-mobile defaults to TLP.
+    tlp.enable = false;
     scx = {
       enable = true;
       scheduler = "scx_lavd";

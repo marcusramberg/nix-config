@@ -65,8 +65,9 @@
             system = "aarch64-linux";
             extraModules = [
               inputs.springchick.nixosModules.springchick
-              inputs.nixos-fairphone-fp5.nixosModules.default
-              # inputs.nixos-vanilla-mobile-nixos.nixosModules.vanilla-mobile
+              # Until phrog's module is in nixpkgs.
+              "${inputs.nixos-fairphone-fp5}/modules/phrog"
+              inputs.nixos-vanilla-mobile-nixos.nixosModules.vanilla-mobile
             ];
           };
           mfajita = mkNixHost "mfajita" {
