@@ -55,6 +55,11 @@
       enable = true;
       tmux.enableShellIntegration = true;
     };
+    firefox = {
+      enable = true;
+      configPath = ".mozilla/firefox";
+      nativeMessagingHosts = [ pkgs.firefoxpwa ];
+    };
     home-manager.enable = true;
     htop = {
       enable = true;

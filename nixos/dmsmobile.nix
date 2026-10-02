@@ -7,12 +7,12 @@
 }:
 let
   cfg = config.profiles.dmsMobile;
+  charon = pkgs.callPackage ../packages/charon { };
   dms = inputs.dmsmobile.packages.${pkgs.stdenv.hostPlatform.system}.default;
   enroll = pkgs.callPackage ../packages/enroll { };
   riff = pkgs.callPackage ../packages/riff-client { };
   gsettingsSchemas = pkgs.gsettings-desktop-schemas;
   schemaDir = pkgs.glib.makeSchemaPath gsettingsSchemas gsettingsSchemas.name;
-  mobile-config-firefox = pkgs.callPackage ../packages/mobile-config-firefox { };
   voyager = pkgs.callPackage ../packages/voyager { };
 in
 
@@ -80,7 +80,6 @@ in
     '';
 
     environment = {
-      etc."firefox/policies/policies.json".enable = false;
       sessionVariables = {
         GSETTINGS_SCHEMA_DIR = schemaDir;
         NIXOS_OZONE_WL = "1";
@@ -91,6 +90,7 @@ in
       systemPackages = with pkgs; [
         alpaca
         bazaar
+        charon
         enroll
         firefoxpwa
         freetube
@@ -111,27 +111,6 @@ in
         package = dms;
       };
       dsearch.enable = true;
-      firefox = {
-        enable = true;
-        package = pkgs.firefox.override (prev: {
-          extraPolicies = (prev.extraPolicies or { }) // config.programs.firefox.policies;
-          extraPoliciesFiles = (prev.extraPoliciesFiles or [ ]) ++ [
-            "${pkgs.firefox}/lib/firefox/distribution/policies.json"
-          ];
-        });
-
-        autoConfig = ''
-          // Allow autoconfig to run regular JS code.
-          pref('general.config.sandbox_enabled', false);
-
-          // Enable touch density.
-          pref('browser.uidensity', 2);
-        '';
-        autoConfigFiles = [
-          "${mobile-config-firefox}/lib/firefox/mobile-config-autoconfig.js"
-        ];
-        nativeMessagingHosts.packages = [ pkgs.firefoxpwa ];
-      };
       feedbackd.enable = true;
       foot = {
         enable = true;
@@ -160,7 +139,11 @@ in
         };
         defaultSession = lib.mkForce "springchick";
       };
-      geoclue2.enable = true;
+      geoclue2 = {
+        enable = true;
+        # The GNOME module disables this expecting gnome-shell to be the agent.
+        enableDemoAgent = lib.mkForce true;
+      };
       gnome.at-spi2-core.enable = true;
       flatpak.enable = true;
       orca.enable = false;
