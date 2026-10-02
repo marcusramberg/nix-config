@@ -67,7 +67,7 @@
               inputs.springchick.nixosModules.springchick
               # Until phrog's module is in nixpkgs.
               "${inputs.nixos-fairphone-fp5}/modules/phrog"
-              inputs.nixos-vanilla-mobile-nixos.nixosModules.vanilla-mobile
+              inputs.vanilla-mobile-nixos.nixosModules.vanilla-mobile
             ];
           };
           mfajita = mkNixHost "mfajita" {
@@ -224,7 +224,7 @@
       url = "github:marcusramberg/nixos-fairphone-fp5";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    nixos-vanilla-mobile-nixos = {
+    vanilla-mobile-nixos = {
       url = "github:marcusramberg/vanilla-mobile-nixos/marcus/fp5";
       inputs.nixpkgs.follows = "nixpkgs";
     };

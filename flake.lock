@@ -126,11 +126,11 @@
     "dank-qml-common_3": {
       "flake": false,
       "locked": {
-        "lastModified": 1790386421,
-        "narHash": "sha256-3jc0FpT1hRl+AiYwxxcp6frmXHwbuf/yhWnSMp3TWTk=",
+        "lastModified": 1790818052,
+        "narHash": "sha256-B4QALG/6pkJuxKOOSs7wU+qJdOXHWYUt2YK6E3Y5M84=",
         "owner": "AvengeMedia",
         "repo": "dank-qml-common",
-        "rev": "bc4c94659adfaef960339dff8f2c91a185fbf991",
+        "rev": "fdd2dfe3f3444585bc1f44180837724abbdfe7f1",
         "type": "github"
       },
       "original": {
@@ -299,11 +299,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1790413570,
-        "narHash": "sha256-sjq+D5LGMHo+ZRxyaxUMlhuwWk4XxZ33frLeeKGyCnA=",
+        "lastModified": 1790840614,
+        "narHash": "sha256-DhHAeVgmwAk+xOzfEBl49RoIQ27jqJhN4aQDoZZvW8Y=",
         "owner": "marcusramberg",
         "repo": "DankMaterialShell",
-        "rev": "41afd6c3303464947b399bdcaa62f237e9b33a63",
+        "rev": "281cbedab55950f92b2bbdac6b79c2d75f690a96",
         "type": "github"
       },
       "original": {
@@ -548,7 +548,7 @@
     },
     "flake-utils_5": {
       "inputs": {
-        "systems": "systems_6"
+        "systems": "systems_7"
       },
       "locked": {
         "lastModified": 1731533236,
@@ -911,28 +911,6 @@
         "url": "https://code.bas.es/marcus/nixos-pixel-9pro.git"
       }
     },
-    "nixos-vanilla-mobile-nixos": {
-      "inputs": {
-        "flake-utils": "flake-utils_4",
-        "nixpkgs": [
-          "nixpkgs"
-        ]
-      },
-      "locked": {
-        "lastModified": 1790681801,
-        "narHash": "sha256-wdgDk3yCPthOMbJRIZGFOtUPwlKHqrr4/0BqJSu3ZbA=",
-        "owner": "marcusramberg",
-        "repo": "vanilla-mobile-nixos",
-        "rev": "49b30938bd209e384947228a7908ac9c21b6aba9",
-        "type": "github"
-      },
-      "original": {
-        "owner": "marcusramberg",
-        "ref": "marcus/fp5",
-        "repo": "vanilla-mobile-nixos",
-        "type": "github"
-      }
-    },
     "nixpkgs": {
       "locked": {
         "lastModified": 1772198003,
@@ -1121,15 +1099,15 @@
         "nixos-fairphone-fp5": "nixos-fairphone-fp5",
         "nixos-fajita": "nixos-fajita",
         "nixos-pixel-9pro": "nixos-pixel-9pro",
-        "nixos-vanilla-mobile-nixos": "nixos-vanilla-mobile-nixos",
         "nixpkgs": "nixpkgs_5",
         "nixpkgs-small": "nixpkgs-small",
         "pre-commit-hooks": "pre-commit-hooks",
         "springchick": "springchick",
-        "systems": "systems_7",
+        "systems": "systems_6",
         "tfenv": "tfenv",
         "theheck": "theheck",
-        "unattended-installer": "unattended-installer"
+        "unattended-installer": "unattended-installer",
+        "vanilla-mobile-nixos": "vanilla-mobile-nixos"
       }
     },
     "rust-overlay": {
@@ -1173,7 +1151,7 @@
     },
     "springchick": {
       "inputs": {
-        "flake-utils": "flake-utils_5",
+        "flake-utils": "flake-utils_4",
         "nixpkgs": [
           "nixpkgs"
         ],
@@ -1333,7 +1311,7 @@
     },
     "theheck": {
       "inputs": {
-        "flake-utils": "flake-utils_6",
+        "flake-utils": "flake-utils_5",
         "gomod2nix": "gomod2nix_2",
         "nixpkgs": [
           "nixpkgs"
@@ -1413,6 +1391,28 @@
       "original": {
         "owner": "chrillefkr",
         "repo": "nixos-unattended-installer",
+        "type": "github"
+      }
+    },
+    "vanilla-mobile-nixos": {
+      "inputs": {
+        "flake-utils": "flake-utils_6",
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1790779253,
+        "narHash": "sha256-BOTD8mzO0sBf1h0lZDv+DDwlrky4nGp30bWSTHuWr7Q=",
+        "owner": "marcusramberg",
+        "repo": "vanilla-mobile-nixos",
+        "rev": "8bc780cc940f0623b8e833ecc46dc232da0449d3",
+        "type": "github"
+      },
+      "original": {
+        "owner": "marcusramberg",
+        "ref": "marcus/fp5",
+        "repo": "vanilla-mobile-nixos",
         "type": "github"
       }
     }
