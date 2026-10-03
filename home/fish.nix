@@ -79,8 +79,8 @@ in
       set --universal pure_enable_nixdevshell false
       test -x ~/.plenv/bin/plenv; and . (~/.plenv/bin/plenv init -|psub)
       ${pkgs.any-nix-shell}/bin/any-nix-shell fish --info-right | source
-      set -gx ATUIN_NOBIND "true"
-      atuin init fish --disable-ctrl-r | source
+      # set -gx ATUIN_NOBIND "true"
+      # atuin init fish --disable-ctrl-r | source
       theheck fish | source
 
 

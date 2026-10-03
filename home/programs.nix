@@ -7,7 +7,7 @@
     atuin = {
       daemon.enable = true;
       flags = [ "--disable-ctrl-r" ];
-      enable = true;
+      enable = false;
       # enableFishIntegration = true;
       settings = {
         auto_sync = true;
