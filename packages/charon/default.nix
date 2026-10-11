@@ -31,6 +31,8 @@ rustPlatform.buildRustPackage (_: {
     hash = "sha256-5cKC/0E10QBVFJIJy65eSvHwPJu+FLNCOONZHFA2xMM=";
   };
 
+  patches = [ ./geoclue.patch ];
+
   cargoHash = "sha256-Yg7UBu6RcKZD8as2OTlPL5dfmaJrtixZfNWLFsfF0gE=";
 
   env = {

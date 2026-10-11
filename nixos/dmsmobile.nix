@@ -65,9 +65,27 @@ in
     home-manager.users.marcus =
       { config, ... }:
       {
+        imports = [ inputs.vanilla-mobile-nixos.homeManagerModules.vanilla-mobile ];
+        vanilla-mobile.mobile-config-firefox.enable = true;
         home.file.".config/DankMaterialShell".source = lib.mkForce (
           config.lib.file.mkOutOfStoreSymlink "/etc/nixos/config/dmsmobile"
         );
+        # FreeTube plays through mpv so video decodes on the MFC (H.264, HEVC,
+        # VP9; not AV1, hence the format filter). Home-manager rewrites
+        # settings.db whenever these change, dropping settings made in the GUI.
+        programs.freetube = {
+          enable = true;
+          settings = {
+            externalPlayer = "mpv";
+            externalPlayerIgnoreWarnings = true;
+            externalPlayerCustomArgs = builtins.toJSON [
+              "--hwdec=v4l2m2m-copy"
+              "--ytdl-format=bestvideo[height<=?1080][vcodec!^=av01]+bestaudio/best"
+            ];
+            # Open every video in mpv, not FreeTube's software-decoding player.
+            defaultViewingMode = "external_player";
+          };
+        };
       };
 
     # Deployed with --target-host, so the flake isn't checked out here. Copy it
@@ -88,13 +106,12 @@ in
       # zwp_text_input_v3 at all, so wvkbd --auto never sees a text field.
       variables.QT_IM_MODULE = lib.mkForce "wayland";
       systemPackages = with pkgs; [
-        alpaca
         bazaar
         charon
         enroll
         firefoxpwa
-        freetube
         melonds
+        mpv
         powersupply
         reco
         riff
@@ -103,6 +120,7 @@ in
         telegram-desktop
         voyager
         wl-clipboard
+        yt-dlp
       ];
     };
     programs = {
@@ -135,7 +153,7 @@ in
       displayManager = {
         phrog = {
           enable = true;
-          package = inputs.nixos-fairphone-fp5.pkgs.phrog;
+          osk.package = pkgs.stevia;
         };
         defaultSession = lib.mkForce "springchick";
       };
@@ -143,6 +161,10 @@ in
         enable = true;
         # The GNOME module disables this expecting gnome-shell to be the agent.
         enableDemoAgent = lib.mkForce true;
+        appConfig.charon = {
+          isAllowed = true;
+          isSystem = false;
+        };
       };
       gnome.at-spi2-core.enable = true;
       flatpak.enable = true;

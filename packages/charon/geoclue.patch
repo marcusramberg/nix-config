@@ -1,0 +1,169 @@
+diff --git a/rules/66-charon.rules.polkit b/rules/66-charon.rules.polkit
+index 9391efc..64ceb87 100644
+--- a/rules/66-charon.rules.polkit
++++ b/rules/66-charon.rules.polkit
+@@ -1,11 +1,4 @@
+ polkit.addRule(function(action, subject) {
+-    // Grant group `catacomb` access to get GPS location data from the modem.
+-    if (action.id == "org.freedesktop.ModemManager1.Location"
+-        && subject.isInGroup("catacomb"))
+-    {
+-        return polkit.Result.YES;
+-    }
+-
+     // Grant group `catacomb` access to claim iio-sensor-proxy sensors (used for compass).
+     if (action.id == "net.hadess.SensorProxy.claim-sensor"
+         && subject.isInGroup("catacomb"))
+diff --git a/src/dbus/geoclue.rs b/src/dbus/geoclue.rs
+new file mode 100644
+index 0000000..bac4e27
+--- /dev/null
++++ b/src/dbus/geoclue.rs
+@@ -0,0 +1,99 @@
++//! GeoClue2 DBus interface.
++
++use futures_lite::stream::StreamExt;
++use tracing::{error, info};
++use zbus::zvariant::{ObjectPath, OwnedObjectPath};
++use zbus::{Connection, proxy};
++
++use crate::Error;
++use crate::geometry::GeoPoint;
++
++/// GeoClue `GCLUE_ACCURACY_LEVEL_EXACT`.
++const ACCURACY_EXACT: u32 = 8;
++
++/// GeoClue location source.
++pub struct GeoclueSource {
++    location_stream: LocationUpdatedStream,
++    // Dropping the client would let GeoClue stop the GPS.
++    _client: ClientProxy<'static>,
++}
++
++impl GeoclueSource {
++    pub async fn new(connection: &Connection) -> Result<Self, Error> {
++        let manager = ManagerProxy::new(connection).await?;
++        let client_path = manager.get_client().await?;
++        let client = ClientProxy::builder(connection).path(client_path)?.build().await?;
++
++        client.set_desktop_id("charon").await?;
++        client.set_requested_accuracy_level(ACCURACY_EXACT).await?;
++
++        // Subscribe before starting, to avoid missing the first update.
++        let location_stream = client.receive_location_updated().await?;
++        client.start().await?;
++
++        info!("Started GeoClue location updates");
++
++        Ok(Self { location_stream, _client: client })
++    }
++
++    /// Wait for the next location update, returning location and speed (in
++    /// meters per hour).
++    pub async fn listen(&mut self, connection: &Connection) -> (Option<GeoPoint>, Option<u32>) {
++        let Some(signal) = self.location_stream.next().await else {
++            return std::future::pending().await;
++        };
++
++        let location = async {
++            let path = signal.args()?.new.to_owned();
++            let location = LocationProxy::builder(connection).path(path)?.build().await?;
++            let point = GeoPoint::new(location.latitude().await?, location.longitude().await?);
++            // GeoClue reports unknown speed as -1.
++            let speed = location.speed().await.ok().filter(|speed| *speed >= 0.);
++            zbus::Result::Ok((point, speed.map(|speed| (speed * 3600.).round() as u32)))
++        };
++
++        match location.await {
++            Ok((point, speed)) => (Some(point), speed),
++            Err(err) => {
++                error!("Failed to get GeoClue location: {err}");
++                (None, None)
++            },
++        }
++    }
++}
++
++#[proxy(
++    interface = "org.freedesktop.GeoClue2.Manager",
++    default_service = "org.freedesktop.GeoClue2",
++    default_path = "/org/freedesktop/GeoClue2/Manager"
++)]
++trait Manager {
++    fn get_client(&self) -> zbus::Result<OwnedObjectPath>;
++}
++
++#[proxy(interface = "org.freedesktop.GeoClue2.Client", default_service = "org.freedesktop.GeoClue2")]
++trait Client {
++    fn start(&self) -> zbus::Result<()>;
++
++    #[zbus(signal)]
++    fn location_updated(&self, old: ObjectPath<'_>, new: ObjectPath<'_>) -> zbus::Result<()>;
++
++    #[zbus(property)]
++    fn set_desktop_id(&self, id: &str) -> zbus::Result<()>;
++
++    #[zbus(property)]
++    fn set_requested_accuracy_level(&self, level: u32) -> zbus::Result<()>;
++}
++
++#[proxy(interface = "org.freedesktop.GeoClue2.Location", default_service = "org.freedesktop.GeoClue2")]
++trait Location {
++    #[zbus(property)]
++    fn latitude(&self) -> zbus::Result<f64>;
++
++    #[zbus(property)]
++    fn longitude(&self) -> zbus::Result<f64>;
++
++    /// Speed in meters per second.
++    #[zbus(property)]
++    fn speed(&self) -> zbus::Result<f64>;
++}
+diff --git a/src/dbus/mod.rs b/src/dbus/mod.rs
+index c1d18e6..27f92d8 100644
+--- a/src/dbus/mod.rs
++++ b/src/dbus/mod.rs
+@@ -7,12 +7,12 @@ use tracing::warn;
+ use zbus::Connection;
+ 
+ use crate::Error;
++use crate::dbus::geoclue::GeoclueSource;
+ use crate::dbus::iio_sensor_proxy::IioCompassSource;
+-use crate::dbus::modem_manager::ModemGpsSource;
+ use crate::geometry::GeoPoint;
+ 
++mod geoclue;
+ mod iio_sensor_proxy;
+-pub mod modem_manager;
+ 
+ /// Listen for DBus updates.
+ pub async fn dbus_listen(
+@@ -21,8 +21,8 @@ pub async fn dbus_listen(
+ ) -> Result<(), Error> {
+     let connection = Connection::system().await?;
+ 
+-    // Create modem GPS listener.
+-    let mut gps_source = ModemGpsSource::new(&connection).await?;
++    // Create GeoClue location listener.
++    let mut gps_source = GeoclueSource::new(&connection).await?;
+ 
+     // Create iio-sensor-proxy compass listener.
+     let mut compass_source = IioCompassSource::new(&connection)
+@@ -31,7 +31,7 @@ pub async fn dbus_listen(
+         .ok()
+         .flatten();
+ 
+-    let (mut location, mut speed) = gps_source.location().await;
++    let (mut location, mut speed) = (None, None);
+     let mut heading = None;
+ 
+     loop {
+@@ -59,7 +59,7 @@ pub async fn dbus_listen(
+         };
+ 
+         tokio::select! {
+-            _ = gps_source.listen(&connection) => (location, speed) = gps_source.location().await,
++            update = gps_source.listen(&connection) => (location, speed) = update,
+             new_heading = compass_future => heading = Some(new_heading),
+         }
+     }
