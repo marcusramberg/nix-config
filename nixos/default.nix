@@ -157,7 +157,7 @@
       in
       _: {
         inherit (nixpkgs-small)
-          waypipe
+          telegram-desktop
           ;
       };
   };
