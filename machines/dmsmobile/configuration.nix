@@ -35,6 +35,13 @@
   };
 
   boot.initrd.kernelModules = [ "panel-raydium-rm692e5" ];
+  boot.kernelPatches = [
+    {
+      name = "sched-ext";
+      patch = null;
+      structuredExtraConfig.SCHED_CLASS_EXT = lib.kernel.yes;
+    }
+  ];
 
   hardware = {
     keyboard.dual-caps.enable = true;
