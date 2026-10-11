@@ -160,7 +160,7 @@
       configFile = ../../config/Caddyfile.mbox;
     };
     k3s = {
-      enable = true;
+      enable = false;
       serverAddr = "https://192.168.86.1:6443";
       staticIP = {
         enable = true;
