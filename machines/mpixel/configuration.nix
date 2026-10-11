@@ -23,10 +23,12 @@ in
   };
 
   hardware = {
+    bluetooth.enable = true;
     keyboard.dual-caps.enable = true;
     keyboard.dual-caps.swapAlt.enable = true;
     pixel9pro = {
       audio.enable = true;
+      bluetooth.enable = true;
       display.enable = true;
       modem = {
         enable = true;
