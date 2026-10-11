@@ -1,0 +1,4 @@
+--- a/nixos/modules/module-list.nix
++++ b/nixos/modules/module-list.nix
+@@ -1,0 +2 @@
++  ({ lib, ... }: { options.nixpkgsPRTest = lib.mkOption { type = lib.types.str; default = "module-patched"; }; })

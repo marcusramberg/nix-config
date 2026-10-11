@@ -1,0 +1,5 @@
+--- a/pkgs/top-level/all-packages.nix
++++ b/pkgs/top-level/all-packages.nix
+@@ -30,0 +31,2 @@
++  nixpkgsPRTest = "package-patched";
++

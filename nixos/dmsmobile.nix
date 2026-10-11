@@ -7,13 +7,9 @@
 }:
 let
   cfg = config.profiles.dmsMobile;
-  charon = pkgs.callPackage ../packages/charon { };
   dms = inputs.dmsmobile.packages.${pkgs.stdenv.hostPlatform.system}.default;
-  enroll = pkgs.callPackage ../packages/enroll { };
-  riff = pkgs.callPackage ../packages/riff-client { };
   gsettingsSchemas = pkgs.gsettings-desktop-schemas;
   schemaDir = pkgs.glib.makeSchemaPath gsettingsSchemas gsettingsSchemas.name;
-  voyager = pkgs.callPackage ../packages/voyager { };
 in
 
 {

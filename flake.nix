@@ -8,8 +8,24 @@
       hei,
       ...
 
-    }@inputs:
-    with import ./lib { inherit inputs; };
+    }@originalInputs:
+    let
+      inherit
+        (import ./lib {
+          inputs = originalInputs;
+          nixpkgsPRs = [
+            {
+              number = 558022;
+              hash = "sha256-GUGEyi2S7kjuqSnMroOpc8/WdFy428Wf1xZYfyr/iJQ=";
+            }
+          ];
+        })
+        inputs
+        mkNixHost
+        mkDesktopHost
+        mkHMConfig
+        ;
+    in
     flake-parts.lib.mkFlake { inherit inputs; } (_: {
       imports = [
         inputs.home-manager.flakeModules.home-manager
@@ -58,15 +74,12 @@
             extraModules = [
               inputs.springchick.nixosModules.springchick
               inputs.nixos-pixel-9pro.nixosModules.default
-              inputs.nixos-fairphone-fp5.nixosModules.default
             ];
           };
           dmsmobile = mkNixHost "dmsmobile" {
             system = "aarch64-linux";
             extraModules = [
               inputs.springchick.nixosModules.springchick
-              # Until phrog's module is in nixpkgs.
-              "${inputs.nixos-fairphone-fp5}/modules/phrog"
               inputs.vanilla-mobile-nixos.nixosModules.vanilla-mobile
             ];
           };
@@ -75,7 +88,6 @@
             extraModules = [
               inputs.springchick.nixosModules.springchick
               inputs.nixos-fajita.nixosModules.default
-              inputs.nixos-fairphone-fp5.nixosModules.default
             ];
           };
         };
@@ -129,8 +141,18 @@
           packages = {
             voyager = pkgs.callPackage ./packages/voyager { };
             riff-client = pkgs.callPackage ./packages/riff-client { };
+            bitritter = pkgs.callPackage ./packages/bitritter { };
           };
           checks = {
+            nixpkgs-prs =
+              let
+                results = import ./tests/nixpkgs-prs.nix {
+                  inputs = originalInputs;
+                  inherit system;
+                };
+              in
+              assert builtins.all (result: result) (builtins.attrValues results);
+              pkgs.runCommand "nixpkgs-prs-check" { } "touch $out";
             pre-commit-check = inputs.pre-commit-hooks.lib.${system}.run {
               src = ./.;
               hooks = {
@@ -152,8 +174,6 @@
       url = "github:ryantm/agenix";
       inputs = {
         nixpkgs.follows = "nixpkgs";
-        home-manager.follows = "home-manager";
-        systems.follows = "systems";
       };
     };
     apple-silicon-support = {
@@ -218,10 +238,6 @@
     };
     nixos-pixel-9pro = {
       url = "git+https://code.bas.es/marcus/nixos-pixel-9pro.git?ref=main";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-    nixos-fairphone-fp5 = {
-      url = "github:marcusramberg/nixos-fairphone-fp5";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     vanilla-mobile-nixos = {

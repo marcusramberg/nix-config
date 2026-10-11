@@ -1,7 +1,6 @@
 {
   system,
   inputs,
-  ...
 }:
 {
   nixpkgs = {
@@ -16,7 +15,6 @@
   };
 
   home-manager = {
-    # verbose = true;
     useGlobalPkgs = true;
     backupFileExtension = "bak";
     useUserPackages = true;
