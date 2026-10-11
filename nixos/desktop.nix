@@ -97,10 +97,6 @@ in
             enable = true;
             src = dmsRegistry.dankActions;
           };
-          dankBatteryAlerts = {
-            enable = true;
-            src = dmsRegistry.dankBatteryAlerts;
-          };
           dankGifSearch = {
             enable = true;
             src = dmsRegistry.dankGifSearch;
