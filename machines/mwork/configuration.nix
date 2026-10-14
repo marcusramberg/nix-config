@@ -49,7 +49,6 @@
       extraPkgs = pkgs: [
         pkgs.libglvnd
         pkgs.mesa
-        pkgs.mesa.drivers
       ];
     };
   };
@@ -58,37 +57,37 @@
     scx.enable = false; # causes crashes on 7.1
   };
 
-  systemd.services = {
-    fprintd = {
-      wantedBy = [ "multi-user.target" ];
-      serviceConfig.Type = "simple";
-    };
-    fprintd-sleep = {
-      description = "Stop fprintd before sleep, reset USB reader and restart after resume";
-      before = [ "sleep.target" ];
-      wantedBy = [ "sleep.target" ];
-      serviceConfig = {
-        Type = "oneshot";
-        RemainAfterExit = true;
-        ExecStart = "/run/current-system/sw/bin/systemctl stop fprintd.service";
-        ExecStop = pkgs.writeShellScript "fprintd-resume" ''
-          # Re-enumerate the Synaptics fingerprint reader (06cb:00fc);
-          # it wedges across suspend and libusb keeps stale references.
-          for d in /sys/bus/usb/devices/*; do
-            [ -f "$d/idVendor" ] || continue
-            [ "$(cat $d/idVendor)" = "06cb" ] || continue
-            [ "$(cat $d/idProduct)" = "00fc" ] || continue
-            port=$(basename "$d")
-            echo $port > /sys/bus/usb/drivers/usb/unbind || true
-            sleep 1
-            echo $port > /sys/bus/usb/drivers/usb/bind || true
-            sleep 1
-          done
-          ${pkgs.systemd}/bin/systemctl start fprintd.service
-        '';
-      };
-    };
-  };
+  # systemd.services = {
+  #   fprintd = {
+  #     wantedBy = [ "multi-user.target" ];
+  #     serviceConfig.Type = "simple";
+  #   };
+  #   fprintd-sleep = {
+  #     description = "Stop fprintd before sleep, reset USB reader and restart after resume";
+  #     before = [ "sleep.target" ];
+  #     wantedBy = [ "sleep.target" ];
+  #     serviceConfig = {
+  #       Type = "oneshot";
+  #       RemainAfterExit = true;
+  #       ExecStart = "/run/current-system/sw/bin/systemctl stop fprintd.service";
+  #       ExecStop = pkgs.writeShellScript "fprintd-resume" ''
+  #         # Re-enumerate the Synaptics fingerprint reader (06cb:00fc);
+  #         # it wedges across suspend and libusb keeps stale references.
+  #         for d in /sys/bus/usb/devices/*; do
+  #           [ -f "$d/idVendor" ] || continue
+  #           [ "$(cat $d/idVendor)" = "06cb" ] || continue
+  #           [ "$(cat $d/idProduct)" = "00fc" ] || continue
+  #           port=$(basename "$d")
+  #           echo $port > /sys/bus/usb/drivers/usb/unbind || true
+  #           sleep 1
+  #           echo $port > /sys/bus/usb/drivers/usb/bind || true
+  #           sleep 1
+  #         done
+  #         ${pkgs.systemd}/bin/systemctl start fprintd.service
+  #       '';
+  #     };
+  #   };
+  # };
 
   # Friendlier audio device names (dock + RØDE are specific to this laptop).
 
