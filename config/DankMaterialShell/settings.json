@@ -14,11 +14,14 @@
   "floatingWindowSyncGlobal": false,
   "floatingWindowTransparency": 0.65,
   "widgetBackgroundColor": "sth",
-  "niriLayoutRadiusOverride": 0,
+  "niriLayoutRadiusOverride": 6,
   "niriLayoutBorderSize": 1,
   "mouseAccelProfile": "adaptive",
   "mouseLeftHanded": true,
   "mouseNaturalScroll": true,
+  "firstDayOfWeek": 1,
+  "showWeekNumber": true,
+  "calendarBackend": "dankcal",
   "clockFormat": "24h",
   "blurEnabled": true,
   "blurLayerOutlineOpacity": 0.15,
@@ -26,6 +29,9 @@
   "blurBorderOpacity": 0.48,
   "blurWallpaperOnOverview": true,
   "systemTrayIconTintMode": "monochrome",
+  "showWorkspacePadding": true,
+  "showWorkspaceApps": true,
+  "groupActiveWorkspaceApps": true,
   "workspaceNameIcons": {
     "browser": {
       "type": "icon",
@@ -47,13 +53,14 @@
   "scrollTitleEnabled": false,
   "clockDateFormat": "yyyy-MM-dd",
   "lockDateFormat": "yyyy-MM-dd",
+  "useAutoLocation": true,
   "networkPreference": "wifi",
   "cursorSettings": {
     "theme": "System Default",
     "size": 24,
     "niri": {
-      "hideWhenTyping": false,
-      "hideAfterInactiveMs": 0
+      "hideWhenTyping": true,
+      "hideAfterInactiveMs": 1501
     },
     "hyprland": {
       "hideOnKeyPress": false,
@@ -123,6 +130,10 @@
         },
         {
           "id": "dankPomodoroTimer",
+          "enabled": true
+        },
+        {
+          "id": "systemTray",
           "enabled": true
         }
       ],
