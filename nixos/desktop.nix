@@ -151,6 +151,16 @@ in
       style = "breeze";
     };
 
+    # DMS is WantedBy graphical-session.target, which the SteamOS/gamescope
+    # session also activates — there it crash-loops without a usable wayland
+    # socket. Requisite (unlike Requires) fails the start instead of pulling
+    # niri in, so dms only runs inside an actual niri session.
+    systemd.user.services.dms.unitConfig = {
+      Requisite = [ "niri.service" ];
+      After = [ "niri.service" ];
+      PartOf = [ "niri.service" ];
+    };
+
     services = {
       keybase.enable = true;
       displayManager = lib.mkIf cfg.displayManager {
