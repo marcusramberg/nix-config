@@ -2,13 +2,11 @@
   lib,
   stdenv,
   alsa-lib,
-  appstream,
   blueprint-compiler,
   cargo,
   desktop-file-utils,
   fetchFromGitHub,
   fetchurl,
-  gettext,
   glib,
   gtk4,
   libadwaita,
@@ -19,7 +17,6 @@
   openssl,
   pkg-config,
   rustPlatform,
-  rustc,
   wrapGAppsHook4,
 }:
 
@@ -58,19 +55,14 @@ stdenv.mkDerivation (finalAttrs: {
   '';
 
   nativeBuildInputs = [
-    appstream
     blueprint-compiler
     cargo
     desktop-file-utils
-    gettext
-    # glib
-    #    gtk4
     meson
     ninja
     jre_headless
     pkg-config
     rustPlatform.cargoSetupHook
-    rustc
     wrapGAppsHook4
   ];
 
