@@ -1,4 +1,5 @@
 {
+  inputs,
   pkgs,
   lib,
   ...
@@ -7,10 +8,11 @@
   imports = [
 
     ../../nixos/dmsmobile.nix
+    # Temporary: tee-fprintd in place of the libfprint focaltechqsee fprintd.
+    inputs.tee-fprintd.nixosModules.default
   ];
   documentation.nixos.enable = false;
   environment = {
-    variables.GTK_IM_MODULE = lib.mkForce "wayland";
     systemPackages = with pkgs; [
       hunspell
       hunspellDicts.en-us
@@ -21,6 +23,11 @@
   vanilla-mobile.device.fairphone5 = {
     enable = true;
     fingerprint.enable = true;
+  };
+  services.tee-fprintd.enable = true;
+  systemd.services.tee-fprintd = {
+    after = [ "focal32-load.service" ];
+    environment.TEE_FPRINTD_DEBUG = "1";
   };
   # Matches the partition labels of the image the phone was flashed with.
   fileSystems = {
@@ -70,7 +77,6 @@
       max-jobs = 0;
     };
   };
-  programs.springchick.enable = true;
   profiles = {
     dmsMobile.enable = true;
     myfonts.enable = true;

@@ -43,8 +43,8 @@ in
       plymouth = {
         # Plymouth takes DRM master in the initrd and blanks unl0kr's LUKS prompt.
         enable = lib.mkDefault true;
-        theme = "catppuccin-mocha";
-        themePackages = [ (pkgs.catppuccin-plymouth.override { variant = "mocha"; }) ];
+        theme = lib.mkForce "fjordxy";
+        themePackages = [ pkgs.plymouth-fjordxy ];
       };
       consoleLogLevel = lib.mkDefault 3;
       kernelParams = lib.mkOrder 1600 (
@@ -100,7 +100,10 @@ in
       };
       # GNOME's module defaults this to "ibus", which stops Qt binding
       # zwp_text_input_v3 at all, so wvkbd --auto never sees a text field.
-      variables.QT_IM_MODULE = lib.mkForce "wayland";
+      variables = {
+        QT_IM_MODULE = lib.mkForce "wayland";
+        GTK_IM_MODULE = lib.mkForce "wayland";
+      };
       systemPackages =
         with pkgs;
         [
@@ -172,6 +175,8 @@ in
 
       logind.settings.Login = {
         HandlePowerKey = "ignore";
+        KillUserProcesses = true;
+        KillOnlyUsers = [ "greeter" ];
       };
     };
     security = {
