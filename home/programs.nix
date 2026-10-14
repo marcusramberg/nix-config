@@ -4,23 +4,6 @@
 }:
 {
   programs = {
-    atuin = {
-      daemon.enable = true;
-      flags = [ "--disable-ctrl-r" ];
-      enable = false;
-      # enableFishIntegration = true;
-      settings = {
-        auto_sync = true;
-        sync_frequency = "5m";
-        sync_address = "https://atuin.means.no";
-        search_mode = "fuzzy";
-        keymap_mode = "vim-insert";
-        update_check = "false";
-        ctrl_n_shortcuts = "true";
-        style = "compact";
-      };
-
-    };
     bat = {
       enable = true;
       config = {
