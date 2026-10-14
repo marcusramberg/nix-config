@@ -81,9 +81,5 @@
     };
     # GNOME brings power-profiles-daemon; vanilla-mobile defaults to TLP.
     tlp.enable = false;
-    scx = {
-      enable = true;
-      scheduler = "scx_lavd";
-    };
   };
 }
