@@ -1,0 +1,8 @@
+[Plymouth Theme]
+Name=fjordxy
+Description=Cyberpunk neon-glitch boot splash for fjordxy mobile
+ModuleName=script
+
+[script]
+ImageDir=/usr/share/plymouth/themes/fjordxy
+ScriptFile=/usr/share/plymouth/themes/fjordxy/fjordxy.script
