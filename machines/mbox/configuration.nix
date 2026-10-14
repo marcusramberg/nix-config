@@ -35,6 +35,9 @@
     kernelParams = [
       "pcie_aspm=off"
       "amdgpu.runpm=0"
+      # VT-d is enabled in firmware; the kernel still wants this to drive the
+      # IOMMU (required for PCI passthrough).
+      "intel_iommu=on"
     ];
     # These modules are required for PCI passthrough, and must come before early modesetting stuff
     kernelModules = [
@@ -46,6 +49,15 @@
       "fs.inotify.max_user_watches" = 2048576; # default: 8192
       "fs.inotify.max_user_instances" = 1024; # default: 128
       "fs.inotify.max_queued_events" = 32768; # default: 16384 };
+
+      # Crash forensics for the random freezes: turn silent lockups into
+      # panics so efi-pstore captures a dmesg dump we can read after reboot
+      # (ls /sys/fs/pstore). Remove once the freeze is diagnosed.
+      "kernel.sysrq" = 1; # allow Alt+SysRq+{s,u,b} / +c from a frozen console
+      "kernel.softlockup_panic" = 1;
+      "kernel.hardlockup_panic" = 1;
+      "kernel.panic_on_oops" = 1;
+      "kernel.panic" = 30; # reboot 30s after panic, pstore write happens first
     };
     extraModprobeConfig = ''
       options hid_apple iso_layout=1
@@ -142,6 +154,8 @@
     gpu.amd.enable = true;
     bluetooth.enable = true;
     keyboard.dual-caps.enable = true;
+    # Log MCE/PCIe-AER hardware errors persistently (freeze diagnosis)
+    rasdaemon.enable = true;
   };
 
   swapDevices = [ { device = "/dev/disk/by-uuid/a3e364f4-a757-4e71-b220-5c850de97136"; } ];
@@ -335,6 +349,11 @@
     };
   };
   systemd = {
+    # Arm the iTCO hardware watchdog: if the kernel dies so hard that even
+    # NMI panic can't fire, the board resets itself after 30s instead of
+    # hanging until the power button. A watchdog reboot (vs. a pstore dump)
+    # also tells us the kernel was completely dead, not just the GPU.
+    settings.Manager.RuntimeWatchdogSec = "30s";
     user.services.monado.environment = {
       STEAMVR_LH_ENABLE = "1";
       XRT_COMPOSITOR_COMPUTE = "1";
