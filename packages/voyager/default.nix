@@ -10,6 +10,7 @@
   pkg-config,
   wrapGAppsHook3,
   glib-networking,
+  gst_all_1,
   libsoup_3,
   openssl,
   webkitgtk_4_1,
@@ -58,8 +59,13 @@ rustPlatform.buildRustPackage (finalAttrs: {
     wrapGAppsHook3
   ];
 
+  # webkitgtk's media player aborts the web process without appsink
+  # (plugins-base) and autoaudiosink (plugins-good).
   buildInputs = [
     glib-networking
+    gst_all_1.gstreamer
+    gst_all_1.gst-plugins-base
+    gst_all_1.gst-plugins-good
     libsoup_3
     openssl
     webkitgtk_4_1
