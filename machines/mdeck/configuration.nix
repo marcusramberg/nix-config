@@ -4,6 +4,7 @@
   imports = [
     # Include the results of the hardware scan.
     ./hardware-configuration.nix
+    ../../nixos/dmsmobile.nix
   ];
   # Enable hardware and Steam support.
   boot.loader = {
@@ -24,7 +25,7 @@
       enable = true;
       user = "marcus";
       autoStart = true;
-      desktopSession = "niri";
+      desktopSession = "springchick";
       updater.splash = "jovian";
     };
   };
@@ -55,10 +56,8 @@
     swapAlt.enable = true;
   };
 
-  profiles.desktop = {
-    enable = true;
-    displayManager = false;
-  };
+  profiles.dmsMobile.enable = true;
+  services.displayManager.phrog.enable = lib.mkForce false;
 
   powerManagement.cpuFreqGovernor = "schedutil";
 

@@ -58,8 +58,11 @@
           mtop = mkDesktopHost "mtop" { };
           mbench = mkNixHost "mbench" {
           };
-          mdeck = mkDesktopHost "mdeck" {
-            extraModules = [ inputs.jovian.nixosModules.default ];
+          mdeck = mkNixHost "mdeck" {
+            extraModules = [
+              inputs.jovian.nixosModules.default
+              inputs.springchick.nixosModules.springchick
+            ];
           };
           mgrate = mkDesktopHost "mgrate" { };
           mwall = mkNixHost "mwall" {

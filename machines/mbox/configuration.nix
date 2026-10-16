@@ -32,12 +32,16 @@
     };
 
     kernelPackages = pkgs.linuxPackages_latest;
-    kernelParams = [
+    kernelParams = lib.mkOrder 1500 [
       "pcie_aspm=off"
       "amdgpu.runpm=0"
       # VT-d is enabled in firmware; the kernel still wants this to drive the
       # IOMMU (required for PCI passthrough).
       "intel_iommu=on"
+      # Override Jovian's dcdebugmask=0x20000 (plane-flash workaround): it
+      # floods dmesg with "HDR SB:" lines, drowning out the pstore crash
+      # captures. Last value on the cmdline wins.
+      "amdgpu.dcdebugmask=0x0"
     ];
     # These modules are required for PCI passthrough, and must come before early modesetting stuff
     kernelModules = [

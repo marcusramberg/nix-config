@@ -101,23 +101,25 @@ in
       # GNOME's module defaults this to "ibus", which stops Qt binding
       # zwp_text_input_v3 at all, so wvkbd --auto never sees a text field.
       variables.QT_IM_MODULE = lib.mkForce "wayland";
-      systemPackages = with pkgs; [
-        bazaar
-        charon
-        enroll
-        firefoxpwa
-        melonds
-        mpv
-        powersupply
-        reco
-        riff
-        signal-desktop
-        # supertuxkart
-        telegram-desktop
-        voyager
-        wl-clipboard
-        yt-dlp
-      ];
+      systemPackages =
+        with pkgs;
+        [
+          bazaar
+          enroll
+          firefoxpwa
+          melonds
+          mpv
+          powersupply
+          reco
+          riff
+          signal-desktop
+          # supertuxkart
+          telegram-desktop
+          voyager
+          wl-clipboard
+          yt-dlp
+        ]
+        ++ lib.optional lib.meta.platformMatch "aarch64-linux" charon;
     };
     programs = {
       dms-shell = {
