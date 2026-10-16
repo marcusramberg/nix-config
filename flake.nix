@@ -18,6 +18,10 @@
               number = 558022;
               hash = "sha256-qx5m4fcaWO8RBpSIceYyTCPr4Z0jLQ3Ja0DVgs/YgZc=";
             }
+            {
+              number = 572284;
+              hash = "sha256-iiGKgHQeke+0jrMM5h0ajvymEkvE/Qbp6wUm1XPCSAI=";
+            }
           ];
         })
         inputs
@@ -263,6 +267,10 @@
     };
     nixos-bpi-r4-pro = {
       url = "git+https://code.bas.es/marcus/nixos-bpi-r4-pro.git?ref=main";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    tee-fprintd = {
+      url = "git+file:///home/marcus/Source/tee-fprintd";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };

@@ -73,7 +73,12 @@
 
   services = {
     fwupd.enable = true;
-    tailscale.enable = true;
+    tailscale = {
+      enable = true;
+      extraDaemonFlags = [
+        "--no-logs-no-support"
+      ];
+    };
     timesyncd.enable = lib.mkDefault true;
   };
 

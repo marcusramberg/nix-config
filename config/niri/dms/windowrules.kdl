@@ -6,3 +6,9 @@ window-rule {
     match app-id="^com.danklinux.dms$"
     open-floating true
 }
+
+// @id=dms-window-opaque @name=DMS Window Opaque
+window-rule {
+    match app-id="^com\\.danklinux\\.dms$"
+    opacity 1.00
+}
