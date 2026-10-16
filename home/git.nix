@@ -14,7 +14,6 @@
     pre-commit
     revup
     stgit
-    # git-stack
     tea
   ];
   programs = {
@@ -121,13 +120,6 @@
           edit = "!vim `git ls-files -m ` -p ";
           credit = "blame";
           sdiff = "diff --cached";
-          # git stack
-          next = "stack next";
-          prev = "stack previous";
-          reword = "stack reword";
-          amend = "stack amend";
-          sync = "stack sync";
-          run = "stack run";
         };
       };
       includes = [

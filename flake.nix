@@ -16,7 +16,7 @@
           nixpkgsPRs = [
             {
               number = 558022;
-              hash = "sha256-GUGEyi2S7kjuqSnMroOpc8/WdFy428Wf1xZYfyr/iJQ=";
+              hash = "sha256-qx5m4fcaWO8RBpSIceYyTCPr4Z0jLQ3Ja0DVgs/YgZc=";
             }
           ];
         })

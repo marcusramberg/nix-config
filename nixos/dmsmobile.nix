@@ -119,7 +119,7 @@ in
           wl-clipboard
           yt-dlp
         ]
-        ++ lib.optional lib.meta.platformMatch "aarch64-linux" charon;
+        ++ lib.optional pkgs.stdenv.hostPlatform.isAarch64 charon;
     };
     programs = {
       dms-shell = {
