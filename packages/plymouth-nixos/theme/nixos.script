@@ -1,0 +1,189 @@
+# nixos — cyberpunk boot splash (Plymouth script module)
+# Assets authored at 1080px width; scaled to the panel at runtime.
+
+Window.SetBackgroundTopColor(0.016, 0.020, 0.039);
+Window.SetBackgroundBottomColor(0.016, 0.020, 0.039);
+
+W = Window.GetWidth();
+H = Window.GetHeight();
+S = Math.Min(W / 1080, H / 1900);
+CX = W / 2;
+CY = H * 0.44;
+
+fun sc(img) { return img.Scale(Math.Int(img.GetWidth() * S + 0.5), Math.Int(img.GetHeight() * S + 0.5)); }
+
+# ---------- data rain ----------
+for (i = 0; i < 8; i++) rain_img[i] = sc(Image("rain" + i + ".png"));
+COL_STEP = 44 * S;
+NCOLS = Math.Int(W / COL_STEP) + 1;
+for (i = 0; i < NCOLS; i++) {
+  r = Math.Int(Math.Random() * 8);
+  rain[i].sprite = Sprite(rain_img[r]);
+  rain[i].h = rain_img[r].GetHeight();
+  rain[i].x = i * COL_STEP + 4 * S;
+  rain[i].y = Math.Random() * H * 1.3 - rain[i].h;
+  rain[i].v = (1.0 + Math.Random() * 2.4) * S * 2.6;
+  rain[i].sprite.SetPosition(rain[i].x, rain[i].y, 1);
+}
+
+shade_img = sc(Image("shade.png"));
+shade = Sprite(shade_img);
+shade.SetPosition(CX - shade_img.GetWidth() / 2, CY - shade_img.GetHeight() / 2, 2);
+
+# ---------- logo (RGB split) ----------
+logo_w_img = sc(Image("logo.png"));
+logo_a_img = sc(Image("logo-a.png"));
+logo_b_img = sc(Image("logo-b.png"));
+LX = CX - logo_w_img.GetWidth() / 2;
+LY = CY - logo_w_img.GetHeight() / 2;
+logo_b = Sprite(logo_b_img); logo_b.SetZ(10);
+logo_a = Sprite(logo_a_img); logo_a.SetZ(11);
+logo_w = Sprite(logo_w_img); logo_w.SetZ(12);
+
+tag_img = sc(Image("tagline.png"));
+tag = Sprite(tag_img);
+TY = LY + logo_w_img.GetHeight() + 24 * S;
+tag.SetPosition(CX - tag_img.GetWidth() / 2, TY, 12);
+
+# ---------- progress segments ----------
+seg_on = sc(Image("seg-on.png"));
+seg_off = sc(Image("seg-off.png"));
+seg_head = sc(Image("seg-head.png"));
+NSEG = 28;
+SEG_STEP = 8.6 * 2.77 * S;
+BAR_W = NSEG * SEG_STEP;
+BX = CX - BAR_W / 2;
+BY = TY + tag_img.GetHeight() + 120 * S;
+PAD = 8 * 2.77 * S;
+for (i = 0; i < NSEG; i++) {
+  seg[i] = Sprite(seg_off);
+  seg[i].SetPosition(BX + i * SEG_STEP - PAD, BY - PAD, 20);
+}
+
+FONT = "Monospace Bold 9";
+FONT_SM = "Monospace 8";
+pct_sprite = Sprite(); pct_sprite.SetZ(21);
+lbl_sprite = Sprite(Image.Text("LOADING CORE", 0.92, 0.99, 1, 0.6, FONT_SM));
+lbl_sprite.SetPosition(BX, BY - 40 * S, 21);
+msg_sprite = Sprite(); msg_sprite.SetPosition(BX, BY + 70 * S, 21);
+
+# ---------- HUD / overlays ----------
+corner_img = sc(Image("corner.png"));
+M = 20 * 2.77 * S;
+CW = corner_img.GetWidth();
+corner[0] = Sprite(corner_img);                      corner[0].SetPosition(M, M, 40);
+corner[1] = Sprite(corner_img.Rotate(3.14159 / 2));  corner[1].SetPosition(W - M - CW, M, 40);
+corner[2] = Sprite(corner_img.Rotate(-3.14159 / 2)); corner[2].SetPosition(M, H - M - CW, 40);
+corner[3] = Sprite(corner_img.Rotate(3.14159));      corner[3].SetPosition(W - M - CW, H - M - CW, 40);
+sys_lbl = Sprite(Image.Text("SYS//BOOT", 0.16, 0.94, 1, 0.6, FONT_SM));
+sys_lbl.SetPosition(M + 16 * S, M + 40 * S, 40);
+
+overlay = Sprite(Image("overlay.png").Scale(W, H)); overlay.SetPosition(0, 0, 50);
+sweep_img = Image("sweep.png").Scale(W, Math.Int(330 * S));
+sweep = Sprite(sweep_img); sweep.SetZ(49);
+glitch_img = Image("glitch.png").Scale(W, Math.Int(60 * S));
+glitch = Sprite(glitch_img); glitch.SetZ(48); glitch.SetOpacity(0);
+
+# ---------- state ----------
+global.t = 0;
+global.progress = 0;
+global.shown = 0;
+global.last_pct = -1;
+global.g_left = 0;
+global.g_next = 60;
+
+fun refresh() {
+  global.t++;
+  # rain
+  for (i = 0; i < NCOLS; i++) {
+    rain[i].y += rain[i].v;
+    if (rain[i].y > H) {
+      r = Math.Int(Math.Random() * 8);
+      rain[i].sprite.SetImage(rain_img[r]);
+      rain[i].h = rain_img[r].GetHeight();
+      rain[i].y = -rain[i].h;
+      rain[i].v = (1.0 + Math.Random() * 2.4) * S * 2.6;
+    }
+    rain[i].sprite.SetY(rain[i].y);
+  }
+
+  # intro fade
+  a = global.t / 35; if (a > 1) a = 1;
+  logo_w.SetOpacity(a); logo_a.SetOpacity(a * 0.9); logo_b.SetOpacity(a * 0.9); tag.SetOpacity(a);
+
+  # glitch scheduler
+  global.g_next--;
+  if (global.g_next <= 0) {
+    global.g_left = 3 + Math.Int(Math.Random() * 8);
+    global.g_next = 60 + Math.Int(Math.Random() * 150);
+  }
+  o = (1.2 + 0.6 * Math.Sin(global.t / 25)) * 2.77 * S;
+  jx = 0;
+  if (global.g_left > 0) {
+    global.g_left--;
+    o = (2 + Math.Random() * 5) * 2.77 * S;
+    jx = (Math.Random() - 0.5) * 14 * S;
+    glitch.SetY(Math.Random() * H);
+    glitch.SetOpacity(1);
+    if (Math.Random() < 0.25) logo_w.SetOpacity(0.4);
+  } else {
+    glitch.SetOpacity(0);
+  }
+  logo_b.SetPosition(LX + o + jx, LY, 10);
+  logo_a.SetPosition(LX - o - jx, LY, 11);
+  logo_w.SetPosition(LX + jx * 0.3, LY, 12);
+
+  # scan sweep
+  sweep.SetY(((global.t * 7 * S) % (H + 330 * S)) - 330 * S);
+
+  # progress (eased toward reported value)
+  global.shown += (global.progress - global.shown) * 0.08;
+  filled = Math.Int(global.shown * NSEG);
+  for (i = 0; i < NSEG; i++) {
+    if (i < filled) seg[i].SetImage(seg_on);
+    else if (i == filled) {
+      seg[i].SetImage(seg_head);
+      if (Math.Int(global.t / 3) % 2 == 0) seg[i].SetOpacity(1); else seg[i].SetOpacity(0.35);
+    } else { seg[i].SetImage(seg_off); seg[i].SetOpacity(1); }
+  }
+  pct = Math.Int(global.shown * 100);
+  if (pct != global.last_pct) {
+    global.last_pct = pct;
+    s = "" + pct; if (pct < 10) s = "0" + s; if (pct < 100) s = "0" + s;
+    img = Image.Text(s + "%", 0.16, 0.94, 1, 1, FONT);
+    pct_sprite.SetImage(img);
+    pct_sprite.SetPosition(BX + BAR_W - img.GetWidth(), BY - 40 * S, 21);
+  }
+}
+Plymouth.SetRefreshFunction(refresh);
+
+fun boot_progress(duration, p) { global.progress = p; }
+Plymouth.SetBootProgressFunction(boot_progress);
+
+fun set_msg(text) { msg_sprite.SetImage(Image.Text("> " + text, 0.92, 0.99, 1, 0.72, FONT_SM)); }
+Plymouth.SetMessageFunction(set_msg);
+fun status(text) { set_msg(text); }
+Plymouth.SetUpdateStatusFunction(status);
+
+# ---------- minimal LUKS prompt (keeps encrypted installs bootable) ----------
+pw_prompt = Sprite(); pw_prompt.SetZ(30);
+fun display_password(prompt, bullets) {
+  global.progress = global.shown;
+  pw_prompt.SetImage(Image.Text(prompt, 1, 0.18, 0.53, 1, FONT));
+  pw_prompt.SetPosition(BX, BY + 110 * S, 30);
+  bimg = sc(Image("bullet.png"));
+  for (i = 0; i < 32; i++) {
+    if (!bullet[i]) bullet[i] = Sprite(bimg);
+    bullet[i].SetPosition(BX + i * bimg.GetWidth() * 1.6, BY + 150 * S, 30);
+    if (i < bullets) bullet[i].SetOpacity(1); else bullet[i].SetOpacity(0);
+  }
+}
+Plymouth.SetDisplayPasswordFunction(display_password);
+fun display_normal() {
+  pw_prompt.SetOpacity(0);
+  for (i = 0; i < 32; i++) if (bullet[i]) bullet[i].SetOpacity(0);
+}
+Plymouth.SetDisplayNormalFunction(display_normal);
+
+fun quit() { global.progress = 1; }
+Plymouth.SetQuitFunction(quit);

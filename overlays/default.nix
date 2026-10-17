@@ -10,6 +10,7 @@ _: final: {
   cosmic-camera = final.callPackage ../packages/cosmic-camera { };
   enroll = final.callPackage ../packages/enroll { };
   plymouth-fjordxy = final.callPackage ../packages/plymouth-fjordxy { };
+  plymouth-nixos = final.callPackage ../packages/plymouth-nixos { };
   gh-release-mono = final.callPackage ../packages/gh-release-mono { };
   gh-tidy = final.callPackage ../packages/gh-tidy { };
   nfc-badge = final.callPackage ../packages/nfc-badge { };

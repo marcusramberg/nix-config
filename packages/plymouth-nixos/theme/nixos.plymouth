@@ -1,0 +1,8 @@
+[Plymouth Theme]
+Name=nixos
+Description=Cyberpunk neon-glitch boot splash for NixOS mobile
+ModuleName=script
+
+[script]
+ImageDir=/usr/share/plymouth/themes/nixos
+ScriptFile=/usr/share/plymouth/themes/nixos/nixos.script
