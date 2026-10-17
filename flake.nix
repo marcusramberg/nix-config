@@ -270,7 +270,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     tee-fprintd = {
-      url = "git+file:///home/marcus/Source/tee-fprintd";
+      url = "git+https://code.bas.es/marcus/tee-fprintd?ref=main";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };

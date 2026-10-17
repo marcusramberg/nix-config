@@ -1219,15 +1219,16 @@
       "locked": {
         "lastModified": 1791795922,
         "narHash": "sha256-9X5reON+xSMo0/FyBjbo+fkE3bn9RGb6y1DJbbazzPQ=",
-        "ref": "refs/heads/main",
+        "ref": "main",
         "rev": "893a6ca00860d629f73a858781d69039b1709216",
         "revCount": 8,
         "type": "git",
-        "url": "file:///home/marcus/Source/tee-fprintd"
+        "url": "https://code.bas.es/marcus/tee-fprintd"
       },
       "original": {
+        "ref": "main",
         "type": "git",
-        "url": "file:///home/marcus/Source/tee-fprintd"
+        "url": "https://code.bas.es/marcus/tee-fprintd"
       }
     },
     "tfenv": {
