@@ -16,15 +16,17 @@
     systemPackages = with pkgs; [
       hunspell
       hunspellDicts.en-us
+      nfc-badge
     ];
   };
+  # nfc-badge runs as the user; it needs the door UID and the raw CLF node.
+  age.secrets.hackeriet-door.owner = "marcus";
   console.font = "solar24x32";
 
   vanilla-mobile.device.fairphone5 = {
     enable = true;
     fingerprint.enable = true;
   };
-  services.tee-fprintd.enable = true;
   systemd.services.tee-fprintd = {
     after = [ "focal32-load.service" ];
     environment.TEE_FPRINTD_DEBUG = "1";
@@ -85,7 +87,11 @@
     desktopManager = {
       gnome.enable = true;
     };
+    tee-fprintd.enable = true;
     # GNOME brings power-profiles-daemon; vanilla-mobile defaults to TLP.
     tlp.enable = false;
+    udev.extraRules = ''
+      KERNEL=="st21nfc_raw", GROUP="users", MODE="0660"
+    '';
   };
 }

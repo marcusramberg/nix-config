@@ -12,6 +12,7 @@ _: final: {
   plymouth-fjordxy = final.callPackage ../packages/plymouth-fjordxy { };
   gh-release-mono = final.callPackage ../packages/gh-release-mono { };
   gh-tidy = final.callPackage ../packages/gh-tidy { };
+  nfc-badge = final.callPackage ../packages/nfc-badge { };
   riff = final.callPackage ../packages/riff-client { };
   tastiera = final.kdePackages.callPackage ../packages/tastiera { };
   tfenv = final.callPackage ../packages/tfenv { inherit inputs; };
