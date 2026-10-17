@@ -43,8 +43,8 @@ in
       plymouth = {
         # Plymouth takes DRM master in the initrd and blanks unl0kr's LUKS prompt.
         enable = lib.mkDefault true;
-        theme = lib.mkForce "fjordxy";
-        themePackages = [ pkgs.plymouth-fjordxy ];
+        theme = lib.mkForce "nixos";
+        themePackages = [ pkgs.plymouth-nixos ];
       };
       consoleLogLevel = lib.mkDefault 3;
       kernelParams = lib.mkOrder 1600 (

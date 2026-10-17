@@ -30,8 +30,8 @@ in
       initrd.systemd.enable = true; # This is needed to show the plymouth login screen to unlock luks
       plymouth = {
         enable = true;
-        theme = "catppuccin-mocha";
-        themePackages = [ (pkgs.catppuccin-plymouth.override { variant = "mocha"; }) ];
+        theme = lib.mkForce "nixos";
+        themePackages = [ pkgs.plymouth-nixos ];
       };
       consoleLogLevel = 3;
       initrd.verbose = false;
