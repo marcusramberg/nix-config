@@ -4,6 +4,7 @@
   nixos-icons,
   librsvg,
   imagemagick,
+  jetbrains-mono,
 }:
 stdenvNoCC.mkDerivation {
   pname = "plymouth-nixos";
@@ -25,6 +26,8 @@ stdenvNoCC.mkDerivation {
     magick base.png \( +clone -fill '#2ef0ff' -colorize 100 -blur 0x14 \) -compose dst-over -composite $pad $dir/logo.png
     magick base.png -fill '#2ef0ff' -colorize 100 $pad $dir/logo-a.png
     magick base.png -fill '#ff2d87' -colorize 100 $pad $dir/logo-b.png
+    magick -background none -fill '#2ef0ff' -font ${jetbrains-mono}/share/fonts/truetype/JetBrainsMono-Regular.ttf \
+      -pointsize 28 -kerning 9 label:'REPRODUCIBLE // DECLARATIVE // RELIABLE' -trim $dir/tagline.png
   '';
 
   meta = {

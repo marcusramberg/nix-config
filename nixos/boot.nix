@@ -1,6 +1,7 @@
 {
   config,
   lib,
+  pkgs,
   ...
 }:
 let
@@ -16,18 +17,27 @@ in
         enable = true;
         maxGenerations = 4;
         secureBoot.enable = cfg.secureboot;
+        # Colours match packages/plymouth-nixos
         style = {
+          wallpapers = [ "${pkgs.limine-nixos}/wallpaper.png" ];
+          wallpaperStyle = "stretched";
+          backdrop = "040509";
           interface = {
             branding = "if found, please return to Marcus Ramberg - 94357747";
+            brandingColor = "ff2d87";
+            helpColor = "2ef0ff";
+            helpColorBright = "7ff6ff";
             resolution = "1920x1200";
           };
           graphicalTerminal = {
-            palette = "4c4f69;d20f39;40a02b;dc8a78;1e66f5;ea76cb;209fb5;7c7f93";
+            palette = "040509;ff2d87;2ef0ff;ffe14d;2ef0ff;ff2d87;2ef0ff;ebfdff";
+            brightPalette = "1a1d2e;ff5da3;7ff6ff;fff07a;7ff6ff;ff5da3;7ff6ff;ffffff";
+            foreground = "ebfdff";
+            background = "040509";
+            brightForeground = "ffffff";
+            brightBackground = "1a1d2e";
             font.scale = "3x3";
           };
-          wallpapers = [
-            ../wallpaper/tokyonight.jpg
-          ];
         };
       };
       efi.canTouchEfiVariables = true;
