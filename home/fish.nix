@@ -57,8 +57,8 @@ in
       git-hash = "git log -1 --format=%H| tee /dev/tty |pbcopy";
       hackerpass = "env PASSWORD_STORE_GPG_OPTS=\"--trust-model always\" PASSWORD_STORE_DIR=/home/marcus/.hackeriet_pass , pass";
       imgcat = "chafa";
-      pbcopy = if pkgs.stdenv.hostPlatform.isLinux then "wl-copy" else "pbcopy";
-      pbpaste = if pkgs.stdenv.hostPlatform.isLinux then "wl-paste" else "pbpaste";
+      pbcopy = "wl-copy";
+      pbpaste = "wl-paste";
       r = "cd (git root)";
     };
 

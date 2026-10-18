@@ -9,7 +9,6 @@
     ];
     config = {
       allowUnfree = true;
-      allowBroken = true;
     };
     hostPlatform = system;
   };

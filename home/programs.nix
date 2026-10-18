@@ -64,6 +64,8 @@
       settings = {
         "*" = {
           AddKeysToAgent = "yes";
+        };
+        "mstudio mwork" = {
           ForwardAgent = true;
         };
         "mouse1" = {

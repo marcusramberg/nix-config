@@ -32,7 +32,6 @@ in
       options.age.identityPaths.default
       ++ (filter pathExists [
         "/home/marcus/.ssh/id_ed25519"
-        "/Users/marcus/.ssh/id_ed25519"
       ]);
   };
 }

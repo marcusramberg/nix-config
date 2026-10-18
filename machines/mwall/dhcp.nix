@@ -16,7 +16,7 @@
 
           # kea 3.2 dropped the control agent; dhcp4 serves http itself, but it
           # refuses an http channel with neither auth nor TLS ("Unsecured HTTP
-          # control channel"). Nothing here scrapes it, so unix socket only.
+          # control channel"). The exporter uses the Unix socket instead.
           control-sockets = [
             {
               socket-type = "unix";
@@ -88,9 +88,7 @@
 
     prometheus.exporters.kea = {
       enable = true;
-      controlSocketPaths = [
-        "http://127.0.0.1:4000"
-      ];
+      targets = [ "/run/kea/dhcp4.sock" ];
     };
   };
 

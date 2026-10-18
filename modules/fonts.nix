@@ -14,23 +14,21 @@ in
   };
   config = mkIf cfg.enable {
     fonts = {
-      fontDir.enable = lib.mkIf pkgs.stdenv.hostPlatform.isLinux true;
-      packages =
-        with pkgs;
-        [
-          dina-font
-          eb-garamond
-          liberation_ttf
-          mplus-outline-fonts.githubRelease
-          noto-fonts
-          proggyfonts
-          nerd-fonts.jetbrains-mono
-          nerd-fonts.iosevka
-          nerd-fonts.hack
-          roboto
-          roboto-serif
-        ]
-        ++ lib.optional stdenv.hostPlatform.isLinux noto-fonts-color-emoji;
+      fontDir.enable = true;
+      packages = with pkgs; [
+        dina-font
+        eb-garamond
+        liberation_ttf
+        mplus-outline-fonts.githubRelease
+        noto-fonts
+        proggyfonts
+        nerd-fonts.jetbrains-mono
+        nerd-fonts.iosevka
+        nerd-fonts.hack
+        roboto
+        roboto-serif
+        noto-fonts-color-emoji
+      ];
     };
   };
 }

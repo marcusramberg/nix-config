@@ -9,7 +9,7 @@ let
   cfg = config.profiles.desktop;
   # quickshell = inputs.quickshell.packages.${pkgs.stdenv.hostPlatform.system}.default;
   dms = inputs.dank-shell.packages.${pkgs.stdenv.hostPlatform.system}.default;
-  dmsRegistry = inputs.dms-plugin-registry.packages.${pkgs.system};
+  dmsRegistry = inputs.dms-plugin-registry.packages.${pkgs.stdenv.hostPlatform.system};
   gsettingsSchemas = pkgs.gsettings-desktop-schemas;
   schemaDir = pkgs.glib.makeSchemaPath gsettingsSchemas gsettingsSchemas.name;
 in

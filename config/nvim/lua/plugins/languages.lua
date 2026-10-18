@@ -107,7 +107,7 @@ return {
           settings = {
             Lua = {
               diagnostics = {
-                globals = { "hs", "vim" },
+                globals = { "vim" },
               },
             },
           },

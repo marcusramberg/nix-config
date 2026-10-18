@@ -156,7 +156,7 @@
     packageOverrides =
       let
         nixpkgs-small = import inputs.nixpkgs-small {
-          inherit (pkgs) system;
+          inherit (pkgs.stdenv.hostPlatform) system;
           config.allowUnfree = true;
         };
       in

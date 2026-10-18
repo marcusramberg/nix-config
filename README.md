@@ -12,13 +12,13 @@
 - My media center / home hub
 - Thinkpad
 - Mac x86 laptop running nixos
-- M1 Studio running NixOS/nix-darwin dual boot on my desktop
+- M1 Studio running NixOS on my desktop
 - NixOS based router
 - Steam deck + Gaming desktop using [Jovian](https://jovian-experiments.github.io/Jovian-NixOS/)
 - Various experiments
 - +++
 
-This configuration is based on using flakes, nix-darwin and home manager.
+This configuration is based on using flakes, NixOS and home manager.
 
 I mostly interact with it on NixOS using
 [hei](https://github.com/marcusramberg/hei), my rewrite of
@@ -33,7 +33,6 @@ Obviously this is always a WIP.
 ## Folder structure
 
 - `config`/ - Configuration files to be installed in home
-- `darwin`/ - Nix-darwin specific configuration
 - `nixos`/ - NixOS specific configuration
 - `secrets`/ - Secrets to be decrypted with agenix
 - `home`/ - Shared Home manager configuration

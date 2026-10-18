@@ -109,7 +109,6 @@
         homeConfigurations = {
           marcus = mkHMConfig { };
           aarch64 = mkHMConfig { system = "aarch64-linux"; };
-          mac = mkHMConfig { system = "aarch64-darwin"; };
         };
       };
       perSystem =
@@ -151,6 +150,10 @@
             bitritter = pkgs.callPackage ./packages/bitritter { };
           };
           checks = {
+            home-manager =
+              self.homeConfigurations.${
+                if system == "x86_64-linux" then "marcus" else "aarch64"
+              }.activationPackage;
             nixpkgs-prs =
               let
                 results = import ./tests/nixpkgs-prs.nix {
@@ -217,7 +220,6 @@
     nix-index-database.inputs.nixpkgs.follows = "nixpkgs";
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     nixpkgs-small.url = "github:nixos/nixpkgs/master";
-    neovim-nightly-overlay.url = "github:nix-community/neovim-nightly-overlay";
     pre-commit-hooks = {
       url = "github:cachix/git-hooks.nix";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -255,7 +257,6 @@
       url = "github:marcusramberg/DankMaterialShell/mobile";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    dmsgreeter.url = "github:AvengeMedia/dank-greeter";
     dms-plugin-registry = {
       url = "github:AvengeMedia/dms-plugin-registry";
       inputs.nixpkgs.follows = "nixpkgs";

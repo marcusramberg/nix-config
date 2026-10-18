@@ -47,7 +47,7 @@
   untracked = cyan
 [core]
   whitespace = trailing-space,space-before-tab
-	excludesfile = /Users/marcus/.gitignore_global
+	excludesfile = ~/.gitignore_global
   pager = delta 
 
 [interactive]
@@ -88,14 +88,10 @@
   required = true
 	clean = git media clean %f
 	smudge = git media smudge %f
-[ghi]
-	token = !security find-internet-password -a marcusramberg -s github.com -l 'ghi token' -w
 [filter "hawser"]
 	clean = git hawser clean %f
 	smudge = git hawser smudge %f
 	required = true
-[ghi]
-	token = !security find-internet-password -a marcusramberg -s github.com -l 'ghi token' -w
 [filter "lfs"]
 	required = true
 	clean = git-lfs clean -- %f
@@ -120,7 +116,7 @@
 	algorithm = patience
   colorMoved = default
 [bulkworkspaces]
-	rm = /Users/marcus/Source/reMarkable/
+	rm = ~/Source/reMarkable/
 [url "ssh://git@github.com/reMarkable"]
 	insteadOf = https://github.com/reMarkable
 

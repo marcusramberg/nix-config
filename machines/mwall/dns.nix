@@ -13,5 +13,8 @@
     };
   };
   # lan is a trusted interface, isolated deliberately is not
-  networking.firewall.interfaces.isolated.allowedUDPPorts = [ 53 ];
+  networking.firewall.interfaces.isolated = {
+    allowedUDPPorts = [ 53 ];
+    allowedTCPPorts = [ 53 ];
+  };
 }
