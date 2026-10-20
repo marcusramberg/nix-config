@@ -33,7 +33,6 @@ let
     lsof
     ncdu
     inputs.theheck.packages.${stdenv.hostPlatform.system}.default
-    nono
     otree
     ripgrep
     sqlite
