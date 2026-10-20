@@ -1,7 +1,7 @@
 {
   "currentThemeName": "custom",
   "currentThemeCategory": "registry",
-  "customThemeFile": "/home/marcus/.config/DankMaterialShell/themes/joziCityNights/theme.json",
+  "customThemeFile": "/home/marcus/.config/DankMaterialShell/themes/glitchpunk/theme.json",
   "registryThemeVariants": {
     "catppuccin": {
       "light": {
@@ -84,7 +84,7 @@
   "enableFprint": true,
   "maxFprintTries": 3,
   "lockScreenVideoEnabled": true,
-  "lockScreenVideoPath": "/home/marcus/Videos/0b5vr GLSL Techno Live Set - ＂0mix＂ (WebGL 64KB Intro) [3lOptjAeA2w].webm",
+  "lockScreenVideoPath": "/home/marcus/Videos/0b5vr GLSL Techno Live Set - \uff020mix\uff02 (WebGL 64KB Intro) [3lOptjAeA2w].webm",
   "lockScreenVideoCycling": true,
   "osdPosition": 0,
   "osdMediaPlaybackEnabled": true,
@@ -518,5 +518,8 @@
         "syncPositionAcrossScreens": true
       }
     }
+  ],
+  "dmsWindowsFloatingSeeded": [
+    "niri"
   ]
 }

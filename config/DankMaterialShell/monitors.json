@@ -228,6 +228,24 @@
           "niri": {}
         }
       }
+    },
+    {
+      "id": "auto_a6a8c63e",
+      "name": "",
+      "outputs": {
+        "Unknown Unknown Unknown": {
+          "mode": "2560x1440@59.951",
+          "position": {
+            "x": 0,
+            "y": 0
+          },
+          "scale": 1,
+          "transform": "Normal",
+          "vrr": false,
+          "disabled": false,
+          "niri": {}
+        }
+      }
     }
   ]
 }
