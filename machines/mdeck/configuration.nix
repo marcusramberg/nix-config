@@ -56,13 +56,18 @@
     swapAlt.enable = true;
   };
 
-  profiles.dmsMobile.enable = true;
-  services.displayManager.phrog.enable = lib.mkForce false;
-
   powerManagement.cpuFreqGovernor = "schedutil";
+  profiles.dmsMobile.enable = true;
 
-  programs.steam = {
-    enable = true;
+  programs = {
+    springchick.panelTransform = "90";
+    steam = {
+      enable = true;
+    };
+  };
+  services = {
+    displayManager.phrog.enable = lib.mkForce false;
+    displayManager.defaultSession = lib.mkOverride 40 "gamescope-wayland";
   };
 
   # Symlink old Steam Deck SD card path to new one.
