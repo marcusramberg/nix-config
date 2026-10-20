@@ -964,11 +964,11 @@
         "rust-overlay": "rust-overlay"
       },
       "locked": {
-        "lastModified": 1792229810,
-        "narHash": "sha256-ndUaRgADMR03W6q21lrjQi0YK6scQzL+xSFXznIZ7fM=",
+        "lastModified": 1792428320,
+        "narHash": "sha256-B0RckajGvIGcP1o9BKUpGJwKbT/T3akkJHlJy8UhVwE=",
         "ref": "main",
-        "rev": "3b2ebdadd078c856e9b85e60dabd94d62b236f9e",
-        "revCount": 324,
+        "rev": "28d4e52af41247dd8ed2b3f3418525112742fa31",
+        "revCount": 348,
         "type": "git",
         "url": "https://code.bas.es/marcus/springchick.git"
       },

@@ -192,7 +192,7 @@
       "widgetOutlineOpacity": 0.27,
       "shadowColorMode": "secondary",
       "scrollXBehavior": "workspace",
-      "scrollYBehavior": "column",
+      "scrollYBehavior": "focusWindow",
       "maximizeWidgetIcons": false,
       "iconScale": 1.05,
       "island": false,
@@ -265,7 +265,7 @@
   "frameBarSize": 35,
   "frameShowOnOverview": true,
   "frameCloseGaps": false,
-  "configVersion": 39,
+  "configVersion": 42,
   "blurBorderEnabled": true,
   "dockConfigs": [
     {
