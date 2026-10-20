@@ -10,6 +10,91 @@ let
   dms = inputs.dmsmobile.packages.${pkgs.stdenv.hostPlatform.system}.default;
   gsettingsSchemas = pkgs.gsettings-desktop-schemas;
   schemaDir = pkgs.glib.makeSchemaPath gsettingsSchemas gsettingsSchemas.name;
+
+  # Only what differs from the compositor's compiled-in defaults
+  # (config.example.toml documents them). mpixel's panel wants none.
+  bind =
+    key: attrs:
+    {
+      inherit key;
+    }
+    // attrs;
+
+  springchickSettings = {
+    main =
+      {
+        dmsmobile = {
+          dpi = 2.8;
+          card_radius = "auto";
+        };
+      }
+      .${config.networking.hostName} or { };
+    xkb = {
+      layout = "no,us";
+      # variant = "mac";
+      options = "grp:win_space_toggle";
+    };
+    predict.dictionaries = [
+      "nb_NO"
+      "en_US"
+    ];
+    # A binding list replaces the built-in set rather than merging into it,
+    # so every binding we want is here, defaults included.
+    keybinds.binding = [
+      (bind "XF86AudioRaiseVolume" { action = "switcher-prev"; })
+      (bind "XF86AudioRaiseVolume" {
+        press = "long";
+        action = "toggle-fullscreen";
+      })
+      (bind "XF86AudioLowerVolume" { action = "switcher-next"; })
+      (bind "XF86PowerOff" { action = "toggle-display"; })
+      (bind "XF86PowerOff" {
+        press = "long";
+        command = "dms ipc lock lock; systemctl suspend";
+      })
+      (bind "XF86PowerOff" {
+        "with" = [ "XF86AudioLowerVolume" ];
+        action = "screenshot";
+      })
+      (bind "XF86AudioPlay" { command = "dms ipc mpris playPause"; })
+      (bind "XF86AudioPrev" { command = "dms ipc mpris previous"; })
+      (bind "XF86AudioNext" { command = "dms ipc mpris next"; })
+      (bind "h" {
+        mods = [ "Super" ];
+        action = "home";
+      })
+      (bind "f" {
+        mods = [ "Super" ];
+        action = "toggle-fullscreen";
+      })
+      (bind "s" {
+        mods = [ "Super" ];
+        action = "search";
+      })
+      (bind "q" {
+        mods = [ "Super" ];
+        action = "close-app";
+      })
+      (bind "p" {
+        mods = [
+          "Super"
+          "Shift"
+        ];
+        action = "screenshot";
+      })
+      (bind "Tab" {
+        mods = [ "Super" ];
+        action = "switcher-next";
+      })
+      (bind "ISO_Left_Tab" {
+        mods = [
+          "Super"
+          "Shift"
+        ];
+        action = "switcher-prev";
+      })
+    ];
+  };
 in
 
 {
@@ -110,6 +195,7 @@ in
           bazaar
           enroll
           firefoxpwa
+          hunspellDicts.nb_NO
           melonds
           mpv
           powersupply
@@ -139,7 +225,11 @@ in
         enable = true;
         terminal = "foot";
       };
-      springchick.enable = true;
+      springchick = {
+        enable = true;
+        osk.enable = true;
+        settings = springchickSettings;
+      };
       # phrog drives the backlight from the ambient sensor, and caiman's ALS
       # sits under the display: a lit room measures ~2.7 lux, which phosh's
       # curve maps to 64/4095 -- unreadable. Lift the whole curve until the
@@ -215,7 +305,6 @@ in
           partOf = [ "graphical-session.target" ];
           wantedBy = [
             "niri.service"
-            "springchick.service"
           ];
           serviceConfig = {
             ExecStart = "${pkgs.wvkbd}/bin/wvkbd-mobintl --alpha 220 --hidden --auto";

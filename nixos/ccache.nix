@@ -14,5 +14,7 @@ in
   config = mkIf cfg.enable {
     nix.settings.extra-sandbox-paths = [ "/var/cache/ccache" ];
     programs.ccache.enable = true;
+    # upstream ships a setgid perl script, rejected by ensure-wrapper-integrity
+    security.wrappers.nix-ccache.enable = false;
   };
 }
