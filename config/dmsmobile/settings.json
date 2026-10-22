@@ -47,6 +47,10 @@
       "showTrash": false,
       "trashFileManager": "default",
       "trashCustomCommand": "",
+      "magnification": false,
+      "magnificationScale": 130,
+      "magnificationProfile": "parabolic",
+      "magnificationExpand": false,
       "order": [],
       "widgets": [
         {
@@ -124,5 +128,159 @@
       "widgetFollowInterfaceStyle": true
     }
   ],
-  "configVersion": 31
+  "configVersion": 42,
+  "controlCenterWidgets": [
+    {
+      "id": "user",
+      "enabled": true,
+      "w": 5,
+      "h": 1,
+      "col": 0,
+      "row": 0
+    },
+    {
+      "id": "settings",
+      "enabled": true,
+      "w": 1,
+      "h": 1,
+      "small": false,
+      "col": 0,
+      "row": 1
+    },
+    {
+      "id": "lock",
+      "enabled": true,
+      "w": 1,
+      "h": 1,
+      "small": false,
+      "col": 1,
+      "row": 1
+    },
+    {
+      "id": "power",
+      "enabled": true,
+      "w": 1,
+      "h": 1,
+      "small": false,
+      "col": 2,
+      "row": 1
+    },
+    {
+      "id": "brightnessSlider",
+      "enabled": true,
+      "w": 2.5,
+      "h": 1,
+      "col": 2.5,
+      "row": 2
+    },
+    {
+      "id": "volumeSlider",
+      "enabled": true,
+      "w": 2.5,
+      "h": 1,
+      "col": 0,
+      "row": 2
+    },
+    {
+      "id": "wifi",
+      "enabled": true,
+      "w": 2.5,
+      "h": 1,
+      "col": 0,
+      "row": 3
+    },
+    {
+      "id": "bluetooth",
+      "enabled": true,
+      "w": 2.5,
+      "h": 1,
+      "col": 2.5,
+      "row": 3
+    },
+    {
+      "id": "audioOutput",
+      "enabled": true,
+      "w": 2.5,
+      "h": 1,
+      "col": 2.5,
+      "row": 4
+    },
+    {
+      "id": "audioInput",
+      "enabled": true,
+      "w": 2.5,
+      "h": 1,
+      "col": 0,
+      "row": 4
+    },
+    {
+      "id": "darkMode",
+      "enabled": true,
+      "w": 2,
+      "h": 1,
+      "col": 3,
+      "row": 1
+    },
+    {
+      "id": "nightMode",
+      "enabled": true,
+      "w": 1,
+      "h": 1,
+      "col": 0,
+      "row": 5
+    },
+    {
+      "id": "doNotDisturb",
+      "enabled": true,
+      "w": 1,
+      "h": 1,
+      "col": 0,
+      "row": 6
+    },
+    {
+      "id": "idleInhibitor",
+      "enabled": true,
+      "w": 1,
+      "h": 1,
+      "col": 1,
+      "row": 5
+    },
+    {
+      "id": "battery",
+      "enabled": true,
+      "w": 2.5,
+      "h": 1,
+      "col": 2.5,
+      "row": 5
+    },
+    {
+      "id": "diskUsage",
+      "enabled": true,
+      "w": 4,
+      "h": 1,
+      "col": 1,
+      "row": 6
+    },
+    {
+      "id": "runningApps",
+      "enabled": true,
+      "w": 7,
+      "h": 1,
+      "small": true,
+      "col": 0,
+      "row": 7
+    },
+    {
+      "id": "edit",
+      "enabled": true,
+      "w": 1,
+      "h": 1,
+      "small": true,
+      "col": 4,
+      "row": 8
+    }
+  ],
+  "currentThemeCategory": "registry",
+  "currentThemeName": "custom",
+  "customThemeFile": "/home/marcus/.config/dms/themes/glitchpunk/theme.json"
 }

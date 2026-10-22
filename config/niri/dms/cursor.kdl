@@ -4,7 +4,7 @@
 // ! PLACE YOUR CUSTOM CONFIGURATION ELSEWHERE !
 
 cursor {
-    xcursor-theme "Adwaita"
+    xcursor-theme "catppuccin-mocha-lavender-cursors"
     xcursor-size 24
     hide-when-typing
     hide-after-inactive-ms 1501

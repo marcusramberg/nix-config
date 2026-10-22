@@ -111,14 +111,6 @@ in
     };
   };
   config = lib.mkIf cfg.enable {
-    # Temp patch for wvkbd while we try to get it fixed upstream
-    nixpkgs.overlays = [
-      (_final: prev: {
-        wvkbd = prev.wvkbd.overrideAttrs (o: {
-          patches = (o.patches or [ ]) ++ [ ./wvkbd-show-reentrancy.patch ];
-        });
-      })
-    ];
 
     boot = {
       initrd = {
@@ -184,7 +176,7 @@ in
         NIXOS_OZONE_WL = "1";
       };
       # GNOME's module defaults this to "ibus", which stops Qt binding
-      # zwp_text_input_v3 at all, so wvkbd --auto never sees a text field.
+      # zwp_text_input_v3 at all
       variables = {
         QT_IM_MODULE = lib.mkForce "wayland";
         GTK_IM_MODULE = lib.mkForce "wayland";
@@ -230,12 +222,9 @@ in
         osk.enable = true;
         settings = springchickSettings;
       };
-      # phrog drives the backlight from the ambient sensor, and caiman's ALS
-      # sits under the display: a lit room measures ~2.7 lux, which phosh's
-      # curve maps to 64/4095 -- unreadable. Lift the whole curve until the
-      # sensor is properly calibrated, at which point this should go back to 0.
       dconf.profiles.user.databases = [
         {
+          ## FIMXE: this should work oob
           settings."mobi/phosh/shell/brightness".auto-brightness-offset = 0.3;
         }
       ];

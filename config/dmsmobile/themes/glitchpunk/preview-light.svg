@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="240" height="240" viewBox="0 0 240 240">
+  <rect width="240" height="240" fill="#eaf6f9"/>
+  <rect x="8" y="8" width="224" height="224" rx="8" fill="#f2fbfd"/>
+  <rect x="16" y="16" width="208" height="36" rx="6" fill="#e4f1f5"/>
+  <text x="28" y="40" font-family="monospace" font-size="12" font-weight="600" fill="#00697d">Glitchpunk (light)</text>
+  <rect x="16" y="60" width="208" height="72" rx="6" fill="#d6e8ee"/>
+  <text x="28" y="82" font-family="monospace" font-size="11" fill="#06212a">SYS//BOOT</text>
+  <text x="28" y="98" font-family="monospace" font-size="10" fill="#5d7e88">LOADING CORE</text>
+  <rect x="28" y="108" width="72" height="18" rx="9" fill="#00697d"/>
+  <text x="64" y="120" font-family="monospace" font-size="9" text-anchor="middle" fill="#f2fbfd">Primary</text>
+  <rect x="108" y="108" width="48" height="18" rx="4" fill="#a3005c"/>
+  <rect x="16" y="140" width="100" height="52" rx="6" fill="#e4f1f5"/>
+  <rect x="24" y="148" width="84" height="36" rx="4" fill="#eaf6f9"/>
+  <text x="66" y="170" font-family="monospace" font-size="9" text-anchor="middle" fill="#06212a">Background</text>
+  <rect x="124" y="140" width="100" height="52" rx="6" fill="#e4f1f5"/>
+  <circle cx="148" cy="166" r="9" fill="#a3005c"/>
+  <circle cx="172" cy="166" r="9" fill="#7a4a00"/>
+  <circle cx="196" cy="166" r="9" fill="#00697d"/>
+  <rect x="16" y="200" width="208" height="24" rx="4" fill="#00697d" opacity="0.15"/>
+  <text x="120" y="216" font-family="monospace" font-size="9" text-anchor="middle" fill="#06212a">Surface Tint Overlay</text>
+</svg>
