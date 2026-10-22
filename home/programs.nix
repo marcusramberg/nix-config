@@ -8,7 +8,7 @@
       enable = true;
       config = {
         theme = "base16";
-        map-syntax = ".ignore:Git Ignore";
+        map-syntax = [ ".ignore:Git Ignore" ];
         style = "changes";
       };
     };
@@ -42,6 +42,11 @@
       enable = true;
       configPath = ".mozilla/firefox";
       nativeMessagingHosts = [ pkgs.firefoxpwa ];
+    };
+    ghostty = {
+      enable = true;
+      systemd.enable = true;
+      enableFishIntegration = true;
     };
     home-manager.enable = true;
     htop = {

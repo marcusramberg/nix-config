@@ -8,7 +8,6 @@ let
   isNixOS = lib.hasAttr "nixos" osConfig.system;
 in
 {
-  programs.bash.enable = true;
   programs.fish = {
     enable = true;
     functions = {
