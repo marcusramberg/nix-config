@@ -36,6 +36,7 @@ in
       gl = "git lg";
       gfu = "git fetch && git rebase origin/main";
       hey = "hei";
+      hr = "herdr --remote-keybindings server --remote ";
       k = "kubectl";
       kx = "kubectx";
       kns = "kubens";
