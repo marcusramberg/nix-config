@@ -47,6 +47,10 @@ let
         action = "toggle-fullscreen";
       })
       (bind "XF86AudioLowerVolume" { action = "switcher-next"; })
+      (bind "XF86AudioLowerVolume" {
+        press = "long";
+        command = "pkill -SIGRTMIN sc-osk";
+      })
       (bind "XF86PowerOff" { action = "toggle-display"; })
       (bind "XF86PowerOff" {
         press = "long";
@@ -113,10 +117,6 @@ in
   config = lib.mkIf cfg.enable {
 
     boot = {
-      initrd = {
-        systemd.enable = true;
-        verbose = false;
-      };
       plymouth = {
         # Plymouth takes DRM master in the initrd and blanks unl0kr's LUKS prompt.
         enable = lib.mkDefault true;
@@ -185,6 +185,7 @@ in
         with pkgs;
         [
           bazaar
+          desktop-file-utils
           enroll
           firefoxpwa
           hunspellDicts.nb_NO
@@ -200,14 +201,15 @@ in
           wl-clipboard
           yt-dlp
         ]
+        ++ [ inputs.android-translation-layer.packages.${pkgs.stdenv.hostPlatform.system}.default ]
         ++ lib.optional pkgs.stdenv.hostPlatform.isAarch64 charon;
     };
     programs = {
-      dms-shell = {
+      dux-shell = {
         enable = true;
         package = dms;
       };
-      dsearch.enable = true;
+      dux-search.enable = true;
       feedbackd.enable = true;
       foot = {
         enable = true;

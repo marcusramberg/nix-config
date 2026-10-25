@@ -88,7 +88,7 @@ in
 
     profiles.myfonts.enable = true;
     programs = {
-      dms-shell = {
+      dux-shell = {
         enable = true;
         package = dms;
         # quickshell.package = quickshell;
@@ -127,7 +127,7 @@ in
           };
         };
       };
-      dsearch.enable = true;
+      dux-search.enable = true;
       evolution.enable = false;
       gnome-terminal.enable = false;
       foot = {

@@ -66,6 +66,7 @@
     dmsMobile.enable = true;
     myfonts.enable = true;
   };
+  programs.calls.enable = true;
   services = {
     desktopManager = {
       gnome.enable = true;

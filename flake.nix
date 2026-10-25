@@ -16,7 +16,7 @@
           nixpkgsPRs = [
             {
               number = 558022;
-              hash = "sha256-qx5m4fcaWO8RBpSIceYyTCPr4Z0jLQ3Ja0DVgs/YgZc=";
+              hash = "sha256-pZd4mIKpM7DHDQ7VZM75Vnl0JsPn7MrIzhRSd1NnVDU=";
             }
             {
               number = 572284;
@@ -125,7 +125,7 @@
                 attic-client
                 git
                 go-task
-                inputs.clan-core.packages.${system}.clan-cli
+                (inputs.clan-core.packages.${system}.clan-cli.override { nix = pkgs.nixVersions.latest; })
                 inputs.hei.packages.${system}.default
                 lolcat
                 home-manager
@@ -251,6 +251,10 @@
     };
     vanilla-mobile-nixos = {
       url = "github:marcusramberg/vanilla-mobile-nixos/marcus/fp5";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    android-translation-layer = {
+      url = "git+https://code.bas.es/marcus/android-translation-layer.git?ref=master";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     dmsmobile = {

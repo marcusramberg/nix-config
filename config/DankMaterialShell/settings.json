@@ -84,7 +84,7 @@
   "enableFprint": true,
   "maxFprintTries": 3,
   "lockScreenVideoEnabled": true,
-  "lockScreenVideoPath": "/home/marcus/Videos/0b5vr GLSL Techno Live Set - \uff020mix\uff02 (WebGL 64KB Intro) [3lOptjAeA2w].webm",
+  "lockScreenVideoPath": "/home/marcus/Videos/0b5vr GLSL Techno Live Set - ＂0mix＂ (WebGL 64KB Intro) [3lOptjAeA2w].webm",
   "lockScreenVideoCycling": true,
   "osdPosition": 0,
   "osdMediaPlaybackEnabled": true,
@@ -103,7 +103,7 @@
       "leftWidgets": [
         {
           "id": "launcherButton",
-          "enabled": true
+          "enabled": false
         },
         {
           "id": "workspaceSwitcher",
@@ -111,26 +111,33 @@
           "showWorkspacePadding": true,
           "showWorkspaceApps": true,
           "maxWorkspaceIcons": 8,
-          "groupActiveWorkspaceApps": true
+          "groupActiveWorkspaceApps": true,
+          "workspaceIndicatorStyle": "lines",
+          "workspaceIndicatorCompact": false,
+          "showWorkspaceIndex": false,
+          "workspaceIndicatorRoundness": -1,
+          "showWorkspaceName": false
         },
         {
           "id": "focusedWindow",
-          "enabled": false,
-          "focusedWindowCompactMode": false
+          "enabled": true,
+          "focusedWindowCompactMode": false,
+          "focusedWindowShowIcon": true,
+          "focusedWindowSize": 1
         }
       ],
       "centerWidgets": [
         {
+          "id": "island",
+          "enabled": true
+        },
+        {
           "id": "music",
-          "enabled": true,
+          "enabled": false,
           "mediaSize": 0
         },
         {
           "id": "dankPomodoroTimer",
-          "enabled": true
-        },
-        {
-          "id": "systemTray",
           "enabled": true
         }
       ],
