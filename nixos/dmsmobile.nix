@@ -205,6 +205,7 @@ in
         ++ lib.optional pkgs.stdenv.hostPlatform.isAarch64 charon;
     };
     programs = {
+      calls.enable = true;
       dux-shell = {
         enable = true;
         package = dms;
