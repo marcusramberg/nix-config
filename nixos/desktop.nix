@@ -16,7 +16,7 @@ in
 {
   options.profiles.desktop = {
     enable = lib.mkEnableOption "niri+dank environment";
-    displayManager = lib.mkEnableOption "display manager (dms-greeter)" // {
+    displayManager = lib.mkEnableOption "display manager (dux-greeter)" // {
       default = true;
     };
   };
@@ -27,14 +27,12 @@ in
 
     # Enable plymouth
     boot = {
-      initrd.systemd.enable = true; # This is needed to show the plymouth login screen to unlock luks
       plymouth = {
         enable = true;
         theme = lib.mkForce "nixos";
         themePackages = [ pkgs.plymouth-nixos ];
       };
       consoleLogLevel = 3;
-      initrd.verbose = false;
       kernelParams = [
         "quiet"
         "boot.shell_on_fail"
@@ -59,7 +57,7 @@ in
           ghostty
           hunspell
           hunspellDicts.en_US
-          inputs.nixpkgs-small.legacyPackages.${pkgs.stdenv.hostPlatform.system}.dankcalendar
+          dux-calendar
           nautilus
           neovide
           showmethekey
@@ -164,7 +162,7 @@ in
     services = {
       keybase.enable = true;
       displayManager = lib.mkIf cfg.displayManager {
-        dms-greeter = {
+        dux-greeter = {
           enable = true;
           # quickshell.package = quickshell;
           compositor.name = "niri";
