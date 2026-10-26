@@ -103,6 +103,7 @@ in
 
 {
 
+  imports = [ inputs.android-translation-layer.nixosModules.default ];
   options = {
     profiles.dmsMobile = {
       enable = lib.mkEnableOption "Enable DMS Mobile configuration";
@@ -185,7 +186,7 @@ in
         with pkgs;
         [
           bazaar
-          desktop-file-utils
+          bitritter
           enroll
           firefoxpwa
           hunspellDicts.nb_NO
@@ -201,10 +202,10 @@ in
           wl-clipboard
           yt-dlp
         ]
-        ++ [ inputs.android-translation-layer.packages.${pkgs.stdenv.hostPlatform.system}.default ]
         ++ lib.optional pkgs.stdenv.hostPlatform.isAarch64 charon;
     };
     programs = {
+      android-translation-layer.enable = true;
       calls.enable = true;
       dux-shell = {
         enable = true;

@@ -147,7 +147,6 @@
           packages = {
             voyager = pkgs.callPackage ./packages/voyager { };
             riff-client = pkgs.callPackage ./packages/riff-client { };
-            bitritter = pkgs.callPackage ./packages/bitritter { };
           };
           checks = {
             home-manager =
