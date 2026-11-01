@@ -38,6 +38,20 @@ let
       "nb_NO"
       "en_US"
     ];
+    osk =
+      let
+        t = (lib.importJSON ../config/dmsmobile/themes/glitchpunk/theme.json).dark;
+      in
+      {
+        bg = t.background;
+        key = t.surfaceContainerHighest;
+        function_key = t.surfaceContainerHigh;
+        pressed = t.primaryContainer;
+        latched = t.primary;
+        ink = t.surfaceText;
+        ink_on_latched = t.primaryText;
+        selected = t.secondary;
+      };
     # A binding list replaces the built-in set rather than merging into it,
     # so every binding we want is here, defaults included.
     keybinds.binding = [
@@ -116,6 +130,9 @@ in
     };
   };
   config = lib.mkIf cfg.enable {
+
+    # The module reads pkgs.gcm-service, which only the overlay provides.
+    nixpkgs.overlays = [ inputs.android-translation-layer.overlays.default ];
 
     boot = {
       plymouth = {
@@ -205,7 +222,13 @@ in
         ++ lib.optional pkgs.stdenv.hostPlatform.isAarch64 charon;
     };
     programs = {
-      android-translation-layer.enable = true;
+      android-translation-layer = {
+        enable = true;
+        location.enable = true;
+        microphone.enable = true;
+        push.enable = true;
+        webview.enable = true;
+      };
       calls.enable = true;
       dux-shell = {
         enable = true;
