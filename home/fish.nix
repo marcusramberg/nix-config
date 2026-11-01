@@ -68,9 +68,9 @@ in
     interactiveShellInit = ''
       set -x RIPGREP_CONFIG_PATH "$HOME/.ripgreprc"
       fish_vi_key_bindings
-      set fish_cursor_default     block      blink
-      set fish_cursor_insert      line       blink
-      set fish_cursor_replace_one underscore blink
+      set fish_cursor_default     block
+      set fish_cursor_insert      line
+      set fish_cursor_replace_one underscore
       set fish_cursor_visual      block
       set fish_theme "fish"
       set -gx EDITOR nvim
