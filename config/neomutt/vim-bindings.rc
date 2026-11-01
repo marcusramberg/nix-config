@@ -1,6 +1,8 @@
 # Port of https://ryanlue.com/posts/2017-05-21-mutt-the-vim-way
 # Adaptations for neomutt 2026 + this setup:
-# - dd/dat drop <sync-mailbox>: $delete = "yes" already auto-syncs.
+# - d deletes directly (no dd/dat); the contrib vim-keys.rc d* binds are
+#   unbound since neomutt would otherwise wait for a second key.
+# - contrib vim-keys.rc binds index Enter (\Cm) to list-reply; rebound.
 # - zt/zz/zb bound in index only: current-top/middle/bottom are
 #   index-only functions in neomutt (pager has no such functions).
 # - tt/tat bound per menu: 't' is a real key (tag-message) in index and
@@ -16,8 +18,13 @@
 # Navigation
 bind index,pager,attach g noop
 bind index gT noop
-bind index,pager d noop
-bind index,pager dT noop
+unbind index,pager dd
+unbind index,pager dt
+unbind index,pager dT
+bind index,pager d delete-message
+bind index <enter> display-message
+bind index <return> display-message
+bind index <space> half-down
 bind index,pager s noop
 bind index,pager c noop
 bind pager t noop
@@ -41,8 +48,6 @@ bind index <Backtab> previous-new-then-unread
 
 # Actions
 bind index,pager a group-reply
-macro index,pager dd "<delete-message>" "move message to trash"
-macro index,pager dat "<delete-thread>" "move thread to trash"
 bind index \;s noop
 macro index \;s "<tag-prefix-cond><save-message>?" "save tagged messages to a mailbox"
 bind index \;c noop
@@ -76,3 +81,22 @@ bind index,pager \CG sidebar-first
 # Command line
 bind editor \Cp history-up
 bind editor \Cn history-down
+
+# Vim habits
+bind index l display-message
+bind index \\ limit
+bind pager,attach h exit
+bind pager J next-undeleted
+bind pager K previous-undeleted
+bind index,pager [ noop
+bind index,pager ] noop
+bind index,pager ]t next-thread
+bind index,pager [t previous-thread
+bind index,pager ]u next-unread
+bind index,pager [u previous-unread
+bind index,pager B sidebar-toggle-visible
+bind index,pager Z noop
+bind index,pager ZZ quit
+bind index,pager ZQ exit
+# OSC52 through tmux, so it reaches the Wayland clipboard even over ssh.
+macro pager y "<enter-command>set wait_key=no pipe_decode<enter><pipe-message>tmux load-buffer -w -<enter><enter-command>set wait_key pipe_decode=no<enter>" "yank message body to clipboard"
