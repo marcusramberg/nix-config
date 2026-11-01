@@ -27,10 +27,14 @@
     enable = true;
     fingerprint.enable = true;
   };
+  # dux-shell inhibits sleep for MPRIS itself; this one polls playerctl every second.
+  vanilla-mobile.powerManagement.sleepInhibitors.mpris.enable = false;
   systemd.services.tee-fprintd = {
     after = [ "focal32-load.service" ];
     environment.TEE_FPRINTD_DEBUG = "1";
   };
+  # tee-fprintd has no fprintd.service; the fairphone5 DeviceAllow leaves a stub with no ExecStart.
+  systemd.services.fprintd.enable = false;
   # Matches the partition labels of the image the phone was flashed with.
   fileSystems = {
     "/" = {
