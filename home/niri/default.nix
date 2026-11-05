@@ -7,6 +7,8 @@
 let
   inherit (lib) mkIf;
   isNiri = (lib.hasAttr "programs" osConfig) && osConfig.programs.niri.enable;
+  # fjordxy themes Qt through stylix.
+  isFjordxy = (osConfig.profiles.desktop.shell or "dux") == "fjordxy";
 in
 {
   home = mkIf isNiri {
@@ -19,7 +21,7 @@ in
   };
   programs = mkIf isNiri {
   };
-  qt = {
+  qt = mkIf (!isFjordxy) {
     enable = true;
     qt5ctSettings.Appearance.icon_theme = "breeze-dark";
     qt6ctSettings.Appearance.icon_theme = "breeze-dark";

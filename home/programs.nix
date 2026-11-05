@@ -1,18 +1,24 @@
 {
+  lib,
+  osConfig,
   pkgs,
   ...
 }:
+let
+  # fjordxy themes bat/btop itself (via stylix).
+  isFjordxy = (osConfig.profiles.desktop.shell or "dux") == "fjordxy";
+in
 {
   programs = {
     bat = {
       enable = true;
-      config = {
+      config = lib.mkIf (!isFjordxy) {
         theme = "base16";
         map-syntax = [ ".ignore:Git Ignore" ];
         style = "changes";
       };
     };
-    btop = {
+    btop = lib.mkIf (!isFjordxy) {
       enable = true;
       settings = {
         color_theme = "tokyo-night";

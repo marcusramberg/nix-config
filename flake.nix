@@ -59,7 +59,7 @@
           };
           mwork = mkDesktopHost "mwork" { };
           mdesk = mkDesktopHost "mdesk" { };
-          mtop = mkDesktopHost "mtop" { };
+          mtop = mkDesktopHost "mtop" { shell = "fjordxy"; };
           mbench = mkNixHost "mbench" {
           };
           mdeck = mkNixHost "mdeck" {
@@ -277,5 +277,6 @@
       url = "git+https://code.bas.es/marcus/tee-fprintd?ref=main";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    fjordxy.url = "https://code.bas.es/bases/fjord/archive/main.tar.gz";
   };
 }

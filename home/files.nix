@@ -8,6 +8,8 @@
 let
   isNixOS = lib.hasAttr "nixos" osConfig.system;
   flakePath = if isNixOS then "/etc/nixos" else "/home/${user}/.config/nix-config";
+  # fjordxy generates its own niri and ghostty config.
+  isFjordxy = (osConfig.profiles.desktop.shell or "dux") == "fjordxy";
 in
 {
   home.file = {
@@ -17,10 +19,14 @@ in
     };
     ".config/DankMaterialShell".source =
       config.lib.file.mkOutOfStoreSymlink "${flakePath}/config/DankMaterialShell";
-    ".config/niri".source = config.lib.file.mkOutOfStoreSymlink "${flakePath}/config/niri";
+    ".config/niri" = lib.mkIf (!isFjordxy) {
+      source = config.lib.file.mkOutOfStoreSymlink "${flakePath}/config/niri";
+    };
     ".config/nvim".source = config.lib.file.mkOutOfStoreSymlink "${flakePath}/config/nvim";
     ".config/foot".source = config.lib.file.mkOutOfStoreSymlink "${flakePath}/config/foot";
-    ".config/ghostty".source = config.lib.file.mkOutOfStoreSymlink "${flakePath}/config/ghostty";
+    ".config/ghostty" = lib.mkIf (!isFjordxy) {
+      source = config.lib.file.mkOutOfStoreSymlink "${flakePath}/config/ghostty";
+    };
     ".config/tmuxinator" = {
       source = ../config/tmuxinator;
       recursive = true;

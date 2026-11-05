@@ -71,7 +71,7 @@ let
       nix-converter
       nodejs
       prek
-      promexplorer
+      # promexplorer
       statix
       stylua
       tfenv
