@@ -58,7 +58,7 @@
             extraModules = [ inputs.jovian.nixosModules.default ];
           };
           mwork = mkDesktopHost "mwork" { };
-          mdesk = mkDesktopHost "mdesk" { };
+          mdesk = mkDesktopHost "mdesk" { shell = "fjordxy"; };
           mtop = mkDesktopHost "mtop" { shell = "fjordxy"; };
           mbench = mkNixHost "mbench" {
           };
@@ -196,8 +196,8 @@
       url = "https://git.clan.lol/clan/clan-core/archive/main.tar.gz";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    dank-shell = {
-      url = "github:AvengeMedia/DankMaterialShell";
+    dux-shell = {
+      url = "github:duxlabs-dev/dux-shell";
       inputs.nixpkgs.follows = "nixpkgs";
       # inputs.quickshell.follows = "quickshell";
     };

@@ -1,4 +1,8 @@
-{ pkgs, lib, ... }:
+{
+  pkgs,
+  lib,
+  ...
+}:
 
 {
   imports = [
@@ -19,7 +23,6 @@
     decky-loader = {
       enable = true;
       user = "marcus";
-      package = pkgs.decky-loader-prerelease;
     };
     steam = {
       enable = true;
@@ -30,13 +33,17 @@
     };
   };
 
-  environment.systemPackages = with pkgs; [
-    galileo-mura
-    heroic
-    jupiter-dock-updater-bin
-    plex-desktop
-    steamdeck-firmware
-  ];
+  environment.systemPackages =
+    with pkgs;
+    [
+      heroic
+      plex-desktop
+    ]
+    ++ (with pkgs.jovianPackages; [
+      jupiter-dock-updater-bin
+      galileo-mura
+      steamdeck-firmware
+    ]);
 
   # Automount SD card.
   # fileSystems."/run/media/deck/mmcblk0p1" = {

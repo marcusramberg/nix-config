@@ -10,7 +10,7 @@
       }
     }
   },
-  "popupTransparency": 0.98,
+  "popupTransparency": 0.95,
   "floatingWindowSyncGlobal": false,
   "floatingWindowTransparency": 0.65,
   "widgetBackgroundColor": "sth",
@@ -68,7 +68,7 @@
       "cursorHideTimeout": 0
     }
   },
-  "fontFamily": "Inter Display Light",
+  "fontFamily": "Inter Display Medium",
   "monoFontFamily": "JetBrainsMono NF",
   "textRenderType": 1,
   "acMonitorTimeout": 900,
@@ -173,7 +173,7 @@
         }
       ],
       "spacing": 0,
-      "innerPadding": 2,
+      "innerPadding": -2,
       "bottomGap": 0,
       "transparency": 0.38,
       "widgetTransparency": 0.39,
@@ -204,7 +204,8 @@
       "iconScale": 1.05,
       "island": false,
       "followInterfaceStyle": false,
-      "widgetFollowInterfaceStyle": false
+      "widgetFollowInterfaceStyle": false,
+      "widgetPadding": 7
     }
   ],
   "desktopWidgetInstances": [
@@ -285,6 +286,7 @@
       "showOnLastDisplay": true,
       "position": 1,
       "mode": "compact",
+      "middleClickAction": "close",
       "taskbarAlign": "center",
       "widgetExpansion": "popout",
       "iconSize": 40,
@@ -396,7 +398,8 @@
         "style": "ring",
         "profileVisibility": "always",
         "passwordVisibility": "always"
-      }
+      },
+      "name": "Password"
     },
     {
       "id": "lock_notifications",
@@ -486,7 +489,8 @@
         "style": "ring",
         "profileVisibility": "always",
         "passwordVisibility": "always"
-      }
+      },
+      "name": "Password"
     },
     {
       "id": "lock_status",
@@ -528,5 +532,8 @@
   ],
   "dmsWindowsFloatingSeeded": [
     "niri"
-  ]
+  ],
+  "foregroundLayerTransparency": 0.86,
+  "interfaceStyle": "classic",
+  "density": "compact"
 }
