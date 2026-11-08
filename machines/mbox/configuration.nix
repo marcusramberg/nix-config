@@ -307,6 +307,29 @@
                 # "--chat-template-kwargs '{" preserve_thinking ": true}'"
               ];
             };
+            "borealis2-26b-a4b" = {
+              cmd = mkCmd [
+                "${llamaServer}"
+                "--port \${PORT}"
+                "-m ${modelsDir}/borealis2-26b-a4b-preview-Q4_K_M.gguf"
+                "--mmproj ${modelsDir}/mmproj_borealis2-26b-a4b-preview-bf16.gguf"
+                "--fit on"
+                "-ngl 99"
+                "-fa on"
+                "-np 1"
+                "-c 70000"
+                "--cache-ram 10000"
+                "-ctxcp 2"
+                "--jinja"
+                "--temp 1.0"
+                "--top-p 0.95"
+                "--top-k 64"
+                "--min-p 0.0"
+                "--presence-penalty 0.0"
+                "--repeat-penalty 1.0"
+                "--reasoning off"
+              ];
+            };
           };
       };
     };

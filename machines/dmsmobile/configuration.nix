@@ -29,10 +29,6 @@
   };
   # dux-shell inhibits sleep for MPRIS itself; this one polls playerctl every second.
   vanilla-mobile.powerManagement.sleepInhibitors.mpris.enable = false;
-  systemd.services.tee-fprintd = {
-    after = [ "focal32-load.service" ];
-    environment.TEE_FPRINTD_DEBUG = "1";
-  };
   # tee-fprintd has no fprintd.service; the fairphone5 DeviceAllow leaves a stub with no ExecStart.
   systemd.services.fprintd.enable = false;
   # Matches the partition labels of the image the phone was flashed with.
@@ -60,8 +56,14 @@
     keyboard.dual-caps.enable = true;
     keyboard.dual-caps.swapAlt.enable = true;
   };
-  # Don't block boot ~9.5s waiting for wifi (ath11k rproc probe defers wlan0 late).
-  systemd.services.NetworkManager-wait-online.enable = false;
+  systemd = {
+    services.tee-fprintd = {
+      after = [ "focal32-load.service" ];
+      environment.TEE_FPRINTD_DEBUG = "1";
+    };
+    # Don't block boot ~9.5s waiting for wifi (ath11k rproc probe defers wlan0 late).
+    services.NetworkManager-wait-online.enable = false;
+  };
 
   nix = {
     buildMachines = [

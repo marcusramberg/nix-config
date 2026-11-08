@@ -12,6 +12,18 @@ let
   isFjordxy = (osConfig.profiles.desktop.shell or "dux") == "fjordxy";
 in
 {
+  # Leftover dms-era dir symlinks would make HM write fjordxy's files through into the repo.
+  home.activation.dropRepoConfigLinks = lib.mkIf isFjordxy (
+    lib.hm.dag.entryBefore [ "checkLinkTargets" ] ''
+      for d in niri ghostty; do
+        p="${config.home.homeDirectory}/.config/$d"
+        if [[ -L "$p" && "$(readlink -f "$p")" == "${flakePath}/"* ]]; then
+          run rm "$p"
+        fi
+      done
+    ''
+  );
+
   home.file = {
     ".config/wezterm" = {
       source = ../config/wezterm;
