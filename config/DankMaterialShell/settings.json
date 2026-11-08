@@ -96,9 +96,7 @@
       "name": "Main Bar",
       "enabled": true,
       "position": 2,
-      "screenPreferences": [
-        "all"
-      ],
+      "screenPreferences": ["all"],
       "showOnLastDisplay": true,
       "leftWidgets": [
         {
@@ -234,9 +232,7 @@
         "topProcessSortBy": "cpu",
         "layoutMode": "auto",
         "graphInterval": 60,
-        "displayPreferences": [
-          "all"
-        ],
+        "displayPreferences": ["all"],
         "showOnOverviewOnly": false,
         "showOnOverlay": true
       }
@@ -280,9 +276,7 @@
       "id": "dock",
       "name": "Dock",
       "enabled": false,
-      "screenPreferences": [
-        "all"
-      ],
+      "screenPreferences": ["all"],
       "showOnLastDisplay": true,
       "position": 1,
       "mode": "compact",
@@ -355,9 +349,7 @@
       "widgetType": "desktopClock",
       "enabled": true,
       "config": {
-        "displayPreferences": [
-          "all"
-        ],
+        "displayPreferences": ["all"],
         "syncPositionAcrossScreens": true,
         "style": "expressive",
         "transparency": 0,
@@ -377,9 +369,7 @@
       "widgetType": "lockDate",
       "enabled": false,
       "config": {
-        "displayPreferences": [
-          "all"
-        ],
+        "displayPreferences": ["all"],
         "syncPositionAcrossScreens": true,
         "format": "short",
         "colorMode": "default",
@@ -391,9 +381,7 @@
       "widgetType": "lockAuth",
       "enabled": true,
       "config": {
-        "displayPreferences": [
-          "all"
-        ],
+        "displayPreferences": ["all"],
         "syncPositionAcrossScreens": true,
         "style": "ring",
         "profileVisibility": "always",
@@ -406,9 +394,7 @@
       "widgetType": "lockNotifications",
       "enabled": true,
       "config": {
-        "displayPreferences": [
-          "all"
-        ],
+        "displayPreferences": ["all"],
         "syncPositionAcrossScreens": true,
         "mode": 2
       }
@@ -418,9 +404,7 @@
       "widgetType": "lockStatus",
       "enabled": true,
       "config": {
-        "displayPreferences": [
-          "all"
-        ],
+        "displayPreferences": ["all"],
         "syncPositionAcrossScreens": true,
         "showMediaPlayer": true,
         "showWeather": true,
@@ -432,9 +416,7 @@
       "widgetType": "lockPower",
       "enabled": false,
       "config": {
-        "displayPreferences": [
-          "all"
-        ],
+        "displayPreferences": ["all"],
         "syncPositionAcrossScreens": true,
         "shape": "round"
       }
@@ -446,9 +428,7 @@
       "widgetType": "desktopClock",
       "enabled": true,
       "config": {
-        "displayPreferences": [
-          "all"
-        ],
+        "displayPreferences": ["all"],
         "syncPositionAcrossScreens": true,
         "style": "expressive",
         "transparency": 0,
@@ -468,9 +448,7 @@
       "widgetType": "lockDate",
       "enabled": false,
       "config": {
-        "displayPreferences": [
-          "all"
-        ],
+        "displayPreferences": ["all"],
         "syncPositionAcrossScreens": true,
         "format": "short",
         "colorMode": "default",
@@ -482,9 +460,7 @@
       "widgetType": "lockAuth",
       "enabled": true,
       "config": {
-        "displayPreferences": [
-          "all"
-        ],
+        "displayPreferences": ["all"],
         "syncPositionAcrossScreens": true,
         "style": "ring",
         "profileVisibility": "always",
@@ -497,9 +473,7 @@
       "widgetType": "lockStatus",
       "enabled": true,
       "config": {
-        "displayPreferences": [
-          "all"
-        ],
+        "displayPreferences": ["all"],
         "syncPositionAcrossScreens": true,
         "showMediaPlayer": true,
         "showWeather": true,
@@ -511,9 +485,7 @@
       "widgetType": "lockPower",
       "enabled": false,
       "config": {
-        "displayPreferences": [
-          "all"
-        ],
+        "displayPreferences": ["all"],
         "syncPositionAcrossScreens": true,
         "shape": "round"
       }
@@ -523,17 +495,16 @@
       "widgetType": "greeterSession",
       "enabled": true,
       "config": {
-        "displayPreferences": [
-          "all"
-        ],
+        "displayPreferences": ["all"],
         "syncPositionAcrossScreens": true
       }
     }
   ],
-  "dmsWindowsFloatingSeeded": [
-    "niri"
-  ],
+  "dmsWindowsFloatingSeeded": ["niri", "mango"],
   "foregroundLayerTransparency": 0.86,
   "interfaceStyle": "classic",
-  "density": "compact"
+  "density": "compact",
+  "mangoLayoutRadiusOverride": 6,
+  "mangoLayoutBorderSize": 1,
+  "keyboardVariants": "mac-iso"
 }

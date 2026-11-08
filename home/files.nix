@@ -31,6 +31,7 @@ in
     };
     ".config/DankMaterialShell".source =
       config.lib.file.mkOutOfStoreSymlink "${flakePath}/config/DankMaterialShell";
+    ".config/mango".source = config.lib.file.mkOutOfStoreSymlink "${flakePath}/config/mango";
     ".config/niri" = lib.mkIf (!isFjordxy) {
       source = config.lib.file.mkOutOfStoreSymlink "${flakePath}/config/niri";
     };

@@ -246,6 +246,23 @@
           "niri": {}
         }
       }
+    },
+    {
+      "id": "auto_853c90ff",
+      "name": "",
+      "outputs": {
+        "AU Optronics 0xD291": {
+          "mode": "1920x1200@60.026",
+          "position": {
+            "x": 0,
+            "y": 0
+          },
+          "scale": 1.1015625,
+          "transform": "Normal",
+          "vrr": false,
+          "disabled": false
+        }
+      }
     }
   ]
 }

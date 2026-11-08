@@ -6,8 +6,9 @@
 }:
 let
   inherit (lib) mkIf;
-  isNiri = (lib.hasAttr "programs" osConfig) && osConfig.programs.niri.enable;
-  # fjordxy themes Qt through stylix.
+  isNiri =
+    (lib.hasAttr "programs" osConfig)
+    && (osConfig.programs.niri.enable || (osConfig.programs.mango.enable or false));
   isFjordxy = (osConfig.profiles.desktop.shell or "dux") == "fjordxy";
 in
 {

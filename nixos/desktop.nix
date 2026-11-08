@@ -16,7 +16,7 @@ let
 in
 {
   options.profiles.desktop = {
-    enable = lib.mkEnableOption "niri desktop environment";
+    enable = lib.mkEnableOption "dms desktop environment";
     shell = lib.mkOption {
       type = lib.types.enum [
         "dux"
@@ -216,6 +216,8 @@ in
             };
           };
           dux-search.enable = true;
+          mango.enable = true;
+          # Kept as a fallback session while migrating to mango.
           niri.enable = true;
         };
 
@@ -224,14 +226,24 @@ in
           style = "breeze";
         };
 
-        # DMS is WantedBy graphical-session.target, which the SteamOS/gamescope
-        # session also activates — there it crash-loops without a usable wayland
-        # socket. Requisite (unlike Requires) fails the start instead of pulling
-        # niri in, so dms only runs inside an actual niri session.
-        systemd.user.services.dms.unitConfig = {
-          Requisite = [ "niri.service" ];
-          After = [ "niri.service" ];
-          PartOf = [ "niri.service" ];
+        systemd = {
+          # nixpkgs' mango module doesn't install mango-session.target, which mango
+          # starts on launch to bring up graphical-session.target.
+          packages = [ config.programs.mango.package ];
+          # DMS is WantedBy graphical-session.target, which the SteamOS/gamescope
+          # session also activates — there it crash-loops without a usable wayland
+          # socket. Only start it from the compositor sessions instead.
+          user.services.dms = {
+            partOf = [ "graphical-session.target" ];
+            wantedBy = lib.mkForce [
+              "mango-session.target"
+              "niri.service"
+            ];
+            after = [
+              "mango-session.target"
+              "niri.service"
+            ];
+          };
         };
 
         services = {
@@ -239,10 +251,13 @@ in
             dux-greeter = {
               enable = true;
               # quickshell.package = quickshell;
+              # The greeter runs in its own compositor, independent of the session.
+              # Its "mangowc" option passes a name dms-greeter doesn't recognise.
               compositor.name = "niri";
               configHome = "/home/marcus";
             };
-            defaultSession = lib.mkDefault "niri";
+            # niri.nix also sets this with mkDefault; beat it but stay overridable.
+            defaultSession = lib.mkOverride 900 "mango";
           };
           desktopManager.gnome.enable = true;
         };

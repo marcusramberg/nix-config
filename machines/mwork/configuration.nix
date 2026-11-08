@@ -146,6 +146,7 @@
       # xreal one
       KERNEL=="hidraw*", SUBSYSTEM=="hidraw", MODE="0666"
       SUBSYSTEM=="usb", ATTR{idVendor}=="3318", MODE="0666"
+      KERNEL=="hidraw*", SUBSYSTEM=="hidraw", MODE="0660", GROUP="users", TAG+="uaccess", TAG+="udev-acl"
     '';
   };
   systemd.sleep.settings.Sleep = {
