@@ -206,28 +206,6 @@
         "type": "github"
       }
     },
-    "dank-shell": {
-      "inputs": {
-        "dank-qml-common": "dank-qml-common",
-        "flake-compat": "flake-compat_2",
-        "nixpkgs": [
-          "nixpkgs"
-        ]
-      },
-      "locked": {
-        "lastModified": 1792874118,
-        "narHash": "sha256-YWVIcmm/e+qzaL3YZRTzHKc5WdVJ1vZGQjBT1YPUxzY=",
-        "owner": "AvengeMedia",
-        "repo": "DankMaterialShell",
-        "rev": "20bcf8559b10f30f3ad9c169cfecbe86a22f1b63",
-        "type": "github"
-      },
-      "original": {
-        "owner": "AvengeMedia",
-        "repo": "DankMaterialShell",
-        "type": "github"
-      }
-    },
     "data-mesher": {
       "inputs": {
         "flake-parts": [
@@ -382,6 +360,27 @@
         "type": "github"
       }
     },
+    "ewm": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1794072362,
+        "narHash": "sha256-cnPBlgeGPbiCSnsR52ZS0Q6XFP4AYKu7zqZjDJ7Ikew=",
+        "ref": "master",
+        "rev": "9c5325e0fa3977b9577bad2b51acacae59a6ddc7",
+        "revCount": 1254,
+        "type": "git",
+        "url": "https://codeberg.org/ezemtsov/ewm.git"
+      },
+      "original": {
+        "ref": "master",
+        "type": "git",
+        "url": "https://codeberg.org/ezemtsov/ewm.git"
+      }
+    },
     "firefox-gnome-theme": {
       "flake": false,
       "locked": {
@@ -404,16 +403,15 @@
         "herdr": "herdr",
         "home-manager": "home-manager",
         "niri": "niri",
-        "niri-src": "niri-src",
         "nixpkgs": "nixpkgs_4",
         "stylix": "stylix"
       },
       "locked": {
-        "lastModified": 1793945244,
-        "narHash": "sha256-iFP/CSLE6y0D8ywcDoy9ZtD2mQmOhHcDJTluRylhud0=",
-        "rev": "225ff44ec21bba04d1bf4bb4345b7a9686f1b59a",
+        "lastModified": 1794223970,
+        "narHash": "sha256-/K9TkddpCSVWga8JmLHd+P5bZwjZn3e2waCfy9N6jcI=",
+        "rev": "5eb95ff51a3567dc768c7cd23d4014110a123483",
         "type": "tarball",
-        "url": "https://code.bas.es/api/v1/repos/bases/fjord/archive/225ff44ec21bba04d1bf4bb4345b7a9686f1b59a.tar.gz"
+        "url": "https://code.bas.es/api/v1/repos/bases/fjord/archive/5eb95ff51a3567dc768c7cd23d4014110a123483.tar.gz"
       },
       "original": {
         "type": "tarball",
@@ -905,22 +903,6 @@
         "type": "github"
       }
     },
-    "niri-src": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1793856759,
-        "narHash": "sha256-xTf2I+BKI5roU6UyCTmok2ckuqUzqMzGONZ2XXZ6JRo=",
-        "owner": "YaLTeR",
-        "repo": "niri",
-        "rev": "3c06daf928248cbd0c34141b1f9084ce50f9b59e",
-        "type": "github"
-      },
-      "original": {
-        "owner": "YaLTeR",
-        "repo": "niri",
-        "type": "github"
-      }
-    },
     "niri-stable": {
       "flake": false,
       "locked": {
@@ -1160,11 +1142,11 @@
     },
     "nixpkgs-small": {
       "locked": {
-        "lastModified": 1792909759,
-        "narHash": "sha256-I3H7Y+0H6oDJXbHOtHn6xMdkN0hQwWIFY6S6c30gZ1Q=",
+        "lastModified": 1794258630,
+        "narHash": "sha256-YAtBJWWOo0nshSNdgEn5HcPfo/q0lQ2xbbpAfsG+7O4=",
         "owner": "nixos",
         "repo": "nixpkgs",
-        "rev": "ea99fbef475b961e7cd50c2a1078578e4b075985",
+        "rev": "a760ecab515a79096027161071254c6fa75528a1",
         "type": "github"
       },
       "original": {
@@ -1256,11 +1238,11 @@
     },
     "nixpkgs_6": {
       "locked": {
-        "lastModified": 1792773339,
-        "narHash": "sha256-rZLrzrC6i+jnTAlvPZHogKDulY7WWDEv9hJeHieO7Zw=",
+        "lastModified": 1794042290,
+        "narHash": "sha256-ziZn2PvCJE5JEEpqTdxXwJpPB+L3YqoCpTAMCzyaP3U=",
         "owner": "nixos",
         "repo": "nixpkgs",
-        "rev": "3ec636362e1816bc2f0888fa0fa2c69f1bc9e504",
+        "rev": "f4a03c008967841f2a0b3cb7c436fc6fc31671f6",
         "type": "github"
       },
       "original": {
@@ -1347,6 +1329,7 @@
         "dms-plugin-registry": "dms-plugin-registry",
         "dmsmobile": "dmsmobile",
         "dux-shell": "dux-shell",
+        "ewm": "ewm",
         "fjordxy": "fjordxy",
         "flake-compat": "flake-compat_4",
         "flake-parts": "flake-parts_4",

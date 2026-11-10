@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, lib, ... }:
 {
   home.packages = with pkgs; [
     delta
@@ -68,6 +68,7 @@
         core = {
           whitespace = "trailing-space,space-before-tab";
           excludesfile = "~/.gitignore_global";
+          editor = lib.mkForce "nvim";
         };
         color = {
           branch = {

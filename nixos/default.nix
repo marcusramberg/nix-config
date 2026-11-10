@@ -14,6 +14,7 @@
     ../modules/autoupgrade.nix
     ../modules/caddy.nix
     ../modules/fonts.nix
+    ../modules/gradient.nix
     ../modules/work.nix
     ../modules/nix.nix
     ./amd.nix
@@ -162,7 +163,7 @@
       in
       _: {
         inherit (nixpkgs-small)
-          telegram-desktop
+          gradient
           ;
       };
   };

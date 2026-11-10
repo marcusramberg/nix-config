@@ -16,6 +16,7 @@
 {
   config,
   lib,
+  inputs,
   pkgs,
   ...
 }:
@@ -27,7 +28,11 @@ in
   options.profiles.doom.enable = lib.mkEnableOption "doom";
 
   config = lib.mkIf cfg.enable {
-    services.emacs.enable = false;
+    nixpkgs.overlays = [ inputs.ewm.overlays.default ];
+    services.emacs = {
+      enable = false;
+      package = pkgs.emacs31-pwayl;
+    };
 
     system.userActivationScripts = {
       # Installation script every time nixos-rebuild is run. So not during initial install.

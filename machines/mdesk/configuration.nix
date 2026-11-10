@@ -49,7 +49,10 @@
   };
 
   profiles = {
+
+    doom.enable = true;
     ccache.enable = true;
+    gradientWorker.enable = true;
     incus.enable = true;
     work.enable = true;
   };

@@ -58,7 +58,7 @@
             extraModules = [ inputs.jovian.nixosModules.default ];
           };
           mwork = mkDesktopHost "mwork" { };
-          mdesk = mkDesktopHost "mdesk" { shell = "fjordxy"; };
+          mdesk = mkDesktopHost "mdesk" { };
           mtop = mkDesktopHost "mtop" { shell = "fjordxy"; };
           mbench = mkNixHost "mbench" {
           };
@@ -278,5 +278,9 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     fjordxy.url = "https://code.bas.es/bases/fjord/archive/main.tar.gz";
+    ewm = {
+      url = "git+https://codeberg.org/ezemtsov/ewm.git?ref=master";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 }
