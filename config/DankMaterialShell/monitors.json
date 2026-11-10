@@ -263,6 +263,34 @@
           "disabled": false
         }
       }
+    },
+    {
+      "id": "auto_2661d3a7",
+      "name": "",
+      "outputs": {
+        "AU Optronics 0xD291": {
+          "mode": "1920x1200@60.026",
+          "position": {
+            "x": 1920,
+            "y": 0
+          },
+          "scale": 1.1015625,
+          "transform": "Normal",
+          "vrr": false,
+          "disabled": false
+        },
+        "Dell Inc. DELL U3223QE": {
+          "mode": "3840x2160@30.000",
+          "position": {
+            "x": 0,
+            "y": 0
+          },
+          "scale": 2,
+          "transform": "Normal",
+          "vrr": false,
+          "disabled": false
+        }
+      }
     }
   ]
 }

@@ -15,10 +15,6 @@
           inputs = originalInputs;
           nixpkgsPRs = [
             {
-              number = 558022;
-              hash = "sha256-pZd4mIKpM7DHDQ7VZM75Vnl0JsPn7MrIzhRSd1NnVDU=";
-            }
-            {
               number = 572284;
               hash = "sha256-iiGKgHQeke+0jrMM5h0ajvymEkvE/Qbp6wUm1XPCSAI=";
             }
@@ -262,6 +258,11 @@
     };
     dms-plugin-registry = {
       url = "github:AvengeMedia/dms-plugin-registry";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    mango = {
+      url = "github:marcusramberg/mango/ext-background-effect-v1";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
