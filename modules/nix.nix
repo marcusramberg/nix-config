@@ -22,7 +22,7 @@
           "https://marcusramberg.cachix.org"
           "https://jovian-nixos.cachix.org"
           "https://niri.cachix.org"
-
+          "https://gradient.bas.es/cache/marcus"
         ];
         trusted-public-keys = [
           "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
@@ -32,6 +32,7 @@
           "jovian-nixos.cachix.org-1:mAWLjAxLNlfxAnozUjOqGj4AxQwCl7MXwOfu7msVlAo="
           "bases:bg7mtzwSME8dI+IXhYLzDTQ4TzY4zMmIzyeqjgR5Isg="
           "niri.cachix.org-1:Wv0OmO7PsuocRKzfDoJ3mulSl7Z6oezYhGhR+3W2964="
+          "gradient.bas.es-marcus:vD9XjZdexiZrVjK09hidipfPrAKF75fKL8i5p/qdrkw="
         ];
         experimental-features = [
           "nix-command"
