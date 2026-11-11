@@ -58,6 +58,10 @@ in
       coreutils
       fd
       #git
+      cargo
+      rustc # el-rio builds its native module with cargo
+      hunspell
+      hunspellDicts.en_US # :checkers spell
     ]; # Dependencies
   };
 }

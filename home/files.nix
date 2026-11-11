@@ -36,6 +36,7 @@ in
       source = config.lib.file.mkOutOfStoreSymlink "${flakePath}/config/niri";
     };
     ".config/nvim".source = config.lib.file.mkOutOfStoreSymlink "${flakePath}/config/nvim";
+    ".config/doom".source = config.lib.file.mkOutOfStoreSymlink "${flakePath}/config/doom";
     ".config/foot".source = config.lib.file.mkOutOfStoreSymlink "${flakePath}/config/foot";
     ".config/ghostty" = lib.mkIf (!isFjordxy) {
       source = config.lib.file.mkOutOfStoreSymlink "${flakePath}/config/ghostty";

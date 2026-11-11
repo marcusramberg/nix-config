@@ -48,6 +48,12 @@
     hostName = "mdesk";
   };
 
+  # "~." routes all lookups to these instead of the DHCP-provided LAN DNS.
+  services.resolved.settings.Resolve = {
+    DNS = "1.1.1.1 1.0.0.1";
+    Domains = "~.";
+  };
+
   profiles = {
 
     doom.enable = true;

@@ -123,6 +123,7 @@
   networking.firewall.enable = false;
 
   profiles = {
+    doom.enable = true;
     incus.enable = true;
     limine = {
       enable = true;
