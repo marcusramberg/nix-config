@@ -51,6 +51,7 @@ let
         ink = t.surfaceText;
         ink_on_latched = t.primaryText;
         selected = t.secondary;
+        haptics = true;
       };
     # A binding list replaces the built-in set rather than merging into it,
     # so every binding we want is here, defaults included.
@@ -161,6 +162,24 @@ in
         home.file.".config/DankMaterialShell".source = lib.mkForce (
           config.lib.file.mkOutOfStoreSymlink "/etc/nixos/config/dmsmobile"
         );
+        # Default theme's button-pressed is 7ms at 0.2, imperceptible on the fp5 LRA.
+        xdg.configFile."feedbackd/themes/custom.json".text = builtins.toJSON {
+          name = "custom";
+          parent-name = "default";
+          profiles = [
+            {
+              name = "quiet";
+              feedbacks = [
+                {
+                  event-name = "button-pressed";
+                  type = "VibraPattern";
+                  magnitudes = [ 1.0 ];
+                  durations = [ 30 ];
+                }
+              ];
+            }
+          ];
+        };
         # FreeTube plays through mpv so video decodes on the MFC (H.264, HEVC,
         # VP9; not AV1, hence the format filter). Home-manager rewrites
         # settings.db whenever these change, dropping settings made in the GUI.
@@ -199,27 +218,25 @@ in
         QT_IM_MODULE = lib.mkForce "wayland";
         GTK_IM_MODULE = lib.mkForce "wayland";
       };
-      systemPackages =
-        with pkgs;
-        [
-          bazaar
-          bitritter
-          enroll
-          firefoxpwa
-          hunspellDicts.nb_NO
-          melonds
-          mpv
-          powersupply
-          reco
-          riff
-          signal-desktop
-          # supertuxkart
-          telegram-desktop
-          voyager
-          wl-clipboard
-          yt-dlp
-        ]
-        ++ lib.optional pkgs.stdenv.hostPlatform.isAarch64 charon;
+      systemPackages = with pkgs; [
+        bazaar
+        bitritter
+        enroll
+        firefoxpwa
+        hunspellDicts.nb_NO
+        melonds
+        mpv
+        powersupply
+        reco
+        riff
+        signal-desktop
+        # supertuxkart
+        telegram-desktop
+        voyager
+        wl-clipboard
+        yt-dlp
+      ];
+      # ++ lib.optional pkgs.stdenv.hostPlatform.isAarch64 charon;
     };
     programs = {
       android-translation-layer = {
@@ -253,6 +270,8 @@ in
         {
           ## FIMXE: this should work oob
           settings."mobi/phosh/shell/brightness".auto-brightness-offset = 0.3;
+          # feedbackd only loads ~/.config/feedbackd/themes/<theme>.json
+          settings."org/sigxcpu/feedbackd".theme = "custom";
         }
       ];
     };

@@ -25,6 +25,7 @@
       audio.enable = true;
       bluetooth.enable = true;
       display.enable = true;
+      haptics.enable = true;
       modem = {
         enable = true;
         modemManager = true;

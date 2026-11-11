@@ -65,6 +65,13 @@
     };
   };
 
+  boot.kernelPatches = [
+    {
+      name = "tools-types-u128";
+      patch = ./tools-types-u128.patch;
+    }
+  ];
+
   hardware = {
     asahi = {
       peripheralFirmwareDirectory = ./firmware;
@@ -100,6 +107,11 @@
   nixpkgs.config.allowUnsupportedSystem = true;
   # Enable the X11 windowing system.
   profiles = {
+    gradientWorker = {
+      enable = true;
+      id = "b1cae562-5896-4080-9761-acc3c6fe728d";
+
+    };
     ccache.enable = true;
     dockerHost.enable = true;
     incus.enable = true;
