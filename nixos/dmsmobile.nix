@@ -162,21 +162,25 @@ in
         home.file.".config/DankMaterialShell".source = lib.mkForce (
           config.lib.file.mkOutOfStoreSymlink "/etc/nixos/config/dmsmobile"
         );
-        # Default theme's button-pressed is 7ms at 0.2, imperceptible on the fp5 LRA.
+        # Default theme's button-pressed is 7ms at 0.2, too strong on the caiman LRA.
         xdg.configFile."feedbackd/themes/custom.json".text = builtins.toJSON {
           name = "custom";
           parent-name = "default";
           profiles = [
             {
               name = "quiet";
-              feedbacks = [
-                {
-                  event-name = "button-pressed";
-                  type = "VibraPattern";
-                  magnitudes = [ 1.0 ];
-                  durations = [ 30 ];
-                }
-              ];
+              feedbacks =
+                map
+                  (ev: {
+                    event-name = ev;
+                    type = "VibraPattern";
+                    magnitudes = [ 0.2 ];
+                    durations = [ 2 ];
+                  })
+                  [
+                    "button-pressed"
+                    "key-pressed"
+                  ];
             }
           ];
         };
