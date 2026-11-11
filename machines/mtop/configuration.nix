@@ -62,9 +62,9 @@
       enable = true;
       aggressive = false;
     };
-    scx = {
+    scx-loader = {
       enable = true;
-      scheduler = "scx_lavd";
+      cconfig.default_sched = "scx_lavd";
     };
     xserver.videoDrivers = [ "modesetting" ];
     udev.extraRules = ''
