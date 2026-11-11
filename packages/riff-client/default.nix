@@ -22,21 +22,21 @@
 
 stdenv.mkDerivation (finalAttrs: {
   pname = "riff";
-  version = "26.7.0-unstable-2026-09-28";
+  version = "26.10-unstable-2026-11-03";
 
   src = fetchFromGitHub {
     owner = "Diegovsky";
     repo = "riff";
-    rev = "1ef7260fd3d813ddda280cb47138e82ba5f93a9a";
-    hash = "sha256-3sLR+XrbbiYjeHY8SQaaw4yESzlpnegMHCl7O9NAmlU=";
+    rev = "37bb80be6398b64d26dbfa71e15dd6c9e1e67eb3";
+    hash = "sha256-w8EZCAeRdb7wYKU6nLbMcwyhYpYat/Wd46PrjYhNCaY=";
   };
 
   cargoDeps = rustPlatform.fetchCargoVendor {
     inherit (finalAttrs) pname version src;
-    hash = "sha256-3evIgOfZgHMbsXKGnhIVfBlwBBLe2GV0Lf588KpesEE=";
+    hash = "sha256-C+AFi8d0AlLB4kbUJz/7/fEDP1pVTRxBWsbHhRH/lP8=";
   };
 
-  # generated/ is gitignored; mirrors scripts/generate-spotify-api.sh, whose
+  # generated/ is gitignored; mirrors scripts/api/generate-spotify-api.sh, whose
   # pinned generator version has to match the reqwest in Cargo.lock
   openapiGenerator = fetchurl {
     url = "https://repo1.maven.org/maven2/org/openapitools/openapi-generator-cli/7.12.0/openapi-generator-cli-7.12.0.jar";
@@ -47,7 +47,8 @@ stdenv.mkDerivation (finalAttrs: {
     java -jar $openapiGenerator generate \
       -i spotify-openapi.yaml -g rust -o generated/spotify-api \
       --package-name spotify-api \
-      --additional-properties=library=reqwest,supportMiddleware=true
+      --additional-properties=library=reqwest,supportMiddleware=true \
+      --type-mappings=file=String
 
     substituteInPlace src/meson.build --replace-fail \
       "cargo_output = 'src' / rust_target / meson.project_name()" \
