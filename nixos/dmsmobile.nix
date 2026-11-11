@@ -284,6 +284,10 @@ in
         phrog = {
           enable = true;
           osk.package = pkgs.stevia;
+          phocConfig = {
+            "output:DSI-1".scale = 3;
+
+          };
         };
         defaultSession = lib.mkForce "springchick";
       };
