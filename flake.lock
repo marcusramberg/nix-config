@@ -661,11 +661,11 @@
         "systems": "systems_6"
       },
       "locked": {
-        "lastModified": 1731533236,
-        "narHash": "sha256-l0KFg5HjrsfsO/JpG+r7fRrqm12kzFHyUHqHCVpMMbI=",
+        "lastModified": 1791914995,
+        "narHash": "sha256-Zf/xfQEAasnwnmEfHqW/4hjDE/s44yn2hD4RuVIZRjA=",
         "owner": "numtide",
         "repo": "flake-utils",
-        "rev": "11707dc2f618dd54ca8739b309ec4fc024de578b",
+        "rev": "b7a79d3fea1e214f6d668d521cecec0c01e26544",
         "type": "github"
       },
       "original": {
@@ -1143,11 +1143,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1792840395,
-        "narHash": "sha256-hIe22OrnvyevjaEcjBLF2dhA2VUBfnUvu9ajqdB55l0=",
+        "lastModified": 1794429648,
+        "narHash": "sha256-gF7ooS8aklH0ejs+OYwtSHNaLSITXdrhS3NiD5V8FaU=",
         "ref": "main",
-        "rev": "22390862634325d554b20555f31741c27fe2c404",
-        "revCount": 177,
+        "rev": "8cc67be7db24c1c17e75e8bdc237826fa97433da",
+        "revCount": 201,
         "type": "git",
         "url": "https://code.bas.es/marcus/nixos-pixel-9pro.git"
       },

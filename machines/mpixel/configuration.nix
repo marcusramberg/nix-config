@@ -31,10 +31,7 @@
         modemManager = true;
       };
       sensors.enable = true;
-      wifi = {
-        enable = true;
-        driver = "brcmfmac"; # TEMP: btc_mode A/B for the wl2 trap, AGENTS.md §3
-      };
+      wifi.enable = true;
     };
     sensor.iio.enable = true;
 
