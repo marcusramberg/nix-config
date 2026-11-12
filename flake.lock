@@ -1122,11 +1122,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1794439461,
-        "narHash": "sha256-qxzDTcGziZ0IZSOiwWsf2/4djVWTazmfPb9PECsCGDA=",
+        "lastModified": 1794487289,
+        "narHash": "sha256-djCKPZXWEwiww+bW532rVPbO90m1ib+dAW3a3EZ3Hqo=",
         "owner": "marcusramberg",
         "repo": "nixos-fajita",
-        "rev": "16318446d2535fbbf4efe42376206660ba0a7b09",
+        "rev": "53aaae8f6d10b77edd21e41f050f8e7a96dd0ce0",
         "type": "github"
       },
       "original": {
