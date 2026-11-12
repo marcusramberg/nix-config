@@ -1123,11 +1123,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1794429648,
-        "narHash": "sha256-gF7ooS8aklH0ejs+OYwtSHNaLSITXdrhS3NiD5V8FaU=",
+        "lastModified": 1794524808,
+        "narHash": "sha256-tS/g3xlmaSDuy54DQ5rFTe1o/Nd6ciab+4zSmFJxEaw=",
         "ref": "main",
-        "rev": "8cc67be7db24c1c17e75e8bdc237826fa97433da",
-        "revCount": 201,
+        "rev": "abda612a9ca74a5647e6e2eae548575dcbd58489",
+        "revCount": 203,
         "type": "git",
         "url": "https://code.bas.es/marcus/nixos-pixel-9pro.git"
       },
