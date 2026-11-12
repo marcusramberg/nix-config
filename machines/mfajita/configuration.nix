@@ -18,10 +18,34 @@
     consoleLogLevel = lib.mkForce 7;
   };
 
-  oneplus-fajita = {
-    enable = true;
-    user = "marcus";
+  vanilla-mobile = {
+    device.oneplus-fajita.enable = true;
+    # dux-shell inhibits sleep for MPRIS itself; this one polls playerctl every second.
+    powerManagement.sleepInhibitors.mpris.enable = false;
   };
+  # Matches the partition labels of the image the phone was flashed with.
+  fileSystems = {
+    "/" = {
+      device = "/dev/disk/by-label/nixos-root";
+      fsType = "ext4";
+    };
+    "/boot" = {
+      device = "/dev/disk/by-label/nixos-boot";
+      fsType = "vfat";
+    };
+  };
+
+  boot.kernelPatches = [
+    {
+      name = "synaptics-s3706b";
+      patch = ./synaptics-s3706b.patch;
+    }
+    # vanilla's 7.1 kernel doesn't build against nixpkgs' 7.3 headers.
+    {
+      name = "tools-u128";
+      patch = ./tools-u128.patch;
+    }
+  ];
 
   hardware = {
     keyboard.dual-caps.enable = true;
@@ -60,5 +84,7 @@
     desktopManager = {
       gnome.enable = true;
     };
+    # GNOME brings power-profiles-daemon; vanilla-mobile defaults to TLP.
+    tlp.enable = false;
   };
 }

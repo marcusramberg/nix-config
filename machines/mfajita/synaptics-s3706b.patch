@@ -1,0 +1,96 @@
+From: Marcus Ramberg <marcus.ramberg@gmail.com>
+Subject: [PATCH] input: rmi4: support OnePlus 6T aftermarket S3706B digitizers
+
+Aftermarket fajita panels use a Synaptics S3706B that reports an
+unpopulated PDT, resets partway through F01 configuration, and has no
+usable F12 sensor dimensions until configured.
+
+ - Advertise "syna,rmi4-s3706b" so the fallback PDT is used, and write
+   its function numbers in hex (34/12 decimal never matched F34/F12).
+ - Tolerate the "unconfigured" F01 status for fallback-PDT panels only.
+ - Pin the coordinate range via syna,clip-* to the 1080x2340 panel.
+
+diff --git a/arch/arm64/boot/dts/qcom/sdm845-oneplus-common.dtsi b/arch/arm64/boot/dts/qcom/sdm845-oneplus-common.dtsi
+index a339db1..dbff314 100644
+--- a/arch/arm64/boot/dts/qcom/sdm845-oneplus-common.dtsi
++++ b/arch/arm64/boot/dts/qcom/sdm845-oneplus-common.dtsi
+@@ -802,7 +802,7 @@ &i2c12 {
+ 	clock-frequency = <400000>;
+ 
+ 	synaptics-rmi4-i2c@20 {
+-		compatible = "syna,rmi4-i2c";
++		compatible = "syna,rmi4-s3706b", "syna,rmi4-i2c";
+ 		reg = <0x20>;
+ 		#address-cells = <1>;
+ 		#size-cells = <0>;
+@@ -826,6 +826,9 @@ rmi4_f12: rmi4-f12@12 {
+ 			reg = <0x12>;
+ 			touchscreen-x-mm = <68>;
+ 			touchscreen-y-mm = <144>;
++			syna,clip-x-low = <0>;
++			syna,clip-y-low = <0>;
++			syna,clip-x-high = <1080>;
+ 			syna,sensor-type = <1>;
+ 			syna,rezero-wait-ms = <200>;
+ 		};
+diff --git a/arch/arm64/boot/dts/qcom/sdm845-oneplus-fajita.dts b/arch/arm64/boot/dts/qcom/sdm845-oneplus-fajita.dts
+index 7ffcad2..3bd942c 100644
+--- a/arch/arm64/boot/dts/qcom/sdm845-oneplus-fajita.dts
++++ b/arch/arm64/boot/dts/qcom/sdm845-oneplus-fajita.dts
+@@ -93,6 +93,7 @@ codec {
+ 
+ &rmi4_f12 {
+ 	touchscreen-y-mm = <148>;
++	syna,clip-y-high = <2340>;
+ };
+ 
+ &wcd9340 {
+diff --git a/drivers/input/rmi4/rmi_driver.c b/drivers/input/rmi4/rmi_driver.c
+index bb1db5b..adf4298 100644
+--- a/drivers/input/rmi4/rmi_driver.c
++++ b/drivers/input/rmi4/rmi_driver.c
+@@ -1040,7 +1040,7 @@ static int rmi_driver_remove(struct device *dev)
+ }
+ 
+ #ifdef CONFIG_OF
+-static const u8 rmi_s3706_fallback_pdt[] = {34, 41, 01, 01, 12, 01};
++static const u8 rmi_s3706_fallback_pdt[] = {0x34, 0x41, 0x01, 0x01, 0x12, 0x01};
+ 
+ static int rmi_driver_of_probe(struct rmi_device *rmi_dev,
+ 			       struct rmi_device_platform_data *pdata)
+diff --git a/drivers/input/rmi4/rmi_f01.c b/drivers/input/rmi4/rmi_f01.c
+index 2278e9b..4c55d90 100644
+--- a/drivers/input/rmi4/rmi_f01.c
++++ b/drivers/input/rmi4/rmi_f01.c
+@@ -574,10 +574,27 @@ static int rmi_f01_probe(struct rmi_function *fn)
+ 	}
+ 
+ 	if (RMI_F01_STATUS_UNCONFIGURED(device_status)) {
+-		dev_err(&fn->dev,
+-			"Device was reset during configuration process, status: %#02x!\n",
+-			RMI_F01_STATUS_CODE(device_status));
+-		return -EINVAL;
++		/*
++		 * Aftermarket S3706B panels (identified by the fallback PDT
++		 * supplied via the "syna,rmi4-s3706b" compatible) issue an
++		 * internal reset while being configured and briefly report
++		 * "unconfigured"; they settle on their own once the host stops
++		 * re-configuring them, and the vendor driver ignores this
++		 * status. Their axis range comes from the syna,clip-* device-
++		 * tree properties, so it does not depend on the controller
++		 * being configured here. Tolerate the status for those panels
++		 * only; every other device still treats it as fatal.
++		 */
++		if (pdata->pdt_fallback_size) {
++			dev_warn(&fn->dev,
++				"Device reset during configuration (status %#02x); continuing.\n",
++				RMI_F01_STATUS_CODE(device_status));
++		} else {
++			dev_err(&fn->dev,
++				"Device was reset during configuration process, status: %#02x!\n",
++				RMI_F01_STATUS_CODE(device_status));
++			return -EINVAL;
++		}
+ 	}
+ 
+ 	dev_set_drvdata(&fn->dev, f01);

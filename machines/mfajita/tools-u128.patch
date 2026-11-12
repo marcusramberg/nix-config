@@ -1,0 +1,21 @@
+tools: define __u128 for host tools
+
+Backport from 7.2: newer kernel headers use __u128 in asm/sigcontext.h, and
+this header shadows the linux/types.h that defines it.
+
+diff --git a/tools/include/linux/types.h b/tools/include/linux/types.h
+index d41f8a261..b4dd1c951 100644
+--- a/tools/include/linux/types.h
++++ b/tools/include/linux/types.h
+@@ -16,6 +16,11 @@
+ struct page;
+ struct kmem_cache;
+ 
++#ifdef __SIZEOF_INT128__
++typedef __signed__ __int128 __s128 __attribute__((aligned(16)));
++typedef unsigned __int128 __u128 __attribute__((aligned(16)));
++#endif
++
+ typedef enum {
+ 	GFP_KERNEL,
+ 	GFP_ATOMIC,

@@ -1101,11 +1101,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1788759788,
-        "narHash": "sha256-paQJbKxb4I5O/h76DMT1KMiv6y5Yfcxs/XhANnFnaQc=",
+        "lastModified": 1794517800,
+        "narHash": "sha256-1PW0j+1TSiFNUSeanUl94y/QHxUA9Sf+yhR4jXtFgDc=",
         "ref": "main",
-        "rev": "b5168af327df7212ff0c559f316c8258cb4711cb",
-        "revCount": 11,
+        "rev": "3f6e7ee5c4bffc5f2ea96a0b54272313cb234268",
+        "revCount": 12,
         "type": "git",
         "url": "https://code.bas.es/marcus/nixos-bpi-r4-pro.git"
       },
@@ -1113,26 +1113,6 @@
         "ref": "main",
         "type": "git",
         "url": "https://code.bas.es/marcus/nixos-bpi-r4-pro.git"
-      }
-    },
-    "nixos-fajita": {
-      "inputs": {
-        "nixpkgs": [
-          "nixpkgs"
-        ]
-      },
-      "locked": {
-        "lastModified": 1794487289,
-        "narHash": "sha256-djCKPZXWEwiww+bW532rVPbO90m1ib+dAW3a3EZ3Hqo=",
-        "owner": "marcusramberg",
-        "repo": "nixos-fajita",
-        "rev": "53aaae8f6d10b77edd21e41f050f8e7a96dd0ce0",
-        "type": "github"
-      },
-      "original": {
-        "owner": "marcusramberg",
-        "repo": "nixos-fajita",
-        "type": "github"
       }
     },
     "nixos-pixel-9pro": {
@@ -1316,16 +1296,16 @@
     },
     "nixpkgs_6": {
       "locked": {
-        "lastModified": 1794406962,
-        "narHash": "sha256-qjmHl3Lvvjld2DywBMATg+nRpX7Mol5fqPZAcJcrNE8=",
+        "lastModified": 1794386569,
+        "narHash": "sha256-x9sADJvoVG0L6RejZB+/BB4YiGZFBZrfTlhF4uBq1tQ=",
         "owner": "nixos",
         "repo": "nixpkgs",
-        "rev": "39b15f146050cf402c45e0f0ea09170da0293fba",
+        "rev": "d4f25a3e562008648d45bcf2d70bcc7422cad84e",
         "type": "github"
       },
       "original": {
         "owner": "nixos",
-        "ref": "nixos-unstable-small",
+        "ref": "nixos-unstable",
         "repo": "nixpkgs",
         "type": "github"
       }
@@ -1418,7 +1398,6 @@
         "nix-fast-build": "nix-fast-build",
         "nix-index-database": "nix-index-database",
         "nixos-bpi-r4-pro": "nixos-bpi-r4-pro",
-        "nixos-fajita": "nixos-fajita",
         "nixos-pixel-9pro": "nixos-pixel-9pro",
         "nixpkgs": "nixpkgs_6",
         "nixpkgs-small": "nixpkgs-small",
@@ -1960,16 +1939,16 @@
         ]
       },
       "locked": {
-        "lastModified": 1792944872,
-        "narHash": "sha256-9oa+efyGEoIOyjtv/jExUqrAlrATkBnicLGvqqAN7h0=",
+        "lastModified": 1794508789,
+        "narHash": "sha256-qciLXgjIJKWhC63d0jJ/mgwMma1htdpZc4yocFJ+wPw=",
         "owner": "marcusramberg",
         "repo": "vanilla-mobile-nixos",
-        "rev": "339c171a1bea7064735f6ad3602bb28e7bd25f88",
+        "rev": "ff2be4377c809c1cf1b5fbd6e659031ec0c0cac4",
         "type": "github"
       },
       "original": {
         "owner": "marcusramberg",
-        "ref": "marcus/fp5",
+        "ref": "marcus/fajita",
         "repo": "vanilla-mobile-nixos",
         "type": "github"
       }

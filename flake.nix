@@ -90,7 +90,7 @@
             system = "aarch64-linux";
             extraModules = [
               inputs.springchick.nixosModules.springchick
-              inputs.nixos-fajita.nixosModules.default
+              inputs.vanilla-mobile-nixos.nixosModules.vanilla-mobile
             ];
           };
         };
@@ -213,7 +213,7 @@
     nix-fast-build.url = "github:Mic92/nix-fast-build";
     nix-index-database.url = "github:Mic92/nix-index-database";
     nix-index-database.inputs.nixpkgs.follows = "nixpkgs";
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable-small";
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     nixpkgs-small.url = "github:nixos/nixpkgs/master";
     pre-commit-hooks = {
       url = "github:cachix/git-hooks.nix";
@@ -236,16 +236,12 @@
         nixpkgs.follows = "nixpkgs";
       };
     };
-    nixos-fajita = {
-      url = "github:marcusramberg/nixos-fajita";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
     nixos-pixel-9pro = {
       url = "git+https://code.bas.es/marcus/nixos-pixel-9pro.git?ref=main";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     vanilla-mobile-nixos = {
-      url = "github:marcusramberg/vanilla-mobile-nixos/marcus/fp5";
+      url = "github:marcusramberg/vanilla-mobile-nixos/marcus/fajita";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     android-translation-layer = {
