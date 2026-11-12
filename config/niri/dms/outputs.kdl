@@ -9,6 +9,6 @@ output "Lenovo Group Limited P27h-20 V907TWB8" {
 output "Lenovo Group Limited P27h-20 V907TWAZ" {
     mode "2560x1440@59.951"
     scale 1
-    position x=5120 y=0
+    position x=2560 y=0
 }
 
