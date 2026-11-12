@@ -1,7 +1,12 @@
-{ pkgs, lib, ... }:
+{
+  inputs,
+  lib,
+  pkgs,
+  ...
+}:
 {
   imports = [
-
+    "${inputs.vanilla-mobile-nixos}/examples/diskoConfigs/ext4.nix"
     ../../nixos/dmsmobile.nix
   ];
   documentation.nixos.enable = false;
@@ -23,17 +28,7 @@
     # dux-shell inhibits sleep for MPRIS itself; this one polls playerctl every second.
     powerManagement.sleepInhibitors.mpris.enable = false;
   };
-  # Matches the partition labels of the image the phone was flashed with.
-  fileSystems = {
-    "/" = {
-      device = "/dev/disk/by-label/nixos-root";
-      fsType = "ext4";
-    };
-    "/boot" = {
-      device = "/dev/disk/by-label/nixos-boot";
-      fsType = "vfat";
-    };
-  };
+  disko.devices.disk.root.imageSize = lib.mkForce "24G";
 
   boot.kernelPatches = [
     {
