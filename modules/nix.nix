@@ -15,7 +15,6 @@
       settings = {
         download-buffer-size = 500000000;
         substituters = [
-          "https://cache.bas.es/bases"
           "https://nix-community.cachix.org"
           "https://ghostty.cachix.org"
           "https://devenv.cachix.org"
@@ -30,11 +29,13 @@
           "marcusramberg.cachix.org-1:3gZte6tgsUkcVSgkKaoXtQQQMixtEbpEl+xqIkB9TSY="
           "ghostty.cachix.org-1:QB389yTa6gTyneehvqG58y0WnHjQOqgnA+wBnpWWxns="
           "jovian-nixos.cachix.org-1:mAWLjAxLNlfxAnozUjOqGj4AxQwCl7MXwOfu7msVlAo="
-          "bases:bg7mtzwSME8dI+IXhYLzDTQ4TzY4zMmIzyeqjgR5Isg="
           "niri.cachix.org-1:Wv0OmO7PsuocRKzfDoJ3mulSl7Z6oezYhGhR+3W2964="
           "gradient.bas.es-marcus:vD9XjZdexiZrVjK09hidipfPrAKF75fKL8i5p/qdrkw="
         ];
         experimental-features = [
+          "blake3-hashes"
+          "ca-derivations"
+          "dynamic-derivations"
           "nix-command"
           "flakes"
           "pipe-operators"
