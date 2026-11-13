@@ -1101,11 +1101,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1794520826,
-        "narHash": "sha256-/r8GMAXYtr6kRpCFmJ4Wyta9WwxybPmmZYgm8Y5dHEc=",
+        "lastModified": 1794557453,
+        "narHash": "sha256-1B3zPhKuHtjkOtU/uzQdJf0MdgXH2QLehTpfhNSNzdc=",
         "ref": "main",
-        "rev": "12e707f91ceb2110bc0141fab24ab60c7ee9aebb",
-        "revCount": 12,
+        "rev": "1473f295b767dbe46993a3275674f045e16f7403",
+        "revCount": 13,
         "type": "git",
         "url": "https://code.bas.es/marcus/nixos-bpi-r4-pro.git"
       },
