@@ -50,7 +50,6 @@
   };
 
   powerManagement.enable = true;
-  programs.fjordxy.lock.lockAfter = 900;
 
   profiles.limine.enable = true;
 

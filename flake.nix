@@ -55,7 +55,7 @@
           };
           mwork = mkDesktopHost "mwork" { };
           mdesk = mkDesktopHost "mdesk" { };
-          mtop = mkDesktopHost "mtop" { shell = "fjordxy"; };
+          mtop = mkDesktopHost "mtop" { };
           mbench = mkNixHost "mbench" {
           };
           mdeck = mkNixHost "mdeck" {
