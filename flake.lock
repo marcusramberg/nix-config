@@ -679,11 +679,11 @@
         "systems": "systems_7"
       },
       "locked": {
-        "lastModified": 1731533236,
-        "narHash": "sha256-l0KFg5HjrsfsO/JpG+r7fRrqm12kzFHyUHqHCVpMMbI=",
+        "lastModified": 1791914995,
+        "narHash": "sha256-Zf/xfQEAasnwnmEfHqW/4hjDE/s44yn2hD4RuVIZRjA=",
         "owner": "numtide",
         "repo": "flake-utils",
-        "rev": "11707dc2f618dd54ca8739b309ec4fc024de578b",
+        "rev": "b7a79d3fea1e214f6d668d521cecec0c01e26544",
         "type": "github"
       },
       "original": {
@@ -1456,11 +1456,11 @@
         "nixpkgs": "nixpkgs_7"
       },
       "locked": {
-        "lastModified": 1782443907,
-        "narHash": "sha256-P+pADLtK7qC1mz0/5Xq9uF77oahUR4zYLTaitiHsUHg=",
+        "lastModified": 1792913333,
+        "narHash": "sha256-wjoZGhxH/Yr+OsFRpNyV9DpMGQIdNEjjAOinfzQvadk=",
         "owner": "oxalica",
         "repo": "rust-overlay",
-        "rev": "4b06ff4acf3491ff69721df852507fcc51d0a13d",
+        "rev": "fad80eb74614f7dc37c1c83df8caae64361eda22",
         "type": "github"
       },
       "original": {
@@ -1545,11 +1545,11 @@
         "rust-overlay": "rust-overlay_3"
       },
       "locked": {
-        "lastModified": 1792835861,
-        "narHash": "sha256-owEImulR9nOTC4NtgrXCunJrAZbmesPp+Owejk3SMfo=",
+        "lastModified": 1794528470,
+        "narHash": "sha256-0eyMtVv6GJBZyLBJTb5kX/MMtovJTpRYBoAFNmsLlSE=",
         "ref": "main",
-        "rev": "e0ec59df62ce72156139ed24ce362d8839b1a7bb",
-        "revCount": 360,
+        "rev": "d750f8bc18f320e66c0bceee55251c49467c612d",
+        "revCount": 397,
         "type": "git",
         "url": "https://code.bas.es/marcus/springchick.git"
       },
