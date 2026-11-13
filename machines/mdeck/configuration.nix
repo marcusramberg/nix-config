@@ -12,7 +12,7 @@
   ];
   # Enable hardware and Steam support.
   boot.loader = {
-    systemd-boot.enable = true;
+    # systemd-boot.enable = true;
     efi.canTouchEfiVariables = true;
   };
   jovian = {
@@ -64,7 +64,14 @@
   };
 
   powerManagement.cpuFreqGovernor = "schedutil";
-  profiles.dmsMobile.enable = true;
+  profiles = {
+    limine = {
+      enable = true;
+      interface_rotation = "90";
+      font_scale = "2x2";
+    };
+    dmsMobile.enable = true;
+  };
 
   programs = {
     springchick.panelTransform = "90";
