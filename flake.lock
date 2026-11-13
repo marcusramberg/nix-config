@@ -28,11 +28,11 @@
         "springchick": "springchick"
       },
       "locked": {
-        "lastModified": 1793480538,
-        "narHash": "sha256-CRLM7u3k47jPreJ/GyqTt7u6Xg3UTgNWSgu2RykaQoo=",
+        "lastModified": 1794528711,
+        "narHash": "sha256-mtlkGduKlgZ1ahWTSaH26E2Wxum/QKJuykgiq0YqmDQ=",
         "ref": "master",
-        "rev": "85a9506f388f6e179fb8676a254bd2f0cdce815c",
-        "revCount": 1587,
+        "rev": "08545c5e7df2a5d2e264b9349649a4369d85563c",
+        "revCount": 1702,
         "type": "git",
         "url": "https://code.bas.es/marcus/android-translation-layer.git"
       },

@@ -35,7 +35,7 @@
     avahi = {
       enable = true;
       nssmdns4 = true;
-      allow-interfaces = [
+      allowInterfaces = [
         "lan"
         "iot"
       ];
