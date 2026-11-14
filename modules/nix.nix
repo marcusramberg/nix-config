@@ -13,6 +13,9 @@
       channel.enable = false;
       distributedBuilds = true;
       settings = {
+        # nix flake show/check default this off, and lib/patchNixpkgs.nix imports
+        # from the patched nixpkgs derivation, so it has to be set explicitly
+        allow-import-from-derivation = true;
         download-buffer-size = 500000000;
         substituters = [
           "https://nix-community.cachix.org"
