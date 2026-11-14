@@ -8,7 +8,6 @@ _: final: {
 
   charon = final.callPackage ../packages/charon { };
   cosmic-camera = final.callPackage ../packages/cosmic-camera { };
-  enroll = final.callPackage ../packages/enroll { };
   plymouth-fjordxy = final.callPackage ../packages/plymouth-fjordxy { };
   plymouth-nixos = final.callPackage ../packages/plymouth-nixos { };
   limine-nixos = final.callPackage ../packages/limine-nixos { };

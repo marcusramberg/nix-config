@@ -11,7 +11,7 @@ with lib;
 let
   inherit (inputs) agenix;
   secretsDir = ../secrets;
-  secretsFile = "${secretsDir}/secrets.nix";
+  secretsFile = "${secretsDir}/agenix-rules.nix";
 in
 {
   environment.systemPackages = [ agenix.packages.${pkgs.stdenv.hostPlatform.system}.agenix ];
