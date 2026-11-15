@@ -14,6 +14,12 @@
         linkConfig = {
           Description = "WAN Interface";
           MACAddress = "02:bb:c6:06:62:01";
+          # mtk_soc_eth corrupts forwarded bulk tcp with these on (seen on
+          # 7.2.0): payload mangled, checksum valid, peers send bad_record_mac
+          ScatterGather = false;
+          TCPSegmentationOffload = false;
+          TCP6SegmentationOffload = false;
+          GenericSegmentationOffload = false;
         };
       };
     };
