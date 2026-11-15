@@ -74,6 +74,15 @@
       name = "tools-types-u128";
       patch = ./tools-types-u128.patch;
     }
+    {
+      # end0 (AQC113): the vendor gate is off in this kernel's config
+      name = "aquantia-end0";
+      patch = null;
+      structuredExtraConfig = with lib.kernel; {
+        NET_VENDOR_AQUANTIA = yes;
+        AQTION = module;
+      };
+    }
   ];
 
   hardware = {
