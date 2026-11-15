@@ -42,6 +42,10 @@
     asahi-wifisync
     box64
     music-assistant-desktop
+    # crafts
+    photocraft
+    lightcraft
+    vectorcraft
   ];
 
   fileSystems = {

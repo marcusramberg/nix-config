@@ -1,0 +1,23 @@
+diff --git a/gradient-worker/src/proto/prefetch.rs b/gradient-worker/src/proto/prefetch.rs
+index 7189360e0..142f17c22 100644
+--- a/gradient-worker/src/proto/prefetch.rs
++++ b/gradient-worker/src/proto/prefetch.rs
+@@ -265,7 +265,8 @@ impl<'a> InputPrefetcher<'a> {
+         progress: &mut Progress<impl ProgressSink>,
+     ) -> Result<()> {
+         let full_drv_path = nix_store_path(&self.drv_path);
+-        if tokio::fs::try_exists(&full_drv_path).await.unwrap_or(false) {
++        // An interrupted import leaves the file on disk without registering it.
++        if self.store.has_path(&full_drv_path).await? {
+             return Ok(());
+         }
+ 
+@@ -278,7 +279,7 @@ impl<'a> InputPrefetcher<'a> {
+         self.fetch_closure(vec![self.drv_path.to_owned()], progress)
+             .await?;
+ 
+-        if !tokio::fs::try_exists(&full_drv_path).await.unwrap_or(false) {
++        if !self.store.has_path(&full_drv_path).await? {
+             return Err(anyhow::anyhow!(
+                 "build target drv {} still missing after fetch+import",
+                 full_drv_path

@@ -58,6 +58,7 @@ let
       golangci-lint
       gopls
       gotestfmt
+      gradient-cli
       hadolint
       just
       lua-language-server

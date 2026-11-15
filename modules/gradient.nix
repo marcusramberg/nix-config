@@ -26,6 +26,9 @@ in
       inherit (cfg) id;
       serverUrl = "wss://gradient.bas.es/proto";
       peersFile = peers.path;
+      packages.gradient = pkgs.gradient.overrideAttrs (old: {
+        patches = old.patches or [ ] ++ [ ./gradient-worker-drv-validity.patch ];
+      });
       # worker only advertises its host system by default
       environmentVariables = lib.mkIf pkgs.stdenv.hostPlatform.isx86_64 {
         GRADIENT_WORKER_SYSTEM_ARCHITECTURES = "x86_64-linux,i686-linux";
