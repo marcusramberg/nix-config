@@ -116,7 +116,11 @@
           };
           devShells = {
             default = pkgs.mkShellNoCC {
-              NIX_CONFIG = "experimental-features = nix-command flakes";
+              # nix flake show/check ignore allow-import-from-derivation from nix.conf
+              NIX_CONFIG = ''
+                experimental-features = nix-command flakes
+                allow-import-from-derivation = true
+              '';
               packages = with pkgs; [
                 attic-client
                 git

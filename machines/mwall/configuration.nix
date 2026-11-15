@@ -35,7 +35,7 @@
     avahi = {
       enable = true;
       nssmdns4 = true;
-      allowInterfaces = [
+      settings.server.allow-interfaces = [
         "lan"
         "iot"
       ];
