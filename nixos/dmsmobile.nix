@@ -7,7 +7,7 @@
 }:
 let
   cfg = config.profiles.dmsMobile;
-  dms = inputs.dmsmobile.packages.${pkgs.stdenv.hostPlatform.system}.default;
+  playerctl = lib.getExe pkgs.playerctl;
   gsettingsSchemas = pkgs.gsettings-desktop-schemas;
   schemaDir = pkgs.glib.makeSchemaPath gsettingsSchemas gsettingsSchemas.name;
 
@@ -21,14 +21,19 @@ let
     // attrs;
 
   springchickSettings = {
-    main =
+    main = {
+      # sc-bar's lock screen; its pad types digits, like the login PIN.
+      lock_on_blank = true;
+    }
+    // (
       {
         dmsmobile = {
           dpi = 2.8;
           card_radius = "auto";
         };
       }
-      .${config.networking.hostName} or { };
+      .${config.networking.hostName} or { }
+    );
     xkb = {
       layout = "no,us";
       # variant = "mac";
@@ -69,15 +74,15 @@ let
       (bind "XF86PowerOff" { action = "toggle-display"; })
       (bind "XF86PowerOff" {
         press = "long";
-        command = "dms ipc lock lock; systemctl suspend";
+        command = "systemctl suspend";
       })
       (bind "XF86PowerOff" {
         "with" = [ "XF86AudioLowerVolume" ];
         action = "screenshot";
       })
-      (bind "XF86AudioPlay" { command = "dms ipc mpris playPause"; })
-      (bind "XF86AudioPrev" { command = "dms ipc mpris previous"; })
-      (bind "XF86AudioNext" { command = "dms ipc mpris next"; })
+      (bind "XF86AudioPlay" { command = "${playerctl} play-pause"; })
+      (bind "XF86AudioPrev" { command = "${playerctl} previous"; })
+      (bind "XF86AudioNext" { command = "${playerctl} next"; })
       (bind "h" {
         mods = [ "Super" ];
         action = "home";
@@ -115,7 +120,6 @@ let
     ];
   };
 in
-
 {
 
   imports = [ inputs.android-translation-layer.nixosModules.default ];
@@ -211,6 +215,9 @@ in
       chown -R marcus:users /etc/nixos
     '';
 
+    # GNOME's module turns ibus on; sc-osk types through uinput.
+    i18n.inputMethod.enable = false;
+
     environment = {
       sessionVariables = {
         GSETTINGS_SCHEMA_DIR = schemaDir;
@@ -234,7 +241,6 @@ in
         reco
         riff
         signal-desktop
-        # supertuxkart
         telegram-desktop
         voyager
         wl-clipboard
@@ -251,10 +257,6 @@ in
         webview.enable = true;
       };
       calls.enable = true;
-      dux-shell = {
-        enable = true;
-        package = dms;
-      };
       dux-search.enable = true;
       feedbackd.enable = true;
       foot = {
@@ -272,8 +274,8 @@ in
       };
       dconf.profiles.user.databases = [
         {
-          ## FIMXE: this should work oob
-          settings."mobi/phosh/shell/brightness".auto-brightness-offset = 0.3;
+          # The greeter's phosh: no auto brightness.
+          settings."org/gnome/settings-daemon/plugins/power".ambient-enabled = false;
           # feedbackd only loads ~/.config/feedbackd/themes/<theme>.json
           settings."org/sigxcpu/feedbackd".theme = "custom";
         }
@@ -284,6 +286,17 @@ in
         phrog = {
           enable = true;
           osk.package = pkgs.stevia;
+          # Every greeter start, through logind as the greeter's own session.
+          package = pkgs.symlinkJoin {
+            name = "phrog-fixed-brightness";
+            paths = [ pkgs.phrog ];
+            nativeBuildInputs = [ pkgs.makeWrapper ];
+            postBuild = ''
+              wrapProgram $out/bin/phrog \
+                --run "${lib.getExe pkgs.brightnessctl} -q set 70% || true"
+            '';
+            meta.mainProgram = "phrog";
+          };
           phocConfig = {
             "output:DSI-1".scale = 3;
 
@@ -338,11 +351,7 @@ in
       };
     };
     systemd = {
-      user.services.dms.environment.DMS_MOBILE = "1";
       user.services = {
-        dms.wantedBy = lib.mkForce [
-          "springchick.service"
-        ];
         wvkbd = {
           description = "On-screen keyboard";
           partOf = [ "graphical-session.target" ];
@@ -374,9 +383,6 @@ in
         };
       };
     };
-
-    virtualisation = {
-      waydroid.enable = true;
-    };
+    virtualisation.waydroid.enable = true;
   };
 }

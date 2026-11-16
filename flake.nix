@@ -252,10 +252,6 @@
       url = "git+https://code.bas.es/marcus/android-translation-layer.git?ref=master";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    dmsmobile = {
-      url = "github:marcusramberg/DankMaterialShell/mobile";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
     dms-plugin-registry = {
       url = "github:AvengeMedia/dms-plugin-registry";
       inputs.nixpkgs.follows = "nixpkgs";
