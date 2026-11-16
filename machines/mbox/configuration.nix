@@ -151,8 +151,11 @@
   networking = {
     hostName = "mbox";
     networkmanager.enable = true;
-    # nb-whisper user service for Balder; opened at runtime via nixos-fw temp-ports until the next rebuild
-    firewall.allowedTCPPorts = [ 8178 ];
+    # whisper user services for Balder (8178 nb-whisper, 8179 large-v3-turbo); opened at runtime via nixos-fw temp-ports until the next rebuild
+    firewall.allowedTCPPorts = [
+      8178
+      8179
+    ];
   };
 
   hardware = {
