@@ -188,17 +188,26 @@
     apple-silicon-support = {
       url = "github:marcusramberg/nixos-apple-silicon";
       inputs.nixpkgs.follows = "nixpkgs";
+      inputs.flake-compat.follows = "flake-compat";
     };
     caddy-stack = {
       url = "https://code.bas.es/bases/caddy-stack/archive/main.tar.gz";
+      # own nixpkgs: plugin vendor hash is tied to its caddy version
+      inputs.flake-parts.follows = "flake-parts";
     };
     clan-core = {
       url = "https://git.clan.lol/clan/clan-core/archive/main.tar.gz";
-      inputs.nixpkgs.follows = "nixpkgs";
+      inputs = {
+        nixpkgs.follows = "nixpkgs";
+        disko.follows = "disko";
+        flake-parts.follows = "flake-parts";
+        systems.follows = "systems";
+      };
     };
     dux-shell = {
       url = "github:duxlabs-dev/dux-shell";
       inputs.nixpkgs.follows = "nixpkgs";
+      inputs.flake-compat.follows = "flake-compat";
       # inputs.quickshell.follows = "quickshell";
     };
 
@@ -208,13 +217,24 @@
     hei = {
       url = "github:marcusramberg/hei";
       inputs.nixpkgs.follows = "nixpkgs";
+      inputs.flake-utils.follows = "flake-utils";
     };
     flake-parts.url = "github:hercules-ci/flake-parts";
+    flake-parts.inputs.nixpkgs-lib.follows = "nixpkgs";
+    flake-utils.url = "github:numtide/flake-utils";
+    flake-utils.inputs.systems.follows = "systems";
     jovian.url = "github:Jovian-Experiments/Jovian-NixOS";
     jovian.inputs.nixpkgs.follows = "nixpkgs";
     home-manager.url = "github:nix-community/home-manager";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
-    nix-fast-build.url = "github:Mic92/nix-fast-build";
+    nix-fast-build = {
+      url = "github:Mic92/nix-fast-build";
+      inputs = {
+        nixpkgs.follows = "nixpkgs";
+        flake-parts.follows = "flake-parts";
+        treefmt-nix.follows = "clan-core/treefmt-nix";
+      };
+    };
     nix-index-database.url = "github:Mic92/nix-index-database";
     nix-index-database.inputs.nixpkgs.follows = "nixpkgs";
     nixpkgs.url = "https://channels.nixos.org/nixos-unstable/nixexprs.tar.zst";
@@ -231,7 +251,11 @@
     tfenv.url = "github:tfutils/tfenv";
     theheck = {
       url = "https://code.bas.es/marcus/theheck/archive/main.tar.gz";
-      inputs.nixpkgs.follows = "nixpkgs";
+      inputs = {
+        nixpkgs.follows = "nixpkgs";
+        flake-utils.follows = "flake-utils";
+        gomod2nix.follows = "hei/gomod2nix";
+      };
     };
     unattended-installer = {
       url = "github:chrillefkr/nixos-unattended-installer";
@@ -243,28 +267,30 @@
     nixos-pixel-9pro = {
       url = "git+https://code.bas.es/marcus/nixos-pixel-9pro.git?ref=main";
       inputs.nixpkgs.follows = "nixpkgs";
+      inputs.flake-utils.follows = "flake-utils";
     };
     vanilla-mobile-nixos = {
       url = "github:marcusramberg/vanilla-mobile-nixos/marcus/fajita";
       inputs.nixpkgs.follows = "nixpkgs";
+      inputs.flake-utils.follows = "flake-utils";
     };
     android-translation-layer = {
       url = "git+https://code.bas.es/marcus/android-translation-layer.git?ref=master";
       inputs.nixpkgs.follows = "nixpkgs";
+      inputs.springchick.follows = "springchick";
     };
     dms-plugin-registry = {
       url = "github:AvengeMedia/dms-plugin-registry";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    mango = {
-      url = "github:marcusramberg/mango/ext-background-effect-v1";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
     springchick = {
       url = "git+https://code.bas.es/marcus/springchick.git?ref=main";
-      inputs.nixpkgs.follows = "nixpkgs";
+      inputs = {
+        nixpkgs.follows = "nixpkgs";
+        flake-utils.follows = "flake-utils";
+        rust-overlay.inputs.nixpkgs.follows = "nixpkgs";
+      };
     };
     nixos-bpi-r4-pro = {
       url = "git+https://code.bas.es/marcus/nixos-bpi-r4-pro.git?ref=main";
@@ -274,7 +300,14 @@
       url = "git+https://code.bas.es/marcus/tee-fprintd?ref=main";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    fjordxy.url = "https://code.bas.es/bases/fjord/archive/main.tar.gz";
+    fjordxy = {
+      url = "https://code.bas.es/bases/fjord/archive/main.tar.gz";
+      inputs = {
+        nixpkgs.follows = "nixpkgs";
+        disko.follows = "disko";
+        home-manager.follows = "home-manager";
+      };
+    };
     ewm = {
       url = "git+https://codeberg.org/ezemtsov/ewm.git?ref=master";
       inputs.nixpkgs.follows = "nixpkgs";
