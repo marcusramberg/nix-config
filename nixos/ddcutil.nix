@@ -25,7 +25,7 @@ in
       "i2c-piix4"
     ];
 
-    services.udev.extraRules = builtins.readFile "${pkgs.ddcutil}/share/ddcutil/data/60-ddcutil-i2c.rules";
+    services.udev.packages = [ pkgs.ddcutil ];
 
     environment.systemPackages = [ pkgs.ddcutil ];
     users.groups = {
