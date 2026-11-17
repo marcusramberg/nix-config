@@ -37,6 +37,18 @@
 
   };
 
+  # No gsm.device-id: MM's id for the modem is not stable. Without an APN MM dials telenor.smart (cause 33).
+  networking.networkmanager.ensureProfiles.profiles.mobile = {
+    connection = {
+      id = "mobile";
+      type = "gsm";
+      autoconnect = true;
+    };
+    gsm.apn = "internet";
+    ipv4.method = "auto";
+    ipv6.method = "auto";
+  };
+
   # Don't block boot ~9.5s waiting for wifi (ath11k rproc probe defers wlan0 late).
   systemd.services.NetworkManager-wait-online.enable = false;
 
