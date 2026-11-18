@@ -14,10 +14,10 @@
         (import ./lib {
           inputs = originalInputs;
           nixpkgsPRs = [
-            {
-              number = 572284;
-              hash = "sha256-iiGKgHQeke+0jrMM5h0ajvymEkvE/Qbp6wUm1XPCSAI=";
-            }
+            # {
+            #   number = 572284;
+            #   hash = "sha256-iiGKgHQeke+0jrMM5h0ajvymEkvE/Qbp6wUm1XPCSAI=";
+            # }
           ];
         })
         inputs
@@ -93,10 +93,32 @@
               inputs.vanilla-mobile-nixos.nixosModules.vanilla-mobile
             ];
           };
+	  multron = mkDesktopHost "multron" {
+	  system="aarch64-linux";
+	  extraModules = [
+            inputs.aurora.inputs.apple-silicon.nixosModules.default
+            inputs.aurora.nixosModules.default 
+	    inputs.aurora.nixosModules.image 
+	    inputs.aurora.nixosModules.installed
+            { nixpkgs.overlays = [ inputs.aurora.inputs.apple-silicon.overlays.default inputs.aurora.overlays.default ]; }
+
+	  ];
+	  };
         };
         specialArgs = { inherit inputs self; };
       };
       flake = {
+        # Aurora's binary cache only matches its own nixpkgs pin, and our newer
+        # NixOS modules don't evaluate against those packages.
+        nixosConfigurations.multron = inputs.nixpkgs.lib.mkForce (
+          inputs.aurora.inputs.nixpkgs.lib.nixosSystem {
+            modules = [ self.nixosModules.clan-machine-multron ];
+            specialArgs = {
+              inherit inputs self;
+              inherit (inputs) clan-core;
+            };
+          }
+        );
         installers = builtins.mapAttrs (
           _: config:
           (inputs.unattended-installer.lib.diskoInstallerWrapper config { }).config.system.build.isoImage
@@ -300,6 +322,7 @@
       url = "git+https://code.bas.es/marcus/tee-fprintd?ref=main";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+  aurora.url = "github:aurora-silicon/nixos-aurora/channel-testing";
     fjordxy = {
       url = "https://code.bas.es/bases/fjord/archive/main.tar.gz";
       inputs = {

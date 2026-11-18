@@ -81,5 +81,7 @@
     };
     # GNOME brings power-profiles-daemon; vanilla-mobile defaults to TLP.
     tlp.enable = false;
+    # Default is charging_only, which leaves no way in when touch is broken.
+    usb-moded.settings.usbmode.mode = "developer_mode";
   };
 }
