@@ -9,6 +9,7 @@
   imports = [
     # Include the results of the hardware scan.
     ./hardware-configuration.nix
+    ./ane.nix
   ];
 
   age.secrets.email-password = {
@@ -236,6 +237,16 @@
         ipv6AcceptRAConfig.RouteMetric = 2000;
       };
     };
+  };
+
+  # ollama probes GPUs once at startup; without this it races the asahi
+  # driver at boot and stays CPU-only.
+  services.udev.extraRules = ''
+    SUBSYSTEM=="drm", KERNEL=="renderD128", TAG+="systemd"
+  '';
+  systemd.services.ollama = {
+    wants = [ "dev-dri-renderD128.device" ];
+    after = [ "dev-dri-renderD128.device" ];
   };
 
   # Work around a Linux 7.0 UDP-GSO regression that craters tailscale TX
