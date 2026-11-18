@@ -14,10 +14,6 @@
         (import ./lib {
           inputs = originalInputs;
           nixpkgsPRs = [
-            {
-              number = 572284;
-              hash = "sha256-iiGKgHQeke+0jrMM5h0ajvymEkvE/Qbp6wUm1XPCSAI=";
-            }
           ];
         })
         inputs
@@ -44,6 +40,12 @@
         };
         machines = {
           mstudio = mkDesktopHost "mstudio" {
+            extraModules = [
+              inputs.apple-silicon-support.nixosModules.apple-silicon-support
+            ];
+            system = "aarch64-linux";
+          };
+          multron = mkDesktopHost "multron" {
             extraModules = [
               inputs.apple-silicon-support.nixosModules.apple-silicon-support
             ];
