@@ -1,0 +1,13 @@
+--- a/drivers/input/rmi4/rmi_f12.c
++++ b/drivers/input/rmi4/rmi_f12.c
+@@ -243,8 +243,8 @@ static void rmi_f12_set_hardcoded_desc(struct rmi_function *fn, struct f12_data
+ 	reg_desc = devm_kcalloc(&fn->dev, 1,
+ 			sizeof(struct rmi_register_desc_item), GFP_KERNEL);
+ 	reg_desc->reg = 1;
+-	reg_desc->reg_size = 80;
+-	reg_desc->num_subpackets = 10;
++	reg_desc->reg_size = 40;
++	reg_desc->num_subpackets = 5;
+ 
+ 	f12->data1 = reg_desc;
+ 	f12->data1_offset = 0;

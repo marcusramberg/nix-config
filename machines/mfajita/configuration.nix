@@ -35,6 +35,11 @@
       name = "synaptics-s3706b";
       patch = ./synaptics-s3706b.patch;
     }
+    # The panel reports 5 fingers; the fallback's 10 parses trailing junk as a stuck contact.
+    {
+      name = "rmi4-f12-five-fingers";
+      patch = ./rmi4-f12-five-fingers.patch;
+    }
     # vanilla's 7.1 kernel doesn't build against nixpkgs' 7.3 headers.
     {
       name = "tools-u128";
@@ -81,5 +86,7 @@
     };
     # GNOME brings power-profiles-daemon; vanilla-mobile defaults to TLP.
     tlp.enable = false;
+    # Default is charging_only, which leaves no way in when touch is broken.
+    usb-moded.settings.usbmode.mode = "developer_mode";
   };
 }
