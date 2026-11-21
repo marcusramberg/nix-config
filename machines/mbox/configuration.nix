@@ -257,7 +257,27 @@
         models =
           let
             modelsDir = "/var/lib/llama-models";
-            llamaServer = lib.getExe' (pkgs.llama-cpp.override { vulkanSupport = true; }) "llama-server";
+            llamaCpp = pkgs.llama-cpp.override { vulkanSupport = true; };
+            llamaServer = lib.getExe' llamaCpp "llama-server";
+            # Inkling 2's looped-layer arch (inkling2_loop) needs llama.cpp master
+            # (merged upstream 2026-11-20, not in the 0.9.0 release).
+            # NB: use ggml-org's GGUFs; unsloth's claim block_count=48 with only
+            # 24 blocks of tensors and don't load in upstream builds.
+            llamaServerInkling = lib.getExe' (llamaCpp.overrideAttrs (old: {
+              version = "0.9.0-master-inkling2";
+              src = pkgs.fetchFromGitHub {
+                owner = "ggml-org";
+                repo = "llama.cpp";
+                rev = "29b52d398b294509746ec0a3f28948a3107c0213"; # master 2026-11-20
+                hash = "sha256-6CcMhIEw2JzuQgAZqk0RnGuIXZ7/g4ofjLbQu9LRQAE=";
+              };
+              # master has no tools/ui webui, which nixpkgs 0.9.0 builds with npm
+              npmDeps = null;
+              npmRoot = null;
+              preConfigure = "";
+              nativeBuildInputs = lib.filter (h: (h.name or "") != "npm-config-hook") old.nativeBuildInputs;
+              doCheck = false; # test-kv-cache-scales needs pytorch
+            })) "llama-server";
             mkCmd = args: lib.concatStringsSep " " (lib.filter (a: a != "") args);
           in
           {
@@ -333,6 +353,22 @@
                 "--presence-penalty 0.0"
                 "--repeat-penalty 1.0"
                 "--reasoning off"
+              ];
+            };
+            "inkling-2-mini" = {
+              cmd = mkCmd [
+                "${llamaServerInkling}"
+                "--port \${PORT}"
+                "-m ${modelsDir}/Inkling-2-Mini-IQ4_NL.gguf"
+                "--mmproj ${modelsDir}/mmproj-Inkling-2-Mini-BF16.gguf"
+                "-ngl 99"
+                "-np 1"
+                "-c 32768"
+                "--jinja"
+                "--temp 1.0"
+                "--top-p 1.0"
+                "--top-k 0"
+                "--min-p 0.0"
               ];
             };
           };
