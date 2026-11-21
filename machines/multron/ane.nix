@@ -78,17 +78,19 @@ let
     '';
 in
 {
-  boot.extraModulePackages = [ module ];
-  # Research driver: load by hand (modprobe ane_t6021) until it has proven
-  # itself on this machine.
-  boot.blacklistedKernelModules = [ "ane_t6021" ];
+  boot = {
+    extraModulePackages = [ module ];
+    # Research driver: load by hand (modprobe ane_t6021) until it has proven
+    # itself on this machine.
+    blacklistedKernelModules = [ "ane_t6021" ];
+    # boot.bin is shared by every generation, so a bad device tree cannot be
+    # rolled back from the boot menu. Recovery: from macOS/recoveryOS copy
+    # m1n1/boot-stock.bin over m1n1/boot.bin on the EFI partition.
+    loader.systemd-boot.extraFiles = {
+      "m1n1/boot.bin" = lib.mkForce bootBin;
+      "m1n1/boot-stock.bin" = config.system.build.m1n1;
+    };
+  };
   hardware.firmware = [ firmware ];
 
-  # boot.bin is shared by every generation, so a bad device tree cannot be
-  # rolled back from the boot menu. Recovery: from macOS/recoveryOS copy
-  # m1n1/boot-stock.bin over m1n1/boot.bin on the EFI partition.
-  boot.loader.systemd-boot.extraFiles = {
-    "m1n1/boot.bin" = lib.mkForce bootBin;
-    "m1n1/boot-stock.bin" = config.system.build.m1n1;
-  };
 }
