@@ -157,7 +157,7 @@ fun refresh() {
 }
 Plymouth.SetRefreshFunction(refresh);
 
-fun boot_progress(duration, p) { global.progress = p; }
+fun boot_progress(duration, p) { if (!global.asking) global.progress = p; }
 Plymouth.SetBootProgressFunction(boot_progress);
 
 fun set_msg(text) { msg_sprite.SetImage(Image.Text("> " + text, 0.92, 0.99, 1, 0.72, FONT_SM)); }
@@ -168,20 +168,21 @@ Plymouth.SetUpdateStatusFunction(status);
 # ---------- minimal LUKS prompt (keeps encrypted installs bootable) ----------
 pw_prompt = Sprite(); pw_prompt.SetZ(30);
 fun display_password(prompt, bullets) {
-  global.progress = global.shown;
+  global.asking = 1; global.progress = global.shown;
   pw_prompt.SetImage(Image.Text(prompt, 1, 0.18, 0.53, 1, FONT));
   pw_prompt.SetPosition(BX, BY + 110 * S, 30);
+  pw_prompt.SetOpacity(1);
   bimg = sc(Image("bullet.png"));
   for (i = 0; i < 32; i++) {
-    if (!bullet[i]) bullet[i] = Sprite(bimg);
-    bullet[i].SetPosition(BX + i * bimg.GetWidth() * 1.6, BY + 150 * S, 30);
-    if (i < bullets) bullet[i].SetOpacity(1); else bullet[i].SetOpacity(0);
+    if (!global.bullet[i]) global.bullet[i] = Sprite(bimg);
+    global.bullet[i].SetPosition(BX + i * bimg.GetWidth() * 1.6, BY + 150 * S, 30);
+    if (i < bullets) global.bullet[i].SetOpacity(1); else global.bullet[i].SetOpacity(0);
   }
 }
 Plymouth.SetDisplayPasswordFunction(display_password);
 fun display_normal() {
-  pw_prompt.SetOpacity(0);
-  for (i = 0; i < 32; i++) if (bullet[i]) bullet[i].SetOpacity(0);
+  global.asking = 0; pw_prompt.SetOpacity(0);
+  for (i = 0; i < 32; i++) if (global.bullet[i]) global.bullet[i].SetOpacity(0);
 }
 Plymouth.SetDisplayNormalFunction(display_normal);
 
