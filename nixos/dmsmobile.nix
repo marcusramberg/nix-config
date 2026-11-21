@@ -24,6 +24,8 @@ let
     main = {
       # sc-bar's lock screen; its pad types digits, like the login PIN.
       lock_on_blank = true;
+      wallpaper = "/etc/nixos/wallpaper/springchick-dark.webp";
+      wallpaper_light = "/etc/nixos/wallpaper/springchick-light.webp";
     }
     // (
       {
@@ -234,6 +236,7 @@ in
         bitritter
         enroll
         firefoxpwa
+        hassmote
         hunspellDicts.nb_NO
         melonds
         mpv
@@ -253,6 +256,7 @@ in
         enable = true;
         location.enable = true;
         microphone.enable = true;
+        microg.enable = true;
         push.enable = true;
         webview.enable = true;
       };

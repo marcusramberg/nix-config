@@ -13,6 +13,7 @@ _: final: {
   limine-nixos = final.callPackage ../packages/limine-nixos { };
   gh-release-mono = final.callPackage ../packages/gh-release-mono { };
   gh-tidy = final.callPackage ../packages/gh-tidy { };
+  hassmote = final.callPackage ../packages/hassmote { };
   nfc-badge = final.callPackage ../packages/nfc-badge { };
   riff = final.callPackage ../packages/riff-client { };
   tastiera = final.kdePackages.callPackage ../packages/tastiera { };
