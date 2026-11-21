@@ -886,6 +886,27 @@
         "type": "github"
       }
     },
+    "plymouth-ng": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1795105131,
+        "narHash": "sha256-iAiDAXxguFaOyBuK7A9hEE9cg6JJ/TaYlMuIP6C/d+c=",
+        "ref": "main",
+        "rev": "5e8bebfe3b60a4997ade90f3756fb46f883056ac",
+        "revCount": 14,
+        "type": "git",
+        "url": "https://code.bas.es/marcus/plymouth-ng.git"
+      },
+      "original": {
+        "ref": "main",
+        "type": "git",
+        "url": "https://code.bas.es/marcus/plymouth-ng.git"
+      }
+    },
     "pre-commit-hooks": {
       "inputs": {
         "flake-compat": [
@@ -933,6 +954,7 @@
         "nixos-pixel-9pro": "nixos-pixel-9pro",
         "nixpkgs": "nixpkgs_3",
         "nixpkgs-small": "nixpkgs-small",
+        "plymouth-ng": "plymouth-ng",
         "pre-commit-hooks": "pre-commit-hooks",
         "springchick": "springchick",
         "systems": "systems_2",
@@ -1017,11 +1039,11 @@
         "rust-overlay": "rust-overlay_2"
       },
       "locked": {
-        "lastModified": 1794915458,
-        "narHash": "sha256-OVGsgAregiXsjc6mUuGYtnEPeiTJNLiKHUu2QRmMeEg=",
+        "lastModified": 1794943933,
+        "narHash": "sha256-f/Er0jPD1IU3cplpKTm9hcb1HiSjzDSOWcSbI1Jzzms=",
         "ref": "main",
-        "rev": "089a5568a81dfd4654f586bb5c346d8a45c39266",
-        "revCount": 421,
+        "rev": "887130bf7e10355a16ae875ae6900c1f609b1c0f",
+        "revCount": 422,
         "type": "git",
         "url": "https://code.bas.es/marcus/springchick.git"
       },
@@ -1276,11 +1298,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1794508789,
-        "narHash": "sha256-qciLXgjIJKWhC63d0jJ/mgwMma1htdpZc4yocFJ+wPw=",
+        "lastModified": 1795111985,
+        "narHash": "sha256-FGjlCtZY8//fcjtALyjOgqQ7OgAAO6H0koZEd/wOQ8k=",
         "owner": "marcusramberg",
         "repo": "vanilla-mobile-nixos",
-        "rev": "ff2be4377c809c1cf1b5fbd6e659031ec0c0cac4",
+        "rev": "bc2cdcbb2cc129b1d97a7903185fd38098e724e8",
         "type": "github"
       },
       "original": {

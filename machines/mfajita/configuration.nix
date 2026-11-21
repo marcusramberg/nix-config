@@ -1,4 +1,5 @@
 {
+  config,
   inputs,
   lib,
   pkgs,
@@ -6,7 +7,7 @@
 }:
 {
   imports = [
-    "${inputs.vanilla-mobile-nixos}/examples/diskoConfigs/ext4.nix"
+    "${inputs.vanilla-mobile-nixos}/examples/diskoConfigs/ext4-luks-encryption.nix"
     ../../nixos/dmsmobile.nix
   ];
   documentation.nixos.enable = false;
@@ -17,10 +18,14 @@
       hunspellDicts.en-us
     ];
   };
-  # unl0kr owns the display in the initrd here; Plymouth would blank the LUKS prompt.
   boot = {
-    plymouth.enable = false;
-    consoleLogLevel = lib.mkForce 7;
+    # plymouth-ng draws its own on-screen keyboard for the LUKS prompt.
+    initrd.unl0kr.enable = lib.mkForce false;
+    # ModemManager deadlocks closing its AT ports, which hangs shutdown.
+    blacklistedKernelModules = [ "rpmsg_wwan_ctrl" ];
+    plymouth.package = inputs.plymouth-ng.packages.${pkgs.stdenv.hostPlatform.system}.default.override {
+      systemd = config.boot.initrd.systemd.package;
+    };
   };
 
   vanilla-mobile = {

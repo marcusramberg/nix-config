@@ -286,6 +286,11 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    plymouth-ng = {
+      url = "git+https://code.bas.es/marcus/plymouth-ng.git?ref=main";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     springchick = {
       url = "git+https://code.bas.es/marcus/springchick.git?ref=main";
       inputs = {
