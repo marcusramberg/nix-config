@@ -58,7 +58,10 @@
 
     doom.enable = true;
     ccache.enable = true;
-    gradientWorker.enable = true;
+    gradientWorker = {
+      enable = true;
+      id = "868bdc22-74f8-47e3-ab54-dae73401aa9e";
+    };
     incus.enable = true;
     work.enable = true;
   };
