@@ -14,6 +14,7 @@
   # Bootloader.
   boot = {
     loader.efi.canTouchEfiVariables = true;
+    loader.limine.efiInstallAsRemovable = true;
     # Setup keyfile
     initrd = {
       secrets = {
@@ -33,8 +34,6 @@
 
     kernelPackages = pkgs.linuxPackages_latest;
     kernelParams = lib.mkOrder 1500 [
-      "pcie_aspm=off"
-      "amdgpu.runpm=0"
       # VT-d is enabled in firmware; the kernel still wants this to drive the
       # IOMMU (required for PCI passthrough).
       "intel_iommu=on"
@@ -42,12 +41,18 @@
       # floods dmesg with "HDR SB:" lines, drowning out the pstore crash
       # captures. Last value on the cmdline wins.
       "amdgpu.dcdebugmask=0x0"
+      # Default mask + the OverDrive bit (0x4000): exposes gpu_od/fan_ctrl
+      # for the quieter fan thresholds set by amdgpu-quiet-fans below.
+      "amdgpu.ppfeaturemask=0xfff7ffff"
     ];
     # These modules are required for PCI passthrough, and must come before early modesetting stuff
     kernelModules = [
       "fbcon"
       "hid-apple"
       "kvm-intel"
+      # fan RPM / board voltages on the B760's NCT6687D Super I/O;
+      # MSI boards aren't in the driver's whitelist, hence force
+      "nct6683"
     ];
     kernel.sysctl = {
       "fs.inotify.max_user_watches" = 2048576; # default: 8192
@@ -66,6 +71,7 @@
     extraModprobeConfig = ''
       options hid_apple iso_layout=1
       options kvm_intel nested=1
+      options nct6683 force=1
     '';
   };
   environment.systemPackages = with pkgs; [
@@ -176,6 +182,10 @@
     };
     dockerHost.enable = true;
     gaming.enable = true;
+    gradientWorker = {
+      enable = true;
+      id = "2a3fc017-43f1-4a05-948e-e7fb3035205c";
+    };
     incus.enable = true;
     limine.enable = true;
     caddy = {
@@ -205,7 +215,8 @@
         };
         gpu = {
           apply_gpu_optimisations = "accept-responsibility"; # For systems with AMD GPUs
-          gpu_device = 0;
+          # card0 is the 14700K's iGPU on the B760 board; the AMD dGPU is card1
+          gpu_device = 1;
           amd_performance_level = "high";
         };
       };
@@ -241,10 +252,6 @@
       #       sha256 = "sha256-eebD5GgE4u38AWx8sxuRrY0aiy4ndgyztSxkJZYtCmw=";
       #     };
       defaultRuntime = true;
-    };
-    nix-serve = {
-      enable = true;
-      secretKeyFile = "/var/cache-priv-key.pem";
     };
 
     llama-swap = {
@@ -363,12 +370,16 @@
                 "--mmproj ${modelsDir}/mmproj-Inkling-2-Mini-BF16.gguf"
                 "-ngl 99"
                 "-np 1"
-                "-c 32768"
+                "-c 80000"
                 "--jinja"
                 "--temp 1.0"
                 "--top-p 1.0"
                 "--top-k 0"
                 "--min-p 0.0"
+                # reasoning can't be fully disabled on inkling; keep it from
+                # eating the client's max_tokens budget before the answer
+                "--reasoning-effort low"
+                "--reasoning-budget 2048"
               ];
             };
           };
@@ -391,6 +402,27 @@
     };
   };
   systemd.services = {
+    # Quieter 7900 XTX: lower the firmware fan controller's acoustic
+    # thresholds (needs amdgpu.ppfeaturemask OD bit, see kernelParams).
+    # These are soft targets — the card still throttles clocks before
+    # overheating, so worst case is reduced boost, never damage. Valid
+    # ranges are printed inside the sysfs files; if a write is rejected
+    # the service fails visibly and the firmware defaults stay active.
+    amdgpu-quiet-fans = {
+      description = "Lower amdgpu acoustic fan RPM thresholds";
+      wantedBy = [ "multi-user.target" ];
+      serviceConfig.Type = "oneshot";
+      script = ''
+        for ctrl in /sys/class/drm/card*/device/gpu_od/fan_ctrl; do
+          [ -e "$ctrl/acoustic_target_rpm_threshold" ] || continue
+          echo 1050 > "$ctrl/acoustic_target_rpm_threshold"
+          echo c > "$ctrl/acoustic_target_rpm_threshold"
+          echo 1900 > "$ctrl/acoustic_limit_rpm_threshold"
+          echo c > "$ctrl/acoustic_limit_rpm_threshold"
+        done
+      '';
+    };
+
     "woodpecker-agent-mbox".serviceConfig = {
       StateDirectory = "/var/lib/woodpecker";
       ReadWritePaths = [ "/var/lib/woodpecker" ];
