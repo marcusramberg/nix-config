@@ -16,6 +16,8 @@ _: final: {
   hassmote = final.callPackage ../packages/hassmote { };
   nfc-badge = final.callPackage ../packages/nfc-badge { };
   riff = final.callPackage ../packages/riff-client { };
+  stoandl = final.callPackage ../packages/stoandl { };
+  stoandl-gui = final.kdePackages.callPackage ../packages/stoandl-gui { };
   tastiera = final.kdePackages.callPackage ../packages/tastiera { };
   tfenv = final.callPackage ../packages/tfenv { inherit inputs; };
   voyager = final.callPackage ../packages/voyager { };

@@ -24,14 +24,14 @@
 
 rustPlatform.buildRustPackage.override { stdenv = clangStdenv; } (finalAttrs: {
   pname = "hassmote";
-  version = "0.1.1";
+  version = "0.1.2";
 
   src = fetchFromGitea {
     domain = "code.bas.es";
     owner = "marcus";
     repo = "hassmote";
     tag = "v${finalAttrs.version}";
-    hash = "sha256-poXQVDD09n5Oz0Uds35fqvsmgKlYU4J5gPQyaqhwfts=";
+    hash = "sha256-PA/FiClDZOYMxHrwoWm5TAekqVyXJSiit4RTEjh7XKI=";
   };
 
   cargoHash = "sha256-BEHsHStfU3oqI6jZv/L9lUTwZcF7eus+Sm54CsdszVM=";

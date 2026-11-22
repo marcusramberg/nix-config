@@ -15,6 +15,7 @@
     ../modules/caddy.nix
     ../modules/fonts.nix
     ../modules/gradient.nix
+    ../modules/stoandl.nix
     ../modules/work.nix
     ../modules/nix.nix
     ./amd.nix
