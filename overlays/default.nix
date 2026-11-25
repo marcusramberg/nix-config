@@ -16,6 +16,7 @@ _: final: {
   hassmote = final.callPackage ../packages/hassmote { };
   nfc-badge = final.callPackage ../packages/nfc-badge { };
   riff = final.callPackage ../packages/riff-client { };
+  steamvr-linux-fixes = final.callPackage ../packages/steamvr-linux-fixes { };
   stoandl = final.callPackage ../packages/stoandl { };
   stoandl-gui = final.kdePackages.callPackage ../packages/stoandl-gui { };
   tastiera = final.kdePackages.callPackage ../packages/tastiera { };

@@ -77,6 +77,8 @@
   environment.systemPackages = with pkgs; [
     heroic
     # lutris # FIXME: temp disable as build is broken
+    # vrcompositor fixes (120Hz unlock, present-wait latency) for the PSVR2
+    steamvr-linux-fixes
     wine
   ];
 
@@ -168,6 +170,13 @@
     enableRedistributableFirmware = true;
     gpu.amd.enable = true;
     bluetooth.enable = true;
+    # Let BT HID devices keep sniff mode: stock bluez forces active mode,
+    # which saturates the link when both PSVR2 Sense controllers stream at
+    # full poll rate (HIDP SET_REPORT timeouts -> both disconnect).
+    # Patch = RealSupremium/bluez fadd6455, pending upstream.
+    bluetooth.package = pkgs.bluez.overrideAttrs (old: {
+      patches = (old.patches or [ ]) ++ [ ./bluez-sense-sniff-mode.patch ];
+    });
     keyboard.dual-caps.enable = true;
     # Log MCE/PCIe-AER hardware errors persistently (freeze diagnosis)
     rasdaemon.enable = true;
@@ -226,6 +235,9 @@
 
   services = {
     blueman.enable = true;
+    # uaccess for the PSVR2 headset + Sense controllers (Ignition/SteamVR
+    # run as the user and talk to them over hidraw/USB)
+    udev.packages = [ pkgs.xr-hardware ];
     immich = {
 
       enable = true;
@@ -243,15 +255,10 @@
     k3s.clusterInit = true;
     monado = {
       enable = true;
-      # package = inputs.monado.packages.${pkgs.stdenv.hostPlatform.system}.default;
-      #   package = pkgs.monado.overrideAttrs {
-      #     src = pkgs.fetchFromGitHub {
-      #       owner = "DMJC";
-      #       repo = "monado-psvr2";
-      #       rev = "d1c38abf995c8b44620727825ce1c0fb061d47ee";
-      #       sha256 = "sha256-eebD5GgE4u38AWx8sxuRrY0aiy4ndgyztSxkJZYtCmw=";
-      #     };
-      defaultRuntime = true;
+      # PSVR2 runs via Ignition (Sony's Windows SteamVR driver under Proton,
+      # ~/ignition + PSVR2Toolkit in the PSVR2 App's SteamVR_Plug-In), so
+      # SteamVR owns the OpenXR runtime; don't let monado claim it system-wide.
+      defaultRuntime = false;
     };
 
     llama-swap = {
