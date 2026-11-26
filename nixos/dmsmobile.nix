@@ -41,6 +41,8 @@ let
       # variant = "mac";
       options = "grp:win_space_toggle";
     };
+    # Never frozen in the background: it holds SSH links and posts notifications.
+    resources.apps."dev.herdrmobile.herdr_mobile" = "throttle";
     predict.dictionaries = [
       "nb_NO"
       "en_US"
